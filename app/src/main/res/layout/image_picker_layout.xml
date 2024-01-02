@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/white_round_corner_12_dp"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingVertical="25dp">
+
+        <LinearLayout
+            android:id="@+id/camera"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/image_camera" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/camera"
+                android:textColor="@color/app_theme"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="30dp"
+            android:background="@color/app_theme" />
+
+        <LinearLayout
+            android:id="@+id/gallery"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/image_gallery" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/gallery"
+                android:textColor="@color/app_theme"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!--   <View
+               android:layout_width="1dp"
+               android:layout_height="30dp"
+               android:background="@color/app_theme" />
+
+           <LinearLayout
+               android:id="@+id/cameraVedio"
+               android:layout_width="0dp"
+               android:layout_marginTop="10dp"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:gravity="center"
+               android:orientation="vertical">
+
+               <ImageView
+                   android:layout_width="30dp"
+                   android:layout_height="30dp"
+                   android:src="@drawable/recode_video_camera" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:fontFamily="@font/product_sans_bold"
+                   android:text="@string/record_video"
+                   android:textColor="@color/app_theme"
+                   android:textSize="14sp" />
+           </LinearLayout>
+
+           <View
+               android:layout_width="1dp"
+               android:layout_height="30dp"
+               android:background="@color/app_theme" />
+
+           <LinearLayout
+               android:id="@+id/galleryVedio"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:layout_marginTop="10dp"
+               android:gravity="center"
+               android:orientation="vertical">
+
+               <ImageView
+                   android:layout_width="30dp"
+                   android:layout_height="30dp"
+                   android:src="@drawable/gallery_vedio" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:fontFamily="@font/product_sans_bold"
+                   android:text="@string/recorded_video"
+                   android:textColor="@color/app_theme"
+                   android:textSize="14sp" />
+           </LinearLayout>-->
+
+    </LinearLayout>
+</layout>

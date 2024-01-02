@@ -1,0 +1,101 @@
+<!--
+     Base application theme.
+    <style name="Base.Theme.ServiVet" parent="Theme.Material3.DayNight.NoActionBar">
+        &lt;!&ndash; Customize your light theme here. &ndash;&gt;
+        &lt;!&ndash; <item name="colorPrimary">@color/my_light_primary</item> &ndash;&gt;
+    </style>
+
+    <style name="Theme.ServiVet" parent="Base.Theme.ServiVet" />
+-->
+
+
+    <resources>
+        <!-- Base application theme. -->
+        <style name="Theme.ServiVet." parent="Theme.MaterialComponents.Light.NoActionBar">
+            <!-- Primary brand color. -->
+            <item name="colorPrimary">@color/app_theme</item>
+            <item name="colorPrimaryVariant">@color/app_theme</item>
+            <item name="colorOnPrimary">@color/app_theme</item>
+            <!-- Status bar color. -->
+            <item name="android:statusBarColor">@android:color/transparent</item>
+            <item name="android:windowTranslucentNavigation">false</item>
+            <item name="android:windowTranslucentStatus">true</item>
+            <!-- Customize your theme here. -->
+        </style>
+        <style name="spinnerTheme">
+            <item name="android:textColor">@color/black</item>
+            <item name="fontFamily">@font/poppins_medium</item>
+            <item name="android:textSize">15dp</item>
+        </style>
+
+
+        <style name="Rounded" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+            <item name="cornerFamily">rounded</item>
+            <item name="cornerSize">10dp</item>
+        </style>
+
+
+        <style name="AppBottomSheetDialogTheme" parent="Theme.Design.BottomSheetDialog">
+            <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+            <item name="android:windowIsFloating">true</item>
+            <item name="android:windowSoftInputMode">adjustResize</item>
+            <item name="android:state_expanded">true</item>
+            <item name="behavior_peekHeight">600dp</item>
+            <item name="textAllCaps">false</item>
+
+        </style>
+
+        <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+            <item name="android:background">@android:color/transparent</item>
+        </style>
+        <style name="CustomTextAppearanceTab" parent="TextAppearance.Design.Tab">
+            <item name="textAllCaps">false</item>
+            <item name="android:textSize">13dp</item>
+            <item name="android:textAllCaps">false</item>
+        </style>
+
+        <style name="RatingBar" parent="Theme.AppCompat">
+            <item name="colorControlNormal">@color/grey_D6D6D6</item>
+            <item name="colorControlActivated">@color/orange</item>
+        </style>
+
+        <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
+
+        <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
+            <item name="android:windowIsFloating">false</item>
+            <item name="bottomSheetStyle">@style/BottomSheet</item>
+        </style>
+
+        <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
+            <item name="behavior_draggable">false</item>
+            <!-- <item name="android:background">@drawable/rounded_bg</item>-->
+            <item name="android:statusBarColor">@color/white</item>
+        </style>
+        <style name="text_inactive">
+            <item name="android:textSize">15dp</item>
+            <item name="android:textColor">@color/black</item>
+            <item name="fontFamily">@font/poppins_medium</item>
+            <item name="textAllCaps">false</item>
+        </style>
+        <style name="text_active">
+            <item name="android:textSize">15dp</item>
+            <item name="android:textColor">@color/app_theme</item>
+            <item name="textAllCaps">false</item>
+            <item name="fontFamily">@font/poppins_medium</item>
+        </style>
+
+
+        <style name="CustomBottomSheet" parent="Theme.Design.BottomSheetDialog">
+            <item name="behavior_draggable">false</item>
+            <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+            <item name="android:windowIsFloating">true</item>
+            <item name="android:windowSoftInputMode">adjustResize</item>
+            <item name="android:state_expanded">true</item>
+            <item name="behavior_peekHeight">600dp</item>
+        </style>
+  <!-- Base application theme. -->
+    <style name="Base.Theme.ServiVet" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+    </resources>

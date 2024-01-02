@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="click"
+            type="com.example.servivet.ui.main.view_model.ReasonForCancellationViewModel.ClickAction" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+        
+        <LinearLayout
+            android:id="@+id/textlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text"
+            android:textSize="15sp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/black_242424"
+            android:maxLines="2"
+            android:layout_weight="1"
+            android:layout_marginEnd="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/i_am_unavailable_at_the_scheduled_time"/>
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/selected_icon"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <View
+            android:layout_below="@+id/textlayout"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="20dp"
+            android:background="@color/grey_F3F3F3"/>
+
+
+    </RelativeLayout>
+</layout>

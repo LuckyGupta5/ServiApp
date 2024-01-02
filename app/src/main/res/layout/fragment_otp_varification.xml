@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.servivet.ui.main.view_model.OtpViewModel" />
+
+        <variable
+            name="click"
+            type="com.example.servivet.ui.main.view_model.OtpViewModel.ClickAction" />
+
+    </data>
+    <!--
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
+
+            <ScrollView
+                android:id="@+id/scrollview"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/verifyBtn"
+                android:layout_marginBottom="10dp"
+                android:fillViewport="true">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:fitsSystemWindows="true"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/servivet_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:background="@color/app_theme"
+                            android:paddingTop="54dp"
+                            android:paddingBottom="60dp"
+                            android:src="@drawable/servivet_name" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="30dp"
+                            android:background="@drawable/backbtn"
+                            android:onClick="@{click::backBtn}" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@id/servivet_img"
+                            android:layout_marginTop="-30dp"
+                            android:layout_marginBottom="15dp"
+                            android:background="@drawable/top_round_corner_white_24dp">
+
+
+                            <TextView
+                                android:id="@+id/enterText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="@font/poppins_semi_bold"
+                                android:gravity="center_horizontal"
+                                android:text="@string/otp_verification"
+                                android:textColor="@color/black_2"
+                                android:textSize="27dp" />
+
+                            <TextView
+                                android:id="@+id/sendCode"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/enterText"
+                                android:layout_marginHorizontal="37dp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="center_horizontal"
+                                android:text="@string/please_enter_the_otp_sent_your_mobile_number"
+                                android:textColor="@color/gray_878787"
+                                android:textSize="17dp" />
+
+                            <LinearLayout
+                                android:id="@+id/numberLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/sendCode"
+                                android:layout_marginHorizontal="42dp"
+                                android:layout_marginTop="10dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/number"
+                                    android:layout_marginTop="3dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:textColor="@color/black"
+                                    android:textSize="23dp" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/edit_otp"
+                                    android:onClick="@{click::editBtn}" />
+                            </LinearLayout>
+
+
+                            <com.chaos.view.PinView
+                                android:id="@+id/otpPin"
+                                style="@style/PinWidget.PinView"
+                                android:layout_width="wrap_content"
+                                android:focusable="true"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/numberLayout"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="15dp"
+                                android:afterTextChanged="@{(text)->click.onOTPChange(text)}"
+                                android:cursorVisible="true"
+                                android:hint="0"
+                                android:inputType="number"
+                                android:textColor="@color/black"
+                                android:textSize="25sp"
+                                android:textStyle="bold"
+                                app:cursorColor="@color/black"
+                                app:cursorWidth="1dp"
+                                app:itemHeight="55dp"
+                                app:itemRadius="12dp"
+                                app:itemSpacing="20dp"
+                                app:itemWidth="55dp"
+                                app:lineColor="@color/gray" />
+
+                            <TextView
+                                android:id="@+id/resendOtp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                tools:visibility="visible"
+                                tools:text="1234"
+                                android:layout_below="@id/otpPin"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="20dp"
+                                android:enabled='false'
+                                android:gravity="center_horizontal"
+                                android:onClick="@{click::onResendClick}"
+                                android:text='@{viewModel.timer==""?@string/resend_otp_in_30_seconds:viewModel.timer}'
+                                android:textColor='@{viewModel.timer=="Resend OTP"?@color/app_theme:@color/gray_646161}' />
+
+
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+            </ScrollView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/verifyBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="15sp"
+                android:background="@drawable/button_selector"
+                android:enabled='@{viewModel.otppin?true:false }'
+                android:fontFamily="@font/poppins_medium"
+                android:onClick="@{click::gotoHomeActivity}"
+                android:paddingVertical="8dp"
+                android:text="@string/verify"
+
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="19dp"
+                app:backgroundTint="@null" />
+
+        </RelativeLayout>-->
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:fitsSystemWindows="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:elevation="1dp"
+                android:onClick="@{click::backBtn}"
+                android:src="@drawable/backbtn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/servivet_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="@color/app_theme"
+                android:paddingTop="54dp"
+                android:paddingBottom="80dp"
+                android:src="@drawable/servivet_name"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view5"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="@drawable/top_round_corner_white_24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/servivet_img" />
+
+            <TextView
+                android:id="@+id/enterText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:gravity="center_horizontal"
+                android:text="@string/otp_verification"
+                android:textColor="@color/black_2"
+                android:textSize="27dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/servivet_img" />
+
+            <TextView
+                android:id="@+id/sendCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/enterText"
+                android:layout_marginHorizontal="37dp"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center_horizontal"
+                android:text="@string/please_enter_the_otp_sent_your_mobile_number"
+                android:textColor="@color/gray_878787"
+                android:textSize="17dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/enterText" />
+
+            <LinearLayout
+                android:id="@+id/numberLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/sendCode"
+                android:layout_marginHorizontal="42dp"
+                android:layout_marginTop="9dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sendCode">
+
+                <TextView
+                    android:id="@+id/number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textColor="@color/black"
+                    android:textSize="23dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/edit_otp"
+                    android:onClick="@{click::editBtn}" />
+            </LinearLayout>
+
+            <com.chaos.view.PinView
+                android:id="@+id/otpPin"
+                style="@style/PinWidget.PinView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/numberLayout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:afterTextChanged="@{(text)->click.onOTPChange(text)}"
+                android:cursorVisible="true"
+                android:focusable="true"
+                android:hint="0"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:cursorColor="@color/black"
+                app:cursorWidth="1dp"
+                app:itemHeight="55dp"
+                app:itemRadius="12dp"
+                app:itemSpacing="20dp"
+                app:itemWidth="55dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/numberLayout"
+                app:lineColor="@color/gray" />
+
+            <TextView
+                android:id="@+id/resendOtp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/otpPin"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:enabled='false'
+                android:gravity="center_horizontal"
+                android:onClick="@{click::onResendClick}"
+                android:text='@{viewModel.timer==""?@string/resend_otp_in_30_seconds:viewModel.timer}'
+                android:textColor='@{viewModel.timer=="Resend OTP"?@color/app_theme:@color/gray_646161}'
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/otpPin"
+                tools:text="1234"
+                tools:visibility="visible" />
+
+            <View
+                android:id="@+id/idView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@id/verifyBtn"
+                app:layout_constraintTop_toBottomOf="@id/resendOtp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/verifyBtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/button_selector"
+                android:enabled='@{viewModel.otppin?true:false }'
+                android:fontFamily="@font/poppins_medium"
+                android:onClick="@{click::gotoHomeActivity}"
+                android:paddingVertical="8dp"
+                android:text="@string/verify"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="19dp"
+                app:backgroundTint="@null"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/idView" />
+
+            <!-- <androidx.constraintlayout.widget.ConstraintLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="0dp"
+                 android:background="@color/grey6"
+                 app:layout_constraintTop_toBottomOf="@id/resendOtp"
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 >
+
+
+
+             </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

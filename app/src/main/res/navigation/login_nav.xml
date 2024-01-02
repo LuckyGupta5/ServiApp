@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_nav"
+    app:startDestination="@id/splashFragment">
+
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.servivet.ui.main.fragment.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_choosePreferredLanguageFragment"
+            app:destination="@id/choosePreferredLanguageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/choosePreferredLanguageFragment"
+        android:name="com.example.servivet.ui.main.fragment.ChoosePreferredLanguageFragment"
+        android:label="ChoosePreferredLanguageFragment"
+        tools:layout="@layout/fragment_choose_preferred_language">
+        <action
+            android:id="@+id/action_choosePreferredLanguageFragment_to_onboardingFragment"
+            app:destination="@id/onboardingFragment" />
+        <action
+            android:id="@+id/action_choosePreferredLanguageFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="com.example.servivet.ui.main.fragment.OnboardingFragment"
+        android:label="OnboardingFragment"
+        tools:layout="@layout/fragment_onboarding">
+        <action
+            android:id="@+id/action_onboardingFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.servivet.ui.main.fragment.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_otpVarificationFragment2"
+            app:destination="@id/otpVarificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/otpVarificationFragment"
+        android:name="com.example.servivet.ui.main.fragment.OtpVarificationFragment"
+        android:label="OtpVarificationFragment"
+        tools:layout="@layout/fragment_otp_varification">
+
+        <action
+            android:id="@+id/action_otpVarificationFragment_to_homeActivity"
+            app:destination="@id/homeActivity" />
+        <action
+            android:id="@+id/action_otpVarificationFragment_to_business_Verification_Fragment"
+            app:destination="@id/business_Verification_Fragment" />
+        <action
+            android:id="@+id/action_otpVarificationFragment_to_completeProfileFragment"
+            app:destination="@id/completeProfileFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/homeActivity"
+        android:name="com.example.servivet.ui.main.activity.HomeActivity"
+        android:label="HomeActivity" />
+    <fragment
+        android:id="@+id/business_Verification_Fragment"
+        android:name="com.example.servivet.ui.main.fragment.Business_Verification_Fragment"
+        android:label="Business_Verification_Fragment"
+        tools:layout="@layout/fragment_business__verification">
+        <action
+            android:id="@+id/action_business_Verification_Fragment_to_homeActivity"
+            app:destination="@id/homeActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/completeProfileFragment"
+        android:name="com.example.servivet.ui.main.fragment.CompleteProfileFragment"
+        android:label="CompleteProfileFragment"
+        tools:layout="@layout/fragment_complete_profile">
+        <action
+            android:id="@+id/action_completeProfileFragment_to_homeActivity"
+            app:destination="@id/homeActivity" />
+    </fragment>
+</navigation>

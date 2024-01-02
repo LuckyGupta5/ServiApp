@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+    <TextView
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/all_fill_white_greyborder_8dp"
+        android:id="@+id/time_txt"
+        android:gravity="center"
+        android:layout_width="95dp"
+        android:layout_height="35dp"
+        android:maxLength="20"
+        android:textSize="15dp"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/grey_6A6A6A"
+        android:text="10:00 AM" />
+</layout>

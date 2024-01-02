@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.servivet.ui.main.view_model.OnboardingViewModel" />
+
+        <variable
+            name="click"
+            type="com.example.servivet.ui.main.view_model.OnboardingViewModel.ClickAction" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_theme"
+        tools:context=".ui.main.fragment.OnboardingFragment">
+
+        <ImageView
+            android:id="@+id/servivet_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:src="@drawable/servivet_name" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/servivet_img"
+            android:layout_marginTop="26dp"
+            android:background="@drawable/top_round_corner_white_24dp">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/buttonLayout"
+                android:fillViewport="true"
+                android:foregroundGravity="center">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="40dp" />
+
+                    <com.zhpan.indicator.IndicatorView
+                        android:id="@+id/indicator_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:vpi_slider_checked_color="@color/app_theme"
+                        app:vpi_slider_normal_color="@color/gray"
+                        android:layout_centerHorizontal="true"
+                        android:theme="@style/Base.Theme.ServiVet"
+                        android:layout_marginTop="350dp" />
+
+                   <!-- <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tablayout_indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="4dp"
+                        android:layout_marginTop="350dp"
+                        android:background="@null"
+                        android:layout_centerHorizontal="true"
+                        app:tabPaddingStart="30dp" />
+               --> </RelativeLayout>
+            </ScrollView>
+
+            <LinearLayout
+                android:id="@+id/buttonLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="20dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/skip"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="15sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/grey_outline_with_solid_white_corner_12dp"
+                    android:backgroundTint="@null"
+                    android:fontFamily="@font/poppins_medium"
+                    android:stateListAnimator="@null"
+                    android:text="@string/skip"
+                    android:onClick="@{click::skipBtn}"
+
+                    android:textAllCaps="false"
+                    android:textColor="@color/app_theme"
+                    android:textSize="17dp"
+                    app:backgroundTint="@null" />
+                <com.google.android.material.button.MaterialButton
+
+                    android:id="@+id/getStart"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:visibility="gone"
+                    android:textAllCaps="false"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginHorizontal="20sp"
+                    android:layout_marginBottom="15sp"
+                    android:background="@drawable/round_corner_grey_12dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/get_started"
+                    android:textSize="17dp"
+                    app:backgroundTint="@null"
+                    android:onClick="@{click::getStarted}"
+                    android:textColor="@color/white" />
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/next"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginBottom="5sp"
+                    android:layout_weight="1"
+                    android:onClick="@{click::nextBtn}"
+                    android:background="@drawable/round_corner_grey_12dp"
+                    android:backgroundTint="@null"
+                    android:fontFamily="@font/poppins_medium"
+                    android:stateListAnimator="@null"
+                    android:text="@string/next"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="17dp"
+                    app:backgroundTint="@null" />
+            </LinearLayout>
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</layout>

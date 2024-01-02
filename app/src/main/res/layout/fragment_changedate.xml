@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="click"
+            type="com.example.servivet.ui.main.view_model.ChangeDateViewModel.ClickAction" />
+        <variable
+            name="viewModel"
+            type="com.example.servivet.ui.main.view_model.ChangeDateViewModel" />
+
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        tools:context=".ui.main.fragment.Changedate">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <CalendarView
+            android:id="@+id/calendariew"
+            android:layout_gravity="center_vertical"
+            android:foregroundGravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <GridView
+            android:id="@+id/calendarGridView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="5"
+            android:layout_centerInParent="true"/>
+
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="click"
+            type="com.example.servivet.ui.main.adapter.CalenderRecyclerAdapter" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/date_layout"
+            android:background="@drawable/calender_background"
+            android:layout_width="50dp"
+            android:layout_marginEnd="10dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/circleWhite"
+                android:layout_width="40dp"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/calender_white_background"
+                android:layout_height="40dp">
+                <TextView
+                    android:includeFontPadding="false"
+                    android:textAllCaps="true"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="17dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/_16"
+                    android:textColor="@color/black"
+                    android:id="@+id/tv_calendar_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <TextView
+                android:paddingTop="3dp"
+                android:paddingBottom="11dp"
+                android:textAllCaps="true"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="13dp"
+                android:text="@string/days"
+                android:textColor="@color/black"
+                android:gravity="center_horizontal"
+                android:id="@+id/tv_calendar_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</layout>

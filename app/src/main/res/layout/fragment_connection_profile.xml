@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="click"
+            type="com.example.servivet.ui.main.view_model.ConnectionProfileViewModel.ClickAction" />
+        <variable
+            name="viewModel"
+            type="com.example.servivet.ui.main.view_model.ConnectionProfileViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.fragment.ConnectionProfileFragment">
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:fillViewport="true"
+            tools:context=".ui.main.fragments.ProfileFragment">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:id="@+id/profileBackImageLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="135dp"
+                    android:background="@drawable/white_bottom_round_corner_16dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:background="@color/black_2"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="42dp"
+                        android:src="@drawable/backbtn"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:text="@string/profile"
+                        android:textColor="@color/white"
+                        android:textSize="23dp" />
+
+                    <!--    <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="20dp"
+                            android:background="@drawable/img_setting" />-->
+
+                   <!-- <ImageView
+                        android:id="@+id/logout"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="18dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/app_theme_color_button_12dp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="8dp"
+                        android:textColor="@color/white"
+                        android:textSize="17dp" />
+-->
+                </RelativeLayout>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="145dp"
+                    android:layout_height="145dp"
+                    android:layout_below="@id/profileBackImageLayout"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="-70dp"
+                    android:src="@drawable/flower_img"
+                    android:background="@drawable/white_circle"
+
+                    android:padding="4dp" />
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/profile_image"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2dp"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:text="@string/_1_km_away"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:textColor="@color/black"
+                    android:textSize="23sp" />
+                <TextView
+                    android:id="@+id/editProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginVertical="25sp"
+                    android:drawableStart="@drawable/serviceoffer_icon"
+                    android:drawableEnd="@drawable/img_path"
+                    android:drawablePadding="17dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:paddingHorizontal="20dp"
+                    android:text="@string/services_we_offer"
+                    android:textColor="@color/black_2"
+                    android:textSize="17dp" />
+
+
+                <TextView
+                    android:id="@+id/businessType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/name"
+                    android:includeFontPadding="false"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/app_theme_opicity_6_color_button_12dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:paddingHorizontal="9dp"
+                    android:layout_marginVertical="5dp"
+                    android:paddingVertical="1dp"
+                    android:text="@string/individual"
+                    android:textAllCaps="false"
+                    android:textColor="@color/app_theme"
+                    android:textSize="15dp"
+                    android:visibility="visible" />
+                <LinearLayout
+                    android:id="@+id/connectMassageLayout"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:gravity="center_horizontal"
+                    android:layout_below="@+id/businessType"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="@string/connect"
+                        android:gravity="center"
+                        android:drawableStart="@drawable/connect_icon"
+                        android:textColor="@color/white"
+                        android:paddingVertical="9dp"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:drawablePadding="6dp"
+                        android:layout_marginEnd="6dp"
+                        android:paddingHorizontal="21dp"
+                        android:background="@drawable/app_theme_color_button_12dp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="@string/message"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="6dp"
+                        android:textColor="@color/black_2"
+                        android:paddingVertical="9dp"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:drawableStart="@drawable/message_icon"
+                        android:drawablePadding="6dp"
+                        android:paddingHorizontal="21dp"
+                        android:background="@drawable/white_round_corner_12_dp"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/callwhatsappLayout"
+                    android:layout_marginTop="30dp"
+                    android:layout_width="match_parent"
+                    android:gravity="center_horizontal"
+                    android:layout_below="@+id/connectMassageLayout"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:src="@drawable/call_icon"
+                        android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dp"
+                            android:includeFontPadding="false"
+                            android:fontFamily="@font/poppins_medium"
+                            android:layout_marginTop="5dp"
+                            android:textColor="@color/black"
+                            android:text="@string/call"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:src="@drawable/whatsapp_icon"
+                        android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dp"
+                            android:includeFontPadding="false"
+                            android:fontFamily="@font/poppins_medium"
+                            android:layout_marginTop="5dp"
+                            android:textColor="@color/black"
+                            android:text="@string/whatsapp"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:src="@drawable/share_icon"
+                        android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dp"
+                            android:includeFontPadding="false"
+                            android:fontFamily="@font/poppins_medium"
+                            android:layout_marginTop="5dp"
+                            android:textColor="@color/black"
+                            android:text="@string/share"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_below="@+id/callwhatsappLayout"
+                    android:layout_marginTop="19dp"
+                    android:background="@color/black_opicity_6" />
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_below="@+id/editProfile"
+                    android:background="@color/black_opicity_6" />
+
+                <LinearLayout
+                    android:id="@+id/aboutProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view2"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/institutionalLayoutInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20sp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/poppins_semi_bold"
+                                android:text="About"
+                                android:textColor="@color/black_2"
+                                android:textSize="17dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/about"
+                                android:layout_centerInParent="true"
+                                android:layout_gravity="end"
+                                android:visibility="gone"
+                                android:layout_marginStart="20dp"
+                                android:fontFamily="@font/poppins_bold"
+                                android:gravity="end"
+                                android:paddingHorizontal="20dp"
+                                android:text="@string/edit"
+                                android:textColor="@color/app_theme"
+                                android:textSize="17dp" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="22dp"
+                            android:layout_marginHorizontal="20dp"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/email_address_icon"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:layout_marginStart="13dp"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:textSize="15sp"
+                                    android:includeFontPadding="false"
+                                    android:maxLines="1"
+                                    android:ellipsize="end"
+                                    android:textColor="@color/black_000"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/email_address"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:textSize="15sp"
+                                    android:maxLines="1"
+                                    android:includeFontPadding="false"
+                                    android:layout_marginTop="8dp"
+                                    android:ellipsize="end"
+                                    android:textColor="@color/grey_6E6E6E"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/tuesday_21_oct_11_00_am"/>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="18dp"
+                            android:layout_marginBottom="18dp"
+                            android:layout_marginHorizontal="19dp"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/mobile_number_icon"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:layout_marginStart="13dp"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:textSize="15sp"
+                                    android:maxLines="1"
+                                    android:includeFontPadding="false"
+                                    android:ellipsize="end"
+                                    android:textColor="@color/black_2"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/mobile_number"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:textSize="13sp"
+                                    android:maxLines="1"
+                                    android:includeFontPadding="false"
+                                    android:layout_marginTop="8dp"
+                                    android:ellipsize="end"
+                                    android:textColor="@color/grey_787878"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/a_199_sector_63_noida"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_marginBottom="40dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="19dp"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/about_icon"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:layout_marginStart="13dp"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:textSize="15sp"
+                                    android:maxLines="1"
+                                    android:includeFontPadding="false"
+                                    android:ellipsize="end"
+                                    android:textColor="@color/black_2"
+                                    android:layout_height="wrap_content"
+                                    android:text="About"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:textSize="13sp"
+                                    android:maxLines="5"
+                                    android:includeFontPadding="false"
+                                    android:layout_marginTop="11dp"
+                                    android:ellipsize="end"
+                                    android:textColor="@color/grey_6E6E6E"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut_labore_et_dolore_magna_aliquyam_erat_sed_diam_voluptua_eos_et_accusam_et_justo_duo_dolores_et_ea_rebum_stet_clita_kasd_gubergren_no_sea_takimata_sanctus_est_lorem_ipsum_dolor_sit_amet_lorem_ipsum_dolor_sit_amet"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                   <!-- <TextView
+                        android:id="@+id/about"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="23dp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:text="@string/about"
+                        android:textColor="@color/black_2"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/about"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/poppins_regular"
+                        android:maxLines="5"
+                        android:text="@string/service_provider_is_not_available_and_has_requested_to_cancel"
+                        android:textColor="@color/grey_6E6E6E"
+                        android:textSize="13dp" />
+              -->  </LinearLayout>
+
+              <!--  <View
+                    android:id="@+id/view3"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_below="@+id/aboutProfile"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/black_opicity_6" />
+
+                <TextView
+                    android:id="@+id/myConnection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view3"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:text="@string/my_connections"
+                    android:textColor="@color/black_2"
+                    android:textSize="17dp" />
+-->
+
+
+
+            </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </RelativeLayout>
+</layout>

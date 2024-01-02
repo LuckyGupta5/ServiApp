@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.servivet.ui.main.view_model.RateUseBottomSheetViewModel" />
+
+        <variable
+            name="click"
+            type="com.example.servivet.ui.main.view_model.RateUseBottomSheetViewModel.ClickAction" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:background="@color/white">
+      <!--  <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+-->
+
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="85dp"
+            android:layout_height="3dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="@color/grey_E5E5E5"
+            app:cardCornerRadius="30dp" />
+
+
+        <RelativeLayout
+            android:id="@+id/ratinglayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/imglayout"
+                android:layout_width="106dp"
+                android:layout_height="106dp"
+                app:cardCornerRadius="12dp">
+
+                <ImageView
+                    android:layout_width="106dp"
+                    android:layout_height="106dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/flower_img" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_below="@+id/imglayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="@string/ac_repair"
+                android:textColor="@color/black_2"
+                android:textSize="21sp" />
+
+        </RelativeLayout>
+        <RatingBar
+            android:id="@+id/ratingbar"
+            android:layout_below="@+id/ratinglayout"
+            android:layout_centerHorizontal="true"
+            android:visibility="visible"
+            android:theme="@style/RatingBar"
+            android:outlineSpotShadowColor="@color/black"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:secondaryProgressTint="@color/grey1"
+            android:isIndicator="false"
+            android:numStars="5"
+            android:rating="2.6"
+            android:stepSize="0.5" />
+
+
+
+        <RelativeLayout
+            android:id="@+id/reviewlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ratingbar"
+            android:layout_marginTop="26dp"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="@string/review"
+                android:textColor="@color/black_2"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/descriptionEditText"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/review"
+                android:layout_height="110dp"
+                android:maxLines="4"
+                android:inputType="textPersonName"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="8dp"
+                android:afterTextChanged="@{(text)->click.onAboutTextChanged(text)}"
+                android:background="@drawable/white_round_corner_12_dp"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="start"
+                android:hint="@string/give_a_feedback"
+                android:maxLength="100"
+                android:padding="17dp"
+                android:textColor="@color/black_2"
+                android:textColorHint="@color/black_2"
+                android:textSize="15dp" />
+            <LinearLayout
+                android:id="@+id/aboutLayout"
+                android:layout_below="@+id/descriptionEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/wordCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_italic"
+                    android:gravity="end"
+                    android:maxLength="100"
+                    android:text="(0/100 words)"
+                    android:textColor="@color/black_2"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/reSchedule_layout_btn"
+                android:layout_width="match_parent"
+                android:paddingVertical="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/aboutLayout"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:visibility="visible">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/skip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="15sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle_button_color_grey_e8e8e8_12dp"
+                    android:backgroundTint="@null"
+                    android:fontFamily="@font/poppins_medium"
+                    android:stateListAnimator="@null"
+                    android:text="@string/do_this_later"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black_2"
+                    android:textSize="17sp"
+                    app:backgroundTint="@null" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/next"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginBottom="15sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_corner_grey_12dp"
+                    android:backgroundTint="@null"
+                    android:fontFamily="@font/poppins_medium"
+                    android:stateListAnimator="@null"
+                    android:text="@string/submit"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    app:backgroundTint="@null" />
+            </LinearLayout>
+        </RelativeLayout>
+         </RelativeLayout>
+      <!--  </androidx.core.widget.NestedScrollView>
+   --> </RelativeLayout>
+</layout>

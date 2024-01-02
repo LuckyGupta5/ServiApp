@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="20sp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:fontFamily="@font/poppins_medium"
+        android:text="title"
+        android:textColor="@color/black"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Your message here"
+        android:layout_marginHorizontal="10dp"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_8"
+        android:layout_below="@id/message"
+        android:layout_marginTop="15sp"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view"
+        android:background="@android:color/transparent"
+        android:paddingTop="7sp">
+
+        <View
+            android:id="@+id/viewCenter"
+            android:layout_width="0.5dp"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="-10dp"
+            android:background="@color/grey_F8F8F8"/>
+
+        <TextView
+            android:id="@+id/okCenter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="Ok"
+            android:fontFamily="@font/poppins_medium"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:paddingVertical="5dp"
+            android:paddingHorizontal="20dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/black"/>
+    </RelativeLayout>
+
+</RelativeLayout>

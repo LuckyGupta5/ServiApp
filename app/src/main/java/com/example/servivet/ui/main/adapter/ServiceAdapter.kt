@@ -14,7 +14,6 @@ import com.example.servivet.utils.Constants
 
 class ServiceAdapter(
     var context: Context,
-
     var type: String,
     var list: List<HomeServiceCategory>,
 ) :

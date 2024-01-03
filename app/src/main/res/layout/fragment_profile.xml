@@ -80,7 +80,7 @@
                         android:onClick="@{click::logOut}"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="5dp"
-                        android:text="AMan"
+                        android:text="@string/log_out"
                         android:textColor="@color/white"
                         android:textSize="17dp" />
 

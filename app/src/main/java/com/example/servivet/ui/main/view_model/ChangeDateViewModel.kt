@@ -17,7 +17,7 @@ class ChangeDateViewModel:BaseViewModel() {
     inner class ClickAction(var binding: FragmentChangedateBinding,var context: Context){
         lateinit var calenderView:CalendarView
 
-        fun calenderset()
+      /*  fun calenderset()
         {
             var calendar=Calendar.getInstance()
             var getCurrentmonth=calendar.get(Calendar.MONTH)
@@ -36,11 +36,11 @@ class ChangeDateViewModel:BaseViewModel() {
         fun setdaate(day:Int,month:Int,year:Int){
 
 
-        }
+        }*/
 
     }
 
-    private fun getDayinMonth(startMonth: Int, getcurrentYear: Int):List<String> {
+    /*private fun getDayinMonth(startMonth: Int, getcurrentYear: Int):List<String> {
         var calender=Calendar.getInstance()
         calender.set(Calendar.YEAR,getcurrentYear)
         calender.set(Calendar.MONTH,startMonth)
@@ -56,5 +56,5 @@ class ChangeDateViewModel:BaseViewModel() {
         return daysInMonth
 
     }
-
+*/
 }

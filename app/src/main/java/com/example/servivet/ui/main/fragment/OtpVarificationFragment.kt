@@ -73,8 +73,7 @@ class OtpVarificationFragment :
 
     private fun setRequest() {
         mViewModel.verifyOtpRequest.otpOrderNumber = mViewModel.otpNumber
-        mViewModel.verifyOtpRequest.deviceId =
-            "sdhsbnsdahjksjhkjsdhfsjgfjsdhjfhskfhkjds-53"//change when the firebase is implement
+        mViewModel.verifyOtpRequest.deviceId = "sdhsbnsdahjksjhkjsdhfsjgfjsdhjfhskfhkjds-53"//change when the firebase is implement
         mViewModel.verifyOtpRequest.deviceModelNo = "mozila"//change when the firebase is implement
         mViewModel.verifyOtpRequest.deviceVersion = "14"//change when the firebase is implement
         mViewModel.verifyOtpRequest.deviceType = "website"//change when the firebase is implement

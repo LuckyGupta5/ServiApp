@@ -11,13 +11,7 @@ import com.example.servivet.databinding.HomeServicesRecyclerBinding
 import com.example.servivet.ui.base.BaseAdapter
 import com.example.servivet.utils.Constants
 
-class HomeServiceAdapter(
-    var context: Context,
-
-    var type: String,
-    var list: List<HomeServiceCategory>,
-) :
-    BaseAdapter<HomeServicesRecyclerBinding, HomeServiceCategory>(list) {
+class HomeServiceAdapter(var context: Context, var type: String, var list: List<HomeServiceCategory>, ) : BaseAdapter<HomeServicesRecyclerBinding, HomeServiceCategory>(list) {
     override val layoutId: Int = R.layout.home_services_recycler
 
 

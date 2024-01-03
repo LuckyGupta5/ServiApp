@@ -43,10 +43,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding,ProfileViewModel> (R
         if( myContact!=null && myContact.isNotEmpty()) {
             binding.serviceRecycler.visibility=View.VISIBLE
             binding.noDataLayout.visibility=View.GONE
-            binding.serviceRecycler.adapter = HomeServiceAdapter(
-                requireContext(),
-                type, ArrayList()
-            )
+            binding.serviceRecycler.adapter = HomeServiceAdapter(requireContext(), type, ArrayList())
         }else{
             binding.serviceRecycler.visibility=View.GONE
             binding.noDataLayout.visibility=View.VISIBLE

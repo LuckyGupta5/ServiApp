@@ -6,7 +6,6 @@ import com.example.servivet.R
 import com.example.servivet.data.model.home.response.HomeServiceCategory
 import com.example.servivet.databinding.FragmentServishBinding
 import com.example.servivet.ui.base.BaseFragment
-import com.example.servivet.ui.main.adapter.HomeServiceAdapter
 import com.example.servivet.ui.main.adapter.ServiceAdapter
 import com.example.servivet.ui.main.view_model.ServicesViewModel
 import com.example.servivet.utils.Session

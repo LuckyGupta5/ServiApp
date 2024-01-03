@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="ViewModel"
+            type="com.example.servivet.ui.main.view_model.SubCategoryDetailsViewModel" />
+
+        <variable
+            name="click"
+            type="com.example.servivet.ui.main.view_model.SubCategoryDetailsViewModel.ClickAction" />
+
+        <variable
+            name="data"
+            type="com.example.servivet.data.model.service_category_details.response.ServiceDetail" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F8F8F8"
+        tools:context=".ui.main.fragment.SubCategoryDetailsFragment">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollview"
+            android:layout_above="@id/bottomLayout"
+            android:layout_width="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="20dp"
+                    android:paddingTop="55dp"
+                    android:paddingBottom="21dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:onClick="@{click::backbtn}"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/back_detail_btn" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:gravity="center"
+                        android:text="@string/details"
+                        android:textColor="@color/black"
+                        android:textSize="21dp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@color/white"
+                    android:elevation="1dp"
+                    app:cardCornerRadius="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="15dp"
+                            android:orientation="horizontal">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/image_2_layout"
+                                android:layout_width="86dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_height="86dp"
+                                app:cardCornerRadius="12dp">
+
+                                <ImageView
+                                    android:id="@+id/image_2"
+                                    android:layout_width="86dp"
+                                    android:layout_height="86dp"
+                                    android:imageViewUrl="@{data.subCategoryDetail.image}"
+                                    android:scaleType="centerCrop" />
+                            </androidx.cardview.widget.CardView>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_weight="1"
+                                android:layout_marginStart="15dp"
+                                android:orientation="vertical">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:id="@+id/serviceName"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="10dp"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
+                                        android:ellipsize="end"
+                                        android:fontFamily="@font/poppins_semi_bold"
+                                        android:text="@{data.serviceName}"
+                                        android:textColor="@color/black"
+                                        android:textSize="18dp" />
+
+
+                                </RelativeLayout>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:drawableStart="@drawable/location_path_icon"
+                                    android:drawablePadding="10dp"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:text="@string/a_block_sector_63_noida"
+                                    android:textColor="#7A7A7A"
+                                    android:textSize="15dp" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_weight="1"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/poppins_regular"
+                                        android:text="1 km. away"
+                                        android:textColor="#7A7A7A"
+                                        android:textSize="15dp" />
+                                    <TextView
+                                        android:id="@+id/rating"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_gravity="end"
+                                        android:background="@drawable/orange_drawable_6dp"
+                                        android:drawableStart="@drawable/star_img"
+                                        android:drawablePadding="5dp"
+                                        android:fontFamily="@font/poppins_regular"
+                                        android:gravity="end"
+                                        android:paddingHorizontal="6dp"
+                                        android:paddingVertical="1dp"
+                                        android:text="4.5"
+                                        android:textColor="@color/white"
+                                        android:textSize="13dp" />
+
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/image_1"
+                                android:layout_width="86dp"
+                                android:layout_height="86dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginTop="10dp"
+                                android:scaleType="centerCrop"
+                                android:visibility="gone" />
+
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginVertical="20dp"
+                            android:background="#EFEFEF" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingHorizontal="15dp"
+                            android:paddingBottom="12dp">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:imageViewUrl="@{data.createdBy.image}" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="10dp"
+                                android:layout_weight="1"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:layout_marginEnd="15dp"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/poppins_semi_bold"
+                                android:text="@{data.createdBy.name}"
+                                android:textColor="@color/black"
+                                android:textSize="17dp" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:background="@drawable/arraow_path" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/about_Servicelayout"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:paddingBottom="10dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="29dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/about_service"
+                        android:textColor="@color/black_2"
+                        android:textSize="17dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:maxLines="3"
+                        android:layout_marginEnd="15dp"
+                        android:text="@{data.aboutService}"
+                        android:textColor="@color/grey_6E6E6E"
+                        android:textSize="13dp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:paddingHorizontal="20dp"
+                    android:paddingTop="15dp"
+
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/media"
+                        android:textColor="@color/black"
+                        android:textSize="17dp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/viewAll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="end"
+                        android:text="@string/view_all"
+                        android:textColor="@color/app_theme"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/imageRecycler"
+                    android:paddingHorizontal="20dp"
+                    android:paddingBottom="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/service_datails_img_design"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:id="@+id/bottomLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingHorizontal="20dp"
+            android:layout_alignParentBottom="true"
+            android:paddingTop="10dp"
+            android:orientation="horizontal"
+            android:paddingBottom="15dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:id="@+id/costLayout"
+                android:layout_weight="1"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:background="@drawable/rupree_icon"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_gravity="center_vertical" />
+
+                <TextView
+                    android:id="@+id/smallest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:drawablePadding="3dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="14999"
+                    android:textColor="@color/black_2"
+                    android:textSize="18dp" />
+
+                <View
+                    android:layout_width="6dp"
+                    android:layout_height="2dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="6dp"
+                    android:background="@color/black" />
+
+                <TextView
+                    android:id="@+id/largest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:drawablePadding="3dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="14999"
+                    android:textColor="@color/black_2"
+                    android:textSize="18dp" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/app_theme_color_button_12dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/book_now"
+                android:textColor="@color/white"
+                android:textSize="17dp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

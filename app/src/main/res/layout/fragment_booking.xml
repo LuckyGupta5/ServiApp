@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.servivet.ui.main.view_model.BookingViewModel" />
+
+        <variable
+            name="click"
+            type="com.example.servivet.ui.main.view_model.BookingViewModel.ClickAction" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.fragment.BookingsFragment">
+
+        <TextView
+            android:id="@+id/underdevelopment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/under_development"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/mybooking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/my_booking"
+                android:textColor="@color/black"
+                android:textSize="23sp"
+                android:visibility="visible" />
+
+          <!--  <LinearLayout
+                android:id="@+id/up_comming_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mybooking"
+                android:layout_marginHorizontal="19dp"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="@{click::ClickUpComing}"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center_horizontal"
+                        android:text="@string/upcoming"
+                        android:textColor='@{viewModel.upcoming?@color/app_theme:@color/black3}'
+                        android:textSize="17sp" />
+
+                    <View
+                        android:layout_width="65dp"
+                        android:layout_height="4dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10sp" />
+                    &lt;!&ndash; android:background='@{viewModel.customer?@drawable/top_round_corner_app_theme_24dp:@drawable/top_round_corner_white_24dp}'
+                    &ndash;&gt;
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="@{click::ClickComplete}"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center_horizontal"
+                        android:text="@string/completed"
+                        android:textColor='@{viewModel.completed?@color/app_theme:@color/black3}'
+                        android:textSize="17sp" />
+
+                    <View
+                        android:layout_width="65dp"
+                        android:layout_height="4dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10sp" />
+                    &lt;!&ndash; android:background='@{viewModel.customer?@drawable/top_round_corner_app_theme_24dp:@drawable/top_round_corner_white_24dp}'
+                    &ndash;&gt;
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="@{click::ClickCancel}"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center_horizontal"
+                        android:text="@string/cancelled"
+                        android:textColor='@{viewModel.cancelled?@color/app_theme:@color/black3}'
+                        android:textSize="17sp" />
+
+                    <View
+                        android:layout_width="65dp"
+                        android:layout_height="4dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10sp" />
+                    &lt;!&ndash; android:background='@{viewModel.customer?@drawable/top_round_corner_app_theme_24dp:@drawable/top_round_corner_white_24dp}'
+                    &ndash;&gt;
+
+                </LinearLayout>
+
+            </LinearLayout>
+-->
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mybooking"
+                android:layout_gravity="center_horizontal"
+                android:background="@null"
+                android:clipToPadding="false"
+                app:tabIndicatorFullWidth="false"
+                app:tabGravity="center"
+                app:tabMode="fixed"
+                app:tabSelectedTextAppearance="@style/text_active"
+                app:tabTextAppearance="@style/text_inactive"
+                app:tabIndicatorHeight="5dp"
+                app:tabIndicator="@drawable/top_round_corner_app_theme_24dp"
+                app:tabIndicatorAnimationDuration="4"
+
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclercategry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tabLayout"
+                android:visibility="visible"
+                android:layout_marginTop="5dp"
+                android:background="@color/grey_F8F8F8"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/booking_list_design" />
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewMOdel"
+            type="com.example.servivet.ui.main.view_model.ProfileViewModel" />
+
+        <variable
+            name="click"
+            type="com.example.servivet.ui.main.view_model.ProfileViewModel.ClickAction" />
+
+        <variable
+            name="data"
+            type="com.example.servivet.data.model.user_profile.response.UserProfile" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.fragment.ProfileFragment">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:fillViewport="true"
+            tools:context=".ui.main.fragments.ProfileFragment">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/profileBackImageLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:background="@drawable/white_bottom_round_corner_16dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:imageViewUrl="@{data.coverImage}"
+                        android:scaleType="fitXY" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:text="@string/profile"
+                        android:textColor="@color/white"
+                        android:textSize="23dp" />
+
+                <!--    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/img_setting" />-->
+
+                    <TextView
+                        android:id="@+id/logout"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="18dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/app_theme_color_button_12dp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:onClick="@{click::logOut}"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="5dp"
+                        android:text="@string/log_out"
+                        android:textColor="@color/white"
+                        android:textSize="17dp" />
+
+                </RelativeLayout>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="145dp"
+                    android:layout_height="145dp"
+                    android:layout_below="@id/profileBackImageLayout"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="-70dp"
+                    android:background="@drawable/white_circle"
+                    android:imageViewUrl="@{data.image}"
+                    android:padding="4dp" />
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_below="@id/profile_image"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:text="@{data.name}"
+                    android:textColor="@color/black_2"
+                    android:textSize="23sp" />
+
+
+                <TextView
+                    android:id="@+id/editProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginVertical="23sp"
+                    android:drawableStart="@drawable/edit_profile_img"
+                    android:drawableEnd="@drawable/img_path"
+                    android:drawablePadding="9dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:onClick="@{click::goEditProfile}"
+                    android:paddingHorizontal="20dp"
+                    android:text="@string/edit_profile"
+                    android:textColor="@color/black_2"
+                    android:textSize="15dp" />
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/businessType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/name"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/app_theme_opicity_6_color_button_12dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="1dp"
+                    android:text="@string/individual"
+                    android:textAllCaps="false"
+                    android:textColor="@color/app_theme"
+                    android:textSize="15dp"
+                    android:visibility="gone" />
+
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_below="@+id/businessType"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/black_opicity_6" />
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_below="@+id/editProfile"
+                    android:background="@color/black_opicity_6" />
+
+                <LinearLayout
+                    android:id="@+id/aboutProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view2"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/institutionalLayoutInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="23sp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/poppins_semi_bold"
+                                android:text="About"
+                                android:textColor="@color/black_2"
+                                android:textSize="17dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/about"
+                                android:layout_centerInParent="true"
+                                android:layout_gravity="end"
+                                android:layout_marginStart="20dp"
+                                android:fontFamily="@font/poppins_bold"
+                                android:gravity="end"
+                                android:onClick="@{click::goEditProfile2}"
+                                android:paddingHorizontal="20dp"
+                                android:text="@string/edit"
+                                android:textColor="@color/app_theme"
+                                android:textSize="17dp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="22dp"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:text="@string/email_address"
+                            android:textColor="@color/black_2"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/businessName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/about"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="20dp"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/poppins_regular"
+                            android:maxLines="3"
+                            android:text="@{data.email}"
+                            android:textColor="@color/grey_6E6E6E"
+                            android:textSize="13dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="18dp"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:text="@string/mobile_number"
+                            android:textColor="@color/black_2"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/mobileNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/about"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="20dp"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/poppins_regular"
+                            android:maxLines="3"
+                            android:text='@{"+"+data.countryCode+" "+data.mobile}'
+                            android:textColor="@color/grey_6E6E6E"
+                            android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/about"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:text="@string/about"
+                        android:textColor="@color/black_2"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/about"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/poppins_regular"
+                        android:maxLines="5"
+                        android:textColor="@color/grey_6E6E6E"
+                        android:textSize="13dp" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view3"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_below="@+id/aboutProfile"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/black_opicity_6" />
+
+                <TextView
+                    android:id="@+id/myConnection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view3"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:text="@string/my_connections"
+                    android:textColor="@color/black_2"
+                    android:textSize="17dp" />
+
+
+                <RelativeLayout
+                    android:id="@+id/underdevelopment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/myConnection"
+                    android:layout_marginTop="22dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/serviceRecycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:clickable="false"
+                        android:nestedScrollingEnabled="false"
+                        android:visibility="gone"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:spanCount="3"
+                        tools:listitem="@layout/home_services_recycler" />
+
+
+                    <RelativeLayout
+                        android:id="@+id/noDataLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="30dp"
+                        android:layout_marginTop="10dp">
+
+                        <ImageView
+                            android:id="@+id/no_dataIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/no_data_icon" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/no_dataIcon"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="15dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="No Connections Found !"
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
+    </RelativeLayout>
+</layout>
+
+

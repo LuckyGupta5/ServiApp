@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.servivet.ui.main.view_model.LoginViewModel" />
+
+        <variable
+            name="click"
+            type="com.example.servivet.ui.main.view_model.LoginViewModel.ClickAction" />
+
+    </data>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <ScrollView
+            android:id="@+id/scrollview"
+            android:layout_above="@id/nextBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:fillViewport="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/servivet_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:background="@color/app_theme"
+                        android:paddingTop="54dp"
+                        android:paddingBottom="60dp"
+                        android:src="@drawable/servivet_name" />
+
+
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/servivet_img"
+                        android:layout_marginTop="-30dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/top_round_corner_white_24dp">
+
+                        <LinearLayout
+                            android:id="@+id/client_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:foregroundGravity="center"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:onClick="@{click::consumerClick}"
+                                android:orientation="vertical"
+                                android:paddingTop="18dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:gravity="center"
+                                    android:text="@string/clientel"
+                                    android:textColor='@{viewModel.customer?@color/app_theme:@color/gray_777777}'
+                                    android:textSize="17sp" />
+
+                                <View
+                                    android:layout_width="45dp"
+                                    android:layout_height="4dp"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="10sp"
+                                    android:background='@{viewModel.customer?@drawable/top_round_corner_app_theme_24dp:@drawable/top_round_corner_white_24dp}' />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="2dp"
+                                android:layout_height="match_parent"
+                                android:layout_below="@+id/client_layout"
+                                android:background="@color/light_grey" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:onClick="@{click::businessClick}"
+                                android:orientation="vertical"
+                                android:paddingTop="18dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:gravity="center"
+                                    android:text="@string/business"
+                                    android:textColor='@{viewModel.business?@color/app_theme:@color/gray_777777}'
+                                    android:textSize="17sp" />
+
+                                <View
+                                    android:layout_width="45dp"
+                                    android:layout_height="4dp"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="10sp"
+                                    android:background='@{viewModel.business?@drawable/top_round_corner_app_theme_24dp:@drawable/top_round_corner_white_24dp}' />
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_below="@+id/client_layout"
+                            android:background="@color/light_grey" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/client_layout"
+                            android:layout_marginBottom="15dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/client_layout"
+                                android:layout_marginStart="21sp"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="@font/poppins_semi_bold"
+                                android:text="@string/mobile_number"
+                                android:textColor="@color/black_2"
+                                android:textSize="17sp" />
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/client_layout"
+                                android:layout_marginStart="21dp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@string/we_will_send_you_a_confirmation_code"
+                                android:textColor="@color/gray_878787"
+                                android:textSize="17sp" />
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/mobileNumberLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="20dp"
+                                android:layout_marginTop="13dp"
+                                app:cardCornerRadius="12dp"
+                                app:strokeColor="@color/gray"
+                                app:strokeWidth="1dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/white"
+                                    android:orientation="horizontal"
+                                    app:backgroundTint="@null">
+                                    <com.hbb20.CountryCodePicker
+                                        android:id="@+id/countryCode"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:gravity="center_vertical"
+                                        android:paddingVertical="15dp"
+                                        android:paddingStart="20dp"
+                                        android:paddingEnd="15dp"
+                                        app:ccp_showArrow="false"
+                                        app:ccp_showFlag="false"
+                                        app:ccp_showNameCode="false" />
+
+                                    <View
+                                        android:layout_width="1dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:layout_marginVertical="13dp"
+                                        android:background="@color/gray" />
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/modelNumberEditText"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginVertical="10dp"
+                                        android:layout_marginStart="14dp"
+                                        android:layout_marginEnd="15dp"
+                                        android:afterTextChanged="@{(text)->click.onNumberChange(text)}"
+                                        android:background="@android:color/transparent"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:hint="@string/_123_456_7890"
+                                        android:inputType="number"
+                                        android:maxLength="10"
+                                        android:maxLines="1"
+                                        android:textColor="@color/black"
+                                        android:textColorHint="@color/gray_B2B2B2"
+                                        android:textSize="19dp" />
+                                </LinearLayout>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <LinearLayout
+                                android:id="@+id/termConditionPolicyLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/mobileNumberLayout"
+                                android:layout_marginHorizontal="20dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="50dp"
+                                android:onClick="@{click::agree}"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/checkbox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background='@{ viewModel.isCheck==true? @drawable/selected_checkbox: @drawable/unselected_checkbox}' />
+
+
+                                <TextView
+                                    android:id="@+id/termConditionPolicy"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_marginBottom="15sp"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:letterSpacing="0.02"
+
+                                    android:lineSpacingMultiplier="1"
+                                    android:text="@string/i_agree_to_terms_and_conditions_and_data_privacy_policies"
+                                    android:textSize="13dp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+        </ScrollView>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/nextBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="20sp"
+            android:backgroundTint="@null"
+            android:visibility="gone"
+            android:background="@drawable/button_selector"
+            android:enabled="@{viewModel.numberET &amp;viewModel.isCheck?true:false}"
+            android:fontFamily="@font/poppins_medium"
+            android:onClick="@{click::next}"
+            android:text="@string/next"
+            android:layout_marginBottom="15dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            app:backgroundTint="@null" />
+    </RelativeLayout>
+
+
+</layout>

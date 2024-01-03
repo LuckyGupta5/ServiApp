@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.servivet.ui.main.view_model.ServicesViewModel" />
+
+        <variable
+            name="click"
+            type="com.example.servivet.ui.main.view_model.ServicesViewModel.ClickAction" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="12dp"
+            android:background="@color/white"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:id="@+id/topLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/backBtn"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:onClick="@{click::back}"
+                    android:src="@drawable/servishback_btn" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="center_horizontal"
+                    android:text="@string/services"
+                    android:layout_marginStart="-15dp"
+                    android:textColor="@color/black"
+                    android:textSize="23dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/serviceRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/topLayout"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="3"
+            tools:listitem="@layout/home_services_recycler" />
+    </LinearLayout>
+</layout>

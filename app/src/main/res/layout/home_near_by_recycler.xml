@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:src="@drawable/flower_img" />
+
+
+            <RelativeLayout
+                android:id="@+id/info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_toEndOf="@id/profile_image"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:paddingHorizontal="6dp"
+                    android:text="@string/finance"
+                    android:textColor="@color/green"
+                    android:textSize="11dp"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/arrow_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/arraow_path" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/type"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:text="Prateek Mehta"
+                            android:textColor="@color/black_2"
+                            android:textSize="15dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@string/app_name"
+                                android:textColor="@color/grey7"
+                                android:textSize="13dp"
+                                android:visibility="gone" />
+
+                            <ImageView
+                                android:id="@+id/pinLocation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginEnd="6dp"
+                                android:src="@drawable/location_path_icon"
+                                android:visibility="visible" />
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"
+                                android:visibility="gone"
+                                android:layout_gravity="center"
+                                android:layout_marginHorizontal="7dp"
+                                app:cardBackgroundColor="@color/grey7"
+                                app:cardCornerRadius="22dp"
+                                app:contentPadding="12dp"
+                                app:strokeColor="@color/grey6"
+                                app:strokeWidth="1dp">
+
+                            </com.google.android.material.card.MaterialCardView>
+
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:text="@string/_1_km_away" />
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_below="@id/info"
+                android:layout_toRightOf="@id/profile_image"
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_marginStart="20dp"
+                android:background="@color/grey_F3F3F3"/>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</layout>

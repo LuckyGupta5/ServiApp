@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <item
+        android:id="@+id/homeFragment"
+        android:title="@string/home"
+        android:icon="@drawable/selected_homeicon"
+        android:iconTint="@color/my_tab"/>
+    <item
+        android:id="@+id/bookingsFragment"
+        android:title="@string/bookings"
+        android:icon="@drawable/unselectedbooking_icon"
+        android:iconTint="@color/my_tab"/>
+
+    <item
+        android:id="@+id/chatFragment"
+        android:title="@string/chats"
+        android:icon="@drawable/unselected_chat_icon"
+        android:iconTint="@color/my_tab"/>
+    <item
+        android:id="@+id/profileFragment"
+        android:title="@string/profile"
+        android:icon="@drawable/profileunselectedicon"
+        android:iconTint="@color/my_tab"
+        />
+
+
+
+</menu>

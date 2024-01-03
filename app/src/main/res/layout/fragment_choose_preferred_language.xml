@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.servivet.ui.main.view_model.ChooseLanguageViewModel" />
+
+        <variable
+            name="click"
+            type="com.example.servivet.ui.main.view_model.ChooseLanguageViewModel.ClickAction" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_theme"
+        tools:context=".ui.main.fragment.ChoosePreferredLanguageFragment">
+
+        <ImageView
+            android:id="@+id/servivet_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:src="@drawable/servivet_name" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/servivet_img"
+            android:layout_marginTop="26dp"
+            android:background="@drawable/top_round_corner_white_24dp">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/continueBtn"
+                android:layout_marginBottom="15sp"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginVertical="32dp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:gravity="center_horizontal"
+                        android:text="@string/choose_your_preferred_language"
+                        android:textColor="@color/black_2"
+                        android:textSize="25dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:background='@{viewModel.english?@drawable/selected_blue_outline_corner_12dp:@drawable/unselected_gray_outline_corner_12dp}'
+                        android:onClick="@{click::englishClick}"
+                        android:orientation="horizontal"
+                        android:paddingVertical="19dp">
+
+                        <LinearLayout
+                            android:id="@+id/english_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="19dp"
+                                android:fontFamily="@font/poppins_semi_bold"
+                                android:text="@string/english"
+                                android:textColor='@{viewModel.english?@color/app_theme:@color/black3}'
+                                android:textSize="19dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="19dp"
+                                android:layout_marginTop="16dp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@string/hi_i_am_john_doe"
+                                android:textColor='@{viewModel.english?@color/app_theme:@color/grey1}'
+                                android:textSize="17dp" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="15sp"
+                            android:background='@{viewModel.english?@drawable/selected_img:@drawable/unselected_img}' />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginTop="28dp"
+                        android:paddingVertical="19dp"
+                        android:background='@{viewModel.swahii?@drawable/selected_blue_outline_corner_12dp:@drawable/unselected_gray_outline_corner_12dp}'
+                        android:onClick="@{click::swahiiClick}"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="19dp"
+                                android:fontFamily="@font/poppins_semi_bold"
+                                android:text="@string/swahii"
+                                android:textColor='@{viewModel.swahii?@color/app_theme:@color/black3}'
+                                android:textSize="19dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="17dp"
+                                android:layout_marginTop="16dp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@string/habari_mimi_ni_john_doe"
+                                android:textColor='@{viewModel.swahii?@color/app_theme:@color/grey1}'
+                                android:textSize="17dp" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="15sp"
+                            android:background='@{viewModel.swahii?@drawable/selected_img:@drawable/unselected_img}' />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginTop="28dp"
+                        android:paddingVertical="19dp"
+                        android:layout_marginBottom="5dp"
+                        android:background='@{viewModel.zulu?@drawable/selected_blue_outline_corner_12dp:@drawable/unselected_gray_outline_corner_12dp}'
+                        android:onClick="@{click::zuluClick}"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="19dp"
+                                android:fontFamily="@font/poppins_semi_bold"
+                                android:text="@string/zulu"
+                                android:textColor='@{viewModel.zulu?@color/app_theme:@color/black3}'
+                                android:textSize="19dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="17dp"
+                                android:layout_marginTop="16dp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@string/sawubona_ngingu_john_doe"
+                                android:textColor='@{viewModel.zulu?@color/app_theme:@color/grey1}'
+                                android:textSize="17dp" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="15sp"
+                            android:background='@{viewModel.zulu?@drawable/selected_img:@drawable/unselected_img}' />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </ScrollView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/continueBtn"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="20sp"
+                android:layout_marginBottom="15sp"
+                android:background="@drawable/round_corner_grey_12dp"
+                android:fontFamily="@font/poppins_medium"
+                android:onClick="@{click::continueBtn}"
+                android:text="@string/continues"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="17dp"
+                app:backgroundTint="@null" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</layout>

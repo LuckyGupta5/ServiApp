@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.servivet.data.model.add_service.request.ServiceListSlot" />
+
+        <variable
+            name="click"
+            type="com.example.servivet.ui.main.adapter.EditSelectSessionAdapter.ClickAction" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/timeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/startTimeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/start_time"
+                    android:textColor="@color/grey6"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/startTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/gray_17_corner_outline_drawable_12_dp"
+                    android:gravity="center"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="15dp"
+                    android:paddingVertical="15dp"
+                    android:hint="00:00 AM"
+                    android:text='@{data.startTime!=""?data.startTime:"00:00 AM"}'
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/endTimeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/end_time"
+                    android:textColor="@color/grey6"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/endTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/gray_17_corner_outline_drawable_12_dp"
+                    android:gravity="center"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="15dp"
+                    android:paddingVertical="15dp"
+                    android:hint="00:00 AM"
+                    android:text='@{data.endTime!=""?data.endTime:"00:00 AM"}'
+
+                    />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/crossIcon"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/cancel_slot" />
+
+        </LinearLayout>
+
+
+
+
+         </LinearLayout>
+</layout>

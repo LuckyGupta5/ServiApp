@@ -1,0 +1,665 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.servivet.ui.main.view_model.BookingDetailsViewModel" />
+
+        <variable
+            name="click"
+            type="com.example.servivet.ui.main.view_model.BookingDetailsViewModel.ClickAction" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.main.fragment.BookingDetailsFragment">
+
+        <LinearLayout
+            android:id="@+id/details_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="55dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/back_detail_btn"
+                android:onClick="@{click::backbtn}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:gravity="center"
+                android:text="@string/booking_details"
+                android:textColor="@color/black"
+                android:textSize="21dp" />
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/bottomLayout"
+            android:layout_below="@+id/details_layout"
+            android:background="@color/white"
+            android:fillViewport="true"
+            android:fitsSystemWindows="true"
+            android:scrollbars="none"
+            android:visibility="visible">
+            <!--    <RelativeLayout
+                            android:layout_below="@+id/scrollview"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+             -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="@color/grey_F8F8F8" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/image_2_layout"
+                    android:layout_width="104dp"
+                    android:layout_height="104dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    app:cardCornerRadius="12dp">
+
+                    <ImageView
+                        android:id="@+id/image_2"
+                        android:layout_width="104dp"
+                        android:layout_height="104dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/flower_img" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/gym"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="10dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:gravity="center_horizontal"
+                    android:maxLines="1"
+                    android:text="@string/gym"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black_2"
+                    android:textSize="19sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/poppins_regular"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:text="@string/by_prateek_mehta"
+                        android:textColor="@color/grey_717171"
+                        android:textSize="15sp" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginHorizontal="7dp"
+                        app:cardBackgroundColor="@color/grey4"
+                        app:cardCornerRadius="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/poppins_regular"
+                        android:gravity="center_horizontal"
+                        android:maxLines="1"
+                        android:text="@string/at_centre"
+                        android:textColor="@color/grey_717171"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginBottom="13dp"
+                    android:background="@color/grey_F3F3F3" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginBottom="11dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="@string/booking_id"
+                        android:textColor="@color/black_2"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:maxLength="12"
+                        android:text="@string/booking_id_num"
+                        android:textColor="@color/black_2"
+                        android:textSize="15dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/app_theme_opicity_6_color_button_12dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:paddingHorizontal="9dp"
+                            android:paddingVertical="5dp"
+                            android:text="@string/individual"
+                            android:textColor="@color/app_theme"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey_F3F3F3" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="22dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/calender_img" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/poppins_medium"
+                            android:maxLines="1"
+                            android:text="@string/date_time"
+                            android:textColor="@color/black_000"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/poppins_regular"
+                            android:maxLines="1"
+                            android:text="@string/tuesday_21_oct_11_00_am"
+                            android:textColor="@color/grey_6E6E6E"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="19dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginBottom="27dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/location_path_icon" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/poppins_medium"
+                            android:maxLines="1"
+                            android:text="@string/location"
+                            android:textColor="@color/black_000"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/poppins_regular"
+                            android:maxLines="1"
+                            android:text="@string/a_199_sector_63_noida"
+                            android:textColor="@color/grey_6E6E6E"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="@color/grey_F8F8F8" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/payment_info"
+                        android:textColor="@color/black_2"
+                        android:textSize="17sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_regular"
+                            android:maxLength="40"
+                            android:maxLines="1"
+                            android:text="@string/subtotal"
+                            android:textColor="@color/black_242424"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:drawableStart="@drawable/rupree_icon"
+                            android:drawablePadding="3dp"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="end"
+                            android:maxLength="10"
+                            android:text="@string/_1420"
+                            android:textColor="@color/black_242424"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_regular"
+                            android:maxLength="25"
+                            android:text="@string/gst_18"
+                            android:textColor="@color/black_242424"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:drawableStart="@drawable/rupree_icon"
+                            android:drawablePadding="3dp"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="end"
+                            android:maxLength="10"
+                            android:maxLines="1"
+                            android:text="@string/_25"
+                            android:textColor="@color/black_242424"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/grey_E8E8E8" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="@string/total"
+                            android:textColor="@color/black_242424"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:drawableStart="@drawable/rupree_icon"
+                            android:drawablePadding="3dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:gravity="end"
+                            android:maxLength="15"
+                            android:text="@string/_1524"
+                            android:textColor="@color/black_242424"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@color/grey_F8F8F8" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/payment_mode"
+                        android:textColor="@color/black_2"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:drawableStart="@drawable/creadit_icon"
+                        android:drawablePadding="5dp"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/poppins_regular"
+                        android:maxLines="1"
+                        android:text="@string/credit_card"
+                        android:textColor="@color/grey_6E6E6E"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/reasonCancelLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@color/grey_F8F8F8" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/reason_for_cancellation"
+                        android:textColor="@color/black_2"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="5dp"
+                        android:drawableStart="@drawable/reason_for_cancel_icon"
+                        android:drawablePadding="5dp"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/poppins_regular"
+                        android:maxLines="2"
+                        android:text="@string/provider_is_not_available_at_this_time"
+                        android:textColor="@color/grey7"
+                        android:textSize="15dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@color/grey_F8F8F8" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/refund_status"
+                        android:textColor="@color/black_2"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="5dp"
+                        android:drawableStart="@drawable/refund_icon"
+                        android:drawablePadding="5dp"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/poppins_regular"
+                        android:maxLines="2"
+                        android:text="@string/refund_initiated_you_will_receive_your_n_amount_in_48_hours"
+                        android:textColor="@color/grey7"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/grey_F8F8F8" />
+            </LinearLayout>
+            <!--    </RelativeLayout>
+             -->
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/bottomLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:id="@+id/bookingagain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/markAsCompletedf"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@null"
+                        android:fontFamily="@font/poppins_regular"
+                        android:stateListAnimator="@null"
+                        android:text="@string/amount_paid"
+                        android:textAllCaps="false"
+                        android:textColor="@color/grey_787878"
+                        android:textSize="17sp"
+                        android:visibility="visible"
+                        app:backgroundTint="@null" />
+
+                    <TextView
+                        android:id="@+id/amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@null"
+                        android:drawableStart="@drawable/rupree_icon"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:maxLength="8"
+                        android:stateListAnimator="@null"
+                        android:text="@string/_1524"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black_242424"
+                        android:textSize="19sp"
+                        android:visibility="visible"
+                        app:backgroundTint="@null" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/markAsCompletedfd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/apptheme_outline_with_solid_white_corner_12"
+                    android:backgroundTint="@null"
+                    android:fontFamily="@font/poppins_medium"
+                    android:onClick="@{click.gotoBookingSummary}"
+                    android:stateListAnimator="@null"
+                    android:text="@string/book_again"
+                    android:textAllCaps="false"
+                    android:textColor="@color/app_theme"
+                    android:textSize="17sp"
+                    android:visibility="visible"
+                    app:backgroundTint="@null" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/markAsCompleted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/apptheme_outline_with_solid_white_corner_12"
+                android:backgroundTint="@null"
+                android:fontFamily="@font/poppins_medium"
+                android:stateListAnimator="@null"
+                android:text="@string/mark_as_completed"
+                android:textAllCaps="false"
+                android:textColor="@color/app_theme"
+                android:textSize="19sp"
+                android:visibility="visible"
+                app:backgroundTint="@null" />
+
+            <LinearLayout
+                android:id="@+id/reSchedule_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/cancel_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="15sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle_button_color_grey_e8e8e8_12dp"
+                    android:backgroundTint="@null"
+                    android:fontFamily="@font/poppins_medium"
+                    android:stateListAnimator="@null"
+                    android:text="@string/cancel"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black_2"
+                    android:textSize="17sp"
+                    app:backgroundTint="@null" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/reSchedule"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="15sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_corner_grey_12dp"
+                    android:backgroundTint="@null"
+                    android:fontFamily="@font/poppins_medium"
+                    android:maxLines="1"
+                    android:stateListAnimator="@null"
+                    android:text="@string/reschedule"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    app:backgroundTint="@null" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

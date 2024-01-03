@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="click"
+            type="com.example.servivet.ui.main.adapter.BookingAdapter.ClickAction" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{click::gotoBookingDetails}"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="@string/booking_id"
+                        android:textColor="@color/black_2"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:maxLength="12"
+                        android:text="@string/booking_id_num"
+                        android:textColor="@color/black_2"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/individual"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/app_theme_opicity_6_color_button_12dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:paddingHorizontal="9dp"
+                            android:paddingVertical="5dp"
+                            android:text="@string/individualcap"
+                            android:textColor="@color/app_theme"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginBottom="13dp"
+                    android:background="@color/grey_EFEFEF" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:elevation="1dp"
+                    app:cardCornerRadius="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/image_2_layout"
+                                android:layout_width="74dp"
+                                android:layout_height="74dp"
+                                app:cardCornerRadius="12dp">
+
+                                <ImageView
+                                    android:id="@+id/image_2"
+                                    android:layout_width="74dp"
+                                    android:layout_height="74dp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/flower_img" />
+                            </androidx.cardview.widget.CardView>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:fontFamily="@font/poppins_semi_bold"
+                                    android:maxLines="1"
+                                    android:text="Gym"
+                                    android:textColor="@color/black"
+                                    android:textSize="17sp" />
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:orientation="horizontal">
+
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:fontFamily="@font/poppins_regular"
+                                        android:maxLength="15"
+                                        android:maxLines="1"
+                                        android:text="@string/by_prateek_mehta"
+                                        android:textColor="@color/grey_717171"
+                                        android:textSize="13sp" />
+
+                                    <com.google.android.material.card.MaterialCardView
+                                        android:id="@+id/circle"
+                                        android:layout_width="5dp"
+                                        android:layout_height="5dp"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginHorizontal="7dp"
+                                        app:cardBackgroundColor="@color/grey4"
+                                        app:cardCornerRadius="8dp" />
+
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:fontFamily="@font/poppins_regular"
+                                        android:maxLines="1"
+                                        android:text="@string/at_centre"
+                                        android:textColor="@color/grey_979595"
+                                        android:textSize="13sp" />
+
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:drawableStart="@drawable/calender_img"
+                                    android:drawablePadding="10dp"
+                                    android:ellipsize="end"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:maxLines="1"
+                                    android:text="@string/tuesday_21_oct_11_00_am"
+                                    android:textColor="@color/grey_717171"
+                                    android:textSize="13sp" />
+                            </LinearLayout>
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/image_1"
+                                android:layout_width="86dp"
+                                android:layout_height="86dp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginTop="10dp"
+                                android:scaleType="centerCrop"
+                                android:visibility="gone" />
+
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="13dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@color/grey_F3F3F3" />
+
+                        <LinearLayout
+                            android:id="@+id/reSchedule_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginEnd="15dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:src="@drawable/rupree_icon" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:ellipsize="end"
+                                    android:fontFamily="@font/poppins_semi_bold"
+                                    android:maxLength="7"
+                                    android:maxLines="1"
+                                    android:text="@string/_1499"
+                                    android:textColor="@color/black"
+                                    android:textSize="19sp" />
+
+                                <TextView
+                                    android:id="@+id/textprice2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginEnd="15dp"
+                                    android:ellipsize="end"
+                                    android:fontFamily="@font/poppins_semi_bold"
+                                    android:maxLength="7"
+                                    android:maxLines="1"
+                                    android:text="@string/_1799"
+                                    android:textColor="@color/grey_747474"
+                                    android:textSize="15sp" />
+                            </LinearLayout>
+
+                            <RatingBar
+                                android:id="@+id/ratingbar"
+                                style="@style/Widget.AppCompat.RatingBar.Indicator"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/ratinglayout"
+                                android:layout_centerHorizontal="true"
+                                android:clickable="true"
+                                android:isIndicator="false"
+                                android:numStars="5"
+                                android:outlineSpotShadowColor="@color/black"
+                                android:rating="2.6"
+                                android:secondaryProgressTint="@color/grey1"
+                                android:stepSize="0.5"
+                                android:theme="@style/RatingBar"
+                                android:visibility="gone" />
+
+                            <TextView
+                                android:id="@+id/reSchedule"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:background="@drawable/app_theme_10dp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:paddingHorizontal="20dp"
+                                android:onClick="@{click::clickreschdulegotoBookingdetail}"
+                                android:paddingVertical="8dp"
+                                android:text="@string/reschedule"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white"
+                                android:textSize="17sp"
+                                android:visibility="visible" />
+
+                            <TextView
+                                android:id="@+id/rate_us"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/apptheme_outline_with_solid_white_corner_12"
+                                android:backgroundTint="@null"
+                                android:visibility="gone"
+                                android:paddingVertical="8dp"
+                                android:paddingHorizontal="40dp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:onClick="@{click.gotoRateUs}"
+                                android:stateListAnimator="@null"
+                                android:text="@string/rate_us"
+                                android:textAllCaps="false"
+                                android:textColor="@color/app_theme"
+                                android:textSize="17sp"
+                                app:backgroundTint="@null" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>

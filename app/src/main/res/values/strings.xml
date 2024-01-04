@@ -191,7 +191,7 @@
     <string name="complete_profile">Complete Profile</string>
     <string name="enter_your_information_below">Enter your information below</string>
     <string name="edit_service">Edit Service</string>
- <string name="message">Message</string>
+    <string name="message">Message</string>
     <string name="upcoming">Upcoming</string>
     <string name="completed">Completed</string>
     <string name="cancelled">Cancelled</string>
@@ -331,6 +331,15 @@
     <string name="_200">₹200</string>
     <string name="_123456789">123456789</string>
     <string name="please_allow_location_permission_to_move_ahead">Please allow location permission to move ahead.</string>
+    <string name="connections_requests">Connections Requests</string>
+    <string name="accept_or_decline_requests">Accept or Decline Requests</string>
+    <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout ?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="log_out_successfully">Log out successfully !</string>
+    <string name="remove">Remove</string>
+    <string name="surya_mouly">Surya Mouly</string>
+    <string name="individual_business">Individual Business</string>
 
 
 </resources>

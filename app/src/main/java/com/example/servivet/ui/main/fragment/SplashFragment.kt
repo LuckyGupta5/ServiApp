@@ -21,7 +21,9 @@ class SplashFragment :
     override fun setupViewModel() {
     }
     override fun setupViews() {
+        if(isAdded)
         binding.apply {
+            if(isAdded)
             lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
         }

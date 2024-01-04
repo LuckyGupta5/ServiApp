@@ -298,7 +298,7 @@
                                 android:paddingVertical="8dp"
                                 android:paddingHorizontal="40dp"
                                 android:fontFamily="@font/poppins_medium"
-                                android:onClick="@{click.gotoRateUs}"
+                                android:onClick="@{click::gotoRateUs}"
                                 android:stateListAnimator="@null"
                                 android:text="@string/rate_us"
                                 android:textAllCaps="false"

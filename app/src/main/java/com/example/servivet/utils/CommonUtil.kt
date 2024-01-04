@@ -688,6 +688,33 @@ fun isCurrentDate(date: String): Boolean {
 
         alert.show()
     }
+    fun customalertdialog(context: Context?, msg: String?,from:Int) {
+
+        val dialog = Dialog(context!!)
+        dialog.setContentView(R.layout.alert_dialog_custom)
+        dialog.window!!.setBackgroundDrawableResource(R.drawable.all_border_round_10dp_apptheme)
+        val title = dialog.findViewById<TextView>(R.id.title)
+        title.setText(R.string.app_name)
+        val message = dialog.findViewById<TextView>(R.id.message)
+        message.text = msg
+        /* val view = dialog.findViewById<View>(R.id.viewCenter)
+         view.visibility = View.GONE
+        */  val dialogButton = dialog.findViewById<TextView>(R.id.yes)
+        val dialogno=dialog.findViewById<TextView>(R.id.no)
+        //dialogButton.gravity = Gravity.CENTER_HORIZONTAL
+        dialogno.setOnClickListener { v:View?->
+            dialogno.isEnabled.and(true)
+            dialog.dismiss()}
+        dialogButton.setOnClickListener { v: View? ->
+            /*  Session.logout()
+              SplashViewModel.isLogout
+              Session.saveLogin("flase")
+            */
+            dialogButton.isEnabled.and(false)
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
 
 
     fun screenshot(view: View, filename: String): Bitmap? {

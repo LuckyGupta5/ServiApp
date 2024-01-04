@@ -23,7 +23,7 @@ class SettingsFragment:BaseFragment<FragmentSettingsBinding,SettingsViewModel>(R
         binding.apply {
             lifecycleOwner=viewLifecycleOwner
             viewModel=mViewModel
-            click=mViewModel.ClickAction()
+            click=mViewModel.ClickAction(requireActivity())
         }
     }
 

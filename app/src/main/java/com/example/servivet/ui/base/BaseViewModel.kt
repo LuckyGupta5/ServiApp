@@ -10,7 +10,6 @@ open class BaseViewModel: ViewModel() {
     var isInternetAvailable: Boolean = false
     val job = Job()
     val coroutineScope = CoroutineScope(Dispatchers.IO + job)
-
     override fun onCleared() {
         super.onCleared()
         coroutineScope.cancel()

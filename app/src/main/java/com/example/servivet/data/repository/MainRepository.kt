@@ -1,6 +1,8 @@
 package com.example.servivet.data.repository
 
 import com.example.servivet.data.api.ApiService
+import com.example.servivet.data.api.RetrofitBuilder
+import com.example.servivet.data.model.booking_model.request.RatingRequest
 import com.example.servivet.data.model.business_verification_api.request.BusinessVerificationRequest
 import com.example.servivet.data.model.send_otp.request.SendOtpRequest
 import com.example.servivet.data.model.service_category_details.request.ServiceCategoryDetailsRequest
@@ -32,5 +34,9 @@ class MainRepository(private val apiService: ApiService) {
 
     suspend fun businessVerificationApi(businessVerificationRequest: BusinessVerificationRequest)=
         apiService.businessVerificationApi(businessVerificationRequest)
+
+    suspend fun ratingApi(request: RatingRequest) = apiService.ratingApi(request)
+
+
 
 }

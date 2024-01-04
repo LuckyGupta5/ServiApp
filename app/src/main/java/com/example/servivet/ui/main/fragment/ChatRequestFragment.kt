@@ -10,6 +10,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
 import com.example.servivet.databinding.FragmentChatRequestBinding
 import com.example.servivet.ui.base.BaseFragment
+import com.example.servivet.ui.main.adapter.ChatRequestAdapter
 import com.example.servivet.ui.main.view_model.ChatRequestViewModel
 
 class ChatRequestFragment : BaseFragment<FragmentChatRequestBinding,ChatRequestViewModel>(R.layout.fragment_chat_request) {
@@ -29,6 +30,11 @@ class ChatRequestFragment : BaseFragment<FragmentChatRequestBinding,ChatRequestV
             click=mViewModel.ClickAction()
 
         }
+        setadapter()
+    }
+
+    private fun setadapter() {
+        binding.recyclerview.adapter=ChatRequestAdapter(ArrayList())
     }
 
     override fun setupObservers() {

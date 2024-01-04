@@ -348,6 +348,7 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal"
                 android:layout_height="wrap_content"
+                android:onClick="@{click::goLogout}"
                 android:drawableStart="@drawable/logout_icon"
                 android:text="@string/log_out"
                 android:fontFamily="@font/poppins_semi_bold"

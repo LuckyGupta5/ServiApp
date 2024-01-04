@@ -66,6 +66,12 @@
 	        <action
             android:id="@+id/action_profileFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_fragmentMyConnection"
+            app:destination="@id/fragmentMyConnection" />
+        <action
+            android:id="@+id/action_profileFragment_to_settingsFragment2"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/bookingsFragment"
@@ -239,4 +245,18 @@
         android:name="com.example.servivet.ui.main.fragment.MyWalletFragment"
         android:label="MyWalletFragment"
         tools:layout="@layout/fragment_my_wallet"/>
+    <fragment
+        android:id="@+id/fragmentMyConnection"
+        tools:layout="@layout/fragment_my_connection"
+        android:name="com.example.servivet.ui.main.fragment.FragmentMyConnection"
+        android:label="FragmentMyConnection" >
+        <action
+            android:id="@+id/action_fragmentMyConnection_to_connectionsRequestFragment"
+            app:destination="@id/connectionsRequestFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/connectionsRequestFragment"
+        tools:layout="@layout/fragment_connections_request"
+        android:name="com.example.servivet.ui.main.fragment.ConnectionsRequestFragment"
+        android:label="ConnectionsRequestFragment" />
 </navigation>

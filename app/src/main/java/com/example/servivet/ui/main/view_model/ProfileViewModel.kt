@@ -55,28 +55,36 @@ class ProfileViewModel:BaseViewModel() {
                 view.findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment2)
 
         }
+        fun goMyConnection(view: View){
+            view.findNavController().navigate(R.id.action_profileFragment_to_fragmentMyConnection)
+        }
 
+         fun goMyWallet(view: View){
+             view.findNavController().navigate(R.id.action_profileFragment_to_settingsFragment)
+         }
         fun logOut(view: View){
-            CommonUtils.alert(context,"Are you sure you want to logout ?",requireActivity)
+            CommonUtils.alert(context,
+                context.getString(R.string.are_you_sure_you_want_to_logout),requireActivity)
 //            logoutAlert(context,requireActivity)
         }
     }
     fun logoutAlert(context: Context, requireActivity: Activity) {
         val alert: AlertDialog = AlertDialog.Builder(context).create()
-        alert.setTitle("Are you sure you want to logout ?")
+        alert.setTitle(R.string.are_you_sure_you_want_to_logout)
         alert.setMessage("  ")
         alert.setCanceledOnTouchOutside(false)
         alert.setCancelable(false)
-        alert.setButton(DialogInterface.BUTTON_NEGATIVE, "No") { dialog, _ ->
+        alert.setButton(DialogInterface.BUTTON_NEGATIVE, context.getString(R.string.no)) { dialog, _ ->
            alert.dismiss()
         }
 
-        alert.setButton(DialogInterface.BUTTON_POSITIVE, "Yes") { dialog, _ ->
+        alert.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.yes)) { dialog, _ ->
             Session.logout()
             SplashViewModel.isLogout = true
             requireActivity.startActivity(Intent(requireActivity, MainActivity::class.java))
             requireActivity.finish()
-            Toast.makeText(requireActivity,"Log out successfully !", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireActivity,
+                context.getString(R.string.log_out_successfully), Toast.LENGTH_SHORT).show()
         }
 
         alert.show()

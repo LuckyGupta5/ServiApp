@@ -65,6 +65,8 @@
     <color name="grey_2EE2E">#00000F</color>
     <color name="grey_F0F0F0">#F0F0F0</color>
     <color name="grey_E9EBEA">#E9EBEA</color>
+    <color name="grey_505050">#505050</color>
     <color name="grey_CECECE">#CECECE</color>
+    <color name="grey_f6f6f6">#F6F6F6</color>
 
 </resources>

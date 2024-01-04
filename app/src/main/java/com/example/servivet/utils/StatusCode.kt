@@ -6,5 +6,6 @@ object StatusCode {
     const val STATUS_CODE_FAIL=0
     const val SERVER_ERROR_MESSAGE = "Sorry! Something is wrong, Please try again."
     const val UNAUTHORIZED_USER = "Unauthorized access"
+    const val HTTP_EXCEPTION = 401
 
 }

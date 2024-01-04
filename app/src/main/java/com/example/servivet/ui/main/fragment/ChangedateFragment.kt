@@ -7,11 +7,14 @@ import com.example.servivet.databinding.FragmentChangedateBinding
 import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.adapter.CalenderContainerAdapter
 import com.example.servivet.ui.main.view_model.ChangeDateViewModel
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Locale
 
 class ChangedateFragment:BaseFragment<FragmentChangedateBinding,ChangeDateViewModel>(R.layout.fragment_changedate) {
     override val binding: FragmentChangedateBinding by viewBinding(FragmentChangedateBinding::bind)
     override val mViewModel: ChangeDateViewModel by viewModels()
+    private lateinit var datesList:ArrayList<String>
 
     override fun isNetworkAvailable(boolean: Boolean) {
     }
@@ -41,25 +44,32 @@ class ChangedateFragment:BaseFragment<FragmentChangedateBinding,ChangeDateViewMo
             "Sat"
         )
         setCalendarDays()
-        binding.idCalenderContainerRecycle.adapter = CalenderContainerAdapter(requireContext(),weekDaysList,ArrayList())
+        binding.idCalenderContainerRecycle.adapter = CalenderContainerAdapter(requireContext(),weekDaysList,datesList,ArrayList())
        // mViewModel.ClickAction(binding,requireContext()).calenderset()
     }
 
     private fun setCalendarDays() {
-        var currentYear = Calendar.getInstance()[Calendar.YEAR];
-        var currentMonth = Calendar.getInstance()[Calendar.MONTH];
-        var currentDate = Calendar.getInstance()[Calendar.DAY_OF_MONTH]
-        var checkCurrentMonth = Calendar.getInstance()[Calendar.MONTH]
-
-     //   val calendarDays = generateCalendarDays(currentYear, currentMonth)
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        datesList = generateDatesForMonth(year, month)
 
     }
 
-  /*  private fun generateCalendarDays(currentYear: Int, currentMonth: Int): Any {
+    private fun generateDatesForMonth(year: Int, month: Int): ArrayList<String> {
+        val datesList = ArrayList<String>()
+        val calendar = Calendar.getInstance()
+        calendar.set(year, month, 1)
 
-    }
-*/
-    override fun setupObservers() {
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+
+        while (calendar.get(Calendar.MONTH) == month) {
+            datesList.add(dateFormat.format(calendar.time))
+            calendar.add(Calendar.DAY_OF_MONTH, 1)
+        }
+
+        return datesList
+    }    override fun setupObservers() {
     }
 
 }

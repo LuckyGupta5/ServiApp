@@ -1,6 +1,8 @@
 package com.example.servivet.data.api
 
 import com.example.servivet.data.model.add_service.response.AddServiceResponse
+import com.example.servivet.data.model.booking_model.request.RatingRequest
+import com.example.servivet.data.model.booking_model.respnse.RatingResponseMain
 import com.example.servivet.data.model.business_verification_api.request.BusinessVerificationRequest
 import com.example.servivet.data.model.business_verification_api.response.BusinessVerificationResponse
 import com.example.servivet.data.model.current_api.response.CurrentResponse
@@ -19,6 +21,7 @@ import okhttp3.MultipartBody
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.QueryMap
 
 
@@ -58,7 +61,8 @@ interface ApiService {
    @POST("profileVerification")
     suspend fun  businessVerificationApi(@Body businessVerificationRequest: BusinessVerificationRequest): BusinessVerificationResponse
 
-
+    @PUT("add/rating")
+    suspend fun ratingApi(@Body rating:RatingRequest):RatingResponseMain
 
 
 

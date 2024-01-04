@@ -69,7 +69,6 @@ class LoginViewModel:BaseViewModel() {
             if(validation()) {
                 hitSendOtpApi(context,requireActivity,finishing)
             }
-
         }
         fun gotoOT(view:View){
 
@@ -99,12 +98,7 @@ class LoginViewModel:BaseViewModel() {
                 exception.printStackTrace()
                 if (exception is HttpException && exception.code() == 401) {
                     if(!finishing)
-                        CommonUtils.logoutAlert(
-                        context,
-                        "Session Expired",
-                        "Your account has been blocked by Admin . Please contact to the Admin",
-                        requireActivity
-                    )
+                        CommonUtils.logoutAlert(context, "Session Expired", "Your account has been blocked by Admin . Please contact to the Admin", requireActivity)
                 }else
                     sendOtpResponse.postValue(Resource.error(StatusCode.SERVER_ERROR_MESSAGE, null))
 

@@ -1,4 +1,4 @@
-package com.example.servivet.data.model.booking_model.respnse
+package com.example.servivet.data.model.booking_module.booking_model.respnse
 
 data class Rating(
     val __v: Int,

@@ -2,8 +2,8 @@ package com.example.servivet.ui.main.view_model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.servivet.data.model.booking_model.request.RatingRequest
-import com.example.servivet.data.model.booking_model.respnse.RatingResponseMain
+import com.example.servivet.data.model.booking_module.booking_model.request.RatingRequest
+import com.example.servivet.data.model.booking_module.booking_model.respnse.RatingResponseMain
 import com.example.servivet.data.repository.M2Repository
 import com.example.servivet.ui.base.BaseViewModel
 import com.example.servivet.utils.CommonUtils

@@ -1,9 +1,10 @@
 package com.example.servivet.data.repository
 
 import com.example.servivet.data.api.ApiService
-import com.example.servivet.data.api.RetrofitBuilder
-import com.example.servivet.data.model.booking_model.request.RatingRequest
+import com.example.servivet.data.model.booking_module.booking_model.request.RatingRequest
+import com.example.servivet.data.model.booking_module.coupon.request.CouponAvalabilityRequest
 import com.example.servivet.data.model.business_verification_api.request.BusinessVerificationRequest
+import com.example.servivet.data.model.report_rating.request.ReportRatingRequest
 import com.example.servivet.data.model.send_otp.request.SendOtpRequest
 import com.example.servivet.data.model.service_category_details.request.ServiceCategoryDetailsRequest
 import com.example.servivet.data.model.service_list.request.ServiceListRequest
@@ -36,6 +37,12 @@ class MainRepository(private val apiService: ApiService) {
         apiService.businessVerificationApi(businessVerificationRequest)
 
     suspend fun ratingApi(request: RatingRequest) = apiService.ratingApi(request)
+    suspend fun reportRating(request: ReportRatingRequest) = apiService.reportRating(request)
+    suspend fun reviewList(request:HashMap<String,String>) = apiService.reviewList(request)
+    suspend fun bookingSummaryApi(request:HashMap<String,String>) = apiService.bookingSummaryApi(request)
+    suspend fun bookingSlotApi(request:HashMap<String,String>) = apiService.bookingSlotApi(request)
+    suspend fun bookingCouponApi(request:HashMap<String,String>) = apiService.bookingCouponApi(request)
+    suspend fun bookingSlotAvailabilityApi(request: CouponAvalabilityRequest) = apiService.bookingSlotAvailabilityApi(request)
 
 
 

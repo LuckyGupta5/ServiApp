@@ -1,4 +1,4 @@
-package com.example.servivet.data.model.booking_model.request
+package com.example.servivet.data.model.booking_module.booking_model.request
 
 data class RatingRequest(
     var comment: String?=null,

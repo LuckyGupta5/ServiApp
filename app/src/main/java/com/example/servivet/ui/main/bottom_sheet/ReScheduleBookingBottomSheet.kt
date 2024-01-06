@@ -66,16 +66,16 @@ class ReScheduleBookingBottomSheet : BaseBottomSheetDailogFragment<FragmentReSch
         list[0].isToday = true
         //  adapter=CalenderRecyclerAdapter(requireContext(),list,this)
         adapter=  CalenderRecyclerAdapter(requireContext(), list ,pos,this)
-        binding.tvDateMonth.setText(CommonUtils.monthYearFromDate(list[0].date))
+ //       binding.tvDateMonth.setText(CommonUtils.monthYearFromDate(list[0].date))
 //        binding.tvDateMonth.setText(CommonUtils.dateFromDate(list.toString()))
         gotochangedate()
         binding.recyclerview.adapter=adapter
     }
 
    fun gotochangedate(){
-       binding.tvDateMonth.setOnClickListener(View.OnClickListener {
-           mViewModel.setnavcontroller(findNavController())
-       })
+//       binding.tvDateMonth.setOnClickListener(View.OnClickListener {
+//           mViewModel.setnavcontroller(findNavController())
+//       })
 
     }
 

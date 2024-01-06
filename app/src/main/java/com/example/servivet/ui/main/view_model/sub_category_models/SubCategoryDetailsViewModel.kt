@@ -1,4 +1,4 @@
-package com.example.servivet.ui.main.view_model
+package com.example.servivet.ui.main.view_model.sub_category_models
 
 import android.app.Activity
 import android.content.Context

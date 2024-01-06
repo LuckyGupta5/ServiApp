@@ -340,6 +340,8 @@
     <string name="remove">Remove</string>
     <string name="surya_mouly">Surya Mouly</string>
     <string name="individual_business">Individual Business</string>
+    <string name="rating_raviews"><![CDATA[Rating & Raviews]]></string>
+    <string name="report">Report</string>
 
 
 </resources>

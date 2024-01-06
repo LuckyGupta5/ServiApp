@@ -48,7 +48,7 @@
                     android:fontFamily="@font/poppins_medium"
                     android:textSize="17sp"
                     android:text="@string/at_centre"/>
-                <TextView
+                <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/tvDateMonth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

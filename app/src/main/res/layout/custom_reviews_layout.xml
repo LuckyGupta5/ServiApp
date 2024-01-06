@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="data"
+            type="com.example.servivet.data.model.review_ratinng.ReviewRating" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="15dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/idImageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/userprofile"
+            android:imageViewUrl="@{data.user.image}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/idName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@{data.user.name}"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            app:layout_constraintStart_toEndOf="@id/idImageView"
+            app:layout_constraintTop_toTopOf="@id/idImageView" />
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@+id/idUserRating"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rating="@{data.rating}"
+            app:layout_constraintStart_toStartOf="@id/idName"
+            app:layout_constraintTop_toBottomOf="@id/idName" />
+
+        <TextView
+            android:id="@+id/idReviews"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@{data.comment}"
+            app:layout_constraintTop_toBottomOf="@id/idUserRating" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/light_grey"
+            app:layout_constraintTop_toBottomOf="@id/idReviews"
+            android:layout_marginTop="10dp" />
+
+        <ImageView
+            android:id="@+id/idReportImage"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/userprofile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

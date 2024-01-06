@@ -7,8 +7,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.servivet.data.api.RetrofitBuilder
-import com.example.servivet.data.model.booking_model.request.RatingRequest
-import com.example.servivet.data.model.booking_model.respnse.RatingResponseMain
+import com.example.servivet.data.model.booking_module.booking_model.request.RatingRequest
+import com.example.servivet.data.model.booking_module.booking_model.respnse.RatingResponseMain
 import com.example.servivet.data.repository.M2Repository
 import com.example.servivet.data.repository.MainRepository
 import com.example.servivet.databinding.FragmentRatingUsBottomSheetBinding

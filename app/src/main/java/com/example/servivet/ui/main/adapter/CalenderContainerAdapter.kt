@@ -8,7 +8,8 @@ import com.example.servivet.ui.base.BaseAdapter
 import com.example.servivet.utils.interfaces.ListAdapterItem
 import com.google.gson.Gson
 
-class CalenderContainerAdapter(
+class
+CalenderContainerAdapter(
     val requireContext: Context,
     val weekList: List<String>,
     val calendarDays: ArrayList<String>,

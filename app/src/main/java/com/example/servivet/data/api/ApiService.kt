@@ -1,13 +1,20 @@
 package com.example.servivet.data.api
 
 import com.example.servivet.data.model.add_service.response.AddServiceResponse
-import com.example.servivet.data.model.booking_model.request.RatingRequest
-import com.example.servivet.data.model.booking_model.respnse.RatingResponseMain
+import com.example.servivet.data.model.booking_module.booking_model.request.RatingRequest
+import com.example.servivet.data.model.booking_module.booking_model.respnse.RatingResponseMain
+import com.example.servivet.data.model.booking_module.booking_slot.BookingSlotResponseMain
+import com.example.servivet.data.model.booking_module.booking_summary.response.BookingSummaryResponse
+import com.example.servivet.data.model.booking_module.coupon.request.CouponAvalabilityRequest
+import com.example.servivet.data.model.booking_module.coupon.response.CouponResponseMain
 import com.example.servivet.data.model.business_verification_api.request.BusinessVerificationRequest
 import com.example.servivet.data.model.business_verification_api.response.BusinessVerificationResponse
 import com.example.servivet.data.model.current_api.response.CurrentResponse
 import com.example.servivet.data.model.edit_profile.response.EditProfileResponse
 import com.example.servivet.data.model.home.response.HomeResponse
+import com.example.servivet.data.model.report_rating.request.ReportRatingRequest
+import com.example.servivet.data.model.report_rating.response.CommonResponse
+import com.example.servivet.data.model.review_ratinng.ReviewRatingResponse
 import com.example.servivet.data.model.send_otp.request.SendOtpRequest
 import com.example.servivet.data.model.send_otp.response.SendOtpResponse
 import com.example.servivet.data.model.service_category_details.request.ServiceCategoryDetailsRequest
@@ -62,7 +69,24 @@ interface ApiService {
     suspend fun  businessVerificationApi(@Body businessVerificationRequest: BusinessVerificationRequest): BusinessVerificationResponse
 
     @PUT("add/rating")
-    suspend fun ratingApi(@Body rating:RatingRequest):RatingResponseMain
+    suspend fun ratingApi(@Body rating: RatingRequest): RatingResponseMain
+    @POST("report")
+    suspend fun reportRating(@Body ratingReport:ReportRatingRequest):CommonResponse
+    @GET("rating/list")
+    suspend fun reviewList(@QueryMap request:HashMap<String,String> ): ReviewRatingResponse
+
+    @GET("booking/summary")
+    suspend fun bookingSummaryApi(@QueryMap request:HashMap<String,String> ): BookingSummaryResponse
+
+    @GET("booking/slot/list")
+    suspend fun bookingSlotApi(@QueryMap request:HashMap<String,String> ): BookingSlotResponseMain
+    @GET("coupon/list")
+    suspend fun bookingCouponApi(@QueryMap request:HashMap<String,String> ): CouponResponseMain
+
+    @POST("booking/slot/availability")
+    suspend fun bookingSlotAvailabilityApi(@Body request:CouponAvalabilityRequest ): CommonResponse
+
+
 
 
 

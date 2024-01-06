@@ -6,12 +6,19 @@
     <data>
 
         <variable
+            name="ratingAdapter"
+            type="com.example.servivet.ui.main.adapter.RatingAdapter" />
+        <variable
+            name="reviewAdapter"
+            type="com.example.servivet.ui.main.adapter.RatingReviewAdapter" />
+
+        <variable
             name="ViewModel"
-            type="com.example.servivet.ui.main.view_model.SubCategoryDetailsViewModel" />
+            type="com.example.servivet.ui.main.view_model.sub_category_models.SubCategoryDetailsViewModel" />
 
         <variable
             name="click"
-            type="com.example.servivet.ui.main.view_model.SubCategoryDetailsViewModel.ClickAction" />
+            type="com.example.servivet.ui.main.view_model.sub_category_models.SubCategoryDetailsViewModel.ClickAction" />
 
         <variable
             name="data"
@@ -27,10 +34,10 @@
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/scrollview"
-            android:layout_above="@id/bottomLayout"
             android:layout_width="match_parent"
-            android:layout_alignParentTop="true"
             android:layout_height="wrap_content"
+            android:layout_above="@id/bottomLayout"
+            android:layout_alignParentTop="true"
             android:fillViewport="true">
 
 
@@ -50,9 +57,9 @@
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:onClick="@{click::backbtn}"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/back_detail_btn" />
+                        android:background="@drawable/back_detail_btn"
+                        android:onClick="@{click::backbtn}" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -89,8 +96,8 @@
                             <androidx.cardview.widget.CardView
                                 android:id="@+id/image_2_layout"
                                 android:layout_width="86dp"
-                                android:layout_marginTop="20dp"
                                 android:layout_height="86dp"
+                                android:layout_marginTop="20dp"
                                 app:cardCornerRadius="12dp">
 
                                 <ImageView
@@ -104,10 +111,10 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
                                 android:layout_marginTop="20dp"
                                 android:layout_marginEnd="5dp"
                                 android:layout_weight="1"
-                                android:layout_marginStart="15dp"
                                 android:orientation="vertical">
 
                                 <RelativeLayout
@@ -119,16 +126,17 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginEnd="10dp"
-                                        android:maxLines="1"
-                                        android:singleLine="true"
                                         android:ellipsize="end"
                                         android:fontFamily="@font/poppins_semi_bold"
+                                        android:maxLines="1"
+                                        android:singleLine="true"
                                         android:text="@{data.serviceName}"
                                         android:textColor="@color/black"
                                         android:textSize="18dp" />
 
 
                                 </RelativeLayout>
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -148,12 +156,13 @@
 
                                     <TextView
                                         android:layout_width="wrap_content"
-                                        android:layout_weight="1"
                                         android:layout_height="wrap_content"
+                                        android:layout_weight="1"
                                         android:fontFamily="@font/poppins_regular"
                                         android:text="1 km. away"
                                         android:textColor="#7A7A7A"
                                         android:textSize="15dp" />
+
                                     <TextView
                                         android:id="@+id/rating"
                                         android:layout_width="wrap_content"
@@ -212,12 +221,12 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="10dp"
-                                android:layout_weight="1"
-                                android:maxLines="1"
-                                android:singleLine="true"
                                 android:layout_marginEnd="15dp"
+                                android:layout_weight="1"
                                 android:ellipsize="end"
                                 android:fontFamily="@font/poppins_semi_bold"
+                                android:maxLines="1"
+                                android:singleLine="true"
                                 android:text="@{data.createdBy.name}"
                                 android:textColor="@color/black"
                                 android:textSize="17dp" />
@@ -234,10 +243,10 @@
                 <LinearLayout
                     android:id="@+id/about_Servicelayout"
                     android:layout_width="match_parent"
-                    android:background="@color/white"
-                    android:paddingBottom="10dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -253,9 +262,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
+                        android:layout_marginEnd="15dp"
                         android:fontFamily="@font/poppins_regular"
                         android:maxLines="3"
-                        android:layout_marginEnd="15dp"
                         android:text="@{data.aboutService}"
                         android:textColor="@color/grey_6E6E6E"
                         android:textSize="13dp" />
@@ -264,14 +273,14 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:background="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
                     android:paddingHorizontal="20dp"
-                    android:paddingTop="15dp"
 
-                    android:orientation="horizontal">
+                    android:paddingTop="15dp">
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
@@ -296,15 +305,127 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/imageRecycler"
-                    android:paddingHorizontal="20dp"
-                    android:paddingBottom="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:background="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:listitem="@layout/service_datails_img_design"
+                    android:layout_marginBottom="15dp"
+                    android:background="@color/white"
                     android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                    android:paddingHorizontal="20dp"
+                    android:paddingBottom="15dp"
+                    android:visibility="gone"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/service_datails_img_design" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginBottom="18dp"
+                    android:background="@color/white">
+
+
+                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                        android:id="@+id/idRatingReview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/white"
+                        android:fontFamily="@font/poppins_medium"
+                        android:paddingLeft="20dp"
+                        android:text="@string/rating_raviews"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/idRatingContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:background="@drawable/app_theme_color_button_12dp"
+                        android:backgroundTint="@color/light_grey"
+                        app:layout_constraintTop_toBottomOf="@id/idRatingReview">
+
+                        <View
+                            android:id="@+id/idMiddleLine"
+                            android:layout_width="1dp"
+                            android:layout_height="0dp"
+                            android:layout_marginVertical="10dp"
+                            android:background="@color/gallery"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/idRatingCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="18dp"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:text="4.0"
+                            android:textColor="@color/black"
+                            android:textSize="28sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatRatingBar
+                            android:id="@+id/idRatingBar"
+                            style="@style/Widget.AppCompat.RatingBar.Small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="18dp"
+                            android:rating="4"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/idRatingCount" />
+
+                        <TextView
+                            android:id="@+id/idReviewsCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="18dp"
+                            android:layout_marginTop="9dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="15 Reviews"
+                            android:textSize="15sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/idRatingBar" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/idRatingRecycle"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toEndOf="@id/idMiddleLine"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0"
+                            tools:itemCount="5"
+                            android:adapter="@{ratingAdapter}"
+                            android:orientation="vertical"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/custom_ratingbar_layout" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/idReviewRecycle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="18dp"
+                        tools:itemCount="3"
+                        android:adapter="@{reviewAdapter}"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/custom_reviews_layout"
+                        app:layout_constraintTop_toBottomOf="@id/idRatingContainer" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
@@ -312,29 +433,29 @@
             android:id="@+id/bottomLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:paddingHorizontal="20dp"
             android:layout_alignParentBottom="true"
-            android:paddingTop="10dp"
+            android:background="@color/white"
             android:orientation="horizontal"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="10dp"
             android:paddingBottom="15dp">
 
 
             <LinearLayout
-                android:layout_width="match_parent"
                 android:id="@+id/costLayout"
-                android:layout_weight="1"
-                android:layout_centerVertical="true"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_gravity="center_vertical"
+                android:layout_weight="1"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:background="@drawable/rupree_icon"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginEnd="5dp"
-                    android:layout_gravity="center_vertical" />
+                    android:background="@drawable/rupree_icon" />
 
                 <TextView
                     android:id="@+id/smallest"
@@ -368,8 +489,8 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="match_parent"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/app_theme_color_button_12dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/book_now"

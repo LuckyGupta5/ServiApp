@@ -27,7 +27,7 @@ class CalenderRecyclerAdapter(context: Context,var list:ArrayList<DateModel>,var
     }*/
     override val layoutId: Int= R.layout.calender_recycler_design
     override fun getItemCount(): Int {
-        return 10
+        return list.size
     }
 
     override fun bind(binding: CalenderRecyclerDesignBinding, item: DateModel?, position: Int)

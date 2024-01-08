@@ -1,4 +1,4 @@
-package com.example.servivet.ui.main.view_model
+package com.example.servivet.ui.main.view_model.wallet
 
 import android.view.View
 import androidx.navigation.findNavController

@@ -344,10 +344,17 @@
     <string name="rating_raviews"><![CDATA[Rating & Raviews]]></string>
     <string name="report">Report</string>
     <string name="promocode_discount">Promocode Discount</string>
-    <string name="sorry_this_time_slot_is_not_available">Sorry this time slot is not available</string>
+    <string name="sorry_this_time_slot_is_not_available">
+        Sorry this time slot is not available</string>
     <string name="_10_30_am">10:30 AM</string>
-    <string name="ravi_bishnoi_sent_you_a_connections_request">Ravi Bishnoi sent you a Connections request.</string>
+    <string name="ravi_bishnoi_sent_you_a_connections_request">
+        <font size="15"><b>Ravi Bishnoi </b></font><font size="14">sent you a Connections request.</font>
+    </string>
     <string name="ravi_bishnoi">Ravi Bishnoi.</string>
+    <string name="your_available_balance_insufficient_balance">Your Available Balance</string>
+    <string name="insufficient_balance">(Insufficient Balance)</string>
+    <string name="add_money">Add Money</string>
+    <string name="pay_1548">Pay ₹ 1548</string>
 
 
 </resources>

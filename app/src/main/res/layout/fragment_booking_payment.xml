@@ -646,7 +646,7 @@
                 />
         </LinearLayout>
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/markAsCompletedfd"
+            android:id="@+id/paynow"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:background="@drawable/app_theme_10dp"

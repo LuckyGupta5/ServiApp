@@ -23,9 +23,9 @@ abstract class BaseFragment<Binding : ViewBinding, ViewModel : BaseViewModel>(la
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //observeConnectionLiveData()
-            CoroutineScope(Dispatchers.Main).launch {
-                if(isAdded)
-            setupViews()
+        CoroutineScope(Dispatchers.Main).launch {
+            if (isAdded)
+                setupViews()
             setupViewModel()
             setupObservers()
         }

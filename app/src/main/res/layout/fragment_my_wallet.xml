@@ -6,10 +6,10 @@
     <data>
         <variable
             name="click"
-            type="com.example.servivet.ui.main.view_model.MyWalletViewModel.ClickAction" />
+            type="com.example.servivet.ui.main.view_model.wallet.MyWalletViewModel.ClickAction" />
         <variable
             name="viewModel"
-            type="com.example.servivet.ui.main.view_model.MyWalletViewModel" />
+            type="com.example.servivet.ui.main.view_model.wallet.MyWalletViewModel" />
 
     </data>
 

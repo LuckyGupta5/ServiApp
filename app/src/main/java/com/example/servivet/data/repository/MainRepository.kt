@@ -44,6 +44,4 @@ class MainRepository(private val apiService: ApiService) {
     suspend fun bookingCouponApi(request:HashMap<String,String>) = apiService.bookingCouponApi(request)
     suspend fun bookingSlotAvailabilityApi(request: CouponAvalabilityRequest) = apiService.bookingSlotAvailabilityApi(request)
 
-
-
 }

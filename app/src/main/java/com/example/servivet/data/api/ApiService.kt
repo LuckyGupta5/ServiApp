@@ -85,6 +85,9 @@ interface ApiService {
 
     @POST("booking/slot/availability")
     suspend fun bookingSlotAvailabilityApi(@Body request:CouponAvalabilityRequest ): CommonResponse
+    @POST("booking/slot/availability")
+    suspend fun bookingSlotAvailabilityApi1(@Body request:CouponAvalabilityRequest ): CommonResponse
+
 
 
 

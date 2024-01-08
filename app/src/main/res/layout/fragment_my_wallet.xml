@@ -57,7 +57,6 @@
                     android:id="@+id/threedot"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="@{click::backbtn}"
                     android:src="@drawable/chat_three_dot" />
 
             </LinearLayout>

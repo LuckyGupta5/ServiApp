@@ -5,6 +5,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
 import com.example.servivet.databinding.FragmentConnectionsRequestBinding
 import com.example.servivet.ui.base.BaseFragment
+import com.example.servivet.ui.main.adapter.ConnectionRequestAdapter
 import com.example.servivet.ui.main.view_model.ConnectionRequestViewModel
 
 class ConnectionsRequestFragment : BaseFragment<FragmentConnectionsRequestBinding,ConnectionRequestViewModel>(R.layout.fragment_connections_request) {
@@ -23,6 +24,11 @@ class ConnectionsRequestFragment : BaseFragment<FragmentConnectionsRequestBindin
             viewModel=mViewModel
             click=mViewModel.ClickAction()
         }
+        setadapter()
+    }
+
+    private fun setadapter() {
+        binding.recyclerview.adapter=ConnectionRequestAdapter(requireContext(),ArrayList())
     }
 
     override fun setupObservers() {

@@ -13,5 +13,6 @@ object Constants {
     const val MOBILE_NUMBER: String ="mobile_number"
 
     const val typebooking :String="type"
+    var APPLIED_COUPON=""
 
 }

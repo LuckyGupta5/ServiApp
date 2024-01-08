@@ -243,7 +243,6 @@
                                     android:layout_marginBottom="15sp"
                                     android:fontFamily="@font/poppins_medium"
                                     android:letterSpacing="0.02"
-
                                     android:lineSpacingMultiplier="1"
                                     android:text="@string/i_agree_to_terms_and_conditions_and_data_privacy_policies"
                                     android:textSize="13dp" />

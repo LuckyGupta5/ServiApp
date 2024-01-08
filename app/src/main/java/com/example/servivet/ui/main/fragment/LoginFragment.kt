@@ -121,9 +121,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(R.layou
 
     }
 
-    private fun setTermConditionPrivacy() {
-        val ss =
-            SpannableString(getString(R.string.i_agree_to_terms_and_conditions_and_data_privacy_policies))
+    private fun setTermConditionPrivacy()
+    {
+        val ss = SpannableString(getString(R.string.i_agree_to_terms_and_conditions_and_data_privacy_policies))
         val value = getString(R.string.i_agree_to_terms_and_conditions_and_data_privacy_policies)
         val firstString = getString(R.string.term_and_condition)
         val secondString = getString(R.string.privacy_policy)
@@ -163,6 +163,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(R.layou
         ss.setSpan(clickableSpan2, secondIndex, secondLastIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         binding.termConditionPolicy.text = ss
         binding.termConditionPolicy.movementMethod = LinkMovementMethod.getInstance()
+
     }
 
     private fun openBottomSheet(type: String) {

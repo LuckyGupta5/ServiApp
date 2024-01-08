@@ -3,7 +3,6 @@ package com.example.servivet.ui.main.view_model.sub_category_models
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.servivet.data.api.RetrofitBuilder
-import com.example.servivet.data.model.report_rating.response.CommonResponse
 import com.example.servivet.data.model.review_ratinng.ReviewRatingResponse
 import com.example.servivet.data.repository.MainRepository
 import com.example.servivet.ui.base.BaseViewModel
@@ -24,10 +23,10 @@ class RatingReviewViewModel(): BaseViewModel(){
     }
 
 
-    fun getReviewRequest(){
+    fun getReviewRequest(id: String) {
         request["page"] = "1"
         request["limit"] = "10"
-        request["serviceId"] = "657fea25b55d7af39650d84e"
+        request["serviceId"] = "657fea25b55d7af39650d84e"    // testing ID 657fea25b55d7af39650d84e
         hitReviewApi()
 
     }

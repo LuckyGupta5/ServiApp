@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id ("kotlin-kapt")
-
+    id ("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -61,6 +61,7 @@ dependencies {
     // navigation
     implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
+
 
     //CIRCLE IMAGE
     implementation("de.hdodenhof:circleimageview:3.1.0")

@@ -171,16 +171,19 @@ fun isCurrentDate(date: String): Boolean {
     {
         var currentDate1: LocalDate = LocalDate.now()
 
-        val dayofMonthv= currentDate1.dayOfMonth
-        var currentDate: LocalDate = LocalDate.now().minusDays(dayofMonthv.toLong()-1)
+        val dayofMonthv= currentDate1.dayOfMonth-1
+       // var currentDate: LocalDate = LocalDate.now().minusDays(dayofMonthv.toLong()-1)
+        var currentDate: LocalDate = LocalDate.now()
+        Log.e("TAG", "getDateFromToday1: ${getDaysInCurrentMonth()}", )
 
-        val monthDaysCount = getDaysInCurrentMonth()
+        val monthDaysCount = getDaysInCurrentMonth()-dayofMonthv
         val dates = arrayOfNulls<String>(monthDaysCount)
 
         for (i in 0..<monthDaysCount) {
             val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("EEE, yyyy-MM-dd")
             dates[i] = currentDate.format(formatter)
             currentDate = currentDate.plusDays(1)
+            Log.e("TAG", "getDateFromToday: $i", )
         }
         return dates
     }
@@ -204,7 +207,7 @@ fun isCurrentDate(date: String): Boolean {
         val calendar = Calendar.getInstance()
 
         // Set the calendar to the first day of the month
-        calendar.add(Calendar.MONTH, 1)
+       // calendar.add(Calendar.MONTH, 1)
         calendar.set(Calendar.DAY_OF_MONTH, 1)
 
         // Get the maximum value for the day of the month, which gives the number of days in the month

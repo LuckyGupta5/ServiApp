@@ -30,22 +30,13 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
     private val reportViewModel:RatingReportViewModel by viewModels()
     private val reviewViewModel:RatingReviewViewModel by viewModels()
     private val ratingList = ArrayList<ReviewRating>()
-    var data: ServiceList?=null
+    var serviceData: ServiceList?=null
     override fun isNetworkAvailable(boolean: Boolean) {
     }
 
     override fun setupViewModel() {
-        binding.apply {
-            lifecycleOwner=viewLifecycleOwner
-            viewModel=mViewModel
-            click=mViewModel.ClickAction(requireActivity(),binding)
-        }
-        data= arguments?.getSerializable(Constants.DATA) as ServiceList?
-        mViewModel.serviceCategoryDetailsRequest.serviceId=data!!._id
-        mViewModel.hitServiceDetailsAPI(requireContext(),requireActivity(),requireActivity().isFinishing)
-        initRatingAdapter()
-        initReviewViewModel()
-        initReportViewModel()
+
+
     }
 
 
@@ -57,6 +48,21 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
     }
 
     override fun setupViews() {
+
+        serviceData= arguments?.getSerializable(Constants.DATA) as ServiceList?
+        mViewModel.serviceCategoryDetailsRequest.serviceId=serviceData!!._id
+
+        binding.apply {
+            lifecycleOwner=viewLifecycleOwner
+            viewModel=mViewModel
+            click=mViewModel.ClickAction(requireActivity(),binding,serviceData!!._id!!)
+        }
+
+
+        mViewModel.hitServiceDetailsAPI(requireContext(),requireActivity(),requireActivity().isFinishing)
+        initRatingAdapter()
+        initReviewViewModel()
+        initReportViewModel()
     }
 
     override fun setupObservers() {
@@ -107,7 +113,7 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
     }
 
     private fun initReviewViewModel() {
-        reviewViewModel.getReviewRequest()
+        serviceData!!._id?.let { reviewViewModel.getReviewRequest(it) }
         reviewViewModel.getReviewData().observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
@@ -149,7 +155,6 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
 
     private fun initReviewAdapter() {
         binding.reviewAdapter = RatingReviewAdapter(requireContext(),ratingList,onItemClick)
-
     }
 
     private fun initReportViewModel() {
@@ -208,8 +213,7 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
     private val onItemClick:(String, String)->Unit = { identifier, data->
         when(identifier){
             getString(R.string.report)->{
-                reportViewModel.getReportRatingRequest()
-
+                reportViewModel.getReportRatingRequest(data)
             }
         }
 

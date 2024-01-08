@@ -17,7 +17,7 @@ BaseAdapter<CustomReviewsLayoutBinding,ReviewRating>(list)
     override val layoutId: Int= R.layout.custom_reviews_layout
     override fun bind(binding: CustomReviewsLayoutBinding, item: ReviewRating?, position: Int) {
         binding.data = item
-        binding.idReportImage.setOnClickListener{onItemClick(context.getString(R.string.report),"")}
+        binding.idReportImage.setOnClickListener{onItemClick(context.getString(R.string.report),list[position].user._id)}
     }
 
 

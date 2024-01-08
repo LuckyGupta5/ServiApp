@@ -54,43 +54,41 @@ interface ApiService {
     suspend fun editServices(@Body addServicesRequest: MultipartBody): AddServiceResponse
 
     @GET("profile")
-    suspend fun userProfile(@QueryMap request: HashMap<String, String>):UserProfileResponse
+    suspend fun userProfile(@QueryMap request: HashMap<String, String>): UserProfileResponse
 
     @POST("editProfile")
     suspend fun editProfile(@Body editProfileRequest: MultipartBody): EditProfileResponse
 
-   @POST("listService")
+    @POST("listService")
     suspend fun serviceList(@Body serviceListRequest: ServiceListRequest): ServiceListResponse
 
-   @POST("serviceDetail")
+    @POST("serviceDetail")
     suspend fun servicedetailsapi(@Body serviceCategoryDetailsRequest: ServiceCategoryDetailsRequest): ServiceCategoryDetailsResponse
 
-   @POST("profileVerification")
-    suspend fun  businessVerificationApi(@Body businessVerificationRequest: BusinessVerificationRequest): BusinessVerificationResponse
+    @POST("profileVerification")
+    suspend fun businessVerificationApi(@Body businessVerificationRequest: BusinessVerificationRequest): BusinessVerificationResponse
 
+    // booking module
     @PUT("add/rating")
     suspend fun ratingApi(@Body rating: RatingRequest): RatingResponseMain
+
     @POST("report")
-    suspend fun reportRating(@Body ratingReport:ReportRatingRequest):CommonResponse
+    suspend fun reportRating(@Body ratingReport: ReportRatingRequest): CommonResponse
+
     @GET("rating/list")
-    suspend fun reviewList(@QueryMap request:HashMap<String,String> ): ReviewRatingResponse
+    suspend fun reviewList(@QueryMap request: HashMap<String, String>): ReviewRatingResponse
 
     @GET("booking/summary")
-    suspend fun bookingSummaryApi(@QueryMap request:HashMap<String,String> ): BookingSummaryResponse
+    suspend fun bookingSummaryApi(@QueryMap request: HashMap<String, String>): BookingSummaryResponse
 
     @GET("booking/slot/list")
-    suspend fun bookingSlotApi(@QueryMap request:HashMap<String,String> ): BookingSlotResponseMain
+    suspend fun bookingSlotApi(@QueryMap request: HashMap<String, String>): BookingSlotResponseMain
+
     @GET("coupon/list")
-    suspend fun bookingCouponApi(@QueryMap request:HashMap<String,String> ): CouponResponseMain
+    suspend fun bookingCouponApi(@QueryMap request: HashMap<String, String>): CouponResponseMain
 
     @POST("booking/slot/availability")
-    suspend fun bookingSlotAvailabilityApi(@Body request:CouponAvalabilityRequest ): CommonResponse
-    @POST("booking/slot/availability")
-    suspend fun bookingSlotAvailabilityApi1(@Body request:CouponAvalabilityRequest ): CommonResponse
-
-
-
-
+    suspend fun bookingSlotAvailabilityApi(@Body request: CouponAvalabilityRequest): CommonResponse
 
 
 }

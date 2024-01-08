@@ -19,9 +19,10 @@
         tools:context=".ui.main.fragment.ConnectionsRequestFragment">
 
         <include
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:elevation="15dp"
             android:id="@+id/idTopLayout"
-
-            android:elevation="5dp"
             layout="@layout/connection_top_layout"/>
         <!--<View
             android:id="@+id/idView1"
@@ -81,7 +82,10 @@
             app:layout_constraintTop_toBottomOf="@+id/request_img"
             android:layout_height="5dp"/>-->
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
             android:layout_width="match_parent"
+            tools:listitem="@layout/connection_request_design_recyclerview"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@+id/idTopLayout"
             android:layout_height="wrap_content"/>
 

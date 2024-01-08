@@ -339,9 +339,15 @@
     <string name="log_out_successfully">Log out successfully !</string>
     <string name="remove">Remove</string>
     <string name="surya_mouly">Surya Mouly</string>
+    <string name="_100">100</string>
     <string name="individual_business">Individual Business</string>
     <string name="rating_raviews"><![CDATA[Rating & Raviews]]></string>
     <string name="report">Report</string>
+    <string name="promocode_discount">Promocode Discount</string>
+    <string name="sorry_this_time_slot_is_not_available">Sorry this time slot is not available</string>
+    <string name="_10_30_am">10:30 AM</string>
+    <string name="ravi_bishnoi_sent_you_a_connections_request">Ravi Bishnoi sent you a Connections request.</string>
+    <string name="ravi_bishnoi">Ravi Bishnoi.</string>
 
 
 </resources>

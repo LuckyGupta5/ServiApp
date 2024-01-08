@@ -19,10 +19,12 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:textSize="30dp"
+            android:gravity="center"
+            android:layout_gravity="center"
             android:textColor="@color/black"
             android:fontFamily="@font/poppins_bold"
             android:layout_centerInParent="true"
@@ -31,6 +33,7 @@
             android:id="@+id/toplayout"
             android:background="@color/white"
             android:elevation="12dp"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -95,7 +98,7 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:gravity="center"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_below="@+id/toplayout"
             android:layout_height="match_parent">
             <ImageView

@@ -51,7 +51,7 @@
     <color name="grey_E8E8E8">#E8E8E8</color>
     <color name="light_gray_5">#888888</color>
     <color name="light_teal">#EFFFFA</color>
-    
+
     <color name="grey_818181">#818181</color>
     <color name="black_222120">#222120</color>
     <color name="grey_787878">#787878</color>
@@ -69,5 +69,6 @@
     <color name="grey_505050">#505050</color>
     <color name="grey_CECECE">#CECECE</color>
     <color name="grey_f6f6f6">#F6F6F6</color>
+    <color name="grey_FC5252">#FC5252</color>
 
 </resources>

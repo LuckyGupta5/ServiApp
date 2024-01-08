@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
 import com.example.servivet.databinding.FragmentCouponsBinding
@@ -13,7 +14,7 @@ import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.adapter.CouponAdapter
 import com.example.servivet.ui.main.view_model.CouponViewModel
 
-class CouponsFragment : BaseFragment<FragmentCouponsBinding,CouponViewModel>(R.layout.fragment_coupons) {
+class CouponsFragment : BaseFragment<FragmentCouponsBinding,CouponViewModel>(R.layout.fragment_coupons),CouponAdapter.CallBack {
 
     override val binding: FragmentCouponsBinding by viewBinding(FragmentCouponsBinding::bind)
     override val mViewModel: CouponViewModel by viewModels()
@@ -39,7 +40,11 @@ class CouponsFragment : BaseFragment<FragmentCouponsBinding,CouponViewModel>(R.l
     override fun setupObservers() {
     }
     fun setAdapter(){
-        binding.recyclerview.adapter=CouponAdapter(requireContext(), ArrayList())
+        binding.recyclerview.adapter=CouponAdapter(requireContext(), ArrayList(),this)
+    }
+
+    override fun getSelectedCoupon() {
+        findNavController().popBackStack()
     }
 
 }

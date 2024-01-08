@@ -336,7 +336,7 @@
                                     android:maxLines="1"
                                     android:fontFamily="@font/poppins_regular"
                                     android:textColor="@color/grey_6E6E6E"
-                                    android:text="@string/service_provider_is_not_available_and_has_requested_to_cancel"
+                                    android:text="@string/abhishek_mehra_a_192_sector_44_noida"
                                     android:layout_height="wrap_content"/>
 
 
@@ -349,9 +349,34 @@
                         android:layout_marginTop="20dp"
                         android:background="#F8F8F8" />
                     <LinearLayout
+                        android:id="@+id/notavailableLayout"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:visibility="visible"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/slotNotAvailable"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="15dp"
+                            android:visibility="gone"
+                            android:background="@color/grey_FC5252"
+                            android:text="@string/sorry_this_time_slot_is_not_available"
+                            android:fontFamily="@font/poppins_regular"
+                            android:paddingStart="10sp"
+                            android:paddingVertical="10sp"
+                            android:textColor="@color/white"/>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="5dp"
+                            android:background="#F8F8F8" />
+
+                    </LinearLayout>
+                    <!--<LinearLayout
                         android:id="@+id/applyCouponLayout"
                         android:layout_width="match_parent"
                         android:orientation="horizontal"
+                        android:visibility="gone"
                         android:layout_marginVertical="19dp"
                         android:layout_marginHorizontal="20dp"
                         android:layout_height="match_parent">
@@ -361,30 +386,50 @@
                             android:textSize="15dp"
                             android:drawableEnd="@drawable/arraow_path"
                             android:drawablePadding="10dp"
-                            android:onClick="@{click::gotoCoupon}"
                             android:drawableStart="@drawable/apply_coupon_icon"
                             android:text="@string/apply_coupon"
                             android:fontFamily="@font/poppins_medium"
                             android:textColor="@color/black_2"/>
-                    </LinearLayout>
+                    </LinearLayout>-->
                     <LinearLayout
                         android:id="@+id/copounApplyedLayout"
                         android:layout_width="match_parent"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:orientation="horizontal"
+                        android:onClick="@{click::gotoCoupon}"
                         android:layout_marginVertical="19dp"
                         android:layout_marginHorizontal="20dp"
                         android:layout_height="match_parent">
                         <TextView
+                            android:id="@+id/applyCouponName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="15dp"
-                            android:drawableEnd="@drawable/cancel_coupon"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="30dp"
+                            android:layout_weight="1"
                             android:drawablePadding="10dp"
                             android:drawableStart="@drawable/apply_coupon_icon"
                             android:text="@string/code_sbi100_applied"
                             android:fontFamily="@font/poppins_semi_bold"
                             android:textColor="@color/black_2"/>
+                        <ImageView
+                            android:id="@+id/apply_coupon"
+                            android:onClick="@{click.gotoCoupon}"
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/arraow_path"
+                            android:layout_height="wrap_content"/>
+                    <ImageView
+                           android:id="@+id/applied_coupon"
+                           android:layout_gravity="center_vertical"
+                           android:layout_width="wrap_content"
+                           android:visibility="visible"
+                        android:padding="5dp"
+                        android:onClick="@{click.cancelCoupon}"
+                           android:src="@drawable/cancel_coupon"
+                           android:layout_height="wrap_content"/>
                     </LinearLayout>
 
                     <View
@@ -461,6 +506,36 @@
                                 android:textSize="15sp"
                                 android:layout_gravity="center_vertical"
                                 android:drawableStart="@drawable/rupree_icon"
+                                android:gravity="end"
+                                android:drawablePadding="3dp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textColor="@color/black_242424"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/promoDiscountLayout"
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="15dp"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:text="@string/promocode_discount"
+                                android:textSize="15dp"
+                                android:maxLength="25"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textColor="@color/black_242424"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:id="@+id/Promocode"
+                                android:layout_width="wrap_content"
+                                android:text="100"
+                                android:maxLength="10"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:textSize="15sp"
+                                android:layout_gravity="center_vertical"
                                 android:gravity="end"
                                 android:drawablePadding="3dp"
                                 android:fontFamily="@font/poppins_regular"

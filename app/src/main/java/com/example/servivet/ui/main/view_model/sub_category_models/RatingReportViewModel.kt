@@ -24,11 +24,11 @@ class RatingReportViewModel(): BaseViewModel(){
     }
 
 
-    fun getReportRatingRequest(){
+    fun getReportRatingRequest(id: String) {
         reportRequest.apply {
-            reportRequest.contentId = "658d2320d0303603d1c69a40"
+            reportRequest.contentId = id
             reportRequest.contentType = "rating"
-            reportRequest.userFeedBack = "fraud"
+            reportRequest.userFeedBack = ""
         }
         hitReportRatingApi()
 

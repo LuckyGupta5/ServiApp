@@ -312,7 +312,7 @@
                     android:orientation="horizontal"
                     android:paddingHorizontal="20dp"
                     android:paddingBottom="15dp"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/service_datails_img_design" />
 
@@ -494,6 +494,7 @@
                 android:background="@drawable/app_theme_color_button_12dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/book_now"
+                android:onClick="@{click.callSummaryFragment}"
                 android:textColor="@color/white"
                 android:textSize="17dp" />
 

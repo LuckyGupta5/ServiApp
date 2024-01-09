@@ -9,7 +9,7 @@ data class ServiceDetail(
     val atCenterPrice: Int,
     val atHomeAvailability: List<Any>,
     val atHomePrice: Int,
-    val avgRating: Int,
+    val avgRating: String,
     val bussinessType: Int,
     val category: String,
     val createdAt: String,

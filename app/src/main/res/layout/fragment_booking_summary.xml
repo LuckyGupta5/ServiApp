@@ -6,10 +6,14 @@
     <data>
         <variable
             name="click"
-            type="com.example.servivet.ui.main.view_model.BookingSummaryViewModel.ClickAction" />
+            type="com.example.servivet.ui.main.view_model.booking_models.BookingSummaryViewModel.ClickAction" />
         <variable
             name="viewModel"
-            type="com.example.servivet.ui.main.view_model.BookingSummaryViewModel" />
+            type="com.example.servivet.ui.main.view_model.booking_models.BookingSummaryViewModel" />
+
+        <variable
+            name="summaryData"
+            type="com.example.servivet.data.model.booking_module.booking_summary.response.ServiceDetail" />
 
     </data>
 
@@ -106,7 +110,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppins_semi_bold"
                                 android:textColor="@color/black_2"
-                                android:text="@string/lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut_labore_et_dolore_magna_aliquyam_erat_sed_diam_voluptua_eos_et_accusam_et_justo_duo_dolores_et_ea_rebum_stet_clita_kasd_gubergren_no_sea_takimata_sanctus_est_lorem_ipsum_dolor_sit_amet_lorem_ipsum_dolor_sit_amet"
+                                android:text="@{summaryData.serviceName}"
                                 android:ellipsize="end"
                                 android:maxLines="1"
                                 android:textSize="17sp" />
@@ -124,7 +128,7 @@
                                 android:gravity="end"
                                 android:paddingHorizontal="6dp"
                                 android:paddingVertical="4dp"
-                                android:text="@string/_4_5"
+                                android:text="@{summaryData.avgRating}"
                                 android:textColor="@color/white"
                                 android:textSize="13sp" />
 
@@ -144,7 +148,7 @@
                                 android:layout_marginEnd="10sp"
                                 android:maxLines="1"
                                 android:ellipsize="end"
-                                android:text="@string/by_prateek_mehta"
+                                android:text='@{"by"+summaryData.createdBy.name}'
                                 android:layout_weight="1"
                                 android:fontFamily="@font/poppins_regular"
                                 android:textColor="@color/grey6"
@@ -163,7 +167,7 @@
                             android:fontFamily="@font/poppins_regular"
                             android:maxLines="1"
                             android:ellipsize="end"
-                            android:text="@string/riepneapps_technology_noida"
+                            android:text="@{summaryData.address}"
                             android:textColor="@color/grey6"
                             android:textSize="14sp" />
                     </LinearLayout>

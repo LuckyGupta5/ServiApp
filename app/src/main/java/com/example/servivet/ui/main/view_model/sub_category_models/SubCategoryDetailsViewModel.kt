@@ -7,12 +7,14 @@ import android.view.View
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
+import com.example.servivet.R
 import com.example.servivet.data.api.RetrofitBuilder
 import com.example.servivet.data.model.service_category_details.request.ServiceCategoryDetailsRequest
 import com.example.servivet.data.model.service_category_details.response.ServiceCategoryDetailsResponse
 import com.example.servivet.data.repository.MainRepository
 import com.example.servivet.databinding.FragmentSubCategoryDetailsBinding
 import com.example.servivet.ui.base.BaseViewModel
+import com.example.servivet.ui.main.fragment.SubCategoryDetailsFragmentDirections
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.Resource
 import com.example.servivet.utils.SingleLiveEvent
@@ -26,12 +28,13 @@ class SubCategoryDetailsViewModel:BaseViewModel() {
     var serviceCategoryDetailsRequest= ServiceCategoryDetailsRequest()
 
 
-    inner class ClickAction(
-        requireActivity: FragmentActivity,
-        binding: FragmentSubCategoryDetailsBinding
-    ) {
+    inner class ClickAction(var context: FragmentActivity, binding: FragmentSubCategoryDetailsBinding,var  serviceId: String) {
         fun backbtn(view:View){
             view.findNavController().popBackStack()
+        }
+
+        fun callSummaryFragment(view: View){
+            view.findNavController().navigate(SubCategoryDetailsFragmentDirections.actionSubCategoryDetailsFragmentToBookingSummaryFragment(serviceId, context.getString(R.string.sub_category)))
         }
 
     }

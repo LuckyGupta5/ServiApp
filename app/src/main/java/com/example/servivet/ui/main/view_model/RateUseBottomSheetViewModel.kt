@@ -16,6 +16,7 @@ import com.example.servivet.ui.base.BaseViewModel
 import com.example.servivet.utils.Resource
 import com.example.servivet.utils.SingleLiveEvent
 import com.example.servivet.utils.StatusCode
+import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
@@ -23,6 +24,8 @@ import java.io.IOException
 class RateUseBottomSheetViewModel(): BaseViewModel(){
     val about= MutableLiveData(false)
     private var abouttext=""
+    val ratingValue = MutableLiveData<Float>(1.0f)
+
 
     val ratingRequest = RatingRequest()
 
@@ -32,9 +35,7 @@ class RateUseBottomSheetViewModel(): BaseViewModel(){
         return ratingMData
     }
 
-   /* fun onRatingChanged(ratingBar: RatingBar, rating: Float, fromUser: Boolean) {
-        Log.e("TAG", "onRatingChanged: ${rating}", )
-    }*/
+
 
     inner class ClickAction(var binding: FragmentRatingUsBottomSheetBinding){
         fun onAboutTextChanged(text: CharSequence) {
@@ -44,20 +45,20 @@ class RateUseBottomSheetViewModel(): BaseViewModel(){
         }
 
 
-        fun getRating(ratinng:Float){
+        fun getRating(){
+            val userRating = ratingValue.value ?: 0.0F // Default value if rating is null
+
             ratingRequest.apply {
                 serviceId = "657fea25b55d7af39650d84e"
-                rating = ratinng.toInt()
-                comment ="Hii"
+                rating = userRating.toInt()
+                comment =abouttext
             }
-            Log.e("TAG", "getRating: ", )
+            Log.e("TAG", "getRating:${Gson().toJson(ratingRequest)} ", )
             hitRatingApi()
         }
     }
 
-    fun getRatingRequest(){
 
-    }
     fun hitRatingApi(){
         val repository = MainRepository(RetrofitBuilder.apiService)
 

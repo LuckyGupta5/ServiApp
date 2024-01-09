@@ -86,7 +86,7 @@
                 android:secondaryProgressTint="@color/grey1"
                 android:isIndicator="false"
                 android:numStars="5"
-                android:rating="1"
+                android:rating="@={viewModel.ratingValue}"
                 android:stepSize="1" />
 
 
@@ -195,6 +195,7 @@
                         android:fontFamily="@font/poppins_medium"
                         android:stateListAnimator="@null"
                         android:text="@string/submit"
+                        android:onClick="@{()->click.getRating()}"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="17sp"

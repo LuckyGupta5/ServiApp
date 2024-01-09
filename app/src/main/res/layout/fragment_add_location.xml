@@ -72,9 +72,9 @@
 
 
             </LinearLayout>
-           --> <RelativeLayout
+           -->
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_below="@+id/topLayout"
                 android:layout_above="@+id/updateBtn"
                 android:layout_height="match_parent">
 

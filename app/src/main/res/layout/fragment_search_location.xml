@@ -142,6 +142,7 @@
             android:textColor="@color/app_theme"
             android:fontFamily="@font/poppins_medium"
             android:textSize="17dp"
+            android:onClick="@{click::gottoManualMap}"
             android:drawablePadding="16dp"
             android:drawableStart="@drawable/manual_location"
             android:layout_marginHorizontal="20dp"

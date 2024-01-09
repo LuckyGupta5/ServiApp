@@ -13,6 +13,7 @@ import com.example.servivet.R
 import com.example.servivet.databinding.FragmentBookingPaymentBinding
 import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.bottom_sheet.MyWalletBottomsheet
+import com.example.servivet.ui.main.bottom_sheet.SuretoConfirmBottomSheet
 import com.example.servivet.ui.main.view_model.BookingPaymentViewModel
 import com.example.servivet.utils.Constants
 
@@ -43,16 +44,16 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding,Bookin
             binding.applyCoupon.isVisible=true
 
         }
-        openWelletBottomsheet()
+        openSureToConfirmBottomsheet()
     }
 
     override fun setupViewModel() {
 
     }
 
-    fun openWelletBottomsheet(){
+    fun openSureToConfirmBottomsheet(){
         binding.paynow.setOnClickListener(View.OnClickListener {
-            var fragment=MyWalletBottomsheet()
+            var fragment=SuretoConfirmBottomSheet()
             fragment.show(childFragmentManager,"MyWalletBottomsSheet")
         })
     }

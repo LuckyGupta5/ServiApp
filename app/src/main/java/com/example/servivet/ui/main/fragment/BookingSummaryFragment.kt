@@ -138,7 +138,7 @@ class BookingSummaryFragment : BaseFragment<FragmentBookingSummaryBinding, Booki
  */
 
     override fun setupObservers() {
-        mViewModel.getReportRatingRequest(serviceId.data)
+     //   mViewModel.getReportRatingRequest(serviceId.data)
         mViewModel.getSummaryData().observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {

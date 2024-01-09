@@ -2,6 +2,7 @@ package com.example.servivet.ui.main.view_model
 
 import android.content.Context
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.servivet.databinding.FragmentBookingBinding
@@ -14,6 +15,17 @@ class BookingViewModel:BaseViewModel() {
     var completed=MutableLiveData(false)
     var cancelled=MutableLiveData(false)
     inner class ClickAction(var context: Context,var binding:FragmentBookingBinding){
+
+        fun sold(view: View){
+            binding.soldOut.isVisible=true
+            binding.bought.isVisible=false
+
+        }
+        fun bought(view: View){
+            binding.soldOut.isVisible=false
+            binding.bought.isVisible=true
+
+        }
       /*  fun ClickUpComing(view:View){
             Session.saveType("1")
             upcoming.postValue(true)

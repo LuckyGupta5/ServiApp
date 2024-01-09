@@ -19,11 +19,13 @@
         tools:context=".ui.main.fragment.ConnectionsRequestFragment">
 
         <include
+            android:id="@+id/idTopLayout"
+            layout="@layout/connection_top_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:elevation="15dp"
-            android:id="@+id/idTopLayout"
-            layout="@layout/connection_top_layout"/>
+            tools:layout_editor_absoluteX="-68dp"
+            tools:layout_editor_absoluteY="16dp" />
         <!--<View
             android:id="@+id/idView1"
             android:layout_width="match_parent"

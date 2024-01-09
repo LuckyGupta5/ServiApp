@@ -12,6 +12,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
 import com.example.servivet.databinding.FragmentBookingPaymentBinding
 import com.example.servivet.ui.base.BaseFragment
+import com.example.servivet.ui.main.bottom_sheet.MyWalletBottomsheet
 import com.example.servivet.ui.main.view_model.BookingPaymentViewModel
 import com.example.servivet.utils.Constants
 
@@ -42,13 +43,19 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding,Bookin
             binding.applyCoupon.isVisible=true
 
         }
+        openWelletBottomsheet()
     }
 
     override fun setupViewModel() {
 
     }
 
-
+    fun openWelletBottomsheet(){
+        binding.paynow.setOnClickListener(View.OnClickListener {
+            var fragment=MyWalletBottomsheet()
+            fragment.show(childFragmentManager,"MyWalletBottomsSheet")
+        })
+    }
 
     override fun setupObservers() {
         binding.Promocode.text="- "+"₹ "+getText(R.string._100)

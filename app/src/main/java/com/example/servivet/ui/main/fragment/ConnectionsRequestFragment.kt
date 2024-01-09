@@ -1,6 +1,9 @@
 package com.example.servivet.ui.main.fragment
 
+import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
 import com.example.servivet.databinding.FragmentConnectionsRequestBinding
@@ -25,12 +28,18 @@ class ConnectionsRequestFragment : BaseFragment<FragmentConnectionsRequestBindin
             click=mViewModel.ClickAction()
         }
         setadapter()
+        backbtn()
     }
 
     private fun setadapter() {
         binding.recyclerview.adapter=ConnectionRequestAdapter(requireContext(),ArrayList())
     }
 
+    fun backbtn(){
+        binding.idTopLayout.idBack.setOnClickListener(View.OnClickListener {
+            findNavController().popBackStack()
+        })
+    }
     override fun setupObservers() {
         binding.idTopLayout.idTitle.text=getText(R.string.connections_requests)
     }

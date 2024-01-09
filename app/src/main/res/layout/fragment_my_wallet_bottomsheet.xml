@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="click"
+            type="com.example.servivet.ui.main.view_model.wallet.MyWalletBottomsheetViewModel.ClickAction" />
+        <variable
+            name="viewModel"
+            type="com.example.servivet.ui.main.view_model.wallet.MyWalletBottomsheetViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.bottom_sheet.MyWalletBottomsheet">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/topscroll"
+            android:layout_width="85dp"
+            android:layout_height="3dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="@color/grey_E5E5E5"
+            app:cardCornerRadius="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/mywallet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/my_wallet"
+            android:textColor="@color/black"
+            android:textSize="19dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topscroll" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/BalanceAvailableBalanceLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mywallet">
+
+            <LinearLayout
+                android:id="@+id/myWalletId"
+                android:layout_width="29dp"
+                android:layout_height="29dp"
+                android:layout_marginStart="10sp"
+                android:background="@drawable/mywalletimg"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/BalanceAvailableBalanceLayout">
+
+                <ImageView
+                    android:layout_width="12.46sp"
+                    android:layout_height="10.09sp"
+                    android:src="@drawable/icon_wallet" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/priceID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15sp"
+                android:fontFamily="@font/poppins_medium"
+                android:includeFontPadding="false"
+                android:text="₹1499"
+                android:maxLength="10"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                app:layout_constraintLeft_toRightOf="@+id/myWalletId"
+                app:layout_constraintTop_toTopOf="@+id/BalanceAvailableBalanceLayout" />
+
+            <TextView
+                android:id="@+id/AvailableBalanceId"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:drawableEnd="@drawable/arraow_path"
+                android:layout_marginHorizontal="15dp"
+                android:text="@string/service_provider_is_not_available_and_has_requested_to_cancel"
+                android:textColor="@color/grey_2E2E2E"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/myWalletId"
+                app:layout_constraintTop_toBottomOf="@+id/priceID" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:layout_marginStart="15sp"
+                android:fontFamily="@font/poppins_regular"
+                android:includeFontPadding="false"
+                android:text="@string/insufficient_balance"
+                android:textColor="@color/grey_FC5252"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/myWalletId"
+                app:layout_constraintTop_toBottomOf="@+id/AvailableBalanceId" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="14dp"
+            android:background="@color/grey_707070_opicity_10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/BalanceAvailableBalanceLayout" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/AddmoneyLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/BalanceAvailableBalanceLayout"
+            app:layout_constraintTop_toTopOf="@+id/view1">
+
+            <LinearLayout
+                android:id="@+id/imgaddmoney"
+                android:layout_width="29dp"
+                android:layout_height="29dp"
+                android:layout_marginStart="10sp"
+                android:background="@drawable/mywalletimg"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/AddmoneyLayout">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:textColor="@color/app_theme" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/addMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15sp"
+                android:fontFamily="@font/poppins_medium"
+                android:includeFontPadding="false"
+                android:text="@string/add_money"
+                android:textColor="@color/app_theme"
+                android:textSize="17sp"
+                app:layout_constraintLeft_toRightOf="@+id/imgaddmoney"
+                app:layout_constraintTop_toTopOf="@+id/AddmoneyLayout" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15sp"
+                android:src="@drawable/arraow_path"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/AddmoneyLayout" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/grey_707070_opicity_10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/AddmoneyLayout" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/buttonLayout"
+            android:paddingTop="10dp"
+            android:paddingBottom="28dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/view2">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/cancel_button"
+                android:layout_width="0dp"
+                android:stateListAnimator="@null"
+                android:backgroundTint="@color/grey_E9EBEA"
+                android:layout_height="wrap_content"
+                app:backgroundTint="@null"
+                android:insetBottom="0dp"
+                android:onClick="@{click::dismiss}"
+                android:insetTop="0dp"
+                app:cornerRadius="12dp"
+                android:textAllCaps="false"
+                android:text="@string/cancel"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toStartOf="@id/paybutton"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginHorizontal="15dp"
+                app:layout_constraintTop_toTopOf="@+id/buttonLayout" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/paybutton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:maxLength="10"
+                android:stateListAnimator="@null"
+                android:textSize="17sp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/pay_1548"
+                android:textAllCaps="false"
+                app:cornerRadius="12dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:backgroundTint="@color/app_theme"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cancel_button"
+                android:layout_marginHorizontal="15dp"
+                app:layout_constraintTop_toTopOf="@+id/buttonLayout" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -38,21 +38,17 @@ class ConnectionRequestAdapter(var context: Context, var list: ArrayList<ListAda
         binding: ConnectionRequestDesignRecyclerviewBinding,
         position: Int,
     ) {
-        val ss =
-            SpannableString(context.getText(R.string.ravi_bishnoi_sent_you_a_connections_request))
+      /*  val ss = SpannableString(context.getText(R.string.ravi_bishnoi_sent_you_a_connections_request))
         var value = context.getString(R.string.ravi_bishnoi_sent_you_a_connections_request)
         var name = context.getString(R.string.ravi_bishnoi)
-
         val myTypeface = Typeface.create(getFont(context, R.font.poppins_bold), Typeface.BOLD)
         val string = SpannableString("Text with typeface span.")
 
-     /*   ss.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(context, R.color.black)),
-            0,
-            name.length,
+        ss.setSpan(
+            ForegroundColorSpan(ContextCompat.getColor(context, R.color.black)),0, name.length,
             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )
-        ss.setSpan(AbsoluteSizeSpan(15, true), 0, name.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)*/
+        ss.setSpan(AbsoluteSizeSpan(19, true), 0, name.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         val clickableSpan:ClickableSpan=object :ClickableSpan(){
             override fun onClick(widget: View) {
 
@@ -63,8 +59,12 @@ class ConnectionRequestAdapter(var context: Context, var list: ArrayList<ListAda
                 ds.typeface=Typeface.DEFAULT_BOLD
             }
 
+
         }
         ss.setSpan(clickableSpan, 0, name.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        ss.setSpan(ForegroundColorSpan(ContextCompat.getColor(context,R.color.black)),0,name.length,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        binding.name.text=ss
+*/
     }
 
     override fun getItemCount(): Int {

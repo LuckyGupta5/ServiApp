@@ -10,6 +10,9 @@ class MyConnectionModelView:BaseViewModel() {
         fun goConnectionrequest(view:View){
             view.findNavController().navigate(R.id.action_fragmentMyConnection_to_connectionsRequestFragment)
         }
+        fun backbtn(view: View){
+            view.findNavController().popBackStack()
+        }
 
 
     }

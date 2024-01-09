@@ -355,6 +355,7 @@
     <string name="insufficient_balance">(Insufficient Balance)</string>
     <string name="add_money">Add Money</string>
     <string name="pay_1548">Pay ₹ 1548</string>
+    <string name="are_you_sure_you_want_to_conform">Are you sure you want to \nconform?</string>
 
 
 </resources>

@@ -415,7 +415,7 @@
                             android:textColor="@color/black_2"/>
                         <ImageView
                             android:id="@+id/apply_coupon"
-                            android:onClick="@{click.gotoCoupon}"
+                            android:onClick="@{click::gotoCoupon}"
                             android:visibility="gone"
                             android:layout_width="wrap_content"
                             android:layout_gravity="center_vertical"

@@ -214,9 +214,9 @@
                 android:layout_height="wrap_content"
                 app:backgroundTint="@null"
                 android:insetBottom="0dp"
+                android:onClick="@{click::dismiss}"
                 android:insetTop="0dp"
                 app:cornerRadius="12dp"
-
                 android:textAllCaps="false"
                 android:text="@string/cancel"
                 android:textSize="17sp"

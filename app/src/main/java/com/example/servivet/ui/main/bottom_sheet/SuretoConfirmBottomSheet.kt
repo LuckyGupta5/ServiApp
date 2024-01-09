@@ -20,6 +20,9 @@ class SuretoConfirmBottomSheet : BaseFragment<FragmentSuretoConformBottomSheetBi
 
   override fun setupViews() {
     binding.apply {
+      lifecycleOwner=viewLifecycleOwner
+      viewModel=mViewModel
+      click=mViewModel.ClickAction()
 
     }
   }

@@ -21,14 +21,14 @@ class MyWalletBottomsheet : BaseBottomSheetDailogFragment<FragmentMyWalletBottom
         binding.apply {
             lifecycleOwner=viewLifecycleOwner
             viewModel=mViewModel
-            click=mViewModel.ClickAction()
+            click=mViewModel.ClickAction(requireContext())
 
         }
         dismissbottomsheet()
     }
 
     fun dismissbottomsheet(){
-        binding.cancelButton.setOnClickListener(View.OnClickListener {
+     /*   binding.cancelButton.setOnClickListener(View.OnClickListener {
             val fragment=BookingCancelledBottomSheet()
             fragment.show(childFragmentManager,"jhgfds")
         })
@@ -36,7 +36,7 @@ class MyWalletBottomsheet : BaseBottomSheetDailogFragment<FragmentMyWalletBottom
             val fragment=BookingCancelledBottomSheet()
             fragment.show(childFragmentManager,"jhgfds")
         })
-    }
+*/    }
 
 
 

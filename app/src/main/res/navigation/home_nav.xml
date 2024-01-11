@@ -164,8 +164,7 @@
         android:id="@+id/searchLocationFragment"
         android:name="com.example.servivet.ui.main.fragment.SearchLocationFragment"
         android:label="SearchLocationFragment"
-        tools:layout="@layout/fragment_search_location" />
-	        tools:layout="@layout/fragment_search_location">
+        tools:layout="@layout/fragment_search_location" >
            <action
                android:id="@+id/action_searchLocationFragment_to_setLocationFragment"
                app:destination="@id/setLocationFragment" />
@@ -184,6 +183,8 @@
             android:id="@+id/action_bookingDetailsFragment_to_changedateFragment"
             app:destination="@id/changedateFragment" />
     </fragment>
+
+
     <fragment
         android:id="@+id/bookingSummaryFragment"
         android:name="com.example.servivet.ui.main.fragment.BookingSummaryFragment"

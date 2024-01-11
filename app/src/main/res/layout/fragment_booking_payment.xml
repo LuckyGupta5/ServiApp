@@ -10,6 +10,9 @@
         <variable
             name="viewModel"
             type="com.example.servivet.ui.main.view_model.BookingPaymentViewModel" />
+        <variable
+            name="slotData"
+            type="com.example.servivet.data.model.booking_module.booking_summary.request.ScheduleRequest" />
 
     </data>
 
@@ -236,7 +239,7 @@
                                     android:ellipsize="end"
                                     android:textColor="@color/grey_6E6E6E"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/_21_jun_2023_11_00am"/>
+                                    android:text='@{slotData.date+","+slotData.time}'/>
 
                             </LinearLayout>
 
@@ -278,7 +281,7 @@
                                     android:maxLength="30"
                                     android:textColor="@color/grey_6E6E6E"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/at_home"/>
+                                    android:text="@{slotData.serviceMode}"/>
                             </LinearLayout>
 
                         </LinearLayout>
@@ -336,7 +339,7 @@
                                     android:maxLines="1"
                                     android:fontFamily="@font/poppins_regular"
                                     android:textColor="@color/grey_6E6E6E"
-                                    android:text="@string/abhishek_mehra_a_192_sector_44_noida"
+                                    android:text="@{slotData.address}"
                                     android:layout_height="wrap_content"/>
 
 

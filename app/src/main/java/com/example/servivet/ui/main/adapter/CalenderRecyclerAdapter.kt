@@ -1,20 +1,26 @@
 package com.example.servivet.ui.main.adapter
 
 import android.content.Context
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.example.servivet.R
 import com.example.servivet.data.model.date_model.DateModel
 import com.example.servivet.databinding.CalenderRecyclerDesignBinding
 import com.example.servivet.ui.base.BaseAdapter
-import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.CommonUtils.dateFromDate
 import com.example.servivet.utils.CommonUtils.dayFromDate
-import com.example.servivet.utils.CommonUtils.monthYearFromDate
-import com.example.servivet.utils.interfaces.ListAdapterItem
+import com.example.servivet.utils.CommonUtils.fullDayName
 import com.google.gson.Gson
 
 
-class CalenderRecyclerAdapter(context: Context,var list:ArrayList<DateModel>,var selectedPos:Int, monthChange: OnCurrentMonthChange?):BaseAdapter<CalenderRecyclerDesignBinding,DateModel>(list) {
+class CalenderRecyclerAdapter(
+    context: Context,
+    var list: ArrayList<DateModel>,
+    var selectedPos: Int,
+    monthChange: OnCurrentMonthChange?,
+    val onItemClick: (String,String, String) -> Unit
+):BaseAdapter<CalenderRecyclerDesignBinding,DateModel>(list) {
     var context: Context? = null
     private var monthChange: OnCurrentMonthChange? =null
 
@@ -37,6 +43,7 @@ class CalenderRecyclerAdapter(context: Context,var list:ArrayList<DateModel>,var
         }
         setCalender(binding,position)
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     fun setCalender(binding: CalenderRecyclerDesignBinding, position: Int)
     {
         Log.d("TAG", "setCalenhgfdrrder: "+Gson().toJson(list))/*
@@ -70,19 +77,25 @@ class CalenderRecyclerAdapter(context: Context,var list:ArrayList<DateModel>,var
 //                monthChange.onDateClick("");
             } else {
                 unselectedOther()
-                Log.d("TAG", "setCjhgfalender: "+list[position].date)
                 list[position].isToday=true
                // monthChange!!.onDateClick(CommonUtils.dayMonthYearFromDate(list[position].date.toString()))
+
+                onItemClick( fullDayName(list[position].date),"calendar", list[position].date!!)
             }
 //            notifyItemChanged(selectedPos)
 //            notifyItemChanged(position)
            notifyDataSetChanged()
            selectedPos = position
         }
-        if(monthChange!=null)
-               monthChange!!.onMonthChange(monthYearFromDate(list!![position].date.toString()))
+       // if(monthChange!=null)
+            //   monthChange!!.onMonthChange(monthYearFromDate(list!![position].date.toString()))
+
+      //  list[position].date?.let { onItemClick(context!!.getString(R.string.calendar), it) }
+
 
     }
+
+
     private fun unselectedOther() {
         for (i in list.indices) {
             list[i].isToday=false

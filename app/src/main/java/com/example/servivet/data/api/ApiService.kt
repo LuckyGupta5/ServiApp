@@ -88,17 +88,7 @@ interface ApiService {
     suspend fun bookingCouponApi(@QueryMap request: HashMap<String, String>): CouponResponseMain
 
     @POST("booking/slot/availability")
-<<<<<<< HEAD
     suspend fun bookingSlotAvailabilityApi(@Body request: CouponAvalabilityRequest): CommonResponse
-=======
-    suspend fun bookingSlotAvailabilityApi(@Body request:CouponAvalabilityRequest ): CommonResponse
-    @POST("booking/slot/availability")
-    suspend fun bookingSlotAvailabilityApi1(@Body request:CouponAvalabilityRequest ): CommonResponse
-
-
-
-
->>>>>>> 7060807396db43de6c7f1623f643a7b48ae90fd2
 
 
 }

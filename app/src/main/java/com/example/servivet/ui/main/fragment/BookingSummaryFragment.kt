@@ -183,7 +183,7 @@ class BookingSummaryFragment :
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun setupObservers() {
-        mViewModel.getReportRatingRequest(serviceId.data)
+     //   mViewModel.getReportRatingRequest(serviceId.data)
         mViewModel.getSummaryData().observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {

@@ -91,4 +91,8 @@ interface ApiService {
     suspend fun bookingSlotAvailabilityApi(@Body request: CouponAvalabilityRequest): CommonResponse
 
 
+
+
+
+
 }

@@ -142,7 +142,7 @@
             android:id="@+id/action_myServiceFragment_to_homeFragment"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/myServiceFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="true"/>
 
     </fragment>
     <fragment
@@ -159,12 +159,17 @@
         android:name="com.example.servivet.ui.main.fragment.EditServiceFragment"
         android:label="fragment_edit_service"
         tools:layout="@layout/fragment_edit_service" />
-
-    <fragment
+	
+	   <fragment
         android:id="@+id/searchLocationFragment"
         android:name="com.example.servivet.ui.main.fragment.SearchLocationFragment"
         android:label="SearchLocationFragment"
         tools:layout="@layout/fragment_search_location" />
+	        tools:layout="@layout/fragment_search_location">
+           <action
+               android:id="@+id/action_searchLocationFragment_to_setLocationFragment"
+               app:destination="@id/setLocationFragment" />
+       </fragment>
 
 
     <fragment
@@ -229,12 +234,12 @@
         android:id="@+id/chatRequestFragment"
         android:name="com.example.servivet.ui.main.fragment.ChatRequestFragment"
         android:label="ChatRequestFragment"
-        tools:layout="@layout/fragment_chat_request" />
+        tools:layout="@layout/fragment_chat_request"/>
     <fragment
         android:id="@+id/changedateFragment"
         android:name="com.example.servivet.ui.main.fragment.ChangedateFragment"
         android:label="ChangedateFragment"
-        tools:layout="@layout/fragment_changedate" />
+        tools:layout="@layout/fragment_changedate"/>
     <fragment
         android:id="@+id/onlineNowFragment"
         android:name="com.example.servivet.ui.main.fragment.OnlineNowFragment"
@@ -274,7 +279,16 @@
     </fragment>
     <fragment
         android:id="@+id/connectionsRequestFragment"
+        tools:layout="@layout/fragment_connections_request"
         android:name="com.example.servivet.ui.main.fragment.ConnectionsRequestFragment"
-        android:label="ConnectionsRequestFragment"
-        tools:layout="@layout/fragment_connections_request" />
+        android:label="ConnectionsRequestFragment" />
+    <fragment
+        android:id="@+id/setLocationFragment"
+        android:name="com.example.servivet.ui.main.fragment.SetLocationFragment"
+        android:label="SetLocationFragment"
+        tools:layout="@layout/fragment_set_location">
+        <action
+            android:id="@+id/action_setLocationFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

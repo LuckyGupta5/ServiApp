@@ -58,7 +58,6 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding,Bookin
             binding.applyCoupon.isVisible=true
 
         }
-        getTimeSlot()
         openWelletBottomsheet()
     }
 

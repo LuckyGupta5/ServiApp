@@ -6,8 +6,7 @@ import com.example.servivet.data.model.review_ratinng.ReviewRating
 import com.example.servivet.databinding.CustomReviewsLayoutBinding
 import com.example.servivet.ui.base.BaseAdapter
 
-class RatingReviewAdapter(var context: Context, val list: ArrayList<ReviewRating>, var onItemClick: (String, String) -> Unit):
-BaseAdapter<CustomReviewsLayoutBinding,ReviewRating>(list)
+class RatingReviewAdapter(var context: Context, val list: ArrayList<ReviewRating>, var onItemClick: (String, String) -> Unit): BaseAdapter<CustomReviewsLayoutBinding,ReviewRating>(list)
 {
 
     override fun getItemCount(): Int {

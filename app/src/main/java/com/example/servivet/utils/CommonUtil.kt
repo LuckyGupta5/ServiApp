@@ -19,7 +19,6 @@ import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
-import android.view.Gravity
 import android.view.View
 import android.widget.DatePicker
 import android.widget.ImageView
@@ -46,16 +45,17 @@ import java.sql.Timestamp
 import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.time.format.TextStyle
 import java.util.*
 import java.util.concurrent.TimeUnit
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 
-object CommonUtils
-{
+object CommonUtils {
 
 
     @JvmStatic
@@ -111,7 +111,7 @@ object CommonUtils
         }
         dialog.setNegativeButton("Deny") { dialog, _ ->
             dialog.dismiss()
-            showSettingsDialog(activity,100)
+            showSettingsDialog(activity, 100)
             // Handle denial, if needed
         }
         dialog.show()
@@ -137,7 +137,8 @@ object CommonUtils
         intent.data = uri
         activity.startActivityForResult(intent, PERMISSION_REQUEST_CODE)
     }
-fun isCurrentDate(date: String): Boolean {
+
+    fun isCurrentDate(date: String): Boolean {
         val sdfInput = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val dateToCheck = sdfInput.parse(date)
         val currentDate = Calendar.getInstance().time
@@ -149,11 +150,11 @@ fun isCurrentDate(date: String): Boolean {
         return currentDateStr == dateToCheckStr
     }
 
-    private fun getDayinMonth(currentmonth: Int, getcurrentYear: Int):List<String> {
-        var calender=Calendar.getInstance()
-        calender.set(Calendar.YEAR,getcurrentYear)
-        calender.set(Calendar.MONTH,currentmonth)
-        calender.set(Calendar.DAY_OF_MONTH,1)
+    private fun getDayinMonth(currentmonth: Int, getcurrentYear: Int): List<String> {
+        var calender = Calendar.getInstance()
+        calender.set(Calendar.YEAR, getcurrentYear)
+        calender.set(Calendar.MONTH, currentmonth)
+        calender.set(Calendar.DAY_OF_MONTH, 1)
         val daysInMonth = mutableListOf<String>()
 
         while (calender.get(Calendar.MONTH) == currentmonth) {
@@ -167,27 +168,41 @@ fun isCurrentDate(date: String): Boolean {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun getDateFromToday(): Array<String?> 
-    {
+    fun getDateFromToday(monthCount: Int): Array<String?> {
+        var currentDate: LocalDate
         var currentDate1: LocalDate = LocalDate.now()
+        val dayOfMonth = currentDate1.dayOfMonth - 1
+        var monthDaysCount = getDaysInCurrentMonth(monthCount)
+        var count = monthDaysCount
 
-        val dayofMonthv= currentDate1.dayOfMonth-1
-       // var currentDate: LocalDate = LocalDate.now().minusDays(dayofMonthv.toLong()-1)
-        var currentDate: LocalDate = LocalDate.now()
-        Log.e("TAG", "getDateFromToday1: ${getDaysInCurrentMonth()}", )
 
-        val monthDaysCount = getDaysInCurrentMonth()-dayofMonthv
+        if (monthCount > 0) {
+            currentDate = LocalDate.now().minusDays(dayOfMonth.toLong())
+            //  currentDate = LocalDate.now()
+        } else {
+            currentDate = LocalDate.now()
+            monthDaysCount = monthDaysCount - dayOfMonth
+        }
+
         val dates = arrayOfNulls<String>(monthDaysCount)
 
         for (i in 0..<monthDaysCount) {
             val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("EEE, yyyy-MM-dd")
             dates[i] = currentDate.format(formatter)
             currentDate = currentDate.plusDays(1)
-            Log.e("TAG", "getDateFromToday: $i", )
         }
         return dates
     }
 
+    private fun getDaysInCurrentMonth(monthCount: Int): Int {
+        val calendar = Calendar.getInstance()
+        // Set the calendar to the first day of the month
+        calendar.add(Calendar.MONTH, monthCount)
+        calendar.set(Calendar.DAY_OF_MONTH, 1)
+
+        // Get the maximum value for the day of the month, which gives the number of days in the month
+        return calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
+    }
 
 
     fun monthYearFromDate(input: String?): String? {
@@ -203,16 +218,6 @@ fun isCurrentDate(date: String): Boolean {
         return dateFormat.format(date)
     }
 
-    fun getDaysInCurrentMonth(): Int {
-        val calendar = Calendar.getInstance()
-
-        // Set the calendar to the first day of the month
-       // calendar.add(Calendar.MONTH, 1)
-        calendar.set(Calendar.DAY_OF_MONTH, 1)
-
-        // Get the maximum value for the day of the month, which gives the number of days in the month
-        return calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
-    }
 
     fun dayMonthYearFromDate(input: String?): String? {
         val inputFormat = SimpleDateFormat("EEE, yyyy-MM-dd")
@@ -226,7 +231,14 @@ fun isCurrentDate(date: String): Boolean {
         val formattedDate = outputFormat.format(dateTimeStamp)
         return formattedDate
     }
-    
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getDayOfWeek():String {
+        val dayOfWeek: DayOfWeek = LocalDate.now().dayOfWeek
+        val dayName: String = dayOfWeek.getDisplayName(TextStyle.FULL, Locale.getDefault())
+        return dayName
+    }
+
     fun dayFromDate(input: String?): String? {
 //        Log.i("TAG", "dayFromDate: "+ input);
         val inFormat =
@@ -240,6 +252,7 @@ fun isCurrentDate(date: String): Boolean {
         val dayFormat = SimpleDateFormat("EEE")
         return dayFormat.format(date)
     }
+
     fun dateFromDate(input: String?): String? {
         val inFormat =
             SimpleDateFormat("EEE, yyyy-MM-dd", Locale.ENGLISH)
@@ -263,6 +276,26 @@ fun isCurrentDate(date: String): Boolean {
         return Uri.parse(path)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun fullDayName(date: String?): String {
+        val dateString = date
+        val formatter = DateTimeFormatter.ofPattern("EEE, yyyy-MM-dd", Locale.ENGLISH)
+        val date = LocalDate.parse(dateString, formatter)
+
+        val dayOfWeek = date.dayOfWeek.toString()
+        val fullDayName =
+            dayOfWeek.substring(0, 1).toUpperCase() + dayOfWeek.substring(1).toLowerCase()
+
+        return fullDayName
+    }
+
+    fun findListIndex(index: Int): Int {
+        if (index != -1) {
+            return index
+        } else {
+            return -1
+        }
+    }
 
     fun getRealPathFromURI(activity: Activity, uri: Uri?): String? {
         var filePath = ""
@@ -309,12 +342,14 @@ fun isCurrentDate(date: String): Boolean {
         )
         return Uri.parse(path)
     }
+
     fun createFileSmall(context: Context, filePath: String): String? {
         val bitmap: Bitmap = ImageUtils.instant!!.getCompressedBitmap(filePath)
         val realPath: String =
             getRealPathFromDocumentUri(context, getUriFromBitmap(bitmap, context)!!)!!
         return realPath
     }
+
     fun checkDates(d1: String, d2: String): Boolean {
         val dfDate = SimpleDateFormat("hh:mm a")
         var b = false
@@ -333,8 +368,8 @@ fun isCurrentDate(date: String): Boolean {
     }
 
 
-    fun selectTime(context: Context,textView: TextView ,callback:(data:String)->Unit): String {
-        var mSelectedTime=""
+    fun selectTime(context: Context, textView: TextView, callback: (data: String) -> Unit): String {
+        var mSelectedTime = ""
         val c = Calendar.getInstance()
         val hour = c.get(Calendar.HOUR_OF_DAY)
         val minute = c.get(Calendar.MINUTE)
@@ -373,7 +408,11 @@ fun isCurrentDate(date: String): Boolean {
         Glide.with(view!!).load(image_url).error(R.drawable.flower_img).into(imageView!!)
     }
 
-    fun datePickerNew2(context: Context?, selectedDate: String?, finalListener: CalenderResponseListener<Any?>) {
+    fun datePickerNew2(
+        context: Context?,
+        selectedDate: String?,
+        finalListener: CalenderResponseListener<Any?>
+    ) {
         val mYear: Int
         val mMonth: Int
         val mDay: Int
@@ -419,6 +458,7 @@ fun isCurrentDate(date: String): Boolean {
 //        datePickerDialog.getDatePicker().setMaxDate(c.getTimeInMillis());
         datePickerDialog.show()
     }
+
     fun datePickerNew3(
         context: Context?,
         selectedDate: String?,
@@ -489,8 +529,6 @@ fun isCurrentDate(date: String): Boolean {
     private const val DAY_MILLIS = 24 * HOUR_MILLIS
 
 
-
-
     fun setDate(date: String?): String? {
         @SuppressLint("SimpleDateFormat") val sdf = SimpleDateFormat("yyyy-MM-dd")
         @SuppressLint("SimpleDateFormat") val outputFormat = SimpleDateFormat("dd MMM yyyy")
@@ -519,7 +557,7 @@ fun isCurrentDate(date: String): Boolean {
         return outputFormat.format(dateTimeStamp)
     }
 
-    fun convertDateFormate(date:String):String{
+    fun convertDateFormate(date: String): String {
         val inputFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd")
         val outputFormat: DateFormat = SimpleDateFormat("dd MMM yyyy")
         val date: Date = inputFormat.parse(date)
@@ -659,7 +697,7 @@ fun isCurrentDate(date: String): Boolean {
         imageView!!.setImageBitmap(image_url)
     }
 
-    fun alert(context: Context?, msg: String?,requireActivity: Activity) {
+    fun alert(context: Context?, msg: String?, requireActivity: Activity) {
 
 
         val dialog = Dialog(context!!)
@@ -684,7 +722,7 @@ fun isCurrentDate(date: String): Boolean {
             SplashViewModel.isLogout = true
             requireActivity.startActivity(Intent(requireActivity, MainActivity::class.java))
             requireActivity.finish()
-            Toast.makeText(requireActivity,"Log out successfully !", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireActivity, "Log out successfully !", Toast.LENGTH_SHORT).show()
         }
         dialog.show()
     }
@@ -705,13 +743,18 @@ fun isCurrentDate(date: String): Boolean {
         alert.setButton(DialogInterface.BUTTON_POSITIVE, "OK") { dialog, _ ->
             SplashViewModel.isLogout = true
             Session.logout()
-            ContextCompat.startActivity(context, Intent(requireActivity, MainActivity::class.java), null)
+            ContextCompat.startActivity(
+                context,
+                Intent(requireActivity, MainActivity::class.java),
+                null
+            )
             requireActivity.finish()
         }
 
         alert.show()
     }
-    fun customalertdialog(context: Context?, msg: String?,from:Int) {
+
+    fun customalertdialog(context: Context?, msg: String?, from: Int) {
 
         val dialog = Dialog(context!!)
         dialog.setContentView(R.layout.alert_dialog_custom)
@@ -722,12 +765,14 @@ fun isCurrentDate(date: String): Boolean {
         message.text = msg
         /* val view = dialog.findViewById<View>(R.id.viewCenter)
          view.visibility = View.GONE
-        */  val dialogButton = dialog.findViewById<TextView>(R.id.yes)
-        val dialogno=dialog.findViewById<TextView>(R.id.no)
+        */
+        val dialogButton = dialog.findViewById<TextView>(R.id.yes)
+        val dialogno = dialog.findViewById<TextView>(R.id.no)
         //dialogButton.gravity = Gravity.CENTER_HORIZONTAL
-        dialogno.setOnClickListener { v:View?->
+        dialogno.setOnClickListener { v: View? ->
             dialogno.isEnabled.and(true)
-            dialog.dismiss()}
+            dialog.dismiss()
+        }
         dialogButton.setOnClickListener { v: View? ->
             /*  Session.logout()
               SplashViewModel.isLogout
@@ -903,11 +948,12 @@ fun isCurrentDate(date: String): Boolean {
         return convTime
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun setCurrentDate(): String {
-        val currentDate: String =
-            SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(Date())
-        //Log.d("date",""+currentDate)
-        return currentDate
+        val currentDate = LocalDate.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd") // Define your desired date format
+        val currentDateAsString = currentDate.format(formatter)
+        return currentDateAsString
     }
 
     fun setYesterdayDate(): String {
@@ -954,7 +1000,20 @@ fun isCurrentDate(date: String): Boolean {
         return ""
     }
 
+}
 
+fun generateMonthStrings(): Array<String> {
+    val calendar = Calendar.getInstance()
+
+    val dateFormat = SimpleDateFormat("MMM yyyy", Locale.getDefault())
+
+    val currentMonth = dateFormat.format(calendar.time)
+
+    // Move to the next month
+    calendar.add(Calendar.MONTH, 1)
+    val nextMonth = dateFormat.format(calendar.time)
+
+    return arrayOf(currentMonth, nextMonth)
 }
 
 @BindingAdapter("android:setUtcToLocalTimeStamp")

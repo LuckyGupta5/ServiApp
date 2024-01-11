@@ -356,6 +356,10 @@
     <string name="add_money">Add Money</string>
     <string name="pay_1548">Pay ₹ 1548</string>
     <string name="are_you_sure_you_want_to_conform">Are you sure you want to \nconform?</string>
+    <string name="calendar">calendar</string>
+    <string name="slot">slot</string>
+    <string name="at_center">At Center</string>
+    <string name="aman">Aman</string>
     <string name="set_location">Set Location</string>
     <string name="house_flat_office_no">House/Flat/Office no.*</string>
     <string name="road_name_area_colony">Road name/ Area / Colony*</string>

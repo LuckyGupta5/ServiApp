@@ -4,16 +4,17 @@
     <data>
 
     </data>
+
     <TextView
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/all_fill_white_greyborder_8dp"
         android:id="@+id/time_txt"
-        android:gravity="center"
         android:layout_width="95dp"
         android:layout_height="35dp"
-        android:maxLength="20"
-        android:textSize="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/all_fill_white_greyborder_8dp"
         android:fontFamily="@font/poppins_regular"
+        android:gravity="center"
+        android:maxLength="20"
+        android:text="10:00 AM"
         android:textColor="@color/grey_6A6A6A"
-        android:text="10:00 AM" />
+        android:textSize="15dp" />
 </layout>

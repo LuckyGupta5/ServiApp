@@ -1,14 +1,10 @@
 package com.example.servivet.ui.main.bottom_sheet
 
 import android.os.Build
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.example.servivet.R
 import com.example.servivet.data.model.date_model.DateModel
 import com.example.servivet.databinding.FragmentReScheduleBookingBottomSheetBinding
@@ -60,12 +56,12 @@ class ReScheduleBookingBottomSheet : BaseBottomSheetDailogFragment<FragmentReSch
     private fun setDate() {
         val list = ArrayList<DateModel>()/*
         for (i in CommonUtils.getDateFromToday().indices) */
-        for(i in CommonUtils.getDateFromToday().indices){
-            list.add(DateModel(CommonUtils.getDateFromToday()[i]!!, false))
+        for(i in CommonUtils.getDateFromToday(0).indices){
+            list.add(DateModel(CommonUtils.getDateFromToday(0)[i]!!, false))
         }
         list[0].isToday = true
         //  adapter=CalenderRecyclerAdapter(requireContext(),list,this)
-        adapter=  CalenderRecyclerAdapter(requireContext(), list ,pos,this)
+        adapter=  CalenderRecyclerAdapter(requireContext(), list, pos, this, onItemClick)
  //       binding.tvDateMonth.setText(CommonUtils.monthYearFromDate(list[0].date))
 //        binding.tvDateMonth.setText(CommonUtils.dateFromDate(list.toString()))
         gotochangedate()
@@ -80,7 +76,13 @@ class ReScheduleBookingBottomSheet : BaseBottomSheetDailogFragment<FragmentReSch
     }
 
     fun settimeadapter(){
-        binding.timeRecycler.adapter= BookingTimeAdapter(requireContext(),ArrayList(),timepos)
+        binding.timeRecycler.adapter= BookingTimeAdapter(
+            requireContext(),
+            ArrayList(),
+            timepos,
+            ArrayList(),
+            onItemClick
+        )
         adapter.notifyDataSetChanged()
     }
 
@@ -95,6 +97,18 @@ class ReScheduleBookingBottomSheet : BaseBottomSheetDailogFragment<FragmentReSch
     }
 
     override fun onDateClick(date: String?) {
+    }
+
+    private val onItemClick:(String,String,String)->Unit={ position,name,data->
+        when(name) {
+            getString(R.string.calendar)->{
+                Log.e("TAG", "checkCalendar:$data ", )
+            }
+
+        }
+
+
+
     }
 
 

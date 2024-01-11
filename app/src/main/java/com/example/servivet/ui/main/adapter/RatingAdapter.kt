@@ -30,6 +30,8 @@ class RatingAdapter(
         position: Int
     ) {
 
+        binding.idRatingCount.text = (position+1).toString()
+
     }
 
 

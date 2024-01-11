@@ -8,6 +8,7 @@
         <variable
             name="ratingAdapter"
             type="com.example.servivet.ui.main.adapter.RatingAdapter" />
+
         <variable
             name="reviewAdapter"
             type="com.example.servivet.ui.main.adapter.RatingReviewAdapter" />
@@ -398,6 +399,9 @@
                             android:id="@+id/idRatingRecycle"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
+                            android:adapter="@{ratingAdapter}"
+                            android:orientation="vertical"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.0"
@@ -405,9 +409,6 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.0"
                             tools:itemCount="5"
-                            android:adapter="@{ratingAdapter}"
-                            android:orientation="vertical"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             tools:listitem="@layout/custom_ratingbar_layout" />
 
 
@@ -418,11 +419,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="18dp"
-                        tools:itemCount="3"
                         android:adapter="@{reviewAdapter}"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:listitem="@layout/custom_reviews_layout"
-                        app:layout_constraintTop_toBottomOf="@id/idRatingContainer" />
+                        app:layout_constraintTop_toBottomOf="@id/idRatingContainer"
+                        tools:itemCount="3"
+                        tools:listitem="@layout/custom_reviews_layout" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -493,8 +494,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/app_theme_color_button_12dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="@string/book_now"
                 android:onClick="@{click.callSummaryFragment}"
+                android:text="@string/book_now"
                 android:textColor="@color/white"
                 android:textSize="17dp" />
 

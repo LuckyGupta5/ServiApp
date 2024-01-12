@@ -1,6 +1,7 @@
 package com.example.servivet.ui.main.fragment
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.example.servivet.R
@@ -143,12 +144,7 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
                     }
                 }
                 Status.UNAUTHORIZED -> {
-                    CommonUtils.logoutAlert(
-                        requireContext(),
-                        "Session Expired",
-                        "Unauthorized User",
-                        requireActivity()
-                    )
+                    CommonUtils.logoutAlert(requireContext(), "Session Expired", "Unauthorized User", requireActivity())
                 }
             }
         }    }
@@ -185,12 +181,7 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
                     }
                 }
                 Status.UNAUTHORIZED -> {
-                    CommonUtils.logoutAlert(
-                        requireContext(),
-                        "Session Expired",
-                        "Unauthorized User",
-                        requireActivity()
-                    )
+                    CommonUtils.logoutAlert(requireContext(), "Session Expired", "Unauthorized User", requireActivity())
                 }
             }
         }
@@ -213,16 +204,10 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
     private val onItemClick:(String, String)->Unit = { identifier, data->
         when(identifier){
             getString(R.string.report)->{
-                reportViewModel.getReportRatingRequest(data)
+                findNavController().navigate(R.id.action_subCategoryDetailsFragment_to_ratingReportBottomSheetFragment)
+               // reportViewModel.getReportRatingRequest(data)
             }
         }
 
     }
-
-
-
-
-
-
-
 }

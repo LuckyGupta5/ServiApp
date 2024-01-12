@@ -14,4 +14,5 @@ object  PreferenceEntity {
     const val USER_PROFILE="user_profile"
     const val CATEGORY="category"
     const val USER_DETAILS="userDetails"
+    const val SAVE_ADDRESS="saveAddress"
 }

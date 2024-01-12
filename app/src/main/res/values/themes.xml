@@ -22,11 +22,7 @@
             <item name="android:windowTranslucentStatus">true</item>
             <!-- Customize your theme here. -->
         </style>
-        <style name="spinnerTheme">
-            <item name="android:textColor">@color/black</item>
-            <item name="fontFamily">@font/poppins_medium</item>
-            <item name="android:textSize">15dp</item>
-        </style>
+
 
 
         <style name="Rounded" parent="ShapeAppearance.MaterialComponents.SmallComponent">
@@ -92,6 +88,12 @@
             <item name="android:windowSoftInputMode">adjustResize</item>
             <item name="android:state_expanded">true</item>
             <item name="behavior_peekHeight">600dp</item>
+        </style>
+
+        <style name="spinnerTheme">
+            <item name="android:textColor">@color/black</item>
+            <item name="fontFamily">@font/poppins_bold</item>
+            <item name="android:textSize">15dp</item>
         </style>
   <!-- Base application theme. -->
     <style name="Base.Theme.ServiVet" parent="Theme.Material3.DayNight.NoActionBar">

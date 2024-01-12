@@ -19,8 +19,4 @@ class RatingReviewAdapter(var context: Context, val list: ArrayList<ReviewRating
         binding.idReportImage.setOnClickListener{onItemClick(context.getString(R.string.report),list[position].user._id)}
     }
 
-
-
-
-
 }

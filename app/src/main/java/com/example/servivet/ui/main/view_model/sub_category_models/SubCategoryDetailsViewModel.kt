@@ -17,6 +17,7 @@ import com.example.servivet.ui.base.BaseViewModel
 import com.example.servivet.ui.main.fragment.SubCategoryDetailsFragmentDirections
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.Resource
+import com.example.servivet.utils.Session
 import com.example.servivet.utils.SingleLiveEvent
 import com.example.servivet.utils.StatusCode
 import kotlinx.coroutines.launch
@@ -34,6 +35,7 @@ class SubCategoryDetailsViewModel:BaseViewModel() {
         }
 
         fun callSummaryFragment(view: View){
+            Session.saveAddress=null
             view.findNavController().navigate(SubCategoryDetailsFragmentDirections.actionSubCategoryDetailsFragmentToBookingSummaryFragment(serviceId, context.getString(R.string.sub_category)))
         }
 

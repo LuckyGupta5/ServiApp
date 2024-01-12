@@ -67,7 +67,7 @@
                 android:textSize="17sp"
                 android:onClick="@{click::sold}"
                 android:textColor="@color/black_2"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:fontFamily="@font/poppins_semi_bold"
                 android:drawableEnd="@drawable/sold_path"
                 android:paddingVertical="9dp"

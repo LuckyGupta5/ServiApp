@@ -34,6 +34,7 @@ import com.example.servivet.R
 import com.example.servivet.ui.main.activity.MainActivity
 import com.example.servivet.ui.main.view_model.SplashViewModel
 import com.google.android.gms.maps.model.Marker
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.android.material.snackbar.Snackbar
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
@@ -117,6 +118,33 @@ object CommonUtils {
         dialog.show()
     }
 
+     fun getPostalCodeByCoordinates(
+        placeSelectionListener: PlaceSelectionListener,
+        lat: Double,
+        lon: Double,
+        context: Context
+    ): String {
+        val geocoder = Geocoder(context, Locale.getDefault())
+        var zipCode: String? = null
+        var address: Address? = null
+
+        if (geocoder != null) {
+            val addresses: List<Address> = geocoder.getFromLocation(lat, lon, 5)!!
+            if (addresses != null && addresses.isNotEmpty()) {
+                for (i in addresses.indices) {
+                    address = addresses[i]
+                    if (address.postalCode != null) {
+                        zipCode = address.postalCode
+                        Log.d("TAG", "Postal code: " + address.postalCode)
+                        break
+                    }
+                }
+                return zipCode.toString()
+            }
+
+        }
+        return null.toString()
+    }
     private fun showSettingsDialog(activity: Activity, PERMISSION_REQUEST_CODE: Int) {
         val dialog = AlertDialog.Builder(activity)
         dialog.setMessage(activity.getString(R.string.servivet_require_this_permission))

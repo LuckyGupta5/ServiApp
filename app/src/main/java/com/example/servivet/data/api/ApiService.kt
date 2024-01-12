@@ -17,6 +17,8 @@ import com.example.servivet.data.model.payment.payment_amount.request.PaymentReq
 import com.example.servivet.data.model.report_rating.request.ReportRatingRequest
 import com.example.servivet.data.model.common.response.CommonResponse
 import com.example.servivet.data.model.review_ratinng.ReviewRatingResponse
+import com.example.servivet.data.model.save_address.request.SaveAddressRequest
+import com.example.servivet.data.model.save_address.response.SaveAddressResponse
 import com.example.servivet.data.model.send_otp.request.SendOtpRequest
 import com.example.servivet.data.model.send_otp.response.SendOtpResponse
 import com.example.servivet.data.model.service_category_details.request.ServiceCategoryDetailsRequest
@@ -96,9 +98,6 @@ interface ApiService {
     @POST("booking/slot/availability")
     suspend fun bookingSlotAvailabilityApi(@Body request: CouponAvalabilityRequest): CommonResponse
 
-
-
-
-
-
+    @POST("saveAddress")
+    suspend fun saveAddress(@Body saveAddressRequest: SaveAddressRequest):SaveAddressResponse
 }

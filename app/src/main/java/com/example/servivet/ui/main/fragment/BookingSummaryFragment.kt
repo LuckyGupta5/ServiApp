@@ -6,7 +6,9 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.annotation.RequiresApi
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
@@ -15,6 +17,7 @@ import com.example.servivet.data.model.booking_module.booking_summary.response.A
 import com.example.servivet.data.model.booking_module.booking_summary.response.ServiceDetail
 import com.example.servivet.data.model.date_model.DateModel
 import com.example.servivet.databinding.FragmentBookingSummaryBinding
+import com.example.servivet.databinding.SaveAndChangeAddressBottomsheetBinding
 import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.adapter.BookingTimeAdapter
 import com.example.servivet.ui.main.adapter.CalenderRecyclerAdapter
@@ -28,9 +31,11 @@ import com.example.servivet.utils.CommonUtils.getDayOfWeek
 import com.example.servivet.utils.CommonUtils.setCurrentDate
 import com.example.servivet.utils.CommonUtils.showSnackBar
 import com.example.servivet.utils.ProcessDialog
+import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
 import com.example.servivet.utils.generateMonthStrings
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -58,6 +63,7 @@ class BookingSummaryFragment :
     private lateinit var serviceDetail: ServiceDetail
     private var atCenterList = ArrayList<AtCenterAvailability>()
     private var bookedSlot = ArrayList<BookedSlot>()
+    private var bottomSheetDialog: BottomSheetDialog? = null
 
 
     override fun isNetworkAvailable(boolean: Boolean) {
@@ -91,7 +97,37 @@ class BookingSummaryFragment :
         initYearAdapter()
         setDate()
 
+        if(Session.saveAddress!=null ){
+            binding.addAddressLayout.visibility=View.GONE
+            binding.changeAddressLayout.visibility=View.VISIBLE
+            binding.nameInAddress.text = Session.saveAddress.name
+            binding.locationName.text = Session.saveAddress.fullAddress
+        }else{
+            binding.addAddressLayout.visibility=View.VISIBLE
+            binding.changeAddressLayout.visibility=View.GONE
+        }
+        binding.changelocation.setOnClickListener{ findNavController().navigate(R.id.action_bookingSummaryFragment_to_savedAddressesBottomsheet) }
+    }
 
+    private fun openBottomSheet() {
+        bottomSheetDialog = BottomSheetDialog(requireContext(), R.style.AppBottomSheetDialogTheme)
+        val bottomSheetBinding: SaveAndChangeAddressBottomsheetBinding = DataBindingUtil.inflate(layoutInflater, R.layout.save_and_change_address_bottomsheet, null, false)
+
+        if(Session.saveAddress!=null ){
+            bottomSheetBinding.name.text = Session.saveAddress.name
+            bottomSheetBinding.address.text = Session.saveAddress.fullAddress
+            bottomSheetBinding.number.text = Session.saveAddress.mobileNumber
+        }
+        bottomSheetBinding.useSameAddress.setOnClickListener {
+            bottomSheetDialog!!.dismiss()
+        }
+
+
+        bottomSheetBinding.addNewAddress.setOnClickListener {
+            findNavController().navigate(R.id.action_bookingSummaryFragment_to_addLocationFragment)
+            bottomSheetDialog!!.dismiss()
+        }
+        bottomSheetDialog!!.show()
     }
 
 

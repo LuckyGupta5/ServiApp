@@ -125,6 +125,9 @@
         <action
             android:id="@+id/action_subCategoryDetailsFragment_to_bookingSummaryFragment"
             app:destination="@id/bookingSummaryFragment" />
+        <action
+            android:id="@+id/action_subCategoryDetailsFragment_to_ratingReportBottomSheetFragment"
+            app:destination="@id/ratingReportBottomSheetFragment" />
     </fragment>
     <fragment
         android:id="@+id/myServiceFragment"
@@ -203,6 +206,9 @@
         <argument
             android:name="from"
             app:argType="string" />
+        <action
+            android:id="@+id/action_bookingSummaryFragment_to_savedAddressesBottomsheet"
+            app:destination="@id/savedAddressesBottomsheet" />
     </fragment>
     <fragment
         android:id="@+id/addLocationFragment"
@@ -302,4 +308,17 @@
             android:id="@+id/action_setLocationFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/savedAddressesBottomsheet"
+        android:name="com.example.servivet.ui.main.bottom_sheet.SavedAddressesBottomsheet"
+        android:label="SavedAddressesBottomsheet" >
+        <action
+            android:id="@+id/action_savedAddressesBottomsheet_to_addLocationFragment"
+            app:destination="@id/addLocationFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/ratingReportBottomSheetFragment"
+        android:name="com.example.servivet.ui.main.bottom_sheet.RatingReportBottomSheetFragment"
+        android:label="RatingReportBottomSheetFragment"
+        tools:layout="@layout/fragment_rating_report_bottom_sheet"/>
 </navigation>

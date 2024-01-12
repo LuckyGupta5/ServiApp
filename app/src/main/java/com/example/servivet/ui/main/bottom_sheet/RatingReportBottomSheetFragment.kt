@@ -3,24 +3,26 @@ package com.example.servivet.ui.main.bottom_sheet
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.servivet.R
+import com.example.servivet.databinding.FragmentRatingReportBottomSheetBinding
 import com.example.servivet.databinding.FragmentSavedAddressesBottomsheetBinding
 import com.example.servivet.ui.base.BaseBottomSheetDailogFragment
 import com.example.servivet.ui.main.view_model.SaveAddressBottomsheetViewModel
+import com.example.servivet.ui.main.view_model.sub_category_models.RatingReportViewModel
 import com.example.servivet.utils.Session
 
-class SavedAddressesBottomsheet:BaseBottomSheetDailogFragment<FragmentSavedAddressesBottomsheetBinding,SaveAddressBottomsheetViewModel>(
-    R.layout.fragment_saved_addresses_bottomsheet) {
-    override val mViewModel: SaveAddressBottomsheetViewModel by viewModels()
+class RatingReportBottomSheetFragment:BaseBottomSheetDailogFragment<FragmentRatingReportBottomSheetBinding,RatingReportViewModel>(
+    R.layout.fragment_rating_report_bottom_sheet) {
+    override val mViewModel: RatingReportViewModel by viewModels()
 
     override fun getLayout(): Int {
-        return R.layout.fragment_saved_addresses_bottomsheet
+        return R.layout.fragment_rating_report_bottom_sheet
     }
 
     override fun isNetworkAvailable(boolean: Boolean) {
     }
 
     override fun setupViewModel() {
-           }
+    }
 
     override fun setupViews() {
         binding.apply {
@@ -30,20 +32,13 @@ class SavedAddressesBottomsheet:BaseBottomSheetDailogFragment<FragmentSavedAddre
 
         }
 
-
-        if(Session.saveAddress!=null ){
-            binding.name.text = Session.saveAddress.name
-            binding.address.text = Session.saveAddress.fullAddress
-            binding.number.text = Session.saveAddress.mobileNumber
-        }
-        binding.useSameAddress.setOnClickListener {
+        binding.canceltBtn.setOnClickListener {
             dismiss()
         }
 
-        binding.changeAddress.setOnClickListener {
-            findNavController().navigate(R.id.action_savedAddressesBottomsheet_to_addLocationFragment)
+        binding.submitBtn.setOnClickListener {
+            mViewModel.hitReportRatingApi()
         }
-
 
     }
 

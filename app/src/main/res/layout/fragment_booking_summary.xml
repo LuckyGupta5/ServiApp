@@ -234,11 +234,11 @@
                             android:drawablePadding="10dp"
                             android:fontFamily="@font/poppins_regular"
                             android:onClick="@{click::atHome}"
-                            android:visibility="@{summaryData.serviceMode.atHome?View.VISIBLE:View.GONE}"
                             android:text="@string/at_home"
                             android:textColor="@color/black"
                             android:textSize="15sp" />
 
+<!-- android:visibility="@{summaryData.serviceMode.atHome?View.VISIBLE:View.GONE}"-->
                     </LinearLayout>
                 </LinearLayout>
 
@@ -292,6 +292,8 @@
                     </LinearLayout>
                 </LinearLayout>
 
+
+
                 <LinearLayout
                     android:id="@+id/changeAddressLayout"
                     android:layout_width="wrap_content"
@@ -311,7 +313,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginVertical="15dp"
-                        android:onClick="@{click.gotoaddlocation}"
                         android:orientation="horizontal"
                         android:visibility="visible">
 
@@ -328,6 +329,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/nameInAddress"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
@@ -341,14 +343,15 @@
                                 android:textSize="17sp" />
 
                             <TextView
+                                android:id="@+id/locationName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
                                 android:layout_marginEnd="5dp"
                                 android:layout_weight="1"
                                 android:fontFamily="@font/poppins_medium"
-                                android:maxLength="30"
                                 android:maxLines="1"
+                                android:ellipsize="end"
                                 android:text="@string/a_192_sector_44_noida"
                                 android:textColor="@color/grey_6E6E6E"
                                 android:textSize="15sp" />

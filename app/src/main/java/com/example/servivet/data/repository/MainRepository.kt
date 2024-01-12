@@ -45,5 +45,6 @@ class MainRepository(private val apiService: ApiService) {
     suspend fun bookingCouponApi(request:HashMap<String,String>) = apiService.bookingCouponApi(request)
     suspend fun bookingSlotAvailabilityApi(request: CouponAvalabilityRequest) = apiService.bookingSlotAvailabilityApi(request)
     suspend fun paymentAmountApi(request: CommonRequest) = apiService.paymentAmountApi(request)
+    suspend fun saveAddressApi(saveAddressRequest: SaveAddressRequest) = apiService.saveAddress(saveAddressRequest)
 
 }

@@ -1,15 +1,17 @@
 package com.example.servivet.utils
 
 
-import com.example.servivet.data.model.location.LocationInfo
 import com.example.servivet.data.model.current_api.response.CurrentUser
 import com.example.servivet.data.model.home.response.HomeServiceCategory
+import com.example.servivet.data.model.location.LocationInfo
+import com.example.servivet.data.model.save_address.request.SaveAddressRequest
 import com.example.servivet.data.model.user_profile.response.UserProfile
 import com.example.servivet.data.model.verifyotp.response.VerifyOTPResult
 import com.example.servivet.utils.PreferenceEntity.CATEGORY
 import com.example.servivet.utils.PreferenceEntity.IS_LOGIN
 import com.example.servivet.utils.PreferenceEntity.LOCATION
 import com.example.servivet.utils.PreferenceEntity.LOCATION_INFO
+import com.example.servivet.utils.PreferenceEntity.SAVE_ADDRESS
 import com.example.servivet.utils.PreferenceEntity.TOKEN
 import com.example.servivet.utils.PreferenceEntity.TYPE
 import com.example.servivet.utils.PreferenceEntity.USER_DETAILS
@@ -27,10 +29,12 @@ object Session {
     var userProfile = Hawk.get<UserProfile>(USER_PROFILE, null)
     var category = Hawk.get<ArrayList<HomeServiceCategory>>(CATEGORY, null)
     var userDetails = Hawk.get<CurrentUser>(USER_DETAILS, null)
+    var saveAddress = Hawk.get<SaveAddressRequest>(SAVE_ADDRESS, null)
     fun saveToken(token: String) {
         Hawk.put(TOKEN, token)
         Session.token = token
     }
+
     fun saveLocation(location: String) {
         Hawk.put(LOCATION, location)
         Session.location = location
@@ -40,24 +44,33 @@ object Session {
         Hawk.put(TYPE, type)
         Session.type = type
     }
+
     fun saveIsLogin(isLogin: Boolean) {
         Hawk.put(IS_LOGIN, isLogin)
         Session.isLogin = isLogin
     }
+
     fun saveLocationInfo(locationInfo: LocationInfo) {
 
     }
 
 
-fun saveVerifyUserData(userData: VerifyOTPResult) {
+    fun saveVerifyUserData(userData: VerifyOTPResult) {
         Hawk.put(VERIFY_DATA, userData)
         this.verifiedData = userData
     }
+
     fun saveUserProfile(userProfile: UserProfile) {
         Hawk.put(USER_PROFILE, userProfile)
         this.userProfile = userProfile
     }
-    fun saveCategory(category:ArrayList<HomeServiceCategory >) {
+
+    fun saveAddress(saveAddress: SaveAddressRequest) {
+        Hawk.put(SAVE_ADDRESS, saveAddress)
+        this.saveAddress = saveAddress
+    }
+
+    fun saveCategory(category: ArrayList<HomeServiceCategory>) {
         Hawk.put(CATEGORY, category)
         this.category = category
     }
@@ -70,11 +83,11 @@ fun saveVerifyUserData(userData: VerifyOTPResult) {
     fun logout() {
         verifiedData = null
         token = null
-        isLogin=false
-        type=null
-        userProfile=null
-        category=null
-        userDetails=null
+        isLogin = false
+        type = null
+        userProfile = null
+        category = null
+        userDetails = null
         Hawk.deleteAll()
     }
 

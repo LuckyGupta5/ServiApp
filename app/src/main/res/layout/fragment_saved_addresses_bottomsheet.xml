@@ -15,6 +15,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:background="@drawable/white_top_round_corner_32dp"
         android:layout_height="match_parent"
         tools:context=".ui.main.bottom_sheet.SavedAddressesBottomsheet">
         <com.google.android.material.card.MaterialCardView
@@ -49,6 +50,7 @@
             android:layout_height="wrap_content"
             android:text="@string/saved_addresses"/>
             <LinearLayout
+                android:id="@+id/useSameAddress"
                 android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
@@ -67,6 +69,7 @@
                     android:layout_marginHorizontal="15dp"
                     android:layout_height="wrap_content">
                     <TextView
+                        android:id="@+id/name"
                         android:layout_width="wrap_content"
                         android:includeFontPadding="false"
                         android:layout_height="wrap_content"
@@ -78,6 +81,7 @@
                         android:textColor="@color/black"
                         android:text="@string/abhishek_mehra"/>
                     <TextView
+                        android:id="@+id/address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
@@ -89,6 +93,7 @@
                         android:textColor="@color/grey_2E2E2E"
                         android:text="@string/a_192_sector_44_noida"/>
                     <TextView
+                        android:id="@+id/number"
                         android:layout_width="wrap_content"
                         android:includeFontPadding="false"
                         android:layout_height="wrap_content"
@@ -114,6 +119,7 @@
                 android:layout_height="1dp"/>
 
             <LinearLayout
+                android:id="@+id/changeAddress"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:paddingVertical="11dp"

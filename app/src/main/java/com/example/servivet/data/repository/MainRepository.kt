@@ -4,6 +4,7 @@ import com.example.servivet.data.api.ApiService
 import com.example.servivet.data.model.booking_module.booking_model.request.RatingRequest
 import com.example.servivet.data.model.booking_module.coupon.request.CouponAvalabilityRequest
 import com.example.servivet.data.model.business_verification_api.request.BusinessVerificationRequest
+import com.example.servivet.data.model.common.request.CommonRequest
 import com.example.servivet.data.model.report_rating.request.ReportRatingRequest
 import com.example.servivet.data.model.send_otp.request.SendOtpRequest
 import com.example.servivet.data.model.service_category_details.request.ServiceCategoryDetailsRequest
@@ -43,5 +44,6 @@ class MainRepository(private val apiService: ApiService) {
     suspend fun bookingSlotApi(request:HashMap<String,String>) = apiService.bookingSlotApi(request)
     suspend fun bookingCouponApi(request:HashMap<String,String>) = apiService.bookingCouponApi(request)
     suspend fun bookingSlotAvailabilityApi(request: CouponAvalabilityRequest) = apiService.bookingSlotAvailabilityApi(request)
+    suspend fun paymentAmountApi(request: CommonRequest) = apiService.paymentAmountApi(request)
 
 }

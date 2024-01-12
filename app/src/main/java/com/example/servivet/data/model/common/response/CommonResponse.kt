@@ -1,4 +1,4 @@
-package com.example.servivet.data.model.report_rating.response
+package com.example.servivet.data.model.common.response
 
 data class CommonResponse(
     val code: Int,

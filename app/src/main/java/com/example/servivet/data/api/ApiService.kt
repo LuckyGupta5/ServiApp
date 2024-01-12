@@ -9,11 +9,13 @@ import com.example.servivet.data.model.booking_module.coupon.request.CouponAvala
 import com.example.servivet.data.model.booking_module.coupon.response.CouponResponseMain
 import com.example.servivet.data.model.business_verification_api.request.BusinessVerificationRequest
 import com.example.servivet.data.model.business_verification_api.response.BusinessVerificationResponse
+import com.example.servivet.data.model.common.request.CommonRequest
 import com.example.servivet.data.model.current_api.response.CurrentResponse
 import com.example.servivet.data.model.edit_profile.response.EditProfileResponse
 import com.example.servivet.data.model.home.response.HomeResponse
+import com.example.servivet.data.model.payment.payment_amount.request.PaymentRequest
 import com.example.servivet.data.model.report_rating.request.ReportRatingRequest
-import com.example.servivet.data.model.report_rating.response.CommonResponse
+import com.example.servivet.data.model.common.response.CommonResponse
 import com.example.servivet.data.model.review_ratinng.ReviewRatingResponse
 import com.example.servivet.data.model.send_otp.request.SendOtpRequest
 import com.example.servivet.data.model.send_otp.response.SendOtpResponse
@@ -86,6 +88,10 @@ interface ApiService {
 
     @GET("coupon/list")
     suspend fun bookingCouponApi(@QueryMap request: HashMap<String, String>): CouponResponseMain
+
+
+    @POST("buy/payment/amount")
+    suspend fun paymentAmountApi(@Body request:CommonRequest):String
 
     @POST("booking/slot/availability")
     suspend fun bookingSlotAvailabilityApi(@Body request: CouponAvalabilityRequest): CommonResponse

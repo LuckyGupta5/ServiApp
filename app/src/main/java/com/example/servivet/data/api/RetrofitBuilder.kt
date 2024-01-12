@@ -1,5 +1,8 @@
 package com.example.servivet.data.api
 
+import android.provider.Settings.Secure
+import com.example.servivet.utils.Constants
+import com.example.servivet.utils.Constants.SECURE_HEADER
 import com.example.servivet.utils.PreferenceEntity.TOKEN
 import com.orhanobut.hawk.Hawk
 import okhttp3.Interceptor
@@ -35,6 +38,10 @@ object  RetrofitBuilder
                 //add header
                 Hawk.get<String>(TOKEN, null)?.let {
                     ongoing.addHeader("Authorization", it)
+                }
+                if(SECURE_HEADER.isNotEmpty()){
+                    ongoing.addHeader("requestfor", SECURE_HEADER)
+                  //  SECURE_HEADER = " "
                 }
                 chain.proceed(ongoing.build())
             }).addInterceptor(HttpLoggingInterceptor().apply {

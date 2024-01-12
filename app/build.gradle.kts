@@ -109,6 +109,15 @@ dependencies {
     implementation ("com.google.maps.android:android-maps-utils:0.5")
 
 
+    //AES Security
+
+    implementation ("org.bouncycastle:bcpkix-jdk15on:1.67")
+
+   // implementation ("group: 'org.bouncycastle', name: 'bcprov-jdk16', version: '1.46'")
+
+
+
+
 
 
 

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.servivet.data.api.RetrofitBuilder
 import com.example.servivet.data.model.report_rating.request.ReportRatingRequest
-import com.example.servivet.data.model.report_rating.response.CommonResponse
+import com.example.servivet.data.model.common.response.CommonResponse
 import com.example.servivet.data.repository.MainRepository
 import com.example.servivet.ui.base.BaseViewModel
 import com.example.servivet.utils.Resource

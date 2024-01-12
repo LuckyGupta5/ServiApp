@@ -14,5 +14,9 @@ object Constants {
 
     const val typebooking :String="type"
     var APPLIED_COUPON=""
+    const val SECURITY_KEY = "D#5599Beh2$%$#$%MC&^$@#^*&%I"
+
+    var SECURE_HEADER = ""
+
 
 }

@@ -210,7 +210,7 @@ class BookingSummaryFragment :
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun setupObservers() {
-        mViewModel.getReportRatingRequest(serviceId.data)
+       mViewModel.getReportRatingRequest(serviceId.data)
         mViewModel.getSummaryData().observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
@@ -221,13 +221,13 @@ class BookingSummaryFragment :
                             serviceDetail = (it.data.result.serviceDetail?:"") as ServiceDetail
                             it.data.result.serviceDetail?.atCenterAvailability?.let { centerList ->
                                 atCenterList.addAll(centerList)
-                                mViewModel.result.scheduleRequest?.date = setCurrentDate()
+                                mViewModel.result.serviceDetail?.date = setCurrentDate()
                                 this.position = findListIndex(atCenterList.indexOfFirst { it.day == getDayOfWeek() })
                             }
                             binding.summaryData = serviceDetail
                             initSlotModel()
                             setPriceValue()
-                            Log.e("TAG", "setupObservers: ${Gson().toJson(serviceDetail)}")
+                            Log.e("TAG", "setupObservers: ${Gson().toJson(it.data.result.providerLeaveList ?: "")}")
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
@@ -269,13 +269,13 @@ class BookingSummaryFragment :
             Log.e("TAG", "setupObserver123: ${it}")
             if (it) {
                 binding.amount.text = serviceDetail.atHomePrice
-                mViewModel.scheduleRequest.serviceMode = getString(R.string.at_home)
+                mViewModel.result.serviceDetail?.serviceModeLocal = getString(R.string.at_home)
             }
         }
         mViewModel.atCenter.observe(viewLifecycleOwner) {
             if (it) {
                 binding.amount.text = serviceDetail.atCenterPrice
-                mViewModel.scheduleRequest.serviceMode = getString(R.string.at_center)
+                mViewModel.result.serviceDetail?.serviceModeLocal= getString(R.string.at_center)
             }
         }
     }
@@ -296,16 +296,9 @@ class BookingSummaryFragment :
                             Log.e("TAG", "initSlotModel: ${Gson().toJson(it.data.result)}")
                             bookedSlot.addAll(it.data.result.bookedSlot)
                             if (this.position != -1) {
-                                binding.timeRecycler.adapter = BookingTimeAdapter(
-                                    requireContext(),
-                                    atCenterList[position].slot,
-                                    pos,
-                                    bookedSlot,
-                                    onItemClick
-                                )
+                                binding.timeRecycler.adapter = BookingTimeAdapter(requireContext(), atCenterList[position].slot, pos, bookedSlot, onItemClick)
                             } else {
-                                showSnackBar("not Found")
-
+                            //    showSnackBar("slot not Found")
                             }
                         }
 
@@ -355,14 +348,14 @@ class BookingSummaryFragment :
             getString(R.string.calendar) -> {
                 this.position = findListIndex(atCenterList.indexOfFirst { it.day == position })
                 date = dayMonthYearFromDate(data) ?: ""
-                mViewModel.result.scheduleRequest?.date = data
+                mViewModel.result.serviceDetail?.date = data
 
                 initSlotModel()
             }
             getString(R.string.slot)->{
-                mViewModel.result.scheduleRequest?.time = data
+                mViewModel.result.serviceDetail?.time = data
+                mViewModel.result.serviceDetail?.slotId = position
 
-                Log.e("TAG", "slot:$position ", )
             }
 
         }

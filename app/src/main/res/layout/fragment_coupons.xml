@@ -6,10 +6,10 @@
     <data>
         <variable
             name="click"
-            type="com.example.servivet.ui.main.view_model.CouponViewModel.ClickAction" />
+            type="com.example.servivet.ui.main.view_model.booking_models.BookingCouponViewModel.ClickAction" />
         <variable
             name="viewModel"
-            type="com.example.servivet.ui.main.view_model.CouponViewModel" />
+            type="com.example.servivet.ui.main.view_model.booking_models.BookingCouponViewModel" />
 
     </data>
 

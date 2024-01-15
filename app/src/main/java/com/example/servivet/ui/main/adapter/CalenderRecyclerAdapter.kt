@@ -36,6 +36,7 @@ class CalenderRecyclerAdapter(
         return list.size
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun bind(binding: CalenderRecyclerDesignBinding, item: DateModel?, position: Int)
     {
         binding.apply {
@@ -51,26 +52,30 @@ class CalenderRecyclerAdapter(
             binding.tvCalendarDay.setText(dayFromDate(list!![position].date.toString()))
             binding.tvCalendarDate.setText(dateFromDate(list!![position].date.toString()))
         /*}*/
-        if (list!![position].isToday) {
-       //   monthChange!!.onDateClick(CommonUtils.dayMonthYearFromDate(list!![position].date.toString()))
-           binding.dateLayout.setBackgroundResource(R.drawable.calender_background)
-           binding.circleWhite.setBackgroundResource(R.drawable.calender_white_background)
-           binding.tvCalendarDay.setTextColor(binding.tvCalendarDate.getResources().getColor(R.color.white))
-           binding.tvCalendarDate.setTextColor(
-               binding.dateLayout.getResources().getColor(R.color.app_theme)
-            )
-        } else
-        {
-          // binding.dateLayout.setBackgroundResource(0)
-            binding.dateLayout.setBackgroundResource(R.drawable.white_top_round_corner_greay_32)
-           binding.tvCalendarDate.setBackgroundResource(0)
-           binding.tvCalendarDate.setTextColor(
-               binding.tvCalendarDay.getResources().getColor(R.color.black)
-            )
-           binding.tvCalendarDay.setTextColor(
-               binding.dateLayout.getResources().getColor(R.color.black)
-            )
-        }
+
+
+            if (list!![position].isToday) {
+                //   monthChange!!.onDateClick(CommonUtils.dayMonthYearFromDate(list!![position].date.toString()))
+                binding.dateLayout.setBackgroundResource(R.drawable.calender_background)
+                binding.circleWhite.setBackgroundResource(R.drawable.calender_white_background)
+                binding.tvCalendarDay.setTextColor(
+                    binding.tvCalendarDate.getResources().getColor(R.color.white)
+                )
+                binding.tvCalendarDate.setTextColor(
+                    binding.dateLayout.getResources().getColor(R.color.app_theme)
+                )
+            } else {
+                // binding.dateLayout.setBackgroundResource(0)
+                binding.dateLayout.setBackgroundResource(R.drawable.white_top_round_corner_greay_32)
+                binding.tvCalendarDate.setBackgroundResource(0)
+                binding.tvCalendarDate.setTextColor(
+                    binding.tvCalendarDay.getResources().getColor(R.color.black)
+                )
+                binding.tvCalendarDay.setTextColor(
+                    binding.dateLayout.getResources().getColor(R.color.black)
+                )
+            }
+
        binding.dateLayout.setOnClickListener { view ->
             if (list[position].isToday) {
 //                list.get(position).setToday(false);
@@ -78,19 +83,13 @@ class CalenderRecyclerAdapter(
             } else {
                 unselectedOther()
                 list[position].isToday=true
-               // monthChange!!.onDateClick(CommonUtils.dayMonthYearFromDate(list[position].date.toString()))
 
                 onItemClick( fullDayName(list[position].date),"calendar", list[position].date!!)
             }
-//            notifyItemChanged(selectedPos)
-//            notifyItemChanged(position)
+
            notifyDataSetChanged()
            selectedPos = position
         }
-       // if(monthChange!=null)
-            //   monthChange!!.onMonthChange(monthYearFromDate(list!![position].date.toString()))
-
-      //  list[position].date?.let { onItemClick(context!!.getString(R.string.calendar), it) }
 
 
     }

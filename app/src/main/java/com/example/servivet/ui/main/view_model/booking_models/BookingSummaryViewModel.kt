@@ -33,7 +33,6 @@ class BookingSummaryViewModel:BaseViewModel() {
     var atCenter=MutableLiveData(true)
     var atHome=MutableLiveData(false)
     val request = HashMap<String,String>()
-    var scheduleRequest = ScheduleRequest()
     var result = Result()
     private val summaryMData = SingleLiveEvent<Resource<BookingSummaryResponse>>()
 
@@ -43,7 +42,7 @@ class BookingSummaryViewModel:BaseViewModel() {
 
 
     fun getReportRatingRequest(id: String) {
-        request["serviceId"] = id
+        request["serviceId"] = id  //"657fea25b55d7af39650d84e"
         hitSummaryApi()
 
     }
@@ -66,8 +65,8 @@ class BookingSummaryViewModel:BaseViewModel() {
 
 
         fun gotopayment(view: View){
-            Log.e("TAG", "gotopayment: ${Gson().toJson(result)}", )
-          //  view.findNavController().navigate(BookingSummaryFragmentDirections.actionBookingSummaryFragmentToBookingPaymentFragment(Gson().toJson(scheduleRequest), R.string.booking_summary))
+            Log.e("TAG", "gotopayment: ${Gson().toJson(result.serviceDetail)}", )
+            view.findNavController().navigate(BookingSummaryFragmentDirections.actionBookingSummaryFragmentToBookingPaymentFragment(Gson().toJson(result.serviceDetail), R.string.booking_summary))
         }
         fun gotoaddlocation(view: View){
             view.findNavController().navigate(R.id.action_bookingSummaryFragment_to_addLocationFragment)

@@ -69,9 +69,12 @@
     <color name="grey_505050">#505050</color>
     <color name="grey_CECECE">#CECECE</color>
     <color name="grey_f6f6f6">#F6F6F6</color>
-    <color name="grey_FC5252">#FC5252</color>
+    <color name="carnation">#FC5252</color>
     <color name="grey_ECECEC">#ECECEC</color>
     <color name="grey_656565">#656565</color>
     <color name="grey_F1F1F1">#F1F1F1</color>
+    <color name="malachite">#07C55F</color>
+    <color name="spring_green">#2CEF94</color>
+    <color name="jaffa">#F39044</color>
 
 </resources>

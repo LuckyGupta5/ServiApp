@@ -1,9 +1,10 @@
 package com.example.servivet.ui.main.view_model.booking_models
 
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.findNavController
 import com.example.servivet.data.api.RetrofitBuilder
-import com.example.servivet.data.model.booking_module.booking_slot.BookingSlotResponseMain
 import com.example.servivet.data.model.booking_module.coupon.response.CouponResponseMain
 import com.example.servivet.data.repository.MainRepository
 import com.example.servivet.ui.base.BaseViewModel
@@ -19,13 +20,21 @@ class BookingCouponViewModel : BaseViewModel(){
 
     private val couponMData = SingleLiveEvent<Resource<CouponResponseMain>>()
 
+
+    inner class ClickAction{
+        fun backbtn(view: View){
+            view.findNavController().popBackStack()
+        }
+
+    }
+
     fun getCouponData(): LiveData<Resource<CouponResponseMain>> {
         return couponMData
     }
 
 
-    fun getCouponRequest(){
-        request["providerId"] ="65798d6ab55d7af39650a4ce"
+    fun getCouponRequest(_id: String) {
+        request["providerId"] = _id     //"65798d6ab55d7af39650a4ce"
         hitSlotApi()
 
     }

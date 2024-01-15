@@ -6,13 +6,17 @@
     <data>
         <variable
             name="click"
-            type="com.example.servivet.ui.main.view_model.BookingPaymentViewModel.ClickAction" />
+            type="com.example.servivet.ui.main.view_model.booking_models.BookingPaymentViewModel.ClickAction" />
         <variable
             name="viewModel"
-            type="com.example.servivet.ui.main.view_model.BookingPaymentViewModel" />
+            type="com.example.servivet.ui.main.view_model.booking_models.BookingPaymentViewModel" />
         <variable
             name="slotData"
-            type="com.example.servivet.data.model.booking_module.booking_summary.request.ScheduleRequest" />
+            type="com.example.servivet.data.model.booking_module.booking_summary.response.ServiceDetail" />
+
+        <variable
+            name="paymentData"
+            type="com.example.servivet.data.model.payment.payment_amount.response.PayAmountResult" />
 
     </data>
 
@@ -133,7 +137,7 @@
                                 android:layout_marginEnd="10dp"
                                 android:maxLines="1"
                                 android:ellipsize="end"
-                                android:text="@string/ac_repair"
+                                android:text="@{slotData.serviceName}"
                                 android:fontFamily="@font/poppins_semi_bold"
                                 android:textColor="@color/black"
                                 android:textSize="17dp" />
@@ -147,7 +151,7 @@
                                 android:fontFamily="@font/poppins_regular"
                                 android:maxLines="1"
                                 android:ellipsize="end"
-                                android:text="@string/by_prateek_mehta"
+                                android:text='@{"by"+slotData.createdBy.name}'
                                 android:textColor="#7A7A7A"
                                 android:textSize="14dp" />
 
@@ -168,7 +172,7 @@
                                 android:layout_marginStart="5dp"
                                 android:ellipsize="end"
                                 android:fontFamily="@font/poppins_regular"
-                                android:text="@string/a_block_sector_63_noida"
+                                android:text="@{slotData.address}"
                                 android:textColor="#7A7A7A"
                                 android:textSize="15dp" />
                         </LinearLayout>
@@ -281,7 +285,7 @@
                                     android:maxLength="30"
                                     android:textColor="@color/grey_6E6E6E"
                                     android:layout_height="wrap_content"
-                                    android:text="@{slotData.serviceMode}"/>
+                                    android:text="@{slotData.serviceModeLocal}"/>
                             </LinearLayout>
 
                         </LinearLayout>
@@ -363,7 +367,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="15dp"
                             android:visibility="gone"
-                            android:background="@color/grey_FC5252"
+                            android:background="@color/carnation"
                             android:text="@string/sorry_this_time_slot_is_not_available"
                             android:fontFamily="@font/poppins_regular"
                             android:paddingStart="10sp"
@@ -413,7 +417,6 @@
                             android:layout_weight="1"
                             android:drawablePadding="10dp"
                             android:drawableStart="@drawable/apply_coupon_icon"
-                            android:text="@string/code_sbi100_applied"
                             android:fontFamily="@font/poppins_semi_bold"
                             android:textColor="@color/black_2"/>
                         <ImageView
@@ -472,7 +475,7 @@
                                 android:layout_height="wrap_content"/>
                             <TextView
                                 android:layout_width="wrap_content"
-                                android:text="@string/_1420"
+                                android:text="@{paymentData.serviceAmount}"
                                 android:textSize="15dp"
                                 android:layout_gravity="center_vertical"
                                 android:drawableStart="@drawable/rupree_icon"
@@ -502,7 +505,7 @@
                                 android:layout_height="wrap_content"/>
                             <TextView
                                 android:layout_width="wrap_content"
-                                android:text="@string/_25"
+                                android:text="@{paymentData.taxAmount}"
                                 android:maxLength="10"
                                 android:ellipsize="end"
                                 android:maxLines="1"
@@ -533,7 +536,7 @@
                             <TextView
                                 android:id="@+id/Promocode"
                                 android:layout_width="wrap_content"
-                                android:text="100"
+                                android:text="@{paymentData.couponDiscount}"
                                 android:maxLength="10"
                                 android:ellipsize="end"
                                 android:maxLines="1"
@@ -566,7 +569,7 @@
                                 android:layout_height="wrap_content"/>
                             <TextView
                                 android:layout_width="wrap_content"
-                                android:text="@string/_1524"
+                                android:text="@{paymentData.payableAmount}"
                                 android:textSize="15sp"
                                 android:layout_gravity="center_vertical"
                                 android:drawableStart="@drawable/rupree_icon"
@@ -610,6 +613,7 @@
             android:orientation="horizontal"
             android:paddingBottom="10dp">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
@@ -633,10 +637,9 @@
                 android:id="@+id/amount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/_1524"
+                android:text="@{paymentData.payableAmount}"
                 android:textSize="21sp"
                 android:maxLength="8"
-
                 android:drawablePadding="5dp"
                 android:stateListAnimator="@null"
                 android:backgroundTint="@null"

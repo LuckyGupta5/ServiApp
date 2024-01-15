@@ -1,9 +1,12 @@
 package com.example.servivet.data.model.booking_module.coupon.response
 
-data class Coupon(
+import com.example.servivet.utils.interfaces.ListAdapterItem
+import java.io.Serializable
+
+data class CouponList(
     val _id: String,
     val accountStatus: Int,
     val bearerBy: Int,
     val couponCode: String,
     val description: String
-)
+):ListAdapterItem,Serializable

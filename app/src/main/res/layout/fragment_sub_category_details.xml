@@ -367,7 +367,7 @@
                             android:layout_marginStart="18dp"
                             android:layout_marginTop="4dp"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:text="4.0"
+                            android:text='@{data.ratingReview.averageRating == null?"0":data.ratingReview.averageRating}'
                             android:textColor="@color/black"
                             android:textSize="28sp"
                             app:layout_constraintStart_toStartOf="parent"
@@ -379,7 +379,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="18dp"
-                            android:rating="4"
+                            android:rating="@{data.ratingReview.averageRating == null?0.0F:data.ratingReview.averageRating}"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/idRatingCount" />
 
@@ -390,7 +390,7 @@
                             android:layout_marginStart="18dp"
                             android:layout_marginTop="9dp"
                             android:fontFamily="@font/poppins_regular"
-                            android:text="15 Reviews"
+                            android:text="@{data.ratingReview.totalReview}"
                             android:textSize="15sp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/idRatingBar" />

@@ -186,6 +186,8 @@
             android:id="@+id/action_bookingDetailsFragment_to_changedateFragment"
             app:destination="@id/changedateFragment" />
     </fragment>
+
+
     <fragment
         android:id="@+id/bookingSummaryFragment"
         android:name="com.example.servivet.ui.main.fragment.BookingSummaryFragment"
@@ -234,7 +236,17 @@
         android:id="@+id/couponsFragment"
         android:name="com.example.servivet.ui.main.fragment.CouponsFragment"
         android:label="CouponsFragment"
-        tools:layout="@layout/coupon_design_recycler" />
+        tools:layout="@layout/coupon_design_recycler" >
+
+        <argument
+            android:name="data"
+            app:argType="string" />
+
+        <argument
+            android:name="from"
+            app:argType="integer" />
+
+    </fragment>
     <fragment
         android:id="@+id/chatRequestFragment"
         android:name="com.example.servivet.ui.main.fragment.ChatRequestFragment"

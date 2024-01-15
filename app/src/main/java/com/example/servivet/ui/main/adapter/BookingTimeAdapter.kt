@@ -42,8 +42,8 @@ class BookingTimeAdapter(
             Log.e("TAG", "bind: ena", )
         }
         if(isFirst){
-            list[0]?.let {
-                onItemClick("", context.getString(R.string.slot),list[0].startTime)
+            list[position]?.let {
+                onItemClick(list[position]._id, context.getString(R.string.slot),list[position].startTime)
             }
         }
 

@@ -1,6 +1,9 @@
 package com.example.servivet.data.api
 
+import com.example.servivet.data.model.accept_booking.request.AcceptBookingRequest
+import com.example.servivet.data.model.accept_booking.response.AcceptBookingResponse
 import com.example.servivet.data.model.add_service.response.AddServiceResponse
+import com.example.servivet.data.model.booking_list.response.BookingListResponse
 import com.example.servivet.data.model.booking_module.booking_model.request.RatingRequest
 import com.example.servivet.data.model.booking_module.booking_model.respnse.RatingResponseMain
 import com.example.servivet.data.model.booking_module.booking_slot.BookingSlotResponseMain
@@ -9,6 +12,8 @@ import com.example.servivet.data.model.booking_module.coupon.request.CouponAvala
 import com.example.servivet.data.model.booking_module.coupon.response.CouponResponseMain
 import com.example.servivet.data.model.business_verification_api.request.BusinessVerificationRequest
 import com.example.servivet.data.model.business_verification_api.response.BusinessVerificationResponse
+import com.example.servivet.data.model.cancel_booking.request.CancelBookingRequest
+import com.example.servivet.data.model.cancel_booking.response.CancelBookingResponse
 import com.example.servivet.data.model.current_api.response.CurrentResponse
 import com.example.servivet.data.model.edit_profile.response.EditProfileResponse
 import com.example.servivet.data.model.home.response.HomeResponse
@@ -94,4 +99,13 @@ interface ApiService {
 
     @POST("saveAddress")
     suspend fun saveAddress(@Body saveAddressRequest: SaveAddressRequest):SaveAddressResponse
+
+    @GET("mybooking")
+    suspend fun bookingList(@QueryMap request: HashMap<String, String>):BookingListResponse
+
+    @POST("cancel/booking")
+    suspend fun cancelBooking(@Body cancelBookingRequest: CancelBookingRequest):CancelBookingResponse
+
+    @POST("accept/booking")
+    suspend fun acceptBooking(@Body acceptBookingRequest: AcceptBookingRequest):AcceptBookingResponse
 }

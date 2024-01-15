@@ -200,13 +200,12 @@
                 android:clipToPadding="false"
                 app:tabIndicatorFullWidth="false"
                 app:tabGravity="center"
-                app:tabMode="fixed"
+                app:tabMode="scrollable"
                 app:tabSelectedTextAppearance="@style/text_active"
                 app:tabTextAppearance="@style/text_inactive"
                 app:tabIndicatorHeight="5dp"
                 app:tabIndicator="@drawable/top_round_corner_app_theme_24dp"
                 app:tabIndicatorAnimationDuration="4"
-
                 />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -214,11 +213,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tabLayout"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:layout_marginTop="5dp"
+
                 android:background="@color/grey_F8F8F8"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/booking_list_design" />
+
+            <RelativeLayout
+                android:id="@+id/noDataLayout"
+                android:visibility="gone"
+                android:layout_below="@id/tabLayout"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/no_dataIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/no_data_icon" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/no_dataIcon"
+                    android:layout_centerHorizontal="true"
+                    android:text="No Data Found !"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"/>
+
+            </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
 </layout>

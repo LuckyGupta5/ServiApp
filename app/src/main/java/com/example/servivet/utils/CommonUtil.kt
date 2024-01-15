@@ -44,6 +44,7 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import java.io.*
 import java.sql.Timestamp
 import java.text.DateFormat
+import java.text.DecimalFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.time.DayOfWeek
@@ -63,9 +64,7 @@ object CommonUtils {
     @BindingAdapter("android:circularImage")
     fun loadCircularImage(view: View?, image_url: String?) {
         val imageView = view as ImageView?
-        Glide.with(view!!)
-            .load(image_url)/*.error(R.mipmap.circular_image)*/
-            .into(imageView!!)
+        Glide.with(view!!).load(image_url)/*.error(R.mipmap.circular_image)*/.into(imageView!!)
     }
 
     fun requestPermissions(
@@ -73,8 +72,7 @@ object CommonUtils {
     ): Boolean {
         val isAllPermissionGranted = booleanArrayOf(false) // Initialize with false
 
-        Dexter.withContext(activity)
-            .withPermissions(*permissions)
+        Dexter.withContext(activity).withPermissions(*permissions)
             .withListener(object : MultiplePermissionsListener {
                 @SuppressLint("UseCompatLoadingForDrawables")
                 override fun onPermissionsChecked(report: MultiplePermissionsReport) {
@@ -87,18 +85,14 @@ object CommonUtils {
                 }
 
                 override fun onPermissionRationaleShouldBeShown(
-                    permissions: List<PermissionRequest>,
-                    token: PermissionToken
+                    permissions: List<PermissionRequest>, token: PermissionToken
                 ) {
                     // Handle the rationale message and re-request the permission
                     showRationaleDialog(activity, token)
                 }
-            })
-            .withErrorListener {
+            }).withErrorListener {
                 Log.e("TAG", "requestPermissions: " + it)
-            }
-            .onSameThread()
-            .check()
+            }.onSameThread().check()
 
         return isAllPermissionGranted[0]
     }
@@ -118,11 +112,8 @@ object CommonUtils {
         dialog.show()
     }
 
-     fun getPostalCodeByCoordinates(
-        placeSelectionListener: PlaceSelectionListener,
-        lat: Double,
-        lon: Double,
-        context: Context
+    fun getPostalCodeByCoordinates(
+        placeSelectionListener: PlaceSelectionListener, lat: Double, lon: Double, context: Context
     ): String {
         val geocoder = Geocoder(context, Locale.getDefault())
         var zipCode: String? = null
@@ -145,6 +136,7 @@ object CommonUtils {
         }
         return null.toString()
     }
+
     private fun showSettingsDialog(activity: Activity, PERMISSION_REQUEST_CODE: Int) {
         val dialog = AlertDialog.Builder(activity)
         dialog.setMessage(activity.getString(R.string.servivet_require_this_permission))
@@ -234,8 +226,7 @@ object CommonUtils {
 
 
     fun monthYearFromDate(input: String?): String? {
-        val inFormat =
-            SimpleDateFormat("EEE, yyyy-MM-dd", Locale.ENGLISH)
+        val inFormat = SimpleDateFormat("EEE, yyyy-MM-dd", Locale.ENGLISH)
         var date: Date? = null
         try {
             date = inFormat.parse(input)
@@ -261,7 +252,7 @@ object CommonUtils {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun getDayOfWeek():String {
+    fun getDayOfWeek(): String {
         val dayOfWeek: DayOfWeek = LocalDate.now().dayOfWeek
         val dayName: String = dayOfWeek.getDisplayName(TextStyle.FULL, Locale.getDefault())
         return dayName
@@ -269,8 +260,7 @@ object CommonUtils {
 
     fun dayFromDate(input: String?): String? {
 //        Log.i("TAG", "dayFromDate: "+ input);
-        val inFormat =
-            SimpleDateFormat("EEE, yyyy-MM-dd", Locale.ENGLISH)
+        val inFormat = SimpleDateFormat("EEE, yyyy-MM-dd", Locale.ENGLISH)
         var date: Date? = null
         try {
             date = inFormat.parse(input)
@@ -282,8 +272,7 @@ object CommonUtils {
     }
 
     fun dateFromDate(input: String?): String? {
-        val inFormat =
-            SimpleDateFormat("EEE, yyyy-MM-dd", Locale.ENGLISH)
+        val inFormat = SimpleDateFormat("EEE, yyyy-MM-dd", Locale.ENGLISH)
         var date: Date? = null
         try {
             date = inFormat.parse(input)
@@ -339,8 +328,7 @@ object CommonUtils {
         val sel = MediaStore.Images.Media._ID + "=?"
 
         val cursor: Cursor = activity.getContentResolver().query(
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-            column, sel, arrayOf<String>(imgId), null
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI, column, sel, arrayOf<String>(imgId), null
         )!!
 
         val columnIndex = cursor.getColumnIndex(column[0])
@@ -363,10 +351,7 @@ object CommonUtils {
         val bytes = ByteArrayOutputStream()
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
         val path = MediaStore.Images.Media.insertImage(
-            inContext.contentResolver,
-            inImage,
-            "Title" + System.currentTimeMillis(),
-            null
+            inContext.contentResolver, inImage, "Title" + System.currentTimeMillis(), null
         )
         return Uri.parse(path)
     }
@@ -409,8 +394,7 @@ object CommonUtils {
             textView.text = mSelectedTime
         }
         val timePickerDialog = TimePickerDialog(
-            context, AlertDialog.THEME_HOLO_LIGHT, timeSetListener, hour, minute,
-            false
+            context, AlertDialog.THEME_HOLO_LIGHT, timeSetListener, hour, minute, false
         )
         timePickerDialog.show()
         return mSelectedTime
@@ -437,9 +421,7 @@ object CommonUtils {
     }
 
     fun datePickerNew2(
-        context: Context?,
-        selectedDate: String?,
-        finalListener: CalenderResponseListener<Any?>
+        context: Context?, selectedDate: String?, finalListener: CalenderResponseListener<Any?>
     ) {
         val mYear: Int
         val mMonth: Int
@@ -450,8 +432,7 @@ object CommonUtils {
         mMonth = c[Calendar.MONTH]
         mDay = c[Calendar.DAY_OF_MONTH]
         val datePickerDialog = DatePickerDialog(
-            context!!,
-            { view: DatePicker?, year: Int, monthOfYear: Int, dayOfMonth: Int ->
+            context!!, { view: DatePicker?, year: Int, monthOfYear: Int, dayOfMonth: Int ->
                 var monthOfYear = monthOfYear
                 var day = ""
                 var month = ""
@@ -473,8 +454,8 @@ object CommonUtils {
             }, mYear, mMonth, mDay
         )
         if (selectedDate != null && selectedDate != "") {
-            val items1 = selectedDate.split("-".toRegex()).dropLastWhile { it.isEmpty() }
-                .toTypedArray()
+            val items1 =
+                selectedDate.split("-".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
             val date1 = items1[0]
             val month = items1[1]
             val year = items1[2]
@@ -488,9 +469,7 @@ object CommonUtils {
     }
 
     fun datePickerNew3(
-        context: Context?,
-        selectedDate: String?,
-        finalListener: CalenderResponseListener<String?>
+        context: Context?, selectedDate: String?, finalListener: CalenderResponseListener<String?>
     ) {
         val mYear: Int
         val mMonth: Int
@@ -501,8 +480,7 @@ object CommonUtils {
         mMonth = c[Calendar.MONTH]
         mDay = c[Calendar.DAY_OF_MONTH]
         val datePickerDialog = DatePickerDialog(
-            context!!,
-            { view: DatePicker?, year: Int, monthOfYear: Int, dayOfMonth: Int ->
+            context!!, { view: DatePicker?, year: Int, monthOfYear: Int, dayOfMonth: Int ->
                 var day = ""
                 var month = ""
                 day = if (dayOfMonth < 10) {
@@ -535,10 +513,20 @@ object CommonUtils {
     }
 
 
+    fun getDateTimeStampConvert(date: String):String?{
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+        inputFormat.timeZone = TimeZone.getTimeZone("UTC")
+        val date: Date = inputFormat.parse(date)
+
+        val outputFormat = SimpleDateFormat("dd MMM, hh:mm a")
+        outputFormat.timeZone = TimeZone.getDefault()
+
+        val outputDateString = outputFormat.format(date)
+        return  outputDateString
+    }
     @SuppressLint("SimpleDateFormat")
     fun getDateFromTimeStamp(date: String?): String? {
-        val sdf =
-            SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
         val outputDate = SimpleDateFormat("dd MMM yyyy")
         val outputTime = SimpleDateFormat("HH:mm:aa")
         sdf.timeZone = TimeZone.getTimeZone("UTC")
@@ -608,8 +596,7 @@ object CommonUtils {
     }
 
 
-    fun getRealPathFromDocumentUri(context: Context, uri: Uri): String? {
-        /*        var filePath = ""
+    fun getRealPathFromDocumentUri(context: Context, uri: Uri): String? {/*        var filePath = ""
                 val p = Pattern.compile("(\\d+)$")
                 val m = p.matcher(uri.toString())
                 if (!m.find()) {
@@ -658,11 +645,7 @@ object CommonUtils {
             val column = "_data"
             val projection = arrayOf(column)
             val cursor = context.contentResolver.query(
-                databaseUri,
-                projection,
-                selection,
-                selectionArgs,
-                null
+                databaseUri, projection, selection, selectionArgs, null
             )
             cursor?.let {
                 if (it.moveToFirst()) {
@@ -677,22 +660,18 @@ object CommonUtils {
         val path = realPath.ifEmpty {
             when {
                 newUri.path?.contains("/document/raw:") == true -> newUri.path?.replace(
-                    "/document/raw:",
-                    ""
+                    "/document/raw:", ""
                 )
 
                 newUri.path?.contains("/document/primary:") == true -> newUri.path?.replace(
-                    "/document/primary:",
-                    "/storage/emulated/0/"
+                    "/document/primary:", "/storage/emulated/0/"
                 )
 
                 else -> return null
             }
         }
-        return if (path.isNullOrEmpty())
-            null
-        else
-            File(path).toString()
+        return if (path.isNullOrEmpty()) null
+        else File(path).toString()
 
     }
 
@@ -772,9 +751,7 @@ object CommonUtils {
             SplashViewModel.isLogout = true
             Session.logout()
             ContextCompat.startActivity(
-                context,
-                Intent(requireActivity, MainActivity::class.java),
-                null
+                context, Intent(requireActivity, MainActivity::class.java), null
             )
             requireActivity.finish()
         }
@@ -782,7 +759,7 @@ object CommonUtils {
         alert.show()
     }
 
-    fun customalertdialog(context: Context?, msg: String?, from: Int) {
+    fun customalertdialog(context: Activity?, msg: String?, from: Int) {
 
         val dialog = Dialog(context!!)
         dialog.setContentView(R.layout.alert_dialog_custom)
@@ -791,9 +768,7 @@ object CommonUtils {
         title.setText(R.string.app_name)
         val message = dialog.findViewById<TextView>(R.id.message)
         message.text = msg
-        /* val view = dialog.findViewById<View>(R.id.viewCenter)
-         view.visibility = View.GONE
-        */
+
         val dialogButton = dialog.findViewById<TextView>(R.id.yes)
         val dialogno = dialog.findViewById<TextView>(R.id.no)
         //dialogButton.gravity = Gravity.CENTER_HORIZONTAL
@@ -802,10 +777,12 @@ object CommonUtils {
             dialog.dismiss()
         }
         dialogButton.setOnClickListener { v: View? ->
-            /*  Session.logout()
-              SplashViewModel.isLogout
-              Session.saveLogin("flase")
-            */
+            Session.logout()
+            SplashViewModel.isLogout = false
+            Session.saveIsLogin(false)
+            context.finish()
+            var intent = Intent(context, MainActivity::class.java)
+            context.startActivity(intent)
             dialogButton.isEnabled.and(false)
             dialog.dismiss()
         }
@@ -1053,3 +1030,9 @@ fun setUtcToLocalTimeStamp(textView: AppCompatTextView, dateStr: String) {
     val formattedDate = df.format(date)
     textView.text = formattedDate
 }
+
+fun commaSaparator(number: Double?): String? {
+    val formatter = DecimalFormat("#,###,###")
+    return formatter.format(number)
+}
+

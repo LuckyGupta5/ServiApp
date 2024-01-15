@@ -79,7 +79,6 @@ class ReScheduleBookingBottomSheet : BaseBottomSheetDailogFragment<FragmentReSch
         binding.timeRecycler.adapter= BookingTimeAdapter(
             requireContext(),
             ArrayList(),
-            timepos,
             ArrayList(),
             onItemClick
         )

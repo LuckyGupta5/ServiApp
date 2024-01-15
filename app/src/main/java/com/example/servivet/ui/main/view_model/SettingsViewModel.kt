@@ -1,5 +1,6 @@
 package com.example.servivet.ui.main.view_model
 
+import android.app.Activity
 import android.content.Context
 import android.view.View
 import androidx.fragment.app.FragmentActivity
@@ -9,7 +10,7 @@ import com.example.servivet.ui.base.BaseViewModel
 import com.example.servivet.utils.CommonUtils
 
 class SettingsViewModel:BaseViewModel() {
-    inner class ClickAction(var frgmentActivity: FragmentActivity){
+    inner class ClickAction(var frgmentActivity: Activity){
         fun backbtn(view:View){
             view.findNavController().popBackStack()
         }

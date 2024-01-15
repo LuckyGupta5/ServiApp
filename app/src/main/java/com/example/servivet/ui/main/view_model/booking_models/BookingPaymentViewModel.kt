@@ -1,6 +1,7 @@
 package com.example.servivet.ui.main.view_model.booking_models
 
 import android.content.Context
+import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.LiveData
@@ -83,7 +84,9 @@ class BookingPaymentViewModel : BaseViewModel() {
             isCouponApply = cCode.isNotEmpty()
             couponCode = cCode
 
+
         }
+        Log.e("TAG", "getPaymentAmountRequest: ${Gson().toJson(amountRequest)}", )
         SECURE_HEADER = "secure"
         request.servivet_user_req = AESHelper.encrypt(SECURITY_KEY, Gson().toJson(amountRequest))
 

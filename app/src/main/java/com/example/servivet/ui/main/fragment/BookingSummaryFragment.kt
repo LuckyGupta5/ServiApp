@@ -73,15 +73,6 @@ class BookingSummaryFragment :
 
     override fun setupViewModel() {
 
-        /*   binding.apply {
-               lifecycleOwner=viewLifecycleOwner
-               viewModel=mViewModel
-               click=mViewModel.ClickAction(requireContext(),binding)
-           }
-        //   setadapter()
-           setDate()
-           settimeadapter()
-       */
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -236,7 +227,7 @@ class BookingSummaryFragment :
                             binding.summaryData = serviceDetail
                             initSlotModel()
                             setPriceValue()
-                            Log.e("TAG", "setupObservers: ${Gson().toJson(it.data.result.providerLeaveList ?: "")}")
+                            Log.e("TAG", "setupObservers: ${Gson().toJson(it.data.result ?: "")}")
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
@@ -302,10 +293,11 @@ class BookingSummaryFragment :
                     ProcessDialog.dismissDialog()
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            Log.e("TAG", "initSlotModel: ${Gson().toJson(it.data.result)}")
+
+                            bookedSlot.clear()
                             bookedSlot.addAll(it.data.result.bookedSlot)
                             if (this.position != -1) {
-                                binding.timeRecycler.adapter = BookingTimeAdapter(requireContext(), atCenterList[position].slot, pos, bookedSlot, onItemClick)
+                                binding.timeRecycler.adapter = BookingTimeAdapter(requireContext(), atCenterList[position].slot, bookedSlot, onItemClick)
                             } else {
                             //    showSnackBar("slot not Found")
                             }

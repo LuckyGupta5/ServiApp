@@ -7,6 +7,10 @@
         <variable
             name="click"
             type="com.example.servivet.ui.main.adapter.BookingAdapter.ClickAction" />
+        
+        <variable
+            name="data"
+            type="com.example.servivet.data.model.booking_list.response.MyBooking" />
 
     </data>
 
@@ -50,7 +54,7 @@
                         android:layout_marginStart="5dp"
                         android:fontFamily="@font/poppins_semi_bold"
                         android:maxLength="12"
-                        android:text="@string/booking_id_num"
+                        android:text="@{data.bookingId}"
                         android:textColor="@color/black_2"
                         android:textSize="15sp" />
 
@@ -95,12 +99,15 @@
                         android:orientation="vertical">
 
                         <LinearLayout
+                            android:paddingBottom="10dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
                             <androidx.cardview.widget.CardView
                                 android:id="@+id/image_2_layout"
                                 android:layout_width="74dp"
+                                android:paddingVertical="5dp"
+
                                 android:layout_height="74dp"
                                 app:cardCornerRadius="12dp">
 
@@ -121,12 +128,12 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/subCatName"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:ellipsize="end"
                                     android:fontFamily="@font/poppins_semi_bold"
                                     android:maxLines="1"
-                                    android:text="Gym"
                                     android:textColor="@color/black"
                                     android:textSize="17sp" />
 
@@ -145,7 +152,7 @@
                                         android:fontFamily="@font/poppins_regular"
                                         android:maxLength="15"
                                         android:maxLines="1"
-                                        android:text="@string/by_prateek_mehta"
+                                        android:text='@{"by "+data.createdBy.name}'
                                         android:textColor="@color/grey_717171"
                                         android:textSize="13sp" />
 
@@ -160,12 +167,12 @@
 
 
                                     <TextView
+                                        android:id="@+id/serviceMode"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:ellipsize="end"
                                         android:fontFamily="@font/poppins_regular"
                                         android:maxLines="1"
-                                        android:text="@string/at_centre"
                                         android:textColor="@color/grey_979595"
                                         android:textSize="13sp" />
 
@@ -173,6 +180,7 @@
                                 </LinearLayout>
 
                                 <TextView
+                                    android:id="@+id/dateAndTimeText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
@@ -198,7 +206,44 @@
 
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="15dp"
+                            android:id="@+id/requestLayout"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/reject"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Reject"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textSize="15dp"
+                                android:layout_marginEnd="5dp"
+                                android:gravity="center"
+                                android:paddingVertical="12dp"
+                                android:background="@drawable/light_grey_round_corner_12_dp"
+                                android:textColor="@color/black_2"/>
+
+
+                            <TextView
+                                android:id="@+id/accept"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Accept"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textSize="15dp"
+                                android:layout_marginStart="5dp"
+                                android:gravity="center"
+                                android:paddingVertical="12dp"
+                                android:background="@drawable/app_theme_color_button_12dp"
+                                android:textColor="@color/white"/>
+                        </LinearLayout>
+
                         <View
+                            android:id="@+id/view"
+                            android:visibility="gone"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginTop="13dp"
@@ -207,6 +252,7 @@
 
                         <LinearLayout
                             android:id="@+id/reSchedule_layout"
+                            android:visibility="gone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp">

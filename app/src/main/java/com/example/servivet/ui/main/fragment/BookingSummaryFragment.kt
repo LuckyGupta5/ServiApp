@@ -236,7 +236,7 @@ class BookingSummaryFragment :
                             binding.summaryData = serviceDetail
                             initSlotModel()
                             setPriceValue()
-                            Log.e("TAG", "setupObservers: ${Gson().toJson(it.data.result.providerLeaveList?.get(0) ?: "")}")
+                            Log.e("TAG", "setupObservers: ${Gson().toJson(it.data.result.providerLeaveList ?: "")}")
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
@@ -363,8 +363,8 @@ class BookingSummaryFragment :
             }
             getString(R.string.slot)->{
                 mViewModel.result.serviceDetail?.time = data
+                mViewModel.result.serviceDetail?.slotId = position
 
-                Log.e("TAG", "slot:$position ", )
             }
 
         }

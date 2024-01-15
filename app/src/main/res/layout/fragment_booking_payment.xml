@@ -417,7 +417,6 @@
                             android:layout_weight="1"
                             android:drawablePadding="10dp"
                             android:drawableStart="@drawable/apply_coupon_icon"
-                            android:text="@string/code_sbi100_applied"
                             android:fontFamily="@font/poppins_semi_bold"
                             android:textColor="@color/black_2"/>
                         <ImageView

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.get
@@ -20,6 +21,7 @@ import com.example.servivet.ui.base.BaseActivity
 import com.example.servivet.ui.main.fragment.HomeFragment
 import com.example.servivet.ui.main.fragment.MyServiceFragment
 import com.example.servivet.ui.main.view_model.MyServiceViewModel
+import com.example.servivet.ui.main.view_model.SharedViewModel
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Status
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -33,6 +35,8 @@ class HomeActivity : BaseActivity(),MyServiceFragment.CallBack1{
     lateinit var view3: View
     lateinit var view4: View
     lateinit var bottom: LinearLayout
+    val sharedViewModel: SharedViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)

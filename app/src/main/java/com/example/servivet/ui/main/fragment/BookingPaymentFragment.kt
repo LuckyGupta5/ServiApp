@@ -3,6 +3,7 @@ package com.example.servivet.ui.main.fragment
 import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -12,6 +13,7 @@ import com.example.servivet.data.model.payment.payment_amount.response.PaymentRe
 import com.example.servivet.databinding.FragmentBookingPaymentBinding
 import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.bottom_sheet.MyWalletBottomsheet
+import com.example.servivet.ui.main.view_model.SharedViewModel
 import com.example.servivet.ui.main.view_model.booking_models.BookingPaymentViewModel
 import com.example.servivet.utils.AESHelper
 import com.example.servivet.utils.CommonUtils
@@ -27,6 +29,10 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, Booki
     override val binding: FragmentBookingPaymentBinding by viewBinding(FragmentBookingPaymentBinding::bind)
     override val mViewModel: BookingPaymentViewModel by viewModels()
     private val timeSlotData: BookingPaymentFragmentArgs by navArgs()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private lateinit var serviceData:ServiceDetail
+    private var couponCode = ""
+
 
     override fun isNetworkAvailable(boolean: Boolean) {
     }
@@ -41,7 +47,7 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, Booki
         if(Constants.APPLIED_COUPON=="APPLIED_COUPON"){
             binding.promoDiscountLayout.isVisible=true
             binding.appliedCoupon.isVisible=true
-            binding.applyCouponName.text=getText(R.string.code_sbi100_applied)
+            binding.applyCouponName.text=getString(R.string.code)+" "+mViewModel.cCode+" "+getString(R.string.applied)
             binding.applyCoupon.isVisible=false
            binding.applyCouponName.isClickable=false
         }
@@ -53,16 +59,27 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, Booki
             binding.applyCoupon.isVisible=true
 
         }
+
         openWelletBottomsheet()
         getTimeSlot()
+        getCouponCode()
+
+    }
+
+    private fun getCouponCode() {
+        sharedViewModel.getData().observe(viewLifecycleOwner) { couponCode ->
+            mViewModel.cCode = couponCode
+            setupObservers()
+        }
     }
 
     private fun getTimeSlot() {
         when(getString(timeSlotData.from)){
             getString(R.string.booking_summary)->{
-                val data = Gson().fromJson(timeSlotData.data, ServiceDetail::class.java)
-                mViewModel.bookingData = data
-                binding.slotData = data
+                serviceData = Gson().fromJson(timeSlotData.data, ServiceDetail::class.java)
+                mViewModel.bookingData = serviceData
+                binding.slotData = serviceData
+
             }
         }
     }
@@ -79,9 +96,7 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, Booki
     }
 
     override fun setupObservers() {
-        binding.Promocode.text="- "+"₹ "+getText(R.string._100)
-
-        mViewModel.getPaymentAmountRequest()
+        mViewModel.getPaymentAmountRequest(serviceData)
         mViewModel.getPaymentAmountData().observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
@@ -91,10 +106,8 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, Booki
                     )
                     when (data.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            Log.e("TAG", "setupObservers3212: ${Gson().toJson(data.result)}", )
+                            Log.e("TAG", "setupObservers: ${data.result}", )
                            binding.paymentData = data.result
-                            showSnackBar(data.message)
-
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {

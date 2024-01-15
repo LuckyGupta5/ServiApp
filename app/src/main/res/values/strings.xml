@@ -288,7 +288,8 @@
     <string name="tax">Tax</string>
     <string name="payable_amount">Payable Amount</string>
     <string name="pay_now">Pay now</string>
-    <string name="code_sbi100_applied">Code SBI100 Applied</string>
+    <string name="code">Code</string>
+    <string name="applied">Applied</string>
     <string name="coupons">Coupons</string>
     <string name="enter_promocode">Enter promocode</string>
     <string name="apply">Apply</string>

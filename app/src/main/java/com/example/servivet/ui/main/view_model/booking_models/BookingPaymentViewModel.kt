@@ -14,8 +14,6 @@ import com.example.servivet.data.model.payment.payment_amount.request.PaymentReq
 import com.example.servivet.data.repository.MainRepository
 import com.example.servivet.databinding.FragmentBookingPaymentBinding
 import com.example.servivet.ui.base.BaseViewModel
-import com.example.servivet.ui.main.fragment.BookingPaymentFragment
-import com.example.servivet.ui.main.fragment.BookingPaymentFragmentArgs
 import com.example.servivet.ui.main.fragment.BookingPaymentFragmentDirections
 import com.example.servivet.utils.AESHelper
 import com.example.servivet.utils.Constants
@@ -33,7 +31,8 @@ class BookingPaymentViewModel : BaseViewModel() {
 
     var bookingData = ServiceDetail()
     private var request = CommonRequest()
-    private val amountRequest = PaymentRequest()
+    var cCode = ""
+    val amountRequest = PaymentRequest()
     private val paymentAmountData = SingleLiveEvent<Resource<String>>()
 
 
@@ -62,7 +61,7 @@ class BookingPaymentViewModel : BaseViewModel() {
             } else {
                 binding.applyCoupon.isVisible = false
                 binding.appliedCoupon.isVisible = true
-                binding.applyCouponName.text = context.getText(R.string.code_sbi100_applied)
+                binding.applyCouponName.text = cCode
                 binding.promoDiscountLayout.isVisible = true
             }
 
@@ -76,13 +75,13 @@ class BookingPaymentViewModel : BaseViewModel() {
         return paymentAmountData
     }
 
-    fun getPaymentAmountRequest() {
+    fun getPaymentAmountRequest(serviceData: ServiceDetail) {
         amountRequest.apply {
-            serviceId = "65798f89b55d7af39650a617"
-            serviceMode = "atCenter"
-            slotId = "65798fb4b55d7af39650a63f"
-            isCouponApply = false
-            couponCode = ""
+            serviceId = serviceData._id
+            serviceMode = serviceData.serviceModeLocal
+            slotId = serviceData.slotId
+            isCouponApply = cCode.isNotEmpty()
+            couponCode = cCode
 
         }
         SECURE_HEADER = "secure"

@@ -23,7 +23,8 @@ data class ServiceDetail(
     var serviceModeLocal: String? = null,
     var date: String? = null,
     var time: String? = null,
-    val addressLocal: String? = null
+    var addressLocal: String? = null,
+    var slotId: String? = null
 
 
     )

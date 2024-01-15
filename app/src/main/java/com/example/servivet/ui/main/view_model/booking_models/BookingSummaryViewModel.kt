@@ -42,7 +42,7 @@ class BookingSummaryViewModel:BaseViewModel() {
 
 
     fun getReportRatingRequest(id: String) {
-        request["serviceId"] = id
+        request["serviceId"] = id  //"657fea25b55d7af39650d84e"
         hitSummaryApi()
 
     }

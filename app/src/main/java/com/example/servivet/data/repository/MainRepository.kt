@@ -6,6 +6,7 @@ import com.example.servivet.data.model.booking_module.coupon.request.CouponAvala
 import com.example.servivet.data.model.business_verification_api.request.BusinessVerificationRequest
 import com.example.servivet.data.model.common.request.CommonRequest
 import com.example.servivet.data.model.report_rating.request.ReportRatingRequest
+import com.example.servivet.data.model.save_address.request.SaveAddressRequest
 import com.example.servivet.data.model.send_otp.request.SendOtpRequest
 import com.example.servivet.data.model.service_category_details.request.ServiceCategoryDetailsRequest
 import com.example.servivet.data.model.service_list.request.ServiceListRequest

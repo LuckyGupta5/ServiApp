@@ -236,7 +236,7 @@ class BookingSummaryFragment :
                             binding.summaryData = serviceDetail
                             initSlotModel()
                             setPriceValue()
-                            Log.e("TAG", "setupObservers: ${Gson().toJson(serviceDetail)}")
+                            Log.e("TAG", "setupObservers: ${Gson().toJson(it.data.result.providerLeaveList?.get(0) ?: "")}")
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {

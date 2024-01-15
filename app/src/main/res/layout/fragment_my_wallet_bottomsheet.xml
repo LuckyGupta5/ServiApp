@@ -114,7 +114,7 @@
                 android:fontFamily="@font/poppins_regular"
                 android:includeFontPadding="false"
                 android:text="@string/insufficient_balance"
-                android:textColor="@color/grey_FC5252"
+                android:textColor="@color/carnation"
                 android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@+id/myWalletId"
                 app:layout_constraintTop_toBottomOf="@+id/AvailableBalanceId" />

@@ -1,4 +1,5 @@
 package com.example.servivet.ui.main.fragment
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -6,6 +7,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.example.servivet.R
 import com.example.servivet.data.model.review_ratinng.ReviewRating
+import com.example.servivet.data.model.service_category_details.response.RatingReviews
 import com.example.servivet.data.model.service_list.response.ServiceList
 import com.example.servivet.databinding.FragmentSubCategoryDetailsBinding
 import com.example.servivet.ui.base.BaseFragment
@@ -31,6 +33,7 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
     private val reportViewModel:RatingReportViewModel by viewModels()
     private val reviewViewModel:RatingReviewViewModel by viewModels()
     private val ratingList = ArrayList<ReviewRating>()
+    private lateinit var reviews:RatingReviews
     var serviceData: ServiceList?=null
     override fun isNetworkAvailable(boolean: Boolean) {
     }
@@ -44,7 +47,7 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
 
 
     private fun initRatingAdapter() {
-        binding.ratingAdapter = RatingAdapter(requireContext(), ArrayList(),onItemClick)
+        binding.ratingAdapter = RatingAdapter(requireContext(), ArrayList(),onItemClick,reviews)
 
     }
 
@@ -61,7 +64,6 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
 
 
         mViewModel.hitServiceDetailsAPI(requireContext(),requireActivity(),requireActivity().isFinishing)
-        initRatingAdapter()
         initReviewViewModel()
         initReportViewModel()
     }
@@ -74,13 +76,17 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             binding.data=it.data.result!!.serviceDetail
-                            setImageAdapter(it.data.result.serviceDetail!!.images!!)
+                            reviews = it.data.result.serviceDetail?.ratingReview!!
+                            setImageAdapter(it.data.result.serviceDetail.images!!)
                             val smallest: String = min(it.data.result.serviceDetail.atCenterPrice?:0.0, it.data.result.serviceDetail.atHomePrice?:0.0).toString()
                             val largest: String = max(it.data.result.serviceDetail.atCenterPrice?:0.0,it.data.result.serviceDetail.atHomePrice?:0.0).toString()
                             binding.smallest.text=commaSaparator(smallest.toDouble()).toString()
                             binding.largest.text=commaSaparator(largest.toDouble()).toString()
                             if(it.data.result.serviceDetail.images!!.isNotEmpty()&&it.data.result.serviceDetail.images!=null)
                                  Glide.with(requireContext()).load(it.data.result.serviceDetail!!.images!![0]).into(binding.image2)
+
+                            initRatingAdapter()
+
                         }
                         StatusCode.STATUS_CODE_FAIL -> {
                             showSnackBar(it.data.message!!)

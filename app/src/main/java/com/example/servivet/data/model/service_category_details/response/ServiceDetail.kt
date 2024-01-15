@@ -25,5 +25,6 @@ data class ServiceDetail(
     val status: Int?=null,
     val subCategory: String?=null,
     val subCategoryDetail: SubCategoryDeatils?=null,
-    val updatedAt: String?=null
+    val updatedAt: String?=null,
+    val ratingReview: RatingReviews?=null
 ):Serializable

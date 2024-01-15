@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="ratingData"
+            type="com.example.servivet.data.model.service_category_details.response.RatingReviews" />
+        <variable
+            name="count"
+            type="Integer" />
 
     </data>
 
@@ -17,9 +23,16 @@
             android:id="@+id/idSeekBar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:progress="40"
-            android:progressTint="@color/orange"
+            android:max="5"
+            android:focusable="false"
+            android:clickable="false"
+            android:progress="1"
             android:thumb="@null"
+            android:maxWidth="15dp"
+            android:maxHeight="3dp"
+            android:minWidth="15dp"
+            android:minHeight="15dp"
+            android:progressDrawable="@drawable/seekbar_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/idRatingCount"
             app:layout_constraintStart_toStartOf="parent"

@@ -41,7 +41,6 @@ object  RetrofitBuilder
                 }
                 if(SECURE_HEADER.isNotEmpty()){
                     ongoing.addHeader("requestfor", SECURE_HEADER)
-                  //  SECURE_HEADER = " "
                 }
                 chain.proceed(ongoing.build())
             }).addInterceptor(HttpLoggingInterceptor().apply {

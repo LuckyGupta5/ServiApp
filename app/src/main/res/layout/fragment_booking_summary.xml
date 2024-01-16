@@ -235,10 +235,10 @@
                             android:fontFamily="@font/poppins_regular"
                             android:onClick="@{click::atHome}"
                             android:text="@string/at_home"
+                            android:visibility="@{summaryData.serviceMode.atHome?View.VISIBLE:View.GONE}"
                             android:textColor="@color/black"
                             android:textSize="15sp" />
 
-<!-- android:visibility="@{summaryData.serviceMode.atHome?View.VISIBLE:View.GONE}"-->
                     </LinearLayout>
                 </LinearLayout>
 

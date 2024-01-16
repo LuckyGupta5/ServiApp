@@ -35,8 +35,6 @@ class BookingTimeAdapter(
 
         val dataA = list[position]
         val countInList2 = bookedSlot.count { it.slotId == dataA._id }
-        Log.e("TAG", "bind12: ${countInList2}", )
-        Log.e("TAG", "bind12: ${dataA.numOfSlot}", )
         if (countInList2 < dataA.numOfSlot) {
             binding.timeTxt.isEnabled = true
             isSelectpost = position

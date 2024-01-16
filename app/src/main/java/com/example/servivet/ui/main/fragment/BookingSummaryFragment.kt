@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.annotation.RequiresApi
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -225,8 +226,8 @@ class BookingSummaryFragment :
                                 this.position = findListIndex(atCenterList.indexOfFirst { it.day == getDayOfWeek() })
                             }
                             binding.summaryData = serviceDetail
-                            initSlotModel()
                             setPriceValue()
+                            initSlotModel()
                             Log.e("TAG", "setupObservers: ${Gson().toJson(it.data.result ?: "")}")
                         }
 
@@ -269,13 +270,13 @@ class BookingSummaryFragment :
             Log.e("TAG", "setupObserver123: ${it}")
             if (it) {
                 binding.amount.text = serviceDetail.atHomePrice
-                mViewModel.result.serviceDetail?.serviceModeLocal = getString(R.string.at_home)
+                mViewModel.result.serviceDetail?.serviceModeLocal = getString(R.string.athome)
             }
         }
         mViewModel.atCenter.observe(viewLifecycleOwner) {
             if (it) {
                 binding.amount.text = serviceDetail.atCenterPrice
-                mViewModel.result.serviceDetail?.serviceModeLocal= getString(R.string.at_center)
+                mViewModel.result.serviceDetail?.serviceModeLocal= getString(R.string.atcenter)
             }
         }
     }
@@ -286,20 +287,22 @@ class BookingSummaryFragment :
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun initSlotModel() {
-        slotViewModel.getSlotRequest(serviceId.data, date)
+        slotViewModel.getSlotRequest(serviceId.data, date,mViewModel.result.serviceDetail?.serviceModeLocal)
         slotViewModel.getSlotData().observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     ProcessDialog.dismissDialog()
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-
+                            Log.e("TAG", "initSlotModel:${Gson().toJson(it.data.result)} ", )
                             bookedSlot.clear()
                             bookedSlot.addAll(it.data.result.bookedSlot)
                             if (this.position != -1) {
+                                binding.timeRecycler.isVisible = true
                                 binding.timeRecycler.adapter = BookingTimeAdapter(requireContext(), atCenterList[position].slot, bookedSlot, onItemClick)
                             } else {
-                            //    showSnackBar("slot not Found")
+                                binding.timeRecycler.isVisible = false
+                                showSnackBar("slot not Found")
                             }
                         }
 
@@ -350,7 +353,6 @@ class BookingSummaryFragment :
                 this.position = findListIndex(atCenterList.indexOfFirst { it.day == position })
                 date = dayMonthYearFromDate(data) ?: ""
                 mViewModel.result.serviceDetail?.date = data
-
                 initSlotModel()
             }
             getString(R.string.slot)->{

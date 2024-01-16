@@ -20,7 +20,7 @@ class CouponAdapter(
         binding.couponData = item
         binding.applyCoupon.setOnClickListener(View.OnClickListener {
             Constants.APPLIED_COUPON="APPLIED_COUPON"
-            onItemClick(position, list[position].couponCode)
+            onItemClick(1, list[position].couponCode)
         })
 
 

@@ -118,7 +118,7 @@ class BookingDetailsFragment : BaseFragment<FragmentBookingDetailsBinding,Bookin
                             binding.data=it.data.result.bookingDetail
                             for(i in Session.category.indices){
                                 for(j in Session.category[i].subCategory!!.indices){
-                                    if(it.data.result.bookingit gDetail.serviceDetail.subCategory== Session.category[i].subCategory!![j].id){
+                                    if(it.data.result.bookingDetail.serviceDetail.subCategory== Session.category[i].subCategory!![j].id){
                                         binding.subCatName.text= Session.category[i].subCategory!![j].name
                                         Glide.with(requireContext()).load("https://ride-chef-dev.s3.ap-south-1.amazonaws.com/"+ Session.category[i].subCategory!![j].image).into(binding.image2)
                                     }

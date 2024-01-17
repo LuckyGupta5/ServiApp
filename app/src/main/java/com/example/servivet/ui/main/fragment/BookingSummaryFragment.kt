@@ -73,15 +73,6 @@ class BookingSummaryFragment :
 
     override fun setupViewModel() {
 
-        /*   binding.apply {
-               lifecycleOwner=viewLifecycleOwner
-               viewModel=mViewModel
-               click=mViewModel.ClickAction(requireContext(),binding)
-           }
-        //   setadapter()
-           setDate()
-           settimeadapter()
-       */
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

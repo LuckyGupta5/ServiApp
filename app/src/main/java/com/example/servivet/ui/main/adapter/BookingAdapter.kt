@@ -2,29 +2,31 @@ package com.example.servivet.ui.main.adapter
 
 import android.content.Context
 import android.graphics.Paint
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
+import android.widget.Button
+import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.servivet.R
 import com.example.servivet.data.model.booking_list.response.MyBooking
-import com.example.servivet.data.model.service_list.response.ServiceList
 import com.example.servivet.databinding.BookingListDesignBinding
 import com.example.servivet.ui.base.BaseAdapter
-import com.example.servivet.ui.main.bottom_sheet.FragmentRatingUsBottomSheet
-import com.example.servivet.ui.main.fragment.BookingDetailsFragment
 import com.example.servivet.utils.CommonUtils
-import com.example.servivet.utils.Constants
 import com.example.servivet.utils.Session
-import com.example.servivet.utils.interfaces.ListAdapterItem
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
+import java.util.concurrent.TimeUnit
+
 class BookingAdapter(var context:Context, var type: Int,var typeReschdule:Int,var list:ArrayList<MyBooking>,var callback: Callback,): BaseAdapter<BookingListDesignBinding, MyBooking>(list)
 {
     override val layoutId: Int=R.layout.booking_list_design
-
+    private var newCurrentTime: String=""
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun bind(binding: BookingListDesignBinding, item: MyBooking?, position: Int)
     {
         binding.apply {
@@ -82,8 +84,63 @@ class BookingAdapter(var context:Context, var type: Int,var typeReschdule:Int,va
 
         binding.reject.setOnClickListener { callback.rejectBooking(list[position]._id) }
         binding.accept.setOnClickListener { callback.acceptBooking(list[position]._id) }
+        currentTime()
+        updateButtonState(
+            CommonUtils.getDateFromTimeStamp(list[position].bookingDate)!!,
+            binding.reSchedule
+        )
+
+        Log.e("TAG", "BookingAdapter: "+CommonUtils.getDateFromTimeStamp(list[position].bookingDate))
 
     }
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun updateButtonState(exceedTime: String, yourButton: Button) {
+        try {
+            val startTime = LocalTime.parse(newCurrentTime, DateTimeFormatter.ofPattern("hh:mm a"))
+            val endTime = LocalTime.parse(exceedTime, DateTimeFormatter.ofPattern("hh:mm a"))
+
+            // Calculate time difference in milliseconds
+            val timeDifference = calculateTimeDifference(startTime, endTime)
+
+            // Check if the time difference is less than 24 hours
+            val isWithin24Hours = timeDifference < TimeUnit.HOURS.toMillis(24)
+
+            // Enable or disable the button accordingly
+            yourButton.isEnabled = isWithin24Hours
+
+            /*if(isWithin24Hours==false){
+                yourButton.isEnabled=true
+            }else {
+                yourButton.isEnabled=false
+            }*/
+        } catch (e: DateTimeParseException) {
+            // Handle parsing error
+            e.printStackTrace()
+            Log.e("TAG", "Parsing error: $newCurrentTime")
+        }   
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun calculateTimeDifference(startTime: LocalTime, endTime: LocalTime): Long {
+        val startMillis = startTime.toSecondOfDay() * 1000L
+        val endMillis = endTime.toSecondOfDay() * 1000L
+
+        return endMillis - startMillis
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun currentTime() {
+        val currentTime = LocalTime.now()
+
+        // Define the desired format (in AM/PM format)
+        val dateFormat = DateTimeFormatter.ofPattern("hh:mm a")
+
+        // Format the current time
+        val formattedTime = currentTime.format(dateFormat)
+
+        newCurrentTime=formattedTime
+        // Return the formatted time
+
+    }
+
 
     fun updateList(list: ArrayList<MyBooking>) {
         val start = if (this.list.size > 0) this.list.size else 0
@@ -95,6 +152,7 @@ class BookingAdapter(var context:Context, var type: Int,var typeReschdule:Int,va
         fun gotoBookingDetails(view:View){
             val bundle = Bundle()
             bundle.putString("type",type.toString())
+            bundle.putString("bookingId",list[position].bookingId)
             view.findNavController().navigate(R.id.action_bookingsFragment_to_bookingDetailsFragment,bundle)
         }
         fun gotoRateUs(view: View){
@@ -104,6 +162,7 @@ class BookingAdapter(var context:Context, var type: Int,var typeReschdule:Int,va
             val bundle=Bundle()
             bundle.putString("istype","1")
             bundle.putString("type",type.toString())
+            bundle.putString("bookingId",list[position].bookingId)
             view.findNavController().navigate(R.id.action_bookingsFragment_to_bookingDetailsFragment,bundle)
 
         }

@@ -376,6 +376,7 @@
     <string name="confirm">confirm</string>
     <string name="booking">booking</string>
     <string name="pay">Pay ₹</string>
+    <string name="pending">Pending</string>
 
 
     <string-array name="select_issue">
@@ -385,7 +386,5 @@
         <item>Item 3</item>
         <item>Item 4</item>
         <item>Item 5</item>
-
-
     </string-array>
 </resources>

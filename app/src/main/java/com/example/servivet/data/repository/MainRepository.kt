@@ -55,6 +55,7 @@ class MainRepository(private val apiService: ApiService) {
     suspend fun bookingListApi(request:HashMap<String,String>) = apiService.bookingList(request)
     suspend fun cancelBooking(cancelBookingRequest: CancelBookingRequest) = apiService.cancelBooking(cancelBookingRequest)
     suspend fun acceptBookingApi(acceptBookingRequest: AcceptBookingRequest) = apiService.acceptBooking(acceptBookingRequest)
+    suspend fun bookingDetailApi(bookingDetailRequest: BookingDetailRequest) = apiService.bookingDetail(bookingDetailRequest)
     suspend fun myWalletApi() = apiService.myWalletApi()
 
 

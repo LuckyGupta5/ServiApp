@@ -35,7 +35,6 @@ class BookingsFragment : BaseFragment<FragmentBookingBinding,BookingViewModel>(R
     lateinit var adapter: BookingAdapter
     private var list = ArrayList<MyBooking>()
     var currentPage = 1
-    var isLastPage: Boolean = false
     var isLoading: Boolean = false
     var typeReschdule:Int=0
 
@@ -51,10 +50,7 @@ class BookingsFragment : BaseFragment<FragmentBookingBinding,BookingViewModel>(R
 
         type=0
         typeReschdule=0
-
-
         mViewModel.hitBookingListAPI(1,1,10)
-
         setPagination()
         setBack()
         settablayout()
@@ -65,7 +61,7 @@ class BookingsFragment : BaseFragment<FragmentBookingBinding,BookingViewModel>(R
     }
 
     fun settablayout(){
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.request)))
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.pending)))
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.upcoming))
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.completed))
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.cancelled))
@@ -147,7 +143,7 @@ class BookingsFragment : BaseFragment<FragmentBookingBinding,BookingViewModel>(R
            binding.noDataLayout.visibility = View.VISIBLE
        }
 
-        }
+   }
 
 
   override fun setupObservers() {

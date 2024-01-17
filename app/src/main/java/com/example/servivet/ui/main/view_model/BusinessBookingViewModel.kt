@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.servivet.data.api.RetrofitBuilder
 import com.example.servivet.data.model.accept_booking.request.AcceptBookingRequest
 import com.example.servivet.data.model.accept_booking.response.AcceptBookingResponse
+import com.example.servivet.data.model.booking_list.response.BookingListResponse
 import com.example.servivet.data.model.cancel_booking.request.CancelBookingRequest
 import com.example.servivet.data.model.cancel_booking.response.CancelBookingResponse
 import com.example.servivet.data.model.sold_booking_list.response.SoldBookingListResponse
@@ -21,7 +22,7 @@ import java.io.IOException
 
 class BusinessBookingViewModel:BaseViewModel() {
     val request = HashMap<String,String>()
-    val soldBookingListResponse = SingleLiveEvent<Resource<SoldBookingListResponse>>()
+    val soldBookingListResponse = SingleLiveEvent<Resource<BookingListResponse>>()
     val cancelBookingResponse = SingleLiveEvent<Resource<CancelBookingResponse>>()
     var cancelBookingRequest=CancelBookingRequest()
 

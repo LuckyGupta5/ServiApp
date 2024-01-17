@@ -155,7 +155,7 @@ class SoldBookingAdapter(var context:Context, var type: Int, var typeReschdule:I
             val bundle = Bundle()
             bundle.putString("type",type.toString())
             bundle.putString("bookingId",list[position]._id)
-            view.findNavController().navigate(R.id.action_businessBookingFragment_to_bookingDetailsFragment,bundle)
+           // view.findNavController().navigate(R.id.action_businessBookingFragment_to_bookingDetailsFragment,bundle)
         }
         fun gotoRateUs(view: View){
             callback.onCallback("1")
@@ -165,7 +165,7 @@ class SoldBookingAdapter(var context:Context, var type: Int, var typeReschdule:I
             bundle.putString("istype","1")
             bundle.putString("type",type.toString())
             bundle.putString("bookingId",list[position]._id)
-            view.findNavController().navigate(R.id.action_businessBookingFragment_to_bookingDetailsFragment,bundle)
+           // view.findNavController().navigate(R.id.action_businessBookingFragment_to_bookingDetailsFragment,bundle)
 
         }
 

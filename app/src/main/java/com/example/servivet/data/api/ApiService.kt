@@ -116,7 +116,7 @@ interface ApiService {
     suspend fun bookingList(@QueryMap request: HashMap<String, String>):BookingListResponse
 
     @GET("mysoldbooking")
-    suspend fun mysoldbooking(@QueryMap request: HashMap<String, String>):SoldBookingListResponse
+    suspend fun mysoldbooking(@QueryMap request: HashMap<String, String>):BookingListResponse
 
     @POST("cancel/booking")
     suspend fun cancelBooking(@Body cancelBookingRequest: CancelBookingRequest):CancelBookingResponse

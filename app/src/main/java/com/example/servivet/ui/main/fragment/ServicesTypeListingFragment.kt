@@ -182,6 +182,7 @@ class ServicesTypeListingFragment : BaseFragment<FragmentServicesTypeListingBind
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             if (it.data.result.service.isNotEmpty()) {
+                                Log.e("TAG", "setupObservers1234321: ${Gson().toJson(it.data.result.service)}", )
                                 isLoading = true
                                 if (currentPage == 1)
                                     list = ArrayList()

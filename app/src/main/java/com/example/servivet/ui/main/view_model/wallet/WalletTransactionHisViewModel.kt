@@ -1,16 +1,15 @@
 package com.example.servivet.ui.main.view_model.wallet
 
-import android.content.Context
 import android.util.Log
-import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.servivet.data.api.RetrofitBuilder
 import com.example.servivet.data.model.booking_module.booking_summary.response.ServiceDetail
+import com.example.servivet.data.model.booking_module.wallte_transaction.request.WalletTranctionnRequest
+import com.example.servivet.data.model.common.request.CommonRequest
+import com.example.servivet.data.model.payment.payment_amount.request.PaymentRequest
 import com.example.servivet.data.repository.MainRepository
-import com.example.servivet.ui.base.BaseViewModel
-import com.example.servivet.ui.main.bottom_sheet.BookingCancelledBottomSheet
 import com.example.servivet.utils.AESHelper
 import com.example.servivet.utils.Constants
 import com.example.servivet.utils.Resource
@@ -21,43 +20,37 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 
+class WalletTransactionHisViewModel():ViewModel() {
+    private var request = CommonRequest()
+    val historyRequest = WalletTranctionnRequest()
 
-class MyWalletBottomsheetViewModel: BaseViewModel(){
-
-    private val walletData = SingleLiveEvent<Resource<String>>()
+    private val walletHistoryData = SingleLiveEvent<Resource<String>>()
     fun getWalletData(): LiveData<Resource<String>> {
-        return walletData
+        return walletHistoryData
     }
 
+    fun getPaymentAmountRequest(serviceData: ServiceDetail) {
+        Constants.SECURE_HEADER = "secure"
+        request.servivet_user_req = AESHelper.encrypt(Constants.SECURITY_KEY, Gson().toJson(historyRequest))
 
-
-    inner class ClickAction(var context: Context){
-       fun dismiss(view: View){
-           val fragment= BookingCancelledBottomSheet()
-           fragment.show((context as AppCompatActivity).supportFragmentManager,"childfragment")
-          // (context as AppCompatActivity).supportFragmentManager
-
-       }
+        hitWalletHistoryApi()
 
     }
 
-     fun hitWalletApi() {
-         Constants.SECURE_HEADER = "secure"
+    private fun hitWalletHistoryApi() {
 
-         val repository = MainRepository(RetrofitBuilder.apiService)
-        walletData.postValue(Resource.loading(null))
+        val repository = MainRepository(RetrofitBuilder.apiService)
+        walletHistoryData.postValue(Resource.loading(null))
         viewModelScope.launch {
             try {
-                walletData.postValue(Resource.success(repository.myWalletApi()))
+                walletHistoryData.postValue(Resource.success(repository.walletTransactionApi(request)))
             } catch (ex: IOException) {
                 ex.printStackTrace()
-                walletData.postValue(Resource.error(StatusCode.STATUS_CODE_INTERNET_VALIDATION, null
-                    )
-                )
+                walletHistoryData.postValue(Resource.error(StatusCode.STATUS_CODE_INTERNET_VALIDATION, null))
             } catch (exception: Exception) {
                 exception.printStackTrace()
                 if (exception is HttpException && exception.code() == StatusCode.HTTP_EXCEPTION) {
-                    walletData.postValue(
+                    walletHistoryData.postValue(
                         Resource.error(
                             StatusCode.HTTP_EXCEPTION.toString(),
                             null
@@ -66,7 +59,7 @@ class MyWalletBottomsheetViewModel: BaseViewModel(){
 //                    if(!finishing)
 //                        CommonUtils.logoutAlert(context, "Session Expired", "Your account has been blocked by Admin . Please contact to the Admin", requireActivity)
                 } else
-                    walletData.postValue(
+                    walletHistoryData.postValue(
                         Resource.error(
                             StatusCode.SERVER_ERROR_MESSAGE,
                             null
@@ -77,6 +70,4 @@ class MyWalletBottomsheetViewModel: BaseViewModel(){
             }
         }
     }
-
-
 }

@@ -117,4 +117,10 @@ interface ApiService {
 
     @POST("accept/booking")
     suspend fun acceptBooking(@Body acceptBookingRequest: AcceptBookingRequest):AcceptBookingResponse
+
+    @GET("my/wallet")
+    suspend fun myWalletApi():String
+
+    @POST("wallet/transaction/histroy")
+    suspend fun walletTransactionApi(@Body request:CommonRequest):String
 }

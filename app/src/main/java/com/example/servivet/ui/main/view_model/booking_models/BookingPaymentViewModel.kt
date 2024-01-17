@@ -1,6 +1,7 @@
 package com.example.servivet.ui.main.view_model.booking_models
 
 import android.content.Context
+import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.LiveData
@@ -11,6 +12,7 @@ import com.example.servivet.data.api.RetrofitBuilder
 import com.example.servivet.data.model.booking_module.booking_summary.response.ServiceDetail
 import com.example.servivet.data.model.common.request.CommonRequest
 import com.example.servivet.data.model.payment.payment_amount.request.PaymentRequest
+import com.example.servivet.data.model.payment.payment_amount.response.PayAmountResult
 import com.example.servivet.data.repository.MainRepository
 import com.example.servivet.databinding.FragmentBookingPaymentBinding
 import com.example.servivet.ui.base.BaseViewModel
@@ -32,7 +34,9 @@ class BookingPaymentViewModel : BaseViewModel() {
     var bookingData = ServiceDetail()
     private var request = CommonRequest()
     var cCode = ""
+    var isConfirm = false
     val amountRequest = PaymentRequest()
+    var payAmountResult = PayAmountResult()
     private val paymentAmountData = SingleLiveEvent<Resource<String>>()
 
 
@@ -49,6 +53,19 @@ class BookingPaymentViewModel : BaseViewModel() {
                         R.string.payment
                     )
                 )
+        }
+
+        fun goToWallerBottom(view: View) {
+
+            if (isConfirm) {
+                view.findNavController().navigate(
+                    BookingPaymentFragmentDirections.actionBookingPaymentFragmentToMyWalletBottomsheet2(Gson().toJson(payAmountResult),R.string.booking))
+
+            } else {
+                view.findNavController()
+                    .navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToSuretoConfirmBottomSheet())
+            }
+
         }
 
         fun cancelCoupon(view: View) {
@@ -83,7 +100,9 @@ class BookingPaymentViewModel : BaseViewModel() {
             isCouponApply = cCode.isNotEmpty()
             couponCode = cCode
 
+
         }
+        Log.e("TAG", "getPaymentAmountRequest: ${Gson().toJson(amountRequest)}")
         SECURE_HEADER = "secure"
         request.servivet_user_req = AESHelper.encrypt(SECURITY_KEY, Gson().toJson(amountRequest))
 

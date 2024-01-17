@@ -23,10 +23,10 @@ class BookingSlotViewModel : BaseViewModel() {
     }
 
 
-    fun getSlotRequest(id: String, date: String?) {
+    fun getSlotRequest(id: String, date: String?, serviceMode: String?) {
         request["serviceId"] = id //"65798f89b55d7af39650a617"
         request["bookingDate"] = date!!
-        request["serviceMode"] = "atCenter"
+        request["serviceMode"] = serviceMode!!
 
         hitSlotApi()
 

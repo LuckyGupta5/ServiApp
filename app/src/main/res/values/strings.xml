@@ -371,6 +371,7 @@
     <string name="search_location">Search Location</string>
     <string name="location_is_not_avialable">Location is not available.</string>
     <string name="request">Request</string>
+    <string name="pending">Pending</string>
 
 
     <string-array name="select_issue">

@@ -3,6 +3,8 @@ package com.example.servivet.data.api
 import com.example.servivet.data.model.accept_booking.request.AcceptBookingRequest
 import com.example.servivet.data.model.accept_booking.response.AcceptBookingResponse
 import com.example.servivet.data.model.add_service.response.AddServiceResponse
+import com.example.servivet.data.model.booking_detail.request.BookingDetailRequest
+import com.example.servivet.data.model.booking_detail.response.BookingDetailResponse
 import com.example.servivet.data.model.booking_list.response.BookingListResponse
 import com.example.servivet.data.model.booking_module.booking_model.request.RatingRequest
 import com.example.servivet.data.model.booking_module.booking_model.respnse.RatingResponseMain
@@ -119,7 +121,7 @@ interface ApiService {
     suspend fun acceptBooking(@Body acceptBookingRequest: AcceptBookingRequest):AcceptBookingResponse
 
     @POST("booking/detail")
-    suspend fun bookingDetail(@Body bookingDetailRequest: BookingDetailRequest):BookingDetailResponse
+    suspend fun bookingDetail(@Body bookingDetailRequest: BookingDetailRequest): BookingDetailResponse
 
     @GET("my/wallet")
     suspend fun myWalletApi():String

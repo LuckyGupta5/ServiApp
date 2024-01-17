@@ -58,7 +58,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_semi_bold"
                         android:maxLines="1"
-                        android:text="@string/noida"
+                        android:text="Delhi"
                         android:textColor="@color/black"
                         android:textSize="19dp" />
 

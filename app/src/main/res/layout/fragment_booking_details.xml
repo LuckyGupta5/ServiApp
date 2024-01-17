@@ -4,6 +4,11 @@
 
     <data>
 
+
+        <variable
+            name="data"
+            type="com.example.servivet.data.model.booking_detail.response.BookingDetail" />
+
         <variable
             name="viewModel"
             type="com.example.servivet.ui.main.view_model.BookingDetailsViewModel" />
@@ -91,7 +96,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <TextView
-                    android:id="@+id/gym"
+                    android:id="@+id/subCatName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
@@ -121,7 +126,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:maxLength="25"
                         android:maxLines="1"
-                        android:text="@string/by_prateek_mehta"
+                        android:text='@{"by "+data.userDetail.name}'
                         android:textColor="@color/grey_717171"
                         android:textSize="15sp" />
 
@@ -134,6 +139,7 @@
                         app:cardCornerRadius="8dp" />
 
                     <TextView
+                        android:id="@+id/serviceMode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
@@ -234,6 +240,7 @@
                             android:textSize="17sp" />
 
                         <TextView
+                            android:id="@+id/dateAndTimeText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -327,6 +334,7 @@
                             android:textSize="15sp" />
 
                         <TextView
+                            android:id="@+id/subTotal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -358,6 +366,7 @@
                             android:textSize="15dp" />
 
                         <TextView
+                            android:id="@+id/gst"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -395,6 +404,7 @@
                             android:textSize="15sp" />
 
                         <TextView
+                            android:id="@+id/total"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -479,7 +489,7 @@
                         android:ellipsize="end"
                         android:fontFamily="@font/poppins_regular"
                         android:maxLines="2"
-                        android:text="@string/provider_is_not_available_at_this_time"
+                        android:text="@{data.serviceDetail}"
                         android:textColor="@color/grey7"
                         android:textSize="15dp" />
 

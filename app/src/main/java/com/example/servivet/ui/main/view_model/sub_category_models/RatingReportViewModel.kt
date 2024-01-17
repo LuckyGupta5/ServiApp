@@ -20,8 +20,8 @@ import retrofit2.HttpException
 import java.io.IOException
 
 class RatingReportViewModel(): BaseViewModel(){
-    private val reportRequest = ReportRatingRequest()
-    private val ratingMData = SingleLiveEvent<Resource<CommonResponse>>()
+     val reportRequest = ReportRatingRequest()
+     val ratingMData = SingleLiveEvent<Resource<CommonResponse>>()
     val report = MutableLiveData(false)
     var errorMessage = SingleLiveEvent<String>()
 

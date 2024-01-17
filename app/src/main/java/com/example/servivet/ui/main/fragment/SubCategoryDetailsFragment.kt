@@ -1,4 +1,5 @@
 package com.example.servivet.ui.main.fragment
+import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -210,7 +211,9 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
     private val onItemClick:(String, String)->Unit = { identifier, data->
         when(identifier){
             getString(R.string.report)->{
-                findNavController().navigate(R.id.action_subCategoryDetailsFragment_to_ratingReportBottomSheetFragment)
+                val bundle= Bundle()
+                bundle.putString("id",data)
+                findNavController().navigate(R.id.action_subCategoryDetailsFragment_to_ratingReportBottomSheetFragment,bundle)
                // reportViewModel.getReportRatingRequest(data)
             }
         }

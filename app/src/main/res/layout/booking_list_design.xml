@@ -318,16 +318,15 @@
                                 android:theme="@style/RatingBar"
                                 android:visibility="gone" />
 
-                            <TextView
+                            <com.google.android.material.button.MaterialButton
                                 android:id="@+id/reSchedule"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:background="@drawable/app_theme_10dp"
+                                android:background="@drawable/button_selector_10dp"
                                 android:fontFamily="@font/poppins_medium"
                                 android:paddingHorizontal="20dp"
                                 android:onClick="@{click::clickreschdulegotoBookingdetail}"
-                                android:paddingVertical="8dp"
                                 android:text="@string/reschedule"
                                 android:textAllCaps="false"
                                 android:textColor="@color/white"

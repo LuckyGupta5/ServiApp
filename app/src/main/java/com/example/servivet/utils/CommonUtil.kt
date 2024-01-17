@@ -527,7 +527,7 @@ object CommonUtils {
     fun getDateFromTimeStamp(date: String?): String? {
         val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
         val outputDate = SimpleDateFormat("dd MMM yyyy")
-        val outputTime = SimpleDateFormat("HH:mm:aa")
+        val outputTime = SimpleDateFormat("hh:mm a")
         sdf.timeZone = TimeZone.getTimeZone("UTC")
         var dateTimeStamp: Date? = Date()
         try {

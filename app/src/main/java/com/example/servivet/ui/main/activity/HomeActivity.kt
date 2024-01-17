@@ -18,11 +18,13 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.servivet.R
 import com.example.servivet.databinding.ActivityHomeBinding
 import com.example.servivet.ui.base.BaseActivity
+import com.example.servivet.ui.main.fragment.BusinessBookingFragment
 import com.example.servivet.ui.main.fragment.HomeFragment
 import com.example.servivet.ui.main.fragment.MyServiceFragment
 import com.example.servivet.ui.main.view_model.MyServiceViewModel
 import com.example.servivet.ui.main.view_model.SharedViewModel
 import com.example.servivet.utils.ProcessDialog
+import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
@@ -85,7 +87,12 @@ class HomeActivity : BaseActivity(),MyServiceFragment.CallBack1{
                    view4.visibility = View.VISIBLE
                 }
 
+
                 R.id.bookingsFragment -> {
+
+                    if(Session.type=="2"){
+                        showContainerFragment()
+                    }
                    bottom.visibility = View.VISIBLE
                    view1.visibility = View.INVISIBLE
                    view2.visibility = View.VISIBLE
@@ -101,6 +108,12 @@ class HomeActivity : BaseActivity(),MyServiceFragment.CallBack1{
 
         }
 
+    }
+    private fun showContainerFragment() {
+        val containerFragment = BusinessBookingFragment()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.home_navigation, containerFragment)
+            .commit()
     }
 
     companion object{

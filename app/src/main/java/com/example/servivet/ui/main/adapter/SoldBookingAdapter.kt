@@ -13,7 +13,9 @@ import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.servivet.R
 import com.example.servivet.data.model.booking_list.response.MyBooking
+import com.example.servivet.data.model.sold_booking_list.response.MySoldBooking
 import com.example.servivet.databinding.BookingListDesignBinding
+import com.example.servivet.databinding.SoldBookingListDesignBinding
 import com.example.servivet.ui.base.BaseAdapter
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.Session
@@ -22,12 +24,12 @@ import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 import java.util.concurrent.TimeUnit
 
-class BookingAdapter(var context:Context, var type: Int,var typeReschdule:Int,var list:ArrayList<MyBooking>,var callback: Callback,): BaseAdapter<BookingListDesignBinding, MyBooking>(list)
+class SoldBookingAdapter(var context:Context, var type: Int, var typeReschdule:Int, var list:ArrayList<MySoldBooking>, var callback: Callback,): BaseAdapter<SoldBookingListDesignBinding, MySoldBooking>(list)
 {
     override val layoutId: Int=R.layout.booking_list_design
     private var newCurrentTime: String=""
     @RequiresApi(Build.VERSION_CODES.O)
-    override fun bind(binding: BookingListDesignBinding, item: MyBooking?, position: Int)
+    override fun bind(binding: SoldBookingListDesignBinding, item: MySoldBooking?, position: Int)
     {
         binding.apply {
             binding.click=ClickAction(position)
@@ -142,7 +144,7 @@ class BookingAdapter(var context:Context, var type: Int,var typeReschdule:Int,va
     }
 
 
-    fun updateList(list: ArrayList<MyBooking>) {
+    fun updateList(list: ArrayList<MySoldBooking>) {
         val start = if (this.list.size > 0) this.list.size else 0
         this.list.addAll(list)
         notifyItemRangeInserted(start, this.list.size)
@@ -153,7 +155,7 @@ class BookingAdapter(var context:Context, var type: Int,var typeReschdule:Int,va
             val bundle = Bundle()
             bundle.putString("type",type.toString())
             bundle.putString("bookingId",list[position]._id)
-            view.findNavController().navigate(R.id.action_bookingsFragment_to_bookingDetailsFragment,bundle)
+            view.findNavController().navigate(R.id.action_businessBookingFragment_to_bookingDetailsFragment,bundle)
         }
         fun gotoRateUs(view: View){
             callback.onCallback("1")
@@ -163,7 +165,7 @@ class BookingAdapter(var context:Context, var type: Int,var typeReschdule:Int,va
             bundle.putString("istype","1")
             bundle.putString("type",type.toString())
             bundle.putString("bookingId",list[position]._id)
-            view.findNavController().navigate(R.id.action_bookingsFragment_to_bookingDetailsFragment,bundle)
+            view.findNavController().navigate(R.id.action_businessBookingFragment_to_bookingDetailsFragment,bundle)
 
         }
 

@@ -35,6 +35,7 @@ import com.example.servivet.data.model.service_category_details.request.ServiceC
 import com.example.servivet.data.model.service_category_details.response.ServiceCategoryDetailsResponse
 import com.example.servivet.data.model.service_list.ServiceListResponse
 import com.example.servivet.data.model.service_list.request.ServiceListRequest
+import com.example.servivet.data.model.sold_booking_list.response.SoldBookingListResponse
 import com.example.servivet.data.model.user_profile.response.UserProfileResponse
 import com.example.servivet.data.model.verifyotp.request.VerifyOtpRequest
 import com.example.servivet.data.model.verifyotp.response.VerifyOTPResponse
@@ -113,6 +114,9 @@ interface ApiService {
 
     @GET("mybooking")
     suspend fun bookingList(@QueryMap request: HashMap<String, String>):BookingListResponse
+
+    @GET("mysoldbooking")
+    suspend fun mysoldbooking(@QueryMap request: HashMap<String, String>):SoldBookingListResponse
 
     @POST("cancel/booking")
     suspend fun cancelBooking(@Body cancelBookingRequest: CancelBookingRequest):CancelBookingResponse

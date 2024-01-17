@@ -114,7 +114,7 @@ class BookingDetailsFragment : BaseFragment<FragmentBookingDetailsBinding,Bookin
 
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            showSnackBar(it.data.message)
+
                             binding.data=it.data.result.bookingDetail
                             for(i in Session.category.indices){
                                 for(j in Session.category[i].subCategory!!.indices){

@@ -351,6 +351,15 @@
         android:name="com.example.servivet.ui.main.bottom_sheet.SuretoConfirmBottomSheet"
         android:label="SuretoConfirmBottomSheet"
         tools:layout="@layout/fragment_sureto_conform_bottom_sheet"/>
+   <!-- <fragment
+        android:id="@+id/businessBookingFragment"
+        android:name="com.example.servivet.ui.main.fragment.BusinessBookingFragment"
+        android:label="BusinessBookingFragment"
+        tools:layout="@layout/fragment_business_booking">
+        <action
+            android:id="@+id/action_businessBookingFragment_to_bookingDetailsFragment"
+            app:destination="@id/bookingDetailsFragment" />
+    </fragment>-->
 
 
 </navigation>

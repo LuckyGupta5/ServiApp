@@ -86,12 +86,15 @@ class HomeActivity : BaseActivity(),MyServiceFragment.CallBack1{
                    view4.visibility = View.VISIBLE
                 }
 
+
                 R.id.bookingsFragment -> {
-                    bottom.visibility = View.VISIBLE
-                    view1.visibility = View.INVISIBLE
-                    view2.visibility = View.VISIBLE
-                    view3.visibility = View.INVISIBLE
-                    view4.visibility = View.INVISIBLE
+
+                   bottom.visibility = View.VISIBLE
+                   view1.visibility = View.INVISIBLE
+                   view2.visibility = View.VISIBLE
+                   view3.visibility = View.INVISIBLE
+                   view4.visibility = View.INVISIBLE
+
 
                 }else->
                   bottom.isVisible = false
@@ -103,6 +106,7 @@ class HomeActivity : BaseActivity(),MyServiceFragment.CallBack1{
         }
 
     }
+
 
     companion object{
         var isProfileShow=false

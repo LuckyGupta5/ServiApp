@@ -15,6 +15,7 @@ import com.example.servivet.databinding.FragmentBookingBinding
 import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.adapter.BookingAdapter
 import com.example.servivet.ui.main.adapter.MyServiceAdapter
+import com.example.servivet.ui.main.adapter.SoldBookingAdapter
 import com.example.servivet.ui.main.bottom_sheet.FragmentRatingUsBottomSheet
 import com.example.servivet.ui.main.view_model.BookingViewModel
 import com.example.servivet.utils.CommonUtils.showSnackBar
@@ -50,8 +51,15 @@ class BookingsFragment : BaseFragment<FragmentBookingBinding,BookingViewModel>(R
 
         type=0
         typeReschdule=0
-        mViewModel.hitBookingListAPI(1,1,10)
-        setPagination()
+        if(Session.type=="1"){
+            mViewModel.hitBookingListAPI(1,1,10)
+            setPagination()
+        }else  if(Session.type=="2"){
+            list.clear()
+            mViewModel.hitSoldBookingListAPI(1,1,10)
+            setPagination()
+        }
+
         setBack()
         settablayout()
     }
@@ -75,31 +83,63 @@ class BookingsFragment : BaseFragment<FragmentBookingBinding,BookingViewModel>(R
                     type=0
                     typeReschdule=0
                     list.clear()
-                    mViewModel.hitBookingListAPI(1,1,10)
-                    setPagination()
+                    if(Session.type=="1"){
+                        mViewModel.hitBookingListAPI(1,1,10)
+                        setPagination()
+                    }else  if(Session.type=="2"){
+                        list.clear()
+                        mViewModel.hitSoldBookingListAPI(1,1,10)
+                        setPagination()
+                    }
+//                    mViewModel.hitBookingListAPI(1,1,10)
+//                    setPagination()
 
                 }
                 else if(binding.tabLayout.selectedTabPosition == 1){
                     type=1
                     typeReschdule=1
                     list.clear()
-                    mViewModel.hitBookingListAPI(2,1,10)
-                    setPagination()
+                    if(Session.type=="1"){
+                        mViewModel.hitBookingListAPI(1,1,10)
+                        setPagination()
+                    }else  if(Session.type=="2"){
+                        list.clear()
+                        mViewModel.hitSoldBookingListAPI(1,1,10)
+                        setPagination()
+                    }
+//                    mViewModel.hitBookingListAPI(2,1,10)
+//                    setPagination()
 
                 }
                 else if(binding.tabLayout.selectedTabPosition==2){
                     type=2
                     typeReschdule=2
                     list.clear()
-                    mViewModel.hitBookingListAPI(3,1,10)
-                    setPagination()
+                    if(Session.type=="1"){
+                        mViewModel.hitBookingListAPI(1,1,10)
+                        setPagination()
+                    }else  if(Session.type=="2"){
+                        list.clear()
+                        mViewModel.hitSoldBookingListAPI(1,1,10)
+                        setPagination()
+                    }
+//                    mViewModel.hitBookingListAPI(3,1,10)
+//                    setPagination()
                 }
                 else if(binding.tabLayout.selectedTabPosition==3){
                     type=3
                     typeReschdule=3
                     list.clear()
-                    mViewModel.hitBookingListAPI(0,1,10)
-                    setPagination()
+                    if(Session.type=="1"){
+                        mViewModel.hitBookingListAPI(1,1,10)
+                        setPagination()
+                    }else  if(Session.type=="2"){
+                        list.clear()
+                        mViewModel.hitSoldBookingListAPI(1,1,10)
+                        setPagination()
+                    }
+//                    mViewModel.hitBookingListAPI(0,1,10)
+//                    setPagination()
                 }
             }
 
@@ -203,7 +243,62 @@ class BookingsFragment : BaseFragment<FragmentBookingBinding,BookingViewModel>(R
               else -> {}
           }
       }
+      mViewModel.soldBookingListResponse.observe(viewLifecycleOwner) {
+          when (it.status) {
+              Status.SUCCESS -> {
+                  ProcessDialog.dismissDialog()
 
+                  when (it.data!!.code) {
+                      StatusCode.STATUS_CODE_SUCCESS -> {
+                          if (it.data.result.mySoldBookingList!=null && it.data.result.mySoldBookingList.isNotEmpty()) {
+//                                mViewModel.list.cle
+                              isLoading = true
+
+                              if (currentPage == 1)
+                                  list = ArrayList()
+
+                              list = it.data.result.mySoldBookingList
+
+                              if (currentPage == 1 && list.size > 0) {
+                                  adapter = BookingAdapter(requireContext(),type,typeReschdule,list,this)
+                                  binding.recyclercategry.adapter = adapter
+                              } else {
+                                  adapter.updateList(list)
+                              }
+
+                              if (list.isNotEmpty()) {
+                                  binding.recyclercategry.visibility = View.VISIBLE
+                                  binding.noDataLayout.visibility = View.GONE
+                              } else {
+                                  binding.recyclercategry.visibility = View.GONE
+                                  binding.noDataLayout.visibility = View.VISIBLE
+                              }
+                          }
+                      }
+
+
+                      StatusCode.STATUS_CODE_FAIL -> {
+                          showSnackBar(it.data.message)
+                      }
+
+
+                  }
+              }
+
+              Status.LOADING -> {
+                  ProcessDialog.startDialog(requireContext())
+              }
+
+              Status.ERROR -> {
+                  ProcessDialog.dismissDialog()
+                  it.message?.let {
+                      showSnackBar(it)
+                  }
+              }
+
+              else -> {}
+          }
+      }
 
       mViewModel.cancelBookingResponse.observe(viewLifecycleOwner) {
           when (it.status) {

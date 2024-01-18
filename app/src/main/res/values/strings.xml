@@ -371,6 +371,11 @@
     <string name="search_location">Search Location</string>
     <string name="location_is_not_avialable">Location is not available.</string>
     <string name="request">Request</string>
+    <string name="atcenter">atCenter</string>
+    <string name="athome">atHome</string>
+    <string name="confirm">confirm</string>
+    <string name="booking">booking</string>
+    <string name="pay">Pay ₹</string>
     <string name="pending">Pending</string>
 
 
@@ -381,7 +386,5 @@
         <item>Item 3</item>
         <item>Item 4</item>
         <item>Item 5</item>
-
-
     </string-array>
 </resources>

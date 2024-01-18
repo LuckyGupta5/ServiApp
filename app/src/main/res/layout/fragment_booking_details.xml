@@ -489,7 +489,6 @@
                         android:ellipsize="end"
                         android:fontFamily="@font/poppins_regular"
                         android:maxLines="2"
-                        android:text="@{data.serviceDetail}"
                         android:textColor="@color/grey7"
                         android:textSize="15dp" />
 

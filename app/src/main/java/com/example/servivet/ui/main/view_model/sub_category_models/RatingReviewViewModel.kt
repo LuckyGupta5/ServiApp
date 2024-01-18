@@ -26,7 +26,7 @@ class RatingReviewViewModel(): BaseViewModel(){
     fun getReviewRequest(id: String) {
         request["page"] = "1"
         request["limit"] = "10"
-        request["serviceId"] = "657fea25b55d7af39650d84e"    // testing ID 657fea25b55d7af39650d84e
+        request["serviceId"] = id    // testing ID 657fea25b55d7af39650d84e
         hitReviewApi()
 
     }

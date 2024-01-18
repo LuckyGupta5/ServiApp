@@ -2,6 +2,7 @@ package com.example.servivet.ui.main.fragment
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -35,6 +36,8 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
     private val reviewViewModel:RatingReviewViewModel by viewModels()
     private val ratingList = ArrayList<ReviewRating>()
     private lateinit var reviews:RatingReviews
+    private lateinit var smallest:String
+    private lateinit var largest:String
     var serviceData: ServiceList?=null
     override fun isNetworkAvailable(boolean: Boolean) {
     }
@@ -56,6 +59,7 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
 
         serviceData= arguments?.getSerializable(Constants.DATA) as ServiceList?
         mViewModel.serviceCategoryDetailsRequest.serviceId=serviceData!!._id
+        Log.e("TAG", "setupViews11: ${serviceData!!._id}", )
 
         binding.apply {
             lifecycleOwner=viewLifecycleOwner
@@ -79,13 +83,13 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
                             binding.data=it.data.result!!.serviceDetail
                             reviews = it.data.result.serviceDetail?.ratingReview!!
                             setImageAdapter(it.data.result.serviceDetail.images!!)
-                            val smallest: String = min(it.data.result.serviceDetail.atCenterPrice?:0.0, it.data.result.serviceDetail.atHomePrice?:0.0).toString()
-                            val largest: String = max(it.data.result.serviceDetail.atCenterPrice?:0.0,it.data.result.serviceDetail.atHomePrice?:0.0).toString()
+                            smallest = min(it.data.result.serviceDetail.atCenterPrice?:0.0, it.data.result.serviceDetail.atHomePrice?:0.0).toString()
+                            largest = max(it.data.result.serviceDetail.atCenterPrice?:0.0,it.data.result.serviceDetail.atHomePrice?:0.0).toString()
                             binding.smallest.text=commaSaparator(smallest.toDouble()).toString()
                             binding.largest.text=commaSaparator(largest.toDouble()).toString()
-                            if(it.data.result.serviceDetail.images!!.isNotEmpty()&&it.data.result.serviceDetail.images!=null)
-                                 Glide.with(requireContext()).load(it.data.result.serviceDetail!!.images!![0]).into(binding.image2)
-
+                            checkVisibility()
+                            if(it.data.result.serviceDetail.images.isNotEmpty()&&it.data.result.serviceDetail.images!=null)
+                                 Glide.with(requireContext()).load(it.data.result.serviceDetail.images!![0]).into(binding.image2)
                             initRatingAdapter()
 
                         }
@@ -119,6 +123,11 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
 
 
     }
+
+    private fun checkVisibility() {
+        binding.smallest.isVisible = smallest != "0.0"
+        binding.idView.isVisible = smallest!="0.0"
+        binding.largest.isVisible = largest!="0.0"    }
 
     private fun initReviewViewModel() {
         serviceData!!._id?.let { reviewViewModel.getReviewRequest(it) }

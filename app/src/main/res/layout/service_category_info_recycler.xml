@@ -199,6 +199,7 @@
                         android:textSize="16dp" />
 
                     <View
+                        android:id="@+id/idView"
                         android:layout_width="6dp"
                         android:layout_height="2dp"
                         android:layout_gravity="center_vertical"

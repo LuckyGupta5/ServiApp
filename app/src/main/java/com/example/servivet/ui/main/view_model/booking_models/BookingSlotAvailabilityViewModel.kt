@@ -3,6 +3,7 @@ package com.example.servivet.ui.main.view_model.booking_models
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.servivet.data.api.RetrofitBuilder
+import com.example.servivet.data.model.booking_module.booking_summary.response.ServiceDetail
 import com.example.servivet.data.model.booking_module.coupon.request.CouponAvalabilityRequest
 import com.example.servivet.data.model.common.response.CommonResponse
 import com.example.servivet.data.repository.MainRepository
@@ -24,13 +25,12 @@ class BookingSlotAvailabilityViewModel: BaseViewModel(){
     }
 
 
-    fun getCouponAvailabilityRequest(){
+    fun getCouponAvailabilityRequest(serviceData: ServiceDetail) {
         request.apply {
-            serviceId ="65798f89b55d7af39650a617"
-            serviceMode ="atCenter"
-            slotId = "65798fb4b55d7af39650a63f"
-            bookingDate ="2024-01-11"
-
+            serviceId =serviceData._id
+            serviceMode =serviceData.serviceModeLocal
+            slotId = serviceData.slotId
+            bookingDate =serviceData.date
         }
         hitCouponAvailabilityApi()
 

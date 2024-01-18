@@ -44,6 +44,7 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import java.io.*
 import java.sql.Timestamp
 import java.text.DateFormat
+import java.text.DecimalFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.time.DayOfWeek
@@ -1029,3 +1030,9 @@ fun setUtcToLocalTimeStamp(textView: AppCompatTextView, dateStr: String) {
     val formattedDate = df.format(date)
     textView.text = formattedDate
 }
+
+fun commaSaparator(number: Double?): String? {
+    val formatter = DecimalFormat("#,###,###")
+    return formatter.format(number)
+}
+

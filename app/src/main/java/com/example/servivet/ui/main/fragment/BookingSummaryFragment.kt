@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.annotation.RequiresApi
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -15,6 +16,7 @@ import com.example.servivet.R
 import com.example.servivet.data.model.booking_module.booking_slot.BookedSlot
 import com.example.servivet.data.model.booking_module.booking_summary.response.AtCenterAvailability
 import com.example.servivet.data.model.booking_module.booking_summary.response.ServiceDetail
+import com.example.servivet.data.model.booking_module.booking_summary.response.Slot
 import com.example.servivet.data.model.date_model.DateModel
 import com.example.servivet.databinding.FragmentBookingSummaryBinding
 import com.example.servivet.databinding.SaveAndChangeAddressBottomsheetBinding
@@ -88,23 +90,28 @@ class BookingSummaryFragment :
         initYearAdapter()
         setDate()
 
-        if(Session.saveAddress!=null ){
-            binding.addAddressLayout.visibility=View.GONE
-            binding.changeAddressLayout.visibility=View.VISIBLE
+        if (Session.saveAddress != null) {
+            binding.addAddressLayout.visibility = View.GONE
+            binding.changeAddressLayout.visibility = View.VISIBLE
             binding.nameInAddress.text = Session.saveAddress.name
             binding.locationName.text = Session.saveAddress.fullAddress
-        }else{
-            binding.addAddressLayout.visibility=View.VISIBLE
-            binding.changeAddressLayout.visibility=View.GONE
+        } else {
+            binding.addAddressLayout.visibility = View.VISIBLE
+            binding.changeAddressLayout.visibility = View.GONE
         }
-        binding.changelocation.setOnClickListener{ findNavController().navigate(R.id.action_bookingSummaryFragment_to_savedAddressesBottomsheet) }
+        binding.changelocation.setOnClickListener { findNavController().navigate(R.id.action_bookingSummaryFragment_to_savedAddressesBottomsheet) }
     }
 
     private fun openBottomSheet() {
         bottomSheetDialog = BottomSheetDialog(requireContext(), R.style.AppBottomSheetDialogTheme)
-        val bottomSheetBinding: SaveAndChangeAddressBottomsheetBinding = DataBindingUtil.inflate(layoutInflater, R.layout.save_and_change_address_bottomsheet, null, false)
+        val bottomSheetBinding: SaveAndChangeAddressBottomsheetBinding = DataBindingUtil.inflate(
+            layoutInflater,
+            R.layout.save_and_change_address_bottomsheet,
+            null,
+            false
+        )
 
-        if(Session.saveAddress!=null ){
+        if (Session.saveAddress != null) {
             bottomSheetBinding.name.text = Session.saveAddress.name
             bottomSheetBinding.address.text = Session.saveAddress.fullAddress
             bottomSheetBinding.number.text = Session.saveAddress.mobileNumber
@@ -120,7 +127,6 @@ class BookingSummaryFragment :
         }
         bottomSheetDialog!!.show()
     }
-
 
 
     private fun initYearAdapter() {
@@ -210,7 +216,7 @@ class BookingSummaryFragment :
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun setupObservers() {
-       mViewModel.getReportRatingRequest(serviceId.data)
+        mViewModel.getReportRatingRequest(serviceId.data)
         mViewModel.getSummaryData().observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
@@ -218,16 +224,17 @@ class BookingSummaryFragment :
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             mViewModel.result = it.data.result
-                            serviceDetail = (it.data.result.serviceDetail?:"") as ServiceDetail
+                            serviceDetail = (it.data.result.serviceDetail ?: "") as ServiceDetail
                             it.data.result.serviceDetail?.atCenterAvailability?.let { centerList ->
                                 atCenterList.addAll(centerList)
                                 mViewModel.result.serviceDetail?.date = setCurrentDate()
-                                this.position = findListIndex(atCenterList.indexOfFirst { it.day == getDayOfWeek() })
+                                this.position =
+                                    findListIndex(atCenterList.indexOfFirst { it.day == getDayOfWeek() })
                             }
                             binding.summaryData = serviceDetail
-                            initSlotModel()
                             setPriceValue()
-                            Log.e("TAG", "setupObservers: ${Gson().toJson(it.data.result.providerLeaveList ?: "")}")
+                            initSlotModel()
+                            Log.e("TAG", "setupObservers: ${Gson().toJson(it.data.result ?: "")}")
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
@@ -269,13 +276,13 @@ class BookingSummaryFragment :
             Log.e("TAG", "setupObserver123: ${it}")
             if (it) {
                 binding.amount.text = serviceDetail.atHomePrice
-                mViewModel.result.serviceDetail?.serviceModeLocal = getString(R.string.at_home)
+                mViewModel.result.serviceDetail?.serviceModeLocal = getString(R.string.athome)
             }
         }
         mViewModel.atCenter.observe(viewLifecycleOwner) {
             if (it) {
                 binding.amount.text = serviceDetail.atCenterPrice
-                mViewModel.result.serviceDetail?.serviceModeLocal= getString(R.string.at_center)
+                mViewModel.result.serviceDetail?.serviceModeLocal = getString(R.string.atcenter)
             }
         }
     }
@@ -286,19 +293,29 @@ class BookingSummaryFragment :
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun initSlotModel() {
-        slotViewModel.getSlotRequest(serviceId.data, date)
+        slotViewModel.getSlotRequest(
+            serviceId.data,
+            date,
+            mViewModel.result.serviceDetail?.serviceModeLocal
+        )
         slotViewModel.getSlotData().observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     ProcessDialog.dismissDialog()
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            Log.e("TAG", "initSlotModel: ${Gson().toJson(it.data.result)}")
+                            Log.e("TAG", "initSlotModel:${Gson().toJson(it.data.result)} ")
+                            bookedSlot.clear()
                             bookedSlot.addAll(it.data.result.bookedSlot)
                             if (this.position != -1) {
-                                binding.timeRecycler.adapter = BookingTimeAdapter(requireContext(), atCenterList[position].slot, pos, bookedSlot, onItemClick)
+                                binding.timeRecycler.isVisible = true
+                                binding.idProceedBtn.isVisible = true
+                                mViewModel.result.serviceDetail?.date = atCenterList[position].day
+                                binding.timeRecycler.adapter = BookingTimeAdapter(requireContext(), atCenterList[position].slot, bookedSlot, onItemClick)
                             } else {
-                            //    showSnackBar("slot not Found")
+                                binding.timeRecycler.isVisible = false
+                                binding.idProceedBtn.isVisible = false
+                                showSnackBar("slot not Found")
                             }
                         }
 
@@ -349,11 +366,13 @@ class BookingSummaryFragment :
                 this.position = findListIndex(atCenterList.indexOfFirst { it.day == position })
                 date = dayMonthYearFromDate(data) ?: ""
                 mViewModel.result.serviceDetail?.date = data
-
                 initSlotModel()
             }
-            getString(R.string.slot)->{
-                mViewModel.result.serviceDetail?.time = data
+
+            getString(R.string.slot) -> {
+                val data = Gson().fromJson(data, Slot::class.java)
+                mViewModel.result.serviceDetail?.startTime = data.startTime
+                mViewModel.result.serviceDetail?.endTime = data.endTime
                 mViewModel.result.serviceDetail?.slotId = position
 
             }

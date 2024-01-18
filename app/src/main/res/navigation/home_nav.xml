@@ -223,14 +223,23 @@
         <action
             android:id="@+id/action_bookingPaymentFragment_to_couponsFragment"
             app:destination="@id/couponsFragment" />
+=
 
         <argument
             android:name="data"
             app:argType="string" />
 
+
         <argument
             android:name="from"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_bookingPaymentFragment_to_myWalletBottomsheet2"
+            app:destination="@id/myWalletBottomsheet" />
+        <action
+            android:id="@+id/action_bookingPaymentFragment_to_suretoConfirmBottomSheet"
+            app:destination="@id/suretoConfirmBottomSheet" />
+
     </fragment>
     <fragment
         android:id="@+id/couponsFragment"
@@ -321,4 +330,27 @@
         android:name="com.example.servivet.ui.main.bottom_sheet.RatingReportBottomSheetFragment"
         android:label="RatingReportBottomSheetFragment"
         tools:layout="@layout/fragment_rating_report_bottom_sheet"/>
+    <dialog
+        android:id="@+id/myWalletBottomsheet"
+        android:name="com.example.servivet.ui.main.bottom_sheet.MyWalletBottomsheet"
+        android:label="MyWalletBottomsheet"
+        tools:layout="@layout/fragment_my_wallet_bottomsheet">
+        <argument
+            android:name="payAmountData"
+            app:argType="string" />
+        <argument
+            android:name="serviceData"
+            app:argType="string" />>
+
+        <argument
+            android:name="from"
+            app:argType="integer" />
+    </dialog>
+    <dialog
+        android:id="@+id/suretoConfirmBottomSheet"
+        android:name="com.example.servivet.ui.main.bottom_sheet.SuretoConfirmBottomSheet"
+        android:label="SuretoConfirmBottomSheet"
+        tools:layout="@layout/fragment_sureto_conform_bottom_sheet"/>
+
+
 </navigation>

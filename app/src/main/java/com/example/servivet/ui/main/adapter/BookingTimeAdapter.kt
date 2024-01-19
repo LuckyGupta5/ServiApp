@@ -38,6 +38,7 @@ class BookingTimeAdapter(
         val countInList2 = bookedSlot.count { it.slotId == dataA._id }
         if (countInList2 < dataA.numOfSlot) {
             binding.timeTxt.isEnabled = true
+            if(isFirst)
             isSelectpost = position
         } else {
             binding.timeTxt.alpha = 0.5f
@@ -45,8 +46,13 @@ class BookingTimeAdapter(
         }
         if(isFirst){
             list[position]?.let {
-                onItemClick(list[position]._id, context.getString(R.string.slot), Gson().toJson(list[position]))
-            }
+                onItemClick(list[position]._id, context.getString(R.string.slot), Gson().toJson(list[position])) }
+            isFirst = false
+        }
+        binding.timeTxt.setOnClickListener {
+            list[position]?.let {
+                onItemClick(list[position]._id, context.getString(R.string.slot), Gson().toJson(list[position])) }
+
         }
         settime(binding, position)
 

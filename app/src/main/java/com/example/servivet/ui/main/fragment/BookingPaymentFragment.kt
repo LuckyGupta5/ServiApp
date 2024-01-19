@@ -1,14 +1,20 @@
 package com.example.servivet.ui.main.fragment
 
+import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
 import com.example.servivet.data.model.booking_module.booking_summary.response.ServiceDetail
+import com.example.servivet.data.model.booking_module.create_order.response.CreateOrderResult
 import com.example.servivet.data.model.payment.payment_amount.response.PayAmountResult
 import com.example.servivet.data.model.payment.payment_amount.response.PaymentResponseMain
 import com.example.servivet.databinding.FragmentBookingPaymentBinding
@@ -47,10 +53,13 @@ class BookingPaymentFragment :
     override fun isNetworkAvailable(boolean: Boolean) {
     }
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return super.onCreateView(inflater, container, savedInstanceState)
+
+    }
+
     override fun setupViews() {
         getCouponCode()
-
-
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
@@ -77,6 +86,7 @@ class BookingPaymentFragment :
         getTimeSlot()
         initSlotModel()
         bottomSheetCallBack()
+
 
     }
 
@@ -118,7 +128,6 @@ class BookingPaymentFragment :
                         AESHelper.decrypt(SECURITY_KEY, it.data), PaymentResponseMain::class.java
                     )
                     when (data.code) {
-
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             Log.e("TAG", "setupObservers: ${data.result}")
                             paymentAmountData = data.result
@@ -215,14 +224,23 @@ class BookingPaymentFragment :
     }
 
     private fun bottomSheetCallBack() {
-        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(getString(R.string.confirm))
-            ?.observe(viewLifecycleOwner) {
-
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(getString(R.string.confirm))?.observe(viewLifecycleOwner) {
                 initSlotModel()
                 mViewModel.isConfirm = true
+        }
 
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(getString(R.string.paymeturl))?.observe(viewLifecycleOwner){
+            findNavController().currentBackStackEntry?.savedStateHandle?.remove<String>(getString(R.string.paymeturl))
+            val data = Gson().fromJson(it, CreateOrderResult::class.java)
+            Log.e("TAG", "bottomSheetCallBack:${Gson().toJson(data)} ", )
+            CoroutineScope(Dispatchers.Main).launch{
+                delay(1000)
+            findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToPaymentFragment(it,getString(R.string.paymeturl)))
             }
+        }
     }
+
+
 
 }
 

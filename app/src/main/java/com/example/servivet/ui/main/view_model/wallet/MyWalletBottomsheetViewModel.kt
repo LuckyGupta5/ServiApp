@@ -33,8 +33,8 @@ class MyWalletBottomsheetViewModel : BaseViewModel() {
 
     inner class ClickAction(var context: Context) {
         fun dismiss(view: View) {
-            val fragment = BookingCancelledBottomSheet()
-            fragment.show((context as AppCompatActivity).supportFragmentManager, "childfragment")
+//            val fragment = BookingCancelledBottomSheet()
+//            fragment.show((context as AppCompatActivity).supportFragmentManager, "childfragment")
             // (context as AppCompatActivity).supportFragmentManager
         }
 

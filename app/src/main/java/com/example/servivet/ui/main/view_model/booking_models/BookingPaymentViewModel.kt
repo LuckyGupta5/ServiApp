@@ -66,8 +66,7 @@ class BookingPaymentViewModel : BaseViewModel() {
                 )
 
             } else {
-                view.findNavController()
-                    .navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToSuretoConfirmBottomSheet())
+                view.findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToSuretoConfirmBottomSheet())
             }
 
         }

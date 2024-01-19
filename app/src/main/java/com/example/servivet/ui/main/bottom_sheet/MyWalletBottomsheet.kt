@@ -1,11 +1,15 @@
 package com.example.servivet.ui.main.bottom_sheet
 
 import android.annotation.SuppressLint
+import android.content.DialogInterface
 import android.util.Log
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.servivet.R
 import com.example.servivet.data.model.booking_module.booking_summary.response.ServiceDetail
+import com.example.servivet.data.model.booking_module.create_order.response.CreateOrderResponse
+import com.example.servivet.data.model.booking_module.create_order.response.CreateOrderResult
 import com.example.servivet.data.model.booking_module.my_wallet.MyWallet
 import com.example.servivet.data.model.booking_module.my_wallet.MyWalletMainResponse
 import com.example.servivet.data.model.common.response.CommonResponse
@@ -21,10 +25,10 @@ import com.example.servivet.utils.Constants
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
+import com.example.servivet.utils.getLastWordFromUrl
 import com.google.gson.Gson
 
-class MyWalletBottomsheet :
-    BaseBottomSheetDailogFragment<FragmentMyWalletBottomsheetBinding, MyWalletBottomsheetViewModel>(
+class MyWalletBottomsheet : BaseBottomSheetDailogFragment<FragmentMyWalletBottomsheetBinding, MyWalletBottomsheetViewModel>(
         R.layout.fragment_my_wallet_bottomsheet
     ) {
     override val mViewModel: MyWalletBottomsheetViewModel by viewModels()
@@ -33,6 +37,7 @@ class MyWalletBottomsheet :
     private val createOderViewModel: CreateOrderViewModel by viewModels()
     private lateinit var paymentAmountData: PayAmountResult
     private lateinit var serviceData: ServiceDetail
+    private lateinit var paymentUrl: CreateOrderResult
 
     override fun getLayout() = R.layout.fragment_my_wallet_bottomsheet
     override fun isNetworkAvailable(boolean: Boolean) {
@@ -52,6 +57,7 @@ class MyWalletBottomsheet :
         getBookingData()
         dismissbottomsheet()
 
+
     }
 
     private fun onClick(value: Int) {
@@ -70,12 +76,14 @@ class MyWalletBottomsheet :
                     ProcessDialog.dismissDialog()
                     val data = Gson().fromJson(
                         AESHelper.decrypt(Constants.SECURITY_KEY, it.data),
-                        CommonResponse::class.java
+                        CreateOrderResponse::class.java
                     )
                     when (data.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            Log.e("TAG", "initOrderCreateViewModel: ${Gson().toJson(data.result)}")
-                            showSnackBar(data.message)
+                            Constants.SECURE_HEADER = " "
+                            paymentUrl = data.result
+                            findNavController().previousBackStackEntry?.savedStateHandle?.set(getString(R.string.paymeturl),Gson().toJson(paymentUrl))
+                            dialog?.dismiss()
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
@@ -87,6 +95,7 @@ class MyWalletBottomsheet :
                 }
 
                 Status.LOADING -> {
+                    Constants.SECURE_HEADER = " "
                     ProcessDialog.startDialog(requireContext())
                 }
 
@@ -95,6 +104,8 @@ class MyWalletBottomsheet :
 
                     it.message?.let {
                         showSnackBar(it)
+                        Log.e("TAG", "initOrderCreateViewModel: ${it}")
+
                         Constants.SECURE_HEADER = " "
 
                     }
@@ -201,6 +212,10 @@ class MyWalletBottomsheet :
 
         }
 
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
     }
 
 }

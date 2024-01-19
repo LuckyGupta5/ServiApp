@@ -45,9 +45,9 @@ class CreateOrderViewModel() : ViewModel() {
             taxAmount = paymentAmountData.taxAmount
             payableAmount = paymentAmountData.payableAmount
             couponCode = serviceData.couponCode
-            isWalletAmountInclude = "true"
-            walletAmount = "87"
-            paymentMode = "wallet"
+            isWalletAmountInclude = false
+            walletAmount = 0.0f
+            paymentMode = "paymentGateway"
             saveApplyCouponId = paymentAmountData.saveApplyCouponId
             addressId = ""
 
@@ -64,7 +64,7 @@ class CreateOrderViewModel() : ViewModel() {
         createOrderData.postValue(Resource.loading(null))
         viewModelScope.launch {
             try {
-                createOrderData.postValue(Resource.success(repository.walletTransactionApi(request)))
+                createOrderData.postValue(Resource.success(repository.createOrderApi(request)))
             } catch (ex: IOException) {
                 ex.printStackTrace()
                 createOrderData.postValue(

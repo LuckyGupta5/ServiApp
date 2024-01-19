@@ -99,7 +99,7 @@ class BookingSummaryFragment :
             binding.addAddressLayout.visibility = View.VISIBLE
             binding.changeAddressLayout.visibility = View.GONE
         }
-        binding.changelocation.setOnClickListener { findNavController().navigate(R.id.action_bookingSummaryFragment_to_savedAddressesBottomsheet) }
+        binding.changelocation.setOnClickListener{ findNavController().navigate(R.id.action_bookingSummaryFragment_to_savedAddressesBottomsheet) }
     }
 
     private fun openBottomSheet() {
@@ -129,6 +129,7 @@ class BookingSummaryFragment :
     }
 
 
+
     private fun initYearAdapter() {
         val items = generateMonthStrings()
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, items)
@@ -138,10 +139,7 @@ class BookingSummaryFragment :
         binding.idYearSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
+                parent: AdapterView<*>?, view: View?, position: Int, id: Long
             ) {
                 monthCount = position
                 setDate()
@@ -309,12 +307,9 @@ class BookingSummaryFragment :
                             bookedSlot.addAll(it.data.result.bookedSlot)
                             if (this.position != -1) {
                                 binding.timeRecycler.isVisible = true
-                                binding.idProceedBtn.isVisible = true
-                                mViewModel.result.serviceDetail?.date = atCenterList[position].day
                                 binding.timeRecycler.adapter = BookingTimeAdapter(requireContext(), atCenterList[position].slot, bookedSlot, onItemClick)
                             } else {
                                 binding.timeRecycler.isVisible = false
-                                binding.idProceedBtn.isVisible = false
                                 showSnackBar("slot not Found")
                             }
                         }

@@ -22,7 +22,7 @@ import java.io.IOException
 
 class WalletTransactionHisViewModel():ViewModel() {
     private var request = CommonRequest()
-    val historyRequest = WalletTranctionnRequest()
+    private val historyRequest = WalletTranctionnRequest()
 
     private val walletHistoryData = SingleLiveEvent<Resource<String>>()
     fun getWalletData(): LiveData<Resource<String>> {

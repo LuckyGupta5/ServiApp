@@ -10,6 +10,7 @@ import com.example.servivet.data.model.booking_module.booking_slot.BookedSlot
 import com.example.servivet.data.model.booking_module.booking_summary.response.Slot
 import com.example.servivet.databinding.BookingTimeRecyclerviewDesignBinding
 import com.example.servivet.ui.base.BaseAdapter
+import com.google.gson.Gson
 
 class BookingTimeAdapter(
     var context: Context,
@@ -37,6 +38,7 @@ class BookingTimeAdapter(
         val countInList2 = bookedSlot.count { it.slotId == dataA._id }
         if (countInList2 < dataA.numOfSlot) {
             binding.timeTxt.isEnabled = true
+            if(isFirst)
             isSelectpost = position
         } else {
             binding.timeTxt.alpha = 0.5f
@@ -44,8 +46,13 @@ class BookingTimeAdapter(
         }
         if(isFirst){
             list[position]?.let {
-                onItemClick(list[position]._id, context.getString(R.string.slot),list[position].startTime)
-            }
+                onItemClick(list[position]._id, context.getString(R.string.slot), Gson().toJson(list[position])) }
+            isFirst = false
+        }
+        binding.timeTxt.setOnClickListener {
+            list[position]?.let {
+                onItemClick(list[position]._id, context.getString(R.string.slot), Gson().toJson(list[position])) }
+
         }
         settime(binding, position)
 

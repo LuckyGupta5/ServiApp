@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
+        <variable
+            name="checkVisibility"
+            type="Boolean" />
 
         <variable
             name="click"
@@ -147,7 +151,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-
                             android:orientation="horizontal">
 
                             <TextView
@@ -221,9 +224,9 @@
                             android:fontFamily="@font/poppins_regular"
                             android:onClick="@{click::atCenter}"
                             android:text="@string/at_centre"
-                            android:visibility="@{summaryData.serviceMode.atCenter?View.VISIBLE:View.GONE}"
                             android:textColor="@color/black"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:visibility="@{summaryData.serviceMode.atCenter?View.VISIBLE:View.GONE}" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -235,9 +238,9 @@
                             android:fontFamily="@font/poppins_regular"
                             android:onClick="@{click::atHome}"
                             android:text="@string/at_home"
-                            android:visibility="@{summaryData.serviceMode.atHome?View.VISIBLE:View.GONE}"
                             android:textColor="@color/black"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:visibility="@{summaryData.serviceMode.atHome?View.VISIBLE:View.GONE}" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -247,7 +250,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="gone">
+                    android:visibility="@{summaryData.serviceMode.atHome?View.VISIBLE:View.GONE}">
 
                     <View
                         android:id="@+id/view3"
@@ -262,7 +265,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginVertical="20dp"
-                        android:onClick="@{click.gotoaddlocation}"
+                        android:onClick="@{click::gotoaddlocation}"
                         android:orientation="horizontal"
                         android:visibility="visible">
 
@@ -291,7 +294,6 @@
                             android:background="@drawable/arraow_path" />
                     </LinearLayout>
                 </LinearLayout>
-
 
 
                 <LinearLayout
@@ -349,9 +351,9 @@
                                 android:layout_marginStart="20dp"
                                 android:layout_marginEnd="5dp"
                                 android:layout_weight="1"
+                                android:ellipsize="end"
                                 android:fontFamily="@font/poppins_medium"
                                 android:maxLines="1"
-                                android:ellipsize="end"
                                 android:text="@string/a_192_sector_44_noida"
                                 android:textColor="@color/grey_6E6E6E"
                                 android:textSize="15sp" />
@@ -439,12 +441,18 @@
                             android:textColor="@color/black_242424"
                             android:textSize="17dp" />
 
+                        <include
+                            android:id="@+id/idNoDataFound"
+                            layout="@layout/nodata_found_layout"
+                            />
+
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/time_recycler"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/time_txt"
                             android:layout_marginTop="12dp"
+                            android:visibility="@{checkVisibility?View.VISIBLE:View.GONE}"
                             android:nestedScrollingEnabled="false"
                             android:overScrollMode="never"
                             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
@@ -511,7 +519,7 @@
                 app:backgroundTint="@null" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/markAsCompletedfd"
+                android:id="@+id/idProceedBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/app_theme_color_button_12dp"
@@ -525,7 +533,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="19sp"
-                android:visibility="visible"
+                android:visibility="@{checkVisibility?View.VISIBLE:View.GONE}"
                 app:backgroundTint="@null" />
 
         </LinearLayout>

@@ -377,6 +377,7 @@
     <string name="booking">booking</string>
     <string name="pay">Pay ₹</string>
     <string name="pending">Pending</string>
+    <string name="paymeturl">paymetUrl</string>
 
 
     <string-array name="select_issue">

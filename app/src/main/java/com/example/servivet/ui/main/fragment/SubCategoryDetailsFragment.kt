@@ -59,6 +59,7 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
 
         serviceData= arguments?.getSerializable(Constants.DATA) as ServiceList?
         mViewModel.serviceCategoryDetailsRequest.serviceId=serviceData!!._id
+        Log.e("TAG", "setupViews11: ${serviceData!!._id}", )
 
         binding.apply {
             lifecycleOwner=viewLifecycleOwner
@@ -87,8 +88,8 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
                             binding.smallest.text=commaSaparator(smallest.toDouble()).toString()
                             binding.largest.text=commaSaparator(largest.toDouble()).toString()
                             checkVisibility()
-                            if(it.data.result.serviceDetail.images!!.isNotEmpty()&&it.data.result.serviceDetail.images!=null)
-                                 Glide.with(requireContext()).load(it.data.result.serviceDetail!!.images!![0]).into(binding.image2)
+                            if(it.data.result.serviceDetail.images.isNotEmpty()&&it.data.result.serviceDetail.images!=null)
+                                 Glide.with(requireContext()).load(it.data.result.serviceDetail.images!![0]).into(binding.image2)
                             initRatingAdapter()
 
                         }

@@ -254,7 +254,7 @@
                                             android:fontFamily="@font/poppins_regular"
                                             android:maxLength="30"
                                             android:maxLines="1"
-                                            android:text='@{slotData.date+","+slotData.time}'
+                                            android:text='@{slotData.date+","+slotData.startTime}'
                                             android:textColor="@color/grey_6E6E6E"
                                             android:textSize="13sp" />
 
@@ -460,7 +460,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:onClick="@{click.cancelCoupon}"
+                                    android:onClick="@{click::cancelCoupon}"
                                     android:padding="5dp"
                                     android:src="@drawable/cancel_coupon"
                                     android:visibility="visible" />
@@ -516,7 +516,7 @@
                                         android:fontFamily="@font/poppins_regular"
                                         android:gravity="end"
                                         android:maxLength="10"
-                                        android:text="@{paymentData.serviceAmount}"
+                                        android:text="@{paymentData.serviceAmount.toString()}"
                                         android:textColor="@color/black_242424"
                                         android:textSize="15dp" />
 
@@ -550,7 +550,7 @@
                                         android:gravity="end"
                                         android:maxLength="10"
                                         android:maxLines="1"
-                                        android:text="@{paymentData.taxAmount}"
+                                        android:text="@{paymentData.taxAmount.toString()}"
                                         android:textColor="@color/black_242424"
                                         android:textSize="15sp" />
                                 </LinearLayout>
@@ -583,7 +583,7 @@
                                         android:gravity="end"
                                         android:maxLength="10"
                                         android:maxLines="1"
-                                        android:text="@{paymentData.couponDiscount}"
+                                        android:text="@{paymentData.couponDiscount.toString()}"
                                         android:textColor="@color/black_242424"
                                         android:textSize="15sp" />
                                 </LinearLayout>
@@ -619,7 +619,7 @@
                                         android:fontFamily="@font/poppins_medium"
                                         android:gravity="end"
                                         android:maxLength="15"
-                                        android:text="@{paymentData.payableAmount}"
+                                        android:text="@{paymentData.payableAmount.toString()}"
                                         android:textColor="@color/black_242424"
                                         android:textSize="15sp" />
                                 </LinearLayout>
@@ -687,7 +687,7 @@
                     android:fontFamily="@font/poppins_semi_bold"
                     android:maxLength="8"
                     android:stateListAnimator="@null"
-                    android:text="@{paymentData.payableAmount}"
+                    android:text="@{paymentData.payableAmount.toString()}"
                     android:textAllCaps="false"
                     android:textColor="@color/black_242424"
                     android:textSize="21sp"

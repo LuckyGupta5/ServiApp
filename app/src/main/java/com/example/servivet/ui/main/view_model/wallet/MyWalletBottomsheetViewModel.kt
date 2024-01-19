@@ -1,13 +1,13 @@
 package com.example.servivet.ui.main.view_model.wallet
 
 import android.content.Context
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.servivet.data.api.RetrofitBuilder
 import com.example.servivet.data.model.booking_module.booking_summary.response.ServiceDetail
+import com.example.servivet.data.model.payment.payment_amount.response.PayAmountResult
 import com.example.servivet.data.repository.MainRepository
 import com.example.servivet.ui.base.BaseViewModel
 import com.example.servivet.ui.main.bottom_sheet.BookingCancelledBottomSheet
@@ -22,7 +22,8 @@ import retrofit2.HttpException
 import java.io.IOException
 
 
-class MyWalletBottomsheetViewModel: BaseViewModel(){
+class MyWalletBottomsheetViewModel : BaseViewModel() {
+
 
     private val walletData = SingleLiveEvent<Resource<String>>()
     fun getWalletData(): LiveData<Resource<String>> {
@@ -30,28 +31,28 @@ class MyWalletBottomsheetViewModel: BaseViewModel(){
     }
 
 
+    inner class ClickAction(var context: Context) {
+        fun dismiss(view: View) {
+//            val fragment = BookingCancelledBottomSheet()
+//            fragment.show((context as AppCompatActivity).supportFragmentManager, "childfragment")
+            // (context as AppCompatActivity).supportFragmentManager
+        }
 
-    inner class ClickAction(var context: Context){
-       fun dismiss(view: View){
-           val fragment= BookingCancelledBottomSheet()
-           fragment.show((context as AppCompatActivity).supportFragmentManager,"childfragment")
-          // (context as AppCompatActivity).supportFragmentManager
-
-       }
 
     }
 
-     fun hitWalletApi() {
-         Constants.SECURE_HEADER = "secure"
-
-         val repository = MainRepository(RetrofitBuilder.apiService)
+    fun hitWalletApi() {
+        Constants.SECURE_HEADER = "secure"
+        val repository = MainRepository(RetrofitBuilder.apiService)
         walletData.postValue(Resource.loading(null))
         viewModelScope.launch {
             try {
                 walletData.postValue(Resource.success(repository.myWalletApi()))
             } catch (ex: IOException) {
                 ex.printStackTrace()
-                walletData.postValue(Resource.error(StatusCode.STATUS_CODE_INTERNET_VALIDATION, null
+                walletData.postValue(
+                    Resource.error(
+                        StatusCode.STATUS_CODE_INTERNET_VALIDATION, null
                     )
                 )
             } catch (exception: Exception) {

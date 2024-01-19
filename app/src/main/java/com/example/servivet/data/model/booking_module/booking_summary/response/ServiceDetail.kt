@@ -1,5 +1,7 @@
 package com.example.servivet.data.model.booking_module.booking_summary.response
 
+import com.example.servivet.data.model.payment.payment_amount.response.PayAmountResult
+
 data class ServiceDetail(
     val __v: Int?=null,
     val _id: String?=null,
@@ -20,11 +22,15 @@ data class ServiceDetail(
     val status: Int?=null,
     val subCategory: String?=null,
     val updatedAt: String?=null,
+
+    //AddedData
     var serviceModeLocal: String? = null,
     var date: String? = null,
-    var time: String? = null,
+    var day: String? = null,
+    var startTime: String? = null,
+    var endTime: String? = null,
     var addressLocal: String? = null,
-    var slotId: String? = null
+    var slotId: String? = null,
+    var couponCode:String =""
 
-
-    )
+)

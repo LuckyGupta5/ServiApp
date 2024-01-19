@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="clickEvent"
+            type="kotlin.jvm.functions.Function1" />
+
+        <variable
             name="click"
             type="com.example.servivet.ui.main.view_model.wallet.MyWalletBottomsheetViewModel.ClickAction" />
 
@@ -207,8 +211,8 @@
             android:id="@+id/view2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:visibility="invisible"
             android:background="@color/grey_707070_opicity_10"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/AddmoneyLayout" />
@@ -251,8 +255,8 @@
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:maxLength="10"
+                android:onClick="@{()->clickEvent.invoke(0)}"
                 android:stateListAnimator="@null"
-                android:text="@string/pay_1548"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="17sp"

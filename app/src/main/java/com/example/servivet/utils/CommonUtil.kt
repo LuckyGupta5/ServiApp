@@ -1036,3 +1036,18 @@ fun commaSaparator(number: Double?): String? {
     return formatter.format(number)
 }
 
+fun getLastWordFromUrl(url: String): String {
+    // Split the URL using "/"
+    val parts = url.split("/")
+
+    // Get the last part (word) from the split URL
+    return if (parts.isNotEmpty()) {
+        parts.last()
+    } else {
+        ""
+    }
+}
+
+
+
+

@@ -367,7 +367,7 @@
                             android:layout_marginStart="18dp"
                             android:layout_marginTop="4dp"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:text='@{data.ratingReview.averageRating == null?"0":data.ratingReview.averageRating}'
+                            android:text='@{String.valueOf(data.ratingReview.averageRating) == null?"0":String.valueOf(data.ratingReview.averageRating)}'
                             android:textColor="@color/black"
                             android:textSize="28sp"
                             app:layout_constraintStart_toStartOf="parent"
@@ -379,7 +379,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="18dp"
-                            android:rating="@{data.ratingReview.averageRating == null?0.0F:data.ratingReview.averageRating}"
+                            android:rating='@{data.ratingReview.averageRating == null?0.0F:data.ratingReview.averageRating}'
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/idRatingCount" />
 
@@ -493,7 +493,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/app_theme_color_button_12dp"
                 android:fontFamily="@font/poppins_medium"
-                android:onClick="@{click.callSummaryFragment}"
+                android:onClick="@{click::callSummaryFragment}"
                 android:text="@string/book_now"
                 android:textColor="@color/white"
                 android:textSize="17dp" />

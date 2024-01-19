@@ -33,7 +33,6 @@ class BookingPaymentViewModel : BaseViewModel() {
 
     var bookingData = ServiceDetail()
     private var request = CommonRequest()
-    var cCode = ""
     var isConfirm = false
     val amountRequest = PaymentRequest()
     var payAmountResult = PayAmountResult()
@@ -59,11 +58,15 @@ class BookingPaymentViewModel : BaseViewModel() {
 
             if (isConfirm) {
                 view.findNavController().navigate(
-                    BookingPaymentFragmentDirections.actionBookingPaymentFragmentToMyWalletBottomsheet2(Gson().toJson(payAmountResult),R.string.booking))
+                    BookingPaymentFragmentDirections.actionBookingPaymentFragmentToMyWalletBottomsheet2(
+                        Gson().toJson(payAmountResult),
+                        Gson().toJson(bookingData),
+                        R.string.booking
+                    )
+                )
 
             } else {
-                view.findNavController()
-                    .navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToSuretoConfirmBottomSheet())
+                view.findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToSuretoConfirmBottomSheet())
             }
 
         }
@@ -78,7 +81,7 @@ class BookingPaymentViewModel : BaseViewModel() {
             } else {
                 binding.applyCoupon.isVisible = false
                 binding.appliedCoupon.isVisible = true
-                binding.applyCouponName.text = cCode
+                binding.applyCouponName.text = bookingData.couponCode
                 binding.promoDiscountLayout.isVisible = true
             }
 
@@ -97,8 +100,8 @@ class BookingPaymentViewModel : BaseViewModel() {
             serviceId = serviceData._id
             serviceMode = serviceData.serviceModeLocal
             slotId = serviceData.slotId
-            isCouponApply = cCode.isNotEmpty()
-            couponCode = cCode
+            isCouponApply = serviceData.couponCode?.isNotEmpty()
+            couponCode = serviceData.couponCode
 
 
         }

@@ -23,6 +23,7 @@ import com.example.servivet.ui.main.fragment.MyServiceFragment
 import com.example.servivet.ui.main.view_model.MyServiceViewModel
 import com.example.servivet.ui.main.view_model.SharedViewModel
 import com.example.servivet.utils.ProcessDialog
+import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
@@ -85,12 +86,15 @@ class HomeActivity : BaseActivity(),MyServiceFragment.CallBack1{
                    view4.visibility = View.VISIBLE
                 }
 
+
                 R.id.bookingsFragment -> {
+
                    bottom.visibility = View.VISIBLE
                    view1.visibility = View.INVISIBLE
                    view2.visibility = View.VISIBLE
                    view3.visibility = View.INVISIBLE
                    view4.visibility = View.INVISIBLE
+
 
                 }else->
                   bottom.isVisible = false
@@ -102,6 +106,7 @@ class HomeActivity : BaseActivity(),MyServiceFragment.CallBack1{
         }
 
     }
+
 
     companion object{
         var isProfileShow=false

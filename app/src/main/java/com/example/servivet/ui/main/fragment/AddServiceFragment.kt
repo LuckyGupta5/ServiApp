@@ -48,8 +48,7 @@ import com.example.servivet.utils.StatusCode
 import com.example.servivet.utils.interfaces.ListAdapterItem
 
 @GlideModule
-class AddServiceFragment :
-    BaseFragment<FragmentAddServiceBinding, AddServiceViewModel>(R.layout.fragment_add_service) {
+class AddServiceFragment : BaseFragment<FragmentAddServiceBinding, AddServiceViewModel>(R.layout.fragment_add_service) {
     private var showDayList= ArrayList<String>()
     private var imagerequestcode: Int = 0
     private var imagePath: String = ""

@@ -229,6 +229,7 @@
             android:name="data"
             app:argType="string" />
 
+
         <argument
             android:name="from"
             app:argType="integer" />
@@ -238,6 +239,9 @@
         <action
             android:id="@+id/action_bookingPaymentFragment_to_suretoConfirmBottomSheet"
             app:destination="@id/suretoConfirmBottomSheet" />
+        <action
+            android:id="@+id/action_bookingPaymentFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
 
     </fragment>
     <fragment
@@ -335,18 +339,47 @@
         android:label="MyWalletBottomsheet"
         tools:layout="@layout/fragment_my_wallet_bottomsheet">
         <argument
-            android:name="data"
+            android:name="payAmountData"
             app:argType="string" />
+        <argument
+            android:name="serviceData"
+            app:argType="string" />>
 
         <argument
             android:name="from"
             app:argType="integer" />
+
     </dialog>
     <dialog
         android:id="@+id/suretoConfirmBottomSheet"
         android:name="com.example.servivet.ui.main.bottom_sheet.SuretoConfirmBottomSheet"
         android:label="SuretoConfirmBottomSheet"
         tools:layout="@layout/fragment_sureto_conform_bottom_sheet"/>
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.example.servivet.ui.main.fragment.bookinng_module.PaymentFragment"
+        android:label="PaymentFragment"
+        tools:layout="@layout/fragment_payment">
+        <argument
+            android:name="payUrl"
+            app:argType="string" />
+
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_paymentFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <!-- <fragment
+         android:id="@+id/businessBookingFragment"
+         android:name="com.example.servivet.ui.main.fragment.BusinessBookingFragment"
+         android:label="BusinessBookingFragment"
+         tools:layout="@layout/fragment_business_booking">
+         <action
+             android:id="@+id/action_businessBookingFragment_to_bookingDetailsFragment"
+             app:destination="@id/bookingDetailsFragment" />
+     </fragment>-->
 
 
 </navigation>

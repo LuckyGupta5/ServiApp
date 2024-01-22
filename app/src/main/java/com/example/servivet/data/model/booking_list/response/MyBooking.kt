@@ -27,5 +27,6 @@ data class MyBooking(
     val taxAmount: Double,
     val transactionId: String,
     val updatedAt: String,
-    val user: String
+    val user: String,
+    val userDetail: SoldBookingUserDetail
 ):ListAdapterItem

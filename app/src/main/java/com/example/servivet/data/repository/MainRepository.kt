@@ -5,6 +5,7 @@ import com.example.servivet.data.model.accept_booking.request.AcceptBookingReque
 import com.example.servivet.data.model.booking_detail.request.BookingDetailRequest
 import com.example.servivet.data.model.booking_module.booking_model.request.RatingRequest
 import com.example.servivet.data.model.booking_module.coupon.request.CouponAvalabilityRequest
+import com.example.servivet.data.model.booking_module.reschedule_booking.request.RescheduleBookingRequest
 import com.example.servivet.data.model.business_verification_api.request.BusinessVerificationRequest
 import com.example.servivet.data.model.cancel_booking.request.CancelBookingRequest
 
@@ -60,6 +61,7 @@ class MainRepository(private val apiService: ApiService) {
     suspend fun bookingDetailApi(bookingDetailRequest: BookingDetailRequest) = apiService.bookingDetail(bookingDetailRequest)
     suspend fun myWalletApi() = apiService.myWalletApi()
     suspend fun createOrderApi(request: CommonRequest) = apiService.createOrderApi(request)
+    suspend fun rescheduleBookingApi(request: RescheduleBookingRequest) = apiService.rescheduleBookingApi(request)
 
 
 

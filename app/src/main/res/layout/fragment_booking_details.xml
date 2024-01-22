@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="clickEvent"
+            type="kotlin.jvm.functions.Function1" />
 
 
         <variable
@@ -600,7 +603,7 @@
                     android:background="@drawable/apptheme_outline_with_solid_white_corner_12"
                     android:backgroundTint="@null"
                     android:fontFamily="@font/poppins_medium"
-                    android:onClick="@{click::gotoBookingSummary}"
+                    android:onClick="@{()->clickEvent.invoke(@string/book_again)}"
                     android:stateListAnimator="@null"
                     android:text="@string/book_again"
                     android:textAllCaps="false"
@@ -622,7 +625,24 @@
                 android:textAllCaps="false"
                 android:textColor="@color/app_theme"
                 android:textSize="19sp"
-                android:visibility="visible"
+                android:visibility="gone"
+                app:backgroundTint="@null" />
+
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/idCancelBooking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/apptheme_outline_with_solid_white_corner_12"
+                android:backgroundTint="@color/app_theme"
+                android:fontFamily="@font/poppins_medium"
+                android:stateListAnimator="@null"
+                android:text="@string/cancel_booking"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="19sp"
+                android:visibility="gone"
                 app:backgroundTint="@null" />
 
             <LinearLayout
@@ -662,6 +682,7 @@
                     android:backgroundTint="@null"
                     android:fontFamily="@font/poppins_medium"
                     android:maxLines="1"
+                    android:onClick="@{()->clickEvent.invoke(@string/reschedule)}"
                     android:stateListAnimator="@null"
                     android:text="@string/reschedule"
                     android:textAllCaps="false"
@@ -669,6 +690,54 @@
                     android:textSize="17sp"
                     app:backgroundTint="@null" />
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/acceptRejectLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/idReject"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="15sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle_button_color_grey_e8e8e8_12dp"
+                    android:backgroundTint="@null"
+                    android:fontFamily="@font/poppins_medium"
+                    android:stateListAnimator="@null"
+                    android:text="@string/reject"
+                    android:textAllCaps="false"
+                    android:onClick="@{()->clickEvent.invoke(@string/reject)}"
+                    android:textColor="@color/black_2"
+                    android:textSize="17sp"
+                    app:backgroundTint="@null" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/idAccept"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="15sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_corner_grey_12dp"
+                    android:backgroundTint="@null"
+                    android:fontFamily="@font/poppins_medium"
+                    android:maxLines="1"
+                    android:onClick="@{()->clickEvent.invoke(@string/accept)}"
+                    android:stateListAnimator="@null"
+                    android:text="@string/accept"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    app:backgroundTint="@null" />
+            </LinearLayout>
+
         </LinearLayout>
     </RelativeLayout>
 </layout>

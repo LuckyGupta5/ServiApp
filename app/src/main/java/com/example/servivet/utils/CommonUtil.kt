@@ -49,7 +49,9 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.time.DayOfWeek
 import java.time.LocalDate
+import java.time.LocalTime
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
 import java.time.format.TextStyle
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -513,7 +515,7 @@ object CommonUtils {
     }
 
 
-    fun getDateTimeStampConvert(date: String):String?{
+    fun getDateTimeStampConvert(date: String): String? {
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
         inputFormat.timeZone = TimeZone.getTimeZone("UTC")
         val date: Date = inputFormat.parse(date)
@@ -522,8 +524,9 @@ object CommonUtils {
         outputFormat.timeZone = TimeZone.getDefault()
 
         val outputDateString = outputFormat.format(date)
-        return  outputDateString
+        return outputDateString
     }
+
     @SuppressLint("SimpleDateFormat")
     fun getDateFromTimeStamp(date: String?): String? {
         val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
@@ -1046,6 +1049,45 @@ fun getLastWordFromUrl(url: String): String {
     } else {
         ""
     }
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun updateButtonState(exceedTime: String): Boolean {
+    val startTime = LocalTime.parse(currentTime(), DateTimeFormatter.ofPattern("hh:mm a"))
+    val endTime = LocalTime.parse(exceedTime, DateTimeFormatter.ofPattern("hh:mm a"))
+    val timeDifference = calculateTimeDifference(startTime, endTime)
+    return timeDifference < TimeUnit.HOURS.toMillis(24)
+
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun currentTime(): String {
+    val currentTime = LocalTime.now()
+    val dateFormat = DateTimeFormatter.ofPattern("hh:mm a")
+    return currentTime.format(dateFormat)
+
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun calculateTimeDifference(startTime: LocalTime, endTime: LocalTime): Long {
+    val startMillis = startTime.toSecondOfDay() * 1000L
+    val endMillis = endTime.toSecondOfDay() * 1000L
+
+    return endMillis - startMillis
+}
+
+fun convertTo24HourFormat(time12Hour: String): String {
+    val inputFormat = SimpleDateFormat("hh:mm", Locale.getDefault())
+    val outputFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+
+    try {
+        val date = inputFormat.parse(time12Hour)
+        return outputFormat.format(date!!)
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+
+    return "" // Return an empty string if there's an error
 }
 
 

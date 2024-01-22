@@ -12,6 +12,7 @@ import com.example.servivet.data.model.booking_module.booking_slot.BookingSlotRe
 import com.example.servivet.data.model.booking_module.booking_summary.response.BookingSummaryResponse
 import com.example.servivet.data.model.booking_module.coupon.request.CouponAvalabilityRequest
 import com.example.servivet.data.model.booking_module.coupon.response.CouponResponseMain
+import com.example.servivet.data.model.booking_module.reschedule_booking.request.RescheduleBookingRequest
 import com.example.servivet.data.model.business_verification_api.request.BusinessVerificationRequest
 import com.example.servivet.data.model.business_verification_api.response.BusinessVerificationResponse
 
@@ -104,35 +105,38 @@ interface ApiService {
 
 
     @POST("buy/payment/amount")
-    suspend fun paymentAmountApi(@Body request:CommonRequest):String
+    suspend fun paymentAmountApi(@Body request: CommonRequest): String
 
     @POST("booking/slot/availability")
     suspend fun bookingSlotAvailabilityApi(@Body request: CouponAvalabilityRequest): CommonResponse
 
     @POST("saveAddress")
-    suspend fun saveAddress(@Body saveAddressRequest: SaveAddressRequest):SaveAddressResponse
+    suspend fun saveAddress(@Body saveAddressRequest: SaveAddressRequest): SaveAddressResponse
 
     @GET("mybooking")
-    suspend fun bookingList(@QueryMap request: HashMap<String, String>):BookingListResponse
+    suspend fun bookingList(@QueryMap request: HashMap<String, String>): BookingListResponse
 
     @GET("mysoldbooking")
-    suspend fun mysoldbooking(@QueryMap request: HashMap<String, String>):BookingListResponse
+    suspend fun mysoldbooking(@QueryMap request: HashMap<String, String>): BookingListResponse
 
     @POST("cancel/booking")
-    suspend fun cancelBooking(@Body cancelBookingRequest: CancelBookingRequest):CancelBookingResponse
+    suspend fun cancelBooking(@Body cancelBookingRequest: CancelBookingRequest): CancelBookingResponse
 
     @POST("accept/booking")
-    suspend fun acceptBooking(@Body acceptBookingRequest: AcceptBookingRequest):AcceptBookingResponse
+    suspend fun acceptBooking(@Body acceptBookingRequest: AcceptBookingRequest): AcceptBookingResponse
 
     @POST("booking/detail")
     suspend fun bookingDetail(@Body bookingDetailRequest: BookingDetailRequest): BookingDetailResponse
 
     @GET("my/wallet")
-    suspend fun myWalletApi():String
+    suspend fun myWalletApi(): String
 
     @POST("wallet/transaction/histroy")
-    suspend fun walletTransactionApi(@Body request:CommonRequest):String
+    suspend fun walletTransactionApi(@Body request: CommonRequest): String
 
     @POST("order/create")
-    suspend fun createOrderApi(@Body request:CommonRequest):String
+    suspend fun createOrderApi(@Body request: CommonRequest): String
+
+    @POST("reschedule/booking")
+    suspend fun rescheduleBookingApi(@Body request: RescheduleBookingRequest): CommonResponse
 }

@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
+import com.example.servivet.data.model.booking_detail.response.BookingDetail
 import com.example.servivet.data.model.booking_module.booking_slot.BookedSlot
 import com.example.servivet.data.model.booking_module.booking_summary.response.AtCenterAvailability
 import com.example.servivet.data.model.booking_module.booking_summary.response.ServiceDetail
@@ -25,6 +26,7 @@ import com.example.servivet.ui.main.adapter.BookingTimeAdapter
 import com.example.servivet.ui.main.adapter.CalenderRecyclerAdapter
 import com.example.servivet.ui.main.view_model.booking_models.BookingSlotViewModel
 import com.example.servivet.ui.main.view_model.booking_models.BookingSummaryViewModel
+import com.example.servivet.ui.main.view_model.booking_models.RescheduleBookingViewModel
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.CommonUtils.dayMonthYearFromDate
 import com.example.servivet.utils.CommonUtils.findListIndex
@@ -50,6 +52,7 @@ class BookingSummaryFragment :
     override val binding: FragmentBookingSummaryBinding by viewBinding(FragmentBookingSummaryBinding::bind)
     override val mViewModel: BookingSummaryViewModel by viewModels()
     private val slotViewModel: BookingSlotViewModel by viewModels()
+    private val rescheduleBookingViewModel: RescheduleBookingViewModel by viewModels()
     private var calendarList: java.util.ArrayList<DateModel> = java.util.ArrayList<DateModel>()
     private val sdf = SimpleDateFormat("MMMM yyyy", Locale.ENGLISH)
     private val cal = Calendar.getInstance(Locale.ENGLISH)
@@ -59,13 +62,15 @@ class BookingSummaryFragment :
 
     @RequiresApi(Build.VERSION_CODES.O)
     private var date = setCurrentDate()
+    private lateinit var bookingDetails:BookingDetail
     private val dates = java.util.ArrayList<Date>()
-    private val serviceId: BookingSummaryFragmentArgs by navArgs()
+    private val argumetData: BookingSummaryFragmentArgs by navArgs()
     lateinit var adapter: CalenderRecyclerAdapter
     private lateinit var serviceDetail: ServiceDetail
     private var atCenterList = ArrayList<AtCenterAvailability>()
     private var bookedSlot = ArrayList<BookedSlot>()
     private var bottomSheetDialog: BottomSheetDialog? = null
+    private lateinit var serviceId:String
 
 
     override fun isNetworkAvailable(boolean: Boolean) {
@@ -83,11 +88,14 @@ class BookingSummaryFragment :
             lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
             click = mViewModel.ClickAction(requireContext(), binding)
+            clickEvents = ::onClick
         }
         //   setadapter()
+        getArgumentData()
 
 
         initYearAdapter()
+        initRescheduleModel()
         setDate()
 
         if (Session.saveAddress != null) {
@@ -100,6 +108,44 @@ class BookingSummaryFragment :
             binding.changeAddressLayout.visibility = View.GONE
         }
         binding.changelocation.setOnClickListener { findNavController().navigate(R.id.action_bookingSummaryFragment_to_savedAddressesBottomsheet) }
+    }
+
+
+
+    private fun onClick(type:String){
+        when(type){
+            getString(R.string.save)->{
+                rescheduleBookingViewModel.getRescheduleRequest(mViewModel.result.serviceDetail,bookingDetails)
+
+            }
+        }
+    }
+
+
+
+
+    private fun getArgumentData() {
+        when(argumetData.from){
+            getString(R.string.reschedule)->{
+                bookingDetails = Gson().fromJson(argumetData.data,BookingDetail::class.java)
+                binding.idHeading.text = getString(R.string.reschedule)
+                //binding.idLayoutTopContainer.visibility = View.INVISIBLE
+                binding.idProceedBtn.isVisible = false
+                binding.idSaveBtn.isVisible = true
+                binding.idLayoutTopContainer.isVisible = false
+                serviceId = bookingDetails.serviceId
+
+
+            }
+            getString(R.string.booking_details)->{
+                bookingDetails = Gson().fromJson(argumetData.data,BookingDetail::class.java)
+                serviceId = bookingDetails.serviceId
+            }
+            getString(R.string.sub_category)->{
+                serviceId = argumetData.data
+
+            }
+        }
     }
 
     private fun openBottomSheet() {
@@ -213,7 +259,7 @@ class BookingSummaryFragment :
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun setupObservers() {
-        mViewModel.getReportRatingRequest(serviceId.data)
+        mViewModel.getReportRatingRequest(serviceId)
         mViewModel.getSummaryData().observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
@@ -290,11 +336,7 @@ class BookingSummaryFragment :
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun initSlotModel() {
-        slotViewModel.getSlotRequest(
-            serviceId.data,
-            date,
-            mViewModel.result.serviceDetail?.serviceModeLocal
-        )
+        slotViewModel.getSlotRequest(serviceId, date, mViewModel.result.serviceDetail?.serviceModeLocal)
         slotViewModel.getSlotData().observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
@@ -319,6 +361,53 @@ class BookingSummaryFragment :
                                 binding.checkVisibility = false
 
                             }
+                            getArgumentData()
+
+                        }
+
+                        StatusCode.STATUS_CODE_FAIL -> {
+                            showSnackBar(it.data.message!!)
+                        }
+
+                    }
+                }
+
+                Status.LOADING -> {
+                    ProcessDialog.startDialog(requireContext())
+                }
+
+                Status.ERROR -> {
+                    ProcessDialog.dismissDialog()
+
+                    it.message?.let {
+                        showSnackBar(it)
+
+                    }
+                }
+
+                Status.UNAUTHORIZED -> {
+                    CommonUtils.logoutAlert(
+                        requireContext(),
+                        "Session Expired",
+                        "Unauthorized User",
+                        requireActivity()
+                    )
+                }
+            }
+        }
+    }
+
+    private fun initRescheduleModel() {
+
+        rescheduleBookingViewModel.getRescheduleData().observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    ProcessDialog.dismissDialog()
+                    when (it.data!!.code) {
+                        StatusCode.STATUS_CODE_SUCCESS -> {
+                            showSnackBar(it.data.message!!)
+
+
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
@@ -367,12 +456,13 @@ class BookingSummaryFragment :
             getString(R.string.calendar) -> {
                 this.position = findListIndex(atCenterList.indexOfFirst { it.day == position })
                 date = dayMonthYearFromDate(data) ?: ""
-                mViewModel.result.serviceDetail?.date = data
+                mViewModel.result.serviceDetail?.date = date
                 initSlotModel()
             }
 
             getString(R.string.slot) -> {
                 val data = Gson().fromJson(data, Slot::class.java)
+                Log.e("TAG", "checkData:${Gson().toJson(data)} ", )
                 mViewModel.result.serviceDetail?.startTime = data.startTime
                 mViewModel.result.serviceDetail?.endTime = data.endTime
                 mViewModel.result.serviceDetail?.slotId = position

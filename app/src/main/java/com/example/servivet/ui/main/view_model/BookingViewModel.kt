@@ -1,6 +1,7 @@
 package com.example.servivet.ui.main.view_model
 
 import android.content.Context
+import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 
@@ -20,12 +21,15 @@ import com.example.servivet.utils.Resource
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.SingleLiveEvent
 import com.example.servivet.utils.StatusCode
+import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 
 class BookingViewModel:BaseViewModel() {
     val soldRequest = HashMap<String,String>()
+    var bookingStatus = 0
+    var typeOfUser = "sold"
     val soldBookingListResponse = SingleLiveEvent<Resource<BookingListResponse>>()
     val request = HashMap<String,String>()
      val bookingListResponse = SingleLiveEvent<Resource<BookingListResponse>>()
@@ -38,13 +42,17 @@ class BookingViewModel:BaseViewModel() {
     inner class ClickAction(var context: Context,var binding:FragmentBookingBinding){
 
         fun sold(view: View){
-            binding.soldOut.isVisible=true
-            binding.bought.isVisible=false
+            binding.soldOut.isVisible=false
+            binding.bought.isVisible=true
+            typeOfUser = "bought"
+            hitBookingListAPI(bookingStatus,1,10)
 
         }
         fun bought(view: View){
-            binding.soldOut.isVisible=false
-            binding.bought.isVisible=true
+            typeOfUser = "sold"
+            binding.soldOut.isVisible=true
+            binding.bought.isVisible=false
+            hitSoldBookingListAPI(bookingStatus,1,10)
 
         }
     }
@@ -72,6 +80,8 @@ class BookingViewModel:BaseViewModel() {
         soldRequest["myBookingStatus"]=myBookingStatus.toString()
         soldRequest["page"]=page.toString()
         soldRequest["limit"]=limit.toString()
+
+        Log.e("TAG", "hitSoldBookingListAPI: ${Gson().toJson(soldRequest)}", )
         val repository = MainRepository(RetrofitBuilder.apiService)
 
         soldBookingListResponse.postValue(Resource.loading(null))

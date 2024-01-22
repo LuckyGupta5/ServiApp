@@ -5,6 +5,9 @@
         <variable
             name="click"
             type="com.example.servivet.ui.main.view_model.ReasonForCancellationViewModel.ClickAction" />
+        <variable
+            name="reasonData"
+            type="String" />
 
     </data>
 
@@ -28,7 +31,7 @@
             android:layout_marginEnd="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/i_am_unavailable_at_the_scheduled_time"/>
+            android:text="@{reasonData}"/>
             <ImageView
                 android:id="@+id/img"
                 android:layout_width="wrap_content"

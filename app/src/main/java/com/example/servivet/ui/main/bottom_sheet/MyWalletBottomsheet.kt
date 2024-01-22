@@ -203,16 +203,30 @@ class MyWalletBottomsheet : BaseBottomSheetDailogFragment<FragmentMyWalletBottom
             binding.idCheckBox.isChecked = false
             binding.idCheckBox.isEnabled = false
         }
+        checkPayData()
 
-        if (paymentAmountData.payableAmount?.toFloat()!! > walletData.amount.toFloat()) {
-            binding.idPayButton.text =
-                getString(R.string.pay) + (paymentAmountData.payableAmount?.toFloat()!! - walletData.amount.toFloat()).toString()
-        } else {
-            binding.idPayButton.text = getString(R.string.pay) + walletData.amount
+
+
+        binding.idCheckBox.setOnCheckedChangeListener{buttonView,isChecked ->
+            if(isChecked){
+              checkPayData()
+            }else{
+                binding.idPayButton.text = getString(R.string.pay) + (paymentAmountData.payableAmount?.toFloat())
+
+
+            }
 
         }
 
     }
+
+    private fun checkPayData() {
+        if (paymentAmountData.payableAmount?.toFloat()!! > walletData.amount.toFloat()) {
+            binding.idPayButton.text = getString(R.string.pay) + (paymentAmountData.payableAmount?.toFloat()!! - walletData.amount.toFloat()).toString()
+        } else {
+
+            binding.idPayButton.text = getString(R.string.pay) + "0"
+        }    }
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)

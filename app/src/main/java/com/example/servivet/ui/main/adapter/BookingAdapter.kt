@@ -22,7 +22,13 @@ import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 import java.util.concurrent.TimeUnit
 
-class BookingAdapter(var context:Context, var type: Int,var typeReschdule:Int,var list:ArrayList<MyBooking>,var callback: Callback,): BaseAdapter<BookingListDesignBinding, MyBooking>(list)
+class BookingAdapter(
+    var context: Context,
+    var type: Int,
+    var typeReschdule: Int,
+    var list: ArrayList<MyBooking>,
+    var callback: Callback,
+    val typeOfUser: String,): BaseAdapter<BookingListDesignBinding, MyBooking>(list)
 {
     override val layoutId: Int=R.layout.booking_list_design
     private var newCurrentTime: String=""
@@ -35,28 +41,41 @@ class BookingAdapter(var context:Context, var type: Int,var typeReschdule:Int,va
 
             if(type==0){
                 binding.reScheduleLayout.isVisible=false
-                binding.reSchedule.isVisible = false
+                binding.idViewDetails.isVisible = false
                 binding.rateUs.isVisible=false
                 binding.requestLayout.isVisible=true
                 binding.view.isVisible=false
+                binding.accept.isVisible = Session.type != "1"
             }else if(type==1){
                 binding.reScheduleLayout.isVisible=true
-                binding.reSchedule.isVisible = true
                 binding.rateUs.isVisible=false
                 binding.requestLayout.isVisible=false
                 binding.view.isVisible=true
+                binding.idViewDetails.isVisible = true
+
+//                if(Session.type == "1"){
+//                    binding.idViewDetails.isVisible = true
+//
+//                }else {
+//                    if (typeOfUser == "bought") {
+//                        binding.idViewDetails.isVisible = true
+//
+//                    } else {
+//                        binding.idViewDetails.isVisible = true
+//                    }
+//                }
 
             }
             else if(type==2) {
                 binding.reScheduleLayout.isVisible = true
                 binding.rateUs.isVisible = true
-                binding.reSchedule.isVisible = false
+                binding.idViewDetails.isVisible = false
                 binding.requestLayout.isVisible=false
                 binding.view.isVisible=true
             } else if(type==3) {
                 binding.reScheduleLayout.isVisible = false
                 binding.rateUs.isVisible = false
-                binding.reSchedule.isVisible = false
+                binding.idViewDetails.isVisible = false
                 binding.requestLayout.isVisible=false
                 binding.view.isVisible=false
             }
@@ -67,10 +86,10 @@ class BookingAdapter(var context:Context, var type: Int,var typeReschdule:Int,va
 
         binding.dateAndTimeText.text=list[position].day+","+ CommonUtils.getDateTimeStampConvert(list[position].bookingDate)
 
-        if(list[position].serviceDetail.serviceMode.atHome==true)
+        if(list[position].serviceDetail.serviceMode.atHome)
             binding.serviceMode.text="At Home"
 
-        if(list[position].serviceDetail.serviceMode.atCenter==true)
+        if(list[position].serviceDetail.serviceMode.atCenter)
             binding.serviceMode.text="At Center"
 
         for(i in Session.category.indices){
@@ -85,10 +104,9 @@ class BookingAdapter(var context:Context, var type: Int,var typeReschdule:Int,va
         binding.reject.setOnClickListener { callback.rejectBooking(list[position]._id) }
         binding.accept.setOnClickListener { callback.acceptBooking(list[position]._id) }
         currentTime()
-        updateButtonState(
-            CommonUtils.getDateFromTimeStamp(list[position].bookingDate)!!,
-            binding.reSchedule
-        )
+//        updateButtonState(
+//            CommonUtils.getDateFromTimeStamp(list[position].bookingDate)!!, binding.reSchedule
+//        )
 
         Log.e("TAG", "BookingAdapter: "+CommonUtils.getDateFromTimeStamp(list[position].bookingDate))
 
@@ -98,23 +116,11 @@ class BookingAdapter(var context:Context, var type: Int,var typeReschdule:Int,va
         try {
             val startTime = LocalTime.parse(newCurrentTime, DateTimeFormatter.ofPattern("hh:mm a"))
             val endTime = LocalTime.parse(exceedTime, DateTimeFormatter.ofPattern("hh:mm a"))
-
-            // Calculate time difference in milliseconds
             val timeDifference = calculateTimeDifference(startTime, endTime)
-
-            // Check if the time difference is less than 24 hours
             val isWithin24Hours = timeDifference < TimeUnit.HOURS.toMillis(24)
-
-            // Enable or disable the button accordingly
             yourButton.isEnabled = isWithin24Hours
 
-            /*if(isWithin24Hours==false){
-                yourButton.isEnabled=true
-            }else {
-                yourButton.isEnabled=false
-            }*/
         } catch (e: DateTimeParseException) {
-            // Handle parsing error
             e.printStackTrace()
             Log.e("TAG", "Parsing error: $newCurrentTime")
         }   
@@ -159,11 +165,11 @@ class BookingAdapter(var context:Context, var type: Int,var typeReschdule:Int,va
             callback.onCallback("1")
         }
         fun clickreschdulegotoBookingdetail(view: View){
-            val bundle=Bundle()
-            bundle.putString("istype","1")
-            bundle.putString("type",type.toString())
-            bundle.putString("bookingId",list[position]._id)
-            view.findNavController().navigate(R.id.action_bookingsFragment_to_bookingDetailsFragment,bundle)
+//            val bundle=Bundle()
+//            bundle.putString("istype","1")
+//            bundle.putString("type",type.toString())
+//            bundle.putString("bookingId",list[position]._id)
+//            view.findNavController().navigate(R.id.action_bookingsFragment_to_bookingDetailsFragment,bundle)
 
         }
 

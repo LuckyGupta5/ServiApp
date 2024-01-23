@@ -3,10 +3,7 @@ package com.example.servivet.ui.main.view_model
 import android.view.View
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
-import com.example.servivet.R
 import com.example.servivet.data.api.RetrofitBuilder
-import com.example.servivet.data.model.accept_booking.request.AcceptBookingRequest
-import com.example.servivet.data.model.accept_booking.response.AcceptBookingResponse
 import com.example.servivet.data.model.booking_detail.request.BookingDetailRequest
 import com.example.servivet.data.model.booking_detail.response.BookingDetailResponse
 import com.example.servivet.data.repository.MainRepository
@@ -31,7 +28,16 @@ class BookingDetailsViewModel :BaseViewModel() {
 
     }
 
-    fun hitBookingDetailApi(){
+    fun getBookingDetailsRequest(bookingId: String) {
+        bookingDetailRequest.apply {
+           this.bookingId = bookingId
+            isMybooking= false
+        }
+        hitBookingDetailApi()
+
+    }
+
+    private fun hitBookingDetailApi(){
         val repository = MainRepository(RetrofitBuilder.apiService)
 
         bookingDetailResponse.postValue(Resource.loading(null))

@@ -12,6 +12,7 @@ import com.example.servivet.data.model.booking_module.booking_slot.BookingSlotRe
 import com.example.servivet.data.model.booking_module.booking_summary.response.BookingSummaryResponse
 import com.example.servivet.data.model.booking_module.coupon.request.CouponAvalabilityRequest
 import com.example.servivet.data.model.booking_module.coupon.response.CouponResponseMain
+import com.example.servivet.data.model.booking_module.mark_as_complete.MarkAsCompleteRequest
 import com.example.servivet.data.model.booking_module.reschedule_booking.request.RescheduleBookingRequest
 import com.example.servivet.data.model.business_verification_api.request.BusinessVerificationRequest
 import com.example.servivet.data.model.business_verification_api.response.BusinessVerificationResponse
@@ -139,4 +140,6 @@ interface ApiService {
 
     @POST("reschedule/booking")
     suspend fun rescheduleBookingApi(@Body request: RescheduleBookingRequest): CommonResponse
+    @POST("markascomplete/booking")
+    suspend fun markAsCompleteApi(@Body request: MarkAsCompleteRequest): CommonResponse
 }

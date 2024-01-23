@@ -190,6 +190,17 @@
             app:destination="@id/reasonForCancelBottomsheet" />
 
 
+        <argument
+            android:name="data"
+            app:argType="string" />
+        <argument
+            android:name="type"
+            app:argType="integer" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+
+
     </fragment>
 
 

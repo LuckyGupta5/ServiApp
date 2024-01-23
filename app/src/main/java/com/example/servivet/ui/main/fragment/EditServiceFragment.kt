@@ -99,11 +99,11 @@ class EditServiceFragment :
 
         //pre selected data
         mViewModel.addServicesRequest.category = data!!.category
-        mViewModel.addServicesRequest.subCategory = data!!.subCategory
+        mViewModel.addServicesRequest.subCategory = data.subCategory
         mViewModel.addServicesRequest.aboutService = data.aboutService
         mViewModel.addServicesRequest.serviceName = data.serviceName
-        mViewModel.addServicesRequest.atCenter = data.serviceMode!!.atCenter
-        mViewModel.addServicesRequest.atHome = data.serviceMode.atHome
+        mViewModel.addServicesRequest.atCenter = data.serviceMode?.atCenter
+        mViewModel.addServicesRequest.atHome = data.serviceMode?.atHome
         mViewModel.addServicesRequest.atCenterAvailability = data.atCenterAvailability
         mViewModel.addServicesRequest.atHomeAvailability = data.atHomeAvailability
         mViewModel.addServicesRequest.atCenterPrice = data.atCenterPrice.toString()
@@ -118,7 +118,7 @@ class EditServiceFragment :
 
 
         //pre selected centre
-        if (data.serviceMode!!.atCenter == true) {
+        if (data.serviceMode?.atCenter == true) {
             setDaysArray()
             hashMap[Constants.AT_CENTER] =
                 CustomeServiceModeData(Constants.AT_CENTER, true, /*list,*/ daysList)
@@ -142,7 +142,7 @@ class EditServiceFragment :
         }
 
         //pre selected home
-        if (data.serviceMode!!.atHome == true) {
+        if (data.serviceMode?.atHome == true) {
             mViewModel.isHomeClick = if (!mViewModel.isHomeClick) {
                 setDaysArray()
                 hashMap[Constants.AT_HOME] =

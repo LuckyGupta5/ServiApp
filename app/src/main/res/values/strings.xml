@@ -367,6 +367,7 @@
     <string name="pincode">Pincode*</string>
     <string name="confirm_location">Confirm Location</string>
     <string name="sold">Sold</string>
+    <string name="sold_small">sold</string>
     <string name="bought">Bought</string>
     <string name="search_location">Search Location</string>
     <string name="location_is_not_avialable">Location is not available.</string>
@@ -379,6 +380,8 @@
     <string name="pending">Pending</string>
     <string name="paymeturl">paymetUrl</string>
     <string name="cancel_booking">Cancel Booking</string>
+    <string name="bookinglist">bookingList</string>
+    <string name="booked_by">Booked by</string>
 
 
     <string-array name="select_issue">

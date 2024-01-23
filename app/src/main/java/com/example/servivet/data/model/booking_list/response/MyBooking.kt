@@ -17,7 +17,7 @@ data class MyBooking(
     val day: String,
     val endTime: String,
     val invoiceNo: String,
-    val paidAmount: Double,
+    val paidAmount: String,
     val serviceDetail: BookingListServiceDetail,
     val serviceId: String,
     val serviceStatus: Int,
@@ -28,5 +28,8 @@ data class MyBooking(
     val transactionId: String,
     val updatedAt: String,
     val user: String,
-    val userDetail: SoldBookingUserDetail
+    val userDetail: SoldBookingUserDetail,
+
+    // local Addition
+    var type:String?=null
 ):ListAdapterItem

@@ -3,6 +3,7 @@ package com.example.servivet.ui.main.bottom_sheet
 import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.util.Log
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -26,6 +27,7 @@ import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
 import com.example.servivet.utils.getLastWordFromUrl
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 
 class MyWalletBottomsheet : BaseBottomSheetDailogFragment<FragmentMyWalletBottomsheetBinding, MyWalletBottomsheetViewModel>(
@@ -87,7 +89,7 @@ class MyWalletBottomsheet : BaseBottomSheetDailogFragment<FragmentMyWalletBottom
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showSnackBar(data.message)
+                            Toast.makeText(requireContext(), data.message, Toast.LENGTH_SHORT).show()
                             Constants.SECURE_HEADER = " "
                         }
 

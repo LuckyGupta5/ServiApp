@@ -14,6 +14,7 @@ import com.example.servivet.data.model.booking_list.response.MyBooking
 import com.example.servivet.databinding.FragmentBookingBinding
 import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.adapter.BookingAdapter
+import com.example.servivet.ui.main.adapter.BookingListAdapter
 import com.example.servivet.ui.main.bottom_sheet.FragmentRatingUsBottomSheet
 import com.example.servivet.ui.main.view_model.BookingViewModel
 import com.example.servivet.utils.CommonUtils.showSnackBar
@@ -35,6 +36,7 @@ class BookingsFragment :
     var type: Int = 0
     lateinit var adapter: BookingAdapter
     private var list = ArrayList<MyBooking>()
+    private var bookingList = ArrayList<MyBooking>()
     var currentPage = 1
     var isLoading: Boolean = false
     var typeReschdule: Int = 0
@@ -55,13 +57,13 @@ class BookingsFragment :
         typeReschdule = 0
         if (Session.type == "1") {
             mViewModel.hitBookingListAPI(myBookingStatus, 1, 10)
-            setPagination()
+         //   setPagination()
         } else if (Session.type == "2") {
             list.clear()
             binding.soldOut.isVisible = true
 
             mViewModel.hitSoldBookingListAPI(myBookingStatus, 1, 10)
-            setPagination()
+         //   setPagination()
         }
 
         setBack()
@@ -86,19 +88,18 @@ class BookingsFragment :
                     type = 0
                     mViewModel.bookingStatus = 1
                     typeReschdule = 0
-                    list.clear()
+                 //   list.clear()
                     if (Session.type == "1") {
                         mViewModel.hitBookingListAPI(mViewModel.bookingStatus, 1, 10)
-                        setPagination()
+                       // setPagination()
                     } else if (Session.type == "2") {
-                        list.clear()
                         if (mViewModel.typeOfUser == "bought") {
                             mViewModel.hitBookingListAPI(mViewModel.bookingStatus, 1, 10)
 
                         } else {
                             mViewModel.hitSoldBookingListAPI(mViewModel.bookingStatus, 1, 10)
                         }
-                        setPagination()
+                       // setPagination()
                     }
 //                    mViewModel.hitBookingListAPI(1,1,10)
 //                    setPagination()
@@ -109,18 +110,16 @@ class BookingsFragment :
                     mViewModel.bookingStatus = 2
                     list.clear()
                     if (Session.type == "1") {
-
                         mViewModel.hitBookingListAPI(mViewModel.bookingStatus, 1, 10)
-                        setPagination()
+                       // setPagination()
                     } else if (Session.type == "2") {
-                        list.clear()
                         if (mViewModel.typeOfUser == "bought") {
                             mViewModel.hitBookingListAPI(mViewModel.bookingStatus, 1, 10)
 
                         } else {
                             mViewModel.hitSoldBookingListAPI(mViewModel.bookingStatus, 1, 10)
                         }
-                        setPagination()
+                  //      setPagination()
                     }
 //                    mViewModel.hitBookingListAPI(2,1,10)
 //                    setPagination()
@@ -131,18 +130,16 @@ class BookingsFragment :
                     typeReschdule = 2
                     list.clear()
                     if (Session.type == "1") {
-
                         mViewModel.hitBookingListAPI(mViewModel.bookingStatus, 1, 10)
-                        setPagination()
+                       // setPagination()
                     } else if (Session.type == "2") {
-                        list.clear()
                         if (mViewModel.typeOfUser == "bought") {
                             mViewModel.hitBookingListAPI(mViewModel.bookingStatus, 1, 10)
 
                         } else {
                             mViewModel.hitSoldBookingListAPI(mViewModel.bookingStatus, 1, 10)
                         }
-                        setPagination()
+   //                     setPagination()
                     }
 //                    mViewModel.hitBookingListAPI(3,1,10)
 //                    setPagination()
@@ -153,7 +150,7 @@ class BookingsFragment :
                     list.clear()
                     if (Session.type == "1") {
                         mViewModel.hitBookingListAPI(mViewModel.bookingStatus, 1, 10)
-                        setPagination()
+  //                      setPagination()
                     } else if (Session.type == "2") {
                         list.clear()
                         if (mViewModel.typeOfUser == "bought") {
@@ -161,7 +158,7 @@ class BookingsFragment :
                         } else {
                             mViewModel.hitSoldBookingListAPI(mViewModel.bookingStatus, 1, 10)
                         }
-                        setPagination()
+  //                      setPagination()
                     }
 //                    mViewModel.hitBookingListAPI(0,1,10)
 //                    setPagination()
@@ -178,7 +175,7 @@ class BookingsFragment :
     }
 
     private fun setPagination() {
-        binding.recyclercategry.addOnScrollListener(object :
+        binding.idBookingRecycle.addOnScrollListener(object :
             RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 val layoutManager = recyclerView.layoutManager as LinearLayoutManager?
@@ -191,29 +188,22 @@ class BookingsFragment :
                 }
             }
         })
-        setBookingAdapter()
+      //  setBookingAdapter()
     }
 
     fun setBookingAdapter() {
         if (list != null && list.isNotEmpty()) {
-            adapter = BookingAdapter(
-                requireContext(),
-                type,
-                typeReschdule,
-                ArrayList(),
-                this,
-                mViewModel.typeOfUser
-            )
+            adapter = BookingAdapter(requireContext(), type, typeReschdule, ArrayList(), this, mViewModel.typeOfUser)
             val layoutManager = LinearLayoutManager(requireContext())
-            binding.recyclercategry.layoutManager = layoutManager
-            binding.recyclercategry.itemAnimator = null
-            binding.recyclercategry.adapter = adapter
-            binding.recyclercategry.visibility = View.VISIBLE
+            binding.idBookingRecycle.layoutManager = layoutManager
+            binding.idBookingRecycle.itemAnimator = null
+            binding.idBookingRecycle.adapter = adapter
+            binding.idBookingRecycle.visibility = View.VISIBLE
             binding.noDataLayout.visibility = View.GONE
 
 
         } else {
-            binding.recyclercategry.visibility = View.GONE
+            binding.idBookingRecycle.visibility = View.GONE
             binding.noDataLayout.visibility = View.VISIBLE
         }
 
@@ -225,38 +215,42 @@ class BookingsFragment :
             when (it.status) {
                 Status.SUCCESS -> {
                     ProcessDialog.dismissDialog()
-
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            if (it.data.result.myBookingList != null && it.data.result.myBookingList.isNotEmpty()) {
-//                                mViewModel.list.clear
-                                isLoading = true
+                            bookingList.clear()
+                            bookingList.addAll(it.data.result.myBookingList)
 
-                                if (currentPage == 1)
-                                    list = ArrayList()
-
-                                list = it.data.result.myBookingList
-
-                                if (currentPage == 1 && list.size > 0) {
-                                    Log.e("TAG", "setupObservers: ${Gson().toJson(list)}")
-                                    adapter = BookingAdapter(requireContext(), type, typeReschdule, list, this,mViewModel.typeOfUser)
-                                    binding.recyclercategry.adapter = adapter
-                                } else {
-                                    adapter.updateList(list)
-                                }
-
-                                if (list.isNotEmpty()) {
-                                    binding.recyclercategry.visibility = View.VISIBLE
-                                    binding.noDataLayout.visibility = View.GONE
-                                } else {
-                                    binding.recyclercategry.visibility = View.GONE
-                                    binding.noDataLayout.visibility = View.VISIBLE
-                                }
-                            } else {
-                                list.clear()
-                                binding.recyclercategry.adapter?.notifyDataSetChanged()
-
-                            }
+                            setMyBookingAdapter()
+//                            if (it.data.result.myBookingList != null && it.data.result.myBookingList.isNotEmpty()) {
+////                                mViewModel.list.clear
+//                                isLoading = true
+//
+//                                if (currentPage == 1)
+//                                    list = ArrayList()
+//
+//                                list = it.data.result.myBookingList
+//
+//                                if (currentPage == 1 && list.size > 0) {
+//                                    Log.e("TAG", "setupObservers: ${Gson().toJson(list)}")
+//                                    adapter = BookingAdapter(requireContext(), type, typeReschdule, list, this,mViewModel.typeOfUser)
+//                                    binding.recyclercategry.adapter = adapter
+//                                } else {
+//                                    adapter.updateList(list)
+//                                }
+//
+//                                if (list.isNotEmpty()) {
+//                                    binding.recyclercategry.visibility = View.VISIBLE
+//                                    binding.noDataLayout.visibility = View.GONE
+//                                } else {
+//                                    binding.recyclercategry.visibility = View.GONE
+//                                    binding.noDataLayout.visibility = View.VISIBLE
+//                                }
+//                            }
+////                            else {
+////                                list.clear()
+////                                binding.recyclercategry.adapter?.notifyDataSetChanged()
+////
+////                            }
                         }
 
 
@@ -294,7 +288,11 @@ class BookingsFragment :
                                 "setupObservers: ${Gson().toJson(it.data.result.mySoldBookingList)}",
                             )
 
-                            if (it.data.result.mySoldBookingList != null && it.data.result.mySoldBookingList.isNotEmpty()) {
+                            bookingList.clear()
+                            bookingList.addAll(it.data.result.mySoldBookingList)
+                            setMyBookingAdapter()
+
+                          /*  if (it.data.result.mySoldBookingList != null && it.data.result.mySoldBookingList.isNotEmpty()) {
 //                                mViewModel.list.cle
                                 isLoading = true
 
@@ -305,19 +303,19 @@ class BookingsFragment :
 
                                 if (currentPage == 1 && list.size > 0) {
                                     adapter = BookingAdapter(requireContext(), type, typeReschdule, list, this,mViewModel.typeOfUser)
-                                    binding.recyclercategry.adapter = adapter
+                                    binding.idBookingRecycle.adapter = adapter
                                 } else {
                                     adapter.updateList(list)
                                 }
 
                                 if (list.isNotEmpty()) {
-                                    binding.recyclercategry.visibility = View.VISIBLE
+                                    binding.idBookingRecycle.visibility = View.VISIBLE
                                     binding.noDataLayout.visibility = View.GONE
                                 } else {
-                                    binding.recyclercategry.visibility = View.GONE
+                                    binding.idBookingRecycle.visibility = View.GONE
                                     binding.noDataLayout.visibility = View.VISIBLE
                                 }
-                            }
+                            }*/
                         }
 
 
@@ -412,6 +410,10 @@ class BookingsFragment :
 
     }
 
+    private fun setMyBookingAdapter() {
+        binding.bookingAdapter = BookingListAdapter(requireContext(),bookingList,onItemClick,type,findNavController(),mViewModel.typeOfUser)
+    }
+
     private fun setBack() {
         val callback: OnBackPressedCallback =
             object : OnBackPressedCallback(true) {
@@ -438,6 +440,12 @@ class BookingsFragment :
         mViewModel.acceptBookingRequest.bookingId = id
         mViewModel.hitAcceptBookingApi()
 
+    }
+
+    private val onItemClick: (String, String, String) -> Unit = { position, name, data ->
+        when (name) {
+
+        }
     }
 
 }

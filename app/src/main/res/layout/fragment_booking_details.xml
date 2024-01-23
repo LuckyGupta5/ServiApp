@@ -3,10 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="android.view.View" />
+
         <variable
             name="clickEvent"
             type="kotlin.jvm.functions.Function1" />
 
+        <variable
+            name="type"
+            type="Integer" />
+
+        <variable
+            name="loginAs"
+            type="Integer" />
 
         <variable
             name="data"
@@ -149,7 +159,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:gravity="center_horizontal"
                         android:maxLines="1"
-                        android:text="@string/at_centre"
+                        android:text="@{data.serviceDetail.serviceMode.atHome?@string/at_home:@string/at_center}"
                         android:textColor="@color/grey_717171"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -224,6 +234,50 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:src="@drawable/booked_by_icon" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/poppins_medium"
+                            android:maxLines="1"
+                            android:text="@string/booked_by"
+                            android:textColor="@color/black_000"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:id="@+id/idBookedByName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/poppins_regular"
+                            android:maxLines="1"
+                            android:text="Abhishek Mehra"
+                            android:textColor="@color/grey_6E6E6E"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="22dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:src="@drawable/calender_img" />
 
                     <LinearLayout
@@ -257,12 +311,14 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/idLocationContainer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="19dp"
                     android:layout_marginTop="22dp"
                     android:layout_marginBottom="27dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="@{data.address.empty?View.GONE:View.VISIBLE}">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -293,7 +349,7 @@
                             android:ellipsize="end"
                             android:fontFamily="@font/poppins_regular"
                             android:maxLines="1"
-                            android:text="@string/a_199_sector_63_noida"
+                            android:text="@{data.address}"
                             android:textColor="@color/grey_6E6E6E"
                             android:textSize="15sp" />
                     </LinearLayout>
@@ -347,7 +403,7 @@
                             android:fontFamily="@font/poppins_regular"
                             android:gravity="end"
                             android:maxLength="10"
-                            android:text="@string/_1420"
+                            android:text="@{data.baseAmount}"
                             android:textColor="@color/black_242424"
                             android:textSize="15dp" />
                     </LinearLayout>
@@ -380,7 +436,7 @@
                             android:gravity="end"
                             android:maxLength="10"
                             android:maxLines="1"
-                            android:text="@string/_25"
+                            android:text="@{data.taxAmount}"
                             android:textColor="@color/black_242424"
                             android:textSize="15sp" />
                     </LinearLayout>
@@ -416,7 +472,7 @@
                             android:fontFamily="@font/poppins_medium"
                             android:gravity="end"
                             android:maxLength="15"
-                            android:text="@string/_1524"
+                            android:text="@{data.paidAmount}"
                             android:textColor="@color/black_242424"
                             android:textSize="15sp" />
                     </LinearLayout>
@@ -464,7 +520,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="visible">
+                    android:visibility="@{type == 3?View.VISIBLE:View.GONE}">
 
                     <View
                         android:layout_width="match_parent"
@@ -555,7 +611,7 @@
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:visibility="visible">
+                android:visibility="@{type==3?View.VISIBLE:View.GONE}">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -587,7 +643,7 @@
                         android:fontFamily="@font/poppins_semi_bold"
                         android:maxLength="8"
                         android:stateListAnimator="@null"
-                        android:text="@string/_1524"
+                        android:text="@{data.paidAmount}"
                         android:textAllCaps="false"
                         android:textColor="@color/black_242424"
                         android:textSize="19sp"
@@ -620,6 +676,7 @@
                 android:background="@drawable/apptheme_outline_with_solid_white_corner_12"
                 android:backgroundTint="@null"
                 android:fontFamily="@font/poppins_medium"
+                android:onClick="@{()->clickEvent.invoke(@string/mark_as_completed)}"
                 android:stateListAnimator="@null"
                 android:text="@string/mark_as_completed"
                 android:textAllCaps="false"
@@ -627,7 +684,6 @@
                 android:textSize="19sp"
                 android:visibility="gone"
                 app:backgroundTint="@null" />
-
 
 
             <com.google.android.material.button.MaterialButton
@@ -642,7 +698,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="19sp"
-                android:visibility="gone"
+                android:visibility="@{(loginAs == 1 &amp;&amp; type == 0) ? View.VISIBLE : View.GONE}"
                 app:backgroundTint="@null" />
 
             <LinearLayout
@@ -695,7 +751,7 @@
                 android:id="@+id/acceptRejectLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone">
+                android:visibility="@{(loginAs == 2 &amp;&amp; type == 0) ? View.VISIBLE : View.GONE}">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/idReject"
@@ -708,10 +764,10 @@
                     android:background="@drawable/rectangle_button_color_grey_e8e8e8_12dp"
                     android:backgroundTint="@null"
                     android:fontFamily="@font/poppins_medium"
+                    android:onClick="@{()->clickEvent.invoke(@string/reject)}"
                     android:stateListAnimator="@null"
                     android:text="@string/reject"
                     android:textAllCaps="false"
-                    android:onClick="@{()->clickEvent.invoke(@string/reject)}"
                     android:textColor="@color/black_2"
                     android:textSize="17sp"
                     app:backgroundTint="@null" />

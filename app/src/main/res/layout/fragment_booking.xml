@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
 
         <variable
             name="viewModel"
@@ -12,6 +13,12 @@
         <variable
             name="click"
             type="com.example.servivet.ui.main.view_model.BookingViewModel.ClickAction" />
+        <variable
+            name="bookingAdapter"
+            type="com.example.servivet.ui.main.adapter.BookingListAdapter" />
+        <variable
+            name="listData"
+            type="com.example.servivet.data.model.booking_list.response.MyBooking" />
 
     </data>
 
@@ -209,20 +216,20 @@
                 />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclercategry"
+                android:id="@+id/idBookingRecycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tabLayout"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_marginTop="5dp"
-
+                android:adapter="@{bookingAdapter}"
                 android:background="@color/grey_F8F8F8"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/booking_list_design" />
 
             <RelativeLayout
                 android:id="@+id/noDataLayout"
-                android:visibility="gone"
+                android:visibility="@{bookingAdapter.bookingList==null?View.GONE:bookingAdapter.bookingList.size()>0?View.GONE:View.VISIBLE}"
                 android:layout_below="@id/tabLayout"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"

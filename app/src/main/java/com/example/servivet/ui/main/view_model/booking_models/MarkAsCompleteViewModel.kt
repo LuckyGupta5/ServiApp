@@ -9,6 +9,7 @@ import com.example.servivet.data.model.common.response.CommonResponse
 import com.example.servivet.data.repository.MainRepository
 import com.example.servivet.ui.base.BaseViewModel
 import com.example.servivet.utils.Resource
+import com.example.servivet.utils.Session
 import com.example.servivet.utils.SingleLiveEvent
 import com.example.servivet.utils.StatusCode
 import com.google.gson.Gson
@@ -29,7 +30,7 @@ class MarkAsCompleteViewModel : BaseViewModel() {
 
     fun getMarkAsCompleteRequest(_id: String, typeOfUser: String) {
 
-        if (typeOfUser == "bought") {
+        if (typeOfUser == "bought" || Session.type =="1") {
             completed = "userBought"
         } else {
             completed = "providerSold"

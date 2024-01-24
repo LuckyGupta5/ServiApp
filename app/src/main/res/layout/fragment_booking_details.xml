@@ -17,6 +17,9 @@
         <variable
             name="loginAs"
             type="Integer" />
+        <variable
+            name="checkUserType"
+            type="String" />
 
         <variable
             name="data"
@@ -129,6 +132,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="4dp"
+                    android:visibility="@{loginAs == 1?View.VISIBLE:View.GONE}"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal">
 
@@ -195,7 +199,7 @@
                         android:layout_marginStart="5dp"
                         android:fontFamily="@font/poppins_semi_bold"
                         android:maxLength="12"
-                        android:text="@string/booking_id_num"
+                        android:text="@{data.bookingId}"
                         android:textColor="@color/black_2"
                         android:textSize="15dp" />
 
@@ -212,7 +216,7 @@
                             android:fontFamily="@font/poppins_regular"
                             android:paddingHorizontal="9dp"
                             android:paddingVertical="5dp"
-                            android:text="@string/individual"
+                            android:text="@{loginAs == 2?data.bookedFor:data.serviceDetail.bussinessType==3?@string/individual:@string/institutional}"
                             android:textColor="@color/app_theme"
                             android:textSize="11sp" />
                     </LinearLayout>
@@ -228,7 +232,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="22dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="@{(loginAs == 2 &amp;&amp; checkUserType.equals(@string/sold_small)) ? View.VISIBLE : View.GONE}">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -260,7 +265,7 @@
                             android:ellipsize="end"
                             android:fontFamily="@font/poppins_regular"
                             android:maxLines="1"
-                            android:text="Abhishek Mehra"
+                            android:text="@{data.userDetail.name}"
                             android:textColor="@color/grey_6E6E6E"
                             android:textSize="15sp" />
                     </LinearLayout>

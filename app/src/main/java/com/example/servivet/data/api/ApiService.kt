@@ -140,6 +140,9 @@ interface ApiService {
 
     @POST("reschedule/booking")
     suspend fun rescheduleBookingApi(@Body request: RescheduleBookingRequest): CommonResponse
+
     @POST("markascomplete/booking")
     suspend fun markAsCompleteApi(@Body request: MarkAsCompleteRequest): CommonResponse
+
+
 }

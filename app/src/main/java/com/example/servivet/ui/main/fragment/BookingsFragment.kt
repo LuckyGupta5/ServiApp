@@ -57,6 +57,7 @@ class BookingsFragment :
         typeReschdule = 0
         if (Session.type == "1") {
             mViewModel.hitBookingListAPI(myBookingStatus, 1, 10)
+            mViewModel.typeOfUser = "Bought"
          //   setPagination()
         } else if (Session.type == "2") {
             list.clear()
@@ -219,6 +220,9 @@ class BookingsFragment :
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             bookingList.clear()
                             bookingList.addAll(it.data.result.myBookingList)
+                            Log.e(
+                                "TAG", "setupObserversbooknng: ${Gson().toJson(it.data.result.mySoldBookingList)}",
+                            )
 
                             setMyBookingAdapter()
 //                            if (it.data.result.myBookingList != null && it.data.result.myBookingList.isNotEmpty()) {
@@ -284,8 +288,7 @@ class BookingsFragment :
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             Log.e(
-                                "TAG",
-                                "setupObservers: ${Gson().toJson(it.data.result.mySoldBookingList)}",
+                                "TAG", "setupObservers: ${Gson().toJson(it.data.result.mySoldBookingList)}",
                             )
 
                             bookingList.clear()

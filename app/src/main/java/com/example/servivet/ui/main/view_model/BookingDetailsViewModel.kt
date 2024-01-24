@@ -10,6 +10,7 @@ import com.example.servivet.data.repository.MainRepository
 import com.example.servivet.ui.base.BaseViewModel
 import com.example.servivet.ui.main.fragment.BookingDetailsFragmentDirections
 import com.example.servivet.utils.Resource
+import com.example.servivet.utils.Session
 import com.example.servivet.utils.SingleLiveEvent
 import com.example.servivet.utils.StatusCode
 import kotlinx.coroutines.launch
@@ -31,7 +32,7 @@ class BookingDetailsViewModel :BaseViewModel() {
     fun getBookingDetailsRequest(bookingId: String) {
         bookingDetailRequest.apply {
            this.bookingId = bookingId
-            isMybooking= false
+            isMybooking= Session.type =="1"
         }
         hitBookingDetailApi()
 

@@ -382,6 +382,7 @@
     <string name="cancel_booking">Cancel Booking</string>
     <string name="bookinglist">bookingList</string>
     <string name="booked_by">Booked by</string>
+    <string name="bought_small">bought</string>
 
 
     <string-array name="select_issue">

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Build
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -54,8 +55,10 @@ class BookingDetailsFragment :
 
         if (Session.type == "1") {
             userType = "user"
+            binding.checkUserType = bookingViewModel.typeOfUser
         } else {
             userType = "Provider"
+            binding.checkUserType = bookingViewModel.typeOfUser
         }
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
@@ -226,10 +229,8 @@ class BookingDetailsFragment :
                             for (i in Session.category.indices) {
                                 for (j in Session.category[i].subCategory!!.indices) {
                                     if (it.data.result.bookingDetail.serviceDetail.subCategory == Session.category[i].subCategory!![j].id) {
-                                        binding.subCatName.text =
-                                            Session.category[i].subCategory!![j].name
-                                        Glide.with(requireContext())
-                                            .load("https://ride-chef-dev.s3.ap-south-1.amazonaws.com/" + Session.category[i].subCategory!![j].image)
+                                        binding.subCatName.text = Session.category[i].subCategory!![j].name
+                                        Glide.with(requireContext()).load("https://ride-chef-dev.s3.ap-south-1.amazonaws.com/" + Session.category[i].subCategory!![j].image)
                                             .into(binding.image2)
                                     }
                                 }
@@ -269,7 +270,9 @@ class BookingDetailsFragment :
     @RequiresApi(Build.VERSION_CODES.O)
     private fun manageMarkAsCompleteView() {
         if (argumentData.type == 1) {
-            if (updateButtonState(CommonUtils.getDateFromTimeStamp(bookingDetail.bookingDate)!!) && bookingViewModel.typeOfUser == "bought") {
+            if (updateButtonState(CommonUtils.getDateFromTimeStamp(bookingDetail.bookingDate)!!) && bookingViewModel.typeOfUser == getString(
+                    R.string.bought_small
+                )) {
                 binding.reScheduleLayout.isVisible = true
             } else {
                 binding.markAsCompleted.isVisible = true

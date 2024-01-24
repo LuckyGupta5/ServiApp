@@ -84,6 +84,9 @@
         <action
             android:id="@+id/action_bookingsFragment_to_bookingDetailsFragment"
             app:destination="@id/bookingDetailsFragment" />
+        <action
+            android:id="@+id/action_bookingsFragment_to_fragmentRatingUsBottomSheet"
+            app:destination="@id/fragmentRatingUsBottomSheet" />
     </fragment>
     <fragment
         android:id="@+id/servicesFragment"
@@ -392,6 +395,19 @@
         android:name="com.example.servivet.ui.main.bottom_sheet.ReasonForCancelBottomsheet"
         android:label="ReasonForCancelBottomsheet"
         tools:layout="@layout/reasonforcanceldesign">
+        <argument
+            android:name="cancelReq"
+            app:argType="string" />
+
+        <argument
+            android:name="from"
+            app:argType="string" />
+    </dialog>
+    <dialog
+        android:id="@+id/fragmentRatingUsBottomSheet"
+        android:name="com.example.servivet.ui.main.bottom_sheet.FragmentRatingUsBottomSheet"
+        android:label="FragmentRatingUsBottomSheet"
+        tools:layout="@layout/fragment_rating_us_bottom_sheet">
         <argument
             android:name="cancelReq"
             app:argType="string" />

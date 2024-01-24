@@ -4,7 +4,8 @@
 
 
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
 
         <variable
             name="click"
@@ -13,9 +14,11 @@
         <variable
             name="data"
             type="com.example.servivet.data.model.booking_list.response.MyBooking" />
+
         <variable
             name="type"
             type="Integer" />
+
         <variable
             name="typeOfUser"
             type="String" />
@@ -80,7 +83,7 @@
                             android:fontFamily="@font/poppins_regular"
                             android:paddingHorizontal="9dp"
                             android:paddingVertical="5dp"
-                            android:text="@{data.serviceDetail.bussinessType==3?@string/individual:@string/institutional}"
+                            android:text="@{typeOfUser.equals(@string/sold_small)?data.bookedFor:data.serviceDetail.bussinessType==3?@string/individual:@string/institutional}"
                             android:textColor="@color/app_theme"
                             android:textSize="11sp" />
                     </LinearLayout>
@@ -122,8 +125,8 @@
                                     android:id="@+id/image_2"
                                     android:layout_width="74dp"
                                     android:layout_height="74dp"
-                                    android:scaleType="centerCrop"
-                                    android:imageViewUrl="@{data.createdBy.image}"/>
+                                    android:imageViewUrl="@{data.createdBy.image}"
+                                    android:scaleType="centerCrop" />
                             </androidx.cardview.widget.CardView>
 
                             <LinearLayout
@@ -159,6 +162,7 @@
                                         android:fontFamily="@font/poppins_regular"
                                         android:maxLength="15"
                                         android:maxLines="1"
+                                        android:text="@{data.userDetail.name}"
                                         android:textColor="@color/grey_717171"
                                         android:textSize="13sp" />
 
@@ -179,8 +183,10 @@
                                         android:ellipsize="end"
                                         android:fontFamily="@font/poppins_regular"
                                         android:maxLines="1"
+                                        android:text="@{data.bookedFor}"
                                         android:textColor="@color/grey_979595"
-                                        android:textSize="13sp" />
+                                        android:textSize="13sp"
+                                        android:visibility="@{typeOfUser!=@string/sold_small ? View.GONE : View.VISIBLE}" />
 
 
                                 </LinearLayout>
@@ -217,8 +223,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
-                            android:visibility="gone"
-                            android:layout_marginBottom="10dp">
+                            android:layout_marginBottom="10dp"
+                            android:visibility="gone">
 
                             <TextView
                                 android:id="@+id/reject"
@@ -307,10 +313,10 @@
                                     android:fontFamily="@font/poppins_semi_bold"
                                     android:maxLength="7"
                                     android:maxLines="1"
-                                    android:visibility="gone"
                                     android:text="@string/_1799"
                                     android:textColor="@color/grey_747474"
-                                    android:textSize="15sp" />
+                                    android:textSize="15sp"
+                                    android:visibility="gone" />
                             </LinearLayout>
 
                             <RatingBar
@@ -355,11 +361,12 @@
                                 android:drawableTint="@color/app_theme"
                                 android:fontFamily="@font/poppins_medium"
                                 android:paddingHorizontal="20dp"
-                                android:text="@string/view_details"
+                                android:text="@{(type==2 &amp;&amp; typeOfUser.equals(@string/bought_small)) ? @string/rate_us:@string/view_details}"
                                 android:textAllCaps="false"
                                 android:textColor="@color/app_theme"
                                 android:textSize="17sp"
-                                android:visibility="@{type==2?View.GONE:View.VISIBLE}" />
+                                />
+                            <!--android:visibility="@{(type==2 || typeOfUser.equals(@string/bought_small)) ? View.GONE : View.VISIBLE}" -->
 
                             <TextView
                                 android:id="@+id/rate_us"
@@ -376,7 +383,7 @@
                                 android:textAllCaps="false"
                                 android:textColor="@color/app_theme"
                                 android:textSize="17sp"
-                                android:visibility="@{(type==2 &amp;&amp; !typeOfUser.equals(@string/sold_small)) ? View.VISIBLE : View.GONE}"
+                                android:visibility="gone"
                                 app:backgroundTint="@null" />
 
                         </LinearLayout>

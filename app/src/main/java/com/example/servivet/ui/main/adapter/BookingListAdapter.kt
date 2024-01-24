@@ -1,6 +1,8 @@
 package com.example.servivet.ui.main.adapter
 
 import android.content.Context
+import android.util.Log
+import android.widget.Toast
 import androidx.navigation.NavController
 import com.bumptech.glide.Glide
 import com.example.servivet.R
@@ -15,45 +17,49 @@ class BookingListAdapter(
     val requireContext: Context,
     val bookingList: ArrayList<MyBooking>,
     val onItemClick: (String, String, String) -> Unit,
-    private val type: Int,
+    private val types: Int,
     private val findNavController: NavController,
-    private val typeOfUser: String
+    private val typesOfUser: String
 ) : BaseAdapter<BookingListDesignBinding, MyBooking>(bookingList) {
 
     override val layoutId: Int = R.layout.booking_list_design
     override fun bind(binding: BookingListDesignBinding, item: MyBooking?, position: Int) {
-        if(type == 2){
-            binding.type = type
-            binding.typeOfUser = typeOfUser
+        binding.apply {
+            data = item
+            type = types
+            typeOfUser = typesOfUser
+        }
+        Log.e("TAG", " checkbind: $typesOfUser,$types", )
 
-        }else {
-            binding.data = item
-            binding.type = type
-            binding.idViewDetails.setOnClickListener {
+
+        binding.idViewDetails.setOnClickListener {
+            if(types==2 && typesOfUser == requireContext.getString(R.string.bought_small)){
+                findNavController.navigate(R.id.action_bookingsFragment_to_fragmentRatingUsBottomSheet)
+
+            }else {
                 findNavController.navigate(
                     BookingsFragmentDirections.actionBookingsFragmentToBookingDetailsFragment(
                         Gson().toJson(bookingList[position]),
-                        type,
+                        types,
                         requireContext.getString(R.string.bookinglist)
                     )
                 )
             }
-            for (i in Session.category.indices) {
-                for (j in Session.category[i].subCategory!!.indices) {
-                    if (bookingList[position].serviceDetail.subCategory == Session.category[i].subCategory!![j].id) {
-                        binding.subCatName.text = Session.category[i].subCategory!![j].name
-                        Glide.with(requireContext)
-                            .load("https://ride-chef-dev.s3.ap-south-1.amazonaws.com/" + Session.category[i].subCategory!![j].image)
-                            .into(binding.image2)
-                    }
+        }
+        for (i in Session.category.indices) {
+            for (j in Session.category[i].subCategory!!.indices) {
+                if (bookingList[position].serviceDetail.subCategory == Session.category[i].subCategory!![j].id) {
+                    binding.subCatName.text = Session.category[i].subCategory!![j].name
+                    Glide.with(requireContext)
+                        .load("https://ride-chef-dev.s3.ap-south-1.amazonaws.com/" + Session.category[i].subCategory!![j].image)
+                        .into(binding.image2)
                 }
             }
         }
     }
 
 
-
     override fun getItemCount(): Int {
-        return 2
+        return bookingList.size
     }
 }

@@ -356,7 +356,7 @@
     <string name="insufficient_balance">(Insufficient Balance)</string>
     <string name="add_money">Add Money</string>
     <string name="pay_1548">Pay ₹ 1548</string>
-    <string name="are_you_sure_you_want_to_conform">Are you sure you want to \nconform?</string>
+    <string name="are_you_sure_you_want_to_conform">Are you sure you want to \nconfirm?</string>
     <string name="calendar">calendar</string>
     <string name="slot">slot</string>
     <string name="at_center">At Center</string>
@@ -383,6 +383,11 @@
     <string name="bookinglist">bookingList</string>
     <string name="booked_by">Booked by</string>
     <string name="bought_small">bought</string>
+    <string name="r">R</string>
+    <string name="close_service">Close Service</string>
+    <string name="start_date">Start Date</string>
+    <string name="end_date">End Date</string>
+    <string name="close">Close</string>
 
 
     <string-array name="select_issue">

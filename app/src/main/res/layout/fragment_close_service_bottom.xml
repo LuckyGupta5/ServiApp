@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="clickEvent"
+            type="kotlin.jvm.functions.Function1" />
+
+        <variable
+            name="click"
+            type="com.example.servivet.ui.main.view_model.booking_models.CloseServiceViewModel.ClickAction" />
+
+        <variable
+            name="viewModel"
+            type="com.example.servivet.ui.main.view_model.booking_models.CloseServiceViewModel" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        tools:context=".ui.main.bottom_sheet.CloseServiceBottomFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/idDateTimeContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/idFromDateContainer"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="23dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/all_border_round_10dp_apptheme"
+                android:onClick="@{()->clickEvent.invoke(@string/start_date)}"
+                app:layout_constraintEnd_toStartOf="@id/idStartTimeContainer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/idFromDateText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/start_date"
+                    android:textColor="#7A7A7A"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/idStartDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:hint=" 07/02/2023"
+                    android:textColorHint="@color/grey_606060"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/idFromDateText" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="11dp"
+                    android:src="@drawable/calender_img"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/idStartDate"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/idStartTimeContainer"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="23dp"
+                android:background="@drawable/all_border_round_10dp_apptheme"
+                android:onClick="@{()->clickEvent.invoke(@string/end_date)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/idFromDateContainer"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/idStartTimerText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/end_date"
+                    android:textColor="#7A7A7A"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/idEndDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:hint="07/02/2023"
+                    android:textColorHint="@color/grey_606060"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/idStartTimerText" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="11dp"
+                    android:src="@drawable/calender_img"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/idEndDate"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/idCheckBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:text="Are you sure, you want to close this service."
+            app:layout_constraintTop_toBottomOf="@id/idDateTimeContainer" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/idButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/app_theme"
+            android:text="@string/close"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:cornerRadius="10dp"
+            android:onClick="@{()->clickEvent.invoke(@string/close)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/idCheckBox" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

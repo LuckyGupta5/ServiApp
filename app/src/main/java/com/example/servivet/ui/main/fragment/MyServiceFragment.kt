@@ -6,6 +6,7 @@ import android.content.Intent
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
@@ -27,8 +28,8 @@ import com.example.servivet.utils.StatusCode
 
 
 @Suppress("DEPRECATION")
-class MyServiceFragment : BaseFragment<FragmentMyServiceBinding, MyServiceViewModel>(
-    R.layout.fragment_my_service),
+class MyServiceFragment :
+    BaseFragment<FragmentMyServiceBinding, MyServiceViewModel>(R.layout.fragment_my_service),
     ServiceSubCatAdapter.SubCategoryAdapterInterFace,
     MyServiceCatAdapter.SubCategoryAdapterInterFace {
     private var tabPosition: Int = 0
@@ -37,10 +38,10 @@ class MyServiceFragment : BaseFragment<FragmentMyServiceBinding, MyServiceViewMo
     lateinit var adapter: MyServiceAdapter
     private var list = ArrayList<ServiceList>()
     var currentPage = 1
-        private lateinit var listN:CallBack1
+    private lateinit var listN: CallBack1
     var isLastPage: Boolean = false
     var isLoading: Boolean = false
-    var data :ArrayList<HomeServiceCategory>?=null
+    var data: ArrayList<HomeServiceCategory>? = null
     override fun isNetworkAvailable(boolean: Boolean) {
     }
 
@@ -48,13 +49,13 @@ class MyServiceFragment : BaseFragment<FragmentMyServiceBinding, MyServiceViewMo
     override fun setupViewModel() {
     }
 
-    override fun setupViews()
-    {
+    override fun setupViews() {
         listN = requireActivity() as CallBack1
         binding.apply {
-            click = mViewModel.ClickAction(requireContext(),binding)
+            click = mViewModel.ClickAction(requireContext(), binding)
             lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
+            clickEvent = ::onClick
         }
         data = Session.category
         mViewModel.serviceListRequest.category = data!![0].id
@@ -64,8 +65,12 @@ class MyServiceFragment : BaseFragment<FragmentMyServiceBinding, MyServiceViewMo
         mViewModel.serviceListRequest.search = ""
         mViewModel.serviceListRequest.page = currentPage
         tabPosition = 0
-        if (data!= null && data!!.isNotEmpty()) {
-            mViewModel.hitServiceListAPI(requireContext(), requireActivity(),requireActivity().isFinishing)
+        if (data != null && data!!.isNotEmpty()) {
+            mViewModel.hitServiceListAPI(
+                requireContext(),
+                requireActivity(),
+                requireActivity().isFinishing
+            )
         }
         setSubCatAdapter(data!!)
         onBackCall()
@@ -73,12 +78,14 @@ class MyServiceFragment : BaseFragment<FragmentMyServiceBinding, MyServiceViewMo
 
     private fun setSubCatAdapter(list: ArrayList<HomeServiceCategory>) {
         if (list.isNotEmpty())
-            binding.serviceSubCatRecycler.adapter = MyServiceCatAdapter(requireContext(), list, this)
+            binding.serviceSubCatRecycler.adapter =
+                MyServiceCatAdapter(requireContext(), list, this)
     }
+
     private fun onBackCall() {
-        binding.backBtn.setOnClickListener{
+        binding.backBtn.setOnClickListener {
             requireActivity().finish()
-            var intent=Intent(context,HomeActivity::class.java)
+            var intent = Intent(context, HomeActivity::class.java)
             requireActivity().startActivity(intent)
             listN.callBack()
 
@@ -89,7 +96,7 @@ class MyServiceFragment : BaseFragment<FragmentMyServiceBinding, MyServiceViewMo
                 @SuppressLint("SetTextI18n")
                 override fun handleOnBackPressed() {
                     requireActivity().finish()
-                    var intent=Intent(context,HomeActivity::class.java)
+                    var intent = Intent(context, HomeActivity::class.java)
                     requireActivity().startActivity(intent)
                     listN.callBack()
 
@@ -97,10 +104,10 @@ class MyServiceFragment : BaseFragment<FragmentMyServiceBinding, MyServiceViewMo
             }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
-    interface CallBack1{
+
+    interface CallBack1 {
         fun callBack()
     }
-
 
 
     private fun setAdapter(tabPosition: Int) {
@@ -111,7 +118,8 @@ class MyServiceFragment : BaseFragment<FragmentMyServiceBinding, MyServiceViewMo
             binding.serviceRecycler.adapter = adapter
             binding.serviceRecycler.visibility = View.VISIBLE
             binding.noDataLayout.visibility = View.GONE
-            binding.serviceRecycler.addOnScrollListener(object : PaginationScrollListener(layoutManager) {
+            binding.serviceRecycler.addOnScrollListener(object :
+                PaginationScrollListener(layoutManager) {
                 override fun isLastPage(): Boolean {
                     return isLastPage
                 }
@@ -158,20 +166,23 @@ class MyServiceFragment : BaseFragment<FragmentMyServiceBinding, MyServiceViewMo
                                 binding.serviceRecycler.visibility = View.VISIBLE
                                 binding.noDataLayout.visibility = View.GONE
 
-                            }else{
+                            } else {
                                 binding.serviceRecycler.visibility = View.GONE
                                 binding.noDataLayout.visibility = View.VISIBLE
                             }
                         }
+
                         StatusCode.STATUS_CODE_FAIL -> {
                             showSnackBar(it.data.message)
                         }
 
                     }
                 }
+
                 Status.LOADING -> {
                     ProcessDialog.startDialog(requireContext())
                 }
+
                 Status.ERROR -> {
                     ProcessDialog.dismissDialog()
 
@@ -180,6 +191,7 @@ class MyServiceFragment : BaseFragment<FragmentMyServiceBinding, MyServiceViewMo
 
                     }
                 }
+
                 Status.UNAUTHORIZED -> {
                     CommonUtils.logoutAlert(
                         requireContext(),
@@ -191,6 +203,7 @@ class MyServiceFragment : BaseFragment<FragmentMyServiceBinding, MyServiceViewMo
             }
         }
     }
+
     override fun onSubCatSelected(id: String) {
         mViewModel.serviceListRequest.category = id
         mViewModel.serviceListRequest.page = 1
@@ -200,5 +213,19 @@ class MyServiceFragment : BaseFragment<FragmentMyServiceBinding, MyServiceViewMo
             requireActivity(),
             requireActivity().isFinishing
         )
+    }
+
+    private fun onClick(type: String) {
+        when (type) {
+            getString(R.string.add_service) -> {
+                findNavController().navigate(R.id.action_myServiceFragment_to_addServiceFragment)
+
+            }
+
+            getString(R.string.close_service) -> {
+                findNavController().navigate(R.id.action_myServiceFragment_to_closeServiceBottomFragment)
+            }
+
+        }
     }
 }

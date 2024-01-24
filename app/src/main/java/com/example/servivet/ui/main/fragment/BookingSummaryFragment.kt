@@ -1,5 +1,6 @@
 package com.example.servivet.ui.main.fragment
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.util.Log
 import android.view.View
@@ -314,17 +315,18 @@ class BookingSummaryFragment :
 
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setPriceValue() {
         mViewModel.atHome.observe(viewLifecycleOwner) {
             Log.e("TAG", "setupObserver123: ${it}")
             if (it) {
-                binding.amount.text = serviceDetail.atHomePrice
+                binding.amount.text = getString(R.string.r)+" "+serviceDetail.atHomePrice
                 mViewModel.result.serviceDetail?.serviceModeLocal = getString(R.string.athome)
             }
         }
         mViewModel.atCenter.observe(viewLifecycleOwner) {
             if (it) {
-                binding.amount.text = serviceDetail.atCenterPrice
+                binding.amount.text = getString(R.string.r)+" "+serviceDetail.atCenterPrice
                 mViewModel.result.serviceDetail?.serviceModeLocal = getString(R.string.atcenter)
             }
         }

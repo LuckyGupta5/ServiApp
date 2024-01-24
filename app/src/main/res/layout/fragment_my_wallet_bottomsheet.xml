@@ -92,7 +92,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:includeFontPadding="false"
                 android:maxLength="10"
-                android:text="@{apiData.amount}"
+                android:text='@{@string/r+" "+apiData.amount}'
                 android:textColor="@color/black"
                 android:textSize="17sp"
                 app:layout_constraintLeft_toRightOf="@+id/myWalletId"
@@ -235,7 +235,7 @@
                 android:backgroundTint="@color/grey_E9EBEA"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:onClick="@{click::dismiss}"
+                android:onClick="@{()->clickEvent.invoke(1)}"
                 android:stateListAnimator="@null"
                 android:text="@string/cancel"
                 android:textAllCaps="false"

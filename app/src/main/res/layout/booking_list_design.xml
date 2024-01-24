@@ -283,11 +283,14 @@
                                 android:orientation="horizontal">
 
 
-                                <ImageView
+                                <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:src="@drawable/rupree_icon" />
+                                    android:text="@string/r"
+                                    android:textColor="@color/black"
+                                    android:textSize="20dp"
+                                    android:fontFamily="@font/poppins_bold"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"

@@ -10,9 +10,11 @@ import com.example.servivet.data.model.booking_module.booking_model.request.Rati
 import com.example.servivet.data.model.booking_module.booking_model.respnse.RatingResponseMain
 import com.example.servivet.data.model.booking_module.booking_slot.BookingSlotResponseMain
 import com.example.servivet.data.model.booking_module.booking_summary.response.BookingSummaryResponse
+import com.example.servivet.data.model.booking_module.booking_summary.response.ProviderLeave
 import com.example.servivet.data.model.booking_module.coupon.request.CouponAvalabilityRequest
 import com.example.servivet.data.model.booking_module.coupon.response.CouponResponseMain
 import com.example.servivet.data.model.booking_module.mark_as_complete.MarkAsCompleteRequest
+import com.example.servivet.data.model.booking_module.provider_leave.ProviderLeaveRequest
 import com.example.servivet.data.model.booking_module.reschedule_booking.request.RescheduleBookingRequest
 import com.example.servivet.data.model.business_verification_api.request.BusinessVerificationRequest
 import com.example.servivet.data.model.business_verification_api.response.BusinessVerificationResponse
@@ -143,6 +145,9 @@ interface ApiService {
 
     @POST("markascomplete/booking")
     suspend fun markAsCompleteApi(@Body request: MarkAsCompleteRequest): CommonResponse
+
+    @POST("provider/leave")
+    suspend fun providerLeaveApi(@Body request:ProviderLeaveRequest):CommonResponse
 
 
 }

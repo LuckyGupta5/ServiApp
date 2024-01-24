@@ -402,13 +402,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:drawableStart="@drawable/rupree_icon"
                             android:drawablePadding="3dp"
                             android:ellipsize="end"
                             android:fontFamily="@font/poppins_regular"
                             android:gravity="end"
                             android:maxLength="10"
-                            android:text="@{data.baseAmount}"
+                            android:text='@{@string/r+" "+data.baseAmount}'
                             android:textColor="@color/black_242424"
                             android:textSize="15dp" />
                     </LinearLayout>
@@ -434,14 +433,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:drawableStart="@drawable/rupree_icon"
                             android:drawablePadding="3dp"
                             android:ellipsize="end"
                             android:fontFamily="@font/poppins_regular"
                             android:gravity="end"
                             android:maxLength="10"
                             android:maxLines="1"
-                            android:text="@{data.taxAmount}"
+                            android:text='@{@string/r+" "+data.taxAmount}'
                             android:textColor="@color/black_242424"
                             android:textSize="15sp" />
                     </LinearLayout>
@@ -472,12 +470,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:drawableStart="@drawable/rupree_icon"
                             android:drawablePadding="3dp"
                             android:fontFamily="@font/poppins_medium"
                             android:gravity="end"
                             android:maxLength="15"
-                            android:text="@{data.paidAmount}"
+                            android:text='@{@string/r+" "+data.paidAmount}'
                             android:textColor="@color/black_242424"
                             android:textSize="15sp" />
                     </LinearLayout>
@@ -616,7 +613,7 @@
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:visibility="@{type==3?View.VISIBLE:View.GONE}">
+                android:visibility="@{type==2?View.VISIBLE:View.GONE}">
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -61,6 +61,41 @@ import java.util.regex.Pattern
 
 object CommonUtils {
 
+    private lateinit var pickerForm: DatePickerDialog
+    private lateinit var fromDateValue: String
+    private var fromDay: Int = 0
+    private var fromMonth: Int = 0
+    var cameraPhotoPath: String? = null
+    private var fromYear: Int = 0
+
+    fun selectFromDate(context: Context, listener: (String) -> Unit) {
+        val calendar = Calendar.getInstance()
+        fromDay = calendar.get(Calendar.DAY_OF_MONTH)
+        fromMonth = calendar.get(Calendar.MONTH)
+        fromYear = calendar.get(Calendar.YEAR)
+
+        pickerForm = DatePickerDialog(
+            context, { datePicker: DatePicker?, years: Int, monthOfYear: Int, dayOfMonth: Int ->
+
+                val month1 = monthOfYear + 1
+                var formattedMonth = "$month1"
+                var formattedDayOfMonth = "$dayOfMonth"
+                if (month1 < 10) formattedMonth = "0$month1"
+                if (dayOfMonth < 10) formattedDayOfMonth = "0$dayOfMonth"
+                fromDay = dayOfMonth
+                fromMonth = monthOfYear
+                fromYear = years
+                fromDateValue = "$years-$formattedMonth-$formattedDayOfMonth"
+                listener(fromDateValue)
+            }, fromYear, fromMonth, fromDay
+        )
+
+     //   calendar.add(Calendar.YEAR, -10)
+      //  pickerForm.datePicker.maxDate = calendar.timeInMillis
+
+        pickerForm.show()
+    }
+
 
     @JvmStatic
     @BindingAdapter("android:circularImage")

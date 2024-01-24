@@ -149,6 +149,12 @@
             app:destination="@id/homeFragment"
             app:popUpTo="@id/myServiceFragment"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_myServiceFragment_to_addServiceFragment"
+            app:destination="@id/addServiceFragment" />
+        <action
+            android:id="@+id/action_myServiceFragment_to_closeServiceBottomFragment"
+            app:destination="@id/closeServiceBottomFragment" />
 
     </fragment>
     <fragment
@@ -408,6 +414,19 @@
         android:name="com.example.servivet.ui.main.bottom_sheet.FragmentRatingUsBottomSheet"
         android:label="FragmentRatingUsBottomSheet"
         tools:layout="@layout/fragment_rating_us_bottom_sheet">
+        <argument
+            android:name="cancelReq"
+            app:argType="string" />
+
+        <argument
+            android:name="from"
+            app:argType="string" />
+    </dialog>
+    <dialog
+        android:id="@+id/closeServiceBottomFragment"
+        android:name="com.example.servivet.ui.main.bottom_sheet.CloseServiceBottomFragment"
+        android:label="CloseServiceBottomFragment"
+        tools:layout="@layout/fragment_close_service_bottom">
         <argument
             android:name="cancelReq"
             app:argType="string" />

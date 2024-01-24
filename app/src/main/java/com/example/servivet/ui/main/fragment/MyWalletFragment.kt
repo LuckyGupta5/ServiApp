@@ -19,6 +19,7 @@ import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.CommonUtils.showSnackBar
 import com.example.servivet.utils.Constants
 import com.example.servivet.utils.ProcessDialog
+import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
 import com.google.android.material.tabs.TabLayout
@@ -59,12 +60,10 @@ class MyWalletFragment :
 
     private fun initTabLayout() {
 
-        binding.idTabLayout.addTab(
-            binding.idTabLayout.newTab().setText("Bought")
-        )
-        binding.idTabLayout.addTab(
-            binding.idTabLayout.newTab().setText("Sold")
-        )
+        binding.idTabLayout.addTab(binding.idTabLayout.newTab().setText("Bought"))
+        if(Session.type =="2") {
+            binding.idTabLayout.addTab(binding.idTabLayout.newTab().setText("Sold"))
+        }
 
 
         binding.idTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {

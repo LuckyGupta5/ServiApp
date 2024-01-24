@@ -67,6 +67,9 @@ class MyWalletBottomsheet : BaseBottomSheetDailogFragment<FragmentMyWalletBottom
             0 -> {
                 initOrderCreateViewModel()
             }
+            1->{
+                dialog?.dismiss()
+            }
         }
     }
 

@@ -52,7 +52,6 @@ class AddServiceFragment : BaseFragment<FragmentAddServiceBinding, AddServiceVie
     private var showDayList= ArrayList<String>()
     private var imagerequestcode: Int = 0
     private var imagePath: String = ""
-
     private var dialog: Dialog? = null
     private val stringList = ArrayList<String>()
     private var categoryList = ArrayList<String>()

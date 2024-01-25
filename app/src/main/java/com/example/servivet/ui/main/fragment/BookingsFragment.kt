@@ -220,9 +220,7 @@ class BookingsFragment :
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             bookingList.clear()
                             bookingList.addAll(it.data.result.myBookingList)
-                            Log.e(
-                                "TAG", "setupObserversbooknng: ${Gson().toJson(it.data.result.mySoldBookingList)}",
-                            )
+                            Log.e("TAG", "setupObserversbooknng: ${Gson().toJson(it.data.result.myBookingList.size)}",)
 
                             setMyBookingAdapter()
 //                            if (it.data.result.myBookingList != null && it.data.result.myBookingList.isNotEmpty()) {

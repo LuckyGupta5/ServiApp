@@ -27,8 +27,17 @@ import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
+import com.example.servivet.utils.getCurrentTimeInFormat
+import com.example.servivet.utils.isTimeGapGreaterThan24Hours
 import com.example.servivet.utils.updateButtonState
 import com.google.gson.Gson
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 
 class BookingDetailsFragment :
     BaseFragment<FragmentBookingDetailsBinding, BookingDetailsViewModel>(R.layout.fragment_booking_details) {
@@ -45,7 +54,6 @@ class BookingDetailsFragment :
     private val markAsCompleteModel: MarkAsCompleteViewModel by viewModels()
 
 
-
     override fun isNetworkAvailable(boolean: Boolean) {
     }
 
@@ -56,6 +64,8 @@ class BookingDetailsFragment :
         if (Session.type == "1") {
             userType = "user"
             binding.checkUserType = bookingViewModel.typeOfUser
+            bookingViewModel.typeOfUser = "bought"
+
         } else {
             userType = "Provider"
             binding.checkUserType = bookingViewModel.typeOfUser
@@ -78,7 +88,6 @@ class BookingDetailsFragment :
         initBookingViewModel()
         initMarkAsCompleteModel()
     }
-
 
 
     private fun getBookingData() {
@@ -121,8 +130,12 @@ class BookingDetailsFragment :
                     )
                 )
             }
-            getString(R.string.mark_as_completed)->{
-                markAsCompleteModel.getMarkAsCompleteRequest(bookingData._id, bookingViewModel.typeOfUser)
+
+            getString(R.string.mark_as_completed) -> {
+                markAsCompleteModel.getMarkAsCompleteRequest(
+                    bookingData._id,
+                    bookingViewModel.typeOfUser
+                )
 
             }
         }
@@ -191,16 +204,26 @@ class BookingDetailsFragment :
     }
 
     fun gotocancelBottomsheet() {
-        binding.cancelButton.setOnClickListener(View.OnClickListener {
-            val fragment = ReasonForCancelBottomsheet()
-            fragment.show(childFragmentManager, "CancelBottomSheetFragment")
-        })
+//        binding.cancelButton.setOnClickListener(View.OnClickListener {
+//            val fragment = ReasonForCancelBottomsheet()
+//            fragment.show(childFragmentManager, "CancelBottomSheetFragment")
+//        })
         binding.idCancelBooking.setOnClickListener(View.OnClickListener {
 //            val fragment=ReasonForCancelBottomsheet()
 //            fragment.show(childFragmentManager,"CancelBottomSheetFragment")
             findNavController().navigate(
                 BookingDetailsFragmentDirections.actionBookingDetailsFragmentToReasonForCancelBottomsheet(
                     bookingData.bookingId,
+                    getString(R.string.booking_details)
+                )
+            )
+        })
+        binding.cancelButton.setOnClickListener(View.OnClickListener {
+//            val fragment=ReasonForCancelBottomsheet()
+//            fragment.show(childFragmentManager,"CancelBottomSheetFragment")
+            findNavController().navigate(
+                BookingDetailsFragmentDirections.actionBookingDetailsFragmentToReasonForCancelBottomsheet(
+                    bookingData._id,
                     getString(R.string.booking_details)
                 )
             )
@@ -221,7 +244,7 @@ class BookingDetailsFragment :
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             bookingDetail = it.data.result.bookingDetail
                             binding.data = bookingDetail
-                            Log.e("TAG", "setupObservers: ${Gson().toJson(bookingDetail)}", )
+                            Log.e("TAG", "setupObservers: ${Gson().toJson(bookingDetail)}")
                             //  setview()
 
                             manageMarkAsCompleteView()
@@ -229,17 +252,23 @@ class BookingDetailsFragment :
                             for (i in Session.category.indices) {
                                 for (j in Session.category[i].subCategory!!.indices) {
                                     if (it.data.result.bookingDetail.serviceDetail.subCategory == Session.category[i].subCategory!![j].id) {
-                                        binding.subCatName.text = Session.category[i].subCategory!![j].name
-                                        Glide.with(requireContext()).load("https://ride-chef-dev.s3.ap-south-1.amazonaws.com/" + Session.category[i].subCategory!![j].image)
+                                        binding.subCatName.text =
+                                            Session.category[i].subCategory!![j].name
+                                        Glide.with(requireContext())
+                                            .load("https://ride-chef-dev.s3.ap-south-1.amazonaws.com/" + Session.category[i].subCategory!![j].image)
                                             .into(binding.image2)
                                     }
                                 }
                             }
+                            Log.e(
+                                "TAG",
+                                "check24Hours:${Gson().toJson(it.data.result.bookingDetail.bookingDate)} ",
+                            )
 
 
                             binding.dateAndTimeText.text =
                                 it.data.result.bookingDetail.day + "," + CommonUtils.getDateTimeStampConvert(
-                                    it.data.result.bookingDetail.bookingDate
+                                    it.data.result.bookingDetail.startTime
                                 )
 
 
@@ -269,13 +298,67 @@ class BookingDetailsFragment :
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun manageMarkAsCompleteView() {
-        if (argumentData.type == 1) {
-            if (updateButtonState(CommonUtils.getDateFromTimeStamp(bookingDetail.bookingDate)!!) && bookingViewModel.typeOfUser == getString(
-                    R.string.bought_small
-                )) {
-                binding.reScheduleLayout.isVisible = true
-            } else {
-                binding.markAsCompleted.isVisible = true
+        when (argumentData.type) {
+            0 -> {
+                if (Session.type == "2") {
+                    if (bookingViewModel.typeOfUser == getString(R.string.bought_small)) {
+                        if (isTimeGapGreaterThan24Hours(
+                                getCurrentTimeInFormat(),
+                                bookingDetail.startTime
+                            )
+                        ) {
+                            binding.idCancelBooking.isVisible = true
+                        } else {
+                            binding.idNotCancellable.isVisible = true
+                        }
+
+                    } else {
+                        binding.acceptRejectLayout.isVisible = true
+                    }
+
+                } else {
+                    if (isTimeGapGreaterThan24Hours(
+                            getCurrentTimeInFormat(),
+                            bookingDetail.startTime
+                        )
+                    ) {
+                        binding.idCancelBooking.isVisible = true
+                    } else {
+                        binding.idNotCancellable.isVisible = true
+                    }
+                }
+
+            }
+
+            1 -> {
+                if (isTimeGapGreaterThan24Hours(
+                        getCurrentTimeInFormat(),
+                        bookingDetail.startTime
+                    ) && bookingViewModel.typeOfUser == getString(R.string.bought_small)
+                ) {
+                    if (bookingDetail.isReschedule) {
+                        binding.reSchedule.isEnabled = false
+                        binding.reSchedule.alpha = 0.3f
+                    } else {
+                        binding.reSchedule.isEnabled = true
+                        binding.reSchedule.alpha = 1.0f
+                    }
+                    if (bookingDetail.bookingCompleted != null) {
+                        if (bookingDetail.bookingCompleted!!.provider?.isComplete!!) {
+                            binding.markAsCompleted.isVisible = true
+                            binding.reScheduleLayout.isVisible = false
+
+
+                        } else {
+                            binding.markAsCompleted.isVisible = false
+                            binding.reScheduleLayout.isVisible = true
+
+
+                        }
+                    }
+                } else {
+                    binding.markAsCompleted.isVisible = true
+                }
             }
         }
     }
@@ -359,13 +442,13 @@ class BookingDetailsFragment :
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             showSnackBar(it.data.message)
                             findNavController().popBackStack()
-                            Log.e("TAG", "initMarkAsCompleteModel1:${it.data.message} ", )
+                            Log.e("TAG", "initMarkAsCompleteModel1:${it.data.message} ")
 
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
                             showSnackBar(it.data.message)
-                            Log.e("TAG", "initMarkAsCompleteModel2:${it.data.message} ", )
+                            Log.e("TAG", "initMarkAsCompleteModel2:${it.data.message} ")
 
                         }
                     }
@@ -379,7 +462,7 @@ class BookingDetailsFragment :
                     ProcessDialog.dismissDialog()
                     it.message?.let {
                         showSnackBar(it)
-                        Log.e("TAG", "initMarkAsCompleteModel3:${it} ", )
+                        Log.e("TAG", "initMarkAsCompleteModel3:${it} ")
 
                     }
                 }
@@ -388,5 +471,6 @@ class BookingDetailsFragment :
             }
         }
     }
+
 
 }

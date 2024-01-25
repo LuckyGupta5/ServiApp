@@ -23,14 +23,8 @@ class CalenderRecyclerAdapter(
 ):BaseAdapter<CalenderRecyclerDesignBinding,DateModel>(list) {
     var context: Context? = null
     private var monthChange: OnCurrentMonthChange? =null
+    var isFirst = true
 
-    // selectedPos = -1
-    /*fun CalenderRecyclerAdapter(context: Context?, calendarList: java.util.ArrayList<DateModel?>, monthChange: OnCurrentMonthChange?, selectedPos: Int, ) {
-        this.list = list
-        this.context = context
-        this.monthChange = monthChange
-        this.selectedPos = selectedPos
-    }*/
     override val layoutId: Int= R.layout.calender_recycler_design
     override fun getItemCount(): Int {
         return list.size
@@ -83,12 +77,18 @@ class CalenderRecyclerAdapter(
             } else {
                 unselectedOther()
                 list[position].isToday=true
-
                 onItemClick( fullDayName(list[position].date),"calendar", list[position].date!!)
             }
-
            notifyDataSetChanged()
            selectedPos = position
+        }
+        if(isFirst){
+//            unselectedOther()
+//            list[position].isToday=true
+            onItemClick( fullDayName(list[position].date),"calendar", list[position].date!!)
+          //  notifyDataSetChanged()
+          //  selectedPos = position
+            isFirst = false
         }
 
 

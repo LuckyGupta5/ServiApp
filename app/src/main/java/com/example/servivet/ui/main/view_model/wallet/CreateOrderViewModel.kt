@@ -1,5 +1,6 @@
 package com.example.servivet.ui.main.view_model.wallet
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -22,14 +23,19 @@ import java.io.IOException
 class CreateOrderViewModel() : ViewModel() {
 
     private var request = CommonRequest()
-    private val orderRequest = CreateOrderRequest()
+    val orderRequest = CreateOrderRequest()
 
     private val createOrderData = SingleLiveEvent<Resource<String>>()
     fun getOrderData(): LiveData<Resource<String>> {
         return createOrderData
     }
 
-    fun getPaymentAmountRequest(paymentAmountData: PayAmountResult, serviceData: ServiceDetail) {
+    fun getPaymentAmountRequest(
+        paymentAmountData: PayAmountResult,
+        serviceData: ServiceDetail,
+        walletAmounts: Float,
+        payWith: String
+    ) {
         Constants.SECURE_HEADER = "secure"
         orderRequest.apply {
             serviceId = serviceData._id
@@ -45,15 +51,15 @@ class CreateOrderViewModel() : ViewModel() {
             taxAmount = paymentAmountData.taxAmount
             payableAmount = paymentAmountData.payableAmount
             couponCode = serviceData.couponCode
-            isWalletAmountInclude = false
-            walletAmount = 0.0f
-            paymentMode = "paymentGateway"
+            walletAmount = walletAmounts
+            paymentMode = payWith
             saveApplyCouponId = paymentAmountData.saveApplyCouponId
             addressId = ""
 
         }
-        request.servivet_user_req =
-            AESHelper.encrypt(Constants.SECURITY_KEY, Gson().toJson(orderRequest))
+
+        Log.e("TAG", "getPaymentAmountRequest: ${Gson().toJson(orderRequest)}", )
+        request.servivet_user_req = AESHelper.encrypt(Constants.SECURITY_KEY, Gson().toJson(orderRequest))
 
         hitOrderRequestApi()
 

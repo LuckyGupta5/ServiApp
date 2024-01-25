@@ -255,7 +255,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:maxLength="10"
+                android:maxLength="15"
                 android:onClick="@{()->clickEvent.invoke(0)}"
                 android:stateListAnimator="@null"
                 android:textAllCaps="false"

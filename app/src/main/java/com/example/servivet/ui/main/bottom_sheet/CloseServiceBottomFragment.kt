@@ -1,13 +1,17 @@
 package com.example.servivet.ui.main.bottom_sheet
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.servivet.R
 import com.example.servivet.data.model.payment.payment_amount.response.PaymentResponseMain
 import com.example.servivet.databinding.FragmentBookingCancelledBottomSheetBinding
@@ -23,15 +27,18 @@ import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
 import com.google.gson.Gson
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 
-class CloseServiceBottomFragment : BaseBottomSheetDailogFragment<FragmentCloseServiceBottomBinding, CloseServiceViewModel>(R.layout.fragment_close_service_bottom)  {
+class CloseServiceBottomFragment :
+    BaseBottomSheetDailogFragment<FragmentCloseServiceBottomBinding, CloseServiceViewModel>(R.layout.fragment_close_service_bottom) {
     override val mViewModel: CloseServiceViewModel by viewModels()
-    private var startDate = ""
-    private var endDate = ""
+
 
     override fun getLayout(): Int {
-       return R.layout.fragment_close_service_bottom
+        return R.layout.fragment_close_service_bottom
     }
 
     override fun isNetworkAvailable(boolean: Boolean) {
@@ -42,10 +49,10 @@ class CloseServiceBottomFragment : BaseBottomSheetDailogFragment<FragmentCloseSe
 
     override fun setupViews() {
         binding.apply {
-            lifecycleOwner=viewLifecycleOwner
-            viewModel=mViewModel
-            click=mViewModel.ClickAction()
-            binding.clickEvent =::onClick
+            lifecycleOwner = viewLifecycleOwner
+            viewModel = mViewModel
+            click = mViewModel.ClickAction()
+            binding.clickEvent = ::onClick
         }
 
 
@@ -58,13 +65,14 @@ class CloseServiceBottomFragment : BaseBottomSheetDailogFragment<FragmentCloseSe
                     ProcessDialog.dismissDialog()
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            Log.e("TAG", "setupObservers: done", )
+                            findNavController().previousBackStackEntry?.savedStateHandle?.set(
+                                getString(
+                                    R.string.leave
+                                ),"false")
                             dialog?.dismiss()
-
                         }
-
                         StatusCode.STATUS_CODE_FAIL -> {
-                            Log.e("TAG", "setupObservers: botDonne", )
+                            Log.e("TAG", "setupObservers: botDonne")
 
                         }
 
@@ -96,29 +104,40 @@ class CloseServiceBottomFragment : BaseBottomSheetDailogFragment<FragmentCloseSe
         }
     }
 
-    private fun onClick(type:String){
-        when(type){
-            getString(R.string.start_date)->{
-                CommonUtils.selectFromDate(requireContext()) {
+    private fun onClick(type: String) {
+        when (type) {
+            getString(R.string.start_date) -> {
+                CommonUtils.selectFromDate(requireContext(),"") {
                     binding.idStartDate.text = it
-                    startDate = it
                 }
             }
-            getString(R.string.end_date)->{
-                CommonUtils.selectFromDate(requireContext()) {
+
+            getString(R.string.end_date) -> {
+                CommonUtils.selectFromDate(requireContext(),binding.idStartDate.text.toString()) {
                     binding.idEndDate.text = it
-                    endDate = it
+                }
+
+            }
+
+            getString(R.string.close) -> {
+                if(binding.idStartDate.text.toString().isEmpty() || binding.idEndDate.text.toString().isEmpty()) {
+                    Toast.makeText(requireContext(), "Please select both dates", Toast.LENGTH_SHORT).show()
+
+                }else if(!binding.idCheckBox.isChecked){
+                    Toast.makeText(requireContext(), "Please check checkBox ", Toast.LENGTH_SHORT).show()
+
+                }else{
+                    mViewModel.getMarkAsCompleteRequest(binding.idStartDate.text.toString(), binding.idEndDate.text.toString(), false)
 
                 }
-            }
-            getString(R.string.close)->{
-
-                mViewModel.getMarkAsCompleteRequest(startDate,endDate,false)
-
-
             }
         }
     }
 
+    override fun dismiss() {
+        super.dismiss()
+    }
 
 }
+
+

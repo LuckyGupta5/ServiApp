@@ -25,5 +25,7 @@ data class BookingDetail(
     val transactionId: String,
     val updatedAt: String,
     val user: String,
-    val userDetail: BookingDetailUserDetail
+    val isReschedule: Boolean,
+    val userDetail: BookingDetailUserDetail,
+    val bookingCompleted: BookingCompleted?=null
 )

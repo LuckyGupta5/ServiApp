@@ -255,6 +255,8 @@
             app:argType="string" />
 
 
+
+
         <argument
             android:name="from"
             app:argType="integer" />
@@ -277,6 +279,9 @@
 
         <argument
             android:name="data"
+            app:argType="string" />
+        <argument
+            android:name="paymentData"
             app:argType="string" />
 
         <argument
@@ -373,6 +378,12 @@
         <argument
             android:name="from"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_myWalletBottomsheet_to_bookingsFragment"
+            app:destination="@id/bookingsFragment" />
+        <action
+            android:id="@+id/action_myWalletBottomsheet_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
 
     </dialog>
     <dialog
@@ -415,7 +426,7 @@
         android:label="FragmentRatingUsBottomSheet"
         tools:layout="@layout/fragment_rating_us_bottom_sheet">
         <argument
-            android:name="cancelReq"
+            android:name="serviceId"
             app:argType="string" />
 
         <argument

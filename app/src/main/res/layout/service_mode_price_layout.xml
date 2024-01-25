@@ -136,7 +136,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:paddingVertical="10dp"
                 android:paddingEnd="20dp"
-                android:text="@string/add_hours"
+                android:text="+ Add Slots"
                 android:textColor="@color/app_theme"
                 android:textSize="15dp" />
 

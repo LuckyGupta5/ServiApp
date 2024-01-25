@@ -46,12 +46,8 @@ class BookingPaymentViewModel : BaseViewModel() {
 
         fun gotoCoupon(view: View) {
             if (Constants.APPLIED_COUPON != "APPLIED_COUPON")
-                view.findNavController().navigate(
-                    BookingPaymentFragmentDirections.actionBookingPaymentFragmentToCouponsFragment(
-                        Gson().toJson(bookingData),
-                        R.string.payment
-                    )
-                )
+
+                view.findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToCouponsFragment(Gson().toJson(bookingData), payAmountResult.payableAmount.toString(),R.string.payment))
         }
 
         fun goToWallerBottom(view: View) {

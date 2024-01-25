@@ -3,6 +3,8 @@ package com.example.servivet.ui.main.fragment
 import PaginationScrollListener
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
@@ -19,6 +21,7 @@ import com.example.servivet.ui.main.adapter.MyServiceCatAdapter
 import com.example.servivet.ui.main.adapter.MyServiceAdapter
 import com.example.servivet.ui.main.adapter.ServiceSubCatAdapter
 import com.example.servivet.ui.main.view_model.MyServiceViewModel
+import com.example.servivet.ui.main.view_model.booking_models.CloseServiceViewModel
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.CommonUtils.showSnackBar
 import com.example.servivet.utils.ProcessDialog
@@ -35,6 +38,7 @@ class MyServiceFragment :
     private var tabPosition: Int = 0
     override val binding: FragmentMyServiceBinding by viewBinding(FragmentMyServiceBinding::bind)
     override val mViewModel: MyServiceViewModel by viewModels()
+    private val closeServiceModel: CloseServiceViewModel by viewModels()
     lateinit var adapter: MyServiceAdapter
     private var list = ArrayList<ServiceList>()
     var currentPage = 1
@@ -47,6 +51,20 @@ class MyServiceFragment :
 
 
     override fun setupViewModel() {
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
+
+    private fun bottomSheetCallBack() {
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(getString(R.string.leave))
+            ?.observe(viewLifecycleOwner) {
+
+                binding.idCloseService.text = getString(R.string.start_service)
+
+            }
     }
 
     override fun setupViews() {
@@ -72,8 +90,23 @@ class MyServiceFragment :
                 requireActivity().isFinishing
             )
         }
+        initCloseServiceModel()
         setSubCatAdapter(data!!)
         onBackCall()
+        bottomSheetCallBack()
+
+        checkServiceAvaliable()
+    }
+
+
+
+    private fun checkServiceAvaliable() {
+        if(Session.userDetails.isServiceEnable){
+            binding.idCloseService.text = getString(R.string.close_service)
+        }else{
+            binding.idCloseService.text = getString(R.string.start_service)
+
+        }
     }
 
     private fun setSubCatAdapter(list: ArrayList<HomeServiceCategory>) {
@@ -204,6 +237,48 @@ class MyServiceFragment :
         }
     }
 
+    private fun initCloseServiceModel() {
+        closeServiceModel.getMarkAsCompleteData().observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    ProcessDialog.dismissDialog()
+                    when (it.data?.code) {
+                        StatusCode.STATUS_CODE_SUCCESS -> {
+                            binding.idCloseService.text = getString(R.string.close_service)
+
+                        }
+                        StatusCode.STATUS_CODE_FAIL -> {
+                            Log.e("TAG", "setupObservers: botDonne")
+
+                        }
+
+                    }
+                }
+
+                Status.LOADING -> {
+                    ProcessDialog.startDialog(requireContext())
+                }
+
+                Status.ERROR -> {
+                    ProcessDialog.dismissDialog()
+
+                    it.message?.let {
+                        showSnackBar(it)
+
+                    }
+                }
+
+                Status.UNAUTHORIZED -> {
+                    CommonUtils.logoutAlert(
+                        requireContext(),
+                        "Session Expired",
+                        "Unauthorized User",
+                        requireActivity()
+                    )
+                }
+            }
+        }    }
+
     override fun onSubCatSelected(id: String) {
         mViewModel.serviceListRequest.category = id
         mViewModel.serviceListRequest.page = 1
@@ -219,13 +294,17 @@ class MyServiceFragment :
         when (type) {
             getString(R.string.add_service) -> {
                 findNavController().navigate(R.id.action_myServiceFragment_to_addServiceFragment)
-
             }
 
             getString(R.string.close_service) -> {
-                findNavController().navigate(R.id.action_myServiceFragment_to_closeServiceBottomFragment)
+                if(binding.idCloseService.text.toString() == getString(R.string.close_service)) {
+                    findNavController().navigate(R.id.action_myServiceFragment_to_closeServiceBottomFragment)
+                }else{
+                    closeServiceModel.getMarkAsCompleteRequest("","",true)
+                }
             }
 
         }
     }
+
 }

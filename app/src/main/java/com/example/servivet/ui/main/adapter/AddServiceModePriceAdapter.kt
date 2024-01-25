@@ -44,13 +44,11 @@ class AddServiceModePriceAdapter(var context: Context, var list: ArrayList<Custo
         binding.addHour.setOnClickListener {
             if (item?.daysList!![daysPosition!!].slotList?.get(item?.daysList!![daysPosition!!].slotList?.size!! - 1)!!.startTime == "") {
                 Toast.makeText(context, "Choose the start time", Toast.LENGTH_SHORT).show()
-            } else if (item?.daysList!![daysPosition!!].slotList?.get(item?.daysList!![daysPosition!!].slotList?.size!! - 1)!!.endTime == "") {
+            } else if (item.daysList!![daysPosition!!].slotList?.get(item.daysList!![daysPosition!!].slotList?.size!! - 1)!!.endTime == "") {
                 Toast.makeText(context, "Choose the end time", Toast.LENGTH_SHORT).show()
-            }else if(!CommonUtils.checkDates(item?.daysList!![daysPosition!!].slotList?.get(item?.daysList!![daysPosition!!].slotList?.size!! - 1)!!.startTime!!,
-                    item?.daysList!![daysPosition!!].slotList?.get(item?.daysList!![daysPosition!!].slotList?.size!! - 1)!!.endTime!!
-                )){
+            }else if(!CommonUtils.checkDates(item.daysList!![daysPosition!!].slotList?.get(item.daysList!![daysPosition!!].slotList?.size!! - 1)!!.startTime!!, item.daysList!![daysPosition!!].slotList?.get(item.daysList!![daysPosition!!].slotList?.size!! - 1)!!.endTime!!)){
                 Toast.makeText(context, "Start time should not be greater than end time", Toast.LENGTH_SHORT).show()
-            } else if (item?.daysList!![daysPosition!!].slotList?.size!! < 4) {
+            } else if (item?.daysList!![daysPosition!!].slotList?.size!! < 11) {
 
                 item.daysList!![daysPosition!!].slotList?.add(ServiceListSlot("", "", ""))
                 listener(CallBackData(item!!, position))

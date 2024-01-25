@@ -2,6 +2,7 @@ package com.example.servivet.ui.main.fragment
 
 import android.util.Log
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -196,8 +197,9 @@ class MyWalletFragment :
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             if (data.result.walletTransaction != null && data.result.walletTransaction.isNotEmpty()) {
 //                                mViewModel.list.cle
-                                isLoading = true
+                                binding.transitionRecycler.isVisible = true
 
+                                isLoading = true
                                 if (currentPage == 1)
                                     list = ArrayList()
 
@@ -217,6 +219,9 @@ class MyWalletFragment :
                                     binding.transitionRecycler.visibility = View.GONE
                                     binding.noDataLayout.visibility = View.VISIBLE
                                 }
+                            }else{
+                               binding.transitionRecycler.isVisible = false
+
                             }
 
                         }

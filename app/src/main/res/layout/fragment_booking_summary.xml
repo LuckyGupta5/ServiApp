@@ -25,6 +25,9 @@
         <variable
             name="clickEvents"
             type="kotlin.jvm.functions.Function1" />
+        <variable
+            name="sloatAdaper"
+            type="com.example.servivet.ui.main.adapter.BookingTimeAdapter" />
 
     </data>
 
@@ -260,8 +263,8 @@
                         android:id="@+id/addAddressLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:visibility="@{summaryData.serviceMode.atHome?View.VISIBLE:View.GONE}">
+                        android:orientation="vertical">
+                        <!--android:visibility="@{summaryData.serviceMode.atHome?View.VISIBLE:View.GONE}"-->
 
                         <View
                             android:id="@+id/view3"
@@ -312,7 +315,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:visibility="gone">
+                        android:visibility="visible">
 
                         <View
                             android:id="@+id/changeview3"
@@ -365,7 +368,6 @@
                                     android:ellipsize="end"
                                     android:fontFamily="@font/poppins_medium"
                                     android:maxLines="1"
-                                    android:text="@string/a_192_sector_44_noida"
                                     android:textColor="@color/grey_6E6E6E"
                                     android:textSize="15sp" />
 
@@ -393,6 +395,7 @@
                                 app:backgroundTint="@null" />
                         </LinearLayout>
                     </LinearLayout>
+
 
                     <View
                         android:id="@+id/view4"
@@ -466,6 +469,7 @@
                             android:visibility="@{checkVisibility?View.VISIBLE:View.GONE}"
                             android:nestedScrollingEnabled="false"
                             android:overScrollMode="never"
+                            android:adapter="@{sloatAdaper}"
                             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                             app:spanCount="3"
                             tools:listitem="@layout/booking_time_recyclerview_design" />

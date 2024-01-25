@@ -15,6 +15,7 @@ import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
+import com.google.gson.Gson
 
 class ReasonForCancelBottomsheet() :
     BaseBottomSheetDailogFragment<FragmentReasonForCancelBottomsheetBinding, ReasonForCancellationViewModel>(
@@ -50,7 +51,36 @@ class ReasonForCancelBottomsheet() :
 
     private fun getCancelReason() {
         reasonList = listOf<String>(
-            "reason1", "reason2", "reason3", "reason4"
+            "Changed plans",
+            "Found a better option",
+            "Financial reasons",
+            "Service quality concerns",
+            "Unexpected circumstances",
+            "Not satisfied with customer support",
+            "Moved to a different location",
+            "Service no longer needed",
+            "Personal reasons",
+            "Unforeseen events",
+            "Service provider-related issues",
+            "Lack of communication",
+            "Difficulty using the service",
+            "Service didn't meet expectations",
+            "Better pricing elsewhere",
+            "Job loss",
+            "Health issues",
+            "Service outages or disruptions",
+            "Unresponsive service provider",
+            "Poor user experience",
+            "Technical issues",
+            "Dissatisfaction with terms and conditions",
+            "Company policy changes",
+            "Service delays",
+            "Service not as advertised",
+            "Contractual disputes",
+            "Security concerns",
+            "Environmental concerns",
+            "Not happy with billing practices",
+            "Service provider went out of business"
         )
     }
 
@@ -76,12 +106,7 @@ class ReasonForCancelBottomsheet() :
     }
 
     fun setadapter() {
-        binding.recyclerviewcancel.adapter = ReasonForCancelAdapterbottomsheet(
-            requireContext(),
-            ArrayList(),
-            onItemClick,
-            reasonList
-        )
+        binding.recyclerviewcancel.adapter = ReasonForCancelAdapterbottomsheet(requireContext(), ArrayList(), onItemClick, reasonList)
     }
 
     override fun setupObservers() {
@@ -107,13 +132,12 @@ class ReasonForCancelBottomsheet() :
 
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            showSnackBar(it.data.message)
+                            dialog?.dismiss()
                             Log.e("TAG", "hitCancelBookingApi: ${it.data.message}", )
 
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showSnackBar(it.data.message)
                             Log.e("TAG", "hitCancelBookingApi: ${it.data.message}", )
 
                         }
@@ -128,6 +152,8 @@ class ReasonForCancelBottomsheet() :
                     ProcessDialog.dismissDialog()
                     it.message?.let {
                         showSnackBar(it)
+                        Log.e("TAG", "hitCancelBookingApi: ${it}", )
+
                     }
                 }
 

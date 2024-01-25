@@ -38,8 +38,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import okhttp3.Dispatcher
 
-class BookingPaymentFragment :
-    BaseFragment<FragmentBookingPaymentBinding, BookingPaymentViewModel>(R.layout.fragment_booking_payment) {
+class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, BookingPaymentViewModel>(R.layout.fragment_booking_payment) {
     override val binding: FragmentBookingPaymentBinding by viewBinding(FragmentBookingPaymentBinding::bind)
     override val mViewModel: BookingPaymentViewModel by viewModels()
     private val slotViewModel: BookingSlotAvailabilityViewModel by viewModels()
@@ -235,23 +234,15 @@ class BookingPaymentFragment :
                 mViewModel.isConfirm = true
             }
 
-        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(getString(R.string.paymeturl))
-            ?.observe(viewLifecycleOwner) {
-                findNavController().currentBackStackEntry?.savedStateHandle?.remove<String>(
-                    getString(R.string.paymeturl)
-                )
-                val data = Gson().fromJson(it, CreateOrderResult::class.java)
-                Log.e("TAG", "bottomSheetCallBack:${Gson().toJson(data)} ")
-                CoroutineScope(Dispatchers.Main).launch {
-                    delay(1000)
-                    findNavController().navigate(
-                        BookingPaymentFragmentDirections.actionBookingPaymentFragmentToPaymentFragment(
-                            it,
-                            getString(R.string.paymeturl)
-                        )
-                    )
-                }
-            }
+//        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(getString(R.string.paymeturl))
+//            ?.observe(viewLifecycleOwner) {
+//                val data = Gson().fromJson(it, CreateOrderResult::class.java)
+//                Log.e("TAG", "bottomSheetCallBack:${Gson().toJson(data)} ")
+//                CoroutineScope(Dispatchers.Main).launch {
+//                    delay(1000)
+//                    findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToPaymentFragment(it, getString(R.string.paymeturl)))
+//                }
+//            }
     }
 
 

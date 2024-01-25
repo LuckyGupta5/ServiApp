@@ -48,7 +48,6 @@ class RateUseBottomSheetViewModel(): BaseViewModel(){
         fun getRating(){
             val userRating = ratingValue.value ?: 0.0F // Default value if rating is null
             ratingRequest.apply {
-                serviceId = "657fea25b55d7af39650d84e"
                 rating = userRating.toInt()
                 comment =abouttext
             }

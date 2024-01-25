@@ -177,7 +177,7 @@
                                         android:gravity="end"
                                         android:paddingHorizontal="6dp"
                                         android:paddingVertical="1dp"
-                                        android:text="4.5"
+                                        android:text="@{data.avgRating}"
                                         android:textColor="@color/white"
                                         android:textSize="13dp" />
 
@@ -469,7 +469,7 @@
                     android:layout_gravity="center_vertical"
                     android:fontFamily="@font/poppins_bold"
                     android:textColor="@color/black_2"
-                    android:textSize="13sp" />
+                    android:textSize="18sp" />
 
                 <View
                     android:id="@+id/idView"

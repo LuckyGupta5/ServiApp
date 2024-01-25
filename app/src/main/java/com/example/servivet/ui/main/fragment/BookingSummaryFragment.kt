@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
@@ -14,9 +15,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
+import com.example.servivet.data.model.add_service.request.AtHomeAvailability
+import com.example.servivet.data.model.add_service.request.ServiceListSlot
 import com.example.servivet.data.model.booking_detail.response.BookingDetail
 import com.example.servivet.data.model.booking_module.booking_slot.BookedSlot
 import com.example.servivet.data.model.booking_module.booking_summary.response.AtCenterAvailability
+import com.example.servivet.data.model.booking_module.booking_summary.response.ProviderLeave
 import com.example.servivet.data.model.booking_module.booking_summary.response.ServiceDetail
 import com.example.servivet.data.model.booking_module.booking_summary.response.Slot
 import com.example.servivet.data.model.date_model.DateModel
@@ -39,6 +43,7 @@ import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
+import com.example.servivet.utils.compareTwoDates
 import com.example.servivet.utils.generateMonthStrings
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
@@ -59,19 +64,23 @@ class BookingSummaryFragment :
     private val cal = Calendar.getInstance(Locale.ENGLISH)
     var pos = 0
     var monthCount = 0
-    private var position = 0
+    private var homePosition = 0
+    private var centerPosition = 0
 
     @RequiresApi(Build.VERSION_CODES.O)
     private var date = setCurrentDate()
-    private lateinit var bookingDetails:BookingDetail
+    private lateinit var bookingDetails: BookingDetail
     private val dates = java.util.ArrayList<Date>()
+    private var atHome = false
     private val argumetData: BookingSummaryFragmentArgs by navArgs()
     lateinit var adapter: CalenderRecyclerAdapter
     private lateinit var serviceDetail: ServiceDetail
+    private lateinit var providerLeave: ProviderLeave
     private var atCenterList = ArrayList<AtCenterAvailability>()
+    private var atHomeList = ArrayList<AtHomeAvailability>()
     private var bookedSlot = ArrayList<BookedSlot>()
     private var bottomSheetDialog: BottomSheetDialog? = null
-    private lateinit var serviceId:String
+    private lateinit var serviceId: String
 
 
     override fun isNetworkAvailable(boolean: Boolean) {
@@ -95,9 +104,7 @@ class BookingSummaryFragment :
         getArgumentData()
 
 
-        initYearAdapter()
         initRescheduleModel()
-        setDate()
 
         if (Session.saveAddress != null) {
             binding.addAddressLayout.visibility = View.GONE
@@ -112,23 +119,20 @@ class BookingSummaryFragment :
     }
 
 
-
-    private fun onClick(type:String){
-        when(type){
-            getString(R.string.save)->{
-                rescheduleBookingViewModel.getRescheduleRequest(mViewModel.result.serviceDetail,bookingDetails)
+    private fun onClick(type: String) {
+        when (type) {
+            getString(R.string.save) -> {
+                rescheduleBookingViewModel.getRescheduleRequest(mViewModel.result.serviceDetail, bookingDetails)
 
             }
         }
     }
 
 
-
-
     private fun getArgumentData() {
-        when(argumetData.from){
-            getString(R.string.reschedule)->{
-                bookingDetails = Gson().fromJson(argumetData.data,BookingDetail::class.java)
+        when (argumetData.from) {
+            getString(R.string.reschedule) -> {
+                bookingDetails = Gson().fromJson(argumetData.data, BookingDetail::class.java)
                 binding.idHeading.text = getString(R.string.reschedule)
                 //binding.idLayoutTopContainer.visibility = View.INVISIBLE
                 binding.idProceedBtn.isVisible = false
@@ -138,11 +142,13 @@ class BookingSummaryFragment :
 
 
             }
-            getString(R.string.booking_details)->{
-                bookingDetails = Gson().fromJson(argumetData.data,BookingDetail::class.java)
+
+            getString(R.string.booking_details) -> {
+                bookingDetails = Gson().fromJson(argumetData.data, BookingDetail::class.java)
                 serviceId = bookingDetails.serviceId
             }
-            getString(R.string.sub_category)->{
+
+            getString(R.string.sub_category) -> {
                 serviceId = argumetData.data
 
             }
@@ -180,7 +186,6 @@ class BookingSummaryFragment :
         val items = generateMonthStrings()
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, items)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
         binding.idYearSpinner.adapter = adapter
         binding.idYearSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             @RequiresApi(Build.VERSION_CODES.O)
@@ -269,13 +274,30 @@ class BookingSummaryFragment :
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             mViewModel.result = it.data.result
                             serviceDetail = (it.data.result.serviceDetail ?: "") as ServiceDetail
-                            it.data.result.serviceDetail?.atCenterAvailability?.let { centerList ->
-                                atCenterList.addAll(centerList)
-                                mViewModel.result.serviceDetail?.date = setCurrentDate()
-                                this.position =
-                                    findListIndex(atCenterList.indexOfFirst { it.day == getDayOfWeek() })
+                            if (it.data.result.providerLeaveList != null) {
+                                providerLeave =
+                                    (it.data.result.providerLeaveList ?: "") as ProviderLeave
                             }
+
+                                it.data.result.serviceDetail?.atHomeAvailability?.let { homeList ->
+                                    atHomeList.addAll(homeList)
+                                    mViewModel.result.serviceDetail?.date = setCurrentDate()
+                                    this.homePosition = findListIndex(atHomeList.indexOfFirst { it.day == getDayOfWeek() })
+                                }
+
+                                it.data.result.serviceDetail?.atCenterAvailability?.let { centerList ->
+                                    atCenterList.addAll(centerList)
+                                    mViewModel.result.serviceDetail?.date = setCurrentDate()
+                                    this.centerPosition = findListIndex(atCenterList.indexOfFirst { it.day == getDayOfWeek() })
+
+                            }
+
+
+
+
                             binding.summaryData = serviceDetail
+                            initYearAdapter()
+                            setDate()
                             setPriceValue()
                             initSlotModel()
                             Log.e("TAG", "setupObservers: ${Gson().toJson(it.data.result ?: "")}")
@@ -315,22 +337,34 @@ class BookingSummaryFragment :
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     private fun setPriceValue() {
+
         mViewModel.atHome.observe(viewLifecycleOwner) {
             Log.e("TAG", "setupObserver123: ${it}")
             if (it) {
-                binding.amount.text = getString(R.string.r)+" "+serviceDetail.atHomePrice
+                atHome = true
+                binding.amount.text = getString(R.string.r) + " " + serviceDetail.atHomePrice
                 mViewModel.result.serviceDetail?.serviceModeLocal = getString(R.string.athome)
+                binding.addAddressLayout.isVisible = true
+                binding.changeAddressLayout.isVisible = true
+                initSlotModel()
+
             }
         }
         mViewModel.atCenter.observe(viewLifecycleOwner) {
             if (it) {
-                binding.amount.text = getString(R.string.r)+" "+serviceDetail.atCenterPrice
+                atHome = false
+                binding.amount.text = getString(R.string.r) + " " + serviceDetail.atCenterPrice
                 mViewModel.result.serviceDetail?.serviceModeLocal = getString(R.string.atcenter)
+                binding.addAddressLayout.isVisible = false
+                binding.changeAddressLayout.isVisible = false
+                initSlotModel()
             }
         }
     }
+
 
     data class DataA(val id: Int, val count: Int, val name: String)
     data class DataB(val id: Int, val count: Int, val value: String)
@@ -348,21 +382,63 @@ class BookingSummaryFragment :
                             Log.e("TAG", "initSlotModel:${Gson().toJson(it.data.result)} ")
                             bookedSlot.clear()
                             bookedSlot.addAll(it.data.result.bookedSlot)
-                            if (this.position != -1) {
+                            if(!atHome) {
+                            if(this.centerPosition!=-1){
+
+                                binding.checkVisibility = true
+                                    binding.idNoDataFound.root.isVisible = false
+                                    mViewModel.result.serviceDetail?.day = atCenterList[centerPosition].day
+                                    binding.sloatAdaper = BookingTimeAdapter(requireContext(), atCenterList[centerPosition].slot, bookedSlot, onItemClick)
+                                }else{
+                                    binding.idNoDataFound.root.isVisible = true
+                                    binding.checkVisibility = false
+                                }
+//                                if(atHome){
+//                                    mViewModel.result.serviceDetail?.day = atHomeList[homePosition].day
+//                                }else {
+//                                    mViewModel.result.serviceDetail?.day = atCenterList[centerPosition].day
+//                                }
+//                                if(atHome){
+//                                    binding.sloatAdaper = BookingTimeAdapter(requireContext(), atHomeList[homePosition].slot!!, bookedSlot, onItemClick)
+//                                }else {
+//                                    binding.sloatAdaper = BookingTimeAdapter(requireContext(), atCenterList[centerPosition].slot, bookedSlot, onItemClick)
+//                                }
+
+                            }
+                            else if(atHome){
+                                if(this.homePosition !=-1) {
+                                    binding.checkVisibility = true
+                                    binding.idNoDataFound.root.isVisible = false
+                                    mViewModel.result.serviceDetail?.day = atHomeList[homePosition].day
+                                    binding.sloatAdaper = BookingTimeAdapter(requireContext(), atHomeList[homePosition].slot!!, bookedSlot, onItemClick)
+                                }
+                                else{
+                                    binding.idNoDataFound.root.isVisible = true
+                                    binding.checkVisibility = false
+                                }
+                            }else{
+                                binding.idNoDataFound.root.isVisible = true
+                                binding.checkVisibility = false
+                            }
+
+                           /* if (this.centerPosition != -1 || this.homePosition !=-1) {
                                 binding.checkVisibility = true
                                 binding.idNoDataFound.root.isVisible = false
-                                mViewModel.result.serviceDetail?.day = atCenterList[position].day
-                                binding.timeRecycler.adapter = BookingTimeAdapter(
-                                    requireContext(),
-                                    atCenterList[position].slot,
-                                    bookedSlot,
-                                    onItemClick
-                                )
+                                if(atHome){
+                                    mViewModel.result.serviceDetail?.day = atHomeList[homePosition].day
+                                }else {
+                                    mViewModel.result.serviceDetail?.day = atCenterList[centerPosition].day
+                                }
+                                if(atHome){
+                                    binding.sloatAdaper = BookingTimeAdapter(requireContext(), atHomeList[homePosition].slot!!, bookedSlot, onItemClick)
+                                }else {
+                                    binding.sloatAdaper = BookingTimeAdapter(requireContext(), atCenterList[centerPosition].slot, bookedSlot, onItemClick)
+                                }
                             } else {
                                 binding.idNoDataFound.root.isVisible = true
                                 binding.checkVisibility = false
 
-                            }
+                            }*/
                             getArgumentData()
 
                         }
@@ -408,6 +484,7 @@ class BookingSummaryFragment :
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             showSnackBar(it.data.message!!)
+                            findNavController().popBackStack()
 
 
                         }
@@ -456,15 +533,36 @@ class BookingSummaryFragment :
     private val onItemClick: (String, String, String) -> Unit = { position, name, data ->
         when (name) {
             getString(R.string.calendar) -> {
-                this.position = findListIndex(atCenterList.indexOfFirst { it.day == position })
                 date = dayMonthYearFromDate(data) ?: ""
-                mViewModel.result.serviceDetail?.date = date
-                initSlotModel()
+                if (atHome){
+                    this.homePosition = findListIndex(atHomeList.indexOfFirst { it.day == position })
+
+                }else{
+                    this.centerPosition = findListIndex(atCenterList.indexOfFirst { it.day == position })
+
+                }
+                if (::providerLeave.isInitialized) {
+                    if (!compareTwoDates(providerLeave.leaveStartDate, providerLeave.leaveEndDate, date)) {
+                        mViewModel.result.serviceDetail?.date = date
+                        initSlotModel()
+                    } else {
+
+                        Toast.makeText(requireContext(), "sloat not found on this date", Toast.LENGTH_SHORT).show()
+                    }
+                }else{
+                    if(atHome){
+                        mViewModel.result.serviceDetail?.date = date
+                        initSlotModel()
+                    }else {
+                        mViewModel.result.serviceDetail?.date = date
+                        initSlotModel()
+                    }
+                }
             }
 
             getString(R.string.slot) -> {
-                val data = Gson().fromJson(data, Slot::class.java)
-                Log.e("TAG", "checkData:${Gson().toJson(data)} ", )
+                val data = Gson().fromJson(data, ServiceListSlot::class.java)
+                Log.e("TAG", "checkData:${Gson().toJson(data)} ")
                 mViewModel.result.serviceDetail?.startTime = data.startTime
                 mViewModel.result.serviceDetail?.endTime = data.endTime
                 mViewModel.result.serviceDetail?.slotId = position

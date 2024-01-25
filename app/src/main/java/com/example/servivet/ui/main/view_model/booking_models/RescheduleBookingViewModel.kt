@@ -36,7 +36,7 @@ class RescheduleBookingViewModel : BaseViewModel() {
 
     fun getRescheduleRequest(serviceDetail: ServiceDetail?, bookingDetails: BookingDetail) {
         request.apply {
-            bookingTransactionId = bookingDetails.transactionId
+            bookingTransactionId = bookingDetails._id
             slotId = serviceDetail?.slotId
             bookingDate = serviceDetail?.date
             startTime = serviceDetail?.date+" "+ convertTo24HourFormat(serviceDetail?.startTime!!)

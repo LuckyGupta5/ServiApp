@@ -105,7 +105,7 @@ class CouponsFragment : BaseFragment<FragmentCouponsBinding, BookingCouponViewMo
     }
 
     fun setAdapter() {
-        binding.recyclerview.adapter = CouponAdapter(requireContext(), couponList, onItemClick)
+        binding.recyclerview.adapter = CouponAdapter(requireContext(), couponList, onItemClick,bookingData.paymentData.toFloat())
     }
 
     private val onItemClick:(Int,String)->Unit ={ id, data->

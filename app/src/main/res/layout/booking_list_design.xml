@@ -125,7 +125,7 @@
                                     android:id="@+id/image_2"
                                     android:layout_width="74dp"
                                     android:layout_height="74dp"
-                                    android:imageViewUrl="@{data.createdBy.image}"
+                                    android:imageViewUrl="@{data.userDetail.image}"
                                     android:scaleType="centerCrop" />
                             </androidx.cardview.widget.CardView>
 
@@ -144,6 +144,7 @@
                                     android:ellipsize="end"
                                     android:fontFamily="@font/poppins_semi_bold"
                                     android:maxLines="1"
+                                    android:text="@{data.serviceDetail.serviceName}"
                                     android:textColor="@color/black"
                                     android:textSize="17sp" />
 
@@ -287,10 +288,10 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
+                                    android:fontFamily="@font/poppins_bold"
                                     android:text="@string/r"
                                     android:textColor="@color/black"
-                                    android:textSize="20dp"
-                                    android:fontFamily="@font/poppins_bold"/>
+                                    android:textSize="20dp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -300,7 +301,7 @@
                                     android:layout_marginEnd="5dp"
                                     android:ellipsize="end"
                                     android:fontFamily="@font/poppins_semi_bold"
-                                    android:maxLength="7"
+                                    android:maxLength="15"
                                     android:maxLines="1"
                                     android:text="@{data.paidAmount}"
                                     android:textColor="@color/black"
@@ -322,9 +323,9 @@
                                     android:visibility="gone" />
                             </LinearLayout>
 
-                            <RatingBar
+                            <androidx.appcompat.widget.AppCompatRatingBar
                                 android:id="@+id/ratingbar"
-                                style="@style/Widget.AppCompat.RatingBar.Indicator"
+                                style="@style/Widget.AppCompat.RatingBar.Small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/ratinglayout"
@@ -364,11 +365,10 @@
                                 android:drawableTint="@color/app_theme"
                                 android:fontFamily="@font/poppins_medium"
                                 android:paddingHorizontal="20dp"
-                                android:text="@{(type==2 &amp;&amp; typeOfUser.equals(@string/bought_small)) ? @string/rate_us:@string/view_details}"
+                                android:text="@{(type==2 &amp;&amp; typeOfUser.equals(@string/bought)) ? @string/rate_us:@string/view_details}"
                                 android:textAllCaps="false"
                                 android:textColor="@color/app_theme"
-                                android:textSize="17sp"
-                                />
+                                android:textSize="17sp" />
                             <!--android:visibility="@{(type==2 || typeOfUser.equals(@string/bought_small)) ? View.GONE : View.VISIBLE}" -->
 
                             <TextView

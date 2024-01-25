@@ -61,6 +61,8 @@ class BookingViewModel:BaseViewModel() {
         request["myBookingStatus"]=myBookingStatus.toString()
         request["page"]=page.toString()
         request["limit"]=limit.toString()
+
+         Log.e("TAG", "setupObserversbooknng: ${Gson().toJson(request)}", )
         val repository = MainRepository(RetrofitBuilder.apiService)
 
         bookingListResponse.postValue(Resource.loading(null))

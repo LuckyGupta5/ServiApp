@@ -49,10 +49,12 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.time.DayOfWeek
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.LocalTime
+import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
-import java.time.format.DateTimeParseException
 import java.time.format.TextStyle
+import java.time.temporal.ChronoUnit
 import java.util.*
 import java.util.concurrent.TimeUnit
 import java.util.regex.Matcher
@@ -67,12 +69,21 @@ object CommonUtils {
     private var fromMonth: Int = 0
     var cameraPhotoPath: String? = null
     private var fromYear: Int = 0
+    val initialYear = 2022 // Set your desired initial year
+    val initialMonth = Calendar.JANUARY // Month is zero-based, so January is 0
+    val initialDay = 1 // Set
 
-    fun selectFromDate(context: Context, listener: (String) -> Unit) {
+    fun selectFromDate(context: Context, date: String, listener: (String) -> Unit) {
+        var selectedDate: Date
         val calendar = Calendar.getInstance()
         fromDay = calendar.get(Calendar.DAY_OF_MONTH)
         fromMonth = calendar.get(Calendar.MONTH)
         fromYear = calendar.get(Calendar.YEAR)
+        if (date.isNotEmpty()) {
+            selectedDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(date)
+            calendar.time = selectedDate
+        }
+
 
         pickerForm = DatePickerDialog(
             context, { datePicker: DatePicker?, years: Int, monthOfYear: Int, dayOfMonth: Int ->
@@ -90,8 +101,11 @@ object CommonUtils {
             }, fromYear, fromMonth, fromDay
         )
 
-     //   calendar.add(Calendar.YEAR, -10)
-      //  pickerForm.datePicker.maxDate = calendar.timeInMillis
+        //   calendar.add(Calendar.YEAR, -10)
+
+
+        pickerForm.datePicker.minDate = calendar.timeInMillis
+
 
         pickerForm.show()
     }
@@ -401,7 +415,8 @@ object CommonUtils {
     }
 
     fun checkDates(d1: String, d2: String): Boolean {
-        val dfDate = SimpleDateFormat("hh:mm a")
+       // val dfDate = SimpleDateFormat("hh:mm a")
+        val dfDate = SimpleDateFormat("HH:mm")
         var b = false
         try {
             if (dfDate.parse(d1).before(dfDate.parse(d2))) {
@@ -426,12 +441,12 @@ object CommonUtils {
         val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
             c.set(Calendar.HOUR_OF_DAY, hour)
             c.set(Calendar.MINUTE, minute)
-            mSelectedTime = SimpleDateFormat("hh:mm a").format(c.time)
+            mSelectedTime = SimpleDateFormat("HH:mm ").format(c.time)
             callback(mSelectedTime)
             textView.text = mSelectedTime
         }
         val timePickerDialog = TimePickerDialog(
-            context, AlertDialog.THEME_HOLO_LIGHT, timeSetListener, hour, minute, false
+            context, AlertDialog.THEME_HOLO_LIGHT, timeSetListener, hour, minute, true
         )
         timePickerDialog.show()
         return mSelectedTime
@@ -550,16 +565,26 @@ object CommonUtils {
     }
 
 
-    fun getDateTimeStampConvert(date: String): String? {
-        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-        inputFormat.timeZone = TimeZone.getTimeZone("UTC")
-        val date: Date = inputFormat.parse(date)
+    @SuppressLint("SimpleDateFormat")
+    fun getDateTimeStampConvert(timestamp: String): String? {
+//        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+//        inputFormat.timeZone = TimeZone.getTimeZone("UTC")
+//        val date: Date? = inputFormat.parse(date)
+//
+//        val outputFormat = SimpleDateFormat("dd MMM, HH:mm")
+//        outputFormat.timeZone = TimeZone.getDefault()
+//
+//        val outputDateString = outputFormat.format(date)
+//        return outputDateString
 
-        val outputFormat = SimpleDateFormat("dd MMM, hh:mm a")
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+        inputFormat.timeZone = TimeZone.getTimeZone("UTC")
+
+        val outputFormat = SimpleDateFormat("dd MMM HH:mm", Locale.getDefault())
         outputFormat.timeZone = TimeZone.getDefault()
 
-        val outputDateString = outputFormat.format(date)
-        return outputDateString
+        val date = inputFormat.parse(timestamp)
+        return outputFormat.format(date)
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -1088,18 +1113,38 @@ fun getLastWordFromUrl(url: String): String {
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun updateButtonState(exceedTime: String): Boolean {
-    val startTime = LocalTime.parse(currentTime(), DateTimeFormatter.ofPattern("hh:mm a"))
-    val endTime = LocalTime.parse(exceedTime, DateTimeFormatter.ofPattern("hh:mm a"))
+//    val startTime = LocalTime.parse(currentTime(), DateTimeFormatter.ofPattern("hh:mm a"))
+//    val endTime = LocalTime.parse(exceedTime, DateTimeFormatter.ofPattern("hh:mm a"))
+    val startTime = LocalTime.parse(currentTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"))
+    val endTime = LocalTime.parse(exceedTime, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"))
     val timeDifference = calculateTimeDifference(startTime, endTime)
     return timeDifference < TimeUnit.HOURS.toMillis(24)
 
 }
 
+fun compareDateDifferenceInHours(date1: String, date2: String): Long {
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    val parsedDate1 = dateFormat.parse(date1) ?: Date()
+    val parsedDate2 = dateFormat.parse(date2) ?: Date()
+
+    val differenceInMillis = parsedDate2.time - parsedDate1.time
+    return TimeUnit.MILLISECONDS.toHours(differenceInMillis)
+}
+
+fun getCurreentDate(): String {
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
+    dateFormat.timeZone = TimeZone.getDefault() // Set the timezone to UTC
+    val currentDate = Date(System.currentTimeMillis())
+    return dateFormat.format(currentDate)
+}
+
+
+
 @RequiresApi(Build.VERSION_CODES.O)
 fun currentTime(): String {
-    val currentTime = LocalTime.now()
-    val dateFormat = DateTimeFormatter.ofPattern("hh:mm a")
-    return currentTime.format(dateFormat)
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+    Log.e("TAG", "manageMarkAsCompleteView32132: ${dateFormat.format(Date())}", )
+    return dateFormat.format(Date())
 
 }
 
@@ -1107,7 +1152,6 @@ fun currentTime(): String {
 fun calculateTimeDifference(startTime: LocalTime, endTime: LocalTime): Long {
     val startMillis = startTime.toSecondOfDay() * 1000L
     val endMillis = endTime.toSecondOfDay() * 1000L
-
     return endMillis - startMillis
 }
 
@@ -1124,6 +1168,54 @@ fun convertTo24HourFormat(time12Hour: String): String {
 
     return "" // Return an empty string if there's an error
 }
+fun getCurrentDateTimeInISO8601Format(myDate: String): String {
+//    val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
+//    dateFormat.timeZone = TimeZone.getDefault() // Set the timezone to UTC
+//    val currentDate = Date(System.currentTimeMillis())
+//    return dateFormat.format(currentDate)
+
+    val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val date = inputFormat.parse(myDate)
+
+    val outputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+    val outputDateStr = outputFormat.format(date)
+    return outputDateStr
+
+}
+
+
+@SuppressLint("SimpleDateFormat")
+fun compareTwoDates(startDate: String, endDate: String,myDate:String): Boolean {
+    val dates = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    val start: Date = dates.parse(startDate)!!
+    val end: Date = dates.parse(endDate)!!
+    val currentDate: Date = dates.parse(getCurrentDateTimeInISO8601Format(myDate))!!
+    Log.e("TAG", "compareTwoDates: ${start},${end},${currentDate}")
+    return currentDate in start..end
+}
+
+
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun isTimeGapGreaterThan24Hours(dateTime1: String, dateTime2: String): Boolean {
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    val parsedDateTime1 = LocalDateTime.parse(dateTime1, formatter)
+    val parsedDateTime2 = LocalDateTime.parse(dateTime2, formatter)
+
+    val gapInHours = ChronoUnit.HOURS.between(parsedDateTime1, parsedDateTime2)
+
+    return gapInHours > 24
+}
+
+fun getCurrentTimeInFormat(): String {
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+    dateFormat.timeZone = TimeZone.getTimeZone("UTC")
+    return dateFormat.format(Date())
+}
+
+
+
+
 
 
 

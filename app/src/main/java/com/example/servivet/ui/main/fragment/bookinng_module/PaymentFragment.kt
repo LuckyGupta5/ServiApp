@@ -24,8 +24,7 @@ import com.google.gson.Gson
 import org.json.JSONObject
 
 
-class PaymentFragment :
-    BaseFragment<FragmentPaymentBinding, PaymentViewModel>(R.layout.fragment_payment) {
+class PaymentFragment : BaseFragment<FragmentPaymentBinding, PaymentViewModel>(R.layout.fragment_payment) {
     private val paymentData: PaymentFragmentArgs by navArgs()
     private var callbackUrl = "http://13.235.137.221:3476/mobileApi/call-back"
 

@@ -24,6 +24,7 @@ data class MyBooking(
     val slotId: String,
     val startTime: String,
     val status: Int,
+    val myRating: MyRating?=null,
     val taxAmount: Double,
     val transactionId: String,
     val updatedAt: String,

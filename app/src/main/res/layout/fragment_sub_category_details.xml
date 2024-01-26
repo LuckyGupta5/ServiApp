@@ -378,6 +378,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="18dp"
+                            android:theme="@style/RatingBar"
                             android:rating='@{data.ratingReview.averageRating == null?0.0F:data.ratingReview.averageRating}'
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/idRatingCount" />
@@ -488,7 +489,7 @@
                     android:layout_gravity="center_vertical"
                     android:fontFamily="@font/poppins_bold"
                     android:textColor="@color/black_2"
-                    android:textSize="18dp" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton

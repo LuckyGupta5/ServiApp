@@ -98,7 +98,9 @@ class AddLocationFragment :
 
     private fun setClick() {
 
-
+        binding.backBtn.setOnClickListener{
+            findNavController().popBackStack()
+        }
     }
 
 

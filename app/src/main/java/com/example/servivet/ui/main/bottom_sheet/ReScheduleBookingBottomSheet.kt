@@ -1,7 +1,6 @@
 package com.example.servivet.ui.main.bottom_sheet
 
 import android.os.Build
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -116,7 +115,8 @@ class ReScheduleBookingBottomSheet : BaseBottomSheetDailogFragment<FragmentReSch
             requireContext(),
             ArrayList(),
             ArrayList(),
-            onItemClick
+            onItemClick,
+            date
         )
         adapter.notifyDataSetChanged()
     }

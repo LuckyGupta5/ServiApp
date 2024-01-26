@@ -38,7 +38,7 @@ class MyWalletBottomsheet :
     private lateinit var paymentAmountData: PayAmountResult
     private lateinit var serviceData: ServiceDetail
     private lateinit var paymentUrl: CreateOrderResult
-    private var walletAmount = 0.0f
+    private var walletAmount = 0.0
     private lateinit var payWith: String
 
     override fun getLayout() = R.layout.fragment_my_wallet_bottomsheet
@@ -111,17 +111,19 @@ class MyWalletBottomsheet :
                     when (data.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             Constants.SECURE_HEADER = " "
-                            data.result?.let {
+                            Log.e("TAG", "initOrderCreateViewModel: ${Gson().toJson(data.result)}", )
+                            if(data.result.authorization_url.isNullOrBlank()){
+                                findNavController().navigate(R.id.action_myWalletBottomsheet_to_bookingsFragment)
+                                dialog?.dismiss()
+                            }else{
                                 paymentUrl = data.result
                                 //findNavController().navigate(R.id.action_myWalletBottomsheet_to_bookingsFragment)
                                 findNavController().navigate(MyWalletBottomsheetDirections.actionMyWalletBottomsheetToPaymentFragment(Gson().toJson(paymentUrl), getString(R.string.paymeturl)))
 
                                 // findNavController().previousBackStackEntry?.savedStateHandle?.set(getString(R.string.paymeturl), Gson().toJson(paymentUrl))
                                 dialog?.dismiss()
-                            }?:run{
-                                findNavController().navigate(R.id.action_myWalletBottomsheet_to_bookingsFragment)
-                                dialog?.dismiss()
                             }
+
 
                         }
 

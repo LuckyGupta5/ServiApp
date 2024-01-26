@@ -14,7 +14,6 @@
         android:fontFamily="@font/poppins_regular"
         android:gravity="center"
         android:maxLength="20"
-        android:text="10:00 AM"
         android:textColor="@color/grey_6A6A6A"
-        android:textSize="15dp" />
+        android:textSize="15sp" />
 </layout>

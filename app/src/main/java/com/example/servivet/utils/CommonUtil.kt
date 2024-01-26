@@ -248,7 +248,9 @@ object CommonUtils {
 
 
         if (monthCount > 0) {
-            currentDate = LocalDate.now().minusDays(dayOfMonth.toLong())
+           // currentDate = LocalDate.now().minusDays(dayOfMonth.toLong())
+            currentDate = LocalDate.now().plusMonths(monthCount.toLong()).withDayOfMonth(dayOfMonth)
+
             //  currentDate = LocalDate.now()
         } else {
             currentDate = LocalDate.now()
@@ -1197,20 +1199,33 @@ fun compareTwoDates(startDate: String, endDate: String,myDate:String): Boolean {
 
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun isTimeGapGreaterThan24Hours(dateTime1: String, dateTime2: String): Boolean {
+fun isTimeGapGreaterThan24Hours(dateTime1: String, dateTime2: String, hoursGap:Int): Boolean {
     val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     val parsedDateTime1 = LocalDateTime.parse(dateTime1, formatter)
     val parsedDateTime2 = LocalDateTime.parse(dateTime2, formatter)
 
     val gapInHours = ChronoUnit.HOURS.between(parsedDateTime1, parsedDateTime2)
+    Log.e("TAG", "isTimeGapGreaterThan24Hours: $gapInHours", )
 
-    return gapInHours > 24
+    return gapInHours > hoursGap
 }
 
 fun getCurrentTimeInFormat(): String {
     val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
     dateFormat.timeZone = TimeZone.getTimeZone("UTC")
     return dateFormat.format(Date())
+}
+
+fun convertDateTimeFormat(inputDateTime: String): String {
+    // Define input and output date-time formatters
+    val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a")
+    val outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+
+    // Parse the input date-time string
+    val parsedDateTime = LocalDateTime.parse(inputDateTime, inputFormatter)
+
+    // Format the parsed date-time into the desired output format
+    return parsedDateTime.format(outputFormatter)
 }
 
 

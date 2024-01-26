@@ -7,5 +7,6 @@ data class ServiceListSlot(
     var _id: String="",
     var endTime: String?=null,
     var numOfSlot: String?=null,
+    var numOfSlotc: Int?=null,
     var startTime: String?=null
 ): ListAdapterItem, Serializable

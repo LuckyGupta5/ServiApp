@@ -24,6 +24,8 @@ data class BookingDetail(
     val taxAmount: String,
     val transactionId: String,
     val updatedAt: String,
+    val payBy: String,
+    val paymentMode: String,
     val user: String,
     val isReschedule: Boolean,
     val userDetail: BookingDetailUserDetail,

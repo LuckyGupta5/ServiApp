@@ -681,7 +681,7 @@
                     android:backgroundTint="@null"
                     android:drawablePadding="5dp"
                     android:fontFamily="@font/poppins_semi_bold"
-                    android:maxLength="8"
+                    android:maxLength="15"
                     android:stateListAnimator="@null"
                     android:text='@{@string/r+" "+paymentData.payableAmount.toString()}'
                     android:textAllCaps="false"

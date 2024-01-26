@@ -33,7 +33,7 @@ class CreateOrderViewModel() : ViewModel() {
     fun getPaymentAmountRequest(
         paymentAmountData: PayAmountResult,
         serviceData: ServiceDetail,
-        walletAmounts: Float,
+        walletAmounts: Double,
         payWith: String
     ) {
         Constants.SECURE_HEADER = "secure"

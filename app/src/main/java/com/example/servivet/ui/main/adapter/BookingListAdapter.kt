@@ -3,6 +3,7 @@ package com.example.servivet.ui.main.adapter
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import com.bumptech.glide.Glide
 import com.example.servivet.R
@@ -32,15 +33,19 @@ class BookingListAdapter(
             typeOfUser = typesOfUser
         }
         Log.e("TAG", " checkbind: $typesOfUser,$types")
-
         Log.e("TAG", "bind432343: ${bookingList[position].startTime}", )
         binding.dateAndTimeText.text = bookingList[position].day + "," + CommonUtils.getDateTimeStampConvert(bookingList[position].startTime)
-
+        if(bookingList[position].myRating!=null && types == 2){
+            binding.ratingbar.isVisible = true
+            binding.idViewDetails.isVisible = false
+            binding.ratingbar.rating = bookingList[position].myRating?.rating?.toFloat()!!
+        }else{
+            binding.ratingbar.isVisible = false
+            binding.idViewDetails.isVisible = true
+        }
 
         binding.idViewDetails.setOnClickListener {
             if (types == 2 && typesOfUser == requireContext.getString(R.string.bought)) {
-
-                findNavController.navigate(R.id.action_bookingsFragment_to_fragmentRatingUsBottomSheet)
                 findNavController.navigate(BookingsFragmentDirections.actionBookingsFragmentToFragmentRatingUsBottomSheet(bookingList[position].serviceDetail._id,"BookingList"))
 
             } else {

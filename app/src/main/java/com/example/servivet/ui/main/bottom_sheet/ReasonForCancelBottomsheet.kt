@@ -2,6 +2,8 @@ package com.example.servivet.ui.main.bottom_sheet
 
 import android.util.Log
 import android.view.View
+import android.widget.RadioButton
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.servivet.R
@@ -82,10 +84,32 @@ class ReasonForCancelBottomsheet() :
             "Not happy with billing practices",
             "Service provider went out of business"
         )
+        binding.adapter = ReasonForCancelAdapterbottomsheet(requireContext(), ArrayList(), onItemClick, reasonList)
+
     }
 
 
     fun dismissbottomsheet() {
+        if(Session.type =="1"){
+            cancelModel.cancelBookingRequest.isWantRefundInWallet= true
+            binding.idRefundContainer.isVisible = true
+        }else{
+            binding.idRefundContainer.isVisible = false
+        }
+        binding.idRadioGroup.setOnCheckedChangeListener { group, checkedId ->
+            val selectedRadioButton: RadioButton = group.findViewById(checkedId)
+            val position = group.indexOfChild(selectedRadioButton)
+            when(position){
+                0->{
+                    cancelModel.cancelBookingRequest.isWantRefundInWallet= true
+                }
+                1->{
+                    cancelModel.cancelBookingRequest.isWantRefundInWallet= false
+                }
+            }
+
+        }
+
         binding.submitbtn.setOnClickListener(View.OnClickListener {
 //            val fragment=BookingCancelledBottomSheet()
 //            fragment.show(childFragmentManager,"jhgfds")
@@ -99,6 +123,9 @@ class ReasonForCancelBottomsheet() :
             cancelModel.cancelBookingRequest.bookingId= bookingId.cancelReq
             cancelModel.cancelBookingRequest.reason= reason
             cancelModel.cancelBookingRequest.cancelledBy= cancelBy
+
+            Log.e("TAG", "dfsdfsfsfds: ${Gson().toJson(cancelModel.cancelBookingRequest)}", )
+
             cancelModel.hitCancelBookingApi()
 
 
@@ -106,7 +133,6 @@ class ReasonForCancelBottomsheet() :
     }
 
     fun setadapter() {
-        binding.recyclerviewcancel.adapter = ReasonForCancelAdapterbottomsheet(requireContext(), ArrayList(), onItemClick, reasonList)
     }
 
     override fun setupObservers() {

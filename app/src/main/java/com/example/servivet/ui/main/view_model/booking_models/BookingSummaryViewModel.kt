@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Build
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.lifecycle.LiveData
@@ -27,6 +28,7 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 import com.example.servivet.data.model.booking_module.booking_summary.response.Result
+import com.example.servivet.utils.Session
 import kotlin.math.log
 
 class BookingSummaryViewModel : BaseViewModel() {
@@ -69,12 +71,16 @@ class BookingSummaryViewModel : BaseViewModel() {
 
         fun gotopayment(view: View) {
             Log.e("TAG", "gotopayment: ${Gson().toJson(result.serviceDetail)}")
-            view.findNavController().navigate(
-                BookingSummaryFragmentDirections.actionBookingSummaryFragmentToBookingPaymentFragment(
-                    Gson().toJson(result.serviceDetail),
-                    R.string.booking_summary
+            if((atHome.value!! && Session.saveAddress!=null) || atCenter.value!!) {
+                view.findNavController().navigate(
+                    BookingSummaryFragmentDirections.actionBookingSummaryFragmentToBookingPaymentFragment(
+                        Gson().toJson(result.serviceDetail),
+                        R.string.booking_summary
+                    )
                 )
-            )
+            }else{
+                Toast.makeText(view.context, "Address Required", Toast.LENGTH_SHORT).show()
+            }
         }
 
         fun gotoaddlocation(view: View) {

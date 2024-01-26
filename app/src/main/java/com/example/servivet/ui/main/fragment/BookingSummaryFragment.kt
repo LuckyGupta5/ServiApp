@@ -22,7 +22,6 @@ import com.example.servivet.data.model.booking_module.booking_slot.BookedSlot
 import com.example.servivet.data.model.booking_module.booking_summary.response.AtCenterAvailability
 import com.example.servivet.data.model.booking_module.booking_summary.response.ProviderLeave
 import com.example.servivet.data.model.booking_module.booking_summary.response.ServiceDetail
-import com.example.servivet.data.model.booking_module.booking_summary.response.Slot
 import com.example.servivet.data.model.date_model.DateModel
 import com.example.servivet.databinding.FragmentBookingSummaryBinding
 import com.example.servivet.databinding.SaveAndChangeAddressBottomsheetBinding
@@ -106,7 +105,7 @@ class BookingSummaryFragment :
 
         initRescheduleModel()
 
-        if (Session.saveAddress != null) {
+            if (Session.saveAddress != null) {
             binding.addAddressLayout.visibility = View.GONE
             binding.changeAddressLayout.visibility = View.VISIBLE
             binding.nameInAddress.text = Session.saveAddress.name
@@ -275,8 +274,7 @@ class BookingSummaryFragment :
                             mViewModel.result = it.data.result
                             serviceDetail = (it.data.result.serviceDetail ?: "") as ServiceDetail
                             if (it.data.result.providerLeaveList != null) {
-                                providerLeave =
-                                    (it.data.result.providerLeaveList ?: "") as ProviderLeave
+                                providerLeave = (it.data.result.providerLeaveList ?: "") as ProviderLeave
                             }
 
                                 it.data.result.serviceDetail?.atHomeAvailability?.let { homeList ->
@@ -347,8 +345,8 @@ class BookingSummaryFragment :
                 atHome = true
                 binding.amount.text = getString(R.string.r) + " " + serviceDetail.atHomePrice
                 mViewModel.result.serviceDetail?.serviceModeLocal = getString(R.string.athome)
-                binding.addAddressLayout.isVisible = true
-                binding.changeAddressLayout.isVisible = true
+//                binding.addAddressLayout.isVisible = true
+                binding.changeAddressLayout.isVisible = Session.saveAddress != null
                 initSlotModel()
 
             }
@@ -358,7 +356,7 @@ class BookingSummaryFragment :
                 atHome = false
                 binding.amount.text = getString(R.string.r) + " " + serviceDetail.atCenterPrice
                 mViewModel.result.serviceDetail?.serviceModeLocal = getString(R.string.atcenter)
-                binding.addAddressLayout.isVisible = false
+//                binding.addAddressLayout.isVisible = false
                 binding.changeAddressLayout.isVisible = false
                 initSlotModel()
             }
@@ -388,7 +386,7 @@ class BookingSummaryFragment :
                                 binding.checkVisibility = true
                                     binding.idNoDataFound.root.isVisible = false
                                     mViewModel.result.serviceDetail?.day = atCenterList[centerPosition].day
-                                    binding.sloatAdaper = BookingTimeAdapter(requireContext(), atCenterList[centerPosition].slot, bookedSlot, onItemClick)
+                                    binding.sloatAdaper = BookingTimeAdapter(requireContext(), atCenterList[centerPosition].slot, bookedSlot, onItemClick,date)
                                 }else{
                                     binding.idNoDataFound.root.isVisible = true
                                     binding.checkVisibility = false
@@ -410,7 +408,13 @@ class BookingSummaryFragment :
                                     binding.checkVisibility = true
                                     binding.idNoDataFound.root.isVisible = false
                                     mViewModel.result.serviceDetail?.day = atHomeList[homePosition].day
-                                    binding.sloatAdaper = BookingTimeAdapter(requireContext(), atHomeList[homePosition].slot!!, bookedSlot, onItemClick)
+                                    binding.sloatAdaper = BookingTimeAdapter(
+                                        requireContext(),
+                                        atHomeList[homePosition].slot!!,
+                                        bookedSlot,
+                                        onItemClick,
+                                        date
+                                    )
                                 }
                                 else{
                                     binding.idNoDataFound.root.isVisible = true
@@ -534,6 +538,8 @@ class BookingSummaryFragment :
         when (name) {
             getString(R.string.calendar) -> {
                 date = dayMonthYearFromDate(data) ?: ""
+                Log.e("TAG", "checkDate:${data} ", )
+                Log.e("TAG", "checkDate:${date} ", )
                 if (atHome){
                     this.homePosition = findListIndex(atHomeList.indexOfFirst { it.day == position })
 
@@ -542,11 +548,13 @@ class BookingSummaryFragment :
 
                 }
                 if (::providerLeave.isInitialized) {
+                    Log.e("TAG", "leave:${Gson().toJson(providerLeave)} ", )
                     if (!compareTwoDates(providerLeave.leaveStartDate, providerLeave.leaveEndDate, date)) {
                         mViewModel.result.serviceDetail?.date = date
+                        binding.timeRecycler.isVisible = true
                         initSlotModel()
                     } else {
-
+                        binding.timeRecycler.isVisible = false
                         Toast.makeText(requireContext(), "sloat not found on this date", Toast.LENGTH_SHORT).show()
                     }
                 }else{

@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RatingBar
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -79,11 +80,12 @@ class FragmentRatingUsBottomSheet :
 
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            showSnackBar(it.data.message)
+                            Toast.makeText(requireContext(), it.data.message, Toast.LENGTH_SHORT).show()
+                            dialog?.dismiss()
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showSnackBar(it.data.message)
+                            Toast.makeText(requireContext(), it.data.message, Toast.LENGTH_SHORT).show()
                         }
 
                     }

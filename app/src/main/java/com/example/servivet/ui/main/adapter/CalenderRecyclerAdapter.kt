@@ -77,6 +77,7 @@ class CalenderRecyclerAdapter(
             } else {
                 unselectedOther()
                 list[position].isToday=true
+                Log.e("TAG", "setCalender:${list[position].date} ", )
                 onItemClick( fullDayName(list[position].date),"calendar", list[position].date!!)
             }
            notifyDataSetChanged()

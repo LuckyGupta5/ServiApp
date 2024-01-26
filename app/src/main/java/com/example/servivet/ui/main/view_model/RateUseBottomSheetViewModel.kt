@@ -52,7 +52,7 @@ class RateUseBottomSheetViewModel(): BaseViewModel(){
                 comment =abouttext
             }
             Log.e("TAG", "getRating:${Gson().toJson(ratingRequest)} ", )
-           // hitRatingApi()
+            hitRatingApi()
         }
     }
 

@@ -259,9 +259,11 @@
                         </LinearLayout>
                     </LinearLayout>
 
+
                     <LinearLayout
                         android:id="@+id/addAddressLayout"
                         android:layout_width="wrap_content"
+                        android:visibility="gone"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <!--android:visibility="@{summaryData.serviceMode.atHome?View.VISIBLE:View.GONE}"-->
@@ -309,13 +311,12 @@
                         </LinearLayout>
                     </LinearLayout>
 
-
                     <LinearLayout
                         android:id="@+id/changeAddressLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:visibility="visible">
+                        android:visibility="gone">
 
                         <View
                             android:id="@+id/changeview3"
@@ -354,7 +355,6 @@
                                     android:fontFamily="@font/poppins_medium"
                                     android:maxLength="30"
                                     android:maxLines="1"
-                                    android:text="@string/abhishek_mehra"
                                     android:textColor="@color/black_262626"
                                     android:textSize="17sp" />
 

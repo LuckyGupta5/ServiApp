@@ -73,8 +73,7 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, Booki
         if (Constants.APPLIED_COUPON == "APPLIED_COUPON") {
             binding.promoDiscountLayout.isVisible = true
             binding.appliedCoupon.isVisible = true
-            binding.applyCouponName.text =
-                getString(R.string.code) + " " + mViewModel.bookingData.couponCode + " " + getString(
+            binding.applyCouponName.text = getString(R.string.code) + " " + mViewModel.bookingData.couponCode + " " + getString(
                     R.string.applied
                 )
             binding.applyCoupon.isVisible = false
@@ -142,7 +141,7 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, Booki
                             binding.paymentData = paymentAmountData
                             SECURE_HEADER = " "
                         }
-
+                     //   297807.44
                         StatusCode.STATUS_CODE_FAIL -> {
                             showSnackBar(data.message)
                             SECURE_HEADER = " "
@@ -225,6 +224,12 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, Booki
                 }
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Constants.APPLIED_COUPON = ""
+
     }
 
     private fun bottomSheetCallBack() {

@@ -328,17 +328,11 @@
                                 style="@style/Widget.AppCompat.RatingBar.Small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_below="@+id/ratinglayout"
-                                android:layout_centerHorizontal="true"
-                                android:clickable="true"
-                                android:isIndicator="false"
-                                android:numStars="5"
-                                android:outlineSpotShadowColor="@color/black"
-                                android:rating="2.6"
-                                android:secondaryProgressTint="@color/grey1"
-                                android:stepSize="0.5"
+                                android:layout_marginStart="18dp"
                                 android:theme="@style/RatingBar"
-                                android:visibility="gone" />
+                                android:visibility="gone"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/idRatingCount" />
 
                             <com.google.android.material.button.MaterialButton
                                 android:id="@+id/reSchedule"

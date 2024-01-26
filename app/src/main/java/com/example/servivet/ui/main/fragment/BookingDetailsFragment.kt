@@ -67,7 +67,7 @@ class BookingDetailsFragment :
             bookingViewModel.typeOfUser = "bought"
 
         } else {
-            userType = "Provider"
+            userType = "provider"
             binding.checkUserType = bookingViewModel.typeOfUser
         }
         binding.apply {
@@ -79,9 +79,6 @@ class BookingDetailsFragment :
 
 
         }
-//        typeBooking = arguments?.getString("type")
-//        bookingId = arguments?.getString("bookingId")
-//        typeReschdule = requireArguments().getString("istype")
 
         gotobottomsheet()
         gotocancelBottomsheet()
@@ -110,6 +107,10 @@ class BookingDetailsFragment :
                 bookingViewModel.cancelBookingRequest.bookingId = bookingData._id
                 bookingViewModel.cancelBookingRequest.reason = "accept"
                 bookingViewModel.cancelBookingRequest.cancelledBy = userType
+                Log.e(
+                    "TAG",
+                    "checkBookingReq: ${Gson().toJson(bookingViewModel.cancelBookingRequest)}",
+                )
                 bookingViewModel.hitCancelBookingApi()
             }
 
@@ -147,53 +148,6 @@ class BookingDetailsFragment :
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun setview() {
-        if (argumentData.type == 0) {
-            if (Session.type == "2") {
-                binding.reasonCancelLayout.isVisible = false
-                binding.bookingagain.isVisible = false
-                binding.markAsCompleted.isVisible = false
-                binding.idCancelBooking.isVisible = false
-                binding.acceptRejectLayout.isVisible = true
-
-            } else {
-                binding.reasonCancelLayout.isVisible = false
-                binding.bookingagain.isVisible = false
-                binding.markAsCompleted.isVisible = false
-                binding.idCancelBooking.isVisible = true
-            }
-
-        } else if (argumentData.type == 0) {
-            binding.reasonCancelLayout.isVisible = false
-            binding.bookingagain.isVisible = false
-            if (updateButtonState(CommonUtils.getDateFromTimeStamp(bookingDetail.bookingDate)!!)) {
-                binding.reScheduleLayout.isVisible = true
-
-            } else {
-                binding.markAsCompleted.isVisible = true
-
-            }
-
-        } else if (argumentData.type == 0 || typeReschdule.equals("1")) {
-            binding.markAsCompleted.isVisible = false
-            binding.reasonCancelLayout.isVisible = false
-            binding.bookingagain.isVisible = true
-            if (typeReschdule.equals("3")) {
-                binding.markAsCompleted.isVisible = false
-                binding.reasonCancelLayout.isVisible = false
-                binding.bookingagain.isVisible = false
-//                binding.reScheduleLayout.isVisible = true
-            } else {
-                binding.reScheduleLayout.isVisible = false
-            }
-
-        } else {
-            binding.markAsCompleted.isVisible = false
-            binding.bottomLayout.isVisible = false
-            binding.bookingagain.isVisible = false
-        }
-    }
 
     fun gotobottomsheet() {
 //        binding.reSchedule.setOnClickListener(View.OnClickListener {
@@ -204,16 +158,11 @@ class BookingDetailsFragment :
     }
 
     fun gotocancelBottomsheet() {
-//        binding.cancelButton.setOnClickListener(View.OnClickListener {
-//            val fragment = ReasonForCancelBottomsheet()
-//            fragment.show(childFragmentManager, "CancelBottomSheetFragment")
-//        })
+
         binding.idCancelBooking.setOnClickListener(View.OnClickListener {
-//            val fragment=ReasonForCancelBottomsheet()
-//            fragment.show(childFragmentManager,"CancelBottomSheetFragment")
             findNavController().navigate(
                 BookingDetailsFragmentDirections.actionBookingDetailsFragmentToReasonForCancelBottomsheet(
-                    bookingData.bookingId,
+                    bookingData._id,
                     getString(R.string.booking_details)
                 )
             )
@@ -222,11 +171,7 @@ class BookingDetailsFragment :
 //            val fragment=ReasonForCancelBottomsheet()
 //            fragment.show(childFragmentManager,"CancelBottomSheetFragment")
             findNavController().navigate(
-                BookingDetailsFragmentDirections.actionBookingDetailsFragmentToReasonForCancelBottomsheet(
-                    bookingData._id,
-                    getString(R.string.booking_details)
-                )
-            )
+                    BookingDetailsFragmentDirections.actionBookingDetailsFragmentToReasonForCancelBottomsheet(bookingData._id, getString(R.string.booking_details)))
         })
     }
 
@@ -304,7 +249,7 @@ class BookingDetailsFragment :
                     if (bookingViewModel.typeOfUser == getString(R.string.bought_small)) {
                         if (isTimeGapGreaterThan24Hours(
                                 getCurrentTimeInFormat(),
-                                bookingDetail.startTime
+                                bookingDetail.startTime,24
                             )
                         ) {
                             binding.idCancelBooking.isVisible = true
@@ -319,7 +264,7 @@ class BookingDetailsFragment :
                 } else {
                     if (isTimeGapGreaterThan24Hours(
                             getCurrentTimeInFormat(),
-                            bookingDetail.startTime
+                            bookingDetail.startTime,24
                         )
                     ) {
                         binding.idCancelBooking.isVisible = true
@@ -331,11 +276,8 @@ class BookingDetailsFragment :
             }
 
             1 -> {
-                if (isTimeGapGreaterThan24Hours(
-                        getCurrentTimeInFormat(),
-                        bookingDetail.startTime
-                    ) && bookingViewModel.typeOfUser == getString(R.string.bought_small)
-                ) {
+
+                if (isTimeGapGreaterThan24Hours(getCurrentTimeInFormat(), bookingDetail.startTime,24) && bookingViewModel.typeOfUser == getString(R.string.bought_small)) {
                     if (bookingDetail.isReschedule) {
                         binding.reSchedule.isEnabled = false
                         binding.reSchedule.alpha = 0.3f
@@ -343,21 +285,31 @@ class BookingDetailsFragment :
                         binding.reSchedule.isEnabled = true
                         binding.reSchedule.alpha = 1.0f
                     }
+
+                    if (bookingDetail.bookingCompleted != null) {
+                        if (bookingDetail.bookingCompleted!!.provider?.isComplete!!) {
+                            Log.e("TAG", "manageMarkAsCompleteView: true")
+                            binding.markAsCompleted.isVisible = true
+                            binding.reScheduleLayout.isVisible = false
+                        } else {
+                            Log.e("TAG", "manageMarkAsCompleteView: false")
+                            binding.markAsCompleted.isVisible = false
+                            binding.reScheduleLayout.isVisible = true
+                        }
+                    }else{
+                        binding.markAsCompleted.isVisible = false
+                        binding.reScheduleLayout.isVisible = true
+                    }
+                } else {
                     if (bookingDetail.bookingCompleted != null) {
                         if (bookingDetail.bookingCompleted!!.provider?.isComplete!!) {
                             binding.markAsCompleted.isVisible = true
-                            binding.reScheduleLayout.isVisible = false
-
-
                         } else {
                             binding.markAsCompleted.isVisible = false
-                            binding.reScheduleLayout.isVisible = true
-
-
+                            binding.reScheduleLayout.isVisible = false
                         }
                     }
-                } else {
-                    binding.markAsCompleted.isVisible = true
+//                    binding.markAsCompleted.isVisible = true
                 }
             }
         }

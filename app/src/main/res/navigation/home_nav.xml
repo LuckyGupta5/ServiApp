@@ -83,7 +83,8 @@
             app:destination="@id/homeFragment" />
         <action
             android:id="@+id/action_bookingsFragment_to_bookingDetailsFragment"
-            app:destination="@id/bookingDetailsFragment" />
+            app:destination="@id/bookingDetailsFragment"
+            app:popUpToSaveState="@+id/bookingsFragment"/>
         <action
             android:id="@+id/action_bookingsFragment_to_fragmentRatingUsBottomSheet"
             app:destination="@id/fragmentRatingUsBottomSheet" />
@@ -205,6 +206,9 @@
         <argument
             android:name="type"
             app:argType="integer" />
+        <argument
+            android:name="typeUsers"
+            app:argType="string" />
         <argument
             android:name="from"
             app:argType="string" />
@@ -406,6 +410,9 @@
         <action
             android:id="@+id/action_paymentFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_paymentFragment_to_bookingsFragment"
+            app:destination="@id/bookingsFragment" />
     </fragment>
     <dialog
         android:id="@+id/reasonForCancelBottomsheet"

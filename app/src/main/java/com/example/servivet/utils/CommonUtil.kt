@@ -249,7 +249,7 @@ object CommonUtils {
 
         if (monthCount > 0) {
            // currentDate = LocalDate.now().minusDays(dayOfMonth.toLong())
-            currentDate = LocalDate.now().plusMonths(monthCount.toLong()).withDayOfMonth(dayOfMonth)
+            currentDate = LocalDate.now().plusMonths(monthCount.toLong()).minusDays(dayOfMonth.toLong())
 
             //  currentDate = LocalDate.now()
         } else {

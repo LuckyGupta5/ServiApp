@@ -1,5 +1,6 @@
 package com.example.servivet.ui.main.fragment
 
+import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
@@ -18,6 +19,7 @@ import com.example.servivet.ui.main.adapter.BookingListAdapter
 import com.example.servivet.ui.main.bottom_sheet.FragmentRatingUsBottomSheet
 import com.example.servivet.ui.main.view_model.BookingViewModel
 import com.example.servivet.utils.CommonUtils.showSnackBar
+import com.example.servivet.utils.Constants
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
@@ -28,8 +30,7 @@ import com.google.gson.Gson
 
 
 class BookingsFragment :
-    BaseFragment<FragmentBookingBinding, BookingViewModel>(R.layout.fragment_booking),
-    BookingAdapter.Callback {
+    BaseFragment<FragmentBookingBinding, BookingViewModel>(R.layout.fragment_booking){
     private var tabPosition: TabLayout.Tab? = null
     override val binding: FragmentBookingBinding by viewBinding(FragmentBookingBinding::bind)
     override val mViewModel: BookingViewModel by viewModels()
@@ -45,24 +46,30 @@ class BookingsFragment :
     override fun isNetworkAvailable(boolean: Boolean) {
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.e("TAG", "onCreate: call", )
+    }
+
     override fun setupViews() {
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
             click = mViewModel.ClickAction(requireContext(), binding)
-
         }
 
         type = 0
         typeReschdule = 0
+
+
         if (Session.type == "1") {
             mViewModel.hitBookingListAPI(myBookingStatus, 1, 10)
-            mViewModel.typeOfUser = "Bought"
+            Constants.TYPEOFUSERS = "Bought"
          //   setPagination()
         } else if (Session.type == "2") {
             list.clear()
             binding.soldOut.isVisible = true
-
+            Constants.TYPEOFUSERS = "sold"
             mViewModel.hitSoldBookingListAPI(myBookingStatus, 1, 10)
          //   setPagination()
         }
@@ -89,12 +96,12 @@ class BookingsFragment :
                     type = 0
                     mViewModel.bookingStatus = 1
                     typeReschdule = 0
-                 //   list.clear()
+                    list.clear()
                     if (Session.type == "1") {
                         mViewModel.hitBookingListAPI(mViewModel.bookingStatus, 1, 10)
                        // setPagination()
                     } else if (Session.type == "2") {
-                        if (mViewModel.typeOfUser == "bought") {
+                        if (Constants.TYPEOFUSERS== "bought") {
                             mViewModel.hitBookingListAPI(mViewModel.bookingStatus, 1, 10)
 
                         } else {
@@ -114,7 +121,7 @@ class BookingsFragment :
                         mViewModel.hitBookingListAPI(mViewModel.bookingStatus, 1, 10)
                        // setPagination()
                     } else if (Session.type == "2") {
-                        if (mViewModel.typeOfUser == "bought") {
+                        if (Constants.TYPEOFUSERS == "bought") {
                             mViewModel.hitBookingListAPI(mViewModel.bookingStatus, 1, 10)
 
                         } else {
@@ -134,7 +141,7 @@ class BookingsFragment :
                         mViewModel.hitBookingListAPI(mViewModel.bookingStatus, 1, 10)
                        // setPagination()
                     } else if (Session.type == "2") {
-                        if (mViewModel.typeOfUser == "bought") {
+                        if (Constants.TYPEOFUSERS == "bought") {
                             mViewModel.hitBookingListAPI(mViewModel.bookingStatus, 1, 10)
 
                         } else {
@@ -154,7 +161,7 @@ class BookingsFragment :
   //                      setPagination()
                     } else if (Session.type == "2") {
                         list.clear()
-                        if (mViewModel.typeOfUser == "bought") {
+                        if (Constants.TYPEOFUSERS == "bought") {
                             mViewModel.hitBookingListAPI(mViewModel.bookingStatus, 1, 10)
                         } else {
                             mViewModel.hitSoldBookingListAPI(mViewModel.bookingStatus, 1, 10)
@@ -194,9 +201,9 @@ class BookingsFragment :
 
     fun setBookingAdapter() {
         if (list != null && list.isNotEmpty()) {
-            adapter = BookingAdapter(requireContext(), type, typeReschdule, ArrayList(), this, mViewModel.typeOfUser)
-            val layoutManager = LinearLayoutManager(requireContext())
-            binding.idBookingRecycle.layoutManager = layoutManager
+           // adapter = BookingAdapter(requireContext(), type, typeReschdule, ArrayList(), , mViewModel.typeOfUser)
+          //  val layoutManager = LinearLayoutManager(requireContext())
+           // binding.idBookingRecycle.layoutManager = layoutManager
             binding.idBookingRecycle.itemAnimator = null
             binding.idBookingRecycle.adapter = adapter
             binding.idBookingRecycle.visibility = View.VISIBLE
@@ -412,7 +419,7 @@ class BookingsFragment :
     }
 
     private fun setMyBookingAdapter() {
-        binding.bookingAdapter = BookingListAdapter(requireContext(),bookingList,onItemClick,type,findNavController(),mViewModel.typeOfUser)
+        binding.bookingAdapter = BookingListAdapter(requireContext(),bookingList,onItemClick,type,findNavController(),Constants.TYPEOFUSERS)
     }
 
     private fun setBack() {
@@ -425,23 +432,23 @@ class BookingsFragment :
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 
-    override fun onCallback(type: String) {
-        val fragment = FragmentRatingUsBottomSheet()
-        fragment.show(childFragmentManager, "InterestBottomSheetFragment")
-    }
-
-    override fun rejectBooking(id: String) {
-        mViewModel.cancelBookingRequest.bookingId = id
-        mViewModel.cancelBookingRequest.reason = "I don't need this service now"
-        mViewModel.cancelBookingRequest.cancelledBy = "user"
-        mViewModel.hitCancelBookingApi()
-    }
-
-    override fun acceptBooking(id: String) {
-        mViewModel.acceptBookingRequest.bookingId = id
-        mViewModel.hitAcceptBookingApi()
-
-    }
+//    override fun onCallback(type: String) {
+//        val fragment = FragmentRatingUsBottomSheet()
+//        fragment.show(childFragmentManager, "InterestBottomSheetFragment")
+//    }
+//
+//    override fun rejectBooking(id: String) {
+//        mViewModel.cancelBookingRequest.bookingId = id
+//        mViewModel.cancelBookingRequest.reason = "I don't need this service now"
+//        mViewModel.cancelBookingRequest.cancelledBy = "user"
+//        mViewModel.hitCancelBookingApi()
+//    }
+//
+//    override fun acceptBooking(id: String) {
+//        mViewModel.acceptBookingRequest.bookingId = id
+//        mViewModel.hitAcceptBookingApi()
+//
+//    }
 
     private val onItemClick: (String, String, String) -> Unit = { position, name, data ->
         when (name) {

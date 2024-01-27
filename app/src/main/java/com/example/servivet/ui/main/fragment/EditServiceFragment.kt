@@ -175,31 +175,31 @@ class EditServiceFragment :
         showDayList.add("SAT")
         showDayList.add("SUN")
         var slotList = ArrayList<ServiceListSlot>()
-        slotList.add(ServiceListSlot("", "", ""))
+        slotList.add(ServiceListSlot("", "10", ""))
         daysList?.add(AddServiceFragment.Days("Monday", true, slotList))
 
         var slotList1 = ArrayList<ServiceListSlot>()
-        slotList1.add(ServiceListSlot("", "", ""))
+        slotList1.add(ServiceListSlot("", "10", ""))
         daysList?.add(AddServiceFragment.Days("Tuesday", false, slotList1))
 
         var slotList2 = ArrayList<ServiceListSlot>()
-        slotList2.add(ServiceListSlot("", "", ""))
+        slotList2.add(ServiceListSlot("", "10", ""))
         daysList?.add(AddServiceFragment.Days("Wednesday", false, slotList2))
 
         var slotList3 = ArrayList<ServiceListSlot>()
-        slotList3.add(ServiceListSlot("", "", ""))
+        slotList3.add(ServiceListSlot("", "10", ""))
         daysList?.add(AddServiceFragment.Days("Thursday", false, slotList3))
 
         var slotList4 = ArrayList<ServiceListSlot>()
-        slotList4.add(ServiceListSlot("", "", ""))
+        slotList4.add(ServiceListSlot("", "10", ""))
         daysList?.add(AddServiceFragment.Days("Friday", false, slotList4))
 
         var slotList5 = ArrayList<ServiceListSlot>()
-        slotList5.add(ServiceListSlot("", "", ""))
+        slotList5.add(ServiceListSlot("", "10", ""))
         daysList?.add(AddServiceFragment.Days("Saturday", false, slotList5))
 
         var slotList6 = ArrayList<ServiceListSlot>()
-        slotList6.add(ServiceListSlot("", "", ""))
+        slotList6.add(ServiceListSlot("", "10", ""))
         daysList?.add(AddServiceFragment.Days("Sunday", false, slotList6))
     }
 

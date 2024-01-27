@@ -12,6 +12,7 @@ import com.example.servivet.R
 import com.example.servivet.data.api.RetrofitBuilder
 import com.example.servivet.data.model.add_service.request.AddServiceRequest
 import com.example.servivet.data.model.add_service.request.AtHomeAvailability
+import com.example.servivet.data.model.add_service.request.ServiceListSlot
 import com.example.servivet.data.model.add_service.response.AddServiceResponse
 import com.example.servivet.data.repository.MainRepository
 import com.example.servivet.databinding.FragmentAddServiceBinding
@@ -202,13 +203,13 @@ class AddServiceViewModel() : BaseViewModel() {
 
 
             if (addServicesRequest.atCenterAvailability != null && addServicesRequest.atCenterAvailability!!.isNotEmpty()) {
-
                 builder.addFormDataPart("atCenterAvailability", Gson().toJson(addServicesRequest.atCenterAvailability).replace("\\", ""))
             }
 
 
 
             if (addServicesRequest.atHomeAvailability != null && addServicesRequest.atHomeAvailability!!.isNotEmpty()) {
+
                     builder.addFormDataPart("atHomeAvailability", Gson().toJson(addServicesRequest.atHomeAvailability).replace("\\", ""))
 
             }else{
@@ -260,9 +261,4 @@ class AddServiceViewModel() : BaseViewModel() {
 
 
     }
-
-
-
-
-
 }

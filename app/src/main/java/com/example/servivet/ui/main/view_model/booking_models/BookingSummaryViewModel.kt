@@ -63,9 +63,7 @@ class BookingSummaryViewModel : BaseViewModel() {
 
         fun atHome(view: View) {
             atHome.postValue(true)
-            binding.addAddressLayout.isVisible = true
             atCenter.postValue(false)
-
         }
 
 

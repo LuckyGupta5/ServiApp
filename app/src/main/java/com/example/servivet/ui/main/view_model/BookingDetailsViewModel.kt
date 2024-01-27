@@ -21,7 +21,9 @@ class BookingDetailsViewModel :BaseViewModel() {
     var bookingDetailRequest= BookingDetailRequest()
     inner class ClickAction(){
         fun backbtn(view:View){
-            view.findNavController().popBackStack()
+          //  view.findNavController().popBackStack()
+            view.findNavController().navigateUp()
+
         }
         fun gotoBookingSummary(view: View){
             view.findNavController().navigate(BookingDetailsFragmentDirections.actionBookingDetailsFragmentToBookingSummaryFragment("",""))

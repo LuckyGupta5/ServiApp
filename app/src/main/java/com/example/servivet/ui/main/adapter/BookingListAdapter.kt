@@ -49,8 +49,7 @@ class BookingListAdapter(
                 findNavController.navigate(BookingsFragmentDirections.actionBookingsFragmentToFragmentRatingUsBottomSheet(bookingList[position].serviceDetail._id,"BookingList"))
 
             } else {
-                findNavController.navigate(BookingsFragmentDirections.actionBookingsFragmentToBookingDetailsFragment(Gson().toJson(bookingList[position]), types, requireContext.getString(R.string.bookinglist))
-                )
+                findNavController.navigate(BookingsFragmentDirections.actionBookingsFragmentToBookingDetailsFragment(Gson().toJson(bookingList[position]), types,typesOfUser, requireContext.getString(R.string.bookinglist)))
             }
         }
 

@@ -395,6 +395,7 @@
     <string name="not_cancelable">Not Cancelable</string>
     <string name="back_to_original_payment_source">Back to original payment source</string>
     <string name="refund_in_wallet">Refund in Wallet</string>
+    <string name="promocode">Promocode</string>
 
 
     <string-array name="select_issue">

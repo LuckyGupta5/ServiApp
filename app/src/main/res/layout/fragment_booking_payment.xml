@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
 
         <variable
             name="click"
@@ -329,7 +330,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginHorizontal="20dp"
                                     android:orientation="horizontal"
-                                    android:visibility="visible">
+                                    android:visibility="@{slotData.serviceModeLocal.equals(@string/atcenter)?View.GONE:View.VISIBLE}">
 
                                     <ImageView
                                         android:layout_width="18dp"
@@ -363,7 +364,7 @@
                                             android:layout_marginEnd="5dp"
                                             android:fontFamily="@font/poppins_regular"
                                             android:maxLines="1"
-                                            android:text="@{slotData.address}"
+                                            android:text="@{slotData.addressLocal}"
                                             android:textColor="@color/grey_6E6E6E"
                                             android:textSize="13sp" />
 

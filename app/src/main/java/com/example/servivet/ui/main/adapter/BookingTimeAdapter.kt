@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import com.example.servivet.R
 import com.example.servivet.data.model.add_service.request.ServiceListSlot
 import com.example.servivet.data.model.booking_module.booking_slot.BookedSlot
+import com.example.servivet.data.model.booking_module.booking_summary.response.Slot
 import com.example.servivet.databinding.BookingTimeRecyclerviewDesignBinding
 import com.example.servivet.ui.base.BaseAdapter
 import com.example.servivet.utils.convertDateTimeFormat
@@ -18,11 +19,11 @@ import com.google.gson.Gson
 
 class BookingTimeAdapter(
     var context: Context,
-    var list: List<ServiceListSlot>,
+    var list: List<Slot>,
     val bookedSlot: ArrayList<BookedSlot>,
     val onItemClick: (String, String, String) -> Unit,
     val date: String
-) : BaseAdapter<BookingTimeRecyclerviewDesignBinding, ServiceListSlot>(list) {
+) : BaseAdapter<BookingTimeRecyclerviewDesignBinding, Slot>(list) {
     var isFirst = true
     var isSelectpost = -1
 
@@ -39,7 +40,7 @@ class BookingTimeAdapter(
     @RequiresApi(Build.VERSION_CODES.O)
     override fun bind(
         binding: BookingTimeRecyclerviewDesignBinding,
-        item: ServiceListSlot?,
+        item: Slot?,
         position: Int
     ) {
         binding.timeTxt.text = list[position].startTime

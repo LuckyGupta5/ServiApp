@@ -23,7 +23,7 @@ class RatingReviewAdapter(
     override fun bind(binding: CustomReviewsLayoutBinding, item: ReviewRating?, position: Int) {
         binding.data = item
 
-        //binding.idReportImage.isVisible = list[position].user._id != Session.userDetails._id
+        binding.idReportImage.isVisible = list[position].user._id != Session.userDetails._id
         binding.idReportImage.setOnClickListener {
             onItemClick(context.getString(R.string.report), list[position].user._id)
         }

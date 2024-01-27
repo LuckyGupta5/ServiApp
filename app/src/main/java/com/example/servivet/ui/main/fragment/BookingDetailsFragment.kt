@@ -23,6 +23,7 @@ import com.example.servivet.ui.main.view_model.BookingViewModel
 import com.example.servivet.ui.main.view_model.booking_models.MarkAsCompleteViewModel
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.CommonUtils.showSnackBar
+import com.example.servivet.utils.Constants
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
@@ -63,12 +64,12 @@ class BookingDetailsFragment :
 
         if (Session.type == "1") {
             userType = "user"
-            binding.checkUserType = bookingViewModel.typeOfUser
-            bookingViewModel.typeOfUser = "bought"
+            binding.checkUserType = Constants.TYPEOFUSERS
+            Constants.TYPEOFUSERS = "bought"
 
         } else {
             userType = "provider"
-            binding.checkUserType = bookingViewModel.typeOfUser
+            binding.checkUserType = Constants.TYPEOFUSERS
         }
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
@@ -76,8 +77,6 @@ class BookingDetailsFragment :
             loginAs = Session.type.toInt()
             click = mViewModel.ClickAction()
             clickEvent = ::onClick
-
-
         }
 
         gotobottomsheet()
@@ -91,6 +90,7 @@ class BookingDetailsFragment :
         if (argumentData.from == getString(R.string.bookinglist)) {
             bookingData = Gson().fromJson(argumentData.data, MyBooking::class.java)
             binding.type = argumentData.type
+            Constants.TYPEOFUSERS = argumentData.typeUsers
 
         }
     }
@@ -135,7 +135,7 @@ class BookingDetailsFragment :
             getString(R.string.mark_as_completed) -> {
                 markAsCompleteModel.getMarkAsCompleteRequest(
                     bookingData._id,
-                    bookingViewModel.typeOfUser
+                    Constants.TYPEOFUSERS
                 )
 
             }
@@ -171,7 +171,11 @@ class BookingDetailsFragment :
 //            val fragment=ReasonForCancelBottomsheet()
 //            fragment.show(childFragmentManager,"CancelBottomSheetFragment")
             findNavController().navigate(
-                    BookingDetailsFragmentDirections.actionBookingDetailsFragmentToReasonForCancelBottomsheet(bookingData._id, getString(R.string.booking_details)))
+                BookingDetailsFragmentDirections.actionBookingDetailsFragmentToReasonForCancelBottomsheet(
+                    bookingData._id,
+                    getString(R.string.booking_details)
+                )
+            )
         })
     }
 
@@ -246,10 +250,11 @@ class BookingDetailsFragment :
         when (argumentData.type) {
             0 -> {
                 if (Session.type == "2") {
-                    if (bookingViewModel.typeOfUser == getString(R.string.bought_small)) {
+                    if (Constants.TYPEOFUSERS == getString(R.string.bought_small)) {
                         if (isTimeGapGreaterThan24Hours(
                                 getCurrentTimeInFormat(),
-                                bookingDetail.startTime,24
+                                bookingDetail.startTime,
+                                24
                             )
                         ) {
                             binding.idCancelBooking.isVisible = true
@@ -264,7 +269,8 @@ class BookingDetailsFragment :
                 } else {
                     if (isTimeGapGreaterThan24Hours(
                             getCurrentTimeInFormat(),
-                            bookingDetail.startTime,24
+                            bookingDetail.startTime,
+                            24
                         )
                     ) {
                         binding.idCancelBooking.isVisible = true
@@ -277,7 +283,12 @@ class BookingDetailsFragment :
 
             1 -> {
 
-                if (isTimeGapGreaterThan24Hours(getCurrentTimeInFormat(), bookingDetail.startTime,24) && bookingViewModel.typeOfUser == getString(R.string.bought_small)) {
+                if (isTimeGapGreaterThan24Hours(
+                        getCurrentTimeInFormat(),
+                        bookingDetail.startTime,
+                        24
+                    ) && Constants.TYPEOFUSERS == getString(R.string.bought_small)
+                ) {
                     if (bookingDetail.isReschedule) {
                         binding.reSchedule.isEnabled = false
                         binding.reSchedule.alpha = 0.3f
@@ -296,20 +307,24 @@ class BookingDetailsFragment :
                             binding.markAsCompleted.isVisible = false
                             binding.reScheduleLayout.isVisible = true
                         }
-                    }else{
+                    } else {
                         binding.markAsCompleted.isVisible = false
                         binding.reScheduleLayout.isVisible = true
                     }
                 } else {
-                    if (bookingDetail.bookingCompleted != null) {
-                        if (bookingDetail.bookingCompleted!!.provider?.isComplete!!) {
-                            binding.markAsCompleted.isVisible = true
-                        } else {
-                            binding.markAsCompleted.isVisible = false
-                            binding.reScheduleLayout.isVisible = false
+                    if (Session.type == "2" && Constants.TYPEOFUSERS == getString(R.string.sold_small)) {
+                        binding.markAsCompleted.isVisible = true
+
+                    } else {
+                        if (bookingDetail.bookingCompleted != null) {
+                            if (bookingDetail.bookingCompleted!!.provider?.isComplete!!) {
+                                binding.markAsCompleted.isVisible = true
+                            } else {
+                                binding.markAsCompleted.isVisible = false
+                                binding.reScheduleLayout.isVisible = false
+                            }
                         }
                     }
-//                    binding.markAsCompleted.isVisible = true
                 }
             }
         }

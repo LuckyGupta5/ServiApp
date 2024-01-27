@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.lifecycle.MutableLiveData
 
 import androidx.lifecycle.viewModelScope
 import com.example.servivet.data.api.RetrofitBuilder
@@ -17,6 +18,8 @@ import com.example.servivet.data.model.sold_booking_list.response.SoldBookingLis
 import com.example.servivet.data.repository.MainRepository
 import com.example.servivet.databinding.FragmentBookingBinding
 import com.example.servivet.ui.base.BaseViewModel
+import com.example.servivet.utils.CommonUtils
+import com.example.servivet.utils.Constants
 import com.example.servivet.utils.Resource
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.SingleLiveEvent
@@ -29,7 +32,9 @@ import java.io.IOException
 class BookingViewModel:BaseViewModel() {
     val soldRequest = HashMap<String,String>()
     var bookingStatus = 0
-    var typeOfUser = "sold"
+    //var typeOfUser = "sold"
+   // var typeOfUser = MutableLiveData<String>("sold")
+
     val soldBookingListResponse = SingleLiveEvent<Resource<BookingListResponse>>()
     val request = HashMap<String,String>()
      val bookingListResponse = SingleLiveEvent<Resource<BookingListResponse>>()
@@ -44,12 +49,12 @@ class BookingViewModel:BaseViewModel() {
         fun sold(view: View){
             binding.soldOut.isVisible=false
             binding.bought.isVisible=true
-            typeOfUser = "bought"
+            Constants.TYPEOFUSERS = "bought"
             hitBookingListAPI(bookingStatus,1,10)
 
         }
         fun bought(view: View){
-            typeOfUser = "sold"
+            Constants.TYPEOFUSERS = "sold"
             binding.soldOut.isVisible=true
             binding.bought.isVisible=false
             hitSoldBookingListAPI(bookingStatus,1,10)

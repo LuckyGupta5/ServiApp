@@ -15,11 +15,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
-import com.example.servivet.data.model.add_service.request.AtHomeAvailability
 import com.example.servivet.data.model.add_service.request.ServiceListSlot
 import com.example.servivet.data.model.booking_detail.response.BookingDetail
 import com.example.servivet.data.model.booking_module.booking_slot.BookedSlot
 import com.example.servivet.data.model.booking_module.booking_summary.response.AtCenterAvailability
+import com.example.servivet.data.model.booking_module.booking_summary.response.AtHomeAvailability
 import com.example.servivet.data.model.booking_module.booking_summary.response.ProviderLeave
 import com.example.servivet.data.model.booking_module.booking_summary.response.ServiceDetail
 import com.example.servivet.data.model.date_model.DateModel
@@ -105,15 +105,7 @@ class BookingSummaryFragment :
 
         initRescheduleModel()
 
-            if (Session.saveAddress != null) {
-            binding.addAddressLayout.visibility = View.GONE
-            binding.changeAddressLayout.visibility = View.VISIBLE
-            binding.nameInAddress.text = Session.saveAddress.name
-            binding.locationName.text = Session.saveAddress.fullAddress
-        } else {
-            binding.addAddressLayout.visibility = View.VISIBLE
-            binding.changeAddressLayout.visibility = View.GONE
-        }
+
         binding.changelocation.setOnClickListener { findNavController().navigate(R.id.action_bookingSummaryFragment_to_savedAddressesBottomsheet) }
     }
 
@@ -294,6 +286,7 @@ class BookingSummaryFragment :
 
 
                             binding.summaryData = serviceDetail
+                            checkMode()
                             initYearAdapter()
                             setDate()
                             setPriceValue()
@@ -345,7 +338,8 @@ class BookingSummaryFragment :
                 atHome = true
                 binding.amount.text = getString(R.string.r) + " " + serviceDetail.atHomePrice
                 mViewModel.result.serviceDetail?.serviceModeLocal = getString(R.string.athome)
-//                binding.addAddressLayout.isVisible = true
+                binding.addAddressLayout.isVisible = Session.saveAddress==null
+                serviceDetail.addressLocal = Session.saveAddress.fullAddress
                 binding.changeAddressLayout.isVisible = Session.saveAddress != null
                 initSlotModel()
 
@@ -356,7 +350,8 @@ class BookingSummaryFragment :
                 atHome = false
                 binding.amount.text = getString(R.string.r) + " " + serviceDetail.atCenterPrice
                 mViewModel.result.serviceDetail?.serviceModeLocal = getString(R.string.atcenter)
-//                binding.addAddressLayout.isVisible = false
+                binding.addAddressLayout.isVisible = false
+                serviceDetail.addressLocal = ""
                 binding.changeAddressLayout.isVisible = false
                 initSlotModel()
             }
@@ -577,6 +572,20 @@ class BookingSummaryFragment :
 
             }
 
+        }
+    }
+
+    private fun checkMode(){
+        if(serviceDetail.serviceMode?.atHome!!) {
+            if (Session.saveAddress != null) {
+                binding.addAddressLayout.visibility = View.GONE
+                binding.changeAddressLayout.visibility = View.VISIBLE
+                binding.nameInAddress.text = Session.saveAddress.name
+                binding.locationName.text = Session.saveAddress.fullAddress
+            } else {
+                binding.addAddressLayout.visibility = View.VISIBLE
+                binding.changeAddressLayout.visibility = View.GONE
+            }
         }
     }
 

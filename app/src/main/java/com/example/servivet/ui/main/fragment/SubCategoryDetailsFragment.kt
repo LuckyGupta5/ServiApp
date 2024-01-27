@@ -138,6 +138,7 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                            // showSnackBar(it.data.message!!)
+                            ratingList.clear()
                             ratingList.addAll(it.data.result.ratingList)
                             initReviewAdapter()
 

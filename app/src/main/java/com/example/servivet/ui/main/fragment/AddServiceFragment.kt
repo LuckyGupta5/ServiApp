@@ -4,15 +4,19 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
+import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.InsetDrawable
+import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
@@ -48,8 +52,9 @@ import com.example.servivet.utils.StatusCode
 import com.example.servivet.utils.interfaces.ListAdapterItem
 
 @GlideModule
-class AddServiceFragment : BaseFragment<FragmentAddServiceBinding, AddServiceViewModel>(R.layout.fragment_add_service) {
-    private var showDayList= ArrayList<String>()
+class AddServiceFragment :
+    BaseFragment<FragmentAddServiceBinding, AddServiceViewModel>(R.layout.fragment_add_service) {
+    private var showDayList = ArrayList<String>()
     private var imagerequestcode: Int = 0
     private var imagePath: String = ""
     private var dialog: Dialog? = null
@@ -74,7 +79,12 @@ class AddServiceFragment : BaseFragment<FragmentAddServiceBinding, AddServiceVie
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
-            click = mViewModel.ClickAction(requireContext(), binding,requireActivity(),requireActivity().isFinishing)
+            click = mViewModel.ClickAction(
+                requireContext(),
+                binding,
+                requireActivity(),
+                requireActivity().isFinishing
+            )
         }
         category = Session.category
         setCategorySpinner()
@@ -86,8 +96,8 @@ class AddServiceFragment : BaseFragment<FragmentAddServiceBinding, AddServiceVie
     }
 
     private fun setDaysArray() {
-        daysList= ArrayList()
-        showDayList=ArrayList()
+        daysList = ArrayList()
+        showDayList = ArrayList()
         showDayList.add("MON")
         showDayList.add("TUE")
         showDayList.add("WED")
@@ -131,10 +141,19 @@ class AddServiceFragment : BaseFragment<FragmentAddServiceBinding, AddServiceVie
             subCategoryList.add(category[position].subCategory?.get(i)?.name!!)
         }
 
-        adapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, subCategoryList as List<String?>)
+        adapter = ArrayAdapter(
+            requireContext(),
+            R.layout.support_simple_spinner_dropdown_item,
+            subCategoryList as List<String?>
+        )
         binding.subCategorySpinner.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(adapterView: AdapterView<*>, view: View, i: Int, l: Long) {
+                override fun onItemSelected(
+                    adapterView: AdapterView<*>,
+                    view: View,
+                    i: Int,
+                    l: Long
+                ) {
                     mViewModel.subCatPostion = i
                     if (i > 0)
                         mViewModel.addServicesRequest.subCategory =
@@ -160,7 +179,9 @@ class AddServiceFragment : BaseFragment<FragmentAddServiceBinding, AddServiceVie
         binding.categorySpinner.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
-                    adapterView: AdapterView<*>, view: View, i: Int, l: Long) { mViewModel.catPostion = i
+                    adapterView: AdapterView<*>, view: View, i: Int, l: Long
+                ) {
+                    mViewModel.catPostion = i
                     if (i > 0) {
                         mViewModel.addServicesRequest.category =
                             category[i - 1]._id    // some doubt
@@ -184,7 +205,8 @@ class AddServiceFragment : BaseFragment<FragmentAddServiceBinding, AddServiceVie
         binding.atHome.setOnClickListener {
             mViewModel.isHomeClick = if (!mViewModel.isHomeClick) {
                 setDaysArray()
-                hashMap[Constants.AT_HOME] = CustomeServiceModeData(Constants.AT_HOME, true,/* list, */daysList)
+                hashMap[Constants.AT_HOME] =
+                    CustomeServiceModeData(Constants.AT_HOME, true,/* list, */daysList)
                 setAdapter(showDayList)
                 binding.homeCheckBox.setBackgroundResource(R.drawable.selected_checkbox)
                 mViewModel.addServicesRequest.atHome = true
@@ -228,7 +250,7 @@ class AddServiceFragment : BaseFragment<FragmentAddServiceBinding, AddServiceVie
         if (list.size > 0) {
             binding.priceRecycler.visibility = View.VISIBLE
             addServiceModePriceAdapter =
-                AddServiceModePriceAdapter(requireContext(), list, mViewModel,showDayList) {
+                AddServiceModePriceAdapter(requireContext(), list, mViewModel, showDayList) {
                     list[it.position] = it.data
                     addServiceModePriceAdapter?.updateData(list)
 
@@ -275,38 +297,14 @@ class AddServiceFragment : BaseFragment<FragmentAddServiceBinding, AddServiceVie
         }
 
     @SuppressLint("SuspiciousIndentation")
-    private val startForImageGallery =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val data = result.data
-                if (data!!.clipData != null) {
-                    for (i in 0 until data.clipData!!.itemCount) {
-                        val imageUri = data.clipData!!.getItemAt(i).uri
-                        imagePath = CommonUtils.getRealPathFromURI(requireActivity(), imageUri).toString()
-                        stringList.add(imagePath)
-                        mViewModel.addServicesRequest.image = stringList
-                        mViewModel.isPhotoSelected = true
-                    }
-                } else {
-                    val fileUri = data.data
-                    if (fileUri!!.path!!.isNotEmpty()) {
-                        imagePath =
-                            CommonUtils.getRealPathFromURI(requireActivity(), fileUri).toString()
-                        stringList.add(imagePath)
 
-                        mViewModel.addServicesRequest.image = stringList
-                        mViewModel.isPhotoSelected = true
-                    }
-                }
-                setImageAdapter(stringList)
-            }
-        }
 
 
     private fun setImageAdapter(list: ArrayList<String>) {
         if (list != null && list.isNotEmpty()) {
             binding.imageRecycler.visibility = View.VISIBLE
-            binding.imageRecycler.adapter = AddServiceImageAdapter(requireContext(), list,
+            binding.imageRecycler.adapter = AddServiceImageAdapter(
+                requireContext(), list,
                 ArrayList()
             ) {
                 val list = ArrayList<String>()
@@ -336,13 +334,15 @@ class AddServiceFragment : BaseFragment<FragmentAddServiceBinding, AddServiceVie
         dialog!!.window!!.setBackgroundDrawable(inset)
 
         imagePickerLayoutBinding.camera.setOnClickListener { view ->
-            val takePicture = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            // val takePicture = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            val takePicture = Intent(MediaStore.ACTION_VIDEO_CAPTURE)
             startForCamera.launch(takePicture)
             dialog!!.dismiss()
         }
         imagePickerLayoutBinding.gallery.setOnClickListener {
             val intent = Intent()
-            intent.type = "image/*"
+           // intent.type = "*/*"
+              intent.type = "video/*"
             intent.action = Intent.ACTION_GET_CONTENT
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
             startForImageGallery.launch(intent)
@@ -351,6 +351,43 @@ class AddServiceFragment : BaseFragment<FragmentAddServiceBinding, AddServiceVie
         dialog!!.show()
 
     }
+
+    private val startForImageGallery =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data = result.data
+                if (data!!.clipData != null) {
+                    for (i in 0 until data.clipData!!.itemCount) {
+                        val imageUri = data.clipData!!.getItemAt(i).uri
+                        imagePath = CommonUtils.getRealPathFromURI(requireActivity(), imageUri).toString()
+                        val videoPath = getVideoPathFromUri(requireContext(), imageUri)
+                        val thumbnail = getVideoThumbnailFromPath(videoPath!!)
+
+                        Log.e("TAG", "datadata:${videoPath} ", )
+
+
+
+                        // Use the thumbnail as needed (e.g., set it to an ImageView)
+
+
+                        stringList.add(imagePath)
+                        mViewModel.addServicesRequest.image = stringList
+                        mViewModel.isPhotoSelected = true
+                    }
+                } else {
+                    val fileUri = data.data
+                    if (fileUri!!.path!!.isNotEmpty()) {
+                        imagePath = CommonUtils.getRealPathFromURI(requireActivity(), fileUri).toString()
+                        stringList.add(imagePath)
+                        Log.e("TAG", "datadata:${imagePath} ", )
+
+                        mViewModel.addServicesRequest.image = stringList
+                        mViewModel.isPhotoSelected = true
+                    }
+                }
+                setImageAdapter(stringList)
+            }
+        }
 
     override fun setupObservers() {
         mViewModel.errorMessage.observe(viewLifecycleOwner) {
@@ -384,8 +421,14 @@ class AddServiceFragment : BaseFragment<FragmentAddServiceBinding, AddServiceVie
                         showSnackBar(it)
                     }
                 }
+
                 Status.UNAUTHORIZED -> {
-                    CommonUtils.logoutAlert(requireContext(), "Session Expired", "Unauthorized User", requireActivity())
+                    CommonUtils.logoutAlert(
+                        requireContext(),
+                        "Session Expired",
+                        "Unauthorized User",
+                        requireActivity()
+                    )
                 }
             }
         }
@@ -398,4 +441,47 @@ class AddServiceFragment : BaseFragment<FragmentAddServiceBinding, AddServiceVie
         var slotList: ArrayList<ServiceListSlot>? = null,
         var position: Int? = null
     ) : ListAdapterItem
+
+    fun getVideoThumbnailFromPath(videoPath: String): Bitmap? {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            // Use MediaMetadataRetriever
+            val retriever = MediaMetadataRetriever()
+            try {
+                retriever.setDataSource(videoPath)
+                retriever.frameAtTime
+            } catch (e: Exception) {
+                null
+            } finally {
+                retriever.release()
+            }
+        } else {
+            // For versions below Android Q, you might consider using Glide or another image loading library
+            // to load the video thumbnail into an ImageView directly.
+            // Glide example:
+            // Glide.with(context).load(videoPath).into(imageView)
+            null
+        }
+    }
+
+
+    fun getVideoPathFromUri(context: Context, videoUri: Uri): String? {
+        var path: String? = null
+        val projection = arrayOf(MediaStore.Video.Media.DATA)
+        var cursor: Cursor? = null
+
+        try {
+            cursor = context.contentResolver.query(videoUri, projection, null, null, null)
+
+            if (cursor != null && cursor.moveToFirst()) {
+                val columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA)
+                path = cursor.getString(columnIndex)
+            }
+        } catch (e: Exception) {
+            Log.e("VideoPath", "Error getting video path: ${e.message}")
+        } finally {
+            cursor?.close()
+        }
+
+        return path
+    }
 }

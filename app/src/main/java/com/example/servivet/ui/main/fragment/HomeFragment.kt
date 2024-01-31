@@ -88,7 +88,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 
 
     private fun setServiceAdapter(type: String, list: List<HomeServiceCategory>) {
-        binding.serviceRecycler.adapter = HomeServiceAdapter(requireContext(), type, list)
+        binding.homeServiceAdapter = HomeServiceAdapter(requireContext(),type,list)
+       // binding.serviceRecycler.adapter = HomeServiceAdapter(requireContext(), type, list)
 
     }
 

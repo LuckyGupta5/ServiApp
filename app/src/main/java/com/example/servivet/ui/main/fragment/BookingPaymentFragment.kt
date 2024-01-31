@@ -88,7 +88,7 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, Booki
         }
 
         openWelletBottomsheet()
-        initSlotModel()
+        //initSlotModel()
         bottomSheetCallBack()
 
 
@@ -140,6 +140,7 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, Booki
                             mViewModel.payAmountResult = paymentAmountData
                             binding.paymentData = paymentAmountData
                             SECURE_HEADER = " "
+                            initSlotModel()
                         }
                      //   297807.44
                         StatusCode.STATUS_CODE_FAIL -> {

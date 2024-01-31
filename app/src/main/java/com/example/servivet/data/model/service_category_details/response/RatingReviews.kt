@@ -1,5 +1,7 @@
 package com.example.servivet.data.model.service_category_details.response
 
+import java.io.Serializable
+
 data class RatingReviews (
     val totalReview: String?=null,
     val averageRating: Float?=null,
@@ -9,5 +11,5 @@ data class RatingReviews (
     val two: Int?=null,
     val one: Int?=null,
 
-    )
+    ): Serializable
 

@@ -11,7 +11,12 @@ import com.example.servivet.databinding.HomeServicesRecyclerBinding
 import com.example.servivet.ui.base.BaseAdapter
 import com.example.servivet.utils.Constants
 
-class HomeServiceAdapter(var context: Context, var type: String, var list: List<HomeServiceCategory>, ) : BaseAdapter<HomeServicesRecyclerBinding, HomeServiceCategory>(list) {
+class HomeServiceAdapter(
+    var context: Context,
+    var type: String,
+    var list: List<HomeServiceCategory>,
+) :
+    BaseAdapter<HomeServicesRecyclerBinding, HomeServiceCategory>(list) {
     override val layoutId: Int = R.layout.home_services_recycler
 
 
@@ -32,7 +37,7 @@ class HomeServiceAdapter(var context: Context, var type: String, var list: List<
         position: Int,
     ) {
         binding.apply {
-            binding.click = ClickAction(position,item)
+            binding.click = ClickAction(position, item)
 
         }
 
@@ -41,7 +46,7 @@ class HomeServiceAdapter(var context: Context, var type: String, var list: List<
             .into(binding.serviceImage)
     }
 
-    inner class ClickAction(var position: Int,var  item: HomeServiceCategory?) {
+    inner class ClickAction(var position: Int, var item: HomeServiceCategory?) {
         var bundle = Bundle()
         fun goToServiceList(view: View) {
             when (type) {
@@ -49,19 +54,27 @@ class HomeServiceAdapter(var context: Context, var type: String, var list: List<
                     bundle.putString(Constants.SERVICE_ID, list[position].id)
                     bundle.putSerializable(Constants.DATA, item)
                     view.findNavController()
-                        .navigate(R.id.action_homeFragment_to_servicesTypeListingFragment,bundle)
+                        .navigate(R.id.action_homeFragment_to_servicesTypeListingFragment, bundle)
                 }
+
                 "2" -> {
                     bundle.putString(Constants.SERVICE_ID, list[position].id)
-                    bundle.putSerializable(Constants.DATA,item)
+                    bundle.putSerializable(Constants.DATA, item)
                     view.findNavController()
-                        .navigate(R.id.action_servicesFragment_to_servicesTypeListingFragment,bundle)
+                        .navigate(
+                            R.id.action_servicesFragment_to_servicesTypeListingFragment,
+                            bundle
+                        )
                 }
+
                 else -> {
                     bundle.putString(Constants.SERVICE_ID, list[position].id)
-                    bundle.putSerializable(Constants.DATA,item)
+                    bundle.putSerializable(Constants.DATA, item)
                     view.findNavController()
-                        .navigate(R.id.action_profileFragment_to_servicesTypeListingFragment,bundle)
+                        .navigate(
+                            R.id.action_profileFragment_to_servicesTypeListingFragment,
+                            bundle
+                        )
                 }
             }
         }

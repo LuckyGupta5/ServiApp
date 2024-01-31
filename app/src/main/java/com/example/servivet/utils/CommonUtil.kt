@@ -248,8 +248,9 @@ object CommonUtils {
 
 
         if (monthCount > 0) {
-           // currentDate = LocalDate.now().minusDays(dayOfMonth.toLong())
-            currentDate = LocalDate.now().plusMonths(monthCount.toLong()).minusDays(dayOfMonth.toLong())
+            // currentDate = LocalDate.now().minusDays(dayOfMonth.toLong())
+            currentDate =
+                LocalDate.now().plusMonths(monthCount.toLong()).minusDays(dayOfMonth.toLong())
 
             //  currentDate = LocalDate.now()
         } else {
@@ -417,7 +418,7 @@ object CommonUtils {
     }
 
     fun checkDates(d1: String, d2: String): Boolean {
-       // val dfDate = SimpleDateFormat("hh:mm a")
+        // val dfDate = SimpleDateFormat("hh:mm a")
         val dfDate = SimpleDateFormat("HH:mm")
         var b = false
         try {
@@ -1117,8 +1118,10 @@ fun getLastWordFromUrl(url: String): String {
 fun updateButtonState(exceedTime: String): Boolean {
 //    val startTime = LocalTime.parse(currentTime(), DateTimeFormatter.ofPattern("hh:mm a"))
 //    val endTime = LocalTime.parse(exceedTime, DateTimeFormatter.ofPattern("hh:mm a"))
-    val startTime = LocalTime.parse(currentTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"))
-    val endTime = LocalTime.parse(exceedTime, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"))
+    val startTime =
+        LocalTime.parse(currentTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"))
+    val endTime =
+        LocalTime.parse(exceedTime, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"))
     val timeDifference = calculateTimeDifference(startTime, endTime)
     return timeDifference < TimeUnit.HOURS.toMillis(24)
 
@@ -1141,11 +1144,10 @@ fun getCurreentDate(): String {
 }
 
 
-
 @RequiresApi(Build.VERSION_CODES.O)
 fun currentTime(): String {
     val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
-    Log.e("TAG", "manageMarkAsCompleteView32132: ${dateFormat.format(Date())}", )
+    Log.e("TAG", "manageMarkAsCompleteView32132: ${dateFormat.format(Date())}")
     return dateFormat.format(Date())
 
 }
@@ -1170,6 +1172,7 @@ fun convertTo24HourFormat(time12Hour: String): String {
 
     return "" // Return an empty string if there's an error
 }
+
 fun getCurrentDateTimeInISO8601Format(myDate: String): String {
 //    val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
 //    dateFormat.timeZone = TimeZone.getDefault() // Set the timezone to UTC
@@ -1187,7 +1190,7 @@ fun getCurrentDateTimeInISO8601Format(myDate: String): String {
 
 
 @SuppressLint("SimpleDateFormat")
-fun compareTwoDates(startDate: String, endDate: String,myDate:String): Boolean {
+fun compareTwoDates(startDate: String, endDate: String, myDate: String): Boolean {
     val dates = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     val start: Date = dates.parse(startDate)!!
     val end: Date = dates.parse(endDate)!!
@@ -1197,15 +1200,14 @@ fun compareTwoDates(startDate: String, endDate: String,myDate:String): Boolean {
 }
 
 
-
 @RequiresApi(Build.VERSION_CODES.O)
-fun isTimeGapGreaterThan24Hours(dateTime1: String, dateTime2: String, hoursGap:Int): Boolean {
+fun isTimeGapGreaterThan24Hours(dateTime1: String, dateTime2: String, hoursGap: Int): Boolean {
     val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     val parsedDateTime1 = LocalDateTime.parse(dateTime1, formatter)
     val parsedDateTime2 = LocalDateTime.parse(dateTime2, formatter)
 
     val gapInHours = ChronoUnit.HOURS.between(parsedDateTime1, parsedDateTime2)
-    Log.e("TAG", "isTimeGapGreaterThan24Hours: $gapInHours", )
+    Log.e("TAG", "isTimeGapGreaterThan24Hours: $gapInHours")
 
     return gapInHours > hoursGap
 }
@@ -1226,6 +1228,95 @@ fun convertDateTimeFormat(inputDateTime: String): String {
 
     // Format the parsed date-time into the desired output format
     return parsedDateTime.format(outputFormatter)
+}
+
+
+fun getRealPathFromDocumentUri(context: Context, uri: Uri): String? {
+    /*        var filePath = ""
+            val p = Pattern.compile("(\\d+)$")
+            val m = p.matcher(uri.toString())
+            if (!m.find()) {
+                return filePath
+            }
+            val imgId = m.group()
+            val column = arrayOf(MediaStore.Images.Media.DATA)
+            val sel = MediaStore.Images.Media._ID + "=?"
+            val cursor = context.contentResolver.query(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, column, sel, arrayOf(imgId), null
+            )
+            val columnIndex = cursor!!.getColumnIndex(column[0])
+            if (cursor.moveToFirst()) {
+                filePath = cursor.getString(columnIndex)
+            }
+            cursor.close()
+            return filePath*/
+
+    uri ?: return null
+    uri.path ?: return null
+
+    var newUriString = uri.toString()
+    newUriString = newUriString.replace(
+        "content://com.android.providers.downloads.documents/",
+        "content://com.android.providers.media.documents/"
+    )
+    newUriString = newUriString.replace(
+        "/msf%3A", "/image%3A"
+    )
+    val newUri = Uri.parse(newUriString)
+
+    var realPath = String()
+    val databaseUri: Uri
+    val selection: String?
+    val selectionArgs: Array<String>?
+    if (newUri.path?.contains("/document/image:") == true) {
+        databaseUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+        selection = "_id=?"
+        selectionArgs = arrayOf(DocumentsContract.getDocumentId(newUri).split(":")[1])
+    } else {
+        databaseUri = newUri
+        selection = null
+        selectionArgs = null
+    }
+    try {
+        val column = "_data"
+        val projection = arrayOf(column)
+        val cursor = context.contentResolver.query(
+            databaseUri,
+            projection,
+            selection,
+            selectionArgs,
+            null
+        )
+        cursor?.let {
+            if (it.moveToFirst()) {
+                val columnIndex = cursor.getColumnIndexOrThrow(column)
+                realPath = cursor.getString(columnIndex)
+            }
+            cursor.close()
+        }
+    } catch (e: Exception) {
+        Log.i("GetFileUri Exception:", e.message ?: "")
+    }
+    val path = realPath.ifEmpty {
+        when {
+            newUri.path?.contains("/document/raw:") == true -> newUri.path?.replace(
+                "/document/raw:",
+                ""
+            )
+
+            newUri.path?.contains("/document/primary:") == true -> newUri.path?.replace(
+                "/document/primary:",
+                "/storage/emulated/0/"
+            )
+
+            else -> return null
+        }
+    }
+    return if (path.isNullOrEmpty())
+        null
+    else
+        File(path).toString()
+
 }
 
 

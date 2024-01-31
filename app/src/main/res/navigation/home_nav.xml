@@ -84,7 +84,7 @@
         <action
             android:id="@+id/action_bookingsFragment_to_bookingDetailsFragment"
             app:destination="@id/bookingDetailsFragment"
-            app:popUpToSaveState="@+id/bookingsFragment"/>
+            app:popUpToSaveState="@+id/bookingsFragment" />
         <action
             android:id="@+id/action_bookingsFragment_to_fragmentRatingUsBottomSheet"
             app:destination="@id/fragmentRatingUsBottomSheet" />
@@ -149,7 +149,7 @@
             android:id="@+id/action_myServiceFragment_to_homeFragment"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/myServiceFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_myServiceFragment_to_addServiceFragment"
             app:destination="@id/addServiceFragment" />
@@ -172,16 +172,16 @@
         android:name="com.example.servivet.ui.main.fragment.EditServiceFragment"
         android:label="fragment_edit_service"
         tools:layout="@layout/fragment_edit_service" />
-	
-	   <fragment
+
+    <fragment
         android:id="@+id/searchLocationFragment"
         android:name="com.example.servivet.ui.main.fragment.SearchLocationFragment"
         android:label="SearchLocationFragment"
-        tools:layout="@layout/fragment_search_location" >
-           <action
-               android:id="@+id/action_searchLocationFragment_to_setLocationFragment"
-               app:destination="@id/setLocationFragment" />
-       </fragment>
+        tools:layout="@layout/fragment_search_location">
+        <action
+            android:id="@+id/action_searchLocationFragment_to_setLocationFragment"
+            app:destination="@id/setLocationFragment" />
+    </fragment>
 
 
     <fragment
@@ -252,13 +252,11 @@
         <action
             android:id="@+id/action_bookingPaymentFragment_to_couponsFragment"
             app:destination="@id/couponsFragment" />
-=
+        =
 
         <argument
             android:name="data"
             app:argType="string" />
-
-
 
 
         <argument
@@ -279,7 +277,7 @@
         android:id="@+id/couponsFragment"
         android:name="com.example.servivet.ui.main.fragment.CouponsFragment"
         android:label="CouponsFragment"
-        tools:layout="@layout/coupon_design_recycler" >
+        tools:layout="@layout/coupon_design_recycler">
 
         <argument
             android:name="data"
@@ -297,12 +295,12 @@
         android:id="@+id/chatRequestFragment"
         android:name="com.example.servivet.ui.main.fragment.ChatRequestFragment"
         android:label="ChatRequestFragment"
-        tools:layout="@layout/fragment_chat_request"/>
+        tools:layout="@layout/fragment_chat_request" />
     <fragment
         android:id="@+id/changedateFragment"
         android:name="com.example.servivet.ui.main.fragment.ChangedateFragment"
         android:label="ChangedateFragment"
-        tools:layout="@layout/fragment_changedate"/>
+        tools:layout="@layout/fragment_changedate" />
     <fragment
         android:id="@+id/onlineNowFragment"
         android:name="com.example.servivet.ui.main.fragment.OnlineNowFragment"
@@ -342,9 +340,9 @@
     </fragment>
     <fragment
         android:id="@+id/connectionsRequestFragment"
-        tools:layout="@layout/fragment_connections_request"
         android:name="com.example.servivet.ui.main.fragment.ConnectionsRequestFragment"
-        android:label="ConnectionsRequestFragment" />
+        android:label="ConnectionsRequestFragment"
+        tools:layout="@layout/fragment_connections_request" />
     <fragment
         android:id="@+id/setLocationFragment"
         android:name="com.example.servivet.ui.main.fragment.SetLocationFragment"
@@ -357,7 +355,7 @@
     <dialog
         android:id="@+id/savedAddressesBottomsheet"
         android:name="com.example.servivet.ui.main.bottom_sheet.SavedAddressesBottomsheet"
-        android:label="SavedAddressesBottomsheet" >
+        android:label="SavedAddressesBottomsheet">
         <action
             android:id="@+id/action_savedAddressesBottomsheet_to_addLocationFragment"
             app:destination="@id/addLocationFragment" />
@@ -366,7 +364,7 @@
         android:id="@+id/ratingReportBottomSheetFragment"
         android:name="com.example.servivet.ui.main.bottom_sheet.RatingReportBottomSheetFragment"
         android:label="RatingReportBottomSheetFragment"
-        tools:layout="@layout/fragment_rating_report_bottom_sheet"/>
+        tools:layout="@layout/fragment_rating_report_bottom_sheet" />
     <dialog
         android:id="@+id/myWalletBottomsheet"
         android:name="com.example.servivet.ui.main.bottom_sheet.MyWalletBottomsheet"
@@ -388,13 +386,16 @@
         <action
             android:id="@+id/action_myWalletBottomsheet_to_paymentFragment"
             app:destination="@id/paymentFragment" />
+        <action
+            android:id="@+id/action_myWalletBottomsheet_to_homeFragment"
+            app:destination="@id/homeFragment" />
 
     </dialog>
     <dialog
         android:id="@+id/suretoConfirmBottomSheet"
         android:name="com.example.servivet.ui.main.bottom_sheet.SuretoConfirmBottomSheet"
         android:label="SuretoConfirmBottomSheet"
-        tools:layout="@layout/fragment_sureto_conform_bottom_sheet"/>
+        tools:layout="@layout/fragment_sureto_conform_bottom_sheet" />
     <fragment
         android:id="@+id/paymentFragment"
         android:name="com.example.servivet.ui.main.fragment.bookinng_module.PaymentFragment"
@@ -452,7 +453,24 @@
         <argument
             android:name="from"
             app:argType="string" />
+        <action
+            android:id="@+id/action_closeServiceBottomFragment_to_closeServiceAlert"
+            app:destination="@id/closeServiceAlert" />
     </dialog>
+    <dialog
+        android:id="@+id/closeServiceAlert"
+        android:name="com.example.servivet.ui.main.dialogs.CloseServiceAlert"
+        android:label="fragment_close_service_alert"
+        tools:layout="@layout/fragment_close_service_alert">
+        <argument
+            android:name="data"
+            app:argType="string" />
+
+        <argument
+            android:name="from"
+            app:argType="string" />
+    </dialog>
+
     <!-- <fragment
          android:id="@+id/businessBookingFragment"
          android:name="com.example.servivet.ui.main.fragment.BusinessBookingFragment"

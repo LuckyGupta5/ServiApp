@@ -13,6 +13,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.servivet.R
+import com.example.servivet.data.model.booking_module.local_request.SendDate
 import com.example.servivet.data.model.payment.payment_amount.response.PaymentResponseMain
 import com.example.servivet.databinding.FragmentBookingCancelledBottomSheetBinding
 import com.example.servivet.databinding.FragmentCloseServiceBottomBinding
@@ -35,6 +36,7 @@ import java.util.Locale
 class CloseServiceBottomFragment :
     BaseBottomSheetDailogFragment<FragmentCloseServiceBottomBinding, CloseServiceViewModel>(R.layout.fragment_close_service_bottom) {
     override val mViewModel: CloseServiceViewModel by viewModels()
+    private var sendDate = SendDate()
 
 
     override fun getLayout(): Int {
@@ -54,9 +56,11 @@ class CloseServiceBottomFragment :
             click = mViewModel.ClickAction()
             binding.clickEvent = ::onClick
         }
+        getBottomSheetCallBack()
 
 
     }
+
 
     override fun setupObservers() {
         mViewModel.getMarkAsCompleteData().observe(viewLifecycleOwner) {
@@ -68,9 +72,11 @@ class CloseServiceBottomFragment :
                             findNavController().previousBackStackEntry?.savedStateHandle?.set(
                                 getString(
                                     R.string.leave
-                                ),"false")
+                                ), "false"
+                            )
                             dialog?.dismiss()
                         }
+
                         StatusCode.STATUS_CODE_FAIL -> {
                             Log.e("TAG", "setupObservers: botDonne")
 
@@ -107,32 +113,60 @@ class CloseServiceBottomFragment :
     private fun onClick(type: String) {
         when (type) {
             getString(R.string.start_date) -> {
-                CommonUtils.selectFromDate(requireContext(),"") {
+                CommonUtils.selectFromDate(requireContext(), "") {
                     binding.idStartDate.text = it
                 }
             }
 
             getString(R.string.end_date) -> {
-                CommonUtils.selectFromDate(requireContext(),binding.idStartDate.text.toString()) {
+                CommonUtils.selectFromDate(requireContext(), binding.idStartDate.text.toString()) {
                     binding.idEndDate.text = it
                 }
 
             }
 
             getString(R.string.close) -> {
-                if(binding.idStartDate.text.toString().isEmpty() || binding.idEndDate.text.toString().isEmpty()) {
-                    Toast.makeText(requireContext(), "Please select both dates", Toast.LENGTH_SHORT).show()
+                if (binding.idStartDate.text.toString()
+                        .isEmpty() || binding.idEndDate.text.toString().isEmpty()
+                ) {
+                    Toast.makeText(requireContext(), "Please select both dates", Toast.LENGTH_SHORT)
+                        .show()
 
-                }else if(!binding.idCheckBox.isChecked){
-                    Toast.makeText(requireContext(), "Please check checkBox ", Toast.LENGTH_SHORT).show()
+                } else if (!binding.idCheckBox.isChecked) {
+                    Toast.makeText(requireContext(), "Please check checkBox ", Toast.LENGTH_SHORT)
+                        .show()
 
-                }else{
-                    mViewModel.getMarkAsCompleteRequest(binding.idStartDate.text.toString(), binding.idEndDate.text.toString(), false)
+                } else {
+
+                    sendDate.startTime = binding.idStartDate.text.toString()
+                    sendDate.endTime = binding.idEndDate.text.toString()
+
+                    findNavController().navigate(
+                        CloseServiceBottomFragmentDirections.actionCloseServiceBottomFragmentToCloseServiceAlert(
+                            Gson().toJson(sendDate), getString(
+                                R.string.closeservice
+                            )
+                        )
+                    )
+                    //  mViewModel.getMarkAsCompleteRequest(binding.idStartDate.text.toString(), binding.idEndDate.text.toString(), false)
 
                 }
             }
         }
     }
+
+
+    private fun getBottomSheetCallBack() {
+
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(getString(R.string.close_service))
+            ?.observe(viewLifecycleOwner) {
+                Log.e("TAG", "getBottomSheetCallBack:data ")
+                mViewModel.getMarkAsCompleteRequest(binding.idStartDate.text.toString(), binding.idEndDate.text.toString(), false)
+
+            }
+    }
+
+
 
     override fun dismiss() {
         super.dismiss()

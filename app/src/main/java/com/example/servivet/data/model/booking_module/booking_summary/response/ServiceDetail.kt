@@ -1,6 +1,7 @@
 package com.example.servivet.data.model.booking_module.booking_summary.response
 
 import com.example.servivet.data.model.payment.payment_amount.response.PayAmountResult
+import java.io.Serializable
 
 data class ServiceDetail(
     val __v: Int?=null,
@@ -33,4 +34,4 @@ data class ServiceDetail(
     var slotId: String? = null,
     var couponCode:String =""
 
-)
+):Serializable

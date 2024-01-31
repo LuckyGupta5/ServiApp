@@ -83,7 +83,7 @@ class PaymentFragment : BaseFragment<FragmentPaymentBinding, PaymentViewModel>(R
 
 
             if (reponse.equals("Success", ignoreCase = true)) {
-                findNavController().navigate(R.id.action_paymentFragment_to_bookingsFragment)
+                findNavController().navigate(R.id.action_paymentFragment_to_homeFragment)
                 Constants.APPLIED_COUPON = ""
 
 

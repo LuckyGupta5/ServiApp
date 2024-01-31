@@ -113,7 +113,7 @@ class MyWalletBottomsheet :
                             Constants.SECURE_HEADER = " "
                             Log.e("TAG", "initOrderCreateViewModel: ${Gson().toJson(data.result)}", )
                             if(data.result.authorization_url.isNullOrBlank()){
-                                findNavController().navigate(R.id.action_myWalletBottomsheet_to_bookingsFragment)
+                                findNavController().navigate(R.id.action_myWalletBottomsheet_to_homeFragment)
                                 dialog?.dismiss()
                             }else{
                                 paymentUrl = data.result

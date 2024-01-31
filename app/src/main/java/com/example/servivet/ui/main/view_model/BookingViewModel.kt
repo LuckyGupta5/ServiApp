@@ -31,7 +31,7 @@ import java.io.IOException
 
 class BookingViewModel:BaseViewModel() {
     val soldRequest = HashMap<String,String>()
-    var bookingStatus = 0
+    var bookingStatus = 1
     //var typeOfUser = "sold"
    // var typeOfUser = MutableLiveData<String>("sold")
 

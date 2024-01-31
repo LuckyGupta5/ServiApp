@@ -396,6 +396,10 @@
     <string name="back_to_original_payment_source">Back to original payment source</string>
     <string name="refund_in_wallet">Refund in Wallet</string>
     <string name="promocode">Promocode</string>
+    <string name="closeservice">closeService</string>
+    <string name="before_date_text">Are you sure want to close service if you close the service, all booking of</string>
+    <string name="to">to</string>
+    <string name="after_date_text">will be automatically cancelled</string>
 
 
     <string-array name="select_issue">

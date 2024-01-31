@@ -113,7 +113,10 @@ class BookingSummaryFragment :
     private fun onClick(type: String) {
         when (type) {
             getString(R.string.save) -> {
-                rescheduleBookingViewModel.getRescheduleRequest(mViewModel.result.serviceDetail, bookingDetails)
+                rescheduleBookingViewModel.getRescheduleRequest(
+                    mViewModel.result.serviceDetail,
+                    bookingDetails
+                )
 
             }
         }
@@ -266,19 +269,22 @@ class BookingSummaryFragment :
                             mViewModel.result = it.data.result
                             serviceDetail = (it.data.result.serviceDetail ?: "") as ServiceDetail
                             if (it.data.result.providerLeaveList != null) {
-                                providerLeave = (it.data.result.providerLeaveList ?: "") as ProviderLeave
+                                providerLeave =
+                                    (it.data.result.providerLeaveList ?: "") as ProviderLeave
                             }
 
-                                it.data.result.serviceDetail?.atHomeAvailability?.let { homeList ->
-                                    atHomeList.addAll(homeList)
-                                    mViewModel.result.serviceDetail?.date = setCurrentDate()
-                                    this.homePosition = findListIndex(atHomeList.indexOfFirst { it.day == getDayOfWeek() })
-                                }
+                            it.data.result.serviceDetail?.atHomeAvailability?.let { homeList ->
+                                atHomeList.addAll(homeList)
+                                mViewModel.result.serviceDetail?.date = setCurrentDate()
+                                this.homePosition =
+                                    findListIndex(atHomeList.indexOfFirst { it.day == getDayOfWeek() })
+                            }
 
-                                it.data.result.serviceDetail?.atCenterAvailability?.let { centerList ->
-                                    atCenterList.addAll(centerList)
-                                    mViewModel.result.serviceDetail?.date = setCurrentDate()
-                                    this.centerPosition = findListIndex(atCenterList.indexOfFirst { it.day == getDayOfWeek() })
+                            it.data.result.serviceDetail?.atCenterAvailability?.let { centerList ->
+                                atCenterList.addAll(centerList)
+                                mViewModel.result.serviceDetail?.date = setCurrentDate()
+                                this.centerPosition =
+                                    findListIndex(atCenterList.indexOfFirst { it.day == getDayOfWeek() })
 
                             }
 
@@ -338,8 +344,9 @@ class BookingSummaryFragment :
                 atHome = true
                 binding.amount.text = getString(R.string.r) + " " + serviceDetail.atHomePrice
                 mViewModel.result.serviceDetail?.serviceModeLocal = getString(R.string.athome)
-                binding.addAddressLayout.isVisible = Session.saveAddress==null
-                serviceDetail.addressLocal = Session.saveAddress.fullAddress
+                binding.addAddressLayout.isVisible = Session.saveAddress == null
+                if (Session.saveAddress != null)
+                    serviceDetail.addressLocal = Session.saveAddress.fullAddress
                 binding.changeAddressLayout.isVisible = Session.saveAddress != null
                 initSlotModel()
 
@@ -365,7 +372,11 @@ class BookingSummaryFragment :
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun initSlotModel() {
-        slotViewModel.getSlotRequest(serviceId, date, mViewModel.result.serviceDetail?.serviceModeLocal)
+        slotViewModel.getSlotRequest(
+            serviceId,
+            date,
+            mViewModel.result.serviceDetail?.serviceModeLocal
+        )
         slotViewModel.getSlotData().observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
@@ -375,14 +386,21 @@ class BookingSummaryFragment :
                             Log.e("TAG", "initSlotModel:${Gson().toJson(it.data.result)} ")
                             bookedSlot.clear()
                             bookedSlot.addAll(it.data.result.bookedSlot)
-                            if(!atHome) {
-                            if(this.centerPosition!=-1){
+                            if (!atHome) {
+                                if (this.centerPosition != -1) {
 
-                                binding.checkVisibility = true
+                                    binding.checkVisibility = true
                                     binding.idNoDataFound.root.isVisible = false
-                                    mViewModel.result.serviceDetail?.day = atCenterList[centerPosition].day
-                                    binding.sloatAdaper = BookingTimeAdapter(requireContext(), atCenterList[centerPosition].slot, bookedSlot, onItemClick,date)
-                                }else{
+                                    mViewModel.result.serviceDetail?.day =
+                                        atCenterList[centerPosition].day
+                                    binding.sloatAdaper = BookingTimeAdapter(
+                                        requireContext(),
+                                        atCenterList[centerPosition].slot,
+                                        bookedSlot,
+                                        onItemClick,
+                                        date
+                                    )
+                                } else {
                                     binding.idNoDataFound.root.isVisible = true
                                     binding.checkVisibility = false
                                 }
@@ -397,12 +415,12 @@ class BookingSummaryFragment :
 //                                    binding.sloatAdaper = BookingTimeAdapter(requireContext(), atCenterList[centerPosition].slot, bookedSlot, onItemClick)
 //                                }
 
-                            }
-                            else if(atHome){
-                                if(this.homePosition !=-1) {
+                            } else if (atHome) {
+                                if (this.homePosition != -1) {
                                     binding.checkVisibility = true
                                     binding.idNoDataFound.root.isVisible = false
-                                    mViewModel.result.serviceDetail?.day = atHomeList[homePosition].day
+                                    mViewModel.result.serviceDetail?.day =
+                                        atHomeList[homePosition].day
                                     binding.sloatAdaper = BookingTimeAdapter(
                                         requireContext(),
                                         atHomeList[homePosition].slot!!,
@@ -410,34 +428,33 @@ class BookingSummaryFragment :
                                         onItemClick,
                                         date
                                     )
-                                }
-                                else{
+                                } else {
                                     binding.idNoDataFound.root.isVisible = true
                                     binding.checkVisibility = false
-                                }
-                            }else{
-                                binding.idNoDataFound.root.isVisible = true
-                                binding.checkVisibility = false
-                            }
-
-                           /* if (this.centerPosition != -1 || this.homePosition !=-1) {
-                                binding.checkVisibility = true
-                                binding.idNoDataFound.root.isVisible = false
-                                if(atHome){
-                                    mViewModel.result.serviceDetail?.day = atHomeList[homePosition].day
-                                }else {
-                                    mViewModel.result.serviceDetail?.day = atCenterList[centerPosition].day
-                                }
-                                if(atHome){
-                                    binding.sloatAdaper = BookingTimeAdapter(requireContext(), atHomeList[homePosition].slot!!, bookedSlot, onItemClick)
-                                }else {
-                                    binding.sloatAdaper = BookingTimeAdapter(requireContext(), atCenterList[centerPosition].slot, bookedSlot, onItemClick)
                                 }
                             } else {
                                 binding.idNoDataFound.root.isVisible = true
                                 binding.checkVisibility = false
+                            }
 
-                            }*/
+                            /* if (this.centerPosition != -1 || this.homePosition !=-1) {
+                                 binding.checkVisibility = true
+                                 binding.idNoDataFound.root.isVisible = false
+                                 if(atHome){
+                                     mViewModel.result.serviceDetail?.day = atHomeList[homePosition].day
+                                 }else {
+                                     mViewModel.result.serviceDetail?.day = atCenterList[centerPosition].day
+                                 }
+                                 if(atHome){
+                                     binding.sloatAdaper = BookingTimeAdapter(requireContext(), atHomeList[homePosition].slot!!, bookedSlot, onItemClick)
+                                 }else {
+                                     binding.sloatAdaper = BookingTimeAdapter(requireContext(), atCenterList[centerPosition].slot, bookedSlot, onItemClick)
+                                 }
+                             } else {
+                                 binding.idNoDataFound.root.isVisible = true
+                                 binding.checkVisibility = false
+
+                             }*/
                             getArgumentData()
 
                         }
@@ -533,30 +550,41 @@ class BookingSummaryFragment :
         when (name) {
             getString(R.string.calendar) -> {
                 date = dayMonthYearFromDate(data) ?: ""
-                Log.e("TAG", "checkDate:${data} ", )
-                Log.e("TAG", "checkDate:${date} ", )
-                if (atHome){
-                    this.homePosition = findListIndex(atHomeList.indexOfFirst { it.day == position })
+                Log.e("TAG", "checkDate:${data} ")
+                Log.e("TAG", "checkDate:${date} ")
+                if (atHome) {
+                    this.homePosition =
+                        findListIndex(atHomeList.indexOfFirst { it.day == position })
 
-                }else{
-                    this.centerPosition = findListIndex(atCenterList.indexOfFirst { it.day == position })
+                } else {
+                    this.centerPosition =
+                        findListIndex(atCenterList.indexOfFirst { it.day == position })
 
                 }
                 if (::providerLeave.isInitialized) {
-                    Log.e("TAG", "leave:${Gson().toJson(providerLeave)} ", )
-                    if (!compareTwoDates(providerLeave.leaveStartDate, providerLeave.leaveEndDate, date)) {
+                    Log.e("TAG", "leave:${Gson().toJson(providerLeave)} ")
+                    if (!compareTwoDates(
+                            providerLeave.leaveStartDate,
+                            providerLeave.leaveEndDate,
+                            date
+                        )
+                    ) {
                         mViewModel.result.serviceDetail?.date = date
                         binding.timeRecycler.isVisible = true
                         initSlotModel()
                     } else {
                         binding.timeRecycler.isVisible = false
-                        Toast.makeText(requireContext(), "sloat not found on this date", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "sloat not found on this date",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
-                }else{
-                    if(atHome){
+                } else {
+                    if (atHome) {
                         mViewModel.result.serviceDetail?.date = date
                         initSlotModel()
-                    }else {
+                    } else {
                         mViewModel.result.serviceDetail?.date = date
                         initSlotModel()
                     }
@@ -575,8 +603,8 @@ class BookingSummaryFragment :
         }
     }
 
-    private fun checkMode(){
-        if(serviceDetail.serviceMode?.atHome!!) {
+    private fun checkMode() {
+        if (serviceDetail.serviceMode?.atHome!!) {
             if (Session.saveAddress != null) {
                 binding.addAddressLayout.visibility = View.GONE
                 binding.changeAddressLayout.visibility = View.VISIBLE

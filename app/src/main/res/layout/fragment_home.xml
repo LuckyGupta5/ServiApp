@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
 
         <variable
             name="viewModel"
@@ -12,6 +13,9 @@
         <variable
             name="click"
             type="com.example.servivet.ui.main.view_model.HomeViewModel.ClickAction" />
+        <variable
+            name="homeServiceAdapter"
+            type="com.example.servivet.ui.main.adapter.HomeServiceAdapter" />
 
     </data>
 
@@ -308,6 +312,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
+                    android:visibility="@{homeServiceAdapter.list==null?View.GONE:homeServiceAdapter.list.size()>0?View.VISIBLE:View.GONE}"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -341,6 +346,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:adapter="@{homeServiceAdapter}"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
                         tools:listitem="@layout/home_services_recycler" />

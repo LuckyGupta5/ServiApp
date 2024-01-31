@@ -52,7 +52,7 @@
                     android:textSize="15dp"
                     android:paddingVertical="15dp"
                     android:hint="00:00 AM"
-                    android:text='@{data.startTime!=""?data.startTime:"00:00 AM"}'
+                    android:text='@{data.startTime!=""?data.startTime:"00:00"}'
                     />
             </LinearLayout>
 
@@ -83,7 +83,7 @@
                     android:textSize="15dp"
                     android:paddingVertical="15dp"
                     android:hint="00:00 AM"
-                    android:text='@{data.endTime!=""?data.endTime:"00:00 AM"}'
+                    android:text='@{data.endTime!=""?data.endTime:"00:00 "}'
 
                     />
             </LinearLayout>

@@ -85,7 +85,7 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
                             setImageAdapter(it.data.result.serviceDetail.images!!)
                             smallest = min(it.data.result.serviceDetail.atCenterPrice?:0.0, it.data.result.serviceDetail.atHomePrice?:0.0).toString()
                             largest = max(it.data.result.serviceDetail.atCenterPrice?:0.0,it.data.result.serviceDetail.atHomePrice?:0.0).toString()
-                            binding.smallest.text=commaSaparator(smallest.toDouble()).toString()
+                            binding.smallest.text= commaSaparator(smallest.toDouble()).toString()
                             binding.largest.text=commaSaparator(largest.toDouble()).toString()
                             checkVisibility()
                             if(it.data.result.serviceDetail.images.isNotEmpty()&&it.data.result.serviceDetail.images!=null)
@@ -138,6 +138,7 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                            // showSnackBar(it.data.message!!)
+                            ratingList.clear()
                             ratingList.addAll(it.data.result.ratingList)
                             initReviewAdapter()
 

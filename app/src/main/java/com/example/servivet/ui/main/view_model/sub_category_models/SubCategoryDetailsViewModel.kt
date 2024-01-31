@@ -35,7 +35,7 @@ class SubCategoryDetailsViewModel:BaseViewModel() {
         }
 
         fun callSummaryFragment(view: View){
-            Session.saveAddress=null
+          //  Session.saveAddress=null
             view.findNavController().navigate(SubCategoryDetailsFragmentDirections.actionSubCategoryDetailsFragmentToBookingSummaryFragment(serviceId, context.getString(R.string.sub_category)))
         }
 

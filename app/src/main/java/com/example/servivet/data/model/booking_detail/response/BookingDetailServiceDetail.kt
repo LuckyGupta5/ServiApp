@@ -4,7 +4,7 @@ data class BookingDetailServiceDetail(
     val _id: String,
     val atCenterPrice: String,
     val atHomePrice: String,
-    val bussinessType: String,
+    val bussinessType: Int,
     val createdBy: String,
     val subCategory: String,
     val images: List<String>,

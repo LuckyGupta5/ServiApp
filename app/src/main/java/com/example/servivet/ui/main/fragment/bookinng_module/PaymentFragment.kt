@@ -19,13 +19,13 @@ import com.example.servivet.databinding.FragmentAddServiceBinding
 import com.example.servivet.databinding.FragmentPaymentBinding
 import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.view_model.wallet.PaymentViewModel
+import com.example.servivet.utils.Constants
 import com.example.servivet.utils.getLastWordFromUrl
 import com.google.gson.Gson
 import org.json.JSONObject
 
 
-class PaymentFragment :
-    BaseFragment<FragmentPaymentBinding, PaymentViewModel>(R.layout.fragment_payment) {
+class PaymentFragment : BaseFragment<FragmentPaymentBinding, PaymentViewModel>(R.layout.fragment_payment) {
     private val paymentData: PaymentFragmentArgs by navArgs()
     private var callbackUrl = "http://13.235.137.221:3476/mobileApi/call-back"
 
@@ -84,6 +84,8 @@ class PaymentFragment :
 
             if (reponse.equals("Success", ignoreCase = true)) {
                 findNavController().navigate(R.id.action_paymentFragment_to_homeFragment)
+                Constants.APPLIED_COUPON = ""
+
 
             } else if (url.toString() == "https://standard.paystack.co/close") {
                 // finish()

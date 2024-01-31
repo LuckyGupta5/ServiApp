@@ -3,6 +3,7 @@ package com.example.servivet.ui.main.bottom_sheet
 import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.util.Log
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -12,7 +13,6 @@ import com.example.servivet.data.model.booking_module.create_order.response.Crea
 import com.example.servivet.data.model.booking_module.create_order.response.CreateOrderResult
 import com.example.servivet.data.model.booking_module.my_wallet.MyWallet
 import com.example.servivet.data.model.booking_module.my_wallet.MyWalletMainResponse
-import com.example.servivet.data.model.common.response.CommonResponse
 import com.example.servivet.data.model.payment.payment_amount.response.PayAmountResult
 import com.example.servivet.databinding.FragmentMyWalletBottomsheetBinding
 import com.example.servivet.ui.base.BaseBottomSheetDailogFragment
@@ -25,10 +25,10 @@ import com.example.servivet.utils.Constants
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
-import com.example.servivet.utils.getLastWordFromUrl
 import com.google.gson.Gson
 
-class MyWalletBottomsheet : BaseBottomSheetDailogFragment<FragmentMyWalletBottomsheetBinding, MyWalletBottomsheetViewModel>(
+class MyWalletBottomsheet :
+    BaseBottomSheetDailogFragment<FragmentMyWalletBottomsheetBinding, MyWalletBottomsheetViewModel>(
         R.layout.fragment_my_wallet_bottomsheet
     ) {
     override val mViewModel: MyWalletBottomsheetViewModel by viewModels()
@@ -38,6 +38,8 @@ class MyWalletBottomsheet : BaseBottomSheetDailogFragment<FragmentMyWalletBottom
     private lateinit var paymentAmountData: PayAmountResult
     private lateinit var serviceData: ServiceDetail
     private lateinit var paymentUrl: CreateOrderResult
+    private var walletAmount = 0.0
+    private lateinit var payWith: String
 
     override fun getLayout() = R.layout.fragment_my_wallet_bottomsheet
     override fun isNetworkAvailable(boolean: Boolean) {
@@ -63,13 +65,41 @@ class MyWalletBottomsheet : BaseBottomSheetDailogFragment<FragmentMyWalletBottom
     private fun onClick(value: Int) {
         when (value) {
             0 -> {
+
+                if (binding.idCheckBox.isChecked) {
+                    if (paymentAmountData.payableAmount!! > walletData.amount) {
+                        walletAmount = walletData.amount
+                        payWith = "walletWithPg"
+                        createOderViewModel.orderRequest.isWalletAmountInclude = true
+                    } else {
+                        walletAmount = paymentAmountData.payableAmount!!
+                        payWith = "wallet"
+                        createOderViewModel.orderRequest.isWalletAmountInclude = true
+
+
+                    }
+                } else {
+                    walletAmount = paymentAmountData.payableAmount!!
+                    payWith = "paymentGateway"
+                    createOderViewModel.orderRequest.isWalletAmountInclude = false
+
+                }
                 initOrderCreateViewModel()
+            }
+
+            1 -> {
+                dialog?.dismiss()
             }
         }
     }
 
     private fun initOrderCreateViewModel() {
-        createOderViewModel.getPaymentAmountRequest(paymentAmountData,serviceData)
+        createOderViewModel.getPaymentAmountRequest(
+            paymentAmountData,
+            serviceData,
+            walletAmount,
+            payWith
+        )
         createOderViewModel.getOrderData().observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
@@ -81,13 +111,25 @@ class MyWalletBottomsheet : BaseBottomSheetDailogFragment<FragmentMyWalletBottom
                     when (data.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             Constants.SECURE_HEADER = " "
-                            paymentUrl = data.result
-                            findNavController().previousBackStackEntry?.savedStateHandle?.set(getString(R.string.paymeturl),Gson().toJson(paymentUrl))
-                            dialog?.dismiss()
+                            Log.e("TAG", "initOrderCreateViewModel: ${Gson().toJson(data.result)}", )
+                            if(data.result.authorization_url.isNullOrBlank()){
+                                findNavController().navigate(R.id.action_myWalletBottomsheet_to_homeFragment)
+                                dialog?.dismiss()
+                            }else{
+                                paymentUrl = data.result
+                                //findNavController().navigate(R.id.action_myWalletBottomsheet_to_bookingsFragment)
+                                findNavController().navigate(MyWalletBottomsheetDirections.actionMyWalletBottomsheetToPaymentFragment(Gson().toJson(paymentUrl), getString(R.string.paymeturl)))
+
+                                // findNavController().previousBackStackEntry?.savedStateHandle?.set(getString(R.string.paymeturl), Gson().toJson(paymentUrl))
+                                dialog?.dismiss()
+                            }
+
+
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showSnackBar(data.message)
+                            Toast.makeText(requireContext(), data.message, Toast.LENGTH_SHORT)
+                                .show()
                             Constants.SECURE_HEADER = " "
                         }
 
@@ -203,15 +245,32 @@ class MyWalletBottomsheet : BaseBottomSheetDailogFragment<FragmentMyWalletBottom
             binding.idCheckBox.isChecked = false
             binding.idCheckBox.isEnabled = false
         }
+        checkPayData()
 
+
+
+        binding.idCheckBox.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                checkPayData()
+            } else {
+                binding.idPayButton.text =
+                    getString(R.string.pay) + (paymentAmountData.payableAmount?.toFloat())
+
+
+            }
+
+        }
+
+    }
+
+    private fun checkPayData() {
         if (paymentAmountData.payableAmount?.toFloat()!! > walletData.amount.toFloat()) {
             binding.idPayButton.text =
                 getString(R.string.pay) + (paymentAmountData.payableAmount?.toFloat()!! - walletData.amount.toFloat()).toString()
         } else {
-            binding.idPayButton.text = getString(R.string.pay) + walletData.amount
 
+            binding.idPayButton.text = getString(R.string.pay) + "0"
         }
-
     }
 
     override fun onDismiss(dialog: DialogInterface) {

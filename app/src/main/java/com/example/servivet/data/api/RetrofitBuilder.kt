@@ -1,6 +1,7 @@
 package com.example.servivet.data.api
 
 import android.provider.Settings.Secure
+import android.util.Log
 import com.example.servivet.utils.Constants
 import com.example.servivet.utils.Constants.SECURE_HEADER
 import com.example.servivet.utils.PreferenceEntity.TOKEN
@@ -41,6 +42,7 @@ object  RetrofitBuilder
                 }
                 if(SECURE_HEADER.isNotEmpty()){
                     ongoing.addHeader("requestfor", SECURE_HEADER)
+                    Log.e("TAG", "checHeader: true ", )
                 }
                 chain.proceed(ongoing.build())
             }).addInterceptor(HttpLoggingInterceptor().apply {

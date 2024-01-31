@@ -24,5 +24,8 @@ data class CurrentUser(
     val sockectActiveStatus: SockectActiveStatus,
     val status: Int,
     val updatedAt: String,
+    val isServiceEnable: Boolean,
+
+
 
 )

@@ -1,5 +1,6 @@
 package com.example.servivet.ui.main.fragment
 
+import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
@@ -67,6 +68,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding,ProfileViewModel> (R
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             binding.data=it.data.result.profile
                             Session.saveUserProfile(it.data.result.profile)
+                            Log.e("TAG", "setupObservers: ${it.data.result.profile}", )
 
                             if(Session.userDetails.businessType!=null) {
                                 if (Session.userDetails.businessType == "3")

@@ -1,5 +1,6 @@
 package com.example.servivet.ui.main.view_model
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import android.view.View
@@ -10,6 +11,8 @@ import androidx.navigation.findNavController
 import com.example.servivet.R
 import com.example.servivet.data.api.RetrofitBuilder
 import com.example.servivet.data.model.add_service.request.AddServiceRequest
+import com.example.servivet.data.model.add_service.request.AtHomeAvailability
+import com.example.servivet.data.model.add_service.request.ServiceListSlot
 import com.example.servivet.data.model.add_service.response.AddServiceResponse
 import com.example.servivet.data.repository.MainRepository
 import com.example.servivet.databinding.FragmentAddServiceBinding
@@ -89,9 +92,8 @@ class AddServiceViewModel() : BaseViewModel() {
                         if(addServicesRequest.atCenterAvailability!![i].slot!![j].startTime!!.isEmpty() || addServicesRequest.atCenterAvailability!![i].slot!![j].endTime!!.isEmpty()){
                             errorMessage.setValue("Select Session should not be empty for the Center Service Mode")
                             isErrorFound = true
-                        }else if(!CommonUtils.checkDates(addServicesRequest.atCenterAvailability!![i].slot!![j].startTime!!,
-                                addServicesRequest.atCenterAvailability!![i].slot!![j].endTime!!
-                            )){
+                        }else if(!CommonUtils.checkDates(addServicesRequest.atCenterAvailability!![i].slot!![j].startTime!!, addServicesRequest.atCenterAvailability!![i].slot!![j].endTime!!
+                        )){
                             errorMessage.setValue(context.getString(R.string.start_time_should_not_be_greater_than_end_time_for_centre_mode))
                             isErrorFound = true
                         }
@@ -153,6 +155,7 @@ class AddServiceViewModel() : BaseViewModel() {
     }
 
 
+    @SuppressLint("SuspiciousIndentation")
     fun hitAddServiceAPI(context: Context, requireActivity: FragmentActivity, finishing: Boolean) {
         val builder = MultipartBody.Builder()
         builder.setType(MultipartBody.FORM)
@@ -167,8 +170,10 @@ class AddServiceViewModel() : BaseViewModel() {
 
             if (addServicesRequest.atHome != null)
                 builder.addFormDataPart("atHome", addServicesRequest.atHome.toString())
-            else
-                builder.addFormDataPart("atHome", false.toString())
+            else {
+                addServicesRequest.atHome = false
+                builder.addFormDataPart("atHome", addServicesRequest.atHome.toString())
+            }
 
             builder.addFormDataPart("category", addServicesRequest.category!!)
             builder.addFormDataPart("serviceName", addServicesRequest.serviceName!!)
@@ -185,10 +190,10 @@ class AddServiceViewModel() : BaseViewModel() {
                 builder.addFormDataPart("atHomePrice", "0")
 
 
-            if (addServicesRequest.onlinePrice != null)
-                builder.addFormDataPart("onlinePrice", addServicesRequest.onlinePrice!!)
-            else
-                builder.addFormDataPart("onlinePrice", "0")
+//            if (addServicesRequest.onlinePrice != null)
+//                builder.addFormDataPart("onlinePrice", addServicesRequest.onlinePrice!!)
+//            else
+//                builder.addFormDataPart("onlinePrice", "0")
 
             if (isCentreClick) {
                 builder.addFormDataPart("address", addServicesRequest.address!!)
@@ -199,17 +204,18 @@ class AddServiceViewModel() : BaseViewModel() {
 
             if (addServicesRequest.atCenterAvailability != null && addServicesRequest.atCenterAvailability!!.isNotEmpty()) {
                 builder.addFormDataPart("atCenterAvailability", Gson().toJson(addServicesRequest.atCenterAvailability).replace("\\", ""))
-
-
             }
 
 
 
             if (addServicesRequest.atHomeAvailability != null && addServicesRequest.atHomeAvailability!!.isNotEmpty()) {
-                    builder.addFormDataPart(
-                        "atHomeAvailability",
-                        Gson().toJson(addServicesRequest.atHomeAvailability).replace("\\", ""))
 
+                    builder.addFormDataPart("atHomeAvailability", Gson().toJson(addServicesRequest.atHomeAvailability).replace("\\", ""))
+
+            }else{
+                val atHomeAvailabilityList: List<AtHomeAvailability> = addServicesRequest.atHomeAvailability ?: emptyList()
+
+                builder.addFormDataPart("atHomeAvailability", Gson().toJson(atHomeAvailabilityList))
             }
 
 
@@ -221,6 +227,7 @@ class AddServiceViewModel() : BaseViewModel() {
                     val file = File(addServicesRequest.image!![i])
                     builder.addFormDataPart("image", file.name, RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file))
                 }
+
             }
             Log.e("TAG", "hitAddServiceAPI: " + Gson().toJson(addServicesRequest))
 
@@ -254,7 +261,4 @@ class AddServiceViewModel() : BaseViewModel() {
 
 
     }
-
-
-
 }

@@ -23,7 +23,7 @@
             android:id="@+id/idSeekBar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:max="5"
+            android:max="1"
             android:focusable="false"
             android:clickable="false"
             android:progress="1"

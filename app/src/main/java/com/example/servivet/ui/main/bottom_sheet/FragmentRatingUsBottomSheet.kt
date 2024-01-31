@@ -9,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RatingBar
+import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
 import com.example.servivet.databinding.FragmentLoginBinding
@@ -27,6 +29,7 @@ import com.example.servivet.utils.StatusCode
 class FragmentRatingUsBottomSheet :
     BaseBottomSheetDailogFragment<FragmentRatingUsBottomSheetBinding, RateUseBottomSheetViewModel>(R.layout.fragment_rating_us_bottom_sheet) {
     override val mViewModel: RateUseBottomSheetViewModel by viewModels()
+    private val serviceId:FragmentRatingUsBottomSheetArgs by navArgs()
 
 
     override fun getLayout(): Int {
@@ -42,12 +45,16 @@ class FragmentRatingUsBottomSheet :
 
     override fun setupViews() {
         binding.apply {
-
             lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
             click = mViewModel.ClickAction(binding)
         }
         onclick()
+        getData()
+    }
+
+    private fun getData() {
+       mViewModel.ratingRequest.serviceId = serviceId.serviceId
     }
 
     fun onclick() {
@@ -73,11 +80,12 @@ class FragmentRatingUsBottomSheet :
 
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            showSnackBar(it.data.message)
+                            Toast.makeText(requireContext(), it.data.message, Toast.LENGTH_SHORT).show()
+                            dialog?.dismiss()
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showSnackBar(it.data.message)
+                            Toast.makeText(requireContext(), it.data.message, Toast.LENGTH_SHORT).show()
                         }
 
                     }

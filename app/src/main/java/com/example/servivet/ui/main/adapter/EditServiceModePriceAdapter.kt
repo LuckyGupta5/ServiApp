@@ -87,7 +87,7 @@ class EditServiceModePriceAdapter(
                 ).show()
             } else if (item?.daysList!![daysPosition!!].slotList?.size!! < 4) {
 
-                item.daysList!![daysPosition!!].slotList?.add(ServiceListSlot("", "", ""))
+                item.daysList!![daysPosition!!].slotList?.add(ServiceListSlot("", "10", ""))
                 listener(CallBackData(item!!, position))
             }
         }

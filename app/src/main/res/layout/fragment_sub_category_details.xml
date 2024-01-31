@@ -177,7 +177,7 @@
                                         android:gravity="end"
                                         android:paddingHorizontal="6dp"
                                         android:paddingVertical="1dp"
-                                        android:text="4.5"
+                                        android:text="@{data.avgRating}"
                                         android:textColor="@color/white"
                                         android:textSize="13dp" />
 
@@ -280,7 +280,6 @@
                     android:background="@color/white"
                     android:orientation="horizontal"
                     android:paddingHorizontal="20dp"
-
                     android:paddingTop="15dp">
 
                     <com.google.android.material.textview.MaterialTextView
@@ -379,6 +378,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="18dp"
+                            android:theme="@style/RatingBar"
                             android:rating='@{data.ratingReview.averageRating == null?0.0F:data.ratingReview.averageRating}'
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/idRatingCount" />
@@ -390,7 +390,7 @@
                             android:layout_marginStart="18dp"
                             android:layout_marginTop="9dp"
                             android:fontFamily="@font/poppins_regular"
-                            android:text="@{data.ratingReview.totalReview}"
+                            android:text='@{data.ratingReview.totalReview== null?"0"+" "+@string/review:data.ratingReview.totalReview+" "+@string/review}'
                             android:textSize="15sp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/idRatingBar" />
@@ -451,12 +451,15 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <ImageView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="5dp"
-                    android:background="@drawable/rupree_icon" />
+                    android:text="@string/r"
+                    android:textSize="23sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_bold"/>
 
                 <TextView
                     android:id="@+id/smallest"
@@ -464,9 +467,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:drawablePadding="3dp"
+                    android:layout_gravity="center_vertical"
                     android:fontFamily="@font/poppins_bold"
                     android:textColor="@color/black_2"
-                    android:textSize="18dp" />
+                    android:textSize="18sp" />
 
                 <View
                     android:id="@+id/idView"
@@ -482,15 +486,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:drawablePadding="3dp"
+                    android:layout_gravity="center_vertical"
                     android:fontFamily="@font/poppins_bold"
                     android:textColor="@color/black_2"
-                    android:textSize="18dp" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.3"
                 android:background="@drawable/app_theme_color_button_12dp"
                 android:fontFamily="@font/poppins_medium"
                 android:onClick="@{click::callSummaryFragment}"

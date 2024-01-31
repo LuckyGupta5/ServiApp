@@ -6,7 +6,6 @@
     //google map key
     <string name="google_map_key">AIzaSyA18dEiaaZ69sQr0sgJvWcusLhTIAUqxbw</string>-->
     <string name="google_map_key">AIzaSyDxvOzm-9yjdnd5L4iJrVDwk-_KbUkmN8A</string>
-
     <string name="please_connect_to_the_internet">Please Connect to the internet.\n</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="choose_your_preferred_language">Choose your\n Preferred Language</string>
@@ -317,6 +316,9 @@
     <string name="push_notifications">Push Notifications</string>
     <string name="account_settings">Account Settings</string>
     <string name="my_wallet">My Wallet</string>
+    <string name="wallet">wallet</string>
+    <string name="paymentGateway">paymentGateway</string>
+    <string name="walletWithPg">walletWithPg</string>
     <string name="about_us">About us</string>
     <string name="distance">Distance</string>
     <string name="change_language">Change Language</string>
@@ -342,7 +344,7 @@
     <string name="surya_mouly">Surya Mouly</string>
     <string name="_100">100</string>
     <string name="individual_business">Individual Business</string>
-    <string name="rating_raviews"><![CDATA[Rating & Raviews]]></string>
+    <string name="rating_raviews"><![CDATA[Rating & Reviews]]></string>
     <string name="report">Report</string>
     <string name="promocode_discount">Promocode Discount</string>
     <string name="sorry_this_time_slot_is_not_available">
@@ -356,7 +358,7 @@
     <string name="insufficient_balance">(Insufficient Balance)</string>
     <string name="add_money">Add Money</string>
     <string name="pay_1548">Pay ₹ 1548</string>
-    <string name="are_you_sure_you_want_to_conform">Are you sure you want to \nconform?</string>
+    <string name="are_you_sure_you_want_to_conform">Are you sure you want to \nconfirm?</string>
     <string name="calendar">calendar</string>
     <string name="slot">slot</string>
     <string name="at_center">At Center</string>
@@ -367,6 +369,7 @@
     <string name="pincode">Pincode*</string>
     <string name="confirm_location">Confirm Location</string>
     <string name="sold">Sold</string>
+    <string name="sold_small">sold</string>
     <string name="bought">Bought</string>
     <string name="search_location">Search Location</string>
     <string name="location_is_not_avialable">Location is not available.</string>
@@ -378,6 +381,25 @@
     <string name="pay">Pay ₹</string>
     <string name="pending">Pending</string>
     <string name="paymeturl">paymetUrl</string>
+    <string name="cancel_booking">Cancel Booking</string>
+    <string name="bookinglist">bookingList</string>
+    <string name="booked_by">Booked by</string>
+    <string name="bought_small">bought</string>
+    <string name="r">R</string>
+    <string name="close_service">Close Service</string>
+    <string name="start_date">Start Date</string>
+    <string name="end_date">End Date</string>
+    <string name="close">Close</string>
+    <string name="start_service">Start Service</string>
+    <string name="leave">leave</string>
+    <string name="not_cancelable">Not Cancelable</string>
+    <string name="back_to_original_payment_source">Back to original payment source</string>
+    <string name="refund_in_wallet">Refund in Wallet</string>
+    <string name="promocode">Promocode</string>
+    <string name="closeservice">closeService</string>
+    <string name="before_date_text">Are you sure want to close service if you close the service, all booking of</string>
+    <string name="to">to</string>
+    <string name="after_date_text">will be automatically cancelled</string>
 
 
     <string-array name="select_issue">

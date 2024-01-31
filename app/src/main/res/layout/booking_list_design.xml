@@ -2,15 +2,26 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <data>
+
+        <import type="android.view.View" />
 
         <variable
             name="click"
             type="com.example.servivet.ui.main.adapter.BookingAdapter.ClickAction" />
-        
+
         <variable
             name="data"
             type="com.example.servivet.data.model.booking_list.response.MyBooking" />
+
+        <variable
+            name="type"
+            type="Integer" />
+
+        <variable
+            name="typeOfUser"
+            type="String" />
 
     </data>
 
@@ -72,7 +83,7 @@
                             android:fontFamily="@font/poppins_regular"
                             android:paddingHorizontal="9dp"
                             android:paddingVertical="5dp"
-                            android:text="@string/individualcap"
+                            android:text="@{typeOfUser.equals(@string/sold_small)?data.bookedFor:data.serviceDetail.bussinessType==3?@string/individual:@string/institutional}"
                             android:textColor="@color/app_theme"
                             android:textSize="11sp" />
                     </LinearLayout>
@@ -99,24 +110,23 @@
                         android:orientation="vertical">
 
                         <LinearLayout
-                            android:paddingBottom="10dp"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp">
 
                             <androidx.cardview.widget.CardView
                                 android:id="@+id/image_2_layout"
                                 android:layout_width="74dp"
-                                android:paddingVertical="5dp"
-
                                 android:layout_height="74dp"
+                                android:paddingVertical="5dp"
                                 app:cardCornerRadius="12dp">
 
                                 <ImageView
                                     android:id="@+id/image_2"
                                     android:layout_width="74dp"
                                     android:layout_height="74dp"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/flower_img" />
+                                    android:imageViewUrl="@{data.userDetail.image}"
+                                    android:scaleType="centerCrop" />
                             </androidx.cardview.widget.CardView>
 
                             <LinearLayout
@@ -134,6 +144,7 @@
                                     android:ellipsize="end"
                                     android:fontFamily="@font/poppins_semi_bold"
                                     android:maxLines="1"
+                                    android:text="@{data.serviceDetail.serviceName}"
                                     android:textColor="@color/black"
                                     android:textSize="17sp" />
 
@@ -152,7 +163,7 @@
                                         android:fontFamily="@font/poppins_regular"
                                         android:maxLength="15"
                                         android:maxLines="1"
-                                        android:text='@{"by "+data.createdBy.name}'
+                                        android:text="@{data.userDetail.name}"
                                         android:textColor="@color/grey_717171"
                                         android:textSize="13sp" />
 
@@ -173,8 +184,10 @@
                                         android:ellipsize="end"
                                         android:fontFamily="@font/poppins_regular"
                                         android:maxLines="1"
+                                        android:text="@{data.bookedFor}"
                                         android:textColor="@color/grey_979595"
-                                        android:textSize="13sp" />
+                                        android:textSize="13sp"
+                                        android:visibility="@{typeOfUser!=@string/sold_small ? View.GONE : View.VISIBLE}" />
 
 
                                 </LinearLayout>
@@ -207,55 +220,60 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="15dp"
                             android:id="@+id/requestLayout"
-                            android:layout_height="wrap_content">
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="10dp"
+                            android:visibility="gone">
+
                             <TextView
                                 android:id="@+id/reject"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Reject"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/poppins_medium"
-                                android:textSize="15dp"
                                 android:layout_marginEnd="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/light_grey_round_corner_12_dp"
+                                android:fontFamily="@font/poppins_medium"
                                 android:gravity="center"
                                 android:paddingVertical="12dp"
-                                android:background="@drawable/light_grey_round_corner_12_dp"
-                                android:textColor="@color/black_2"/>
+                                android:text="@string/reject"
+                                android:textColor="@color/black_2"
+                                android:textSize="15sp"
+                                android:visibility="visible" />
 
 
                             <TextView
                                 android:id="@+id/accept"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Accept"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/poppins_medium"
-                                android:textSize="15dp"
                                 android:layout_marginStart="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/app_theme_color_button_12dp"
+                                android:fontFamily="@font/poppins_medium"
                                 android:gravity="center"
                                 android:paddingVertical="12dp"
-                                android:background="@drawable/app_theme_color_button_12dp"
-                                android:textColor="@color/white"/>
+                                android:text="@string/accept"
+                                android:textColor="@color/white"
+                                android:textSize="15dp"
+                                android:visibility="gone" />
                         </LinearLayout>
 
                         <View
                             android:id="@+id/view"
-                            android:visibility="gone"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginTop="13dp"
                             android:layout_marginBottom="10dp"
-                            android:background="@color/grey_F3F3F3" />
+                            android:background="@color/grey_F3F3F3"
+                            android:visibility="gone" />
 
                         <LinearLayout
                             android:id="@+id/reSchedule_layout"
-                            android:visibility="gone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp">
+                            android:layout_marginBottom="10dp"
+                            android:visibility="visible">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -266,11 +284,14 @@
                                 android:orientation="horizontal">
 
 
-                                <ImageView
+                                <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:src="@drawable/rupree_icon" />
+                                    android:fontFamily="@font/poppins_bold"
+                                    android:text="@string/r"
+                                    android:textColor="@color/black"
+                                    android:textSize="20dp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -280,9 +301,9 @@
                                     android:layout_marginEnd="5dp"
                                     android:ellipsize="end"
                                     android:fontFamily="@font/poppins_semi_bold"
-                                    android:maxLength="7"
+                                    android:maxLength="15"
                                     android:maxLines="1"
-                                    android:text="@string/_1499"
+                                    android:text="@{data.paidAmount}"
                                     android:textColor="@color/black"
                                     android:textSize="19sp" />
 
@@ -298,25 +319,20 @@
                                     android:maxLines="1"
                                     android:text="@string/_1799"
                                     android:textColor="@color/grey_747474"
-                                    android:textSize="15sp" />
+                                    android:textSize="15sp"
+                                    android:visibility="gone" />
                             </LinearLayout>
 
-                            <RatingBar
+                            <androidx.appcompat.widget.AppCompatRatingBar
                                 android:id="@+id/ratingbar"
-                                style="@style/Widget.AppCompat.RatingBar.Indicator"
+                                style="@style/Widget.AppCompat.RatingBar.Small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_below="@+id/ratinglayout"
-                                android:layout_centerHorizontal="true"
-                                android:clickable="true"
-                                android:isIndicator="false"
-                                android:numStars="5"
-                                android:outlineSpotShadowColor="@color/black"
-                                android:rating="2.6"
-                                android:secondaryProgressTint="@color/grey1"
-                                android:stepSize="0.5"
+                                android:layout_marginStart="18dp"
                                 android:theme="@style/RatingBar"
-                                android:visibility="gone" />
+                                android:visibility="gone"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/idRatingCount" />
 
                             <com.google.android.material.button.MaterialButton
                                 android:id="@+id/reSchedule"
@@ -325,13 +341,29 @@
                                 android:layout_gravity="center_vertical"
                                 android:background="@drawable/button_selector_10dp"
                                 android:fontFamily="@font/poppins_medium"
-                                android:paddingHorizontal="20dp"
                                 android:onClick="@{click::clickreschdulegotoBookingdetail}"
+                                android:paddingHorizontal="20dp"
                                 android:text="@string/reschedule"
                                 android:textAllCaps="false"
                                 android:textColor="@color/white"
                                 android:textSize="17sp"
-                                android:visibility="visible" />
+                                android:visibility="gone" />
+
+                            <TextView
+                                android:id="@+id/idViewDetails"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:drawableEnd="@drawable/arraow_path"
+                                android:drawablePadding="5dp"
+                                android:drawableTint="@color/app_theme"
+                                android:fontFamily="@font/poppins_medium"
+                                android:paddingHorizontal="20dp"
+                                android:text="@{(type==2 &amp;&amp; typeOfUser.equals(@string/bought)) ? @string/rate_us:@string/view_details}"
+                                android:textAllCaps="false"
+                                android:textColor="@color/app_theme"
+                                android:textSize="17sp" />
+                            <!--android:visibility="@{(type==2 || typeOfUser.equals(@string/bought_small)) ? View.GONE : View.VISIBLE}" -->
 
                             <TextView
                                 android:id="@+id/rate_us"
@@ -339,16 +371,16 @@
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/apptheme_outline_with_solid_white_corner_12"
                                 android:backgroundTint="@null"
-                                android:visibility="gone"
-                                android:paddingVertical="8dp"
-                                android:paddingHorizontal="40dp"
                                 android:fontFamily="@font/poppins_medium"
                                 android:onClick="@{click::gotoRateUs}"
+                                android:paddingHorizontal="40dp"
+                                android:paddingVertical="8dp"
                                 android:stateListAnimator="@null"
                                 android:text="@string/rate_us"
                                 android:textAllCaps="false"
                                 android:textColor="@color/app_theme"
                                 android:textSize="17sp"
+                                android:visibility="gone"
                                 app:backgroundTint="@null" />
 
                         </LinearLayout>

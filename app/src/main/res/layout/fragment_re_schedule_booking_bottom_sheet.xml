@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.servivet.ui.main.view_model.ReScheduleBookingBottomSheetViewModel" />
+
         <variable
             name="click"
             type="com.example.servivet.ui.main.view_model.ReScheduleBookingBottomSheetViewModel.ClickAction" />
@@ -18,9 +20,10 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         tools:context=".ui.main.bottom_sheet.ReScheduleBookingBottomSheet">
+
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="85dp"
             android:id="@+id/topscroll"
+            android:layout_width="85dp"
             android:layout_height="3dp"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
@@ -31,73 +34,68 @@
         <LinearLayout
             android:id="@+id/topLayout"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="40dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/topscroll"
             android:layout_marginHorizontal="20dp"
-            android:layout_height="wrap_content">
+            android:layout_marginTop="40dp"
+            android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black_242424"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_medium"
-                    android:textSize="17sp"
-                    android:text="@string/at_centre"/>
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/tvDateMonth"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:maxLength="30"
-                    android:drawableEnd="@drawable/arrowapptheme"
-                    android:fontFamily="@font/poppins_medium"
-                    android:layout_marginStart="5dp"
+                    android:text="@string/reschedule"
                     android:textColor="@color/black_242424"
-                    android:drawablePadding="10dp"
-                    android:textSize="15sp"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:text="@string/june_2023"/>
+                    android:textSize="17sp" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/idYearSpinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview"
-                android:layout_marginTop="10dp"
-                tools:listitem="@layout/calender_recycler_design"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
-                android:layout_height="wrap_content"/>
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/calender_recycler_design" />
+
             <RelativeLayout
-                android:background="@color/white"
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/white">
+
                 <TextView
                     android:id="@+id/time_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="17dp"
-                    android:textColor="@color/black_242424"
-                    android:text="@string/time"
                     android:layout_marginTop="15dp"
-                    />
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/time"
+                    android:textColor="@color/black_242424"
+                    android:textSize="17dp" />
+
                 <androidx.recyclerview.widget.RecyclerView
-                    android:overScrollMode="never"
-                    android:nestedScrollingEnabled="false"
                     android:id="@+id/time_recycler"
-                    android:layout_marginTop="12dp"
-                    android:layout_below="@id/time_txt"
                     android:layout_width="match_parent"
-                    tools:listitem="@layout/booking_time_recyclerview_design"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/time_txt"
+                    android:layout_marginTop="12dp"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:spanCount="3"/>
+                    app:spanCount="3"
+                    tools:listitem="@layout/booking_time_recyclerview_design" />
             </RelativeLayout>
             <!--   <TextView
                    android:id="@+id/noSlotsText"
@@ -114,22 +112,23 @@
 -->
 
         </LinearLayout>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/savebtn"
-            android:layout_below="@+id/topLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/topLayout"
             android:layout_marginHorizontal="20sp"
-            android:backgroundTint="@null"
-            android:visibility="visible"
             android:layout_marginTop="38dp"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/button_selector"
+            android:backgroundTint="@null"
             android:fontFamily="@font/poppins_medium"
             android:text="@string/save"
-            android:layout_marginBottom="15dp"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="17sp"
+            android:visibility="visible"
             app:backgroundTint="@null" />
 
 

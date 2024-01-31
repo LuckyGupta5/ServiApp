@@ -1,5 +1,6 @@
 package com.example.servivet.ui.main.view_model.booking_models
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.servivet.data.api.RetrofitBuilder
@@ -8,9 +9,11 @@ import com.example.servivet.data.model.booking_module.coupon.request.CouponAvala
 import com.example.servivet.data.model.common.response.CommonResponse
 import com.example.servivet.data.repository.MainRepository
 import com.example.servivet.ui.base.BaseViewModel
+import com.example.servivet.utils.Constants
 import com.example.servivet.utils.Resource
 import com.example.servivet.utils.SingleLiveEvent
 import com.example.servivet.utils.StatusCode
+import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
@@ -32,11 +35,13 @@ class BookingSlotAvailabilityViewModel: BaseViewModel(){
             slotId = serviceData.slotId
             bookingDate =serviceData.date
         }
+      Log.e("TAG", "getCouponAvailabilityRequest: ${Gson().toJson(request)}",)
         hitCouponAvailabilityApi()
 
     }
     private fun hitCouponAvailabilityApi(){
         val repository = MainRepository(RetrofitBuilder.apiService)
+        Constants.SECURE_HEADER = ""
 
         couponAvailabilityMData.postValue(Resource.loading(null))
         viewModelScope.launch {

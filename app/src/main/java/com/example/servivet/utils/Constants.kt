@@ -11,12 +11,11 @@ object Constants {
     const val AT_HOME = "At home"
     const val AT_CENTER = "At center"
     const val MOBILE_NUMBER: String ="mobile_number"
-
     const val typebooking :String="type"
     var APPLIED_COUPON=""
     const val SECURITY_KEY = "D#5599Beh2$%$#$%MC&^$@#^*&%I"
-
     var SECURE_HEADER = ""
+    var TYPEOFUSERS = "sold"
 
 
 }

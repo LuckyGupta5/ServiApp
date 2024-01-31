@@ -38,27 +38,31 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import okhttp3.Dispatcher
 
-class BookingPaymentFragment :
-    BaseFragment<FragmentBookingPaymentBinding, BookingPaymentViewModel>(R.layout.fragment_booking_payment) {
+class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, BookingPaymentViewModel>(R.layout.fragment_booking_payment) {
     override val binding: FragmentBookingPaymentBinding by viewBinding(FragmentBookingPaymentBinding::bind)
     override val mViewModel: BookingPaymentViewModel by viewModels()
     private val slotViewModel: BookingSlotAvailabilityViewModel by viewModels()
     private val timeSlotData: BookingPaymentFragmentArgs by navArgs()
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private lateinit var serviceData: ServiceDetail
-    private lateinit var paymentAmountData:PayAmountResult
+    private lateinit var paymentAmountData: PayAmountResult
     private var couponCode = ""
 
 
     override fun isNetworkAvailable(boolean: Boolean) {
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return super.onCreateView(inflater, container, savedInstanceState)
 
     }
 
     override fun setupViews() {
+        getTimeSlot()
         getCouponCode()
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
@@ -69,8 +73,9 @@ class BookingPaymentFragment :
         if (Constants.APPLIED_COUPON == "APPLIED_COUPON") {
             binding.promoDiscountLayout.isVisible = true
             binding.appliedCoupon.isVisible = true
-            binding.applyCouponName.text =
-                getString(R.string.code) + " " + mViewModel.bookingData.couponCode + " " + getString(R.string.applied)
+            binding.applyCouponName.text = getString(R.string.code) + " " + mViewModel.bookingData.couponCode + " " + getString(
+                    R.string.applied
+                )
             binding.applyCoupon.isVisible = false
             binding.applyCouponName.isClickable = false
         } else {
@@ -83,8 +88,7 @@ class BookingPaymentFragment :
         }
 
         openWelletBottomsheet()
-        getTimeSlot()
-        initSlotModel()
+        //initSlotModel()
         bottomSheetCallBack()
 
 
@@ -93,8 +97,11 @@ class BookingPaymentFragment :
 
     private fun getCouponCode() {
         sharedViewModel.getData().observe(viewLifecycleOwner) { couponCode ->
-            mViewModel.bookingData.couponCode = couponCode
-            setupObservers()
+        //    mViewModel.bookingData.couponCode = couponCode
+            serviceData.couponCode = couponCode
+            Log.e("TAG", "getCouponCode: $couponCode", )
+            Log.e("TAG", "getCouponCode: ${serviceData.couponCode }")
+           // setupObservers()
         }
     }
 
@@ -105,7 +112,6 @@ class BookingPaymentFragment :
                 mViewModel.bookingData = serviceData
                 binding.slotData = serviceData
                 Log.e("TAG", "getTimeSlot: ${Gson().toJson(serviceData)}")
-
             }
         }
     }
@@ -134,9 +140,9 @@ class BookingPaymentFragment :
                             mViewModel.payAmountResult = paymentAmountData
                             binding.paymentData = paymentAmountData
                             SECURE_HEADER = " "
-
+                            initSlotModel()
                         }
-
+                     //   297807.44
                         StatusCode.STATUS_CODE_FAIL -> {
                             showSnackBar(data.message)
                             SECURE_HEADER = " "
@@ -186,13 +192,11 @@ class BookingPaymentFragment :
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             binding.slotNotAvailable.isVisible = false
                             binding.paynow.isVisible = true
-
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
                             binding.slotNotAvailable.isVisible = true
                             binding.paynow.isVisible = false
-
                         }
 
                     }
@@ -223,23 +227,29 @@ class BookingPaymentFragment :
         }
     }
 
-    private fun bottomSheetCallBack() {
-        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(getString(R.string.confirm))?.observe(viewLifecycleOwner) {
-                initSlotModel()
-                mViewModel.isConfirm = true
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+        Constants.APPLIED_COUPON = ""
 
-        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(getString(R.string.paymeturl))?.observe(viewLifecycleOwner){
-            findNavController().currentBackStackEntry?.savedStateHandle?.remove<String>(getString(R.string.paymeturl))
-            val data = Gson().fromJson(it, CreateOrderResult::class.java)
-            Log.e("TAG", "bottomSheetCallBack:${Gson().toJson(data)} ", )
-            CoroutineScope(Dispatchers.Main).launch{
-                delay(1000)
-            findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToPaymentFragment(it,getString(R.string.paymeturl)))
-            }
-        }
     }
 
+    private fun bottomSheetCallBack() {
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(getString(R.string.confirm))
+            ?.observe(viewLifecycleOwner) {
+                initSlotModel()
+                mViewModel.isConfirm = true
+            }
+
+//        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(getString(R.string.paymeturl))
+//            ?.observe(viewLifecycleOwner) {
+//                val data = Gson().fromJson(it, CreateOrderResult::class.java)
+//                Log.e("TAG", "bottomSheetCallBack:${Gson().toJson(data)} ")
+//                CoroutineScope(Dispatchers.Main).launch {
+//                    delay(1000)
+//                    findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToPaymentFragment(it, getString(R.string.paymeturl)))
+//                }
+//            }
+    }
 
 
 }

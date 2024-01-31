@@ -115,7 +115,7 @@
 
         </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/descriptionEditText"
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -124,8 +124,9 @@
             android:background="@drawable/gray_17_corner_outline_drawable_12_dp"
             android:fontFamily="@font/poppins_regular"
             android:gravity="start"
+            android:maxLength="150"
             android:hint="Write here........."
-            android:maxLines="1"
+            android:maxLines="4"
             android:padding="17dp"
             android:textColor="@color/black"
             android:textColorHint="@color/gray_777777"

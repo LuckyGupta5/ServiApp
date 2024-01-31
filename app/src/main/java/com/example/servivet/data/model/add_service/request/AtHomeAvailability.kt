@@ -1,5 +1,6 @@
 package com.example.servivet.data.model.add_service.request
 
+import com.example.servivet.data.model.booking_module.booking_summary.response.Slot
 import java.io.Serializable
 
 data class AtHomeAvailability(

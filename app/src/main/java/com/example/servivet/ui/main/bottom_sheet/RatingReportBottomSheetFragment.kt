@@ -2,6 +2,7 @@ package com.example.servivet.ui.main.bottom_sheet
 
 import android.content.Context
 import android.os.Bundle
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.servivet.R
@@ -19,9 +20,11 @@ import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
 
-class RatingReportBottomSheetFragment:BaseBottomSheetDailogFragment<FragmentRatingReportBottomSheetBinding,RatingReportViewModel>(
-    R.layout.fragment_rating_report_bottom_sheet) {
-    private var ratingId: String?=""
+class RatingReportBottomSheetFragment :
+    BaseBottomSheetDailogFragment<FragmentRatingReportBottomSheetBinding, RatingReportViewModel>(
+        R.layout.fragment_rating_report_bottom_sheet
+    ) {
+    private var ratingId: String? = ""
     override val mViewModel: RatingReportViewModel by viewModels()
 
     override fun getLayout(): Int {
@@ -36,31 +39,37 @@ class RatingReportBottomSheetFragment:BaseBottomSheetDailogFragment<FragmentRati
 
     override fun setupViews() {
         binding.apply {
-            lifecycleOwner=viewLifecycleOwner
-            viewModel=mViewModel
-            click=mViewModel.ClickAction()
+            lifecycleOwner = viewLifecycleOwner
+            viewModel = mViewModel
+            click = mViewModel.ClickAction()
 
         }
-        ratingId=arguments?.getString("id")
+        ratingId = arguments?.getString("id")
         binding.canceltBtn.setOnClickListener {
             dismiss()
         }
 
         binding.submitBtn.setOnClickListener {
-           if(binding.descriptionEditText.text!!.isNotEmpty()){
-               mViewModel.reportRequest.contentType="rating"
-               mViewModel.reportRequest.userFeedBack=binding.descriptionEditText.text.toString()
-               mViewModel.reportRequest.contentId=ratingId
-               mViewModel.hitReportRatingApi()
-           }else{
-               showToast("Please enter the feedback")
+            if (binding.descriptionEditText.text!!.isNotEmpty()) {
+                mViewModel.reportRequest.contentType = "rating"
+                mViewModel.reportRequest.userFeedBack = binding.descriptionEditText.text.toString()
+                mViewModel.reportRequest.contentId = ratingId
+                mViewModel.hitReportRatingApi()
+            } else {
+                showToast("Please enter the feedback")
+            }
+
         }
 
+        textwatcher()
+
+
     }
+    private fun textwatcher() {
+        binding.descriptionEditText.doAfterTextChanged {
+            binding.wordCount.text = it!!.length.toString() + "/150"
 
-
-
-
+        }
     }
 
     override fun setupObservers() {
@@ -97,7 +106,12 @@ class RatingReportBottomSheetFragment:BaseBottomSheetDailogFragment<FragmentRati
                 }
 
                 Status.UNAUTHORIZED -> {
-                    CommonUtils.logoutAlert(requireContext(), "Session Expired", "Unauthorized User", requireActivity())
+                    CommonUtils.logoutAlert(
+                        requireContext(),
+                        "Session Expired",
+                        "Unauthorized User",
+                        requireActivity()
+                    )
                 }
             }
         }

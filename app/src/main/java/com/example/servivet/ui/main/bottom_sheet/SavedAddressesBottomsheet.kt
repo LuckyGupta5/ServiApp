@@ -42,6 +42,7 @@ class SavedAddressesBottomsheet:BaseBottomSheetDailogFragment<FragmentSavedAddre
 
         binding.changeAddress.setOnClickListener {
             findNavController().navigate(R.id.action_savedAddressesBottomsheet_to_addLocationFragment)
+            dismiss()
         }
 
 

@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="click"
             type="com.example.servivet.ui.main.view_model.wallet.MyWalletViewModel.ClickAction" />
+
         <variable
             name="viewModel"
             type="com.example.servivet.ui.main.view_model.wallet.MyWalletViewModel" />
+
+        <variable
+            name="apiData"
+            type="com.example.servivet.data.model.booking_module.my_wallet.MyWallet" />
+
 
     </data>
 
@@ -18,6 +25,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".ui.main.fragment.MyWalletFragment">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,13 +54,14 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center"
+                    android:layout_marginStart="-15dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_semi_bold"
                     android:gravity="center_horizontal"
                     android:text="@string/my_wallet"
-                    android:layout_marginStart="-15dp"
                     android:textColor="@color/black"
                     android:textSize="21dp" />
+
                 <ImageView
                     android:id="@+id/threedot"
                     android:layout_width="wrap_content"
@@ -61,111 +70,163 @@
 
             </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:background="@color/grey_F8F8F8"
-            android:layout_height="match_parent">
 
-       <!-- <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
--->
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/grey_F8F8F8">
+
+            <!-- <androidx.core.widget.NestedScrollView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+     -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="15sp"
-                android:orientation="vertical"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                android:background="@drawable/white_rectangle_12dp"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="28dp"
-                    android:drawableStart="@drawable/rupees_icon"
-                    android:fontFamily="@font/poppins_semi_bold"
-                    android:gravity="center_horizontal"
-                    android:maxLength="9"
-                    android:text="@string/_1499"
-                    android:textColor="@color/app_theme"
-                    android:textSize="53dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="17sp"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="@string/your_available_balance"/>
                 <LinearLayout
-                    android:id="@+id/connectMassageLayout"
-                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="15sp"
+                    android:background="@drawable/white_rectangle_12dp"
                     android:gravity="center_horizontal"
-                    android:layout_marginBottom="24dp"
-                    android:layout_below="@+id/businessType"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
-                        android:text="@string/deactivate"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="6dp"
-                        android:textColor="@color/black_2"
-                        android:paddingVertical="9dp"
-                        android:textSize="15sp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:layout_marginEnd="5dp"
-                        android:paddingHorizontal="21dp"
-                        android:background="@drawable/rectangle_grey_e9ebea_8dp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="28dp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:gravity="center_horizontal"
+                        android:maxLength="9"
+                        android:text='@{@string/r+" "+apiData.amount}'
+                        android:textColor="@color/app_theme"
+                        android:textSize="53dp" />
+
                     <TextView
                         android:layout_width="wrap_content"
-                        android:text="@string/send_money"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:paddingVertical="9dp"
-                        android:layout_marginStart="5dp"
-                        android:textSize="15sp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:layout_marginEnd="6dp"
-                        android:paddingHorizontal="21dp"
-                        android:background="@drawable/app_theme_color_button_12dp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="@string/your_available_balance"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+
+                    <LinearLayout
+                        android:id="@+id/connectMassageLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/businessType"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="24dp"
+                        android:gravity="center_horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginEnd="5dp"
+                            android:background="@drawable/rectangle_grey_e9ebea_8dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:paddingHorizontal="21dp"
+                            android:paddingVertical="9dp"
+                            android:text="@string/deactivate"
+                            android:textColor="@color/black_2"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="6dp"
+                            android:background="@drawable/app_theme_color_button_12dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:gravity="center"
+                            android:paddingHorizontal="21dp"
+                            android:paddingVertical="9dp"
+                            android:text="@string/send_money"
+                            android:textColor="@color/white"
+                            android:textSize="15sp" />
+
+
+                    </LinearLayout>
 
 
                 </LinearLayout>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:text="@string/transactions"
+                    android:textColor="@color/black"
+                    android:textSize="17sp" />
 
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/idTabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fillViewport="true"
+                    android:textSize="15sp"
+                    app:tabGravity="fill"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@color/grey_F8F8F8"
+                    app:tabIndicatorHeight="2dp"
+                    app:tabPaddingBottom="5dp"
+                    app:tabPaddingTop="5dp"
+                    app:tabSelectedTextColor="@color/app_theme"
+                    app:tabIndicator="@color/app_theme"
+                    app:tabRippleColor="@null"
+                    app:tabTextColor="@color/black" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/transitionRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical"
+                    android:visibility="visible"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/transactions_design_recyclerview" />
+
+                <RelativeLayout
+                    android:id="@+id/noDataLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/tabLayout"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/no_dataIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/no_data_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/no_dataIcon"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="No Data Found !"
+                        android:textColor="@color/black"
+                        android:textSize="18dp" />
+
+                </RelativeLayout>
 
             </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:text="@string/transactions"
-                android:textColor="@color/black"
-                android:textSize="17sp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="18dp"
-                android:fontFamily="@font/poppins_semi_bold"
-                android:layout_height="wrap_content"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/transition"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/transactions_design_recyclerview" />
 
         </LinearLayout>
-
-      <!--  </androidx.core.widget.NestedScrollView>
-      -->  </LinearLayout>
 
     </LinearLayout>
 </layout>

@@ -35,12 +35,15 @@ class ImageVideoViewFragment() :
             binding.clickEvents = ::onClick
         }
     }
+
     override fun setupViews() {
         getMediaList()
         initAdapter()
     }
+
     private fun initAdapter() {
-        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        val layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.idMediaRecycle.layoutManager = layoutManager
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(binding.idMediaRecycle)

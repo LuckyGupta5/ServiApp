@@ -30,7 +30,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
-     //   Log.d(TAG, "onNewToken: $token")
+        Log.d("TAG", "onNewToken: $token")
        // Preferences.setStringPreference(this, FCM_TOKEN,token)
     }
 

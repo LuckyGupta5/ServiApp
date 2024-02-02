@@ -83,10 +83,12 @@
     <string name="search_for_service_etc"><![CDATA[search for service & etc]]></string>
     <string name="services">Services</string>
     <string name="view_all">View All\n</string>
+    <string name="provider_view_all">ProviderViewAll</string>
+    <string name="user_view_all">UserViewAll</string>
     <string name="online_now">Online now</string>
     <string name="fitness">Fitness</string>
     <string name="finance">FINANCE\n</string>
-    <string name="_1_km_away">1 km. away</string>
+    <string name="_1_km_away">km. away</string>
     <string name="dev_gupta">Dev Gupta</string>
     <string name="gym">gym</string>
     <string name="riepneapps_technology_noida">riepneapps technology noida</string>
@@ -407,6 +409,10 @@
     <string name="back_press">BackPress</string>
     <string name="goBack">back</string>
     <string name="goForeword">foreword</string>
+    <string name="home_fr">Home_FR</string>
+    <string name="onlinefr">OnlineFR</string>
+    <string name="back">Back</string>
+
 
 
     <string-array name="select_issue">

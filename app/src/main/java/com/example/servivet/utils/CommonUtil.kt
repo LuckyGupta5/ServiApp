@@ -1300,6 +1300,10 @@ fun checkVideoFileSize(videoFilePath: String): Long {
     return fileSizeInMB
 }
 
+fun formatDecimalNumber(inputNumber: Double): String {
+    val decimalFormat = DecimalFormat("#.#")
+    return decimalFormat.format(inputNumber)
+}
 
 
 

@@ -62,7 +62,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding,ProfileViewModel> (R
         mViewModel.userProfileResponse.observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
-
                     ProcessDialog.dismissDialog()
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {

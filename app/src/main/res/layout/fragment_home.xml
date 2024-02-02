@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
 
         <variable
             name="viewModel"
@@ -14,8 +15,15 @@
             name="click"
             type="com.example.servivet.ui.main.view_model.HomeViewModel.ClickAction" />
         <variable
+            name="clickEvents"
+            type="kotlin.jvm.functions.Function1" />
+
+        <variable
             name="homeServiceAdapter"
             type="com.example.servivet.ui.main.adapter.HomeServiceAdapter" />
+        <variable
+            name="adapter"
+            type="com.example.servivet.ui.main.adapter.NearByProviderAdapter" />
 
     </data>
 
@@ -141,10 +149,10 @@
 
                 <LinearLayout
                     android:id="@+id/viewPagerLayout"
-                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <androidx.viewpager.widget.ViewPager
                         android:id="@+id/viewPager"
@@ -186,16 +194,15 @@
                 </androidx.cardview.widget.CardView>
 
                 <LinearLayout
-                    android:id="@+id/neaR_BY_Lyout"
+                    android:id="@+id/idByProviderContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="gone">
+                    android:visibility="@{adapter.providerList==null?View.GONE:adapter.providerList.size()>0?View.VISIBLE:View.GONE}">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
                         android:layout_marginHorizontal="20dp"
                         android:orientation="horizontal">
 
@@ -209,25 +216,27 @@
                             android:textSize="20dp" />
 
                         <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/near_by_viewAll"
+                            android:id="@+id/idProviderViewAll"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:fontFamily="@font/poppins_medium"
                             android:gravity="end"
+                            android:onClick="@{()->clickEvents.invoke(@string/provider_view_all)}"
                             android:text="@string/view_all"
                             android:textColor="@color/app_theme"
                             android:textSize="15dp" />
                     </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/nearByRecycler"
+                        android:id="@+id/nearByProvider"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:orientation="vertical"
-                        tools:itemCount="2"
                         app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                        tools:itemCount="2"
+                        android:adapter="@{adapter}"
                         tools:listitem="@layout/home_near_by_recycler" />
 
 
@@ -313,8 +322,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
-                    android:visibility="@{homeServiceAdapter.list==null?View.GONE:homeServiceAdapter.list.size()>0?View.VISIBLE:View.GONE}"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="@{homeServiceAdapter.list==null?View.GONE:homeServiceAdapter.list.size()>0?View.VISIBLE:View.GONE}">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -362,7 +371,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:orientation="vertical"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -387,18 +396,20 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/poppins_medium"
                             android:gravity="end"
+                            android:onClick="@{()->clickEvents.invoke(@string/provider_view_all)}"
                             android:text="@string/view_all"
                             android:textColor="@color/app_theme"
                             android:textSize="15dp" />
                     </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/onlineNowRecycler"
+                        android:id="@+id/idNearByUser"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        tools:itemCount="2"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:itemCount="2"
+                        android:adapter="@{adapter}"
                         tools:listitem="@layout/home_online_now_recycler" />
                 </LinearLayout>
 

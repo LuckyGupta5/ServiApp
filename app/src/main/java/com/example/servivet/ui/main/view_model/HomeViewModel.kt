@@ -21,12 +21,7 @@ class HomeViewModel:BaseViewModel() {
     var currentResponse= SingleLiveEvent<Resource<CurrentResponse>>()
     var homeResponse = SingleLiveEvent<Resource<HomeResponse>>()
 
-    inner class ClickAction{
-
-
-
-
-    }
+    inner class ClickAction{}
 
     fun hitCurrentApi(requireContext: Context, requireActivity: Activity, finishing: Boolean) {
         val mainRepository = MainRepository(RetrofitBuilder.apiService)

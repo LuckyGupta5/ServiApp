@@ -15,6 +15,7 @@ import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.Resource
 import com.example.servivet.utils.SingleLiveEvent
 import com.example.servivet.utils.StatusCode
+import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
@@ -37,6 +38,7 @@ class MyServiceViewModel :BaseViewModel(){
 
     fun hitServiceListAPI(requireContext: Context, requireActivity: Activity, finishing: Boolean) {
         val mainRepository = MainRepository(RetrofitBuilder.apiService)
+        Log.e("TAG", "hitServiceListAPI: ${Gson().toJson(serviceListRequest)}", )
         viewModelScope.launch {
             serviceListResponse.postValue(Resource.loading(null))
             try {

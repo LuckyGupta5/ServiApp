@@ -2,6 +2,7 @@ package com.example.servivet.ui.main.adapter
 
 import android.content.Context
 import android.media.MediaPlayer
+import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
 import com.example.servivet.R
@@ -54,9 +55,10 @@ class MediaAdapter(
                 binding.playPauseButton.visibility = View.VISIBLE
                 binding.seekBar.visibility = View.VISIBLE
                 binding.videoView.setVideoPath(mediaItem.path)
-                binding.videoView.setOnPreparedListener(MediaPlayer.OnPreparedListener {mp->
+                binding.videoView.setOnPreparedListener(MediaPlayer.OnPreparedListener { mp ->
                     mp.isLooping = false
                     mp.start()
+                    Log.e("TAG", "232bindMedia: $mp", )
                     binding.seekBar.max = mp.duration
 
                     CoroutineScope(Dispatchers.Main).launch {

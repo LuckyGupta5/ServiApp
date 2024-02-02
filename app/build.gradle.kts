@@ -125,9 +125,9 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
 
     /*push Notification*/
-    implementation("com.google.firebase:firebase-analytics-ktx")
-    implementation(platform("com.google.firebase:firebase-bom:30.1.0"))
-    implementation("com.google.firebase:firebase-messaging")
+    implementation ("com.google.firebase:firebase-analytics-ktx")
+    implementation (platform("com.google.firebase:firebase-bom:30.1.0"))
+    implementation ("com.google.firebase:firebase-messaging")
 
 
 }

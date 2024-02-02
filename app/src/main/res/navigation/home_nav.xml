@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_homeFragment_to_onlineNowFragment"
             app:destination="@id/onlineNowFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_providerProfileFragment"
+            app:destination="@id/providerProfileFragment" />
     </fragment>
 
     <fragment
@@ -159,6 +162,15 @@
         <action
             android:id="@+id/action_myServiceFragment_to_closeServiceBottomFragment"
             app:destination="@id/closeServiceBottomFragment" />
+
+        <argument
+            android:name="data"
+            app:argType="string" />
+
+        <argument
+            android:name="from"
+            app:argType="string" />
+
 
     </fragment>
     <fragment
@@ -307,14 +319,26 @@
         android:name="com.example.servivet.ui.main.fragment.ChangedateFragment"
         android:label="ChangedateFragment"
         tools:layout="@layout/fragment_changedate" />
+
     <fragment
         android:id="@+id/onlineNowFragment"
         android:name="com.example.servivet.ui.main.fragment.OnlineNowFragment"
         android:label="OnlineNowFragment"
         tools:layout="@layout/fragment_online_now">
+
+        <argument
+            android:name="data"
+            app:argType="string" />
+
+        <argument
+            android:name="from"
+            app:argType="string" />
         <action
             android:id="@+id/action_onlineNowFragment_to_connectionProfileFragment"
             app:destination="@id/connectionProfileFragment" />
+        <action
+            android:id="@+id/action_onlineNowFragment_to_providerProfileFragment"
+            app:destination="@id/providerProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/connectionProfileFragment"
@@ -490,7 +514,22 @@
             app:argType="string" />
         <argument
             android:name="position"
-            app:argType="integer"/>
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/providerProfileFragment"
+        android:name="com.example.servivet.ui.main.fragment.ProviderProfileFragment"
+        android:label="ProviderProfileFragment"
+        tools:layout="@layout/fragment_provider_profile">
+        <argument
+            android:name="data"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_providerProfileFragment_to_myServiceFragment"
+            app:destination="@id/myServiceFragment" />
     </fragment>
 
     <!-- <fragment

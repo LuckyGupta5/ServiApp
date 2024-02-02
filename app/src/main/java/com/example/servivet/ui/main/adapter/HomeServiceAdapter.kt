@@ -53,8 +53,7 @@ class HomeServiceAdapter(
                 "1" -> {
                     bundle.putString(Constants.SERVICE_ID, list[position].id)
                     bundle.putSerializable(Constants.DATA, item)
-                    view.findNavController()
-                        .navigate(R.id.action_homeFragment_to_servicesTypeListingFragment, bundle)
+                    view.findNavController().navigate(R.id.action_homeFragment_to_servicesTypeListingFragment, bundle)
                 }
 
                 "2" -> {

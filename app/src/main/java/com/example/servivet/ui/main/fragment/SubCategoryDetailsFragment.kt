@@ -25,6 +25,7 @@ import com.example.servivet.utils.Constants
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
+import com.google.gson.Gson
 import java.text.DecimalFormat
 import kotlin.math.max
 import kotlin.math.min
@@ -39,6 +40,7 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
     private lateinit var smallest:String
     private lateinit var largest:String
     var serviceData: ServiceList?=null
+    private var mediaList = ArrayList<String>()
     override fun isNetworkAvailable(boolean: Boolean) {
     }
 
@@ -46,9 +48,6 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
 
 
     }
-
-
-
 
     private fun initRatingAdapter() {
         binding.ratingAdapter = RatingAdapter(requireContext(), ArrayList(),onItemClick,reviews)
@@ -82,14 +81,19 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             binding.data=it.data.result!!.serviceDetail
                             reviews = it.data.result.serviceDetail?.ratingReview!!
-                            setImageAdapter(it.data.result.serviceDetail.images!!)
+                            mediaList.clear()
+                            mediaList.addAll(it.data.result.serviceDetail.images!!)
+                            setImageAdapter(mediaList)
                             smallest = min(it.data.result.serviceDetail.atCenterPrice?:0.0, it.data.result.serviceDetail.atHomePrice?:0.0).toString()
                             largest = max(it.data.result.serviceDetail.atCenterPrice?:0.0,it.data.result.serviceDetail.atHomePrice?:0.0).toString()
                             binding.smallest.text= commaSaparator(smallest.toDouble()).toString()
                             binding.largest.text=commaSaparator(largest.toDouble()).toString()
                             checkVisibility()
-                            if(it.data.result.serviceDetail.images.isNotEmpty()&&it.data.result.serviceDetail.images!=null)
-                                 Glide.with(requireContext()).load(it.data.result.serviceDetail.images!![0]).into(binding.image2)
+                            mediaList?.let {
+                                Glide.with(requireContext())
+                                    .load(mediaList[0])
+                                    .into(binding.image2)
+                            }
                             initRatingAdapter()
 
                         }
@@ -208,7 +212,7 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
     private fun setImageAdapter(list: ArrayList<String>) {
         if (list != null && list.isNotEmpty()) {
             binding.imageRecycler.visibility = View.VISIBLE
-            binding.imageRecycler.adapter=ServiceDetailsImgAdapter(requireContext(),list)
+            binding.imageRecycler.adapter=ServiceDetailsImgAdapter(requireContext(), list, onItemClick)
         } else {
             binding.imageRecycler.visibility = View.GONE
         }
@@ -218,13 +222,17 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
         return formatter.format(number)
     }
 
-    private val onItemClick:(String, String)->Unit = { identifier, data->
+    private val onItemClick:(String, String,Int)->Unit = { identifier, data,position->
         when(identifier){
             getString(R.string.report)->{
                 val bundle= Bundle()
                 bundle.putString("id",data)
                 findNavController().navigate(R.id.action_subCategoryDetailsFragment_to_ratingReportBottomSheetFragment,bundle)
                // reportViewModel.getReportRatingRequest(data)
+            }
+            getString(R.string.openmedia)->{
+                findNavController().navigate(SubCategoryDetailsFragmentDirections.actionSubCategoryDetailsFragmentToImageVideoViewFragment(
+                    Gson().toJson(mediaList),getString(R.string.servicedetails),position))
             }
         }
 

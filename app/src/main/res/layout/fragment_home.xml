@@ -226,6 +226,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:orientation="vertical"
+                        tools:itemCount="2"
                         app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
                         tools:listitem="@layout/home_near_by_recycler" />
 
@@ -396,6 +397,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+                        tools:itemCount="2"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:listitem="@layout/home_online_now_recycler" />
                 </LinearLayout>

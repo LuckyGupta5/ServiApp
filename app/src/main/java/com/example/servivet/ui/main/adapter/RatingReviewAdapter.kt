@@ -12,7 +12,7 @@ import com.example.servivet.utils.Session
 class RatingReviewAdapter(
     var context: Context,
     val list: ArrayList<ReviewRating>,
-    var onItemClick: (String, String) -> Unit
+    var onItemClick: (String, String,Int) -> Unit
 ) : BaseAdapter<CustomReviewsLayoutBinding, ReviewRating>(list) {
 
     override fun getItemCount(): Int {
@@ -25,7 +25,7 @@ class RatingReviewAdapter(
 
         binding.idReportImage.isVisible = list[position].user._id != Session.userDetails._id
         binding.idReportImage.setOnClickListener {
-            onItemClick(context.getString(R.string.report), list[position].user._id)
+            onItemClick(context.getString(R.string.report), list[position].user._id,0)
         }
     }
 

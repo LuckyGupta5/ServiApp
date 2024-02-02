@@ -8,12 +8,11 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
+import com.example.servivet.data.model.home.request.NearByProviderRequest
 import com.example.servivet.data.model.home.response.HomeBanner
 import com.example.servivet.data.model.home.response.HomeServiceCategory
 import com.example.servivet.databinding.FragmentHomeBinding
@@ -28,16 +27,24 @@ import com.example.servivet.utils.CommonUtils.showSnackBar
 import com.example.servivet.utils.CommonUtils.showToast
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
+import com.example.servivet.utils.SocketManager
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
 import com.google.gson.Gson
+import io.socket.client.Socket
+import io.socket.emitter.Emitter
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.fragment_home) {
 
     override val binding: FragmentHomeBinding by viewBinding(FragmentHomeBinding::bind)
     override val mViewModel: HomeViewModel by activityViewModels()
     private lateinit var mContext: Context
-    
+    private lateinit var socket: Socket
+    private var nearByRequest = NearByProviderRequest()
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context
@@ -58,20 +65,70 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                 click = mViewModel.ClickAction()
                 setBack()
 
-                activity?.let { mViewModel.hitHomeApi(mContext, it, activity?.isFinishing==true) }
+                activity?.let { mViewModel.hitHomeApi(mContext, it, activity?.isFinishing == true) }
                 setOnlineAdapter("1")
                 setNearBYAdapter("1")
                 setClick()
             }
+
+        initSocket()
+
+
     }
 
+    private fun initSocket() {
+        try {
+            SocketManager.connect()
+            socket = SocketManager.getSocket()
+
+            val data = JSONObject()
+
+            data.put("userId",Session.userDetails._id )
+            data.put("latitude",28.6230811 )
+            data.put("longitude",77.2975935 )
+            data.put("page",1 )
+            data.put("limit",10 )
+
+//
+//            nearByRequest.apply {
+//                userId = Session.userDetails._id
+//                latitude = 28.6230811
+//                longitude = 77.2975935
+//                page = 1
+//                limit = 10
+//            }
+
+            socket.emit("nearByProvider", data)
+            socket.on("nearByProvider", fun(args: Array<Any?>) {
+
+                requireActivity().runOnUiThread {
+                    val chatUserData = args[0] as JSONObject
+                    try {
+                        Log.e("TAG", "fsdsdda:${chatUserData} ", )
+                        //  Log.e(TAG, "adasda: ${Gson().toJson(timeTracking)}", )
+
+                    } catch (ex: JSONException) {
+                        ex.printStackTrace()
+                    }
+
+                }
+            })
+        } catch (ex: Exception) {
+
+        }
+
+
+    }
+
+
     private fun setNearBYAdapter(type: String) {
-        binding.nearByRecycler.adapter=HomeNearByAdapter(type,requireContext(), ArrayList())
+        binding.nearByRecycler.adapter = HomeNearByAdapter(type, requireContext(), ArrayList())
 
     }
 
     private fun setOnlineAdapter(type: String) {
-        binding.onlineNowRecycler.adapter=HomeOnlineNowAdapter(type,requireContext(),ArrayList())
+        binding.onlineNowRecycler.adapter =
+            HomeOnlineNowAdapter(type, requireContext(), ArrayList())
     }
 
     private fun setClick() {
@@ -88,8 +145,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 
 
     private fun setServiceAdapter(type: String, list: List<HomeServiceCategory>) {
-        binding.homeServiceAdapter = HomeServiceAdapter(requireContext(),type,list)
-       // binding.serviceRecycler.adapter = HomeServiceAdapter(requireContext(), type, list)
+        binding.homeServiceAdapter = HomeServiceAdapter(requireContext(), type, list)
+        // binding.serviceRecycler.adapter = HomeServiceAdapter(requireContext(), type, list)
 
     }
 
@@ -110,8 +167,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                     ProcessDialog.dismissDialog()
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            Log.e("TAG", "setupObservers: ${Gson().toJson(it.data.result.user)}", )
-                            Session.saveUserDetails( it.data.result.user)
+                            Log.e("TAG", "setupObservers: ${Gson().toJson(it.data.result.user)}")
+                            Session.saveUserDetails(it.data.result.user)
 
                             Session.type = it.data.result.user.role.toString()
                             setVisibility(it.data.result.user.role)
@@ -163,7 +220,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                             if (it.data.result.banner != null && it.data.result.banner!!.isNotEmpty()) {
                                 setViewPagerAdapter(it.data.result.banner)
                             }
-                            activity?.let { activity -> mViewModel.hitCurrentApi(requireContext(), activity, activity?.isFinishing==true) }
+                            activity?.let { activity ->
+                                mViewModel.hitCurrentApi(
+                                    requireContext(),
+                                    activity,
+                                    activity?.isFinishing == true
+                                )
+                            }
 
                             Session.saveCategory(it.data.result.serviceCategory)
 
@@ -238,7 +301,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                     dialog.show()
                 }
             }
-       activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, callback)
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, callback)
     }
 
 }

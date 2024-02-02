@@ -1229,95 +1229,77 @@ fun convertDateTimeFormat(inputDateTime: String): String {
     // Format the parsed date-time into the desired output format
     return parsedDateTime.format(outputFormatter)
 }
+fun getVideoPathFromUri(context: Context, videoUri: Uri): String? {
+    var path: String? = null
 
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && DocumentsContract.isDocumentUri(context, videoUri)) {
+        // Document URI (e.g., content://com.android.providers.media.documents/document/video:12345)
+        val documentId = DocumentsContract.getDocumentId(videoUri)
+        val id = documentId.split(":")[1]
 
-fun getRealPathFromDocumentUri(context: Context, uri: Uri): String? {
-    /*        var filePath = ""
-            val p = Pattern.compile("(\\d+)$")
-            val m = p.matcher(uri.toString())
-            if (!m.find()) {
-                return filePath
-            }
-            val imgId = m.group()
-            val column = arrayOf(MediaStore.Images.Media.DATA)
-            val sel = MediaStore.Images.Media._ID + "=?"
-            val cursor = context.contentResolver.query(
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, column, sel, arrayOf(imgId), null
-            )
-            val columnIndex = cursor!!.getColumnIndex(column[0])
-            if (cursor.moveToFirst()) {
-                filePath = cursor.getString(columnIndex)
-            }
-            cursor.close()
-            return filePath*/
+        val selection = MediaStore.Video.Media._ID + "=?"
+        val selectionArgs = arrayOf(id)
 
-    uri ?: return null
-    uri.path ?: return null
-
-    var newUriString = uri.toString()
-    newUriString = newUriString.replace(
-        "content://com.android.providers.downloads.documents/",
-        "content://com.android.providers.media.documents/"
-    )
-    newUriString = newUriString.replace(
-        "/msf%3A", "/image%3A"
-    )
-    val newUri = Uri.parse(newUriString)
-
-    var realPath = String()
-    val databaseUri: Uri
-    val selection: String?
-    val selectionArgs: Array<String>?
-    if (newUri.path?.contains("/document/image:") == true) {
-        databaseUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-        selection = "_id=?"
-        selectionArgs = arrayOf(DocumentsContract.getDocumentId(newUri).split(":")[1])
-    } else {
-        databaseUri = newUri
-        selection = null
-        selectionArgs = null
-    }
-    try {
         val column = "_data"
         val projection = arrayOf(column)
-        val cursor = context.contentResolver.query(
-            databaseUri,
-            projection,
-            selection,
-            selectionArgs,
-            null
-        )
-        cursor?.let {
+
+        val contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI
+        val cursor: Cursor? = context.contentResolver.query(contentUri, projection, selection, selectionArgs, null)
+
+        cursor?.use {
             if (it.moveToFirst()) {
-                val columnIndex = cursor.getColumnIndexOrThrow(column)
-                realPath = cursor.getString(columnIndex)
+                val columnIndex = it.getColumnIndexOrThrow(column)
+                path = it.getString(columnIndex)
             }
-            cursor.close()
         }
-    } catch (e: Exception) {
-        Log.i("GetFileUri Exception:", e.message ?: "")
-    }
-    val path = realPath.ifEmpty {
-        when {
-            newUri.path?.contains("/document/raw:") == true -> newUri.path?.replace(
-                "/document/raw:",
-                ""
-            )
+    } else {
+        // MediaStore URI
+        val projection = arrayOf(MediaStore.Video.Media.DATA)
+        val cursor: Cursor? = context.contentResolver.query(videoUri, projection, null, null, null)
 
-            newUri.path?.contains("/document/primary:") == true -> newUri.path?.replace(
-                "/document/primary:",
-                "/storage/emulated/0/"
-            )
-
-            else -> return null
+        cursor?.use {
+            if (it.moveToFirst()) {
+                val columnIndex = it.getColumnIndexOrThrow(MediaStore.Video.Media.DATA)
+                path = it.getString(columnIndex)
+            }
         }
     }
-    return if (path.isNullOrEmpty())
-        null
-    else
-        File(path).toString()
 
+    return path
 }
+
+
+fun getFileExtensionFromUrl(url: String): String? {
+    val lastDotIndex = url.lastIndexOf('.')
+    return if (lastDotIndex != -1) {
+        url.substring(lastDotIndex + 1)
+    } else {
+        null
+    }
+}
+
+fun checkVideoFileSize(videoFilePath: String): Long {
+    val videoFile = File(videoFilePath)
+
+    // Check if the file exists
+    if (!videoFile.exists()) {
+        // Handle the case when the file doesn't exist
+        return -1
+    }
+
+    // Get the file size in bytes
+    val fileSizeInBytes = videoFile.length()
+
+    // Convert bytes to megabytes (1 MB = 1024 KB)
+    val fileSizeInMB = fileSizeInBytes / (1024 * 1024)
+
+    // Log or print the file size
+    println("Video File Size: $fileSizeInMB MB")
+    Log.e("TAG", "checkVideoFileSize: $fileSizeInMB", )
+
+    return fileSizeInMB
+}
+
 
 
 

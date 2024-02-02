@@ -299,6 +299,7 @@
                         android:fontFamily="@font/poppins_medium"
                         android:gravity="end"
                         android:text="@string/view_all"
+                        android:visibility="invisible"
                         android:textColor="@color/app_theme"
                         android:textSize="15dp" />
                 </LinearLayout>

@@ -12,12 +12,7 @@ import com.example.servivet.ui.base.BaseAdapter
 import com.example.servivet.utils.interfaces.ListAdapterItem
 
 @GlideModule
-class AddServiceImageAdapter(
-    var context: Context,
-    var list: ArrayList<String>,
-    var imageList: ArrayList<String>,
-    var listener: (imageList: ArrayList<String>) -> Unit
-
+class AddServiceImageAdapter(var context: Context, var list: ArrayList<String>, var imageList: ArrayList<String>, var listener: (imageList: ArrayList<String>) -> Unit
 ) :  BaseAdapter<AddServiceImageRecyclerBinding, ListAdapterItem>(ArrayList()) {
 
     override val layoutId: Int = R.layout.add_service_image_recycler

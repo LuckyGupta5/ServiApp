@@ -132,6 +132,9 @@
         <action
             android:id="@+id/action_subCategoryDetailsFragment_to_ratingReportBottomSheetFragment"
             app:destination="@id/ratingReportBottomSheetFragment" />
+        <action
+            android:id="@+id/action_subCategoryDetailsFragment_to_imageVideoViewFragment"
+            app:destination="@id/imageVideoViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/myServiceFragment"
@@ -166,6 +169,9 @@
         <action
             android:id="@+id/action_myServiceDetailFragment_to_editServiceFragment"
             app:destination="@id/editServiceFragment" />
+        <action
+            android:id="@+id/action_myServiceDetailFragment_to_imageVideoViewFragment"
+            app:destination="@id/imageVideoViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/editServiceFragment"
@@ -470,6 +476,22 @@
             android:name="from"
             app:argType="string" />
     </dialog>
+    <fragment
+        android:id="@+id/imageVideoViewFragment"
+        android:name="com.example.servivet.ui.main.fragment.ImageVideoViewFragment"
+        android:label="ImageVideoViewFragment"
+        tools:layout="@layout/fragment_image_video_view">
+        <argument
+            android:name="data"
+            app:argType="string" />
+
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="position"
+            app:argType="integer"/>
+    </fragment>
 
     <!-- <fragment
          android:id="@+id/businessBookingFragment"

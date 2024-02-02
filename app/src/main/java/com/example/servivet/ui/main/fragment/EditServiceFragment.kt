@@ -47,6 +47,8 @@ import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
+import com.example.servivet.utils.checkVideoFileSize
+import com.example.servivet.utils.getVideoPathFromUri
 import com.google.gson.Gson
 
 
@@ -61,6 +63,7 @@ class EditServiceFragment :
     private var longitude: String = ""
     var addServiceModePriceAdapter: EditServiceModePriceAdapter? = null
     private var dialog: Dialog? = null
+    private lateinit var type: String
 
     // private val stringList = ArrayList<String>()
     private var showDayList = ArrayList<String>()
@@ -304,6 +307,11 @@ class EditServiceFragment :
 
     private fun setClick() {
         binding.addImageBtn.setOnClickListener {
+            type = getString(R.string.image)
+            selectImage()
+        }
+        binding.idAddVideoBtnn.setOnClickListener {
+            type = getString(R.string.videos)
             selectImage()
         }
 
@@ -526,15 +534,15 @@ class EditServiceFragment :
                 val data = result.data
 
                 val bitmap = data!!.extras!!["data"] as Bitmap?
-                if(Build.VERSION.SDK_INT>Build.VERSION_CODES.R) {
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.R) {
                     imagePath = CommonUtils.getRealPathFromDocumentUri(
                         requireActivity(),
-                        CommonUtils.getUriFromBitmap(bitmap!!,requireActivity())!!
+                        CommonUtils.getUriFromBitmap(bitmap!!, requireActivity())!!
                     )!!
                     mViewModel.isPhotoSelected = true
                     mViewModel.imageListing.add(SimpleImageModel("0", "0", imagePath))
                     mViewModel.addServicesRequest.image.add(imagePath)
-                }else{
+                } else {
                     imagePath = CommonUtils.getRealPathFromURI(
                         requireActivity(),
                         CommonUtils.getImageUri(requireActivity(), bitmap!!)
@@ -557,19 +565,23 @@ class EditServiceFragment :
                 if (data!!.clipData != null) {
                     for (i in 0 until data.clipData!!.itemCount) {
                         val imageUri = data.clipData!!.getItemAt(i).uri
-                        imagePath =
-                            CommonUtils.getRealPathFromURI(requireActivity(), imageUri)
-                                .toString()
-                        mViewModel.isPhotoSelected = true
-                        mViewModel.imageListing.add(SimpleImageModel("0", "0", imagePath))
-                        mViewModel.addServicesRequest.image.add(imagePath)
+                        imagePath = getVideoPathFromUri(requireActivity(), imageUri).toString()
+                        val fileSize = checkVideoFileSize(imagePath)
+                        if(fileSize<10) {
+                            mViewModel.isPhotoSelected = true
+                            mViewModel.imageListing.add(SimpleImageModel("0", "0", imagePath))
+                            mViewModel.addServicesRequest.image.add(imagePath)
+                            Toast.makeText(requireContext(), "file size  ${fileSize}", Toast.LENGTH_SHORT).show()
+
+                        }else{
+                            Toast.makeText(requireContext(), "file size is ${fileSize}", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 } else {
                     val fileUri = data.data
                     if (fileUri!!.path!!.isNotEmpty()) {
                         imagePath =
-                            CommonUtils.getRealPathFromURI(requireActivity(), fileUri)
-                                .toString()
+                            CommonUtils.getRealPathFromURI(requireActivity(), fileUri).toString()
                         mViewModel.isPhotoSelected = true
                         mViewModel.imageListing.add(SimpleImageModel("0", "0", imagePath))
                         mViewModel.addServicesRequest.image.add(imagePath)
@@ -628,9 +640,15 @@ class EditServiceFragment :
             startForCamera.launch(takePicture)
             dialog!!.dismiss()
         }
+
         imagePickerLayoutBinding.gallery.setOnClickListener {
             val intent = Intent()
-            intent.type = "image/*"
+
+            if (type == getString(R.string.image)) {
+                intent.type = "image/*"
+            } else {
+                intent.type = "video/*"
+            }
             intent.action = Intent.ACTION_GET_CONTENT
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
             startForImageGallery.launch(intent)

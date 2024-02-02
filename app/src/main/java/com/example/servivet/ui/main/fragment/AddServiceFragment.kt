@@ -33,6 +33,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.annotation.GlideModule
 import com.example.servivet.R
 import com.example.servivet.data.model.CustomeServiceModeData
+import com.example.servivet.data.model.SimpleImageModel
 import com.example.servivet.data.model.add_service.request.ServiceListSlot
 import com.example.servivet.data.model.home.response.HomeServiceCategory
 import com.example.servivet.databinding.FragmentAddServiceBinding
@@ -49,6 +50,7 @@ import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
+import com.example.servivet.utils.checkVideoFileSize
 import com.example.servivet.utils.interfaces.ListAdapterItem
 
 @GlideModule
@@ -65,6 +67,7 @@ class AddServiceFragment :
     var adapter: ArrayAdapter<String>? = null
     var hashMap = HashMap<String, CustomeServiceModeData>()
     var daysList: ArrayList<Days>? = null
+    private lateinit var type: String
     var addServiceModePriceAdapter: AddServiceModePriceAdapter? = null
     override val binding: FragmentAddServiceBinding by viewBinding(FragmentAddServiceBinding::bind)
     override val mViewModel: AddServiceViewModel by viewModels()
@@ -199,6 +202,11 @@ class AddServiceFragment :
 
     private fun setClick() {
         binding.addImageBtn.setOnClickListener {
+            type = getString(R.string.image)
+            selectImage()
+        }
+        binding.addVideo.setOnClickListener {
+            type = getString(R.string.videos)
             selectImage()
         }
 
@@ -284,10 +292,7 @@ class AddServiceFragment :
             if (result.resultCode == Activity.RESULT_OK) {
                 val data = result.data
                 val bitmap = data!!.extras!!["data"] as Bitmap?
-                imagePath = CommonUtils.getRealPathFromURI(
-                    requireActivity(),
-                    CommonUtils.getImageUri(requireActivity(), bitmap!!)
-                )!!
+                imagePath = CommonUtils.getRealPathFromURI(requireActivity(), CommonUtils.getImageUri(requireActivity(), bitmap!!))!!
                 stringList.add(imagePath)
                 mViewModel.addServicesRequest.image = stringList
                 mViewModel.isPhotoSelected = true
@@ -341,8 +346,11 @@ class AddServiceFragment :
         }
         imagePickerLayoutBinding.gallery.setOnClickListener {
             val intent = Intent()
-           // intent.type = "*/*"
-              intent.type = "video/*"
+            if (type == getString(R.string.image)) {
+                intent.type = "image/*"
+            } else {
+                intent.type = "video/*"
+            }
             intent.action = Intent.ACTION_GET_CONTENT
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
             startForImageGallery.launch(intent)
@@ -359,20 +367,21 @@ class AddServiceFragment :
                 if (data!!.clipData != null) {
                     for (i in 0 until data.clipData!!.itemCount) {
                         val imageUri = data.clipData!!.getItemAt(i).uri
-                        imagePath = CommonUtils.getRealPathFromURI(requireActivity(), imageUri).toString()
-                        val videoPath = getVideoPathFromUri(requireContext(), imageUri)
-                        val thumbnail = getVideoThumbnailFromPath(videoPath!!)
+                        imagePath = com.example.servivet.utils.getVideoPathFromUri(
+                            requireActivity(),
+                            imageUri
+                        ).toString()
+                        val fileSize = checkVideoFileSize(imagePath)
 
-                        Log.e("TAG", "datadata:${videoPath} ", )
+                        if(fileSize<10) {
+                            stringList.add(imagePath)
+                            mViewModel.addServicesRequest.image = stringList
+                            mViewModel.isPhotoSelected = true
 
+                        }else{
+                            Toast.makeText(requireContext(), "file size is ${fileSize}", Toast.LENGTH_SHORT).show()
+                        }
 
-
-                        // Use the thumbnail as needed (e.g., set it to an ImageView)
-
-
-                        stringList.add(imagePath)
-                        mViewModel.addServicesRequest.image = stringList
-                        mViewModel.isPhotoSelected = true
                     }
                 } else {
                     val fileUri = data.data

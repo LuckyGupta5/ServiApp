@@ -400,6 +400,13 @@
     <string name="before_date_text">Are you sure want to close service if you close the service, all booking of</string>
     <string name="to">to</string>
     <string name="after_date_text">will be automatically cancelled</string>
+    <string name="image">image</string>
+    <string name="videos">videos</string>
+    <string name="servicedetails">serviceDetails</string>
+    <string name="openmedia">openMedia</string>
+    <string name="back_press">BackPress</string>
+    <string name="goBack">back</string>
+    <string name="goForeword">foreword</string>
 
 
     <string-array name="select_issue">

@@ -1,8 +1,10 @@
 package com.example.servivet.ui.main.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -44,6 +46,7 @@ class ServiceDetailsImgAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Glide.with(context).load(list[position]).into(holder.binding.image)
+        holder.binding.playPauseButton.isVisible = list[position].endsWith(".mp4")
         holder.binding.idCardView.setOnClickListener {
             onItemClick(context.getString(R.string.openmedia), "", position)
         }

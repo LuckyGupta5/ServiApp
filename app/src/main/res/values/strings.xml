@@ -412,7 +412,8 @@
     <string name="home_fr">Home_FR</string>
     <string name="onlinefr">OnlineFR</string>
     <string name="back">Back</string>
-
+    <string name="provider_profile">provider_profile</string>
+    <string name="profile_fr">profile_Fr</string>
 
 
     <string-array name="select_issue">

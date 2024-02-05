@@ -26,6 +26,7 @@ import com.example.servivet.data.model.user_profile.response.UserProfileResponse
 import com.example.servivet.data.repository.MainRepository
 import com.example.servivet.ui.base.BaseViewModel
 import com.example.servivet.ui.main.activity.MainActivity
+import com.example.servivet.ui.main.fragment.ProfileFragmentDirections
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.Resource
 import com.example.servivet.utils.Session
@@ -46,10 +47,9 @@ class ProfileViewModel : BaseViewModel() {
     inner class ClickAction(var requireActivity: Activity, var context: Context) {
         fun goEditProfile(view: View) {
             if (Session.type == "1")
-                view.findNavController()
-                    .navigate(R.id.action_profileFragment_to_editProfileFragment2)
+                view.findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment2)
             else {
-                view.findNavController().navigate(R.id.action_profileFragment_to_myServiceFragment)
+                view.findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToMyServiceFragment(context.getString(R.string.profile_fr),""))
             }
         }
 

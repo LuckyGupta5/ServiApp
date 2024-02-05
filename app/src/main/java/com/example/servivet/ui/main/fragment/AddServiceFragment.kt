@@ -83,18 +83,14 @@ class AddServiceFragment :
             lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
             click = mViewModel.ClickAction(
-                requireContext(),
-                binding,
-                requireActivity(),
-                requireActivity().isFinishing
+                requireContext(), binding, requireActivity(), requireActivity().isFinishing
             )
         }
         category = Session.category
         setCategorySpinner()
         setClick()
 
-        binding.addressLl.setOnClickListener {
-        }
+        binding.addressLl.setOnClickListener {}
 
     }
 
@@ -152,15 +148,11 @@ class AddServiceFragment :
         binding.subCategorySpinner.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
-                    adapterView: AdapterView<*>,
-                    view: View,
-                    i: Int,
-                    l: Long
+                    adapterView: AdapterView<*>, view: View, i: Int, l: Long
                 ) {
                     mViewModel.subCatPostion = i
-                    if (i > 0)
-                        mViewModel.addServicesRequest.subCategory =
-                            category[position].subCategory?.get(i - 1)?._id
+                    if (i > 0) mViewModel.addServicesRequest.subCategory =
+                        category[position].subCategory?.get(i - 1)?._id
                 }
 
                 override fun onNothingSelected(adapterView: AdapterView<*>?) {}
@@ -271,10 +263,11 @@ class AddServiceFragment :
 
     private fun selectImage() {
         val permission: Array<String?> =
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
-                arrayOf(Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.CAMERA)
-            else
-                arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) arrayOf(
+                Manifest.permission.READ_MEDIA_IMAGES,
+                Manifest.permission.CAMERA
+            )
+            else arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
 
         if (CommonUtils.requestPermissions(requireActivity(), 100, permission)) {
             imagerequestcode = 1
@@ -292,7 +285,9 @@ class AddServiceFragment :
             if (result.resultCode == Activity.RESULT_OK) {
                 val data = result.data
                 val bitmap = data!!.extras!!["data"] as Bitmap?
-                imagePath = CommonUtils.getRealPathFromURI(requireActivity(), CommonUtils.getImageUri(requireActivity(), bitmap!!))!!
+                imagePath = CommonUtils.getRealPathFromURI(
+                    requireActivity(), CommonUtils.getImageUri(requireActivity(), bitmap!!)
+                )!!
                 stringList.add(imagePath)
                 mViewModel.addServicesRequest.image = stringList
                 mViewModel.isPhotoSelected = true
@@ -304,13 +299,11 @@ class AddServiceFragment :
     @SuppressLint("SuspiciousIndentation")
 
 
-
     private fun setImageAdapter(list: ArrayList<String>) {
         if (list != null && list.isNotEmpty()) {
             binding.imageRecycler.visibility = View.VISIBLE
             binding.imageRecycler.adapter = AddServiceImageAdapter(
-                requireContext(), list,
-                ArrayList()
+                requireContext(), list, ArrayList()
             ) {
                 val list = ArrayList<String>()
                 for (i in it.indices) {
@@ -331,8 +324,7 @@ class AddServiceFragment :
         dialog!!.setContentView(imagePickerLayoutBinding.getRoot())
         val window = dialog!!.window
         window!!.setLayout(
-            WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.WRAP_CONTENT
+            WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT
         )
         val back = ColorDrawable(Color.TRANSPARENT)
         val inset = InsetDrawable(back, 50)
@@ -368,27 +360,29 @@ class AddServiceFragment :
                     for (i in 0 until data.clipData!!.itemCount) {
                         val imageUri = data.clipData!!.getItemAt(i).uri
                         imagePath = com.example.servivet.utils.getVideoPathFromUri(
-                            requireActivity(),
-                            imageUri
+                            requireActivity(), imageUri
                         ).toString()
                         val fileSize = checkVideoFileSize(imagePath)
 
-                        if(fileSize<10) {
+                        if (fileSize < 10) {
                             stringList.add(imagePath)
                             mViewModel.addServicesRequest.image = stringList
                             mViewModel.isPhotoSelected = true
 
-                        }else{
-                            Toast.makeText(requireContext(), "file size is ${fileSize}", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(
+                                requireContext(), "file size is ${fileSize}", Toast.LENGTH_SHORT
+                            ).show()
                         }
 
                     }
                 } else {
                     val fileUri = data.data
                     if (fileUri!!.path!!.isNotEmpty()) {
-                        imagePath = CommonUtils.getRealPathFromURI(requireActivity(), fileUri).toString()
+                        imagePath =
+                            CommonUtils.getRealPathFromURI(requireActivity(), fileUri).toString()
                         stringList.add(imagePath)
-                        Log.e("TAG", "datadata:${imagePath} ", )
+                        Log.e("TAG", "datadata:${imagePath} ")
 
                         mViewModel.addServicesRequest.image = stringList
                         mViewModel.isPhotoSelected = true
@@ -410,7 +404,8 @@ class AddServiceFragment :
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             showToast(it.data.message)
-                            findNavController().navigate(R.id.action_addServiceFragment_to_myServiceFragment)
+                            findNavController().popBackStack()
+                            // findNavController().navigate(R.id.action_addServiceFragment_to_myServiceFragment)
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
@@ -433,10 +428,7 @@ class AddServiceFragment :
 
                 Status.UNAUTHORIZED -> {
                     CommonUtils.logoutAlert(
-                        requireContext(),
-                        "Session Expired",
-                        "Unauthorized User",
-                        requireActivity()
+                        requireContext(), "Session Expired", "Unauthorized User", requireActivity()
                     )
                 }
             }

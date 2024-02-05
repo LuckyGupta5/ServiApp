@@ -7,5 +7,6 @@ data class ServiceListRequest(
     var limit: Int?=null,
     var page: Int?=null,
     var search: String?=null,
-    var subCategory: String?=null
+    var subCategory: String?=null,
+    var providerId: String?=null
 )

@@ -7,8 +7,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
@@ -39,6 +41,7 @@ class MyServiceFragment :
     override val binding: FragmentMyServiceBinding by viewBinding(FragmentMyServiceBinding::bind)
     override val mViewModel: MyServiceViewModel by viewModels()
     private val closeServiceModel: CloseServiceViewModel by viewModels()
+    private val argumentData: MyServiceFragmentArgs by navArgs()
     lateinit var adapter: MyServiceAdapter
     private var list = ArrayList<ServiceList>()
     var currentPage = 1
@@ -76,8 +79,18 @@ class MyServiceFragment :
             clickEvent = ::onClick
         }
         data = Session.category
-        mViewModel.serviceListRequest.category = data!![0].id
-        mViewModel.serviceListRequest.isMyService = 1
+
+
+        if (argumentData.from == getString(R.string.provider_profile)) {
+            mViewModel.serviceListRequest.category = data!![0].id
+            mViewModel.serviceListRequest.isMyService = 0
+            mViewModel.serviceListRequest.providerId = argumentData.data
+            binding.idServiceLayout.isVisible = false
+        } else {
+            mViewModel.serviceListRequest.category = data!![0].id
+            mViewModel.serviceListRequest.isMyService = 1
+        }
+
         mViewModel.serviceListRequest.bussinessType = 3
         mViewModel.serviceListRequest.limit = 10
         mViewModel.serviceListRequest.search = ""
@@ -99,11 +112,10 @@ class MyServiceFragment :
     }
 
 
-
     private fun checkServiceAvaliable() {
-        if(Session.userDetails.isServiceEnable){
+        if (Session.userDetails.isServiceEnable) {
             binding.idCloseService.text = getString(R.string.close_service)
-        }else{
+        } else {
             binding.idCloseService.text = getString(R.string.start_service)
 
         }
@@ -247,6 +259,7 @@ class MyServiceFragment :
                             binding.idCloseService.text = getString(R.string.close_service)
 
                         }
+
                         StatusCode.STATUS_CODE_FAIL -> {
                             Log.e("TAG", "setupObservers: botDonne")
 
@@ -277,7 +290,8 @@ class MyServiceFragment :
                     )
                 }
             }
-        }    }
+        }
+    }
 
     override fun onSubCatSelected(id: String) {
         mViewModel.serviceListRequest.category = id
@@ -297,10 +311,10 @@ class MyServiceFragment :
             }
 
             getString(R.string.close_service) -> {
-                if(binding.idCloseService.text.toString() == getString(R.string.close_service)) {
+                if (binding.idCloseService.text.toString() == getString(R.string.close_service)) {
                     findNavController().navigate(R.id.action_myServiceFragment_to_closeServiceBottomFragment)
-                }else{
-                    closeServiceModel.getMarkAsCompleteRequest("","",true)
+                } else {
+                    closeServiceModel.getMarkAsCompleteRequest("", "", true)
                 }
             }
 

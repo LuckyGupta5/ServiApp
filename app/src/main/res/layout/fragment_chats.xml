@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewMOdel"
             type="com.example.servivet.ui.main.view_model.ChatViewModel" />
+
         <variable
             name="click"
             type="com.example.servivet.ui.main.view_model.ChatViewModel.ClickAction" />
@@ -15,42 +17,44 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
-            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="30dp"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:textColor="@color/black"
-            android:fontFamily="@font/poppins_bold"
             android:layout_centerInParent="true"
-            android:text="@string/under_development" />
-        <LinearLayout
-            android:id="@+id/toplayout"
-            android:background="@color/white"
-            android:elevation="12dp"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_bold"
+            android:gravity="center"
+            android:text="@string/under_development"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            android:visibility="gone" />
 
         <LinearLayout
+            android:id="@+id/toplayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginBottom="17dp"
-            android:orientation="horizontal">
+            android:background="@color/white"
+            android:elevation="12dp"
+            android:visibility="visible">
+
             <LinearLayout
-                android:id="@+id/locationLayout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="9dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginBottom="17dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/locationLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/shortAddress"
@@ -62,7 +66,7 @@
                         android:textColor="@color/black"
                         android:textSize="23dp" />
 
-            </LinearLayout>
+                </LinearLayout>
 
 
                 <ImageView
@@ -76,11 +80,11 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:onClick="@{click::gotochatrequest}"
-                    android:layout_marginEnd="6dp"
                     android:layout_gravity="center"
-                    android:background="@mipmap/messege_icon" />
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:background="@mipmap/messege_icon"
+                    android:onClick="@{click::gotochatrequest}" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -88,42 +92,45 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="6dp"
                     android:background="@mipmap/threedoticon" />
--->
-        </LinearLayout>
+                -->
+            </LinearLayout>
         </LinearLayout>
 
 
         <LinearLayout
             android:id="@+id/startnewchatlayout"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:visibility="gone"
+            android:layout_height="match_parent"
             android:layout_below="@+id/toplayout"
-            android:layout_height="match_parent">
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="visible">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/chat_message_icon" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="@string/no_chats_found"
                 android:fontFamily="@font/poppins_medium"
+                android:text="@string/no_chats_found"
                 android:textColor="@color/black_222120"
-                android:textSize="19dp"/>
+                android:textSize="19dp" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/startNewChat"
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
-                android:layout_marginHorizontal="60dp"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="60dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/round_corner_grey_12dp"
                 android:backgroundTint="@null"
                 android:fontFamily="@font/poppins_medium"
-                android:stateListAnimator="@null"
                 android:onClick="@{click::gotochat}"
+                android:stateListAnimator="@null"
                 android:text="@string/start_new_chat"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
@@ -135,14 +142,14 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
-            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toplayout"
             android:layout_marginStart="25dp"
             android:layout_marginTop="25dp"
-            android:layout_below="@+id/toplayout"
+            android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:layout_width="match_parent"
-            tools:listitem="@layout/chat_recyclerview_design"
-            android:layout_height="wrap_content"/>
+            tools:listitem="@layout/chat_recyclerview_design" />
 
 
     </LinearLayout>

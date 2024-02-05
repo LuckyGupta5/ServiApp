@@ -138,6 +138,9 @@
         <action
             android:id="@+id/action_subCategoryDetailsFragment_to_imageVideoViewFragment"
             app:destination="@id/imageVideoViewFragment" />
+        <action
+            android:id="@+id/action_subCategoryDetailsFragment_to_providerProfileFragment"
+            app:destination="@id/providerProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/myServiceFragment"

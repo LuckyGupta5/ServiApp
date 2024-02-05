@@ -3,41 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="data"
             type="String" />
     </data>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/idCardView"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="2dp"
         android:layout_marginTop="2dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="8dp"
         app:cardCornerRadius="12dp">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/image"
-                android:scaleType="centerCrop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                />
+                android:scaleType="centerCrop" />
+    
+            <ImageButton
+                android:id="@+id/playPauseButton"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_centerInParent="true"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:src="@android:drawable/ic_media_play"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <!--<ImageView
-                android:id="@+id/crossIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="6dp"
-                android:layout_marginEnd="6dp"
-                android:background="@drawable/white_cross_gray_bg_icon" />
-            -->
-        </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.cardview.widget.CardView>

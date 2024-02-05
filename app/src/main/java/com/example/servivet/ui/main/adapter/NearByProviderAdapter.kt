@@ -17,7 +17,7 @@ class NearByProviderAdapter(
 
 
     override fun getItemCount(): Int {
-        if (type == 1 && providerList.size < 4) {
+        if (type == 1 && providerList.size < 4 && providerList.size>0) {
             return 3
         } else {
             return providerList.size
@@ -26,20 +26,22 @@ class NearByProviderAdapter(
 
     override fun bind(binding: HomeNearByRecyclerBinding, item: Provider?, position: Int) {
         binding.apply {
-            providerList[position].distance = formatDecimalNumber(providerList[position].distance.toDouble())
-            data = providerList[position]
-            idCategoryAdapter.adapter = CategoryAdapter(requireContext, providerList[position].category)
-            idContainer.setOnClickListener{
-                onItemClick("",providerList[position]._id)
+            if (providerList != null && providerList.size > 0) {
+
+                providerList[position].distance =
+                    formatDecimalNumber(providerList[position].distance.toDouble())
+                data = providerList[position]
+                idCategoryAdapter.adapter =
+                    CategoryAdapter(requireContext, providerList[position].category)
+                idContainer.setOnClickListener {
+                    onItemClick("", providerList[position]._id)
+                }
             }
 
         }
 
 
-
     }
-
-
 
 
 }

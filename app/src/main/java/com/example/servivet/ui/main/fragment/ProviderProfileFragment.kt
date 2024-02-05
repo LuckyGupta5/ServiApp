@@ -62,8 +62,17 @@ class ProviderProfileFragment :
             getString(R.string.back_press) -> {
                 findNavController().popBackStack()
             }
-            getString(R.string.services)->{
-                findNavController().navigate(R.id.action_providerProfileFragment_to_myServiceFragment)
+
+            getString(R.string.services) -> {
+                //  findNavController().navigate(R.id.action_providerProfileFragment_to_myServiceFragment)
+                findNavController().navigate(
+                    ProviderProfileFragmentDirections.actionProviderProfileFragmentToMyServiceFragment(
+                        profileData._id,
+                        getString(
+                            R.string.provider_profile
+                        )
+                    )
+                )
             }
         }
     }

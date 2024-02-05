@@ -3,6 +3,9 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
+
 }
 
 android {
@@ -125,8 +128,8 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
 
     /*push Notification*/
-    implementation ("com.google.firebase:firebase-analytics-ktx")
-    implementation (platform("com.google.firebase:firebase-bom:30.1.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
     implementation ("com.google.firebase:firebase-messaging")
 
 

@@ -8,12 +8,11 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.media.RingtoneManager
 import android.os.Build
+import android.text.Html
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.servivet.R
 import com.example.servivet.ui.main.activity.MainActivity
-import com.example.servivet.utils.LogUtil.objectLog
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import java.io.InputStream
@@ -21,8 +20,8 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.util.Random
 
-class MyFirebaseMessagingService : FirebaseMessagingService() {
-    private lateinit var message:String
+open class MyFirebaseMessagingService : FirebaseMessagingService() {
+    private lateinit var message: String
     private lateinit var title: String
     private lateinit var image: String
     private var count = 0
@@ -30,38 +29,38 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
-        Log.d("TAG", "onNewToken: $token")
-       // Preferences.setStringPreference(this, FCM_TOKEN,token)
+        Log.e("TAG", "onNewToken: $token")
     }
 
     override fun onMessageReceived(rMessage: RemoteMessage) {
         super.onMessageReceived(rMessage)
-  //      rMessage.notification?.let { objectLog(it) }
+        rMessage.notification?.let { Log.e("TAG", "onMessageReceived: $it") }
 
-        /*  if(!rMessage.data.isNullOrEmpty())
-          {
-              message = rMessage.data["message"]!!.trim()
-              title = rMessage.data["title"]!!.trim()
-          }
-          else{
-              title = rMessage.notification?.title.toString()
-              message = rMessage.notification?.body.toString()
-          }*/
         title = rMessage.notification?.title.toString()
         message = rMessage.notification?.body.toString()
+
+
+        val formatMessage = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Html.fromHtml(message, Html.FROM_HTML_MODE_LEGACY).toString()
+        } else {
+            Html.fromHtml(message).toString()
+        }
+
+        Log.e("TAG", "onMessageReceived: $message")
 //        image = rMessage.data["image"]!!  // new
         //bitmap = getBitmapfromUrl(image)!!
 
-        sendNotification(message,title,count)
+        sendNotification(message, title, count)
     }
 
     private fun sendNotification(message: String, title: String, count: Int) {
-         val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val pendingIntent = PendingIntent.getActivity(
             this, 0, intent,
             PendingIntent.FLAG_IMMUTABLE
         )
+        Log.e("TAG", "sendNotification: call")
         val notifyID = 1
         val channelId = "channel-0888888888"
         val channelName = "Janamarines"
@@ -95,16 +94,40 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         notificationBuilder.setNumber(count)
 
 
-
+        /*ShortcutBadger.applyCount(getApplicationContext(), count); //for 1.1.4+
+        try {
+            ShortcutBadger.applyCountOrThrow(getApplicationContext(),count);
+        } catch (ShortcutBadgeException e) {
+            e.printStackTrace();
+        }*/try {
+            notificationManager.notify(
+                getRequestCode(),
+                notificationBuilder.build()
+            )
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
     }
 
-    override fun handleIntent(intent: Intent?) {
-        super.handleIntent(intent)
 
+    private fun getRequestCode(): Int {
+        val rnd = Random()
+        return 100 + rnd.nextInt(900000)
     }
 
-
-
-
+    open fun getBitmapfromUrl(imageUrl: String?): Bitmap? {
+        return try {
+            val url = URL(imageUrl)
+            val connection: HttpURLConnection = url.openConnection() as HttpURLConnection
+            connection.doInput = true
+            connection.connect()
+            val input: InputStream = connection.inputStream
+            BitmapFactory.decodeStream(input)
+        } catch (e: java.lang.Exception) {
+            // TODO Auto-generated catch block
+            e.printStackTrace()
+            null
+        }
+    }
 }

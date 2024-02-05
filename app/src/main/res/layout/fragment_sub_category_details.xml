@@ -24,6 +24,9 @@
         <variable
             name="data"
             type="com.example.servivet.data.model.service_category_details.response.ServiceDetail" />
+        <variable
+            name="clickEvents"
+            type="kotlin.jvm.functions.Function1" />
 
     </data>
 
@@ -207,9 +210,11 @@
 
 
                         <LinearLayout
+                            android:id="@+id/idProviderProfile"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="15dp"
+                            android:onClick="@{()->clickEvents.invoke(0)}"
                             android:paddingBottom="12dp">
 
                             <de.hdodenhof.circleimageview.CircleImageView
@@ -299,9 +304,9 @@
                         android:fontFamily="@font/poppins_medium"
                         android:gravity="end"
                         android:text="@string/view_all"
-                        android:visibility="invisible"
                         android:textColor="@color/app_theme"
-                        android:textSize="15dp" />
+                        android:textSize="15dp"
+                        android:visibility="invisible" />
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -379,8 +384,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="18dp"
-                            android:theme="@style/RatingBar"
                             android:rating='@{data.ratingReview.averageRating == null?0.0F:data.ratingReview.averageRating}'
+                            android:theme="@style/RatingBar"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/idRatingCount" />
 
@@ -457,18 +462,18 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/poppins_bold"
                     android:text="@string/r"
-                    android:textSize="23sp"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/poppins_bold"/>
+                    android:textSize="23sp" />
 
                 <TextView
                     android:id="@+id/smallest"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="5dp"
                     android:drawablePadding="3dp"
-                    android:layout_gravity="center_vertical"
                     android:fontFamily="@font/poppins_bold"
                     android:textColor="@color/black_2"
                     android:textSize="18sp" />
@@ -485,9 +490,9 @@
                     android:id="@+id/largest"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="5dp"
                     android:drawablePadding="3dp"
-                    android:layout_gravity="center_vertical"
                     android:fontFamily="@font/poppins_bold"
                     android:textColor="@color/black_2"
                     android:textSize="18sp" />

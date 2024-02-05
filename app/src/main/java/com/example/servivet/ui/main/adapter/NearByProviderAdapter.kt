@@ -17,7 +17,7 @@ class NearByProviderAdapter(
 
 
     override fun getItemCount(): Int {
-        if (type == 1 && providerList.size < 4 && providerList.size>0) {
+        if (type == 1 && providerList.size > 4) {
             return 3
         } else {
             return providerList.size

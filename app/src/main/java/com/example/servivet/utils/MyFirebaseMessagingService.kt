@@ -12,6 +12,7 @@ import android.text.Html
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.example.servivet.R
+import com.example.servivet.ui.main.activity.HomeActivity
 import com.example.servivet.ui.main.activity.MainActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -54,13 +55,11 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
     }
 
     private fun sendNotification(message: String, title: String, count: Int) {
-        val intent = Intent(this, MainActivity::class.java)
+
+        val intent = Intent(this, HomeActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        val pendingIntent = PendingIntent.getActivity(
-            this, 0, intent,
-            PendingIntent.FLAG_IMMUTABLE
-        )
-        Log.e("TAG", "sendNotification: call")
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+
         val notifyID = 1
         val channelId = "channel-0888888888"
         val channelName = "Janamarines"
@@ -75,15 +74,12 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
             notificationManager.createNotificationChannel(mChannel)
             notificationManager.areNotificationsEnabled()
         }
-        /*val notiStyle = NotificationCompat.BigPictureStyle()
-        notiStyle.setSummaryText(message)
-        notiStyle.bigPicture(picture)*/
 
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
         notificationBuilder.setSmallIcon(R.mipmap.app_icon_round)
         notificationBuilder.setContentTitle(title)
-        // notificationBuilder.setStyle(NotificationCompat.BigPictureStyle().bigPicture(image))
+        //notificationBuilder.setStyle(NotificationCompat.BigPictureStyle().bigPicture(image))
         notificationBuilder.setStyle(NotificationCompat.BigTextStyle().bigText(message))
         notificationBuilder.setContentText(message)
         notificationBuilder.setAutoCancel(true)
@@ -93,13 +89,7 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
         notificationBuilder.setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
         notificationBuilder.setNumber(count)
 
-
-        /*ShortcutBadger.applyCount(getApplicationContext(), count); //for 1.1.4+
         try {
-            ShortcutBadger.applyCountOrThrow(getApplicationContext(),count);
-        } catch (ShortcutBadgeException e) {
-            e.printStackTrace();
-        }*/try {
             notificationManager.notify(
                 getRequestCode(),
                 notificationBuilder.build()
@@ -130,4 +120,11 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
             null
         }
     }
+
+    override fun handleIntent(intent: Intent?) {
+        super.handleIntent(intent)
+        Log.e("TAG", "handleIntent123:true ")
+    }
 }
+
+/*FirebaseMessagingService*/

@@ -48,6 +48,7 @@ class MyServiceFragment :
     private lateinit var listN: CallBack1
     var isLastPage: Boolean = false
     var isLoading: Boolean = false
+    private var isBook = false
     var data: ArrayList<HomeServiceCategory>? = null
     override fun isNetworkAvailable(boolean: Boolean) {
     }
@@ -86,9 +87,11 @@ class MyServiceFragment :
             mViewModel.serviceListRequest.isMyService = 0
             mViewModel.serviceListRequest.providerId = argumentData.data
             binding.idServiceLayout.isVisible = false
+            isBook = true
         } else {
             mViewModel.serviceListRequest.category = data!![0].id
             mViewModel.serviceListRequest.isMyService = 1
+            isBook = false
         }
 
         mViewModel.serviceListRequest.bussinessType = 3
@@ -157,7 +160,7 @@ class MyServiceFragment :
 
     private fun setAdapter(tabPosition: Int) {
         if (list != null && list.isNotEmpty()) {
-            adapter = MyServiceAdapter(requireContext(), tabPosition, ArrayList())
+            adapter = MyServiceAdapter(requireContext(), tabPosition, ArrayList(), isBook)
             val layoutManager = LinearLayoutManager(requireContext())
             binding.serviceRecycler.layoutManager = layoutManager
             binding.serviceRecycler.adapter = adapter
@@ -203,7 +206,7 @@ class MyServiceFragment :
                                     list = ArrayList()
                                 list = it.data.result.service
                                 if (currentPage == 1 && list.size > 0) {
-                                    adapter = MyServiceAdapter(requireContext(), tabPosition, list)
+                                    adapter = MyServiceAdapter(requireContext(), tabPosition, list,isBook)
                                     binding.serviceRecycler.adapter = adapter
                                 } else {
                                     adapter.updateList(list)

@@ -21,6 +21,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.example.servivet.R
@@ -57,16 +58,28 @@ class CompleteProfileFragment :
     override fun setupViewModel() {
         if (isAdded)
             binding.apply {
-            lifecycleOwner = viewLifecycleOwner
-            viewModel = mViewModel
-            click = mViewModel.ClickAction(binding, requireContext(),requireActivity(),requireActivity().isFinishing)
-        }
+                lifecycleOwner = viewLifecycleOwner
+                viewModel = mViewModel
+                click = mViewModel.ClickAction(
+                    binding,
+                    requireContext(),
+                    requireActivity(),
+                    requireActivity().isFinishing
+                )
+            }
         mViewModel.mobilenumber = arguments?.getString(Constants.MOBILE_NUMBER)!!
         mViewModel.countrycode = arguments?.getString(Constants.COUNTRY_CODE)!!
         binding.mobileNo.setText("+" + mViewModel.countrycode + " " + mViewModel.mobilenumber)
         setData()
         setBack()
+        setClickEvents()
 
+    }
+
+    private fun setClickEvents() {
+        binding.idAddress.setOnClickListener {
+            findNavController().navigate(R.id.action_completeProfileFragment_to_addLocationFragment2)
+        }
     }
 
     private fun setData() {
@@ -280,6 +293,7 @@ class CompleteProfileFragment :
                         showSnackBar(it)
                     }
                 }
+
                 Status.UNAUTHORIZED -> {
                     CommonUtils.logoutAlert(
                         requireContext(),

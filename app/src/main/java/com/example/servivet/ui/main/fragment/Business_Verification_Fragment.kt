@@ -3,6 +3,7 @@ package com.example.servivet.ui.main.fragment
 import android.app.Activity
 import android.content.Intent
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
 import com.example.servivet.databinding.FragmentBusinessVerificationBinding
@@ -36,9 +37,24 @@ class Business_Verification_Fragment :
         }
         mViewModel.businessVerificationRequest.userType= Session.type.toInt()
         mViewModel.businessVerificationRequest.businessType = "3"
+        initClickEvent()
+        setLocationText()
     }
 
+    private fun setLocationText() {
+        if(Session.saveAddress!=null) {
+            binding.idAddress.text = Session.saveAddress.fullAddress
+        }else{
 
+        }
+
+    }
+
+    private fun initClickEvent() {
+        binding.idAddress.setOnClickListener {
+            findNavController().navigate(R.id.action_business_Verification_Fragment_to_addLocationFragment2)
+        }
+    }
 
 
     override fun setupObservers() {

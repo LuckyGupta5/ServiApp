@@ -239,6 +239,31 @@
                                 android:textColor="@color/black_262626"
                                 android:textColorHint="@color/grey_848484"
                                 android:textSize="17dp" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="18dp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:text="@string/address"
+                                android:textColor="@color/black_262626"
+                                android:textSize="15dp" />
+
+                            <TextView
+                                android:id="@+id/idAddress"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="11dp"
+                                android:background="@drawable/white_round_corner_12_dp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:hint="@string/address"
+                                android:inputType="textPersonName"
+                                android:maxLength="50"
+                                android:maxLines="1"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="17dp"
+                                android:textColor="@color/black_262626"
+                                android:textColorHint="@color/grey_848484"
+                                android:textSize="17dp" />
 
                             <LinearLayout
                                 android:id="@+id/verifydocument_layer"

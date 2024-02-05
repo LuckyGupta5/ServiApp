@@ -173,6 +173,9 @@
         <argument
             android:name="from"
             app:argType="string" />
+        <action
+            android:id="@+id/action_myServiceFragment_to_subCategoryDetailsFragment"
+            app:destination="@id/subCategoryDetailsFragment" />
 
 
     </fragment>

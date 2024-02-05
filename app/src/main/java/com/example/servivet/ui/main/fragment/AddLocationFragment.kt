@@ -112,16 +112,18 @@ class AddLocationFragment :
         }
         mapInitialization()
         setClick()
-        if(Session.userDetails.name!=null && Session.userDetails.name.isNotEmpty()){
-            binding.fullName.setText(Session.userDetails.name)
-            mViewModel.name.value=true
-            mViewModel.saveAddressRequest.name=Session.userDetails.name
-        }
+        if(Session.userDetails!=null) {
+            if (Session.userDetails.name != null && Session.userDetails.name.isNotEmpty()) {
+                binding.fullName.setText(Session.userDetails.name)
+                mViewModel.name.value = true
+                mViewModel.saveAddressRequest.name = Session.userDetails.name
+            }
 
-        if(Session.userDetails.mobile!=null && Session.userDetails.mobile.isNotEmpty()){
-            binding.mobileNumberText.setText(Session.userDetails.mobile)
-            mViewModel.number.value=true
-            mViewModel.saveAddressRequest.mobileNumber=Session.userDetails.mobile
+            if (Session.userDetails.mobile != null && Session.userDetails.mobile.isNotEmpty()) {
+                binding.mobileNumberText.setText(Session.userDetails.mobile)
+                mViewModel.number.value = true
+                mViewModel.saveAddressRequest.mobileNumber = Session.userDetails.mobile
+            }
         }
     }
 

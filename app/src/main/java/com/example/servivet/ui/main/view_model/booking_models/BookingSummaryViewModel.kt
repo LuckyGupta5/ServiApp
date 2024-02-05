@@ -69,21 +69,20 @@ class BookingSummaryViewModel : BaseViewModel() {
 
         fun gotopayment(view: View) {
             Log.e("TAG", "gotopayment: ${Gson().toJson(result.serviceDetail)}")
-            if((atHome.value!! && Session.saveAddress!=null) || atCenter.value!!) {
+            if ((atHome.value!! && Session.saveAddress != null) || atCenter.value!!) {
                 view.findNavController().navigate(
                     BookingSummaryFragmentDirections.actionBookingSummaryFragmentToBookingPaymentFragment(
                         Gson().toJson(result.serviceDetail),
                         R.string.booking_summary
                     )
                 )
-            }else{
+            } else {
                 Toast.makeText(view.context, "Address Required", Toast.LENGTH_SHORT).show()
             }
         }
 
         fun gotoaddlocation(view: View) {
-            view.findNavController()
-                .navigate(R.id.action_bookingSummaryFragment_to_addLocationFragment)
+            view.findNavController().navigate(R.id.action_bookingSummaryFragment_to_addLocationFragment)
         }
 
 

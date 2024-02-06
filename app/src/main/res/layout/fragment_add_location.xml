@@ -16,7 +16,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -72,6 +73,7 @@
                         android:name="com.google.android.gms.maps.SupportMapFragment"
                         android:layout_width="match_parent"
                         android:layout_height="400dp" />
+
                     <LinearLayout
                         android:id="@+id/fillInfoLayout"
                         android:layout_width="match_parent"
@@ -173,14 +175,14 @@
                                 android:layout_below="@id/fullnametext"
                                 android:layout_marginStart="15sp"
                                 android:layout_marginEnd="15dp"
-                                android:afterTextChanged="@{(text)->click.onNameChange(text)}"
                                 android:layout_marginBottom="5dp"
                                 android:layout_toEndOf="@+id/fullNameIcon"
+                                android:afterTextChanged="@{(text)->click.onNameChange(text)}"
                                 android:background="@android:color/transparent"
                                 android:ellipsize="end"
-                                android:inputType="textPersonName"
                                 android:fontFamily="@font/poppins_medium"
                                 android:hint="@string/enter_full_name"
+                                android:inputType="textPersonName"
                                 android:maxLines="1"
                                 android:textColor="@color/black"
                                 android:textColorHint="@color/gray_777777"
@@ -225,12 +227,12 @@
                                 android:layout_marginEnd="15dp"
                                 android:layout_marginBottom="5dp"
                                 android:layout_toEndOf="@+id/MobileNoIcon"
+                                android:afterTextChanged="@{(text)->click.onNumberChange(text)}"
                                 android:background="@android:color/transparent"
                                 android:ellipsize="end"
-                                android:inputType="number"
-                                android:afterTextChanged="@{(text)->click.onNumberChange(text)}"
                                 android:fontFamily="@font/poppins_medium"
                                 android:hint="Enter Mobile"
+                                android:inputType="number"
                                 android:maxLines="1"
                                 android:textColor="@color/black"
                                 android:textColorHint="@color/gray_777777"
@@ -281,7 +283,6 @@
                 </RelativeLayout>
 
 
-
             </LinearLayout>
         </ScrollView>
 
@@ -294,11 +295,11 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/button_selector"
+            android:enabled='@{(viewModel.name==true &amp; viewModel.number==true)?true:false }'
             android:fontFamily="@font/poppins_medium"
+            android:onClick="@{click::saveAddressBtn}"
             android:paddingVertical="10dp"
             android:text="@string/save"
-            android:onClick="@{click::saveAddressBtn}"
-            android:enabled='@{(viewModel.name==true &amp; viewModel.number==true)?true:false }'
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="19dp"

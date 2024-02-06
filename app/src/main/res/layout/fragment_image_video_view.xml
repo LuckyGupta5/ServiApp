@@ -28,6 +28,7 @@
             android:layout_marginTop="50dp"
             android:background="@drawable/back_detail_btn"
             android:elevation="10dp"
+            android:layout_marginStart="20dp"
             android:onClick="@{()->clickEvents.invoke(@string/back_press)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

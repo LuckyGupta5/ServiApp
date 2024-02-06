@@ -50,14 +50,17 @@ class MediaAdapter(
                 binding.videoView.visibility = View.VISIBLE
                 val mediaController = MediaController(requireContext)
                 mediaController.setAnchorView(binding.videoView)
+
+                binding.videoView.setOnPreparedListener { mediaPlayer ->
+                    // Autoplay the video when it's prepared
+                    mediaPlayer.start()
+                }
                 binding.videoView.setMediaController(mediaController)
                 binding.videoView.setVideoPath(mediaItem.path)
             }
         }
 
     }
-
-
 
 
 }

@@ -414,6 +414,7 @@
     <string name="back">Back</string>
     <string name="provider_profile">provider_profile</string>
     <string name="profile_fr">profile_Fr</string>
+    <string name="add_video">+ Add Video</string>
 
 
     <string-array name="select_issue">

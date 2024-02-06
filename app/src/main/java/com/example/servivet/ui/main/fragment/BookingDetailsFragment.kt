@@ -183,7 +183,11 @@ class BookingDetailsFragment :
     @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun setupObservers() {
-        mViewModel.getBookingDetailsRequest(bookingData._id)
+        if(Constants.NOTIFICATION_DATA!=null){
+            Constants.NOTIFICATION_DATA.bookingId?.let { mViewModel.getBookingDetailsRequest(it) }
+        }else {
+            mViewModel.getBookingDetailsRequest(bookingData._id)
+        }
         mViewModel.bookingDetailResponse.observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
@@ -194,7 +198,7 @@ class BookingDetailsFragment :
                             bookingDetail = it.data.result.bookingDetail
                             binding.data = bookingDetail
                             Log.e("TAG", "setupObservers: ${Gson().toJson(bookingDetail)}")
-                            //  setview()
+                            //setview()
 
                             manageMarkAsCompleteView()
 

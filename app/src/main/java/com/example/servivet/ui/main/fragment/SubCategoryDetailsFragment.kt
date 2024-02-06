@@ -263,8 +263,7 @@ class SubCategoryDetailsFragment :
     private fun setImageAdapter(list: ArrayList<String>) {
         if (list != null && list.isNotEmpty()) {
             binding.imageRecycler.visibility = View.VISIBLE
-            binding.imageRecycler.adapter =
-                ServiceDetailsImgAdapter(requireContext(), list, onItemClick)
+            binding.imageRecycler.adapter = ServiceDetailsImgAdapter(requireContext(), list, onItemClick)
         } else {
             binding.imageRecycler.visibility = View.GONE
         }

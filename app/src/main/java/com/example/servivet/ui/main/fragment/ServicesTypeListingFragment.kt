@@ -57,6 +57,7 @@ class ServicesTypeListingFragment : BaseFragment<FragmentServicesTypeListingBind
         data = arguments?.getSerializable(Constants.DATA) as HomeServiceCategory
         mViewModel.serviceListRequest.category = data!!.id
         mViewModel.serviceListRequest.isMyService = 0
+        mViewModel.serviceListRequest.providerId = ""
         mViewModel.serviceListRequest.bussinessType = 3
         mViewModel.serviceListRequest.limit = 10
         mViewModel.serviceListRequest.search = ""
@@ -230,8 +231,9 @@ class ServicesTypeListingFragment : BaseFragment<FragmentServicesTypeListingBind
         }
     }
     override fun onSubCatSelected(id: String) {
-        mViewModel.serviceListRequest.subCategory = id
+       mViewModel.serviceListRequest.subCategory = id
         mViewModel.serviceListRequest.page = 1
+        mViewModel.serviceListRequest.providerId= ""
         setAdapter(tabPosition)
         mViewModel.hitServiceListAPI(
             requireContext(),

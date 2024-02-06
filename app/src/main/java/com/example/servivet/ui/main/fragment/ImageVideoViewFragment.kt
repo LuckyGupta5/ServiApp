@@ -42,15 +42,14 @@ class ImageVideoViewFragment() :
     }
 
     private fun initAdapter() {
-        val layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+
+        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.idMediaRecycle.layoutManager = layoutManager
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(binding.idMediaRecycle)
         mediaAdapter = MediaAdapter(createMediaItemList(list), requireContext())
         binding.idMediaRecycle.adapter = mediaAdapter
-        binding.idMediaRecycle.smoothScrollToPosition(mediaList.position)
-
     }
 
     override fun setupObservers() {

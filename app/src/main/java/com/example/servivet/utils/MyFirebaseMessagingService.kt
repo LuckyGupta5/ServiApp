@@ -12,10 +12,12 @@ import android.text.Html
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.example.servivet.R
+import com.example.servivet.data.model.notification_data.NotificationData
 import com.example.servivet.ui.main.activity.HomeActivity
-import com.example.servivet.ui.main.activity.MainActivity
+import com.example.servivet.utils.Constants.NOTIFICATION_DATA
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.google.gson.Gson
 import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
@@ -26,11 +28,12 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
     private lateinit var title: String
     private lateinit var image: String
     private var count = 0
-    // private lateinit var bitmap: Bitmap
+    private lateinit var notification:NotificationData
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
         Log.e("TAG", "onNewToken: $token")
+        Session.saveDeviceToken(token)
     }
 
     override fun onMessageReceived(rMessage: RemoteMessage) {
@@ -40,17 +43,7 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
         title = rMessage.notification?.title.toString()
         message = rMessage.notification?.body.toString()
 
-
-        val formatMessage = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Html.fromHtml(message, Html.FROM_HTML_MODE_LEGACY).toString()
-        } else {
-            Html.fromHtml(message).toString()
-        }
-
         Log.e("TAG", "onMessageReceived: $message")
-//        image = rMessage.data["image"]!!  // new
-        //bitmap = getBitmapfromUrl(image)!!
-
         sendNotification(message, title, count)
     }
 
@@ -123,8 +116,18 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun handleIntent(intent: Intent?) {
         super.handleIntent(intent)
-        Log.e("TAG", "handleIntent123:true ")
+
+        val productId = intent!!.getStringExtra("customData")
+        Log.e("TAG", "handleIntent: ${productId}", )
+        val data = Gson().fromJson(productId,NotificationData::class.java)
+        NOTIFICATION_DATA = data
+
+        /*{"bookingId":"3472367236487623","serviceStatus":2,"userType":"user"}*/
+
     }
 }
 
-/*FirebaseMessagingService*/
+/*FirebaseMessagingService
+* dc0sGrb_T-uVBfy9qij01V:APA91bGnCzQ7TDk21sfIcbfQnr6nfvdPgO_73ZTOY2TLahla41gbsnquTV0_vlkNz5Me6Qi7pPKMu2sX9BhMgPbbNYpid8XuNdYYL1TGy_rCrc0ebqgOJSA-Ys2kTIIdzjOLRlagvfyt
+* */
+

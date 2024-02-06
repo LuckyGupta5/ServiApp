@@ -27,6 +27,8 @@ import com.example.servivet.ui.main.view_model.HomeViewModel
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.CommonUtils.showSnackBar
 import com.example.servivet.utils.CommonUtils.showToast
+import com.example.servivet.utils.Constants
+import com.example.servivet.utils.Constants.NOTIFICATION_DATA
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.SocketManager
@@ -69,10 +71,24 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                 click = mViewModel.ClickAction()
                 clickEvents = ::onClick
                 setBack()
-                activity?.let { mViewModel.hitHomeApi(mContext, it, activity?.isFinishing == true) }
+                if (NOTIFICATION_DATA == null) {
+                    activity?.let {
+                        mViewModel.hitHomeApi(mContext, it, activity?.isFinishing == true)
+                    }
+                } else {
+                    findNavController().navigate(
+                        HomeFragmentDirections.actionHomeFragmentToBookingDetailsFragment(
+                            "",
+                            NOTIFICATION_DATA.serviceStatus?.minus(1) ?:0,
+                            "",
+                            "Home"
+                        )
+                    )
+                }
                 setOnlineAdapter("1")
                 setClick()
             }
+        Log.e("TAG", "setupViewModel: ${Session.fcmToken}")
 
 
     }
@@ -247,7 +263,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 
             socket.emit("nearByProvider", data)
             socket.on("nearByProvider", fun(args: Array<Any?>) {
-                if(isAdded) {
+                if (isAdded) {
                     requireActivity().runOnUiThread {
                         val providerData = args[0] as JSONObject
                         try {
@@ -255,7 +271,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                                 JSONArray().put(providerData)[0].toString(),
                                 NearByProviderResponse::class.java
                             )
-                            Log.e("TAG", "nearByProviderResponse:${Gson().toJson(nearByProviderResponse)} ",)
+                            Log.e(
+                                "TAG",
+                                "nearByProviderResponse:${Gson().toJson(nearByProviderResponse)} ",
+                            )
                             providerList.clear()
                             providerList.addAll(nearByProviderResponse.result.providerList)
                             initProviderAdapter()

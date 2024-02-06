@@ -28,8 +28,7 @@ class NearByProviderAdapter(
         binding.apply {
             if (providerList != null && providerList.size > 0) {
 
-                providerList[position].distance =
-                    formatDecimalNumber(providerList[position].distance.toDouble())
+                providerList[position].distance = formatDecimalNumber(providerList[position].distance.toDouble()/1000)
                 data = providerList[position]
                 idCategoryAdapter.adapter =
                     CategoryAdapter(requireContext, providerList[position].category)

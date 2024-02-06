@@ -1,6 +1,7 @@
 package com.example.servivet.ui.main.fragment
 
 import android.util.Log
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -21,7 +22,8 @@ import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
 import com.google.gson.Gson
 
-class CouponsFragment : BaseFragment<FragmentCouponsBinding, BookingCouponViewModel>(R.layout.fragment_coupons){
+class CouponsFragment :
+    BaseFragment<FragmentCouponsBinding, BookingCouponViewModel>(R.layout.fragment_coupons) {
 
     override val binding: FragmentCouponsBinding by viewBinding(FragmentCouponsBinding::bind)
     override val mViewModel: BookingCouponViewModel by viewModels()
@@ -65,7 +67,7 @@ class CouponsFragment : BaseFragment<FragmentCouponsBinding, BookingCouponViewMo
                     ProcessDialog.dismissDialog()
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            Log.e("TAG", "checkCouponData: ${Gson().toJson(it.data.result)}", )
+                            Log.e("TAG", "checkCouponData: ${Gson().toJson(it.data.result)}")
                             couponList.clear()
                             couponList.addAll(it.data.result.coupon)
                             setAdapter()
@@ -105,12 +107,24 @@ class CouponsFragment : BaseFragment<FragmentCouponsBinding, BookingCouponViewMo
     }
 
     fun setAdapter() {
-        binding.recyclerview.adapter = CouponAdapter(requireContext(), couponList, onItemClick,bookingData.paymentData.toFloat())
+        if (couponList.size > 0) {
+            binding.idNoDataFound.root.isVisible = false
+            binding.idNestedScroll.isVisible = true
+        } else {
+            binding.idNoDataFound.root.isVisible = true
+            binding.idNestedScroll.isVisible = false
+        }
+        binding.recyclerview.adapter = CouponAdapter(
+            requireContext(),
+            couponList,
+            onItemClick,
+            bookingData.paymentData.toFloat()
+        )
     }
 
-    private val onItemClick:(Int,String)->Unit ={ id, data->
-        when(id){
-            1->{
+    private val onItemClick: (Int, String) -> Unit = { id, data ->
+        when (id) {
+            1 -> {
                 sharedViewModel.setData(data)
                 findNavController().popBackStack()
             }

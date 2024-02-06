@@ -567,14 +567,12 @@ class EditServiceFragment :
                         val imageUri = data.clipData!!.getItemAt(i).uri
                         imagePath = getVideoPathFromUri(requireActivity(), imageUri).toString()
                         val fileSize = checkVideoFileSize(imagePath)
-                        if(fileSize<10) {
+
+                        if(fileSize<100) {
                             mViewModel.isPhotoSelected = true
                             mViewModel.imageListing.add(SimpleImageModel("0", "0", imagePath))
                             mViewModel.addServicesRequest.image.add(imagePath)
-                            Toast.makeText(requireContext(), "file size  ${fileSize}", Toast.LENGTH_SHORT).show()
-
                         }else{
-                            Toast.makeText(requireContext(), "file size is ${fileSize}", Toast.LENGTH_SHORT).show()
                         }
                     }
                 } else {
@@ -631,6 +629,8 @@ class EditServiceFragment :
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
+        imagePickerLayoutBinding.camera.isVisible = type == getString(R.string.image)
+
         val back = ColorDrawable(Color.TRANSPARENT)
         val inset = InsetDrawable(back, 50)
         dialog!!.window!!.setBackgroundDrawable(inset)

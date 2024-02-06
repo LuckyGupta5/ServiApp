@@ -73,7 +73,7 @@
                             android:layout_marginEnd="15dp"
                             android:layout_toLeftOf="@id/rating"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:text="@{data.subCategoryDetail.name}"
+                            android:text="@{data.serviceName}"
                             android:textColor="@color/black_2"
                             android:textSize="18dp" />
 

@@ -367,14 +367,16 @@
                     android:layout_marginTop="15dp"
                     android:nestedScrollingEnabled="false"
                     android:orientation="horizontal"
-                    android:visibility="gone"
-
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                    android:visibility="visible"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/add_service_image_recycler" />
 
                 <LinearLayout
                     android:id="@+id/idMediaContaier"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -384,7 +386,6 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
                         android:layout_weight="1"
                         android:background="@drawable/white_round_corner_12_dp"
                         android:fontFamily="@font/poppins_medium"
@@ -401,13 +402,12 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
                         android:layout_weight="1"
                         android:background="@drawable/white_round_corner_12_dp"
                         android:fontFamily="@font/poppins_medium"
                         android:gravity="center_horizontal"
                         android:paddingVertical="15dp"
-                        android:text="+ addVideo"
+                        android:text="@string/add_video"
                         android:textColor="@color/app_theme"
                         android:textSize="13dp" />
                 </LinearLayout>

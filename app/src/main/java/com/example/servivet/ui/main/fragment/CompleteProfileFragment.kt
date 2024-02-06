@@ -14,6 +14,7 @@ import android.os.Build
 import android.provider.MediaStore
 import android.provider.Settings
 import android.text.InputFilter
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.WindowManager
 import android.widget.Toast
@@ -47,6 +48,7 @@ class CompleteProfileFragment :
     var dialog: Dialog? = null
     private var type = ""
     private var imagePath: String = ""
+    private var number = ""
     override val binding: FragmentCompleteProfileBinding by viewBinding(
         FragmentCompleteProfileBinding::bind
     )
@@ -70,6 +72,7 @@ class CompleteProfileFragment :
         mViewModel.mobilenumber = arguments?.getString(Constants.MOBILE_NUMBER)!!
         mViewModel.countrycode = arguments?.getString(Constants.COUNTRY_CODE)!!
         binding.mobileNo.setText("+" + mViewModel.countrycode + " " + mViewModel.mobilenumber)
+        number =  mViewModel.countrycode + " " + mViewModel.mobilenumber
         setData()
         setBack()
         setClickEvents()
@@ -78,7 +81,8 @@ class CompleteProfileFragment :
 
     private fun setClickEvents() {
         binding.idAddress.setOnClickListener {
-            findNavController().navigate(R.id.action_completeProfileFragment_to_addLocationFragment2)
+
+           // findNavController().navigate(CompleteProfileFragmentDirections.actionCompleteProfileFragmentToAddLocationFragment2(number,""))
         }
     }
 

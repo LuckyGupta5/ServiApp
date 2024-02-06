@@ -12,6 +12,7 @@ import com.example.servivet.ui.main.activity.HomeActivity
 import com.example.servivet.ui.main.view_model.BusinessVerificationViewModel
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.CommonUtils.showSnackBar
+import com.example.servivet.utils.Constants
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
@@ -20,8 +21,11 @@ import com.example.servivet.utils.StatusCode
 
 class Business_Verification_Fragment :
     BaseFragment<FragmentBusinessVerificationBinding, BusinessVerificationViewModel>(R.layout.fragment_business__verification) {
-    override val binding: FragmentBusinessVerificationBinding by viewBinding(FragmentBusinessVerificationBinding::bind)
+    override val binding: FragmentBusinessVerificationBinding by viewBinding(
+        FragmentBusinessVerificationBinding::bind
+    )
     override val mViewModel: BusinessVerificationViewModel by viewModels()
+    var number = ""
     override fun isNetworkAvailable(boolean: Boolean) {
     }
 
@@ -33,18 +37,25 @@ class Business_Verification_Fragment :
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
-            click = mViewModel.ClickAction(requireContext(), binding,requireActivity(),requireActivity().isFinishing)
+            click = mViewModel.ClickAction(
+                requireContext(),
+                binding,
+                requireActivity(),
+                requireActivity().isFinishing
+            )
         }
-        mViewModel.businessVerificationRequest.userType= Session.type.toInt()
+
+
+        mViewModel.businessVerificationRequest.userType = Session.type.toInt()
         mViewModel.businessVerificationRequest.businessType = "3"
         initClickEvent()
         setLocationText()
     }
 
     private fun setLocationText() {
-        if(Session.saveAddress!=null) {
+        if (Session.saveAddress != null) {
             binding.idAddress.text = Session.saveAddress.fullAddress
-        }else{
+        } else {
 
         }
 
@@ -52,7 +63,15 @@ class Business_Verification_Fragment :
 
     private fun initClickEvent() {
         binding.idAddress.setOnClickListener {
-            findNavController().navigate(R.id.action_business_Verification_Fragment_to_addLocationFragment2)
+            number = arguments?.getString(Constants.COUNTRY_CODE)!! + " " + arguments?.getString(
+                Constants.MOBILE_NUMBER
+            )!!
+            findNavController().navigate(
+                Business_Verification_FragmentDirections.actionBusinessVerificationFragmentToAddLocationFragment2(
+                    number,
+                    ""
+                )
+            )
         }
     }
 
@@ -67,25 +86,29 @@ class Business_Verification_Fragment :
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             showSnackBar(it.data.message)
                             Session.saveIsLogin(true)
-                            var intent= Intent(context, HomeActivity::class.java)
+                            var intent = Intent(context, HomeActivity::class.java)
                             startActivity(intent)
                             (context as Activity).finish()
                         }
+
                         StatusCode.STATUS_CODE_FAIL -> {
                             showSnackBar(it.data.message)
                         }
 
                     }
                 }
+
                 Status.LOADING -> {
                     ProcessDialog.startDialog(requireContext())
                 }
+
                 Status.ERROR -> {
                     ProcessDialog.dismissDialog()
                     it.message?.let {
                         showSnackBar(it)
                     }
                 }
+
                 Status.UNAUTHORIZED -> {
                     CommonUtils.logoutAlert(
                         requireContext(),

@@ -8,6 +8,7 @@ import com.example.servivet.data.model.save_address.request.SaveAddressRequest
 import com.example.servivet.data.model.user_profile.response.UserProfile
 import com.example.servivet.data.model.verifyotp.response.VerifyOTPResult
 import com.example.servivet.utils.PreferenceEntity.CATEGORY
+import com.example.servivet.utils.PreferenceEntity.DEVICE_TOKEN
 import com.example.servivet.utils.PreferenceEntity.IS_LOGIN
 import com.example.servivet.utils.PreferenceEntity.LOCATION
 import com.example.servivet.utils.PreferenceEntity.LOCATION_INFO
@@ -30,10 +31,17 @@ object Session {
     var category = Hawk.get<ArrayList<HomeServiceCategory>>(CATEGORY, null)
     var userDetails = Hawk.get<CurrentUser>(USER_DETAILS, null)
     var saveAddress = Hawk.get<SaveAddressRequest>(SAVE_ADDRESS, null)
+    var fcmToken = Hawk.get<String>(DEVICE_TOKEN, null)
     fun saveToken(token: String) {
         Hawk.put(TOKEN, token)
         Session.token = token
     }
+
+    fun saveDeviceToken(deviceToken: String) {
+        Hawk.put(DEVICE_TOKEN, deviceToken)
+        Session.fcmToken = deviceToken
+    }
+
 
     fun saveLocation(location: String) {
         Hawk.put(LOCATION, location)
@@ -79,6 +87,7 @@ object Session {
         Hawk.put(USER_DETAILS, user)
         this.userDetails = user
     }
+
 
     fun logout() {
         verifiedData = null

@@ -201,6 +201,7 @@ class MyServiceFragment :
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             if (it.data.result.service.isNotEmpty()) {
+                                binding.idServiceLayout.isVisible = true
                                 isLoading = true
                                 if (currentPage == 1)
                                     list = ArrayList()
@@ -217,6 +218,7 @@ class MyServiceFragment :
                             } else {
                                 binding.serviceRecycler.visibility = View.GONE
                                 binding.noDataLayout.visibility = View.VISIBLE
+                                binding.idServiceLayout.isVisible = false
                             }
                         }
 

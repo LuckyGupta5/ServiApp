@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
+import com.example.servivet.data.model.service_category_details.response.ServiceDetail
 import com.example.servivet.data.model.service_list.response.ServiceList
 import com.example.servivet.databinding.FragmentMyServiceDetailBinding
 import com.example.servivet.ui.base.BaseFragment
@@ -23,14 +24,12 @@ import java.text.DecimalFormat
 import kotlin.math.max
 import kotlin.math.min
 
-class MyServiceDetailFragment :
-    BaseFragment<FragmentMyServiceDetailBinding, MyServiceDetailViewModel>(R.layout.fragment_my_service_detail) {
-    override val binding: FragmentMyServiceDetailBinding by viewBinding(
-        FragmentMyServiceDetailBinding::bind
-    )
+class MyServiceDetailFragment : BaseFragment<FragmentMyServiceDetailBinding, MyServiceDetailViewModel>(R.layout.fragment_my_service_detail) {
+    override val binding: FragmentMyServiceDetailBinding by viewBinding(FragmentMyServiceDetailBinding::bind)
     override val mViewModel: MyServiceDetailViewModel by viewModels()
     var data: ServiceList? = null
     private var mediaList = ArrayList<String>()
+    private lateinit var serviceDetails: ServiceDetail
     override fun isNetworkAvailable(boolean: Boolean) {
     }
 
@@ -59,7 +58,9 @@ class MyServiceDetailFragment :
                     ProcessDialog.dismissDialog()
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            binding.data = it.data.result!!.serviceDetail
+                            serviceDetails = it.data.result!!.serviceDetail!!
+                            serviceDetails.localImage = serviceDetails.images?.get(0)?:""
+                            binding.data = serviceDetails
                             mViewModel.data = it.data.result.serviceDetail
                             mediaList.clear()
                             mediaList.addAll(it.data.result.serviceDetail!!.images!!)

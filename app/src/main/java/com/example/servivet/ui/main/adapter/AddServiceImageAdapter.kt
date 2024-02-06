@@ -10,6 +10,7 @@ import com.example.servivet.R
 import com.example.servivet.databinding.AddServiceImageRecyclerBinding
 import com.example.servivet.ui.base.BaseAdapter
 import com.example.servivet.utils.interfaces.ListAdapterItem
+import com.google.gson.Gson
 
 @GlideModule
 class AddServiceImageAdapter(var context: Context, var list: ArrayList<String>, var imageList: ArrayList<String>, var listener: (imageList: ArrayList<String>) -> Unit
@@ -20,7 +21,8 @@ class AddServiceImageAdapter(var context: Context, var list: ArrayList<String>, 
 
     override fun bind(binding: AddServiceImageRecyclerBinding, item: ListAdapterItem?, position: Int) {
 
-        Log.e("TAG", "bind: ", )
+        Log.e("TAG", "bind:${Gson().toJson(list[position])} ", )
+        Glide.with(context).load(list[position]).into(binding.image)
 
         binding.crossIcon.setOnClickListener {
             list.remove(list[position])

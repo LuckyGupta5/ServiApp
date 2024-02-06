@@ -1,5 +1,6 @@
 package com.example.servivet.utils
 
+import com.example.servivet.data.model.notification_data.NotificationData
 import java.lang.reflect.Type
 
 object Constants {
@@ -16,6 +17,8 @@ object Constants {
     const val SECURITY_KEY = "D#5599Beh2$%$#$%MC&^$@#^*&%I"
     var SECURE_HEADER = ""
     var TYPEOFUSERS = "sold"
+
+    var NOTIFICATION_DATA = NotificationData()
 
 
 }

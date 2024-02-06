@@ -4,6 +4,7 @@ object  PreferenceEntity {
     const val IS_LOGIN:String = "isLogin"
     const val FROM_DATE: String="from_date"
     const val TOKEN: String="token"
+    const val DEVICE_TOKEN: String="device_token"
     const val LOCATION: String="location"
     const val LOCATION_INFO: String="location_info"
     const val TYPE:String="type"

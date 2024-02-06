@@ -324,15 +324,15 @@ class AddServiceFragment :
         dialog!!.setContentView(imagePickerLayoutBinding.getRoot())
         val window = dialog!!.window
         window!!.setLayout(
-            WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
         )
         val back = ColorDrawable(Color.TRANSPARENT)
         val inset = InsetDrawable(back, 50)
         dialog!!.window!!.setBackgroundDrawable(inset)
-
+        imagePickerLayoutBinding.camera.isVisible = type == getString(R.string.image)
         imagePickerLayoutBinding.camera.setOnClickListener { view ->
-            // val takePicture = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            val takePicture = Intent(MediaStore.ACTION_VIDEO_CAPTURE)
+            val takePicture = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startForCamera.launch(takePicture)
             dialog!!.dismiss()
         }
@@ -359,21 +359,14 @@ class AddServiceFragment :
                 if (data!!.clipData != null) {
                     for (i in 0 until data.clipData!!.itemCount) {
                         val imageUri = data.clipData!!.getItemAt(i).uri
-                        imagePath = com.example.servivet.utils.getVideoPathFromUri(
-                            requireActivity(), imageUri
-                        ).toString()
+                        imagePath = com.example.servivet.utils.getVideoPathFromUri(requireActivity(), imageUri).toString()
                         val fileSize = checkVideoFileSize(imagePath)
 
-                        if (fileSize < 10) {
+                        if (fileSize < 100) {
                             stringList.add(imagePath)
                             mViewModel.addServicesRequest.image = stringList
                             mViewModel.isPhotoSelected = true
-
-                        } else {
-                            Toast.makeText(
-                                requireContext(), "file size is ${fileSize}", Toast.LENGTH_SHORT
-                            ).show()
-                        }
+                        } else { }
 
                     }
                 } else {

@@ -27,8 +27,6 @@ import com.example.servivet.ui.main.view_model.HomeViewModel
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.CommonUtils.showSnackBar
 import com.example.servivet.utils.CommonUtils.showToast
-import com.example.servivet.utils.Constants
-import com.example.servivet.utils.Constants.NOTIFICATION_DATA
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.SocketManager
@@ -71,20 +69,26 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                 click = mViewModel.ClickAction()
                 clickEvents = ::onClick
                 setBack()
-                if (NOTIFICATION_DATA == null) {
-                    activity?.let {
+                activity?.let {
                         mViewModel.hitHomeApi(mContext, it, activity?.isFinishing == true)
                     }
-                } else {
-                    findNavController().navigate(
-                        HomeFragmentDirections.actionHomeFragmentToBookingDetailsFragment(
-                            "",
-                            NOTIFICATION_DATA.serviceStatus?.minus(1) ?:0,
-                            "",
-                            "Home"
-                        )
-                    )
-                }
+
+
+
+//                if (NOTIFICATION_DATA == null) {
+//                    activity?.let {
+//                        mViewModel.hitHomeApi(mContext, it, activity?.isFinishing == true)
+//                    }
+//                } else {
+//                    findNavController().navigate(
+//                        HomeFragmentDirections.actionHomeFragmentToBookingDetailsFragment(
+//                            "",
+//                            NOTIFICATION_DATA.serviceStatus?.minus(1) ?:0,
+//                            "",
+//                            "Home"
+//                        )
+//                    )
+//                }
                 setOnlineAdapter("1")
                 setClick()
             }

@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_homeFragment_to_bookingDetailsFragment"
             app:destination="@id/bookingDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_bookingDetailsFragment2"
+            app:destination="@id/bookingDetailsFragment" />
     </fragment>
 
     <fragment

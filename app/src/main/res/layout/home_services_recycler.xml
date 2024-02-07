@@ -3,37 +3,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="click"
             type="com.example.servivet.ui.main.adapter.HomeServiceAdapter.ClickAction" />
     </data>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:orientation="vertical"
-        android:onClick="@{click::goToServiceList}"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginBottom="15sp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="10dp"
-        android:layout_height="wrap_content">
+        android:onClick="@{click::goToServiceList}"
+        android:orientation="vertical">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/serviceImage"
-            android:layout_width="65dp"
+            android:layout_width="85dp"
+            android:layout_height="75dp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/flower_img"
-            android:layout_height="65dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/serviceName"
-            android:layout_width="match_parent"
-            android:textSize="13dp"
-            android:gravity="center_horizontal"
-            android:textColor="@color/black_2"
-            android:fontFamily="@font/poppins_medium"
-            android:layout_marginTop="14dp"
-            android:layout_gravity="center_horizontal"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/fitness" />
-    </LinearLayout>
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="14dp"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center_horizontal"
+            android:text="entertainm"
+            android:textColor="@color/black_2"
+            android:textSize="13dp"
+            android:maxLength="10"
+            android:ellipsize="end"
+            app:layout_constraintEnd_toEndOf="@id/serviceImage"
+            app:layout_constraintStart_toStartOf="@id/serviceImage"
+            app:layout_constraintTop_toBottomOf="@id/serviceImage" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -200,6 +200,7 @@
     <string name="_1499">1499</string>
     <string name="reschedule">Reschedule</string>
     <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
     <string name="rate_us">Rate us</string>
     <string name="date_time"><![CDATA[Date & Time]]></string>
     <string name="payment_info">Payment Info</string>
@@ -245,6 +246,7 @@
     <string name="days">Days</string>
     <string name="_16">16</string>
     <string name="time">Time</string>
+    <string name="alert">Alert</string>
     <string-array name="select_category">
         <item>Select Category</item>
         <item>Finance</item>
@@ -415,6 +417,7 @@
     <string name="provider_profile">provider_profile</string>
     <string name="profile_fr">profile_Fr</string>
     <string name="add_video">+ Add Video</string>
+    <string name="logout">logOut</string>
 
 
     <string-array name="select_issue">

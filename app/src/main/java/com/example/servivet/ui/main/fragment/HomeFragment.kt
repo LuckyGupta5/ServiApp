@@ -17,6 +17,7 @@ import com.example.servivet.data.model.home.response.HomeBanner
 import com.example.servivet.data.model.home.response.HomeServiceCategory
 import com.example.servivet.data.model.home.response.nearbyprovider.NearByProviderResponse
 import com.example.servivet.data.model.home.response.nearbyprovider.Provider
+import com.example.servivet.data.model.notification_data.NotificationData
 import com.example.servivet.databinding.FragmentHomeBinding
 import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.adapter.NearByProviderAdapter
@@ -69,10 +70,27 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                 click = mViewModel.ClickAction()
                 clickEvents = ::onClick
                 setBack()
-                activity?.let {
-                        mViewModel.hitHomeApi(mContext, it, activity?.isFinishing == true)
+                if (Session.notificationData != null && Session.notificationData.isNotEmpty()) {
+                    val data =
+                        Gson().fromJson(Session.notificationData, NotificationData::class.java)
+                    findNavController().navigate(
+                        HomeFragmentDirections.actionHomeFragmentToBookingDetailsFragment(
+                            Session.notificationData,
+                            data.serviceStatus!!.minus(1),
+                            "",
+                            getString(R.string.home)
+                        )
+                    )
+                } else {
+                    activity?.let {
+                        mViewModel.hitHomeApi(
+                            mContext,
+                            it,
+                            activity?.isFinishing == true
+                        )
                     }
 
+                }
 
 
 //                if (NOTIFICATION_DATA == null) {
@@ -92,7 +110,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                 setOnlineAdapter("1")
                 setClick()
             }
-        Log.e("TAG", "setupViewModel: ${Session.fcmToken}")
+        Log.e("TAG", "setupViewModelFCM: ${Session.fcmToken}")
 
 
     }

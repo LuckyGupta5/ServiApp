@@ -66,6 +66,7 @@ class MainRepository(private val apiService: ApiService) {
     suspend fun rescheduleBookingApi(request: RescheduleBookingRequest) = apiService.rescheduleBookingApi(request)
     suspend fun markAsCompleteApi(request: MarkAsCompleteRequest) = apiService.markAsCompleteApi(request)
     suspend fun providerLeaveApi(request: ProviderLeaveRequest) = apiService.providerLeaveApi(request)
+    suspend fun logoutUser() = apiService.logoutUser()
 
 
 

@@ -29,6 +29,7 @@ class CloseServiceViewModel : BaseViewModel() {
 
     private val markAsCompleteData = SingleLiveEvent<Resource<CommonResponse>>()
 
+
     fun getMarkAsCompleteData(): LiveData<Resource<CommonResponse>> {
         return markAsCompleteData
     }

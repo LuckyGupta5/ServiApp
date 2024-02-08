@@ -18,7 +18,6 @@ object Constants {
     var SECURE_HEADER = ""
     var TYPEOFUSERS = "sold"
 
-    var NOTIFICATION_DATA = NotificationData()
 
 
 }

@@ -12,6 +12,7 @@ import com.example.servivet.utils.PreferenceEntity.DEVICE_TOKEN
 import com.example.servivet.utils.PreferenceEntity.IS_LOGIN
 import com.example.servivet.utils.PreferenceEntity.LOCATION
 import com.example.servivet.utils.PreferenceEntity.LOCATION_INFO
+import com.example.servivet.utils.PreferenceEntity.NOTIFICATION_DATA
 import com.example.servivet.utils.PreferenceEntity.SAVE_ADDRESS
 import com.example.servivet.utils.PreferenceEntity.TOKEN
 import com.example.servivet.utils.PreferenceEntity.TYPE
@@ -32,6 +33,7 @@ object Session {
     var userDetails = Hawk.get<CurrentUser>(USER_DETAILS, null)
     var saveAddress = Hawk.get<SaveAddressRequest>(SAVE_ADDRESS, null)
     var fcmToken = Hawk.get<String>(DEVICE_TOKEN, null)
+    var notificationData = Hawk.get<String>(NOTIFICATION_DATA, null)
     fun saveToken(token: String) {
         Hawk.put(TOKEN, token)
         Session.token = token
@@ -39,9 +41,12 @@ object Session {
 
     fun saveDeviceToken(deviceToken: String) {
         Hawk.put(DEVICE_TOKEN, deviceToken)
-        Session.fcmToken = deviceToken
+        fcmToken = deviceToken
     }
-
+    fun saveNotificationData(notificationData: String) {
+        Hawk.put(NOTIFICATION_DATA, notificationData)
+        this.notificationData = notificationData
+    }
 
     fun saveLocation(location: String) {
         Hawk.put(LOCATION, location)
@@ -97,7 +102,10 @@ object Session {
         userProfile = null
         category = null
         userDetails = null
+        val deviceToken = fcmToken
         Hawk.deleteAll()
+        saveDeviceToken(deviceToken)
+
     }
 
 

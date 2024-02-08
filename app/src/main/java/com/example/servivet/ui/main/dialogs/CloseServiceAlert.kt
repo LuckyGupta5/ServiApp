@@ -1,5 +1,6 @@
 package com.example.servivet.ui.main.dialogs
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -15,10 +16,14 @@ import androidx.navigation.fragment.navArgs
 import com.example.servivet.R
 import com.example.servivet.data.model.booking_module.local_request.SendDate
 import com.example.servivet.databinding.FragmentCloseServiceAlertBinding
+import com.example.servivet.ui.main.activity.MainActivity
+import com.example.servivet.ui.main.view_model.SettingsViewModel
+import com.example.servivet.ui.main.view_model.SplashViewModel
 import com.example.servivet.ui.main.view_model.booking_models.CloseServiceViewModel
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.CommonUtils.showSnackBar
 import com.example.servivet.utils.ProcessDialog
+import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
 import com.google.gson.Gson
@@ -27,6 +32,9 @@ import com.google.gson.Gson
 class CloseServiceAlert : DialogFragment() {
     private lateinit var binding: FragmentCloseServiceAlertBinding
     val mViewModel: CloseServiceViewModel by viewModels()
+
+    val logoutModel: SettingsViewModel by viewModels()
+
     private val closingDates: CloseServiceAlertArgs by navArgs()
     private lateinit var sendDate: SendDate
 
@@ -39,14 +47,24 @@ class CloseServiceAlert : DialogFragment() {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         //  initCloseServiceModel()
         getDates()
+        initLogoutModel()
         binding.clickEvent = ::onClick
 
         return binding.root
     }
 
+
     private fun getDates() {
-        sendDate = Gson().fromJson(closingDates.data,SendDate::class.java)
-        binding.dates = sendDate
+        when (closingDates.from) {
+            getString(R.string.closeservice) -> {
+                sendDate = Gson().fromJson(closingDates.data, SendDate::class.java)
+                binding.dates = sendDate
+            }
+
+            getString(R.string.logout) -> {
+                binding.from = closingDates.from
+            }
+        }
 
     }
 
@@ -58,11 +76,21 @@ class CloseServiceAlert : DialogFragment() {
             }
 
             getString(R.string.close_service) -> {
-                findNavController().previousBackStackEntry?.savedStateHandle?.set(
-                    getString(R.string.close_service),
-                    getString(R.string.close_service)
-                )
-                dismiss()
+                when (closingDates.from) {
+                    getString(R.string.closeservice) -> {
+                        findNavController().previousBackStackEntry?.savedStateHandle?.set(
+                            getString(R.string.close_service),
+                            getString(R.string.close_service)
+                        )
+                        dismiss()
+
+                    }
+
+                    getString(R.string.logout) -> {
+                        logoutModel.hitLogoutApi()
+                    }
+                }
+
             }
         }
     }
@@ -114,5 +142,55 @@ class CloseServiceAlert : DialogFragment() {
             }
         }
 
+    }
+
+
+    private fun initLogoutModel() {
+        logoutModel.getLogoutData().observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    ProcessDialog.dismissDialog()
+                    when (it.data?.code) {
+                        StatusCode.STATUS_CODE_SUCCESS -> {
+                            Log.e("", "initLogoutModel: trye")
+                            Session.logout()
+                            SplashViewModel.isLogout = false
+                            Session.saveIsLogin(false)
+                            var intent = Intent(context, MainActivity::class.java)
+                            requireActivity().startActivity(intent)
+
+                        }
+
+                        StatusCode.STATUS_CODE_FAIL -> {
+                            Log.e("TAG", "setupObservers: botDonne")
+
+                        }
+
+                    }
+                }
+
+                Status.LOADING -> {
+                    ProcessDialog.startDialog(requireContext())
+                }
+
+                Status.ERROR -> {
+                    ProcessDialog.dismissDialog()
+
+                    it.message?.let {
+                        showSnackBar(it)
+
+                    }
+                }
+
+                Status.UNAUTHORIZED -> {
+                    CommonUtils.logoutAlert(
+                        requireContext(),
+                        "Session Expired",
+                        "Unauthorized User",
+                        requireActivity()
+                    )
+                }
+            }
+        }
     }
 }

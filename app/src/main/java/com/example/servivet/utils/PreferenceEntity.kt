@@ -16,4 +16,5 @@ object  PreferenceEntity {
     const val CATEGORY="category"
     const val USER_DETAILS="userDetails"
     const val SAVE_ADDRESS="saveAddress"
+    const val NOTIFICATION_DATA="notification_data"
 }

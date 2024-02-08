@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide
 import com.example.servivet.R
 import com.example.servivet.data.model.booking_detail.response.BookingDetail
 import com.example.servivet.data.model.booking_list.response.MyBooking
+import com.example.servivet.data.model.notification_data.NotificationData
 import com.example.servivet.databinding.FragmentBookingDetailsBinding
 import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.bottom_sheet.ReasonForCancelBottomsheet
@@ -42,11 +43,12 @@ import java.util.TimeZone
 
 class BookingDetailsFragment :
     BaseFragment<FragmentBookingDetailsBinding, BookingDetailsViewModel>(R.layout.fragment_booking_details) {
-    private var bookingId: String? = ""
+    private lateinit var bookingId: String
     override val binding: FragmentBookingDetailsBinding by viewBinding(FragmentBookingDetailsBinding::bind)
     override val mViewModel: BookingDetailsViewModel by viewModels()
     private val argumentData: BookingDetailsFragmentArgs by navArgs()
     private lateinit var bookingData: MyBooking
+    private lateinit var notificationData: NotificationData
     private var typeBooking: String? = ""
     private var typeReschdule: String? = ""
     private lateinit var userType: String
@@ -87,24 +89,34 @@ class BookingDetailsFragment :
 
 
     private fun getBookingData() {
-        if (argumentData.from == getString(R.string.bookinglist)) {
-            bookingData = Gson().fromJson(argumentData.data, MyBooking::class.java)
-            binding.type = argumentData.type
-            Constants.TYPEOFUSERS = argumentData.typeUsers
+        when (argumentData.from) {
+            getString(R.string.bookinglist) -> {
+                bookingData = Gson().fromJson(argumentData.data, MyBooking::class.java)
+                binding.type = argumentData.type
+                bookingId = bookingData._id
+                Constants.TYPEOFUSERS = argumentData.typeUsers
+            }
+
+            getString(R.string.home) -> {
+                notificationData = Gson().fromJson(argumentData.data, NotificationData::class.java)
+                bookingId = notificationData.bookingId?:""
+
+            }
 
         }
+
     }
 
     private fun onClick(type: String) {
         when (type) {
             getString(R.string.accept) -> {
-                bookingViewModel.acceptBookingRequest.bookingId = bookingData._id
+                bookingViewModel.acceptBookingRequest.bookingId = bookingId
                 bookingViewModel.hitAcceptBookingApi()
 
             }
 
             getString(R.string.reject) -> {
-                bookingViewModel.cancelBookingRequest.bookingId = bookingData._id
+                bookingViewModel.cancelBookingRequest.bookingId = bookingId
                 bookingViewModel.cancelBookingRequest.reason = "accept"
                 bookingViewModel.cancelBookingRequest.cancelledBy = userType
                 Log.e(
@@ -134,7 +146,7 @@ class BookingDetailsFragment :
 
             getString(R.string.mark_as_completed) -> {
                 markAsCompleteModel.getMarkAsCompleteRequest(
-                    bookingData._id,
+                    bookingId,
                     Constants.TYPEOFUSERS
                 )
 
@@ -162,7 +174,7 @@ class BookingDetailsFragment :
         binding.idCancelBooking.setOnClickListener(View.OnClickListener {
             findNavController().navigate(
                 BookingDetailsFragmentDirections.actionBookingDetailsFragmentToReasonForCancelBottomsheet(
-                    bookingData._id,
+                    bookingId,
                     getString(R.string.booking_details)
                 )
             )
@@ -172,7 +184,7 @@ class BookingDetailsFragment :
 //            fragment.show(childFragmentManager,"CancelBottomSheetFragment")
             findNavController().navigate(
                 BookingDetailsFragmentDirections.actionBookingDetailsFragmentToReasonForCancelBottomsheet(
-                    bookingData._id,
+                    bookingId,
                     getString(R.string.booking_details)
                 )
             )
@@ -183,11 +195,7 @@ class BookingDetailsFragment :
     @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun setupObservers() {
-        if(Constants.NOTIFICATION_DATA!=null){
-            Constants.NOTIFICATION_DATA.bookingId?.let { mViewModel.getBookingDetailsRequest(it) }
-        }else {
-            mViewModel.getBookingDetailsRequest(bookingData._id)
-        }
+        mViewModel.getBookingDetailsRequest(bookingId)
         mViewModel.bookingDetailResponse.observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
@@ -224,7 +232,7 @@ class BookingDetailsFragment :
                                     it.data.result.bookingDetail.startTime
                                 )
 
-
+                            Session.notificationData=null
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {

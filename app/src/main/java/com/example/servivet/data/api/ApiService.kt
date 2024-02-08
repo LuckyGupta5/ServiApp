@@ -147,7 +147,10 @@ interface ApiService {
     suspend fun markAsCompleteApi(@Body request: MarkAsCompleteRequest): CommonResponse
 
     @POST("provider/leave")
-    suspend fun providerLeaveApi(@Body request:ProviderLeaveRequest):CommonResponse
+    suspend fun providerLeaveApi(@Body request: ProviderLeaveRequest): CommonResponse
+
+    @POST("logout")
+    suspend fun logoutUser(): CommonResponse
 
 
 }

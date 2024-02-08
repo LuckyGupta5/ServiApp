@@ -14,7 +14,6 @@ import androidx.core.app.NotificationCompat
 import com.example.servivet.R
 import com.example.servivet.data.model.notification_data.NotificationData
 import com.example.servivet.ui.main.activity.HomeActivity
-import com.example.servivet.utils.Constants.NOTIFICATION_DATA
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.google.gson.Gson
@@ -117,17 +116,11 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
     override fun handleIntent(intent: Intent?) {
         super.handleIntent(intent)
 
-        val productId = intent!!.getStringExtra("customData")
-        Log.e("TAG", "handleIntent: ${productId}", )
-        val data = Gson().fromJson(productId,NotificationData::class.java)
-        NOTIFICATION_DATA = data
-
-        /*{"bookingId":"3472367236487623","serviceStatus":2,"userType":"user"}*/
-
+        val notificationData = intent!!.getStringExtra("customData")
+        Log.e("TAG", "handleIntent: ${notificationData}", )
+        Session.saveNotificationData(notificationData!!)
     }
 }
 
-/*FirebaseMessagingService
-* dc0sGrb_T-uVBfy9qij01V:APA91bGnCzQ7TDk21sfIcbfQnr6nfvdPgO_73ZTOY2TLahla41gbsnquTV0_vlkNz5Me6Qi7pPKMu2sX9BhMgPbbNYpid8XuNdYYL1TGy_rCrc0ebqgOJSA-Ys2kTIIdzjOLRlagvfyt
-* */
+
 

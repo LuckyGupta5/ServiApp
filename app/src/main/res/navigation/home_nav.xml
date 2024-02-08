@@ -365,6 +365,9 @@
         <action
             android:id="@+id/action_settingsFragment_to_myWalletFragment"
             app:destination="@id/myWalletFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_closeServiceAlert"
+            app:destination="@id/closeServiceAlert" />
     </fragment>
     <fragment
         android:id="@+id/myWalletFragment"

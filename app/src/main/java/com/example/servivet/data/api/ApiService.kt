@@ -1,5 +1,6 @@
 package com.example.servivet.data.api
 
+import android.telecom.ConnectionRequest
 import com.example.servivet.data.model.accept_booking.request.AcceptBookingRequest
 import com.example.servivet.data.model.accept_booking.response.AcceptBookingResponse
 import com.example.servivet.data.model.add_service.response.AddServiceResponse
@@ -30,6 +31,8 @@ import com.example.servivet.data.model.home.response.HomeResponse
 import com.example.servivet.data.model.payment.payment_amount.request.PaymentRequest
 import com.example.servivet.data.model.report_rating.request.ReportRatingRequest
 import com.example.servivet.data.model.common.response.CommonResponse
+import com.example.servivet.data.model.connection.accept_reject.request.AcceptRejectRequest
+import com.example.servivet.data.model.connection.connection_list.responnse.ConnectionResponse
 import com.example.servivet.data.model.review_ratinng.ReviewRatingResponse
 import com.example.servivet.data.model.save_address.request.SaveAddressRequest
 import com.example.servivet.data.model.save_address.response.SaveAddressResponse
@@ -151,6 +154,15 @@ interface ApiService {
 
     @POST("logout")
     suspend fun logoutUser(): CommonResponse
+
+    @GET("my/connection")
+    suspend fun connectionListApi(@QueryMap request: HashMap<String, Int>): ConnectionResponse
+
+    @GET("connection/request/list")
+    suspend fun connectionRequestListApi(@QueryMap request: HashMap<String, Int>): ConnectionResponse
+
+    @POST("accept/reject/connection")
+    suspend fun acceptRejectApi(@Body request: AcceptRejectRequest): CommonResponse
 
 
 }

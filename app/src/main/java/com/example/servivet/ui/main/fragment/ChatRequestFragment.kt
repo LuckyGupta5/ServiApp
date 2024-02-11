@@ -34,7 +34,7 @@ class ChatRequestFragment : BaseFragment<FragmentChatRequestBinding,ChatRequestV
     }
 
     private fun setadapter() {
-        binding.recyclerview.adapter=ChatRequestAdapter(ArrayList())
+        binding.idChatRequestRecycle.adapter=ChatRequestAdapter(ArrayList())
     }
 
     override fun setupObservers() {

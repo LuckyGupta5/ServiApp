@@ -276,6 +276,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         try {
             SocketManager.connect()
             socket = SocketManager.getSocket()
+            Log.e("TAG", "initSocket:${socket.connected()} ")
+
             val data = JSONObject()
             data.put("userId", Session.userDetails._id)
             data.put("latitude", 28.6230811)

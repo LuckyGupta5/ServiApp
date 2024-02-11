@@ -11,7 +11,7 @@ import com.example.servivet.ui.base.BaseViewModel
 class ChatViewModel:BaseViewModel() {
     inner class ClickAction(var context: Context,var binding:FragmentChatsBinding){
         fun gotochat(view: View){
-            binding.recyclerview.isVisible=true
+            binding.idChatRecycle.isVisible=true
             binding.startnewchatlayout.isVisible=false
         }
         fun gotochatrequest(view: View){

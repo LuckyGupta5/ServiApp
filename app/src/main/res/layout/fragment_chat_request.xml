@@ -4,9 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="click"
             type="com.example.servivet.ui.main.view_model.ChatRequestViewModel.ClickAction" />
+
         <variable
             name="viewModel"
             type="com.example.servivet.ui.main.view_model.ChatRequestViewModel" />
@@ -52,19 +54,23 @@
                     android:layout_marginStart="-15dp"
                     android:textColor="@color/black"
                     android:textSize="21dp" />
+
                 <ImageView
                     android:id="@+id/dot"
+                    android:visibility="invisible"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/chat_three_dot" />
 
             </LinearLayout>
         </LinearLayout>
+
         <RelativeLayout
             android:visibility="gone"
             android:layout_below="@+id/topLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <LinearLayout
                 android:id="@+id/startnewchatlayout"
                 android:layout_width="match_parent"
@@ -72,10 +78,12 @@
                 android:gravity="center"
                 android:visibility="visible"
                 android:layout_height="match_parent">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/chat_request_icon" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -83,7 +91,8 @@
                     android:text="@string/no_chat_requests_found"
                     android:fontFamily="@font/poppins_medium"
                     android:textColor="@color/black_222120"
-                    android:textSize="19dp"/>
+                    android:textSize="19dp" />
+
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/startNewChat"
                     android:layout_marginTop="20dp"
@@ -105,13 +114,14 @@
 
 
         </RelativeLayout>
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview"
+            android:id="@+id/idChatRequestRecycle"
             android:layout_width="match_parent"
             tools:listitem="@layout/chat_request_design"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_below="@+id/topLayout"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
     </RelativeLayout>
 </layout>

@@ -65,6 +65,12 @@ class BookingListAdapter(
 //        }
     }
 
+    fun updateList(list: ArrayList<MyBooking>) {
+        val start = if (bookingList.size > 0) bookingList.size else 0
+        bookingList.addAll(list)
+        notifyItemRangeInserted(start, bookingList.size)
+    }
+
 
     override fun getItemCount(): Int {
         return bookingList.size

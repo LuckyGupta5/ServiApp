@@ -26,7 +26,7 @@ class ChatsFragment :BaseFragment<FragmentChatsBinding,ChatViewModel>(R.layout.f
          }
 
     fun setadapter(){
-        binding.recyclerview.adapter=ChatFragmentAdapter(requireContext(), ArrayList())
+        binding.idChatRecycle.adapter=ChatFragmentAdapter(requireContext(), ArrayList())
     }
 
     override fun setupViews() {

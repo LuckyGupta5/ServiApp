@@ -1,13 +1,10 @@
 package com.example.servivet.ui.main.view_model
 
-import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.findNavController
-import com.example.servivet.R
 import com.example.servivet.data.api.RetrofitBuilder
-import com.example.servivet.data.model.connection.connection_list.request.ConnectionRequest
-import com.example.servivet.data.model.connection.connection_list.responnse.ConnectionResponse
+import com.example.servivet.data.model.common.response.CommonResponse
+import com.example.servivet.data.model.connection.accept_reject.request.AcceptRejectRequest
 import com.example.servivet.data.repository.MainRepository
 import com.example.servivet.ui.base.BaseViewModel
 import com.example.servivet.utils.Resource
@@ -17,44 +14,37 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 
-class MyConnectionModelView : BaseViewModel() {
-
-    private val request = HashMap<String, Int>()
-
-    private val connectionListData = SingleLiveEvent<Resource<ConnectionResponse>>()
-
-    fun getConnectionData(): LiveData<Resource<ConnectionResponse>> {
-        return connectionListData
+class AcceptRejectViewModel : BaseViewModel() {
+    private val request = AcceptRejectRequest()
+    private val acceptRejectListData = SingleLiveEvent<Resource<CommonResponse>>()
+    fun getAcceptRejectData(): LiveData<Resource<CommonResponse>> {
+        return acceptRejectListData
     }
 
-    inner class ClickAction {
-        fun goConnectionrequest(view: View) {
-            view.findNavController()
-                .navigate(R.id.action_fragmentMyConnection_to_connectionsRequestFragment)
+    fun getAcceptRejectRequest(identifier: Int, data: String) {
+        request.apply {
+            connectionId = "65bccaafc21fdd9d3a0bb5f4"
+            isAccept = 1
         }
-
-        fun backbtn(view: View) {
-            view.findNavController().popBackStack()
-        }
-
-
+        hitAcceptRejectApi()
     }
 
-    fun getConnectionListRequest() {
-        request["page"] = 1
-        request["limit"] = 10
-        hitConnectionListApi()
-    }
 
-    private fun hitConnectionListApi() {
+    private fun hitAcceptRejectApi() {
         val repository = MainRepository(RetrofitBuilder.apiService)
-        connectionListData.postValue(Resource.loading(null))
+        acceptRejectListData.postValue(Resource.loading(null))
         viewModelScope.launch {
             try {
-                connectionListData.postValue(Resource.success(repository.connectionListApi(request)))
+                acceptRejectListData.postValue(
+                    Resource.success(
+                        repository.acceptRejectApi(
+                            request
+                        )
+                    )
+                )
             } catch (ex: IOException) {
                 ex.printStackTrace()
-                connectionListData.postValue(
+                acceptRejectListData.postValue(
                     Resource.error(
                         StatusCode.STATUS_CODE_INTERNET_VALIDATION,
                         null
@@ -63,7 +53,7 @@ class MyConnectionModelView : BaseViewModel() {
             } catch (exception: Exception) {
                 exception.printStackTrace()
                 if (exception is HttpException && exception.code() == StatusCode.HTTP_EXCEPTION) {
-                    connectionListData.postValue(
+                    acceptRejectListData.postValue(
                         Resource.error(
                             StatusCode.HTTP_EXCEPTION.toString(),
                             null
@@ -72,7 +62,7 @@ class MyConnectionModelView : BaseViewModel() {
 //                    if(!finishing)
 //                        CommonUtils.logoutAlert(context, "Session Expired", "Your account has been blocked by Admin . Please contact to the Admin", requireActivity)
                 } else
-                    connectionListData.postValue(
+                    acceptRejectListData.postValue(
                         Resource.error(
                             StatusCode.SERVER_ERROR_MESSAGE,
                             null
@@ -83,4 +73,6 @@ class MyConnectionModelView : BaseViewModel() {
             }
         }
     }
+
+
 }

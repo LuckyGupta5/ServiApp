@@ -67,10 +67,7 @@ class ProfileViewModel : BaseViewModel() {
         }
 
         fun logOut(view: View) {
-            CommonUtils.alert(
-                context,
-                context.getString(R.string.are_you_sure_you_want_to_logout), requireActivity
-            )
+            CommonUtils.alert(context, context.getString(R.string.are_you_sure_you_want_to_logout), requireActivity)
 //            logoutAlert(context,requireActivity)
         }
     }

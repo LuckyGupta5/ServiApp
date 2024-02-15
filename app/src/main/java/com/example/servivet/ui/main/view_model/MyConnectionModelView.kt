@@ -6,8 +6,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import com.example.servivet.R
 import com.example.servivet.data.api.RetrofitBuilder
-import com.example.servivet.data.model.connection.connection_list.request.ConnectionRequest
-import com.example.servivet.data.model.connection.connection_list.responnse.ConnectionResponse
+import com.example.servivet.data.model.connection.connection_list.responnse.ConnectionListResponse
 import com.example.servivet.data.repository.MainRepository
 import com.example.servivet.ui.base.BaseViewModel
 import com.example.servivet.utils.Resource
@@ -21,9 +20,9 @@ class MyConnectionModelView : BaseViewModel() {
 
     private val request = HashMap<String, Int>()
 
-    private val connectionListData = SingleLiveEvent<Resource<ConnectionResponse>>()
+    private val connectionListData = SingleLiveEvent<Resource<ConnectionListResponse>>()
 
-    fun getConnectionData(): LiveData<Resource<ConnectionResponse>> {
+    fun getConnectionData(): LiveData<Resource<ConnectionListResponse>> {
         return connectionListData
     }
 

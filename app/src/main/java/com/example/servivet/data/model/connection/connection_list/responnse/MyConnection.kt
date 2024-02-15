@@ -9,6 +9,7 @@ data class MyConnection(
     val createdAt: String,
     val friendId: String,
     val status: Int,
+    val businessType: Int,
     val updatedAt: String,
     val user: String,
     val userDetail: UserDetail

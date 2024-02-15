@@ -1,12 +1,14 @@
 package com.example.servivet.ui.main.adapter
 
 import android.content.Context
+import android.util.Log
 
 import com.example.servivet.R
 import com.example.servivet.data.model.connection.connection_list.responnse.MyConnection
 import com.example.servivet.databinding.ConnectionRequestDesignRecyclerviewBinding
 import com.example.servivet.ui.base.BaseAdapter
 import com.example.servivet.utils.interfaces.ListAdapterItem
+import com.google.gson.Gson
 
 class ConnectionRequestAdapter(
     val requireContext: Context,
@@ -24,6 +26,7 @@ class ConnectionRequestAdapter(
     ) {
         binding.apply {
             listData = item
+            Log.e("TAG", "binddata: ${Gson().toJson(listData)}", )
             idAccept.setOnClickListener{onItemClick(1, item?._id ?: "")}
             idDeclineBtn.setOnClickListener {onItemClick(2,item?._id ?: "")}
         }

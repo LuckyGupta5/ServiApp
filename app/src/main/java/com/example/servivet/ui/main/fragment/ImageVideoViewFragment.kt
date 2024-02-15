@@ -1,5 +1,6 @@
 package com.example.servivet.ui.main.fragment
 
+import android.util.Log
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -50,6 +51,7 @@ class ImageVideoViewFragment() :
         snapHelper.attachToRecyclerView(binding.idMediaRecycle)
         mediaAdapter = MediaAdapter(createMediaItemList(list), requireContext())
         binding.idMediaRecycle.adapter = mediaAdapter
+            binding.idMediaRecycle.scrollToPosition(mediaList.position)
     }
 
     override fun setupObservers() {

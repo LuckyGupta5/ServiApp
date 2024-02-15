@@ -23,8 +23,6 @@ class SplashViewModel : BaseViewModel(){
 
     private fun initSplashScreen()
     {
-
-
         if (isLogout) {
             viewModelScope.launch {
                 delay(10)

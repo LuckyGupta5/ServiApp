@@ -60,6 +60,8 @@
             app:layout_constraintStart_toEndOf="@id/profile_image"
             app:layout_constraintTop_toBottomOf="@id/idName" />
 
+        <!--android:text="@{listData.userDetail.businessType==3?@string/individual:@string/institutional}"-->
+
 
         <TextView
             android:id="@+id/idRemove"

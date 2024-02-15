@@ -15,10 +15,6 @@ object SocketManager {
     init {
         val socketUrl = "http://13.235.137.221:3476"
         val token = Session.token
-
-
-
-
         try {
             val options = IO.Options().apply {
                 auth = mapOf("token" to token)

@@ -2,10 +2,13 @@ package com.example.servivet.utils
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.ActivityManager
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.TimePickerDialog
+import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothProfile
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -18,6 +21,7 @@ import android.os.Build
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.provider.Settings
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.DatePicker
@@ -33,6 +37,7 @@ import com.bumptech.glide.Glide
 import com.example.servivet.R
 import com.example.servivet.ui.main.activity.MainActivity
 import com.example.servivet.ui.main.view_model.SplashViewModel
+import com.example.servivet.utils.soundservices.SoundService
 import com.google.android.gms.maps.model.Marker
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.android.material.snackbar.Snackbar
@@ -1303,6 +1308,64 @@ fun checkVideoFileSize(videoFilePath: String): Long {
 fun formatDecimalNumber(inputNumber: Double): String {
     val decimalFormat = DecimalFormat("#.#")
     return decimalFormat.format(inputNumber)
+}
+fun isMiUi(): Boolean {
+    return !TextUtils.isEmpty(getSystemProperty("ro.miui.ui.version.name"))
+}
+fun getSystemProperty(propName: String): String? {
+    val line: String
+    var input: BufferedReader? = null
+    try {
+        val p = Runtime.getRuntime().exec("getprop $propName")
+        input = BufferedReader(InputStreamReader(p.inputStream), 1024)
+        line = input.readLine()
+        input.close()
+    } catch (ex: IOException) {
+        return null
+    } finally {
+        if (input != null) {
+            try {
+                input.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+    }
+    return line
+}
+
+fun stopBackgroundMusicService(context: Context) {
+    val svc = Intent(context, SoundService::class.java)
+    context.stopService(svc)
+}
+
+fun startBackgroundMusicService(context: Context) {
+    try {
+        val svc = Intent(context, SoundService::class.java)
+        context.startService(svc)
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+
+
+}
+
+fun isBluetoothConnectd(): Boolean {
+    val bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+    return (bluetoothAdapter != null && BluetoothAdapter.STATE_CONNECTED == bluetoothAdapter.getProfileConnectionState(
+        BluetoothProfile.HEADSET
+    ))
+}
+fun isAppOnForeground(context: Context): Boolean {
+    val appPackageName = context.packageName.toString()
+    val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+    val appProcesses = activityManager.runningAppProcesses ?: return false
+    for (appProcess in appProcesses) {
+        if (appProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND && appProcess.processName == appPackageName) {
+            return true
+        }
+    }
+    return false
 }
 
 

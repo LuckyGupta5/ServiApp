@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.servivet.R;
+import com.example.servivet.ui.main.agora.GlobalSettings;
 
 
 public class BaseActivity extends AppCompatActivity {
@@ -25,6 +26,7 @@ public class BaseActivity extends AppCompatActivity {
     public static Context mContext;
     private ProgressDialog dialog;
     protected static boolean isVisible = false;
+    private GlobalSettings globalSettings = new GlobalSettings();
 
     FragmentManager fragManager;
     public FragmentTransaction fragTransaction;
@@ -112,6 +114,12 @@ public class BaseActivity extends AppCompatActivity {
     public String getDeviceId()
     {
         return Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+    }
+    public GlobalSettings getGlobalSettings() {
+        if (globalSettings == null) {
+            globalSettings = new GlobalSettings();
+        }
+        return globalSettings;
     }
 
 }

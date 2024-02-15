@@ -1,6 +1,5 @@
 package com.example.servivet.data.repository
 
-import android.telecom.ConnectionRequest
 import com.example.servivet.data.api.ApiService
 import com.example.servivet.data.model.accept_booking.request.AcceptBookingRequest
 import com.example.servivet.data.model.booking_detail.request.BookingDetailRequest
@@ -14,6 +13,7 @@ import com.example.servivet.data.model.cancel_booking.request.CancelBookingReque
 
 import com.example.servivet.data.model.common.request.CommonRequest
 import com.example.servivet.data.model.connection.accept_reject.request.AcceptRejectRequest
+import com.example.servivet.data.model.connection.connection_request.request.ConnectionRequest
 
 import com.example.servivet.data.model.report_rating.request.ReportRatingRequest
 import com.example.servivet.data.model.save_address.request.SaveAddressRequest
@@ -102,6 +102,7 @@ class MainRepository(private val apiService: ApiService) {
     suspend fun connectionListApi(request: HashMap<String,Int>) = apiService.connectionListApi(request)
     suspend fun connectionRequestListApi(request: HashMap<String,Int>) = apiService.connectionRequestListApi(request)
     suspend fun acceptRejectApi(request: AcceptRejectRequest) = apiService.acceptRejectApi(request)
+    suspend fun connectionRequest(request: ConnectionRequest) = apiService.connectionRequest(request)
 
 
 }

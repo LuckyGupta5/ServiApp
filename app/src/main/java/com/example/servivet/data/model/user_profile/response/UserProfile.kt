@@ -4,6 +4,7 @@ data class UserProfile(
     val _id: String,
     val coverImage: String,
     val description: String,
+    val connectionId: String,
     val image: String,
     val isConnected: Int,
     val myContact: List<Any>,
@@ -12,5 +13,6 @@ data class UserProfile(
     val mobile: String,
     val countryCode: String,
     val role: Int,
+    val roomId:String,
     val businessType: Int
 )

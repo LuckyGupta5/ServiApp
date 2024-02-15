@@ -2,10 +2,11 @@ package com.example.servivet.utils
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.LifecycleObserver
 import com.orhanobut.hawk.Hawk
 
-class ServiVetApplication:Application() {
-    lateinit var instance: ServiVetApplication
+class AppController:Application(),LifecycleObserver{
+    lateinit var instance: AppController
     override fun onCreate() {
         super.onCreate()
         Hawk.init(applicationContext).build()

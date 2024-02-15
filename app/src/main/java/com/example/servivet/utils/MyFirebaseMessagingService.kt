@@ -115,7 +115,6 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun handleIntent(intent: Intent?) {
         super.handleIntent(intent)
-
         val notificationData = intent!!.getStringExtra("customData")
         Log.e("TAG", "handleIntent: ${notificationData}", )
         Session.saveNotificationData(notificationData!!)

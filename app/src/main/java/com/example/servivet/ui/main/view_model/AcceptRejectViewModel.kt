@@ -23,8 +23,8 @@ class AcceptRejectViewModel : BaseViewModel() {
 
     fun getAcceptRejectRequest(identifier: Int, data: String) {
         request.apply {
-            connectionId = "65bccaafc21fdd9d3a0bb5f4"
-            isAccept = 1
+            connectionId = data
+            isAccept = identifier
         }
         hitAcceptRejectApi()
     }

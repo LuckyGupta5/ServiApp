@@ -7,18 +7,20 @@ import com.example.servivet.databinding.MyConnectionDesignRecyclerviewBinding
 import com.example.servivet.ui.base.BaseAdapter
 import com.example.servivet.utils.interfaces.ListAdapterItem
 
-class MyConnectionAdapter(
-    val requireContext: Context,
-    val connectionList: ArrayList<MyConnection>,
-    val onItemClick: (String, String) -> Unit
-) : BaseAdapter<MyConnectionDesignRecyclerviewBinding, ListAdapterItem>(connectionList) {
+class MyConnectionAdapter(val requireContext: Context, val connectionList: ArrayList<MyConnection>, val onItemClick: (Int, String) -> Unit) : BaseAdapter<MyConnectionDesignRecyclerviewBinding, MyConnection>(connectionList) {
     override val layoutId: Int = R.layout.my_connection_design_recyclerview
 
     override fun bind(
         binding: MyConnectionDesignRecyclerviewBinding,
-        item: ListAdapterItem?,
+        item: MyConnection?,
         position: Int,
     ) {
+        binding.apply {
+            listData = item
+            idRemove.setOnClickListener {
+                onItemClick(0, item!!._id)
+            }
+        }
 
 
     }

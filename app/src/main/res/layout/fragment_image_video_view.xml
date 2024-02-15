@@ -25,10 +25,10 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="50dp"
             android:background="@drawable/back_detail_btn"
             android:elevation="10dp"
-            android:layout_marginStart="20dp"
             android:onClick="@{()->clickEvents.invoke(@string/back_press)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -43,7 +43,6 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:itemCount="3"
             tools:listitem="@layout/custom_media_layout" />
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -70,9 +70,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                 click = mViewModel.ClickAction()
                 clickEvents = ::onClick
                 setBack()
-                if (Session.notificationData != null && Session.notificationData.isNotEmpty()) {
-                    val data =
-                        Gson().fromJson(Session.notificationData, NotificationData::class.java)
+                val data = Gson().fromJson(Session.notificationData, NotificationData::class.java)
+
+                if (Session.notificationData != null && data.bookingId != null) {
                     findNavController().navigate(
                         HomeFragmentDirections.actionHomeFragmentToBookingDetailsFragment(
                             Session.notificationData,
@@ -276,7 +276,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         try {
             SocketManager.connect()
             socket = SocketManager.getSocket()
+
+
             Log.e("TAG", "initSocket:${socket.connected()} ")
+            initSocketEvents()
 
             val data = JSONObject()
             data.put("userId", Session.userDetails._id)
@@ -316,6 +319,58 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         }
 
 
+    }
+
+    private fun initSocketEvents() {
+        val data = JSONObject()
+        data.put("userId",Session.userDetails._id)
+        socket.emit("online",data)
+        socket.on("online", fun(args:Array<Any?>){
+            if(isAdded){
+                requireActivity().runOnUiThread{
+                    val onlineData = args[0] as JSONObject
+                    try {
+
+                    }
+                    catch (ex:JSONException){
+                        ex.printStackTrace()
+                    }
+
+                }
+            }
+        })
+
+        // internal server error
+        socket.on("internalServer_error", fun(args:Array<Any?>){
+            if(isAdded){
+                requireActivity().runOnUiThread{
+                    val onlineData = args[0] as JSONObject
+                    try {
+
+                    }
+                    catch (ex:JSONException){
+                        ex.printStackTrace()
+                    }
+
+                }
+            }
+        })
+
+        //invalidData
+        socket.on("invalidData", fun(args:Array<Any?>){
+            if(isAdded){
+                requireActivity().runOnUiThread{
+                    val onlineData = args[0] as JSONObject
+                    try {
+
+                    }
+                    catch (ex:JSONException){
+                        ex.printStackTrace()
+                    }
+
+                }
+            }
+        })
     }
 
     private fun initProviderAdapter() {

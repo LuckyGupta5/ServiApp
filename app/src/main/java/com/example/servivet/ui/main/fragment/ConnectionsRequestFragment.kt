@@ -1,6 +1,5 @@
 package com.example.servivet.ui.main.fragment
 
-import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -12,20 +11,19 @@ import com.example.servivet.databinding.FragmentConnectionsRequestBinding
 import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.adapter.ConnectionRequestAdapter
 import com.example.servivet.ui.main.view_model.AcceptRejectViewModel
-import com.example.servivet.ui.main.view_model.ConnectionRequestViewModel
+import com.example.servivet.ui.main.view_model.ConnectionRequestListViewModel
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.CommonUtils.showSnackBar
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
-import com.google.gson.Gson
 
 class ConnectionsRequestFragment :
-    BaseFragment<FragmentConnectionsRequestBinding, ConnectionRequestViewModel>(R.layout.fragment_connections_request) {
+    BaseFragment<FragmentConnectionsRequestBinding, ConnectionRequestListViewModel>(R.layout.fragment_connections_request) {
     override val binding: FragmentConnectionsRequestBinding by viewBinding(
         FragmentConnectionsRequestBinding::bind
     )
-    override val mViewModel: ConnectionRequestViewModel by viewModels()
+    override val mViewModel: ConnectionRequestListViewModel by viewModels()
     private val acceptRejectModel: AcceptRejectViewModel by viewModels()
     private val requestList = ArrayList<MyConnection>()
 
@@ -107,6 +105,7 @@ class ConnectionsRequestFragment :
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             showSnackBar(it.data.message!!)
+                            findNavController().popBackStack()
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {

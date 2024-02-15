@@ -57,8 +57,8 @@ class AddServiceViewModel() : BaseViewModel() {
         }
 
         fun addService(view: View) {
-            if (validation(context,requireActivity,finishing))
-                hitAddServiceAPI(context,requireActivity,finishing)
+            if (validation(context, requireActivity, finishing))
+                hitAddServiceAPI(context, requireActivity, finishing)
         }
 
         fun onNameChange(text: CharSequence) {
@@ -69,13 +69,17 @@ class AddServiceViewModel() : BaseViewModel() {
         fun aboutTextChange(text: CharSequence) {
             aboutService.value = text.isNotEmpty()
             addServicesRequest.aboutService = text.toString().trim().replace("\\s+".toRegex(), " ")
-            binding.wordCount.text = "("+text.toString().length.toString() + "/150)"
+            binding.wordCount.text = "(" + text.toString().length.toString() + "/150)"
 
         }
     }
 
-    private fun validation(context: Context, requireActivity: FragmentActivity, finishing: Boolean): Boolean {
-        return if (!isHomeClick && !isCentreClick ) {
+    private fun validation(
+        context: Context,
+        requireActivity: FragmentActivity,
+        finishing: Boolean
+    ): Boolean {
+        return if (!isHomeClick && !isCentreClick) {
             errorMessage.setValue(context.getString(R.string.please_select_a_service_model))
             false
         } else if (catPostion == 0) {
@@ -84,16 +88,19 @@ class AddServiceViewModel() : BaseViewModel() {
         } else if (subCatPostion == 0) {
             errorMessage.setValue(context.getString(R.string.please_select_sub_category))
             false
-        }else if(addServicesRequest.atCenterAvailability!=null || addServicesRequest.atHomeAvailability!=null ){
-            var isErrorFound =false
-            if(addServicesRequest.atCenterAvailability!=null){
-                for(i in addServicesRequest.atCenterAvailability!!.indices){
-                    for(j in addServicesRequest.atCenterAvailability!![i].slot!!.indices){
-                        if(addServicesRequest.atCenterAvailability!![i].slot!![j].startTime!!.isEmpty() || addServicesRequest.atCenterAvailability!![i].slot!![j].endTime!!.isEmpty()){
+        } else if (addServicesRequest.atCenterAvailability != null || addServicesRequest.atHomeAvailability != null) {
+            var isErrorFound = false
+            if (addServicesRequest.atCenterAvailability != null) {
+                for (i in addServicesRequest.atCenterAvailability!!.indices) {
+                    for (j in addServicesRequest.atCenterAvailability!![i].slot!!.indices) {
+                        if (addServicesRequest.atCenterAvailability!![i].slot!![j].startTime!!.isEmpty() || addServicesRequest.atCenterAvailability!![i].slot!![j].endTime!!.isEmpty()) {
                             errorMessage.setValue("Select Session should not be empty for the Center Service Mode")
                             isErrorFound = true
-                        }else if(!CommonUtils.checkDates(addServicesRequest.atCenterAvailability!![i].slot!![j].startTime!!, addServicesRequest.atCenterAvailability!![i].slot!![j].endTime!!
-                        )){
+                        } else if (!CommonUtils.checkDates(
+                                addServicesRequest.atCenterAvailability!![i].slot!![j].startTime!!,
+                                addServicesRequest.atCenterAvailability!![i].slot!![j].endTime!!
+                            )
+                        ) {
                             errorMessage.setValue(context.getString(R.string.start_time_should_not_be_greater_than_end_time_for_centre_mode))
                             isErrorFound = true
                         }
@@ -102,15 +109,17 @@ class AddServiceViewModel() : BaseViewModel() {
                 }
 
             }
-            if (addServicesRequest.atHomeAvailability!=null) {
-                for(i in addServicesRequest.atHomeAvailability!!.indices){
-                    for(j in addServicesRequest.atHomeAvailability!![i].slot!!.indices){
-                        if(addServicesRequest.atHomeAvailability!![i].slot!![j].startTime!!.isEmpty() || addServicesRequest.atHomeAvailability!![i].slot!![j].endTime!!.isEmpty()){
+            if (addServicesRequest.atHomeAvailability != null) {
+                for (i in addServicesRequest.atHomeAvailability!!.indices) {
+                    for (j in addServicesRequest.atHomeAvailability!![i].slot!!.indices) {
+                        if (addServicesRequest.atHomeAvailability!![i].slot!![j].startTime!!.isEmpty() || addServicesRequest.atHomeAvailability!![i].slot!![j].endTime!!.isEmpty()) {
                             errorMessage.setValue("Select Session should not be empty for the Home Service Mode")
                             isErrorFound = true
-                        }else if(!CommonUtils.checkDates(addServicesRequest.atHomeAvailability!![i].slot!![j].startTime!!,
+                        } else if (!CommonUtils.checkDates(
+                                addServicesRequest.atHomeAvailability!![i].slot!![j].startTime!!,
                                 addServicesRequest.atHomeAvailability!![i].slot!![j].endTime!!
-                            )){
+                            )
+                        ) {
                             errorMessage.setValue(context.getString(R.string.start_time_should_not_be_greater_than_end_time_for_home_mode))
                             isErrorFound = true
                         }
@@ -125,14 +134,13 @@ class AddServiceViewModel() : BaseViewModel() {
             } else if (isHomeClick && addServicesRequest.atHomePrice == "0") {
                 errorMessage.setValue(context.getString(R.string.please_enter_the_price_for_the_home_service_mode))
                 false
-            } else  if (addServicesRequest.image?.size!! ==0) {
+            } else if (addServicesRequest.image?.size!! == 0) {
                 errorMessage.setValue(context.getString(R.string.please_select_at_one_image))
                 false
-            }else if (addServicesRequest.image != null && addServicesRequest.image?.size!! > 5) {
+            } else if (addServicesRequest.image != null && addServicesRequest.image?.size!! > 5) {
                 errorMessage.setValue(context.getString(R.string.images_must_be_less_than_five))
 
-            }
-            else if (!isErrorFound)
+            } else if (!isErrorFound)
                 hitAddServiceAPI(context, requireActivity, finishing)
             false
         } /*else if (isCentreClick && addServicesRequest.atCenterPrice == "0") {
@@ -203,17 +211,24 @@ class AddServiceViewModel() : BaseViewModel() {
 
 
             if (addServicesRequest.atCenterAvailability != null && addServicesRequest.atCenterAvailability!!.isNotEmpty()) {
-                builder.addFormDataPart("atCenterAvailability", Gson().toJson(addServicesRequest.atCenterAvailability).replace("\\", ""))
+                builder.addFormDataPart(
+                    "atCenterAvailability",
+                    Gson().toJson(addServicesRequest.atCenterAvailability).replace("\\", "")
+                )
             }
 
 
 
             if (addServicesRequest.atHomeAvailability != null && addServicesRequest.atHomeAvailability!!.isNotEmpty()) {
 
-                    builder.addFormDataPart("atHomeAvailability", Gson().toJson(addServicesRequest.atHomeAvailability).replace("\\", ""))
+                builder.addFormDataPart(
+                    "atHomeAvailability",
+                    Gson().toJson(addServicesRequest.atHomeAvailability).replace("\\", "")
+                )
 
-            }else{
-                val atHomeAvailabilityList: List<AtHomeAvailability> = addServicesRequest.atHomeAvailability ?: emptyList()
+            } else {
+                val atHomeAvailabilityList: List<AtHomeAvailability> =
+                    addServicesRequest.atHomeAvailability ?: emptyList()
 
                 builder.addFormDataPart("atHomeAvailability", Gson().toJson(atHomeAvailabilityList))
             }
@@ -225,7 +240,11 @@ class AddServiceViewModel() : BaseViewModel() {
             if (isPhotoSelected) {
                 for (i in addServicesRequest.image!!.indices) {
                     val file = File(addServicesRequest.image!![i])
-                    builder.addFormDataPart("image", file.name, RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file))
+                    builder.addFormDataPart(
+                        "image",
+                        file.name,
+                        RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
+                    )
                 }
 
             }
@@ -244,13 +263,23 @@ class AddServiceViewModel() : BaseViewModel() {
                             null
                         )
                     )
-                }catch (exception: Exception) {
+                } catch (exception: Exception) {
                     exception.printStackTrace()
                     if (exception is HttpException && exception.code() == 401) {
-                        if(!finishing)
-                            CommonUtils.logoutAlert(context,"Session Expired", "Your account has been blocked by Admin . Please contact to the Admin",requireActivity)
-                    }else
-                        addServiceResponse.postValue(Resource.error(StatusCode.SERVER_ERROR_MESSAGE, null))
+                        if (!finishing)
+                            CommonUtils.logoutAlert(
+                                context,
+                                "Session Expired",
+                                "Your account has been blocked by Admin . Please contact to the Admin",
+                                requireActivity
+                            )
+                    } else
+                        addServiceResponse.postValue(
+                            Resource.error(
+                                StatusCode.SERVER_ERROR_MESSAGE,
+                                null
+                            )
+                        )
 
 
                 }

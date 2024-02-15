@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
 
         <variable
             name="viewMOdel"
@@ -16,6 +17,10 @@
         <variable
             name="data"
             type="com.example.servivet.data.model.user_profile.response.UserProfile" />
+
+        <variable
+            name="connectionAdapter"
+            type="com.example.servivet.ui.main.adapter.ProfileConnectionAdapter" />
 
     </data>
 
@@ -334,8 +339,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
                         android:clickable="false"
+                        android:adapter="@{connectionAdapter}"
                         android:nestedScrollingEnabled="false"
-                        android:visibility="gone"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:spanCount="3"
                         tools:listitem="@layout/home_services_recycler" />
@@ -346,6 +351,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginBottom="30dp"
+                        android:visibility="@{connectionAdapter.connectionList==null?View.GONE:connectionAdapter.connectionList.size()>0?View.GONE:View.VISIBLE}"
                         android:layout_marginTop="10dp">
 
                         <ImageView

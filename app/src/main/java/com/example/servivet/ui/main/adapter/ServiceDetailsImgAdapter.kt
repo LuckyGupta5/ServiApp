@@ -50,6 +50,9 @@ class ServiceDetailsImgAdapter(
         holder.binding.idCardView.setOnClickListener {
             onItemClick(context.getString(R.string.openmedia), "", position)
         }
+        holder.binding.playPauseButton.setOnClickListener {
+            onItemClick(context.getString(R.string.openmedia), "", position)
+        }
     }
 
 }

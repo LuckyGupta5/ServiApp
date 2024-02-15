@@ -1,28 +1,33 @@
 package com.example.servivet.ui.main.adapter
 
 import android.content.Context
+import androidx.core.view.isVisible
 import com.example.servivet.R
+import com.example.servivet.data.model.chat_models.request_list.response.Chatlist
 import com.example.servivet.databinding.ChatRecyclerviewDesignBinding
 import com.example.servivet.ui.base.BaseAdapter
-import com.example.servivet.utils.interfaces.ListAdapterItem
 
-class ChatFragmentAdapter(var context:Context,var list:ArrayList<ListAdapterItem>):BaseAdapter<ChatRecyclerviewDesignBinding,ListAdapterItem>(list) {
+class ChatFragmentAdapter(
+    var context: Context,
+    val chatList: ArrayList<Chatlist>,
+    val check: Boolean,
+    val onItemClick: (String, String) -> Unit
+) : BaseAdapter<ChatRecyclerviewDesignBinding, Chatlist>(chatList) {
 
-
-    inner class ClickAction(var position: Int){
-
-    }
 
     override fun getItemCount(): Int {
-        return 7
+        return chatList.size
     }
-    override val layoutId: Int= R.layout.chat_recyclerview_design
+
+    override val layoutId: Int = R.layout.chat_recyclerview_design
 
 
-    override fun bind(binding: ChatRecyclerviewDesignBinding, item: ListAdapterItem?, position: Int, ) {
+    override fun bind(binding: ChatRecyclerviewDesignBinding, item: Chatlist?, position: Int) {
         binding.apply {
-            binding.click=ClickAction(position)
-
+            idButtonContainer.isVisible = !check
+            listData = item
+            idAcceptBtn.setOnClickListener{onItemClick(context.getString(R.string.accept),chatList[position]._id)}
+            idDeclineBtn.setOnClickListener{onItemClick(context.getString(R.string.decline),chatList[position]._id)}
         }
     }
 }

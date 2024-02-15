@@ -1,6 +1,5 @@
 package com.example.servivet.data.api
 
-import android.telecom.ConnectionRequest
 import com.example.servivet.data.model.accept_booking.request.AcceptBookingRequest
 import com.example.servivet.data.model.accept_booking.response.AcceptBookingResponse
 import com.example.servivet.data.model.add_service.response.AddServiceResponse
@@ -11,7 +10,6 @@ import com.example.servivet.data.model.booking_module.booking_model.request.Rati
 import com.example.servivet.data.model.booking_module.booking_model.respnse.RatingResponseMain
 import com.example.servivet.data.model.booking_module.booking_slot.BookingSlotResponseMain
 import com.example.servivet.data.model.booking_module.booking_summary.response.BookingSummaryResponse
-import com.example.servivet.data.model.booking_module.booking_summary.response.ProviderLeave
 import com.example.servivet.data.model.booking_module.coupon.request.CouponAvalabilityRequest
 import com.example.servivet.data.model.booking_module.coupon.response.CouponResponseMain
 import com.example.servivet.data.model.booking_module.mark_as_complete.MarkAsCompleteRequest
@@ -28,11 +26,12 @@ import com.example.servivet.data.model.current_api.response.CurrentResponse
 
 import com.example.servivet.data.model.edit_profile.response.EditProfileResponse
 import com.example.servivet.data.model.home.response.HomeResponse
-import com.example.servivet.data.model.payment.payment_amount.request.PaymentRequest
 import com.example.servivet.data.model.report_rating.request.ReportRatingRequest
 import com.example.servivet.data.model.common.response.CommonResponse
 import com.example.servivet.data.model.connection.accept_reject.request.AcceptRejectRequest
-import com.example.servivet.data.model.connection.connection_list.responnse.ConnectionResponse
+import com.example.servivet.data.model.connection.connection_list.responnse.ConnectionListResponse
+import com.example.servivet.data.model.connection.connection_request.request.ConnectionRequest
+import com.example.servivet.data.model.connection.connection_request.response.ConnnectionResponse
 import com.example.servivet.data.model.review_ratinng.ReviewRatingResponse
 import com.example.servivet.data.model.save_address.request.SaveAddressRequest
 import com.example.servivet.data.model.save_address.response.SaveAddressResponse
@@ -42,7 +41,6 @@ import com.example.servivet.data.model.service_category_details.request.ServiceC
 import com.example.servivet.data.model.service_category_details.response.ServiceCategoryDetailsResponse
 import com.example.servivet.data.model.service_list.ServiceListResponse
 import com.example.servivet.data.model.service_list.request.ServiceListRequest
-import com.example.servivet.data.model.sold_booking_list.response.SoldBookingListResponse
 import com.example.servivet.data.model.user_profile.response.UserProfileResponse
 import com.example.servivet.data.model.verifyotp.request.VerifyOtpRequest
 import com.example.servivet.data.model.verifyotp.response.VerifyOTPResponse
@@ -156,13 +154,16 @@ interface ApiService {
     suspend fun logoutUser(): CommonResponse
 
     @GET("my/connection")
-    suspend fun connectionListApi(@QueryMap request: HashMap<String, Int>): ConnectionResponse
+    suspend fun connectionListApi(@QueryMap request: HashMap<String, Int>): ConnectionListResponse
 
     @GET("connection/request/list")
-    suspend fun connectionRequestListApi(@QueryMap request: HashMap<String, Int>): ConnectionResponse
+    suspend fun connectionRequestListApi(@QueryMap request: HashMap<String, Int>): ConnectionListResponse
 
     @POST("accept/reject/connection")
     suspend fun acceptRejectApi(@Body request: AcceptRejectRequest): CommonResponse
+
+    @POST("connection/request")
+    suspend fun connectionRequest(@Body request: ConnectionRequest): ConnnectionResponse
 
 
 }

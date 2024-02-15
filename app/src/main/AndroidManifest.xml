@@ -12,6 +12,9 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+
 
 
     <application
@@ -20,7 +23,7 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/servivet_icon_rectangle"
         android:label="@string/app_name"
-        android:name=".utils.ServiVetApplication"
+        android:name=".utils.AppController"
         android:roundIcon="@mipmap/app_icon_round"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"

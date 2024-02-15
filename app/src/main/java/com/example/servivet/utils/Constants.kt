@@ -17,6 +17,19 @@ object Constants {
     const val SECURITY_KEY = "D#5599Beh2$%$#$%MC&^$@#^*&%I"
     var SECURE_HEADER = ""
     var TYPEOFUSERS = "sold"
+    var AGORA_APP_ID = "5fb926599aeb4ba391c29247cc3b6f71"
+    var AGORA_TOKEN = "007eJxTYDDp3SWzb5uimNhB/V+mL5lvLmFi/xjmUq06+8V/76bHa+YoMJimJVkamZlaWiamJpkkJRpbGiYbWRqZmCcnGyeZpZkbKnYuTG4IZGRgnyjPxMgAgSA+D0NBYkFiZWJyfkpqUTEDAwAi+yGx"
+    var CHANNEL_NAME = "papayacoders"
+    var CALL_USER_IMAGE = "calluserimage"
+    var CALL_USER_NAME = "callusernname"
+    var MSG_ID = "msgid"
+    var NO_ANSWER_CALL = "noAnswer"
+    var ACCEPT_CALL = "acceptCall"
+    var REJECT_CALL = "rejectCall"
+    var END_CALL = "endCall"
+    var CURRENT_USER_ID = "currentUserId"
+
+
 
 
 

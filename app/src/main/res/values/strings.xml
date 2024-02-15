@@ -418,6 +418,12 @@
     <string name="profile_fr">profile_Fr</string>
     <string name="add_video">+ Add Video</string>
     <string name="logout">logOut</string>
+    <string name="join_call">joinCall</string>
+    <string name="leave_call">leaveCall</string>
+    <string name="mute_call">muteCall</string>
+    <string name="connected">Connected</string>
+    <string name="callended">callEnded</string>
+    <string name="pop_up">popup</string>
 
 
     <string-array name="select_issue">

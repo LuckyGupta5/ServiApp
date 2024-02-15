@@ -545,7 +545,24 @@
         <action
             android:id="@+id/action_providerProfileFragment_to_myServiceFragment"
             app:destination="@id/myServiceFragment" />
+        <action
+            android:id="@+id/action_providerProfileFragment_to_chattingFragment"
+            app:destination="@id/chattingFragment" />
+
     </fragment>
+    <fragment
+        android:id="@+id/chattingFragment"
+        android:name="com.example.servivet.ui.main.fragment.chat_module.ChattingFragment"
+        android:label="ChattingFragment"
+        tools:layout="@layout/fragment_chatting">
+        <argument
+            android:name="data"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+    </fragment>
+
 
     <!-- <fragment
          android:id="@+id/businessBookingFragment"

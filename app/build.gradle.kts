@@ -132,5 +132,12 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
     implementation ("com.google.firebase:firebase-messaging")
 
+    /*agora*/
+    implementation ("io.agora.rtc:full-sdk:4.0.1")
+    implementation("commons-codec:commons-codec:1.9")
+
+    implementation("androidx.work:work-runtime-ktx:2.7.0")
+
+
 
 }

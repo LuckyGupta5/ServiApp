@@ -38,7 +38,6 @@
             android:fontFamily="@font/poppins_semi_bold"
             android:textColor="@color/black"
             android:textSize="21sp"
-
             android:layout_marginBottom="22dp"
             app:layout_constraintEnd_toStartOf="@+id/idSearch"
             app:layout_constraintStart_toEndOf="@+id/idBack"
@@ -56,6 +55,7 @@
             android:textSize="20sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

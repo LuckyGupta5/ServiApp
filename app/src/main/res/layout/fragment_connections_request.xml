@@ -7,11 +7,11 @@
 
         <variable
             name="click"
-            type="com.example.servivet.ui.main.view_model.ConnectionRequestViewModel.ClickAction" />
+            type="com.example.servivet.ui.main.view_model.ConnectionRequestListViewModel.ClickAction" />
 
         <variable
             name="viewModel"
-            type="com.example.servivet.ui.main.view_model.ConnectionRequestViewModel" />
+            type="com.example.servivet.ui.main.view_model.ConnectionRequestListViewModel" />
 
         <variable
             name="requestAdapter"

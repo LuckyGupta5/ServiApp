@@ -18,7 +18,7 @@ class MyConnectionAdapter(val requireContext: Context, val connectionList: Array
         binding.apply {
             listData = item
             idRemove.setOnClickListener {
-                onItemClick(0, item!!._id)
+                onItemClick(2, item!!._id)
             }
         }
 

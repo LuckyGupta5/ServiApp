@@ -512,8 +512,7 @@ class EditServiceFragment :
     }
 
     private fun selectImage() {
-        val permission: Array<String?> =
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+        val permission: Array<String?> = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
                 arrayOf(Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.CAMERA)
             else
                 arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -568,11 +567,11 @@ class EditServiceFragment :
                         imagePath = getVideoPathFromUri(requireActivity(), imageUri).toString()
                         val fileSize = checkVideoFileSize(imagePath)
 
-                        if(fileSize<100) {
+                        if (fileSize < 100) {
                             mViewModel.isPhotoSelected = true
                             mViewModel.imageListing.add(SimpleImageModel("0", "0", imagePath))
                             mViewModel.addServicesRequest.image.add(imagePath)
-                        }else{
+                        } else {
                         }
                     }
                 } else {

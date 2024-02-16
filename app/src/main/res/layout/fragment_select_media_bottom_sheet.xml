@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="click"
+            type="kotlin.jvm.functions.Function1" />
+
+        <variable
+            name="viewModel"
+            type="com.example.servivet.ui.main.view_model.SureToConfirmViewModel" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        tools:context=".ui.main.bottom_sheet.SuretoConfirmBottomSheet">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/topscroll"
+            android:layout_width="85dp"
+            android:layout_height="3dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="@color/grey_E5E5E5"
+            app:cardCornerRadius="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/myWalletId"
+            android:layout_width="63dp"
+            android:layout_height="63dp"
+            android:layout_marginStart="10sp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/mywalletimg"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topscroll">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/iconalert" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="70dp"
+            android:layout_marginTop="19dp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:gravity="center"
+            android:text="Pick Your Media File"
+            android:textColor="@color/black_2"
+            android:textSize="19dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/myWalletId" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="23dp"
+            android:background="@color/grey_ECECEC"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/buttonLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view">
+
+            <TextView
+                android:id="@+id/idImages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:background="@drawable/white_circle"
+                android:backgroundTint="@color/app_theme"
+                android:drawableTint="@color/white"
+                android:fontFamily="@font/poppins_regular"
+                android:onClick="@{()->click.invoke(0)}"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="10dp"
+                android:text="@string/images"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                app:drawableTopCompat="@drawable/chat_image_icon"
+                app:layout_constraintEnd_toStartOf="@id/idFiles"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/buttonLayout" />
+
+
+            <TextView
+                android:id="@+id/idFiles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:background="@drawable/white_circle"
+                android:backgroundTint="@color/app_theme"
+                android:drawableTint="@color/white"
+                android:fontFamily="@font/poppins_regular"
+                android:onClick="@{()->click.invoke(1)}"
+                android:paddingHorizontal="17dp"
+                android:paddingVertical="10dp"
+                android:text="@string/videos"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                app:drawableTopCompat="@drawable/chat_video_icon"
+                app:layout_constraintEnd_toStartOf="@id/idVideos"
+                app:layout_constraintStart_toEndOf="@id/idImages"
+                app:layout_constraintTop_toTopOf="@+id/buttonLayout" />
+
+
+            <TextView
+                android:id="@+id/idVideos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:background="@drawable/white_circle"
+                android:backgroundTint="@color/app_theme"
+                android:drawableTint="@color/white"
+                android:fontFamily="@font/poppins_regular"
+                android:onClick="@{()->click.invoke(2)}"
+                android:paddingHorizontal="17dp"
+                android:paddingVertical="10dp"
+                android:text="Files"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                app:drawableTopCompat="@drawable/chat_file_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/idFiles"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

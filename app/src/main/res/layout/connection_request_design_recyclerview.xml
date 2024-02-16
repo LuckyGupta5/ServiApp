@@ -33,8 +33,6 @@
             android:ellipsize="end"
             android:fontFamily="@font/poppins_regular"
             android:maxLines="2"
-
-            android:text='@{listData.userDetail.name+" "+@string/ravi_bishnoi_sent_you_a_connections_request}'
             android:textColor="@color/black"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"

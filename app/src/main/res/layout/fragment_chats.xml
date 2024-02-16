@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
 
         <variable
             name="viewMOdel"
             type="com.example.servivet.ui.main.view_model.ChatViewModel" />
+
         <variable
             name="click"
             type="com.example.servivet.ui.main.view_model.ChatViewModel.ClickAction" />
+
         <variable
             name="chatListAdapter"
             type="com.example.servivet.ui.main.adapter.ChatFragmentAdapter" />
@@ -148,7 +151,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/toplayout"
-            android:layout_marginStart="25dp"
             android:adapter="@{chatListAdapter}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/chat_recyclerview_design" />

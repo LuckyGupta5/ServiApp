@@ -1,5 +1,6 @@
 package com.example.servivet.utils
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ActivityManager
@@ -14,6 +15,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.database.Cursor
 import android.graphics.Bitmap
+import android.graphics.Typeface
 import android.location.Address
 import android.location.Geocoder
 import android.net.Uri
@@ -21,7 +23,10 @@ import android.os.Build
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.provider.Settings
+import android.text.Spannable
+import android.text.SpannableString
 import android.text.TextUtils
+import android.text.style.StyleSpan
 import android.util.Log
 import android.view.View
 import android.widget.DatePicker
@@ -33,6 +38,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
 import com.example.servivet.R
 import com.example.servivet.ui.main.activity.MainActivity
@@ -47,8 +53,6 @@ import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import java.io.*
-import java.sql.Timestamp
-import java.text.DateFormat
 import java.text.DecimalFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -56,7 +60,6 @@ import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
-import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
 import java.time.temporal.ChronoUnit
@@ -480,111 +483,9 @@ object CommonUtils {
         Glide.with(view!!).load(image_url).error(R.drawable.flower_img).into(imageView!!)
     }
 
-    fun datePickerNew2(
-        context: Context?, selectedDate: String?, finalListener: CalenderResponseListener<Any?>
-    ) {
-        val mYear: Int
-        val mMonth: Int
-        val mDay: Int
-        val c = Calendar.getInstance()
-        c.add(Calendar.DATE, 0)
-        mYear = c[Calendar.YEAR]
-        mMonth = c[Calendar.MONTH]
-        mDay = c[Calendar.DAY_OF_MONTH]
-        val datePickerDialog = DatePickerDialog(
-            context!!, { view: DatePicker?, year: Int, monthOfYear: Int, dayOfMonth: Int ->
-                var monthOfYear = monthOfYear
-                var day = ""
-                var month = ""
-                day = if (dayOfMonth < 10) {
-                    "0$dayOfMonth"
-                } else {
-                    dayOfMonth.toString()
-                }
-                monthOfYear++
-                month = if (monthOfYear < 10) {
-                    "0$monthOfYear"
-                } else {
-                    monthOfYear.toString()
-                }
-                val calendar: Calendar = GregorianCalendar(year, monthOfYear, dayOfMonth)
-                finalListener.onReceiveResponse("$day-$month-$year")
-                val timestamp = Timestamp(calendar.timeInMillis)
-                finalListener.onDateTimeStamp("$year-$month-$dayOfMonth")
-            }, mYear, mMonth, mDay
-        )
-        if (selectedDate != null && selectedDate != "") {
-            val items1 =
-                selectedDate.split("-".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-            val date1 = items1[0]
-            val month = items1[1]
-            val year = items1[2]
-            datePickerDialog.updateDate(year.toInt(), month.toInt() - 1, date1.toInt())
-        }
-        datePickerDialog.datePicker.minDate = System.currentTimeMillis()
-        // dp.setMinDate(new Date(System.currentTimeMillis() + 2*24*60*60*1000));
-
-//        datePickerDialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-        datePickerDialog.show()
-    }
-
-    fun datePickerNew3(
-        context: Context?, selectedDate: String?, finalListener: CalenderResponseListener<String?>
-    ) {
-        val mYear: Int
-        val mMonth: Int
-        val mDay: Int
-        val c = Calendar.getInstance()
-        c.add(Calendar.DATE, 0)
-        mYear = c[Calendar.YEAR]
-        mMonth = c[Calendar.MONTH]
-        mDay = c[Calendar.DAY_OF_MONTH]
-        val datePickerDialog = DatePickerDialog(
-            context!!, { view: DatePicker?, year: Int, monthOfYear: Int, dayOfMonth: Int ->
-                var day = ""
-                var month = ""
-                day = if (dayOfMonth < 10) {
-                    "0$dayOfMonth"
-                } else {
-                    dayOfMonth.toString()
-                }
-                var strMonth = monthOfYear
-                strMonth++
-                month = if (strMonth!! < 10) {
-                    "0$strMonth"
-                } else {
-                    strMonth.toString()
-                }
-                val calendar: Calendar = GregorianCalendar(year, monthOfYear, dayOfMonth)
-                finalListener.onReceiveResponse("$day-$month-$year")
-                val timestamp = Timestamp(calendar.timeInMillis)
-                finalListener.onDateTimeStamp("$year-$month-$dayOfMonth")
-            }, mYear, mMonth, mDay
-        )
-        if (selectedDate != null && selectedDate != "") {
-            val items1 = selectedDate.split("-").toTypedArray()
-            val date1 = items1[0]
-            val month = items1[1]
-            val year = items1[2]
-            datePickerDialog.updateDate(year.toInt(), month.toInt() - 1, date1.toInt())
-        }
-        datePickerDialog.datePicker.minDate = System.currentTimeMillis() - 1000
-        datePickerDialog.show()
-    }
-
 
     @SuppressLint("SimpleDateFormat")
     fun getDateTimeStampConvert(timestamp: String): String? {
-//        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-//        inputFormat.timeZone = TimeZone.getTimeZone("UTC")
-//        val date: Date? = inputFormat.parse(date)
-//
-//        val outputFormat = SimpleDateFormat("dd MMM, HH:mm")
-//        outputFormat.timeZone = TimeZone.getDefault()
-//
-//        val outputDateString = outputFormat.format(date)
-//        return outputDateString
-
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
         inputFormat.timeZone = TimeZone.getTimeZone("UTC")
 
@@ -616,42 +517,6 @@ object CommonUtils {
     private const val DAY_MILLIS = 24 * HOUR_MILLIS
 
 
-    fun setDate(date: String?): String? {
-        @SuppressLint("SimpleDateFormat") val sdf = SimpleDateFormat("yyyy-MM-dd")
-        @SuppressLint("SimpleDateFormat") val outputFormat = SimpleDateFormat("dd MMM yyyy")
-        sdf.timeZone = TimeZone.getTimeZone("UTC")
-        var dateTimeStamp: Date? = Date()
-        try {
-            dateTimeStamp = sdf.parse(date)
-        } catch (e: ParseException) {
-            e.printStackTrace()
-        }
-        assert(dateTimeStamp != null)
-        return outputFormat.format(dateTimeStamp)
-    }
-
-    fun setDate2(date: String?): String? {
-        @SuppressLint("SimpleDateFormat") val sdf = SimpleDateFormat("dd-mm-yyyy")
-        @SuppressLint("SimpleDateFormat") val outputFormat = SimpleDateFormat("yyyy-mm-dd")
-        sdf.timeZone = TimeZone.getTimeZone("UTC")
-        var dateTimeStamp: Date? = Date()
-        try {
-            dateTimeStamp = sdf.parse(date)
-        } catch (e: ParseException) {
-            e.printStackTrace()
-        }
-        assert(dateTimeStamp != null)
-        return outputFormat.format(dateTimeStamp)
-    }
-
-    fun convertDateFormate(date: String): String {
-        val inputFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd")
-        val outputFormat: DateFormat = SimpleDateFormat("dd MMM yyyy")
-        val date: Date = inputFormat.parse(date)
-        val outputDateStr: String = outputFormat.format(date)
-        return outputDateStr
-    }
-
     @SuppressLint("SimpleDateFormat")
     @Throws(ParseException::class)
     fun formatDate(date: String?, initDateFormat: String?, endDateFormat: String?): String? {
@@ -660,32 +525,8 @@ object CommonUtils {
         return formatter.format(initDate!!)
     }
 
-    interface CalenderResponseListener<T> {
-        fun onReceiveResponse(response: T)
-        fun onTimeResponse(response: T)
-        fun onDateTimeStamp(response: T)
-    }
 
-
-    fun getRealPathFromDocumentUri(context: Context, uri: Uri): String? {/*        var filePath = ""
-                val p = Pattern.compile("(\\d+)$")
-                val m = p.matcher(uri.toString())
-                if (!m.find()) {
-                    return filePath
-                }
-                val imgId = m.group()
-                val column = arrayOf(MediaStore.Images.Media.DATA)
-                val sel = MediaStore.Images.Media._ID + "=?"
-                val cursor = context.contentResolver.query(
-                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI, column, sel, arrayOf(imgId), null
-                )
-                val columnIndex = cursor!!.getColumnIndex(column[0])
-                if (cursor.moveToFirst()) {
-                    filePath = cursor.getString(columnIndex)
-                }
-                cursor.close()
-                return filePath*/
-
+    fun getRealPathFromDocumentUri(context: Context, uri: Uri): String? {
         uri ?: return null
         uri.path ?: return null
 
@@ -876,25 +717,6 @@ object CommonUtils {
         return null
     }
 
-    /*    fun getImageUri(inContext: Context, inImage: Bitmap): File {
-
-            //create a file to write bitmap data
-            val f = File(inContext.cacheDir, "filename.jpg")
-            f.createNewFile()
-
-            //Convert bitmap to byte array
-            val bitmap = inImage
-            val bos = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.PNG, 0, bos)
-            val bitmapdata = bos.toByteArray()
-
-            //write the bytes in file
-            val fos = FileOutputStream(f)
-            fos.write(bitmapdata)
-            fos.flush()
-            fos.close()
-            return f
-        }*/
 
     fun openShareBottomSheet(context: Activity, uri: Uri) {
         val intent = Intent(Intent.ACTION_SEND)
@@ -1050,26 +872,21 @@ object CommonUtils {
 
             1 -> {
                 return "Before entering the apartment"
-
             }
 
             2 -> {
-
                 return "After entering the apartment"
             }
 
             3 -> {
                 return "Under process"
-
             }
 
             4 -> {
-
                 return "Before leaving the apartment"
             }
 
             5 -> {
-
                 return "After leaving the apartment"
             }
         }
@@ -1234,10 +1051,15 @@ fun convertDateTimeFormat(inputDateTime: String): String {
     // Format the parsed date-time into the desired output format
     return parsedDateTime.format(outputFormatter)
 }
+
 fun getVideoPathFromUri(context: Context, videoUri: Uri): String? {
     var path: String? = null
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && DocumentsContract.isDocumentUri(context, videoUri)) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && DocumentsContract.isDocumentUri(
+            context,
+            videoUri
+        )
+    ) {
         // Document URI (e.g., content://com.android.providers.media.documents/document/video:12345)
         val documentId = DocumentsContract.getDocumentId(videoUri)
         val id = documentId.split(":")[1]
@@ -1249,7 +1071,8 @@ fun getVideoPathFromUri(context: Context, videoUri: Uri): String? {
         val projection = arrayOf(column)
 
         val contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI
-        val cursor: Cursor? = context.contentResolver.query(contentUri, projection, selection, selectionArgs, null)
+        val cursor: Cursor? =
+            context.contentResolver.query(contentUri, projection, selection, selectionArgs, null)
 
         cursor?.use {
             if (it.moveToFirst()) {
@@ -1300,7 +1123,7 @@ fun checkVideoFileSize(videoFilePath: String): Long {
 
     // Log or print the file size
     println("Video File Size: $fileSizeInMB MB")
-    Log.e("TAG", "checkVideoFileSize: $fileSizeInMB", )
+    Log.e("TAG", "checkVideoFileSize: $fileSizeInMB")
 
     return fileSizeInMB
 }
@@ -1309,9 +1132,11 @@ fun formatDecimalNumber(inputNumber: Double): String {
     val decimalFormat = DecimalFormat("#.#")
     return decimalFormat.format(inputNumber)
 }
+
 fun isMiUi(): Boolean {
     return !TextUtils.isEmpty(getSystemProperty("ro.miui.ui.version.name"))
 }
+
 fun getSystemProperty(propName: String): String? {
     val line: String
     var input: BufferedReader? = null
@@ -1356,6 +1181,7 @@ fun isBluetoothConnectd(): Boolean {
         BluetoothProfile.HEADSET
     ))
 }
+
 fun isAppOnForeground(context: Context): Boolean {
     val appPackageName = context.packageName.toString()
     val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
@@ -1368,6 +1194,35 @@ fun isAppOnForeground(context: Context): Boolean {
     return false
 }
 
+
+fun setSpannable(data1: String?, data2: String): Spannable {
+    val fullText = "$data1 $data2"
+    val spannable = SpannableString(fullText)
+    spannable.setSpan(
+        StyleSpan(Typeface.BOLD),
+        0,
+        data1!!.length,
+        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+    )
+    spannable.setSpan(
+        StyleSpan(Typeface.NORMAL),
+        data1.length + 1,
+        fullText.length,
+        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+    )
+    return spannable
+}
+
+
+fun checkMediaPermission(requireActivity: FragmentActivity):Boolean {
+    val permission: Array<String?> =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arrayOf(Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.CAMERA)
+        } else {
+            arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
+        }
+    return CommonUtils.requestPermissions(requireActivity, 100, permission)
+}
 
 
 

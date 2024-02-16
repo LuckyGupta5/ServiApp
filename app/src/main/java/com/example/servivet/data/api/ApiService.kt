@@ -20,6 +20,7 @@ import com.example.servivet.data.model.business_verification_api.response.Busine
 
 import com.example.servivet.data.model.cancel_booking.request.CancelBookingRequest
 import com.example.servivet.data.model.cancel_booking.response.CancelBookingResponse
+import com.example.servivet.data.model.chat_models.chat_media.ChatMediaResponse
 
 import com.example.servivet.data.model.common.request.CommonRequest
 import com.example.servivet.data.model.current_api.response.CurrentResponse
@@ -69,6 +70,8 @@ interface ApiService {
 
     @POST("addService")
     suspend fun addServices(@Body addServicesRequest: MultipartBody): AddServiceResponse
+    @POST("uploadChatFile")
+    suspend fun uploadChatFileApi(@Body addServicesRequest: MultipartBody): ChatMediaResponse
 
     @POST("editService")
     suspend fun editServices(@Body addServicesRequest: MultipartBody): AddServiceResponse

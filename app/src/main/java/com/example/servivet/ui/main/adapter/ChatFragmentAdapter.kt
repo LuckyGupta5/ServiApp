@@ -1,11 +1,16 @@
 package com.example.servivet.ui.main.adapter
 
 import android.content.Context
+import android.se.omapi.Session
+import android.util.Log
+import android.view.View
 import androidx.core.view.isVisible
 import com.example.servivet.R
 import com.example.servivet.data.model.chat_models.request_list.response.Chatlist
+import com.example.servivet.data.model.connection.connection_list.responnse.UserDetail
 import com.example.servivet.databinding.ChatRecyclerviewDesignBinding
 import com.example.servivet.ui.base.BaseAdapter
+import com.google.gson.Gson
 
 class ChatFragmentAdapter(
     var context: Context,
@@ -23,11 +28,41 @@ class ChatFragmentAdapter(
 
 
     override fun bind(binding: ChatRecyclerviewDesignBinding, item: Chatlist?, position: Int) {
+
+        val isDeletedByContainsId = item?.deletedBy?.any { id ->
+            id == com.example.servivet.utils.Session.userDetails._id
+        } ?: false
+
         binding.apply {
             idButtonContainer.isVisible = !check
             listData = item
-            idAcceptBtn.setOnClickListener{onItemClick(context.getString(R.string.accept),chatList[position]._id)}
-            idDeclineBtn.setOnClickListener{onItemClick(context.getString(R.string.decline),chatList[position]._id)}
+            idContainer.setOnClickListener {
+                onItemClick(
+                    context.getString(R.string.container),
+                    Gson().toJson(chatList[position])
+                )
+            }
+            idAcceptBtn.setOnClickListener {
+                onItemClick(
+                    context.getString(R.string.accept),
+                    chatList[position]._id
+                )
+            }
+            idDeclineBtn.setOnClickListener {
+                onItemClick(
+                    context.getString(R.string.decline),
+                    chatList[position]._id
+                )
+            }
+
+            if (isDeletedByContainsId) {
+                binding.idLastMsg.visibility = View.INVISIBLE
+            } else {
+                binding.idLastMsg.visibility = View.VISIBLE
+
+            }
+
+
         }
     }
 }

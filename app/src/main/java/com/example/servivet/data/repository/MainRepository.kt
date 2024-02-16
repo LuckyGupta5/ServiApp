@@ -31,8 +31,8 @@ class MainRepository(private val apiService: ApiService) {
     suspend fun homeApi() = apiService.home()
     suspend fun currentApi() = apiService.current()
 
-    suspend fun addServicesApi(addServicesRequest: MultipartBody) =
-        apiService.addServices(addServicesRequest)
+    suspend fun addServicesApi(addServicesRequest: MultipartBody) = apiService.addServices(addServicesRequest)
+    suspend fun uploadChatFileApi(request: MultipartBody) = apiService.uploadChatFileApi(request)
 
     suspend fun editServicesApi(addServicesRequest: MultipartBody) =
         apiService.editServices(addServicesRequest)

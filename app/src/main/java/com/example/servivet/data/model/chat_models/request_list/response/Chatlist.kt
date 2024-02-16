@@ -9,6 +9,7 @@ data class Chatlist(
     val blockUser: List<Any>,
     val createdAt: String,
     val groupMember: List<Any>,
+    val deletedBy: List<String>,
     val isAccepeted: Boolean,
     val isGroupChat: Boolean,
     val lastMessage: String,

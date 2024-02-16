@@ -240,10 +240,7 @@ class AddServiceViewModel() : BaseViewModel() {
             if (isPhotoSelected) {
                 for (i in addServicesRequest.image!!.indices) {
                     val file = File(addServicesRequest.image!![i])
-                    builder.addFormDataPart(
-                        "image",
-                        file.name,
-                        RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
+                    builder.addFormDataPart("image", file.name, RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
                     )
                 }
 

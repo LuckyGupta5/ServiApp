@@ -45,7 +45,6 @@ class ChatsFragment : BaseFragment<FragmentChatsBinding, ChatViewModel>(R.layout
         }
         setBack()
         initSocket()
-
     }
 
 
@@ -65,6 +64,7 @@ class ChatsFragment : BaseFragment<FragmentChatsBinding, ChatViewModel>(R.layout
 
     private fun initSocket() {
         try {
+            SocketManager.connect()
             socket = SocketManager.getSocket()
             val data = JSONObject()
             data.put("isRequestedChatList", false)
@@ -104,7 +104,13 @@ class ChatsFragment : BaseFragment<FragmentChatsBinding, ChatViewModel>(R.layout
     private val onItemClick: (String, String) -> Unit = { identifires, data ->
 
         when (identifires) {
-            getString(R.string.decline) -> {
+            getString(R.string.container) -> {
+                findNavController().navigate(
+                    ChatsFragmentDirections.actionChatFragmentToChattingFragment(
+                        data,
+                        getString(R.string.chatfragment)
+                    )
+                )
 
             }
 

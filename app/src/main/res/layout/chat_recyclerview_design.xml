@@ -9,9 +9,15 @@
             name="listData"
             type="com.example.servivet.data.model.chat_models.request_list.response.Chatlist" />
 
+        <variable
+            name="userDetails"
+            type="com.example.servivet.data.model.current_api.response.CurrentUser" />
+
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/idContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
@@ -23,7 +29,7 @@
             android:layout_width="62dp"
             android:layout_height="62dp"
             android:layout_centerVertical="true"
-            android:imageViewUrl="@{listData.senderId.image}"
+            android:imageViewUrl="@{userDetails.equals(listData.senderId._id)?listData.receiverId.image:listData.senderId.image}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,10 +40,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/poppins_medium"
+            android:hint="dadda"
             android:maxLines="1"
-            android:text="@{listData.senderId.name}"
+            android:text="@{userDetails.equals(listData.senderId._id)?listData.receiverId.name:listData.senderId.name}"
             android:textColor="@color/black"
             android:textSize="17sp"
+            app:layout_constraintEnd_toStartOf="@id/idDate"
             app:layout_constraintStart_toEndOf="@+id/idProfileImage"
             app:layout_constraintTop_toTopOf="@id/idProfileImage" />
 
@@ -48,10 +56,12 @@
             android:layout_marginStart="10dp"
             android:ellipsize="end"
             android:fontFamily="@font/poppins_regular"
+            android:hint="dadda"
             android:maxLines="1"
             android:text="@{listData.lastMessage}"
             android:textColor="@color/black"
             android:textSize="13sp"
+            app:layout_constraintEnd_toStartOf="@id/idDate"
             app:layout_constraintStart_toEndOf="@id/idProfileImage"
             app:layout_constraintTop_toBottomOf="@+id/idName" />
 
@@ -61,14 +71,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/poppins_regular"
             android:text="@string/today"
             android:textColor="@color/grey_818181"
             android:textSize="11dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/idName" />
 
         <LinearLayout
             android:id="@+id/idButtonContainer"

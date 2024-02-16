@@ -14,18 +14,18 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object  RetrofitBuilder
-{
-    private const val DEVELOPMENT_BASE_URL="http://13.235.137.221:3476/mobileApi/"
+object RetrofitBuilder {
+    private const val DEVELOPMENT_BASE_URL = "http://13.235.137.221:3476/mobileApi/"
+   //  private const val DEVELOPMENT_BASE_URL="https://c5e6-122-176-117-180.ngrok-free.app/mobileApi/"
 
 
     private fun getRetrofit(): Retrofit {
-    return Retrofit.Builder()
-        .baseUrl(DEVELOPMENT_BASE_URL)
-        .client(httpClient)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build() //Doesn't require the adapter
-}
+        return Retrofit.Builder()
+            .baseUrl(DEVELOPMENT_BASE_URL)
+            .client(httpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build() //Doesn't require the adapter
+    }
 
     private val httpClient: OkHttpClient =
         OkHttpClient.Builder().connectTimeout(10, TimeUnit.SECONDS)
@@ -40,9 +40,9 @@ object  RetrofitBuilder
                 Hawk.get<String>(TOKEN, null)?.let {
                     ongoing.addHeader("Authorization", it)
                 }
-                if(SECURE_HEADER.isNotEmpty()){
+                if (SECURE_HEADER.isNotEmpty()) {
                     ongoing.addHeader("requestfor", SECURE_HEADER)
-                    Log.e("TAG", "checHeader: true ", )
+                    Log.e("TAG", "checHeader: true ")
                 }
                 chain.proceed(ongoing.build())
             }).addInterceptor(HttpLoggingInterceptor().apply {

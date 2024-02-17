@@ -7,7 +7,7 @@ data class ChatMessage(
     val __v: Int,
     val _id: String,
     val blockUser: List<Any>,
-    val createdAt: String,
+    var createdAt: String,
     val deletedBy: List<Any>,
     val `file`: ArrayList<String>,
     val message: String,
@@ -16,5 +16,6 @@ data class ChatMessage(
     val seenBy: List<String>,
     val senderId: SenderId,
     val status: Int,
-    val updatedAt: String
+    val updatedAt: String,
+    var containMP4:Boolean
 ):Serializable,ListAdapterItem

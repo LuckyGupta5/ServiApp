@@ -567,6 +567,9 @@
         <action
             android:id="@+id/action_chattingFragment_to_selectMediaBottomSheet"
             app:destination="@id/selectMediaBottomSheet" />
+        <action
+            android:id="@+id/action_chattingFragment_to_imageVideoViewFragment"
+            app:destination="@id/imageVideoViewFragment" />
     </fragment>
     <dialog
         android:id="@+id/selectMediaBottomSheet"

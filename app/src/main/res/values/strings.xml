@@ -433,6 +433,14 @@
     <string name="media_size_check">Media Size Must be Less than 100 MB</string>
 
 
+    <string name="weeks">weeks</string>
+    <string name="months">month</string>
+    <string name="years">years</string>
+    <string name="min">min</string>
+    <string name="hour">hour</string>
+    <string name="minute">minute</string>
+
+
     <string-array name="select_issue">
         <item>Select Issue</item>
         <item>Item 1</item>

@@ -7,7 +7,7 @@ data class Chatlist(
     val __v: Int,
     val _id: String,
     val blockUser: List<Any>,
-    val createdAt: String,
+    var createdAt: String,
     val groupMember: List<Any>,
     val deletedBy: List<String>,
     val isAccepeted: Boolean,
@@ -16,6 +16,8 @@ data class Chatlist(
     val messageType: Int,
     val receiverId: ReceiverId,
     val senderId: SenderId,
+    val seenBy:ArrayList<String>,
     val status: Int,
-    val updatedAt: String
+    val updatedAt: String,
+    var isSeenBy:Boolean
 ): Serializable, ListAdapterItem

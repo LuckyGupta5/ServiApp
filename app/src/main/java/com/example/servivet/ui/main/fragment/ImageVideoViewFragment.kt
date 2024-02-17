@@ -42,18 +42,6 @@ class ImageVideoViewFragment() :
         initAdapter()
     }
 
-    private fun initAdapter() {
-
-
-        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.idMediaRecycle.layoutManager = layoutManager
-        val snapHelper = PagerSnapHelper()
-        snapHelper.attachToRecyclerView(binding.idMediaRecycle)
-        mediaAdapter = MediaAdapter(createMediaItemList(list), requireContext())
-        binding.idMediaRecycle.adapter = mediaAdapter
-            binding.idMediaRecycle.scrollToPosition(mediaList.position)
-    }
-
     override fun setupObservers() {
     }
 
@@ -67,9 +55,30 @@ class ImageVideoViewFragment() :
     }
 
     private fun getMediaList() {
-        val data = Gson().fromJson(mediaList.data, Array<String>::class.java)
-        list.addAll(data)
+        when(mediaList.from){
+            getString(R.string.servicedetails)->{
+                val data = Gson().fromJson(mediaList.data, Array<String>::class.java)
+                list.addAll(data)
+            }
 
+            getString(R.string.chatfragment)->{
+                val data = Gson().fromJson(mediaList.data, Array<String>::class.java)
+                list.addAll(data)
+            }
+        }
+
+
+    }
+
+    private fun initAdapter() {
+
+        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.idMediaRecycle.layoutManager = layoutManager
+        val snapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(binding.idMediaRecycle)
+        mediaAdapter = MediaAdapter(createMediaItemList(list), requireContext())
+        binding.idMediaRecycle.adapter = mediaAdapter
+        binding.idMediaRecycle.scrollToPosition(mediaList.position)
     }
 
     private fun createMediaItemList(urlList: ArrayList<String>): List<MediaItem> {

@@ -74,7 +74,7 @@ class ChatsFragment : BaseFragment<FragmentChatsBinding, ChatViewModel>(R.layout
                     requireActivity().runOnUiThread {
                         val providerData = args[0] as JSONObject
                         try {
-                            Log.e("TAG", "checkData123:${providerData} ")
+                           // Log.e("TAG", "checkData123:${providerData} ")
                             chatListResponse = Gson().fromJson(
                                 JSONArray().put(providerData)[0].toString(),
                                 ChatListResponse::class.java
@@ -82,6 +82,7 @@ class ChatsFragment : BaseFragment<FragmentChatsBinding, ChatViewModel>(R.layout
                             chatList.clear()
                             chatList.addAll(chatListResponse.result.chatlist)
                             initChatAdapter()
+                            socket.off("chatList")
 
 
                         } catch (ex: JSONException) {

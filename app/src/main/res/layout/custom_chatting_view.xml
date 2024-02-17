@@ -4,6 +4,15 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="messageData"
+            type="com.example.servivet.data.model.chat_models.chat_list.ChatMessage" />
+
+        <variable
+            name="userDetails"
+            type="com.example.servivet.data.model.current_api.response.CurrentUser" />
     </data>
 
     <RelativeLayout
@@ -17,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="100dp"
-            android:visibility="visible">
+            android:visibility="@{messageData.senderId._id.equals(userDetails._id)?View.GONE:View.VISIBLE}">
 
             <RelativeLayout
                 android:id="@+id/idReceiverMediaContainer"
@@ -42,26 +51,35 @@
                     android:background="@drawable/reciever_drawable"
                     android:fontFamily="@font/poppins_medium"
                     android:paddingHorizontal="23dp"
-                    android:visibility="gone"
                     android:paddingVertical="15dp"
-                    android:text="hii good to see you"
+                    android:text="@{messageData.message}"
                     android:textColor="@color/black"
-                    android:textSize="13dp" />
+                    android:textSize="13dp"
+                    android:visibility="@{messageData.messageType==1?View.VISIBLE:View.GONE}" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/idMedia"
                     android:layout_width="196dp"
                     android:layout_height="133dp"
                     android:layout_margin="10dp"
-                    android:visibility="visible"
+                    android:visibility="@{messageData.messageType==1?View.GONE:View.VISIBLE}"
                     app:cardCornerRadius="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:elevation="1dp"
+                        android:src="@android:drawable/ic_media_play"
+                        android:visibility="@{messageData.containMP4?View.VISIBLE:View.GONE}" />
 
                     <ImageView
                         android:id="@+id/idReceiverImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:imageViewUrl='@{messageData.file.isEmpty?"":messageData.file.get(0)}'
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/banner_image" />
+                         />
                 </androidx.cardview.widget.CardView>
 
 
@@ -73,9 +91,12 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/idReceiverMediaContainer"
                 android:layout_alignEnd="@id/idReceiverMediaContainer"
-                android:layout_margin="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="12:30pm"
+                android:text="@{messageData.createdAt}"
                 android:textColor="@color/black"
                 android:textSize="11sp" />
         </RelativeLayout>
@@ -87,7 +108,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/idReceiverLayout"
             android:layout_alignParentEnd="true"
-            android:visibility="visible">
+            android:visibility="@{messageData.senderId._id.equals(userDetails._id)?View.VISIBLE:View.GONE}">
+            >
 
             <RelativeLayout
                 android:id="@+id/idTextChatSenderContainer"
@@ -104,10 +126,10 @@
                     android:fontFamily="@font/poppins_medium"
                     android:paddingHorizontal="23dp"
                     android:paddingVertical="15dp"
-                    android:text="same here "
+                    android:text="@{messageData.message}"
                     android:textColor="@color/white"
                     android:textSize="13dp"
-                    android:visibility="gone" />
+                    android:visibility="@{messageData.messageType==1?View.VISIBLE:View.GONE}" />
 
 
                 <androidx.cardview.widget.CardView
@@ -115,15 +137,24 @@
                     android:layout_width="196dp"
                     android:layout_height="133dp"
                     android:layout_margin="10dp"
-                    android:visibility="visible"
+                    android:visibility="@{messageData.messageType==1?View.GONE:View.VISIBLE}"
                     app:cardCornerRadius="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:elevation="1dp"
+                        android:src="@android:drawable/ic_media_play"
+                        android:visibility="@{messageData.containMP4?View.VISIBLE:View.GONE}" />
 
                     <ImageView
                         android:id="@+id/idSenderImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:imageViewUrl='@{messageData.file.isEmpty?"":messageData.file.get(0)}'
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/banner_image" />
+                        />
                 </androidx.cardview.widget.CardView>
 
             </RelativeLayout>
@@ -139,7 +170,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="12:30 PM"
+                android:text="@{messageData.createdAt}"
                 android:textColor="@color/black"
                 android:textSize="11sp" />
         </RelativeLayout>

@@ -1,11 +1,8 @@
 package com.example.servivet.ui.main.fragment.chat_module
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.Dialog
 import android.content.Intent
-import android.os.Build
 import android.util.Log
 import android.widget.PopupMenu
 import androidx.activity.result.ActivityResult
@@ -18,6 +15,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
 import com.example.servivet.data.model.chat_models.chat_list.ChatMessage
 import com.example.servivet.data.model.chat_models.chat_list.ChattingListResponse
+import com.example.servivet.data.model.chat_models.initiate_chat.InitiateChatResponse
 import com.example.servivet.data.model.chat_models.request_list.response.Chatlist
 import com.example.servivet.data.model.user_profile.response.UserProfile
 import com.example.servivet.databinding.FragmentChattingBinding
@@ -47,25 +45,25 @@ class ChattingFragment :
     private lateinit var socket: Socket
     private val argumentData: ChattingFragmentArgs by navArgs()
     private lateinit var chatListResponse: ChattingListResponse
+    private lateinit var initateChatResponse: InitiateChatResponse
     private lateinit var profileData: UserProfile
     private lateinit var chatListData: Chatlist
     private var isBlocked = false
     private lateinit var roomId: String
     private lateinit var recieverId: String
     private lateinit var type: String
-    private var imagerequestcode: Int = 0
-    private var dialog: Dialog? = null
     private var imagePath: String = ""
     private var chattingList = ArrayList<ChatMessage>()
     private var mediaList: ArrayList<String> = ArrayList()
     private var checkMediaList: ArrayList<String> = ArrayList()
+    private var typeOfMessage = 1
     override fun isNetworkAvailable(boolean: Boolean) {
 
     }
 
     override fun setupViewModel() {
         binding.apply {
-            lifecycleOwner = viewLifecycleOwner
+           // lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
             binding.clickEvents = ::onClick
 
@@ -75,8 +73,6 @@ class ChattingFragment :
     override fun setupViews() {
         checkRoomIdIsEmpty()
         bottomSheetCallBack()
-
-
     }
 
 
@@ -84,20 +80,18 @@ class ChattingFragment :
         when (argumentData.from) {
             getString(R.string.provider_profile) -> {
                 profileData = Gson().fromJson(argumentData.data, UserProfile::class.java)
+                roomId = profileData.roomId
+                recieverId = profileData._id
+                binding.idUserName.text = profileData.name
+
                 if (profileData.roomId.isNotEmpty()) {
-                    roomId = profileData.roomId
-                    recieverId = profileData._id
-                    binding.idUserName.text = profileData.name
                     initChatListSocket()
                 }
             }
 
             getString(R.string.chatfragment) -> {
                 chatListData = Gson().fromJson(argumentData.data, Chatlist::class.java)
-                if (chatListData._id.isNotEmpty()) {
                     roomId = chatListData._id
-                    //  binding.idUserName.text = chatListData.receiverId.name
-
                     if (chatListData.senderId._id == Session.userDetails._id) {
                         binding.idUserName.text = chatListData.receiverId.name
                         recieverId = chatListData.receiverId._id
@@ -106,8 +100,10 @@ class ChattingFragment :
                         binding.idUserName.text = chatListData.senderId.name
                         recieverId = chatListData.senderId._id
                     }
+                if(roomId.isNotEmpty()) {
                     initChatListSocket()
                 }
+
             }
 
         }
@@ -121,6 +117,8 @@ class ChattingFragment :
             }
 
             getString(R.string.message) -> {
+                binding.idUploadImageCard.isVisible = false
+
                 if (roomId.isEmpty()) {
                     initInitiateChatSocket()
                 } else {
@@ -201,16 +199,21 @@ class ChattingFragment :
             socket = SocketManager.getSocket()
             val data = JSONObject()
             data.put("receiverId", profileData._id)
-            data.put("messageType", 2)
+            data.put("messageType", typeOfMessage)
             data.put("message", binding.idMessage.text.toString())
-            // data.put("file", true)
+            data.put("file", Gson().toJson(mediaList))
             socket.emit("initiateChat", data)
             socket.on("getRoomId", fun(args: Array<Any?>) {
                 if (isAdded) {
                     requireActivity().runOnUiThread {
                         val initChatData = args[0] as JSONObject
                         try {
-                            Log.e("TAG", "initChatData:${initChatData} ")
+                            Log.e("TAG", "initChatDatafirst:${initChatData} ")
+                            initateChatResponse = Gson().fromJson(
+                                JSONArray().put(initChatData)[0].toString(),
+                                InitiateChatResponse::class.java
+                            )
+                            roomId = initateChatResponse.result.roomDetail._id
 
                         } catch (ex: JSONException) {
                             ex.printStackTrace()
@@ -274,17 +277,19 @@ class ChattingFragment :
     }
 
     private fun initSendMessageEvent() {
-        if (binding.idMessage.text.toString().trim() == "") {
-            Log.e("TAG", "initSesdsdndMessageEvent: ${Gson().toJson(mediaList)}")
+        if (binding.idMessage.text.toString().trim() != "") {
+            Log.e("TAG", "initSendMessageEvent: ${Gson().toJson(mediaList)}")
             val data = JSONObject()
             try {
                 data.put("receiverId", recieverId)
                 data.put("roomId", roomId)
-                data.put("messageType", 2)
+                data.put("messageType", typeOfMessage)
                 data.put("message", binding.idMessage.text.toString())
                 data.put("file", Gson().toJson(mediaList))
                 socket.emit("sendMessage", data)
                 binding.idMessage.setText("")
+                typeOfMessage = 1
+                mediaList.clear()
                 Log.d("TAG", "sentMessage: ${Gson().toJson(data)}")
 
             } catch (ex: JSONException) {
@@ -313,7 +318,6 @@ class ChattingFragment :
                             initChattingAdapter()
                             binding.idChatRecycle.scrollToPosition(chattingList.size - 1)
                             socket.off("receiveMessages")
-
 
                         } catch (ex: JSONException) {
                             ex.printStackTrace()
@@ -350,7 +354,7 @@ class ChattingFragment :
     }
 
     private fun initChattingAdapter() {
-        binding.chattingAdapter = ChattingAdapter(requireContext(), chattingList)
+        binding.chattingAdapter = ChattingAdapter(requireContext(), chattingList,onItemClick)
     }
 
     override fun setupObservers() {
@@ -367,7 +371,8 @@ class ChattingFragment :
                             mediaList.clear()
                             mediaList.addAll(it.data.result.uploadImage)
                             binding.uploadFileData = it.data.result
-                            binding.idUploadImageCard.isVisible= true
+                            binding.idMessage.setText(Gson().toJson(mediaList))
+                            binding.idUploadImageCard.isVisible = true
 
 
                         }
@@ -422,14 +427,18 @@ class ChattingFragment :
         when (type) {
             getString(R.string.videos) -> {
                 intent.type = "video/*"
+                typeOfMessage = 2
             }
 
             getString(R.string.image) -> {
                 intent.type = "image/*"
+                typeOfMessage = 5
             }
 
             getString(R.string.files) -> {
                 intent.type = "application/pdf"
+                // intent.type = "*/*"
+                typeOfMessage = 4
             }
         }
         intent.action = Intent.ACTION_GET_CONTENT
@@ -443,7 +452,7 @@ class ChattingFragment :
             if (result.resultCode == Activity.RESULT_OK) {
                 val data = result.data
                 checkMediaList.clear()
-                binding.idUploadImageCard.isVisible= false
+                binding.idUploadImageCard.isVisible = false
                 if (data!!.clipData != null) {
                     for (i in 0 until data.clipData!!.itemCount) {
                         val imageUri = data.clipData!!.getItemAt(i).uri
@@ -473,6 +482,16 @@ class ChattingFragment :
 
             }
         }
+
+    private val onItemClick: (Int, String) -> Unit = { position, data ->
+        when (position) {
+            0-> {
+                findNavController().navigate(ChattingFragmentDirections.actionChattingFragmentToImageVideoViewFragment(data,getString(R.string.chatfragment), position))
+
+            }
+        }
+
+    }
 
 
 }

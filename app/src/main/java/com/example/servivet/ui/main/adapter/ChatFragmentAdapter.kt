@@ -10,6 +10,7 @@ import com.example.servivet.data.model.chat_models.request_list.response.Chatlis
 import com.example.servivet.data.model.connection.connection_list.responnse.UserDetail
 import com.example.servivet.databinding.ChatRecyclerviewDesignBinding
 import com.example.servivet.ui.base.BaseAdapter
+import com.example.servivet.utils.dateDifferenceExample
 import com.google.gson.Gson
 
 class ChatFragmentAdapter(
@@ -33,21 +34,19 @@ class ChatFragmentAdapter(
             id == com.example.servivet.utils.Session.userDetails._id
         } ?: false
 
+        val isSeenBy = item?.seenBy?.any { id ->
+            id == com.example.servivet.utils.Session.userDetails._id
+        } ?: false
+
+        item?.createdAt = dateDifferenceExample(context,item?.createdAt)?:""
+
         binding.apply {
+            item?.isSeenBy = isSeenBy
             idButtonContainer.isVisible = !check
             listData = item
-            idContainer.setOnClickListener {
-                onItemClick(
-                    context.getString(R.string.container),
-                    Gson().toJson(chatList[position])
-                )
-            }
-            idAcceptBtn.setOnClickListener {
-                onItemClick(
-                    context.getString(R.string.accept),
-                    chatList[position]._id
-                )
-            }
+            userDetails = com.example.servivet.utils.Session.userDetails
+            idContainer.setOnClickListener { onItemClick(context.getString(R.string.container), Gson().toJson(chatList[position])) }
+            idAcceptBtn.setOnClickListener { onItemClick(context.getString(R.string.accept), chatList[position]._id) }
             idDeclineBtn.setOnClickListener {
                 onItemClick(
                     context.getString(R.string.decline),
@@ -59,7 +58,6 @@ class ChatFragmentAdapter(
                 binding.idLastMsg.visibility = View.INVISIBLE
             } else {
                 binding.idLastMsg.visibility = View.VISIBLE
-
             }
 
 

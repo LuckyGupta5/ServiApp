@@ -327,16 +327,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         socket.emit("online",data)
         socket.on("online", fun(args:Array<Any?>){
             if(isAdded){
-                requireActivity().runOnUiThread{
-                    val onlineData = args[0] as JSONObject
-                    try {
-
-                    }
-                    catch (ex:JSONException){
-                        ex.printStackTrace()
-                    }
-
-                }
+//                requireActivity().runOnUiThread{
+//                    val onlineData = args[0] as JSONObject
+//                    try {
+//
+//                    }
+//                    catch (ex:JSONException){
+//                        ex.printStackTrace()
+//                    }
+//
+//                }
             }
         })
 

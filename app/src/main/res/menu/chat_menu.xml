@@ -6,4 +6,8 @@
     <item
         android:id="@+id/idDeleteChat"
         android:title="@string/delete_chat" />
+
+    <item
+        android:id="@+id/idCall"
+        android:title="@string/call" />
 </menu>

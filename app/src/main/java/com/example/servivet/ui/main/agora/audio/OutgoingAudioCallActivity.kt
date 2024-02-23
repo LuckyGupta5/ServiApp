@@ -16,10 +16,14 @@ import android.widget.Chronometer
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.navArgs
 import com.example.servivet.R
+import com.example.servivet.data.model.call_module.video_call.VideoCallResponse
 import com.example.servivet.databinding.ActivityOutgoingAudioCallBinding
 import com.example.servivet.ui.base.BaseActivity
 import com.example.servivet.ui.main.agora.SoundPoolManager
+import com.example.servivet.ui.main.agora.video.OutgoingVideoCallActivityArgs
+import com.example.servivet.utils.AppStateLiveData
 import com.example.servivet.utils.Constants.AGORA_APP_ID
 import com.example.servivet.utils.Constants.AGORA_TOKEN
 import com.example.servivet.utils.Constants.CALL_USER_IMAGE
@@ -29,13 +33,12 @@ import com.example.servivet.utils.Constants.CURRENT_USER_ID
 import com.example.servivet.utils.Constants.END_CALL
 import com.example.servivet.utils.Constants.MSG_ID
 import com.example.servivet.utils.Constants.NO_ANSWER_CALL
+import com.example.servivet.utils.ForegroundServiceUtils
 import com.example.servivet.utils.SocketManager
 import com.example.servivet.utils.broadcast.CallEndBroadcast
 import com.example.servivet.utils.isAppOnForeground
 import com.example.servivet.utils.soundservices.OnClearFromRecentService
 import com.google.gson.Gson
-import com.ripenapps.conveyr.base.AppStateLiveData
-import com.ripenapps.conveyr.utils.ForegroundServiceUtils
 
 import io.agora.rtc2.ChannelMediaOptions
 import io.agora.rtc2.Constants
@@ -55,6 +58,7 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
     private lateinit var callUserImage: String
     private lateinit var callUserName: String
     private var currentUserId = ""
+    private val argumentData: OutgoingVideoCallActivityArgs by navArgs()
     private var msgId = ""
     private lateinit var mSocket: Socket
     private var handler: Handler? = null
@@ -62,6 +66,8 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
     public var isCallConnected = false
     private var isMute = true
     private var isCallEnd = false
+    private var roomId = ""
+    private var receiverId = ""
     private lateinit var callEndBroadcast: CallEndBroadcast
     private var isDestroy = false
     private val backgroundReceiver: BroadcastReceiver = object : BroadcastReceiver() {
@@ -82,23 +88,59 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
         SocketManager.connect()
         mSocket = SocketManager.getSocket()
        // mBinding.parent.setPadding(0, getPaddingAccordingToStatusBarHeight(), 0, 0)
+        getArgumentData()
 
-        val bundle = intent.getBundleExtra("bundle")
-        if (bundle != null) {
-            agoraToken = bundle.getString(AGORA_TOKEN)!!
-            channelName = bundle.getString(CHANNEL_NAME)!!
-            callUserImage = bundle.getString(CALL_USER_IMAGE)!!
-            callUserName = bundle.getString(CALL_USER_NAME)!!
-            currentUserId = bundle.getString(CURRENT_USER_ID)!!
-            msgId = bundle.getString(MSG_ID)!!
-
-            mBinding.userImage = callUserImage
-            mBinding.userName = callUserName
-        }
+//        val bundle = intent.getBundleExtra("bundle")
+//        if (bundle != null) {
+//            agoraToken = bundle.getString(AGORA_TOKEN)!!
+//            channelName = bundle.getString(CHANNEL_NAME)!!
+//            callUserImage = bundle.getString(CALL_USER_IMAGE)!!
+//            callUserName = bundle.getString(CALL_USER_NAME)!!
+//            currentUserId = bundle.getString(CURRENT_USER_ID)!!
+//            msgId = bundle.getString(MSG_ID)!!
+//
+//            mBinding.userImage = callUserImage
+//            mBinding.userName = callUserName
+//        }
 
         initializeChannel()
         joinChannel()
     }
+
+
+    private fun getArgumentData() {
+        when (argumentData.from) {
+            getString(R.string.outgoing_Audio) -> {
+//                val bundle = intent.getBundleExtra("bundle")
+//                if (bundle != null) {
+//                    agoraToken = bundle.getString(AGORA_TOKEN)!!
+//                    channelName = bundle.getString(CHANNEL_NAME)!!
+//                    callUserImage = bundle.getString(CALL_USER_IMAGE)!!
+//                    callUserName = bundle.getString(CALL_USER_NAME)!!
+//                    msgId = bundle.getString(MSG_ID)!!
+//
+//                    mBinding.callUserImage = callUserImage
+//                    mBinding.userName = callUserName
+//                }
+                val data = Gson().fromJson(argumentData.data, VideoCallResponse::class.java)
+
+                agoraToken = data.result.callToken
+                channelName = data.result.channelName
+                callUserImage = data.result.senderId.image
+                callUserName = data.result.senderId.name
+                msgId = data.result.chatMessageId
+                roomId = data.result.roomId
+                receiverId = data.result.receiverId
+
+
+                mBinding.userImage = callUserImage
+                mBinding.userName = callUserName
+
+
+            }
+        }
+    }
+
 
     private fun initializeChannel() {
         try {
@@ -205,26 +247,53 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
     }
 
     public fun endCall() {
-        Log.i(TAG, "endCall: outgoing")
-
-        val data = JSONObject()
         try {
-            data.put("msgId", msgId)
-            data.put("endedByUserId", currentUserId)
-            if (mSocket.connected()) {
-                mSocket.emit(END_CALL, data, object : Ack {
-                    override fun call(vararg args: Any?) {
-                        runOnUiThread {
-                            val jsonObject = Gson().toJson(args[0])
-                            Log.i(TAG, "endedAudioCall: ${Gson().toJson(jsonObject)}")
-                            finish()
-                        }
+            val data = JSONObject()
+            data.put("chatMessageId", msgId)
+            data.put("roomId", roomId)
+            data.put("receiverId", receiverId)
+            mSocket.emit("endedCall", data)
+            mSocket.on("endedCall", fun(args: Array<Any?>) {
+
+                runOnUiThread {
+                    val rejectCall = args[0] as JSONObject
+                    try {
+                        Log.e("TAG", "CallEnd:${rejectCall} ")
+                        finish()
+
+
+                    } catch (ex: JSONException) {
+                        ex.printStackTrace()
                     }
-                })
-            } /*else toast(getString(R.string.socket_not_connected))*/
-        } catch (e: JSONException) {
-            e.printStackTrace()
+                }
+
+            })
+
+        } catch (ex: Exception) {
+
         }
+
+
+//        Log.i(TAG, "endCall: outgoing")
+//
+//        val data = JSONObject()
+//        try {
+//            data.put("msgId", msgId)
+//            data.put("endedByUserId", currentUserId)
+//            if (mSocket.connected()) {
+//                mSocket.emit(END_CALL, data, object : Ack {
+//                    override fun call(vararg args: Any?) {
+//                        runOnUiThread {
+//                            val jsonObject = Gson().toJson(args[0])
+//                            Log.i(TAG, "endedAudioCall: ${Gson().toJson(jsonObject)}")
+//                            finish()
+//                        }
+//                    }
+//                })
+//            } /*else toast(getString(R.string.socket_not_connected))*/
+//        } catch (e: JSONException) {
+//            e.printStackTrace()
+//        }
     }
 
     public fun noAnswerCall() {
@@ -291,13 +360,13 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
         open fun muteUnMuteCall(view: View) {
             if (isMute) {
                 isMute = false
-             //   mBinding.audio.setImageDrawable(getDrawable(R.drawable.mute_mic))
-//                mRtcEngine!!.disableAudio()
+                mBinding.audio.setImageDrawable(getDrawable(R.drawable.mute_mic_icon))
+                mRtcEngine!!.disableAudio()
                 mRtcEngine!!.muteLocalAudioStream(true)
             } else {
                 isMute = true
-              //  mBinding.audio.setImageDrawable(getDrawable(R.drawable.mic))
-//                mRtcEngine!!.enableAudio()
+                mBinding.audio.setImageDrawable(getDrawable(R.drawable.mic_icon))
+                mRtcEngine!!.enableAudio()
                 mRtcEngine!!.muteLocalAudioStream(false)
 
             }

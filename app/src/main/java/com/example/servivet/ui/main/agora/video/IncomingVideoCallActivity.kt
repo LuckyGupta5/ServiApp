@@ -22,15 +22,18 @@ import com.example.servivet.R
 import com.example.servivet.databinding.ActivityIncomingVideoCallBinding
 import com.example.servivet.ui.base.BaseActivity
 import com.example.servivet.ui.main.agora.SoundPoolManager
+import com.example.servivet.utils.AppStateLiveData
 import com.example.servivet.utils.Constants.ACCEPT_CALL
 import com.example.servivet.utils.Constants.AGORA_APP_ID
 import com.example.servivet.utils.Constants.AGORA_TOKEN
 import com.example.servivet.utils.Constants.CALL_USER_IMAGE
 import com.example.servivet.utils.Constants.CALL_USER_NAME
 import com.example.servivet.utils.Constants.CHANNEL_NAME
-import com.example.servivet.utils.Constants.END_CALL
 import com.example.servivet.utils.Constants.MSG_ID
+import com.example.servivet.utils.Constants.RECEIVER_ID
 import com.example.servivet.utils.Constants.REJECT_CALL
+import com.example.servivet.utils.Constants.ROOM_ID
+import com.example.servivet.utils.ForegroundServiceUtils
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.SocketManager
 import com.example.servivet.utils.broadcast.CallEndBroadcast
@@ -40,8 +43,6 @@ import com.example.servivet.utils.soundservices.OnClearFromRecentService
 import com.example.servivet.utils.startBackgroundMusicService
 import com.example.servivet.utils.stopBackgroundMusicService
 import com.google.gson.Gson
-import com.ripenapps.conveyr.base.AppStateLiveData
-import com.ripenapps.conveyr.utils.ForegroundServiceUtils
 
 import io.agora.rtc2.ChannelMediaOptions
 import io.agora.rtc2.Constants
@@ -75,6 +76,9 @@ class IncomingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
     private var isCallEnd = false
     private var isDestroy = false
     private var isAutoEnd = true
+    private var roomId = ""
+    private var receiverId = ""
+
     private val backgroundReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             isDestroy = true
@@ -142,7 +146,7 @@ class IncomingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
         startBackgroundMusicService(this)
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_incoming_video_call)
-      //  mBinding.parent.setPadding(0, getPaddingAccordingToStatusBarHeight(), 0, 0)
+        //  mBinding.parent.setPadding(0, getPaddingAccordingToStatusBarHeight(), 0, 0)
         mBinding.clickAction = ClickAction()
         SocketManager.connect()
         mSocket = SocketManager.getSocket()
@@ -163,6 +167,10 @@ class IncomingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
             callUserImage = bundle.getString(CALL_USER_IMAGE)!!
             callUserName = bundle.getString(CALL_USER_NAME)!!
             msgId = bundle.getString(MSG_ID)!!
+            roomId = bundle.getString(ROOM_ID)!!
+            receiverId = bundle.getString(RECEIVER_ID)!!
+
+
 
             mBinding.callUserImage = callUserImage
             mBinding.userName = callUserName
@@ -259,67 +267,122 @@ class IncomingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
 
     private fun acceptCall() {
         val data = JSONObject()
+//        try {
+//            data.put("msgId", msgId)
+//            if (mSocket.connected()) {
+//                mSocket.emit(ACCEPT_CALL, data, object : Ack {
+//                    override fun call(vararg args: Any?) {
+//                        runOnUiThread {
+//                            val jsonObject = Gson().toJson(args[0])
+//                            Log.i(TAG, "acceptAudioCall: ${Gson().toJson(jsonObject)}")
+//                            joinChannel()
+//                        }
+//                    }
+//                })
+//            }/* else toast(getString(R.string.socket_not_connected))*/
+//        } catch (e: JSONException) {
+//            e.printStackTrace()
+//        }
+
+
         try {
-            data.put("msgId", msgId)
-            if (mSocket.connected()) {
-                mSocket.emit(ACCEPT_CALL, data, object : Ack {
-                    override fun call(vararg args: Any?) {
-                        runOnUiThread {
-                            val jsonObject = Gson().toJson(args[0])
-                            Log.i(TAG, "acceptAudioCall: ${Gson().toJson(jsonObject)}")
-                            joinChannel()
-                        }
+            val data = JSONObject()
+            data.put("chatMessageId", msgId)
+            data.put("roomId", roomId)
+            mSocket.emit("acceptedCall", data)
+            mSocket.on("acceptedCall", fun(args: Array<Any?>) {
+
+                runOnUiThread {
+                    val CallEnd = args[0] as JSONObject
+                    try {
+                        Log.e("TAG", "CallEnd:${CallEnd} ")
+                        joinChannel()
+
+
+                    } catch (ex: JSONException) {
+                        ex.printStackTrace()
                     }
-                })
-            }/* else toast(getString(R.string.socket_not_connected))*/
-        } catch (e: JSONException) {
-            e.printStackTrace()
+                }
+
+            })
+
+        } catch (ex: Exception) {
+
         }
     }
 
     public fun rejectCall() {
 
-        val currentUserId = Session.userDetails._id
-        val data = JSONObject()
         try {
-            data.put("msgId", msgId)
-            data.put("endedByUserId", currentUserId)
-            if (mSocket.connected()) {
-                mSocket.emit(REJECT_CALL, data, object : Ack {
-                    override fun call(vararg args: Any?) {
-                        runOnUiThread {
-                            val jsonObject = Gson().toJson(args[0])
-                            Log.i(TAG, "rejectAudioCall: ${Gson().toJson(jsonObject)}")
-                            finish()
-                        }
+            val data = JSONObject()
+            data.put("chatMessageId", msgId)
+            data.put("roomId", roomId)
+            data.put("rejectedBy", Session.userDetails._id)
+            mSocket.emit("rejectCall", data)
+            mSocket.on("acceptedCall", fun(args: Array<Any?>) {
+
+                runOnUiThread {
+                    val rejectCall = args[0] as JSONObject
+                    try {
+                        Log.e("TAG", "CallEnd:${rejectCall} ")
+                        finish()
+
+
+                    } catch (ex: JSONException) {
+                        ex.printStackTrace()
                     }
-                })
-            } /*else toast(getString(R.string.socket_not_connected))*/
-        } catch (e: JSONException) {
-            e.printStackTrace()
+                }
+
+            })
+
+        } catch (ex: Exception) {
+
         }
+
+//        val currentUserId = Session.userDetails._id
+//        val data = JSONObject()
+//        try {
+//            data.put("msgId", msgId)
+//            data.put("endedByUserId", currentUserId)
+//            if (mSocket.connected()) {
+//                mSocket.emit(REJECT_CALL, data, object : Ack {
+//                    override fun call(vararg args: Any?) {
+//                        runOnUiThread {
+//                            val jsonObject = Gson().toJson(args[0])
+//                            Log.i(TAG, "rejectAudioCall: ${Gson().toJson(jsonObject)}")
+//                            finish()
+//                        }
+//                    }
+//                })
+//            } /*else toast(getString(R.string.socket_not_connected))*/
+//        } catch (e: JSONException) {
+//            e.printStackTrace()
+//        }
     }
 
     public fun endCall() {
-        val data = JSONObject()
         try {
-            data.put("msgId", msgId)
-            data.put("endedByUserId", Session.userDetails._id
-            )
-
-            if (mSocket.connected()) {
-                mSocket.emit(END_CALL, data, object : Ack {
-                    override fun call(vararg args: Any?) {
-                        runOnUiThread {
-                            val jsonObject = Gson().toJson(args[0])
-                            Log.i(TAG, "endedAudioCall: ${Gson().toJson(jsonObject)}")
-                            finish()
-                        }
+            val data = JSONObject()
+            data.put("chatMessageId", msgId)
+            data.put("receiverId", receiverId)
+            data.put("roomId", roomId)
+            data.put("roomId", roomId)
+            mSocket.emit("endedCall", data)
+            mSocket.on("endedCall", fun(args: Array<Any?>) {
+                runOnUiThread {
+                    val rejectCall = args[0] as JSONObject
+                    try {
+                        Log.e("TAG", "CallEnd:${rejectCall} ")
+                        finish()
+                    } catch (ex: JSONException) {
+                        ex.printStackTrace()
                     }
-                })
-            } /*else toast(getString(R.string.socket_not_connected))*/
-        } catch (e: JSONException) {
-            e.printStackTrace()
+                }
+
+            })
+
+        } catch (ex: Exception) {
+
         }
     }
 
@@ -334,11 +397,11 @@ class IncomingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
         open fun muteUnMuteVideo(view: View) {
             if (isVideoMute) {
                 isVideoMute = false
-               // mBinding.video.setImageDrawable(getDrawable(R.drawable.mute_video))
+                mBinding.video.setImageDrawable(getDrawable(R.drawable.mute_video_icon))
                 mRtcEngine!!.disableVideo()
             } else {
                 isVideoMute = true
-              //  mBinding.video.setImageDrawable(getDrawable(R.drawable.video))
+                mBinding.video.setImageDrawable(getDrawable(R.drawable.video_icon))
                 mRtcEngine!!.enableVideo()
             }
         }
@@ -346,13 +409,13 @@ class IncomingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
         open fun muteUnMuteAudio(view: View) {
             if (isAudioMute) {
                 isAudioMute = false
-              //  mBinding.audio.setImageDrawable(getDrawable(R.drawable.mute_mic))
-//                mRtcEngine!!.disableAudio()
+                mBinding.audio.setImageDrawable(getDrawable(R.drawable.mute_mic_icon))
+                mRtcEngine!!.disableAudio()
                 mRtcEngine!!.muteLocalAudioStream(true)
             } else {
                 isAudioMute = true
-            //    mBinding.audio.setImageDrawable(getDrawable(R.drawable.mic))
-//                mRtcEngine!!.enableAudio()
+                mBinding.audio.setImageDrawable(getDrawable(R.drawable.mic_icon))
+                mRtcEngine!!.enableAudio()
                 mRtcEngine!!.muteLocalAudioStream(false)
             }
         }

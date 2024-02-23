@@ -1,5 +1,4 @@
-package com.ripenapps.conveyr.broadcast
-
+package com.example.servivet.utils.broadcast
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent

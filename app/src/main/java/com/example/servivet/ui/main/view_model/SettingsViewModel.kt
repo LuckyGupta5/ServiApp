@@ -37,11 +37,10 @@ class SettingsViewModel : BaseViewModel() {
             view.findNavController().navigate(R.id.action_settingsFragment_to_myWalletFragment)
         }
 
-        fun goLogout(view: View) {
-            view.findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToCloseServiceAlert("",
 
-                    "logOut"
-                ))
+
+        fun goLogout(view: View) {
+            view.findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToCloseServiceAlert("", "logOut"))
            // CommonUtils.customalertdialog(frgmentActivity, frgmentActivity.getString(R.string.are_you_sure_you_want_to_logout), 1)
         }
 

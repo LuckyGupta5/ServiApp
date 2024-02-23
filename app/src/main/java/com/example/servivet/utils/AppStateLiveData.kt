@@ -1,5 +1,4 @@
-package com.ripenapps.conveyr.base
-
+package com.example.servivet.utils
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 

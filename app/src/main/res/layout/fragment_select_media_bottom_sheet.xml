@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="click"
             type="kotlin.jvm.functions.Function1" />
@@ -12,6 +14,10 @@
         <variable
             name="viewModel"
             type="com.example.servivet.ui.main.view_model.SureToConfirmViewModel" />
+
+        <variable
+            name="checkType"
+            type="String" />
 
 
     </data>
@@ -65,12 +71,14 @@
             android:layout_marginTop="19dp"
             android:fontFamily="@font/poppins_semi_bold"
             android:gravity="center"
-            android:text="Pick Your Media File"
+            android:text="@{checkType.equals(@string/gallery)?@string/pick_your_media_file:@string/connect_with_the_user_as}"
             android:textColor="@color/black_2"
             android:textSize="19dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/myWalletId" />
+
+
 
         <View
             android:id="@+id/view"
@@ -87,6 +95,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:background="@color/white"
+            android:visibility="@{checkType.equals(@string/gallery)?View.VISIBLE:View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view">
 
@@ -149,15 +158,73 @@
                 android:paddingHorizontal="17dp"
                 android:paddingVertical="10dp"
                 android:text="Files"
-                android:visibility="gone"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="10sp"
+                android:visibility="gone"
                 app:drawableTopCompat="@drawable/chat_file_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/idFiles"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/idAudioVideoContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/white"
+            android:visibility="@{checkType.equals(@string/call)?View.VISIBLE:View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view">
+
+            <TextView
+                android:id="@+id/idAudioCall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_circle"
+                android:backgroundTint="@color/app_theme"
+                android:drawableTint="@color/white"
+                android:fontFamily="@font/poppins_regular"
+                android:onClick="@{()->click.invoke(4)}"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="11dp"
+                android:text="@string/audio_call"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                app:drawableTopCompat="@drawable/audio_call_icon"
+                app:layout_constraintEnd_toStartOf="@id/idVideoCall"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/idAudioVideoContainer" />
+
+
+            <TextView
+                android:id="@+id/idVideoCall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:background="@drawable/white_circle"
+                android:backgroundTint="@color/app_theme"
+                android:drawableTint="@color/white"
+                android:fontFamily="@font/poppins_regular"
+                android:onClick="@{()->click.invoke(3)}"
+                android:paddingHorizontal="17dp"
+                android:paddingVertical="10dp"
+                android:text="@string/video_call"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                app:drawableTopCompat="@drawable/chat_video_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/idAudioCall"
                 app:layout_constraintTop_toTopOf="parent" />
 
 

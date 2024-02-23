@@ -54,7 +54,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>(R.la
           //  versionAPI()
 //            goFurtherInApp()
             initObserver()
-            Log.e("TAG", "onStart: ", )
+         //   Log.e("TAG", "onStart: ", )
 
 
 

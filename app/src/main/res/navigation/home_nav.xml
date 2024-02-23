@@ -570,12 +570,49 @@
         <action
             android:id="@+id/action_chattingFragment_to_imageVideoViewFragment"
             app:destination="@id/imageVideoViewFragment" />
+        <action
+            android:id="@+id/action_chattingFragment_to_outgoingVideoCallActivity"
+            app:destination="@id/outgoingVideoCallActivity" />
+        <action
+            android:id="@+id/action_chattingFragment_to_outgoingAudioCallActivity"
+            app:destination="@id/outgoingAudioCallActivity" />
     </fragment>
     <dialog
         android:id="@+id/selectMediaBottomSheet"
         android:name="com.example.servivet.ui.main.bottom_sheet.SelectMediaBottomSheet"
         android:label="SelectMediaBottomSheet"
-        tools:layout="@layout/fragment_select_media_bottom_sheet"/>
+        tools:layout="@layout/fragment_select_media_bottom_sheet">
+        <argument
+            android:name="data"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+    </dialog>
+    <activity
+        android:id="@+id/outgoingVideoCallActivity"
+        android:name="com.example.servivet.ui.main.agora.video.OutgoingVideoCallActivity"
+        android:label="OutgoingVideoCallActivity"
+        tools:layout="@layout/activity_outgoing_video_call">
+        <argument
+            android:name="data"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+    </activity>
+    <activity
+        android:id="@+id/outgoingAudioCallActivity"
+        android:name="com.example.servivet.ui.main.agora.audio.OutgoingAudioCallActivity"
+        android:label="OutgoingAudioCallActivity"
+        tools:layout="@layout/activity_outgoing_audio_call">
+        <argument
+            android:name="data"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+    </activity>
 
 
     <!-- <fragment

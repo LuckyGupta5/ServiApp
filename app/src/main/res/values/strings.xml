@@ -439,6 +439,7 @@
     <string name="min">min</string>
     <string name="hour">hour</string>
     <string name="minute">minute</string>
+    <string name="pick_your_media_file">Pick Your Media File</string>
 
 
     <string-array name="select_issue">
@@ -452,5 +453,11 @@
 
     <!--String files for click events-->
     <string name="cross">Cross</string>
+    <string name="audio_call">Audio Call</string>
+    <string name="video_call">Video Call</string>
+    <string name="connect_with_the_user_as">Connect with the user as</string>
+    <string name="outgoing_video">outgoingVideo</string>
+    <string name="outgoing_Audio">outgoingAudio</string>
+    <string name="user_name">user_name</string>
 
 </resources>

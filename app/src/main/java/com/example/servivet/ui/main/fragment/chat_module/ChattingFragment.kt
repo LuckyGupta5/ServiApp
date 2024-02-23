@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
+import com.example.servivet.data.model.call_module.video_call.VideoCallResponse
 import com.example.servivet.data.model.chat_models.chat_list.ChatMessage
 import com.example.servivet.data.model.chat_models.chat_list.ChattingListResponse
 import com.example.servivet.data.model.chat_models.initiate_chat.InitiateChatResponse
@@ -34,6 +35,10 @@ import com.example.servivet.utils.checkVideoFileSize
 import com.example.servivet.utils.getVideoPathFromUri
 import com.google.gson.Gson
 import io.socket.client.Socket
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -46,6 +51,7 @@ class ChattingFragment :
     private val argumentData: ChattingFragmentArgs by navArgs()
     private lateinit var chatListResponse: ChattingListResponse
     private lateinit var initateChatResponse: InitiateChatResponse
+    private lateinit var videoCallResponse: VideoCallResponse
     private lateinit var profileData: UserProfile
     private lateinit var chatListData: Chatlist
     private var isBlocked = false
@@ -57,13 +63,14 @@ class ChattingFragment :
     private var mediaList: ArrayList<String> = ArrayList()
     private var checkMediaList: ArrayList<String> = ArrayList()
     private var typeOfMessage = 1
+    private var callType = 0
     override fun isNetworkAvailable(boolean: Boolean) {
 
     }
 
     override fun setupViewModel() {
         binding.apply {
-           // lifecycleOwner = viewLifecycleOwner
+            // lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
             binding.clickEvents = ::onClick
 
@@ -91,16 +98,16 @@ class ChattingFragment :
 
             getString(R.string.chatfragment) -> {
                 chatListData = Gson().fromJson(argumentData.data, Chatlist::class.java)
-                    roomId = chatListData._id
-                    if (chatListData.senderId._id == Session.userDetails._id) {
-                        binding.idUserName.text = chatListData.receiverId.name
-                        recieverId = chatListData.receiverId._id
+                roomId = chatListData._id
+                if (chatListData.senderId._id == Session.userDetails._id) {
+                    binding.idUserName.text = chatListData.receiverId.name
+                    recieverId = chatListData.receiverId._id
 
-                    } else {
-                        binding.idUserName.text = chatListData.senderId.name
-                        recieverId = chatListData.senderId._id
-                    }
-                if(roomId.isNotEmpty()) {
+                } else {
+                    binding.idUserName.text = chatListData.senderId.name
+                    recieverId = chatListData.senderId._id
+                }
+                if (roomId.isNotEmpty()) {
                     initChatListSocket()
                 }
 
@@ -131,7 +138,13 @@ class ChattingFragment :
             }
 
             getString(R.string.open_gallery) -> {
-                findNavController().navigate(R.id.action_chattingFragment_to_selectMediaBottomSheet)
+                //   findNavController().navigate(R.id.action_chattingFragment_to_selectMediaBottomSheet)
+                findNavController().navigate(
+                    ChattingFragmentDirections.actionChattingFragmentToSelectMediaBottomSheet(
+                        "",
+                        getString(R.string.gallery)
+                    )
+                )
             }
 
             getString(R.string.cross) -> {
@@ -170,6 +183,12 @@ class ChattingFragment :
 
                 R.id.idDeleteChat -> {
                     initDeleteChatEvent()
+                    true
+                }
+
+                R.id.idCall -> {
+//                    findNavController().navigate(R.id.action_chattingFragment_to_selectMediaBottomSheet)
+                    findNavController().navigate(ChattingFragmentDirections.actionChattingFragmentToSelectMediaBottomSheet("", getString(R.string.call)))
                     true
                 }
 
@@ -278,7 +297,6 @@ class ChattingFragment :
 
     private fun initSendMessageEvent() {
         if (binding.idMessage.text.toString().trim() != "") {
-            Log.e("TAG", "initSendMessageEvent: ${Gson().toJson(mediaList)}")
             val data = JSONObject()
             try {
                 data.put("receiverId", recieverId)
@@ -354,7 +372,7 @@ class ChattingFragment :
     }
 
     private fun initChattingAdapter() {
-        binding.chattingAdapter = ChattingAdapter(requireContext(), chattingList,onItemClick)
+        binding.chattingAdapter = ChattingAdapter(requireContext(), chattingList, onItemClick)
     }
 
     override fun setupObservers() {
@@ -414,12 +432,101 @@ class ChattingFragment :
         findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(getString(R.string.videos))
             ?.observe(viewLifecycleOwner) {
                 type = it
-                if (checkMediaPermission(requireActivity())) {
-                    openGallery()
-                } else {
-                    showSnackBar("Permission not Granted")
+                when (type) {
+                    getString(R.string.audio_call) -> {
+                        callType = 6
+                        generateAgoraToken()
+
+                    }
+
+                    getString(R.string.video_call) -> {
+                        callType = 7
+                        generateAgoraToken()
+
+                    }
+
+                    getString(R.string.image) -> {
+                        if (checkMediaPermission(requireActivity())) {
+                            openGallery()
+                        } else {
+                            showSnackBar("Permission not Granted")
+                        }
+
+                    }
+
+                    getString(R.string.videos) -> {
+                        if (checkMediaPermission(requireActivity())) {
+                            openGallery()
+                        } else {
+                            showSnackBar("Permission not Granted")
+                        }
+                    }
                 }
+
             }
+    }
+
+    private fun generateAgoraToken() {
+        socket = SocketManager.getSocket()
+        val data = JSONObject()
+        try {
+            data.put("receiverId", recieverId)
+            data.put("roomId", roomId)
+            data.put("messageType", callType)
+            data.put("message", "")
+            data.put("uid", "0")
+            socket.emit("agoraToken", data)
+            socket.on("agoraToken", fun(args: Array<Any?>) {
+                if (isAdded) {
+                    requireActivity().runOnUiThread {
+                        val agoraToken = args[0] as JSONObject
+                        try {
+                            Log.e("TAG", "chatListDataMessages:${agoraToken}")
+                            videoCallResponse = Gson().fromJson(
+                                JSONArray().put(agoraToken)[0].toString(),
+                                VideoCallResponse::class.java
+                            )
+
+                            when(callType){
+                                6->{
+                                    CoroutineScope(Dispatchers.Main).launch {
+                                        delay(1000)
+                                        findNavController().navigate(
+                                            ChattingFragmentDirections.actionChattingFragmentToOutgoingAudioCallActivity(
+                                                Gson().toJson(videoCallResponse),
+                                                getString(
+                                                    R.string.outgoing_Audio
+                                                )
+                                            )
+                                        )
+                                    }
+                                }
+                                7->{
+                                    CoroutineScope(Dispatchers.Main).launch {
+                                        delay(1000)
+                                        findNavController().navigate(
+                                            ChattingFragmentDirections.actionChattingFragmentToOutgoingVideoCallActivity(
+                                                Gson().toJson(videoCallResponse),
+                                                getString(
+                                                    R.string.outgoing_video
+                                                )
+                                            )
+                                        )
+                                    }
+                                }
+                            }
+
+
+
+
+                        } catch (ex: JSONException) {
+                            ex.printStackTrace()
+                        }
+                    }
+                }
+            })
+        } catch (ex: JSONException) {
+        }
     }
 
     private fun openGallery() {
@@ -485,8 +592,14 @@ class ChattingFragment :
 
     private val onItemClick: (Int, String) -> Unit = { position, data ->
         when (position) {
-            0-> {
-                findNavController().navigate(ChattingFragmentDirections.actionChattingFragmentToImageVideoViewFragment(data,getString(R.string.chatfragment), position))
+            0 -> {
+                findNavController().navigate(
+                    ChattingFragmentDirections.actionChattingFragmentToImageVideoViewFragment(
+                        data,
+                        getString(R.string.chatfragment),
+                        position
+                    )
+                )
 
             }
         }

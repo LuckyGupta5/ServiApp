@@ -20,18 +20,15 @@ import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.navArgs
 import com.example.servivet.R
+import com.example.servivet.data.model.call_module.video_call.VideoCallResponse
 import com.example.servivet.databinding.ActivityOutgoingVideoCallBinding
 import com.example.servivet.ui.base.BaseActivity
 import com.example.servivet.ui.main.agora.SoundPoolManager
+import com.example.servivet.utils.AppStateLiveData
 import com.example.servivet.utils.Constants.AGORA_APP_ID
-import com.example.servivet.utils.Constants.AGORA_TOKEN
-import com.example.servivet.utils.Constants.CALL_USER_IMAGE
-import com.example.servivet.utils.Constants.CALL_USER_NAME
-import com.example.servivet.utils.Constants.CHANNEL_NAME
-import com.example.servivet.utils.Constants.END_CALL
-import com.example.servivet.utils.Constants.MSG_ID
-import com.example.servivet.utils.Constants.NO_ANSWER_CALL
+import com.example.servivet.utils.ForegroundServiceUtils
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.SocketManager
 import com.example.servivet.utils.broadcast.CallEndBroadcast
@@ -39,8 +36,6 @@ import com.example.servivet.utils.isAppOnForeground
 import com.example.servivet.utils.isBluetoothConnectd
 import com.example.servivet.utils.soundservices.OnClearFromRecentService
 import com.google.gson.Gson
-import com.ripenapps.conveyr.base.AppStateLiveData
-import com.ripenapps.conveyr.utils.ForegroundServiceUtils
 
 
 import io.agora.rtc2.ChannelMediaOptions
@@ -49,7 +44,6 @@ import io.agora.rtc2.IRtcEngineEventHandler
 import io.agora.rtc2.RtcEngine
 import io.agora.rtc2.video.VideoCanvas
 import io.agora.rtc2.video.VideoEncoderConfiguration
-import io.socket.client.Ack
 import io.socket.client.Socket
 import org.json.JSONException
 import org.json.JSONObject
@@ -70,10 +64,11 @@ class OutgoingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
     private var msgId = ""
     private var mRtcEngine: RtcEngine? = null
     private lateinit var mSocket: Socket
-
+    private val argumentData: OutgoingVideoCallActivityArgs by navArgs()
     public var isCallConnected = false
     private var isAudioMute = true
     private var isVideoMute = true
+    private var roomId = ""
     private lateinit var callEndBroadcast: CallEndBroadcast
     private var isCallEnd = false
     private var isDestroy = false
@@ -147,26 +142,58 @@ class OutgoingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
         mBinding.clickAction = ClickAction()
         SocketManager.connect()
         mSocket = SocketManager.getSocket()
-       // mBinding.parent.setPadding(0, getPaddingAccordingToStatusBarHeight(), 0, 0)
+        // mBinding.parent.setPadding(0, getPaddingAccordingToStatusBarHeight(), 0, 0)
         // window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        getArgumentData()
 
-        val bundle = intent.getBundleExtra("bundle")
-        if (bundle != null) {
-            agoraToken = bundle.getString(AGORA_TOKEN)!!
-            channelName = bundle.getString(CHANNEL_NAME)!!
-            callUserImage = bundle.getString(CALL_USER_IMAGE)!!
-            callUserName = bundle.getString(CALL_USER_NAME)!!
-            msgId = bundle.getString(MSG_ID)!!
-
-            mBinding.callUserImage = callUserImage
-            mBinding.userName = callUserName
-        }
+//        val bundle = intent.getBundleExtra("bundle")
+//        if (bundle != null) {
+//            agoraToken = bundle.getString(AGORA_TOKEN)!!
+//            channelName = bundle.getString(CHANNEL_NAME)!!
+//            callUserImage = bundle.getString(CALL_USER_IMAGE)!!
+//            callUserName = bundle.getString(CALL_USER_NAME)!!
+//            msgId = bundle.getString(MSG_ID)!!
+//
+//            mBinding.callUserImage = callUserImage
+//            mBinding.userName = callUserName
+//        }
 
         initializeChannel()
         joinChannel()
 //        startService(Intent())
         mBinding.idSwitcCamera.setOnClickListener {
             onSwitchCameraClicked(it)
+        }
+    }
+
+    private fun getArgumentData() {
+        when (argumentData.from) {
+            getString(R.string.outgoing_video) -> {
+//                val bundle = intent.getBundleExtra("bundle")
+//                if (bundle != null) {
+//                    agoraToken = bundle.getString(AGORA_TOKEN)!!
+//                    channelName = bundle.getString(CHANNEL_NAME)!!
+//                    callUserImage = bundle.getString(CALL_USER_IMAGE)!!
+//                    callUserName = bundle.getString(CALL_USER_NAME)!!
+//                    msgId = bundle.getString(MSG_ID)!!
+//
+//                    mBinding.callUserImage = callUserImage
+//                    mBinding.userName = callUserName
+//                }
+                val data = Gson().fromJson(argumentData.data, VideoCallResponse::class.java)
+
+                agoraToken = data.result.callToken
+                channelName = data.result.channelName
+                callUserImage = data.result.senderId.image
+                callUserName = data.result.senderId.name
+                msgId = data.result.chatMessageId
+                roomId = data.result.roomId
+
+                mBinding.callUserImage = callUserImage
+                mBinding.userName = callUserName
+
+
+            }
         }
     }
 
@@ -258,45 +285,100 @@ class OutgoingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
     }
 
     public fun endCall() {
-        val data = JSONObject()
+
         try {
-            data.put("msgId", msgId)
-            data.put("endedByUserId", currentUserId)
-            if (mSocket.connected()) {
-                mSocket.emit(END_CALL, data, object : Ack {
-                    override fun call(vararg args: Any?) {
-                        runOnUiThread {
-                            val jsonObject = Gson().toJson(args[0])
-                            Log.i(TAG, "endedAudioCall: ${Gson().toJson(jsonObject)}")
-                            finish()
-                        }
+            val data = JSONObject()
+            data.put("chatMessageId", msgId)
+            data.put("receiverId", currentUserId)
+            data.put("roomId", roomId)
+            mSocket.emit("noAnswerCall", data)
+            mSocket.on("receiveMessages", fun(args: Array<Any?>) {
+
+                runOnUiThread {
+                    val CallEnd = args[0] as JSONObject
+                    try {
+                        Log.e("TAG", "CallEnd:${CallEnd} ")
+                        finish()
+
+
+                    } catch (ex: JSONException) {
+                        ex.printStackTrace()
                     }
-                })
-            }/* else toast(getString(R.string.socket_not_connected))*/
+                }
+
+            })
+
+        } catch (ex: Exception) {
+
+        }
+
+        /*    val data = JSONObject()
+            try {
+                data.put("chatMessageId", msgId)
+                data.put("receiverId", currentUserId)
+                data.put("roomId", roomId)
+                if (mSocket.connected()) {
+                    mSocket.emit(CALL_END, data, object : Ack {
+                        override fun call(vararg args: Any?) {
+                            runOnUiThread {
+                                val jsonObject = Gson().toJson(args[0])
+                                Log.i(TAG, "endedAudioCall: ${Gson().toJson(jsonObject)}")
+                                finish()
+                            }
+                        }
+                    })
+                }*//* else toast(getString(R.string.socket_not_connected))*//*
         } catch (e: JSONException) {
             e.printStackTrace()
-        }
+        }*/
     }
 
     public fun noAnswerCall() {
         val data = JSONObject()
+
         try {
-            data.put("msgId", msgId)
-            data.put("endedByUserId", currentUserId)
-            if (mSocket.connected()) {
-                mSocket.emit(NO_ANSWER_CALL, data, object : Ack {
-                    override fun call(vararg args: Any?) {
-                        runOnUiThread {
-                            val jsonObject = Gson().toJson(args[0])
-                            Log.i(TAG, "noAnswerAudioCall: ${Gson().toJson(jsonObject)}")
-                            finish()
-                        }
+            val data = JSONObject()
+            data.put("chatMessageId", msgId)
+            data.put("roomId", roomId)
+            mSocket.emit("noAnswerCall", data)
+            mSocket.on("receiveMessages", fun(args: Array<Any?>) {
+
+                runOnUiThread {
+                    val noAnswers = args[0] as JSONObject
+                    try {
+                        Log.e("TAG", "CallEnd:${noAnswers} ")
+                        finish()
+
+
+                    } catch (ex: JSONException) {
+                        ex.printStackTrace()
                     }
-                })
-            } /*else toast(getString(R.string.socket_not_connected))*/
-        } catch (e: JSONException) {
-            e.printStackTrace()
+                }
+
+            })
+
+        } catch (ex: Exception) {
+
         }
+
+
+//        try {
+//            data.put("chatMessageId", msgId)
+//            data.put("roomId", roomId)
+//            if (mSocket.connected()) {
+//                mSocket.emit(NO_ANSWER_CALL, data, object : Ack {
+//                    override fun call(vararg args: Any?) {
+//                        runOnUiThread {
+//                            val jsonObject = Gson().toJson(args[0])
+//                            Log.i(TAG, "noAnswerAudioCall: ${Gson().toJson(jsonObject)}")
+//                            finish()
+//                        }
+//                    }
+//                })
+//            } /*else toast(getString(R.string.socket_not_connected))*/
+//        } catch (e: JSONException) {
+//            e.printStackTrace()
+//        }
     }
 
     private fun startRinging() = SoundPoolManager.getInstance(this).playRinging()
@@ -308,8 +390,10 @@ class OutgoingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
     @SuppressLint("UseCompatLoadingForDrawables")
     open inner class ClickAction {
         open fun endCall(view: View) {
-            if (isCallConnected) endCall()
-            else noAnswerCall()
+            if (isCallConnected)
+                endCall()
+            else
+                noAnswerCall()
         }
 
         open fun muteUnMuteVideo(view: View) {
@@ -319,7 +403,7 @@ class OutgoingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
                 mRtcEngine!!.disableVideo()
             } else {
                 isVideoMute = true
-               // mBinding.video.setImageDrawable(getDrawable(R.drawable.video))
+                // mBinding.video.setImageDrawable(getDrawable(R.drawable.video))
                 mRtcEngine!!.enableVideo()
             }
         }
@@ -327,12 +411,12 @@ class OutgoingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
         open fun muteUnMuteAudio(view: View) {
             if (isAudioMute) {
                 isAudioMute = false
-              //  mBinding.audio.setImageDrawable(getDrawable(R.drawable.mute_mic))
+                //  mBinding.audio.setImageDrawable(getDrawable(R.drawable.mute_mic))
 //                mRtcEngine!!.disableAudio()
                 mRtcEngine!!.muteLocalAudioStream(true)
             } else {
                 isAudioMute = true
-              //  mBinding.audio.setImageDrawable(getDrawable(R.drawable.mic))
+                //  mBinding.audio.setImageDrawable(getDrawable(R.drawable.mic))
 //                mRtcEngine!!.enableAudio()
                 mRtcEngine!!.muteLocalAudioStream(false)
             }

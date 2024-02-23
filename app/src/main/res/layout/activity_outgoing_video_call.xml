@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
 
         <variable
             name="callUserImage"
@@ -27,11 +27,11 @@
 
     <RelativeLayout
         android:id="@+id/parent"
-        android:tag="outgoing_video_call"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        android:tag="outgoing_video_call"
         tools:context=".agora.video.OutgoingVideoCallActivity">
 
         <RelativeLayout
@@ -59,46 +59,46 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <LinearLayout
-                android:gravity="center_vertical"
-                android:layout_marginBottom="100dp"
-                android:layout_alignParentBottom="true"
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true">
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="100dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_marginStart="20dp"
                     android:id="@+id/userImage"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_alignParentTop="true"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/call_icon"
-                    android:visibility='@{callStatus.equals(@string/connected) ? View.GONE : View.VISIBLE}'
-                     />
+                    android:layout_marginStart="20dp"
+                    android:imageViewUrl="@{callUserImage}"
+                    android:visibility='@{callStatus.equals(@string/connected) ? View.GONE : View.VISIBLE}' />
 
                 <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_marginStart="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/userImage"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginStart="20dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
                         android:fontFamily="@font/poppins_medium"
-                        android:hint="user_name"
+                        android:hint="@string/user_name"
                         android:includeFontPadding="false"
                         android:text="@{userName}"
                         android:textColor="@color/white"
                         android:textColorHint="@color/white"
                         android:textSize="20sp"
-                        android:layout_marginEnd="5dp"
                         android:textStyle="normal" />
+
                     <TextView
                         android:id="@+id/status"
                         android:layout_width="wrap_content"
@@ -115,12 +115,12 @@
 
 
                 <Chronometer
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
                     android:id="@+id/callTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
                     android:fontFamily="@font/poppins_medium"
                     android:gravity="center"
                     android:text="@string/start_time"
@@ -148,7 +148,8 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
                 android:onClick="onSwitchCameraClicked"
-                android:src="@drawable/call_icon"
+                android:padding="7dp"
+                android:src="@drawable/switch_camera_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/video"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -158,7 +159,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:src="@drawable/call_icon"
+                android:onClick="@{clickAction::muteUnMuteVideo}"
+                android:src="@drawable/video_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -166,7 +168,8 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/call_icon"
+                android:onClick="@{clickAction::endCall}"
+                android:src="@drawable/end_call"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -177,7 +180,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
-                android:src="@drawable/call_icon"
+                android:onClick="@{clickAction::muteUnMuteAudio}"
+                android:src="@drawable/mic_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

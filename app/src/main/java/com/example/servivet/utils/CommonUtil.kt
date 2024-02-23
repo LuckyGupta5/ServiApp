@@ -20,6 +20,7 @@ import android.location.Address
 import android.location.Geocoder
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.provider.Settings
@@ -1224,6 +1225,19 @@ fun checkMediaPermission(requireActivity: FragmentActivity):Boolean {
     return CommonUtils.requestPermissions(requireActivity, 100, permission)
 }
 
+
+fun <A : Activity> Context.launchActivityWithBundle(activity: Class<A>, bundle: Bundle) {
+    Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION).also {
+        it.putExtra("bundle", bundle)
+        it.setClassName("com.example.servivet", activity.name)
+        it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        it.flags = Intent.FLAG_FROM_BACKGROUND
+        it.flags = Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT
+        it.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(it)
+    }
+}
 
 
 

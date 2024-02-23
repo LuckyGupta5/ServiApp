@@ -1,5 +1,4 @@
-package com.ripenapps.conveyr.utils
-
+package com.example.servivet.utils
 import android.app.ActivityManager
 import android.content.Context
 import android.util.Log

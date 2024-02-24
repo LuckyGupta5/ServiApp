@@ -2,6 +2,7 @@ package com.example.servivet.utils
 
 object  PreferenceEntity {
     const val IS_LOGIN:String = "isLogin"
+    const val NOTIFY_STATUS:String = "notification_Status"
     const val FROM_DATE: String="from_date"
     const val TOKEN: String="token"
     const val DEVICE_TOKEN: String="device_token"

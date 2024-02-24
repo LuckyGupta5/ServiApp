@@ -13,6 +13,7 @@ import com.example.servivet.utils.PreferenceEntity.IS_LOGIN
 import com.example.servivet.utils.PreferenceEntity.LOCATION
 import com.example.servivet.utils.PreferenceEntity.LOCATION_INFO
 import com.example.servivet.utils.PreferenceEntity.NOTIFICATION_DATA
+import com.example.servivet.utils.PreferenceEntity.NOTIFY_STATUS
 import com.example.servivet.utils.PreferenceEntity.SAVE_ADDRESS
 import com.example.servivet.utils.PreferenceEntity.TOKEN
 import com.example.servivet.utils.PreferenceEntity.TYPE
@@ -24,6 +25,7 @@ import com.orhanobut.hawk.Hawk
 object Session {
     var token = Hawk.get<String>(TOKEN, null)
     var isLogin = Hawk.get<Boolean>(IS_LOGIN, null)
+    var notificationStatus = Hawk.get<Boolean>(NOTIFY_STATUS, null)
     var location = Hawk.get<String>(LOCATION, null)
     var type = Hawk.get<String>(TYPE, null)
     var locationInfo = Hawk.get<LocationInfo>(LOCATION_INFO, null)
@@ -61,6 +63,11 @@ object Session {
     fun saveIsLogin(isLogin: Boolean) {
         Hawk.put(IS_LOGIN, isLogin)
         Session.isLogin = isLogin
+    }
+
+    fun saveNotificationStatus(notificationStatus: Boolean) {
+        Hawk.put(NOTIFY_STATUS, notificationStatus)
+        Session.notificationStatus = notificationStatus
     }
 
     fun saveLocationInfo(locationInfo: LocationInfo) {
@@ -102,6 +109,7 @@ object Session {
         userProfile = null
         category = null
         userDetails = null
+        notificationStatus=null
         val deviceToken = fcmToken
         Hawk.deleteAll()
         saveDeviceToken(deviceToken)

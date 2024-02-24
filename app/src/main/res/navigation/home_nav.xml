@@ -371,6 +371,12 @@
         <action
             android:id="@+id/action_settingsFragment_to_closeServiceAlert"
             app:destination="@id/closeServiceAlert" />
+        <action
+            android:id="@+id/action_settingsFragment_to_aboutUsFragment"
+            app:destination="@id/aboutUsFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_settingLocationListFragment"
+            app:destination="@id/settingLocationListFragment" />
     </fragment>
     <fragment
         android:id="@+id/myWalletFragment"
@@ -613,6 +619,26 @@
             android:name="from"
             app:argType="string" />
     </activity>
+    <fragment
+        android:id="@+id/aboutUsFragment"
+        android:name="com.example.servivet.ui.main.fragment.settings_module.AboutUsFragment"
+        android:label="AboutUsFragment" />
+    <fragment
+        android:id="@+id/settingLocationListFragment"
+        android:name="com.example.servivet.ui.main.fragment.settings_module.SettingLocationListFragment"
+        android:label="SettingLocationListFragment"
+        tools:layout="@layout/fragment_setting_location_list">
+        <action
+            android:id="@+id/action_settingLocationListFragment_to_settingAddLocationFragment"
+            app:destination="@id/settingAddLocationFragment" />
+        <action
+            android:id="@+id/action_settingLocationListFragment_to_addLocationFragment"
+            app:destination="@id/addLocationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingAddLocationFragment"
+        android:name="com.example.servivet.ui.main.fragment.settings_module.SettingAddLocationFragment"
+        android:label="SettingAddLocationFragment" />
 
 
     <!-- <fragment

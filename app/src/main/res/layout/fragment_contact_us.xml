@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.servivet.ui.main.view_model.ContactUsViewModel" />
+
+
+        <variable
+            name="click"
+            type="com.example.servivet.ui.main.view_model.ContactUsViewModel.ClickAction" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F8F8F8"
+        tools:context=".ui.main.fragments.AboutUsFragment">
+
+        <LinearLayout
+            android:id="@+id/topLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_bottom_round_corner_24dp"
+            android:elevation="1dp"
+            android:paddingBottom="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="55dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/backBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{click::backBtn}"
+                    android:src="@drawable/back_circle_btn" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="center_horizontal"
+                    android:text="@string/contact_us"
+                    android:textColor="@color/black"
+                    android:textSize="21dp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/bottomLayout"
+            android:layout_below="@id/topLayout"
+            android:layout_marginTop="15dp"
+
+            android:layout_marginBottom="10dp"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:elevation="1dp"
+                android:layout_marginBottom="1dp"
+                android:background="@drawable/white_round_corner_12_dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/gray_corner_outline_drawable_12_dp"
+                    android:orientation="horizontal"
+                    android:paddingVertical="15dp">
+
+                    <RelativeLayout
+                        android:id="@+id/callLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1">
+                        <ImageView
+                            android:id="@+id/callIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/call_app_theme_icon" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Call"
+                            android:layout_toEndOf="@id/callIcon"
+                            android:textColor="@color/black"
+                            android:textSize="13dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center_vertical" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/grey7" />
+                    <RelativeLayout
+                        android:id="@+id/emailLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1">
+                        <ImageView
+                            android:id="@+id/emailIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/email_app_theme_icon" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Email"
+                            android:layout_toEndOf="@id/emailIcon"
+                            android:textColor="@color/black"
+                            android:textSize="13dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center_vertical" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="We are keen to know how we can make E-Yugam better for you. Send your feedback or suggestion"
+                    android:textColor="@color/black"
+                    android:textSize="17dp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Title"
+                    android:textColor="#505050"
+                    android:textSize="15dp" />
+
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="11dp"
+                    android:background="@drawable/gray_corner_outline_drawable_12_dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="Enter title"
+                    android:afterTextChanged="@{(text)->click.title(text)}"
+
+                    android:inputType="textEmailAddress"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="17dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray_878787"
+                    android:textSize="17dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="11dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Message"
+                        android:textColor="#505050"
+                        android:textSize="15dp" />
+
+
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/descriptionEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@drawable/gray_corner_outline_drawable_12_dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:gravity="start"
+                    android:afterTextChanged="@{(text)->click.message(text)}"
+
+                    android:hint="Your feedback or suggestion here..."
+                    android:inputType="textMultiLine"
+                    android:padding="17dp"
+                    android:maxLength="200"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray_878787"
+                    android:textSize="15dp" />
+
+
+                <TextView
+                    android:id="@+id/wordCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="@font/poppins_italic"
+                    android:gravity="end"
+                    android:text="(0/200)"
+                    android:textColor="@color/gray_878787"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+
+        </ScrollView>
+
+
+        <RelativeLayout
+            android:id="@+id/bottomLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:paddingHorizontal="15dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="15dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradient_blue_drawable_12_dp"
+                android:backgroundTint="@null"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/submit"
+                android:enabled='@{(viewModel.titleET==true &amp; viewModel.messageET==true)?true:false }'
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="19dp"
+                app:backgroundTint="@null" />
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

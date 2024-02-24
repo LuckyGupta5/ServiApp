@@ -20,6 +20,8 @@ import com.example.servivet.data.model.save_address.request.SaveAddressRequest
 import com.example.servivet.data.model.send_otp.request.SendOtpRequest
 import com.example.servivet.data.model.service_category_details.request.ServiceCategoryDetailsRequest
 import com.example.servivet.data.model.service_list.request.ServiceListRequest
+import com.example.servivet.data.model.setting.contact.request.ContactUsRequest
+import com.example.servivet.data.model.setting.notification.request.NotificationRequest
 import com.example.servivet.data.model.verifyotp.request.VerifyOtpRequest
 import okhttp3.MultipartBody
 
@@ -101,8 +103,15 @@ class MainRepository(private val apiService: ApiService) {
     suspend fun logoutUser() = apiService.logoutUser()
     suspend fun connectionListApi(request: HashMap<String,Int>) = apiService.connectionListApi(request)
     suspend fun connectionRequestListApi(request: HashMap<String,Int>) = apiService.connectionRequestListApi(request)
+
     suspend fun acceptRejectApi(request: AcceptRejectRequest) = apiService.acceptRejectApi(request)
     suspend fun connectionRequest(request: ConnectionRequest) = apiService.connectionRequest(request)
 
 
+    //setting
+    suspend fun cmsApi(type:String) = apiService.cmsData(type)
+    suspend fun notificationStatusApi(request: NotificationRequest) = apiService.notificationStatus(request)
+    suspend fun contactUsApi(request: ContactUsRequest) = apiService.addContactUs(request)
+    suspend fun addressList() = apiService.addressList()
+    suspend fun deleteAccountApi() = apiService.deleteAccount()
 }

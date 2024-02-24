@@ -39,6 +39,37 @@
             android:visibility="gone" />
 
         <LinearLayout
+            android:id="@+id/idSearchLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/white_round_corner_12_dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/idSearchText"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawableStart="@drawable/search"
+                android:drawablePadding="5dp"
+                android:hint="Search here..."
+                android:paddingStart="10dp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+
+                android:layout_weight="0.1"
+                android:onClick="@{click::closeSearch}"
+                android:src="@drawable/white_cross_gray_bg_icon" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/toplayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,6 +112,7 @@
                     android:layout_gravity="center"
                     android:layout_marginEnd="6dp"
                     android:background="@mipmap/search_icon"
+                    android:onClick="@{click::clickSearch}"
                     android:visibility="visible" />
 
                 <ImageView
@@ -97,7 +129,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="6dp"
-                    android:background="@mipmap/threedoticon" />
+                    android:background="@mipmap/threedoticon"
+                    android:visibility="gone" />
                 -->
             </LinearLayout>
         </LinearLayout>

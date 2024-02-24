@@ -1,5 +1,7 @@
 package com.example.servivet.ui.main.fragment
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
@@ -43,8 +45,21 @@ class ChatsFragment : BaseFragment<FragmentChatsBinding, ChatViewModel>(R.layout
             viewMOdel = mViewModel
             click = mViewModel.ClickAction(requireContext(), binding)
         }
+        initEditText()
         setBack()
         initSocket()
+    }
+
+    private fun initEditText() {
+        binding.idSearchText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+               binding.chatListAdapter?.filter(s.toString())
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
     }
 
 

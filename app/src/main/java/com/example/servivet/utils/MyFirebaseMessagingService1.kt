@@ -58,7 +58,7 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
         intentData.putExtra(NOTIFICATION, rMessage.notification?.body)
         sendBroadcast(intentData)
 
-        Log.e("TAG", "checkCallBody: ${Gson().toJson(callBody)}")
+        Log.e("TAG", "checkCallBody: ${Gson().toJson(rMessage.data)}")
 
 
         Log.e("TAG", "onMessageReceived: $message")

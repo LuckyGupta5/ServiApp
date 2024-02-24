@@ -157,7 +157,7 @@ class FragmentMyConnection :
     private val onItemClick: (Int, String) -> Unit = { identifire, data ->
 
         when (identifire) {
-            0 -> {
+            2 -> {
                 acceptRejectModel.getAcceptRejectRequest(identifire, data)
             }
         }

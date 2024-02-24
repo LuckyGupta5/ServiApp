@@ -18,6 +18,15 @@ class ChatViewModel:BaseViewModel() {
             view.findNavController().navigate(R.id.action_chatFragment_to_chatRequestFragment)
         }
 
+        fun clickSearch(view: View){
+            binding.idSearchLayout.isVisible = true
+            binding.toplayout.isVisible = false
+        }
+        fun closeSearch(view: View){
+            binding.idSearchLayout.isVisible = false
+            binding.toplayout.isVisible = true
+        }
+
 
     }
 }

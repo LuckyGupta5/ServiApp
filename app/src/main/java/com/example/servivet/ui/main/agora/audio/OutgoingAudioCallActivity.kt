@@ -91,18 +91,6 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
        // mBinding.parent.setPadding(0, getPaddingAccordingToStatusBarHeight(), 0, 0)
         getArgumentData()
 
-//        val bundle = intent.getBundleExtra("bundle")
-//        if (bundle != null) {
-//            agoraToken = bundle.getString(AGORA_TOKEN)!!
-//            channelName = bundle.getString(CHANNEL_NAME)!!
-//            callUserImage = bundle.getString(CALL_USER_IMAGE)!!
-//            callUserName = bundle.getString(CALL_USER_NAME)!!
-//            currentUserId = bundle.getString(CURRENT_USER_ID)!!
-//            msgId = bundle.getString(MSG_ID)!!
-//
-//            mBinding.userImage = callUserImage
-//            mBinding.userName = callUserName
-//        }
 
         initializeChannel()
         joinChannel()
@@ -112,17 +100,6 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
     private fun getArgumentData() {
         when (argumentData.from) {
             getString(R.string.outgoing_Audio) -> {
-//                val bundle = intent.getBundleExtra("bundle")
-//                if (bundle != null) {
-//                    agoraToken = bundle.getString(AGORA_TOKEN)!!
-//                    channelName = bundle.getString(CHANNEL_NAME)!!
-//                    callUserImage = bundle.getString(CALL_USER_IMAGE)!!
-//                    callUserName = bundle.getString(CALL_USER_NAME)!!
-//                    msgId = bundle.getString(MSG_ID)!!
-//
-//                    mBinding.callUserImage = callUserImage
-//                    mBinding.userName = callUserName
-//                }
                 val data = Gson().fromJson(argumentData.data, VideoCallResponse::class.java)
 
                 agoraToken = data.result.callToken
@@ -132,7 +109,6 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
                 msgId = data.result.chatMessageId
                 roomId = data.result.roomId
                 receiverId = data.result.receiverId
-
 
                 mBinding.userImage = callUserImage
                 mBinding.userName = callUserName
@@ -221,7 +197,7 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
     override fun onDestroy() {
         if (!isDestroy && !isAppOnForeground(this@OutgoingAudioCallActivity)) {
             if (!isCallEnd) {
-                if (!isCallConnected)
+                if (isCallConnected)
                     endCall()
                 else
                     noAnswerCall()
@@ -353,7 +329,7 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
         open fun endCall(view: View) {
 
             Toast.makeText(this@OutgoingAudioCallActivity, "click", Toast.LENGTH_SHORT).show()
-            if (!isCallConnected)
+            if (isCallConnected)
                 endCall()
             else
                 noAnswerCall()

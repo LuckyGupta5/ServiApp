@@ -141,7 +141,7 @@
                 android:id="@+id/audio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/mic_icon"
+                android:src="@drawable/message_icon"
                 android:onClick="@{clickAction::muteUnMuteCall}"
                 android:layout_marginEnd="20dp"
                 app:layout_constraintTop_toTopOf="parent"

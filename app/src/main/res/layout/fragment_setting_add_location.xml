@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="click"
+            type="com.example.servivet.ui.main.view_model.SettingAddLocationViewModel.ClickAction" />
+
+        <variable
+            name="viewModel"
+            type="com.example.servivet.ui.main.view_model.SettingAddLocationViewModel" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/saveBtn"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="15dp"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:elevation="10dp">
+
+                        <ImageView
+                            android:id="@+id/backBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="20dp"
+                            android:onClick="@{click::backbtn}"
+                            android:background="@drawable/map_back_btn"
+                            android:elevation="10dp" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_toEndOf="@id/backBtn"
+                            android:background="@drawable/gray_corner_outline_drawable_12_dp">
+
+                            <fragment
+                                android:id="@+id/autocomplete_fragment"
+                                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                                android:layout_width="match_parent"
+                                android:layout_height="55dp" />
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/map"
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp" />
+
+                    <LinearLayout
+                        android:id="@+id/fillInfoLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/map"
+                        android:layout_marginBottom="10sp"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:id="@+id/addresslayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginTop="20sp"
+                            android:background="@drawable/white_round_corner_12_dp">
+
+                            <ImageView
+                                android:id="@+id/location_icon"
+                                android:layout_width="20dp"
+                                android:layout_height="25dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="20dp"
+                                android:background="@drawable/location_path_icon" />
+
+                            <TextView
+                                android:id="@+id/pick_location_txt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15sp"
+                                android:layout_marginTop="15sp"
+                                android:layout_toRightOf="@+id/location_icon"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@string/address"
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/address"
+                                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_below="@id/pick_location_txt"
+                                android:layout_marginStart="15sp"
+                                android:layout_marginEnd="15dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_toEndOf="@+id/location_icon"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/poppins_medium"
+                                android:maxLines="1"
+                                android:text="@string/a_192_sector_44_noida"
+                                android:textColor="@color/black"
+                                android:textSize="15dp" />
+
+                            <!--<TextView
+                                android:layout_width="40dp"
+                                android:layout_height="11dp"
+                                android:layout_alignTop="@+id/autocomplete_fragment"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginBottom="1dp"
+                                android:background="@color/white"
+                                android:enabled="false" />-->
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/fullna"
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginTop="20sp"
+                            android:background="@drawable/white_round_corner_12_dp">
+
+                            <ImageView
+                                android:id="@+id/fullNameIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="20dp"
+                                android:background="@drawable/full_name_icon" />
+
+                            <TextView
+                                android:id="@+id/fullnametext"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15sp"
+                                android:layout_marginTop="15sp"
+                                android:layout_toRightOf="@+id/fullNameIcon"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@string/full_name"
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+
+                            <EditText
+                                android:id="@+id/fullName"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_below="@id/fullnametext"
+                                android:layout_marginStart="15sp"
+                                android:layout_marginEnd="15dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_toEndOf="@+id/fullNameIcon"
+                                android:afterTextChanged="@{(text)->click.onNameChange(text)}"
+                                android:background="@android:color/transparent"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/poppins_medium"
+                                android:hint="@string/enter_full_name"
+                                android:inputType="textPersonName"
+                                android:maxLines="1"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/gray_777777"
+                                android:textSize="15dp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/mobileNumberLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginTop="20sp"
+                            android:background="@drawable/white_round_corner_12_dp">
+
+                            <ImageView
+                                android:id="@+id/MobileNoIcon"
+                                android:layout_width="20dp"
+                                android:layout_height="25dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="20dp"
+                                android:background="@drawable/mobile_number_icon" />
+
+                            <TextView
+                                android:id="@+id/MobileNumberTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15sp"
+                                android:layout_marginTop="15sp"
+                                android:layout_toRightOf="@+id/MobileNoIcon"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@string/mobile_number"
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+
+                            <EditText
+                                android:id="@+id/mobileNumberText"
+                                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_below="@id/MobileNumberTextView"
+                                android:layout_marginStart="15sp"
+                                android:layout_marginEnd="15dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_toEndOf="@+id/MobileNoIcon"
+                                android:afterTextChanged="@{(text)->click.onNumberChange(text)}"
+                                android:background="@android:color/transparent"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/poppins_medium"
+                                android:hint="Enter Mobile"
+                                android:inputType="number"
+                                android:maxLines="1"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/gray_777777"
+                                android:textSize="15dp" />
+
+                            <!--<TextView
+                                android:layout_width="40dp"
+                                android:layout_height="11dp"
+                                android:layout_alignTop="@+id/autocomplete_fragment"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginBottom="1dp"
+                                android:background="@color/white"
+                                android:enabled="false" />-->
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:id="@+id/savethisAddressLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/mobileNumberLayout"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginTop="10dp"
+                            android:onClick="@{click::agree}"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/checkbox"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background='@{ viewModel.isCheck==true? @drawable/selected_checkbox: @drawable/unselected_checkbox}' />
+
+
+                            <TextView
+                                android:id="@+id/termConditionPolicy"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginBottom="15sp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:letterSpacing="0.02"
+                                android:lineSpacingMultiplier="1"
+                                android:text="@string/save_this_address_for_future_services"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+            </LinearLayout>
+        </ScrollView>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/saveBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/button_selector"
+            android:enabled='@{(viewModel.name==true &amp; viewModel.number==true)?true:false }'
+            android:fontFamily="@font/poppins_medium"
+            android:onClick="@{click::saveAddressBtn}"
+            android:paddingVertical="10dp"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="19dp"
+            android:visibility="visible"
+            app:backgroundTint="@null" />
+
+    </RelativeLayout>
+</layout>

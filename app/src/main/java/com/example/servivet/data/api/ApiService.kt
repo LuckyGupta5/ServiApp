@@ -42,6 +42,10 @@ import com.example.servivet.data.model.service_category_details.request.ServiceC
 import com.example.servivet.data.model.service_category_details.response.ServiceCategoryDetailsResponse
 import com.example.servivet.data.model.service_list.ServiceListResponse
 import com.example.servivet.data.model.service_list.request.ServiceListRequest
+import com.example.servivet.data.model.setting.address_list.SettingAddressListResponse
+import com.example.servivet.data.model.setting.cms.response.CmsResponse
+import com.example.servivet.data.model.setting.contact.request.ContactUsRequest
+import com.example.servivet.data.model.setting.notification.request.NotificationRequest
 import com.example.servivet.data.model.user_profile.response.UserProfileResponse
 import com.example.servivet.data.model.verifyotp.request.VerifyOtpRequest
 import com.example.servivet.data.model.verifyotp.response.VerifyOTPResponse
@@ -50,7 +54,9 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
+import retrofit2.http.Query
 import retrofit2.http.QueryMap
+import retrofit2.http.QueryName
 
 
 interface ApiService {
@@ -168,5 +174,20 @@ interface ApiService {
     @POST("connection/request")
     suspend fun connectionRequest(@Body request: ConnectionRequest): ConnnectionResponse
 
+    //setting
+    @GET("setting/cmsData")
+    suspend fun cmsData(@Query("type") type:String): CmsResponse
+
+    @POST("setting/notificationStatus")
+    suspend fun notificationStatus(@Body request: NotificationRequest): CommonResponse
+
+    @POST("addContactUs")
+    suspend fun addContactUs(@Body request: ContactUsRequest): CommonResponse
+
+    @GET("address/list")
+    suspend fun addressList():SettingAddressListResponse
+
+    @POST("setting/deleteAccount")
+    suspend fun deleteAccount():CommonResponse
 
 }

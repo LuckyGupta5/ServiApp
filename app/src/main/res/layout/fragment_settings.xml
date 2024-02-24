@@ -149,11 +149,17 @@
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/switchcompat"
+                    <Switch
+                        android:id="@+id/switchBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:shadowColor="@color/black" />
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:theme="@style/mySwitch"
+                        android:thumb="@drawable/switch_button_circle"
+                        android:track="@drawable/track_selector"
+                        tools:ignore="UseSwitchCompatOrMaterialXml" />
                 </LinearLayout>
 
                 <View
@@ -177,10 +183,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="23dp"
                     android:drawableStart="@drawable/wallet_icon"
                     android:drawableEnd="@drawable/profile_path"
                     android:drawablePadding="11dp"
+                    android:paddingVertical="20dp"
                     android:fontFamily="@font/poppins_semi_bold"
                     android:maxLines="1"
                     android:onClick="@{click::gotoMyWallet}"
@@ -191,7 +197,6 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginVertical="20dp"
                     android:layout_marginStart="20dp"
                     android:background="@color/grey_707070_opicity_6" />
 
@@ -204,15 +209,15 @@
                     android:drawablePadding="11dp"
                     android:fontFamily="@font/poppins_semi_bold"
                     android:maxLines="1"
+                    android:paddingVertical="20dp"
                     android:text="@string/about_us"
-                    android:onClick="@{()->clickEvents.invoke(0)}"
+                    android:onClick="@{click::aboutUs}"
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginVertical="20dp"
                     android:layout_marginStart="20dp"
                     android:background="@color/grey_707070_opicity_6" />
 
@@ -245,6 +250,7 @@
                     android:drawableStart="@drawable/change_language_icon"
                     android:drawableEnd="@drawable/profile_path"
                     android:drawablePadding="11dp"
+                    android:paddingVertical="20dp"
                     android:fontFamily="@font/poppins_semi_bold"
                     android:maxLines="1"
                     android:text="@string/change_language"
@@ -254,7 +260,6 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginVertical="20dp"
                     android:layout_marginStart="20dp"
                     android:background="@color/grey_707070_opicity_6" />
 
@@ -268,6 +273,8 @@
                     android:drawablePadding="11dp"
                     android:fontFamily="@font/poppins_semi_bold"
                     android:maxLines="1"
+                    android:onClick="@{click::address}"
+                    android:paddingVertical="20dp"
                     android:text="@string/saved_addresses"
                     android:textColor="@color/black"
                     android:textSize="17sp" />
@@ -275,7 +282,6 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginVertical="20dp"
                     android:layout_marginStart="20dp"
                     android:background="@color/grey_707070_opicity_6" />
 
@@ -288,6 +294,7 @@
                     android:drawablePadding="11dp"
                     android:fontFamily="@font/poppins_semi_bold"
                     android:maxLines="1"
+                    android:paddingVertical="20dp"
                     android:text="@string/faq_s"
                     android:textColor="@color/black"
                     android:textSize="17sp" />
@@ -295,7 +302,6 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginVertical="20dp"
                     android:layout_marginStart="20dp"
                     android:background="@color/grey_707070_opicity_6" />
 
@@ -308,6 +314,8 @@
                     android:drawablePadding="11dp"
                     android:fontFamily="@font/poppins_semi_bold"
                     android:maxLines="1"
+
+                    android:paddingVertical="20dp"
                     android:text="@string/contact_us"
                     android:textColor="@color/black"
                     android:textSize="17sp" />
@@ -315,7 +323,6 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginVertical="20dp"
                     android:layout_marginStart="20dp"
                     android:background="@color/grey_707070_opicity_6" />
 
@@ -328,6 +335,8 @@
                     android:drawablePadding="11dp"
                     android:fontFamily="@font/poppins_semi_bold"
                     android:maxLines="1"
+                    android:onClick="@{click::privacyPolicy}"
+                    android:paddingVertical="20dp"
                     android:text="@string/data_privacy"
                     android:textColor="@color/black"
                     android:textSize="17sp" />
@@ -335,7 +344,6 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginVertical="20dp"
                     android:layout_marginStart="20dp"
                     android:background="@color/grey_707070_opicity_6" />
 
@@ -348,6 +356,8 @@
                     android:drawablePadding="11dp"
                     android:fontFamily="@font/poppins_semi_bold"
                     android:maxLines="1"
+                    android:onClick="@{click::termCondition}"
+                    android:paddingVertical="20dp"
                     android:text="@string/terms_and_conditions"
                     android:textColor="@color/black"
                     android:textSize="17sp" />
@@ -355,11 +365,11 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginVertical="20dp"
                     android:layout_marginStart="20dp"
                     android:background="@color/grey_707070_opicity_6" />
 
                 <TextView
+                    android:id="@+id/deleteAccount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
@@ -368,6 +378,7 @@
                     android:drawablePadding="11dp"
                     android:fontFamily="@font/poppins_semi_bold"
                     android:maxLines="1"
+                    android:paddingVertical="20dp"
                     android:text="@string/delete_account"
                     android:textColor="@color/black"
                     android:textSize="17sp" />
@@ -375,7 +386,6 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginVertical="20dp"
                     android:layout_marginStart="20dp"
                     android:background="@color/grey_707070_opicity_6" />
 
@@ -389,6 +399,7 @@
                     android:fontFamily="@font/poppins_semi_bold"
                     android:gravity="center_horizontal"
                     android:maxLines="1"
+                    android:paddingVertical="20dp"
                     android:onClick="@{click::goLogout}"
                     android:text="@string/log_out"
                     android:textColor="@color/black"
@@ -397,7 +408,6 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginVertical="20dp"
                     android:layout_marginStart="20dp"
                     android:background="@color/grey_707070_opicity_6" />
 

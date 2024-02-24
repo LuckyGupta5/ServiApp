@@ -100,4 +100,8 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
+
+        <style name="mySwitch">
+            <item name="android:colorControlActivated">@color/app_theme</item>
+        </style>
     </resources>

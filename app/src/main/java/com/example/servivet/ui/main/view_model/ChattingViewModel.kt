@@ -30,11 +30,7 @@ class ChattingViewModel : BaseViewModel() {
         val builder = MultipartBody.Builder()
         builder.setType(MultipartBody.FORM)
         val path = File(file)
-        builder.addFormDataPart(
-            "chatImage",
-            path.name,
-            path.asRequestBody("multipart/form-data".toMediaTypeOrNull())
-        )
+        builder.addFormDataPart("chatImage", path.name, path.asRequestBody("multipart/form-data".toMediaTypeOrNull()))
         val requestBody = builder.build()
         hitUploadDocumentApi(requestBody)
 

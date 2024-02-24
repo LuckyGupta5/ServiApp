@@ -25,6 +25,7 @@ import com.example.servivet.ui.main.adapter.ChattingAdapter
 import com.example.servivet.ui.main.view_model.ChattingViewModel
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.CommonUtils.showSnackBar
+import com.example.servivet.utils.FileMaker
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.SocketManager
@@ -233,6 +234,9 @@ class ChattingFragment :
                                 InitiateChatResponse::class.java
                             )
                             roomId = initateChatResponse.result.roomDetail._id
+                            binding.idMessage.setText("")
+                            initChatListSocket()
+
 
                         } catch (ex: JSONException) {
                             ex.printStackTrace()
@@ -461,7 +465,15 @@ class ChattingFragment :
                             showSnackBar("Permission not Granted")
                         }
                     }
+                    getString(R.string.files) -> {
+                        if (checkMediaPermission(requireActivity())) {
+                            openGallery()
+                        } else {
+                            showSnackBar("Permission not Granted")
+                        }
+                    }
                 }
+
 
             }
     }
@@ -554,8 +566,7 @@ class ChattingFragment :
     }
 
     @SuppressLint("SuspiciousIndentation")
-    private val startForImageGallery =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+    private val startForImageGallery = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val data = result.data
                 checkMediaList.clear()
@@ -568,13 +579,19 @@ class ChattingFragment :
                     }
 
                 } else {
-                    val fileUri = data.data
-                    if (fileUri!!.path!!.isNotEmpty()) {
-                        imagePath =
-                            CommonUtils.getRealPathFromURI(requireActivity(), fileUri).toString()
+                    val file = FileMaker.from(requireContext(), data?.data)
+
+
+
+                    if (file!!.path!!.isNotEmpty()) {
+                        imagePath =file.path
+                        checkMediaList.add(imagePath)
+
+                        Log.e("TAG", "pathpath:${imagePath} ", )
 
                     }
                 }
+
                 if (checkMediaList.size == 1) {
                     val fileSize = checkVideoFileSize(checkMediaList[0])
                     if (fileSize < 100) {

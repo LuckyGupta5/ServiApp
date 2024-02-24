@@ -169,19 +169,7 @@ class OutgoingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
     private fun getArgumentData() {
         when (argumentData.from) {
             getString(R.string.outgoing_video) -> {
-//                val bundle = intent.getBundleExtra("bundle")
-//                if (bundle != null) {
-//                    agoraToken = bundle.getString(AGORA_TOKEN)!!
-//                    channelName = bundle.getString(CHANNEL_NAME)!!
-//                    callUserImage = bundle.getString(CALL_USER_IMAGE)!!
-//                    callUserName = bundle.getString(CALL_USER_NAME)!!
-//                    msgId = bundle.getString(MSG_ID)!!
-//
-//                    mBinding.callUserImage = callUserImage
-//                    mBinding.userName = callUserName
-//                }
                 val data = Gson().fromJson(argumentData.data, VideoCallResponse::class.java)
-
                 agoraToken = data.result.callToken
                 channelName = data.result.channelName
                 callUserImage = data.result.senderId.image

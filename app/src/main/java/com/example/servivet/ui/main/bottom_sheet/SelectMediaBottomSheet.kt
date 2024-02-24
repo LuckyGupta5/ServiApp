@@ -34,7 +34,7 @@ class SelectMediaBottomSheet : BaseBottomSheetDailogFragment<FragmentSelectMedia
 
     override fun setupViews() {
         binding.apply {
-            lifecycleOwner = viewLifecycleOwner
+          //  lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
             click = ::onClick
             checkType = argumentData.from

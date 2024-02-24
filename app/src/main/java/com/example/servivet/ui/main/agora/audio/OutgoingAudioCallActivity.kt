@@ -13,6 +13,7 @@ import android.os.SystemClock
 import android.util.Log
 import android.view.*
 import android.widget.Chronometer
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
@@ -63,7 +64,7 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
     private lateinit var mSocket: Socket
     private var handler: Handler? = null
     private var mRtcEngine: RtcEngine? = null
-    public var isCallConnected = false
+    private var isCallConnected = false
     private var isMute = true
     private var isCallEnd = false
     private var roomId = ""
@@ -220,7 +221,7 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
     override fun onDestroy() {
         if (!isDestroy && !isAppOnForeground(this@OutgoingAudioCallActivity)) {
             if (!isCallEnd) {
-                if (isCallConnected)
+                if (!isCallConnected)
                     endCall()
                 else
                     noAnswerCall()
@@ -350,7 +351,9 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
 
     open inner class ClickAction {
         open fun endCall(view: View) {
-            if (isCallConnected)
+
+            Toast.makeText(this@OutgoingAudioCallActivity, "click", Toast.LENGTH_SHORT).show()
+            if (!isCallConnected)
                 endCall()
             else
                 noAnswerCall()

@@ -377,6 +377,9 @@
         <action
             android:id="@+id/action_settingsFragment_to_settingLocationListFragment"
             app:destination="@id/settingLocationListFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_faqFragment"
+            app:destination="@id/faqFragment" />
     </fragment>
     <fragment
         android:id="@+id/myWalletFragment"
@@ -639,6 +642,11 @@
         android:id="@+id/settingAddLocationFragment"
         android:name="com.example.servivet.ui.main.fragment.settings_module.SettingAddLocationFragment"
         android:label="SettingAddLocationFragment" />
+    <fragment
+        android:id="@+id/faqFragment"
+        android:name="com.example.servivet.ui.main.fragment.settings_module.FaqFragment"
+        android:label="FaqFragment"
+        tools:layout="@layout/fragment_faq"/>
 
 
     <!-- <fragment

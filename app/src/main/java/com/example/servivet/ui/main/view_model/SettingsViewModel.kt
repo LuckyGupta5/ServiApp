@@ -75,6 +75,11 @@ class SettingsViewModel : BaseViewModel() {
             // CommonUtils.customalertdialog(frgmentActivity, frgmentActivity.getString(R.string.are_you_sure_you_want_to_logout), 1)
         }
 
+        fun faq(view: View) {
+
+            view.findNavController().navigate(R.id.action_settingsFragment_to_faqFragment)
+        }
+
     }
 
 

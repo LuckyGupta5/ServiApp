@@ -111,6 +111,9 @@ class SettingAddLocationFragment :
             viewModel = mViewModel
             click = mViewModel.ClickAction()
         }
+
+        mapInitialization()
+        setClick()
         if(arguments?.getString("action")!=null){
             mViewModel.action=arguments?.getString("action")!!
         }
@@ -125,8 +128,6 @@ class SettingAddLocationFragment :
             mViewModel.saveAddressRequest.postalCode = addressForEdit!!.postalCode.toString()
 
         }
-        mapInitialization()
-        setClick()
 
     }
 
@@ -165,11 +166,6 @@ class SettingAddLocationFragment :
                     mMap.clear()
                     if (task.result != null) {
 
-                        Log.d("latitude: ", "" + lastKnownLocation?.latitude)
-                        Log.d("longitude: ", "" + lastKnownLocation?.longitude)
-
-                        val latLng = LatLng(task.result.latitude, task.result.longitude)
-
                         this.mMap.isMyLocationEnabled = false
 
 
@@ -178,26 +174,43 @@ class SettingAddLocationFragment :
 
 
                         // calculate address.
-                        if (task.result?.latitude != null) {
-                            val address = CommonUtils.getAddressFromLatLng(requireContext(), task.result?.latitude!!, task.result?.longitude!!)
-                            autoCompleteSupportFragment.setText(address!!.getAddressLine(0))
-                            binding.address.text = address!!.getAddressLine(0)
-                            mViewModel.saveAddressRequest.addressActionType="add"
-                            mViewModel.saveAddressRequest.addressId =""
-                            mViewModel.saveAddressRequest.city =address.locality
-                            mViewModel.saveAddressRequest.country =address.countryName
-                            mViewModel.saveAddressRequest.fullAddress =address.getAddressLine(0)
-                            mViewModel.saveAddressRequest.latitute =task.result.latitude.toString()
-                            mViewModel.saveAddressRequest.longitute =task.result.longitude.toString()
-                            mViewModel.saveAddressRequest.postalCode =address.postalCode
+
+                        if(arguments?.getSerializable(Constants.DATA)!=null){
+                            var latLngs=LatLng(addressForEdit!!.location!!.coordinates[0],addressForEdit!!.location!!.coordinates[1])
+                            this.mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngs, 17f))
+                            mMap.addMarker(MarkerOptions().position(latLngs).icon(bitmapDescriptorFromVector(requireContext(), R.drawable.currentlocationicon)).anchor(0.8f, 0.5f))
+                            binding.address.text =addressForEdit!!.fullAddress
+                            autoCompleteSupportFragment.setText(addressForEdit!!.fullAddress)
+                            mViewModel.saveAddressRequest.addressId =addressForEdit!!._id
+                            mViewModel.saveAddressRequest.city =addressForEdit!!.city
+                            mViewModel.saveAddressRequest.fullAddress =addressForEdit!!.fullAddress
+                            mViewModel.saveAddressRequest.latitute = addressForEdit!!.location!!.coordinates[0].toString()
+                            mViewModel.saveAddressRequest.longitute =addressForEdit!!.location!!.coordinates[1].toString()
+                            mViewModel.saveAddressRequest.postalCode = addressForEdit!!.postalCode.toString()
+                        }else{
+                            if (task.result?.latitude != null) {
+                                val address = CommonUtils.getAddressFromLatLng(requireContext(), task.result?.latitude!!, task.result?.longitude!!)
+                                autoCompleteSupportFragment.setText(address!!.getAddressLine(0))
+                                binding.address.text = address!!.getAddressLine(0)
+                                mViewModel.saveAddressRequest.addressActionType="add"
+                                mViewModel.saveAddressRequest.addressId =""
+                                mViewModel.saveAddressRequest.city =address.locality
+                                mViewModel.saveAddressRequest.country =address.countryName
+                                mViewModel.saveAddressRequest.fullAddress =address.getAddressLine(0)
+                                mViewModel.saveAddressRequest.latitute =task.result.latitude.toString()
+                                mViewModel.saveAddressRequest.longitute =task.result.longitude.toString()
+                                mViewModel.saveAddressRequest.postalCode =address.postalCode
 
 
-                            Log.e("TAG", "getDeviceCurrentLocation: "+address.postalCode )
+                                Log.e("TAG", "getDeviceCurrentLocation: "+address.postalCode )
+
+                            }
+                            val latLng = LatLng(task.result.latitude, task.result.longitude)
+
+                            this.mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17f))
+                            mMap.addMarker(MarkerOptions().position(latLng).icon(bitmapDescriptorFromVector(requireContext(), R.drawable.currentlocationicon)).anchor(0.8f, 0.5f))
 
                         }
-                        this.mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20f))
-
-                        mMap.addMarker(MarkerOptions().position(latLng).icon(bitmapDescriptorFromVector(requireContext(), R.drawable.currentlocationicon)).anchor(0.8f, 0.5f))
 
 
                     }
@@ -453,7 +466,7 @@ class SettingAddLocationFragment :
                     mViewModel.saveAddressRequest.fullAddress =address.getAddressLine(0)
                     mViewModel.saveAddressRequest.latitute =address.latitude.toString()
                     mViewModel.saveAddressRequest.longitute =address.longitude.toString()
-                    mViewModel.saveAddressRequest.postalCode =address.postalCode
+                    mViewModel.saveAddressRequest.postalCode =CommonUtils.getPostalCodeByCoordinates(this,address.latitude,address.longitude,requireContext())
 
                     Log.e("TAG", "getDeviceCurrentLocation: "+CommonUtils.getPostalCodeByCoordinates(this,address.latitude,address.longitude,requireContext()) )
 
@@ -471,6 +484,8 @@ class SettingAddLocationFragment :
 
     override fun onMapReady(mMap: GoogleMap) {
         this.mMap = mMap
+
+
     }
 
 }

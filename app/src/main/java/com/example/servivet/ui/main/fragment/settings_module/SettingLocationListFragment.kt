@@ -58,7 +58,7 @@ class SettingLocationListFragment : BaseFragment<FragmentSettingLocationListBind
                 var bundle= Bundle()
                 bundle.putString("action","update")
                 bundle.putSerializable(Constants.DATA,data)
-                findNavController().navigate(R.id.action_settingLocationListFragment_to_addLocationFragment,bundle)
+                findNavController().navigate(R.id.action_settingLocationListFragment_to_settingAddLocationFragment,bundle)
 
             }
             "delete" -> {

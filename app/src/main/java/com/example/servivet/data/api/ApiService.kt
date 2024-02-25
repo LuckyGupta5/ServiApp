@@ -45,6 +45,8 @@ import com.example.servivet.data.model.service_list.request.ServiceListRequest
 import com.example.servivet.data.model.setting.address_list.SettingAddressListResponse
 import com.example.servivet.data.model.setting.cms.response.CmsResponse
 import com.example.servivet.data.model.setting.contact.request.ContactUsRequest
+import com.example.servivet.data.model.setting.faq_list.response.FaqListResponse
+import com.example.servivet.data.model.setting.faq_type_list.response.FaqTypeListResponse
 import com.example.servivet.data.model.setting.notification.request.NotificationRequest
 import com.example.servivet.data.model.user_profile.response.UserProfileResponse
 import com.example.servivet.data.model.verifyotp.request.VerifyOtpRequest
@@ -186,6 +188,12 @@ interface ApiService {
 
     @GET("address/list")
     suspend fun addressList():SettingAddressListResponse
+
+    @GET("faq/faqList")
+    suspend fun faqList(@Query("faqTypeId") faqTypeId:String):FaqListResponse
+
+    @GET("faq/faqTypeList")
+    suspend fun faqTypeList():FaqTypeListResponse
 
     @POST("setting/deleteAccount")
     suspend fun deleteAccount():CommonResponse

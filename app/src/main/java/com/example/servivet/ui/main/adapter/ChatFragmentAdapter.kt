@@ -32,11 +32,11 @@ class ChatFragmentAdapter(
     override fun bind(binding: ChatRecyclerviewDesignBinding, item: Chatlist?, position: Int) {
 
         val isDeletedByContainsId = item?.deletedBy?.any { id ->
-            id == com.example.servivet.utils.Session.userDetails._id
+            id == Session.userDetails._id
         } ?: false
 
         val isSeenBy = item?.seenBy?.any { id ->
-            id == com.example.servivet.utils.Session.userDetails._id
+            id == Session.userDetails._id
         } ?: false
 
         item?.createdAt = dateDifferenceExample(context, item?.createdAt) ?: ""
@@ -45,7 +45,7 @@ class ChatFragmentAdapter(
             item?.isSeenBy = isSeenBy
             idButtonContainer.isVisible = !check
             listData = filteredList[position]
-            userDetails = com.example.servivet.utils.Session.userDetails
+            userDetails = Session.userDetails
             idContainer.setOnClickListener {
                 onItemClick(
                     context.getString(R.string.container), Gson().toJson(chatList[position])
@@ -78,11 +78,12 @@ class ChatFragmentAdapter(
             chatList
         } else {
             chatList.filter {
-                it.senderId.name.contains(text, ignoreCase = true)||
-                it.receiverId.name.contains(text, ignoreCase = true)
+                it.senderId.name.contains(text, ignoreCase = true) || it.receiverId.name.contains(text, ignoreCase = true)
             }
 
         }
+
+        onItemClick(context.getString(R.string.filterdata), filteredList.size.toString())
         notifyDataSetChanged()
     }
 }

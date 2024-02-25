@@ -62,10 +62,12 @@
                 android:id="@+id/idUserName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
                 android:fontFamily="@font/poppins_semi_bold"
+                android:maxLength="18"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="21sp"
+                android:textSize="19sp"
                 app:layout_constraintBottom_toBottomOf="@id/idBackPress"
                 app:layout_constraintEnd_toStartOf="@id/idMenuItems"
                 app:layout_constraintStart_toEndOf="@+id/idBackPress"
@@ -120,8 +122,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:elevation="10dp"
-                android:padding="5dp"
                 android:onClick="@{()->clickEvents.invoke(@string/cross)}"
+                android:padding="5dp"
                 android:src="@drawable/white_cross_gray_bg_icon" />
 
             <ImageView
@@ -164,7 +166,7 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
                 android:textSize="15sp"
-                app:layout_constraintEnd_toStartOf="@id/idSendMessage"
+                app:layout_constraintEnd_toStartOf="@id/idMediaView"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.appcompat.widget.AppCompatImageView

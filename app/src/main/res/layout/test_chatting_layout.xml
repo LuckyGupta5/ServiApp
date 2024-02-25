@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="100dp"
-            android:visibility="gone">
+            android:visibility="@{messageData==null?View.GONE:messageData.senderId._id.equals(userDetails._id)?View.GONE:View.VISIBLE}">
 
             <RelativeLayout
                 android:id="@+id/idReceiverMediaContainer"
@@ -50,17 +50,19 @@
                     android:layout_toEndOf="@+id/idImageView"
                     android:background="@drawable/reciever_drawable"
                     android:fontFamily="@font/poppins_medium"
-                    android:paddingHorizontal="40dp"
+                    android:paddingHorizontal="23dp"
                     android:paddingVertical="15dp"
+                    android:text="@{messageData.message}"
                     android:textColor="@color/black"
-                    android:textSize="13dp" />
+                    android:textSize="13dp"
+                    android:visibility="@{messageData.messageType==1?View.VISIBLE:View.GONE}" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/idMedia"
                     android:layout_width="196dp"
                     android:layout_height="133dp"
                     android:layout_margin="10dp"
-                    android:visibility="gone"
+                    android:visibility="@{messageData==null?View.GONE:messageData.messageType==1?View.GONE:View.VISIBLE}"
                     app:cardCornerRadius="10dp">
 
                     <ImageView
@@ -68,14 +70,16 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:elevation="1dp"
-                        android:src="@android:drawable/ic_media_play" />
+                        android:src="@android:drawable/ic_media_play"
+                        android:visibility="@{messageData.containMP4?View.VISIBLE:View.GONE}" />
 
                     <ImageView
                         android:id="@+id/idReceiverImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:imageViewUrl='@{messageData.file.isEmpty?"":messageData.file.get(0)}'
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"
+                        />
                 </androidx.cardview.widget.CardView>
 
 
@@ -87,12 +91,12 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/idReceiverMediaContainer"
                 android:layout_alignEnd="@id/idReceiverMediaContainer"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="46dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/poppins_regular"
+                android:text="@{messageData.createdAt}"
                 android:textColor="@color/black"
                 android:textSize="11sp" />
         </RelativeLayout>
@@ -104,7 +108,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/idReceiverLayout"
             android:layout_alignParentEnd="true"
-            android:visibility="gone">
+            android:visibility="@{messageData==null?View.GONE:messageData.senderId._id.equals(userDetails._id)?View.VISIBLE:View.GONE}">
+
 
             <RelativeLayout
                 android:id="@+id/idTextChatSenderContainer"
@@ -119,10 +124,12 @@
                     android:layout_marginRight="15dp"
                     android:background="@drawable/sender_drawable"
                     android:fontFamily="@font/poppins_medium"
-                    android:paddingHorizontal="40dp"
+                    android:paddingHorizontal="23dp"
                     android:paddingVertical="15dp"
+                    android:text="@{messageData.message}"
                     android:textColor="@color/white"
-                    android:textSize="13dp" />
+                    android:textSize="13dp"
+                    android:visibility="@{messageData.messageType==1?View.VISIBLE:View.GONE}" />
 
 
                 <androidx.cardview.widget.CardView
@@ -130,7 +137,7 @@
                     android:layout_width="196dp"
                     android:layout_height="133dp"
                     android:layout_margin="10dp"
-                    android:visibility="gone"
+                    android:visibility="@{messageData==null?View.GONE:messageData.messageType==1?View.GONE:View.VISIBLE}"
                     app:cardCornerRadius="10dp">
 
                     <ImageView
@@ -138,14 +145,16 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:elevation="1dp"
-                        android:src="@android:drawable/ic_media_play" />
+                        android:src="@android:drawable/ic_media_play"
+                        android:visibility="@{messageData.containMP4?View.VISIBLE:View.GONE}" />
 
                     <ImageView
                         android:id="@+id/idSenderImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:imageViewUrl='@{messageData.file.isEmpty?"":messageData.file.get(0)}'
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"
+                        />
                 </androidx.cardview.widget.CardView>
 
             </RelativeLayout>
@@ -161,6 +170,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/poppins_regular"
+                android:text="@{messageData.createdAt}"
                 android:textColor="@color/black"
                 android:textSize="11sp" />
         </RelativeLayout>

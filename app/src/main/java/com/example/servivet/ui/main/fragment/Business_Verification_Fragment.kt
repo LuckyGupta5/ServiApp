@@ -19,8 +19,7 @@ import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
 
 
-class Business_Verification_Fragment :
-    BaseFragment<FragmentBusinessVerificationBinding, BusinessVerificationViewModel>(R.layout.fragment_business__verification) {
+class Business_Verification_Fragment : BaseFragment<FragmentBusinessVerificationBinding, BusinessVerificationViewModel>(R.layout.fragment_business__verification) {
     override val binding: FragmentBusinessVerificationBinding by viewBinding(
         FragmentBusinessVerificationBinding::bind
     )
@@ -63,15 +62,8 @@ class Business_Verification_Fragment :
 
     private fun initClickEvent() {
         binding.idAddress.setOnClickListener {
-            number = arguments?.getString(Constants.COUNTRY_CODE)!! + " " + arguments?.getString(
-                Constants.MOBILE_NUMBER
-            )!!
-            findNavController().navigate(
-                Business_Verification_FragmentDirections.actionBusinessVerificationFragmentToAddLocationFragment2(
-                    number,
-                    ""
-                )
-            )
+            number = arguments?.getString(Constants.COUNTRY_CODE)!! + " " + arguments?.getString(Constants.MOBILE_NUMBER)!!
+            findNavController().navigate(Business_Verification_FragmentDirections.actionBusinessVerificationFragmentToAddLocationFragment2(number, ""))
         }
     }
 

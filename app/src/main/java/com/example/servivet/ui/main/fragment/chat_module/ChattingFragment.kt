@@ -33,6 +33,7 @@ import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
 import com.example.servivet.utils.checkMediaPermission
 import com.example.servivet.utils.checkVideoFileSize
+import com.example.servivet.utils.downloadFile
 import com.example.servivet.utils.getVideoPathFromUri
 import com.google.gson.Gson
 import io.socket.client.Socket
@@ -65,6 +66,9 @@ class ChattingFragment :
     private var checkMediaList: ArrayList<String> = ArrayList()
     private var typeOfMessage = 1
     private var callType = 0
+    private var list = ArrayList<String>()
+    private var isMediaCome = false
+
     override fun isNetworkAvailable(boolean: Boolean) {
 
     }
@@ -189,7 +193,12 @@ class ChattingFragment :
 
                 R.id.idCall -> {
 //                    findNavController().navigate(R.id.action_chattingFragment_to_selectMediaBottomSheet)
-                    findNavController().navigate(ChattingFragmentDirections.actionChattingFragmentToSelectMediaBottomSheet("", getString(R.string.call)))
+                    findNavController().navigate(
+                        ChattingFragmentDirections.actionChattingFragmentToSelectMediaBottomSheet(
+                            "",
+                            getString(R.string.call)
+                        )
+                    )
                     true
                 }
 
@@ -207,6 +216,7 @@ class ChattingFragment :
             val data = JSONObject()
             data.put("roomId", roomId)
             socket.emit("clearChat", data)
+            mediaList.clear()
             initChatListSocket()
 
         } catch (ex: Exception) {
@@ -300,7 +310,7 @@ class ChattingFragment :
     }
 
     private fun initSendMessageEvent() {
-        if (binding.idMessage.text.toString().trim() != "") {
+        if (binding.idMessage.text.toString().trim() != "" || isMediaCome) {
             val data = JSONObject()
             try {
                 data.put("receiverId", recieverId)
@@ -311,6 +321,7 @@ class ChattingFragment :
                 socket.emit("sendMessage", data)
                 binding.idMessage.setText("")
                 typeOfMessage = 1
+                isMediaCome =false
                 mediaList.clear()
                 Log.d("TAG", "sentMessage: ${Gson().toJson(data)}")
 
@@ -332,10 +343,7 @@ class ChattingFragment :
                         val unBlockChat = args[0] as JSONObject
                         try {
                             Log.e("TAG", "chatListDataMessages:${unBlockChat}")
-                            chatListResponse = Gson().fromJson(
-                                JSONArray().put(unBlockChat)[0].toString(),
-                                ChattingListResponse::class.java
-                            )
+                            chatListResponse = Gson().fromJson(JSONArray().put(unBlockChat)[0].toString(), ChattingListResponse::class.java)
                             chattingList = chatListResponse.result.message
                             initChattingAdapter()
                             binding.idChatRecycle.scrollToPosition(chattingList.size - 1)
@@ -350,6 +358,7 @@ class ChattingFragment :
 
             // Single message
 
+            socket.off("receiveMessage")
             socket.on("receiveMessage", fun(args: Array<Any?>) {
                 if (isAdded) {
                     requireActivity().runOnUiThread {
@@ -361,6 +370,8 @@ class ChattingFragment :
                                 ChattingListResponse::class.java
                             )
                             chattingList.addAll(chatListResponse.result.message)
+                            //chattingList =chatListResponse.result.message
+
                             binding.chattingAdapter?.updateList(chattingList)
                             binding.idChatRecycle.scrollToPosition(chattingList.size - 1)
 
@@ -386,14 +397,14 @@ class ChattingFragment :
                     ProcessDialog.dismissDialog()
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            Log.e(
-                                "TAG",
-                                "setupObserveradjads: ${Gson().toJson(it.data.result.uploadImage)}",
+                            Log.e("TAG",
+                                "xsetupObserveradjads: ${Gson().toJson(it.data.result.uploadImage)}",
                             )
                             mediaList.clear()
                             mediaList.addAll(it.data.result.uploadImage)
                             binding.uploadFileData = it.data.result
-                            binding.idMessage.setText(Gson().toJson(mediaList))
+                            binding.idMessage.setText("..")
+                            isMediaCome = true
                             binding.idUploadImageCard.isVisible = true
 
 
@@ -465,6 +476,7 @@ class ChattingFragment :
                             showSnackBar("Permission not Granted")
                         }
                     }
+
                     getString(R.string.files) -> {
                         if (checkMediaPermission(requireActivity())) {
                             openGallery()
@@ -499,8 +511,8 @@ class ChattingFragment :
                                 VideoCallResponse::class.java
                             )
 
-                            when(callType){
-                                6->{
+                            when (callType) {
+                                6 -> {
                                     CoroutineScope(Dispatchers.Main).launch {
                                         delay(1000)
                                         findNavController().navigate(
@@ -513,7 +525,8 @@ class ChattingFragment :
                                         )
                                     }
                                 }
-                                7->{
+
+                                7 -> {
                                     CoroutineScope(Dispatchers.Main).launch {
                                         delay(1000)
                                         findNavController().navigate(
@@ -527,8 +540,6 @@ class ChattingFragment :
                                     }
                                 }
                             }
-
-
 
 
                         } catch (ex: JSONException) {
@@ -566,7 +577,8 @@ class ChattingFragment :
     }
 
     @SuppressLint("SuspiciousIndentation")
-    private val startForImageGallery = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+    private val startForImageGallery =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val data = result.data
                 checkMediaList.clear()
@@ -584,10 +596,10 @@ class ChattingFragment :
 
 
                     if (file!!.path!!.isNotEmpty()) {
-                        imagePath =file.path
+                        imagePath = file.path
                         checkMediaList.add(imagePath)
 
-                        Log.e("TAG", "pathpath:${imagePath} ", )
+                        Log.e("TAG", "pathpath:${imagePath} ")
 
                     }
                 }
@@ -610,13 +622,26 @@ class ChattingFragment :
     private val onItemClick: (Int, String) -> Unit = { position, data ->
         when (position) {
             0 -> {
-                findNavController().navigate(
-                    ChattingFragmentDirections.actionChattingFragmentToImageVideoViewFragment(
-                        data,
-                        getString(R.string.chatfragment),
-                        position
+
+                val listData = Gson().fromJson(data, Array<String>::class.java)
+                list.addAll(listData)
+
+                if (list[0].endsWith(".pdf")) {
+                    downloadFile(
+                        requireContext(),
+                        list[0],
+                        "Notes",
+                        "pdf"
                     )
-                )
+                } else {
+                    findNavController().navigate(
+                        ChattingFragmentDirections.actionChattingFragmentToImageVideoViewFragment(
+                            data,
+                            getString(R.string.chatfragment),
+                            position
+                        )
+                    )
+                }
 
             }
         }

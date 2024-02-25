@@ -1,10 +1,12 @@
 package com.example.servivet.ui.main.fragment
 
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.CompoundButton
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
 import com.example.servivet.databinding.DeleteAccountBottomSheetBinding
@@ -13,6 +15,7 @@ import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.view_model.SettingsViewModel
 import com.example.servivet.utils.CommonUtils.showSnackBar
 import com.example.servivet.utils.CommonUtils.showToast
+import com.example.servivet.utils.Constants
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
@@ -72,6 +75,14 @@ class SettingsFragment:BaseFragment<FragmentSettingsBinding,SettingsViewModel>(R
                 mViewModel.hitNotificationStatusApi()
                 Session.saveNotificationStatus(false)
             }
+        }
+
+        binding.idSwitchBusiness.setOnClickListener{
+
+//            var bundle = Bundle()
+//            bundle.putString(Constants.MOBILE_NUMBER, Session.userDetails.mobile)
+//            bundle.putString(Constants.COUNTRY_CODE, "+91")
+//            findNavController().navigate(R.id.action_settingsFragment_to_business_Verification_Fragment2,bundle)
         }
 
 

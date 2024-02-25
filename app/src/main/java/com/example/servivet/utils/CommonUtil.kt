@@ -7,6 +7,7 @@ import android.app.ActivityManager
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.Dialog
+import android.app.DownloadManager
 import android.app.TimePickerDialog
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothProfile
@@ -21,6 +22,7 @@ import android.location.Geocoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.provider.Settings
@@ -481,7 +483,7 @@ object CommonUtils {
     @BindingAdapter("android:imageViewUrl")
     fun loadNormalImage(view: View?, image_url: String?) {
         val imageView = view as ImageView?
-        Glide.with(view!!).load(image_url).error(R.drawable.flower_img).into(imageView!!)
+        Glide.with(view!!).load(image_url).error(R.drawable.userprofile).into(imageView!!)
     }
 
 
@@ -1238,7 +1240,31 @@ fun <A : Activity> Context.launchActivityWithBundle(activity: Class<A>, bundle: 
         startActivity(it)
     }
 }
+fun downloadFile(
+    context: Context,
+    URL: String?,
+    fileName: String?,
+    fileNameExtension: String?,
+) {
+    Log.w("URL-->", URL!!)
+    val downloadmanager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+    val uri = Uri.parse(URL)
+    val request = DownloadManager.Request(uri)
+    request.setTitle(fileName)
+    request.setDescription("Downloading...")
+    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+    request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName)
+    request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
+        .setAllowedOverRoaming(false).setTitle(fileName)
+        .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileNameExtension)
+    downloadmanager.enqueue(request)
+    //  Snackbar.make(requireContext, "Downloading File...", Snackbar.LENGTH_SHORT).show()
 
+
+
+
+    //openPdfBottom(childFragmentManager,URL)
+}
 
 
 

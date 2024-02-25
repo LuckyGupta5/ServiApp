@@ -63,6 +63,8 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>(R.la
     private fun requestPermissionForCall() {
         val permission = arrayOf(android.Manifest.permission.RECORD_AUDIO, android.Manifest.permission.ACCESS_WIFI_STATE, android.Manifest.permission.ACCESS_NETWORK_STATE, android.Manifest.permission.BLUETOOTH, android.Manifest.permission.MODIFY_AUDIO_SETTINGS, android.Manifest.permission.CAMERA)
         ActivityCompat.requestPermissions(requireActivity(),permission,100)
+        initObserver()
+
 //        toast(getString(R.string.conveyr_requires_permission))
     }
 
@@ -86,5 +88,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>(R.la
                 requireActivity().finish()
             } else
                 findNavController().navigate(R.id.action_splashFragment_to_choosePreferredLanguageFragment)
-        }    }
+        }
+    }
 }

@@ -79,7 +79,6 @@
             app:layout_constraintTop_toBottomOf="@+id/myWalletId" />
 
 
-
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
@@ -162,7 +161,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="10sp"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:drawableTopCompat="@drawable/chat_file_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -192,8 +191,8 @@
                 android:drawableTint="@color/white"
                 android:fontFamily="@font/poppins_regular"
                 android:onClick="@{()->click.invoke(4)}"
-                android:paddingHorizontal="14dp"
-                android:paddingVertical="11dp"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="16dp"
                 android:text="@string/audio_call"
                 android:textAlignment="center"
                 android:textAllCaps="false"
@@ -215,8 +214,8 @@
                 android:drawableTint="@color/white"
                 android:fontFamily="@font/poppins_regular"
                 android:onClick="@{()->click.invoke(3)}"
-                android:paddingHorizontal="17dp"
-                android:paddingVertical="10dp"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="14dp"
                 android:text="@string/video_call"
                 android:textAlignment="center"
                 android:textAllCaps="false"

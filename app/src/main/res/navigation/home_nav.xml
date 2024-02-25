@@ -380,6 +380,9 @@
         <action
             android:id="@+id/action_settingsFragment_to_faqFragment"
             app:destination="@id/faqFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_business_Verification_Fragment2"
+            app:destination="@id/business_Verification_Fragment2" />
     </fragment>
     <fragment
         android:id="@+id/myWalletFragment"
@@ -647,6 +650,20 @@
         android:name="com.example.servivet.ui.main.fragment.settings_module.FaqFragment"
         android:label="FaqFragment"
         tools:layout="@layout/fragment_faq"/>
+    <fragment
+        android:id="@+id/business_Verification_Fragment2"
+        android:name="com.example.servivet.ui.main.fragment.Business_Verification_Fragment"
+        android:label="Business_Verification_Fragment"
+        tools:layout="@layout/fragment_business__verification">
+
+        <argument
+            android:name="data"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+
+    </fragment>
 
 
     <!-- <fragment

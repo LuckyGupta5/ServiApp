@@ -17,8 +17,7 @@ import com.example.servivet.utils.interfaces.ListAdapterItem
 import com.google.gson.Gson
 import java.io.Serializable
 
-class ImageVideoViewFragment() :
-    BaseFragment<FragmentImageVideoViewBinding, SharedViewModel>(R.layout.fragment_image_video_view) {
+class ImageVideoViewFragment() : BaseFragment<FragmentImageVideoViewBinding, SharedViewModel>(R.layout.fragment_image_video_view) {
 
     override val binding: FragmentImageVideoViewBinding by viewBinding(FragmentImageVideoViewBinding::bind)
     override val mViewModel: SharedViewModel by viewModels()
@@ -92,12 +91,13 @@ class ImageVideoViewFragment() :
         return when {
             url.endsWith(".jpg") || url.endsWith(".jpeg") || url.endsWith(".png") -> MediaType.IMAGE
             url.endsWith(".mp4") -> MediaType.VIDEO
+           //url.endsWith(".pdf")->MediaType.FILE
             else -> MediaType.IMAGE // Handle other media types as needed
         }
     }
 
 
-    enum class MediaType { IMAGE, VIDEO }
+    enum class MediaType { IMAGE, VIDEO,FILE }
 
     data class MediaItem(val mediaType: MediaType, val path: String) : ListAdapterItem, Serializable
 

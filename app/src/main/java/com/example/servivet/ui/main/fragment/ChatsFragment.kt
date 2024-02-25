@@ -4,6 +4,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -97,7 +98,7 @@ class ChatsFragment : BaseFragment<FragmentChatsBinding, ChatViewModel>(R.layout
                             chatList.clear()
                             chatList.addAll(chatListResponse.result.chatlist)
                             initChatAdapter()
-                            socket.off("chatList")
+                          //  socket.off("chatList")
 
 
                         } catch (ex: JSONException) {
@@ -132,6 +133,14 @@ class ChatsFragment : BaseFragment<FragmentChatsBinding, ChatViewModel>(R.layout
 
             getString(R.string.accept) -> {
 
+            }
+            getString(R.string.filterdata)->{
+                if(data.toInt()>0){
+                    binding.idNoDataFound.isVisible = false
+                }else{
+                    binding.idNoDataFound.isVisible = true
+
+                }
             }
         }
 

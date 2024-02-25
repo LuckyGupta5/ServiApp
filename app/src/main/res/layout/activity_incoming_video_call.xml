@@ -99,8 +99,8 @@
                         android:hint="user name"
                         android:includeFontPadding="false"
                         android:text="@{userName}"
-                        android:textColor="@color/white"
-                        android:textColorHint="@color/white"
+                        android:textColor="@color/quantum_yellow"
+                        android:textColorHint="@color/quantum_yellow"
                         android:textSize="20sp"
                         android:textStyle="normal" />
 

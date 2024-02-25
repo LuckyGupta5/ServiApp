@@ -493,7 +493,7 @@ class ChattingFragment :
                     requireActivity().runOnUiThread {
                         val agoraToken = args[0] as JSONObject
                         try {
-                            Log.e("TAG", "chatListDataMessages:${agoraToken}")
+                            Log.e("TAG", "chatListDataMessages121221:${agoraToken}")
                             videoCallResponse = Gson().fromJson(
                                 JSONArray().put(agoraToken)[0].toString(),
                                 VideoCallResponse::class.java

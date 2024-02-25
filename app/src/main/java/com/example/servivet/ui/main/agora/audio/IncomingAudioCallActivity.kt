@@ -435,8 +435,10 @@ class IncomingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
         }
 
         open fun rejectCall(view: View) {
-            if (isConnected) endCall()
-            else rejectCall()
+            if (isConnected)
+                endCall()
+            else
+                rejectCall()
         }
 
         open fun endCall(view: View) {

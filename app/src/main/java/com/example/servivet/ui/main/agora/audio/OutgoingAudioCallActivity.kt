@@ -327,12 +327,11 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
 
     open inner class ClickAction {
         open fun endCall(view: View) {
-
-            Toast.makeText(this@OutgoingAudioCallActivity, "click", Toast.LENGTH_SHORT).show()
-            if (isCallConnected)
-                endCall()
-            else
-                noAnswerCall()
+            endCall()
+//            if (isCallConnected)
+//                endCall()
+//            else
+//                noAnswerCall()
         }
 
         @SuppressLint("UseCompatLoadingForDrawables")

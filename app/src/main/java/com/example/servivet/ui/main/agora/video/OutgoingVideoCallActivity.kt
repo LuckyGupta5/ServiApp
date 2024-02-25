@@ -177,6 +177,7 @@ class OutgoingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
                 msgId = data.result.chatMessageId
                 roomId = data.result.roomId
 
+
                 mBinding.callUserImage = callUserImage
                 mBinding.userName = callUserName
 

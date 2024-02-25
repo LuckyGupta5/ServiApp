@@ -14,6 +14,7 @@ import androidx.core.app.NotificationCompat
 import com.example.servivet.R
 import com.example.servivet.data.model.call_module.notification_call.CallBody
 import com.example.servivet.data.model.notification_data.NotificationData
+import com.example.servivet.ui.main.activity.HomeActivity
 import com.example.servivet.ui.main.agora.audio.IncomingAudioCallActivity
 import com.example.servivet.ui.main.agora.video.IncomingVideoCallActivity
 import com.example.servivet.utils.Constants.AGORA_TOKEN
@@ -79,9 +80,9 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
     private fun sendNotification(message: String, title: String, count: Int, callBody: CallBody) {
         val pendingIntent: PendingIntent?
 
-//        val intent = Intent(this, HomeActivity::class.java)
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-//        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+        val intent1 = Intent(this, HomeActivity::class.java)
+        intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        val pendingIntent1 = PendingIntent.getActivity(this, 0, intent1, PendingIntent.FLAG_IMMUTABLE)
 
         val notifyID = 1
         val channelId = "channel-0888888888"
@@ -108,7 +109,7 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
         notificationBuilder.setAutoCancel(true)
         notificationBuilder.setSound(defaultSoundUri)
         notificationBuilder.setChannelId(channelId)
-        // notificationBuilder.setContentIntent(pendingIntent)
+         notificationBuilder.setContentIntent(pendingIntent1)
         notificationBuilder.setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
         notificationBuilder.setNumber(count)
 
@@ -123,7 +124,8 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
 
 
         val intent: Intent = when (callBody.messageType) {
-            7 -> Intent(baseContext, IncomingAudioCallActivity::class.java)
+            6-> Intent(baseContext, IncomingAudioCallActivity::class.java)
+            7 -> Intent(baseContext, IncomingVideoCallActivity::class.java)
             else -> Intent()
         }.also {
 
@@ -187,9 +189,9 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun handleIntent(intent: Intent?) {
         super.handleIntent(intent)
-//        val notificationData = intent!!.getStringExtra("customData")
-//        Log.e("TAG", "handleIntent: ${notificationData}")
-//        Session.saveNotificationData(notificationData!!)
+        val notificationData = intent!!.getStringExtra("customData")
+        Log.e("TAG", "handleIntent: ${notificationData}")
+        Session.saveNotificationData(notificationData!!)
     }
 
 

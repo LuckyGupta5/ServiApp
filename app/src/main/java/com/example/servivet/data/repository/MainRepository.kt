@@ -113,5 +113,7 @@ class MainRepository(private val apiService: ApiService) {
     suspend fun notificationStatusApi(request: NotificationRequest) = apiService.notificationStatus(request)
     suspend fun contactUsApi(request: ContactUsRequest) = apiService.addContactUs(request)
     suspend fun addressList() = apiService.addressList()
+    suspend fun faqListApi(faqTypeId:String) = apiService.faqList(faqTypeId)
+    suspend fun faqTypeListApi() = apiService.faqTypeList()
     suspend fun deleteAccountApi() = apiService.deleteAccount()
 }

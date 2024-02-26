@@ -69,6 +69,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                 viewModel = mViewModel
                 click = mViewModel.ClickAction()
                 clickEvents = ::onClick
+                setLocationValue()
+
                 setBack()
                 val data = Gson().fromJson(Session.notificationData, NotificationData::class.java)
 
@@ -113,6 +115,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         Log.e("TAG", "setupViewModelFCM: ${Session.fcmToken}")
 
 
+    }
+
+    private fun setLocationValue() {
+        if (Session.saveLocationInfo != null) {
+            binding.shortAddress.text = Session.saveLocationInfo.smallLocation
+            binding.fullAddress.text = Session.saveLocationInfo.location
+        }
     }
 
 
@@ -173,6 +182,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             Log.e("TAG", "setupObservers: ${Gson().toJson(it.data.result.user)}")
                             Session.saveUserDetails(it.data.result.user)
+                            Session.saveMasterData(it.data.result.masterData)
                             Session.type = it.data.result.user.role.toString()
                             setVisibility(it.data.result.user.role)
                             if (isAdded)
@@ -323,10 +333,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 
     private fun initSocketEvents() {
         val data = JSONObject()
-        data.put("userId",Session.userDetails._id)
-        socket.emit("online",data)
-        socket.on("online", fun(args:Array<Any?>){
-            if(isAdded){
+        data.put("userId", Session.userDetails._id)
+        socket.emit("online", data)
+        socket.on("online", fun(args: Array<Any?>) {
+            if (isAdded) {
 //                requireActivity().runOnUiThread{
 //                    val onlineData = args[0] as JSONObject
 //                    try {
@@ -341,14 +351,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         })
 
         // internal server error
-        socket.on("internalServer_error", fun(args:Array<Any?>){
-            if(isAdded){
-                requireActivity().runOnUiThread{
+        socket.on("internalServer_error", fun(args: Array<Any?>) {
+            if (isAdded) {
+                requireActivity().runOnUiThread {
                     val onlineData = args[0] as JSONObject
                     try {
 
-                    }
-                    catch (ex:JSONException){
+                    } catch (ex: JSONException) {
                         ex.printStackTrace()
                     }
 
@@ -357,14 +366,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         })
 
         //invalidData
-        socket.on("invalidData", fun(args:Array<Any?>){
-            if(isAdded){
-                requireActivity().runOnUiThread{
+        socket.on("invalidData", fun(args: Array<Any?>) {
+            if (isAdded) {
+                requireActivity().runOnUiThread {
                     val onlineData = args[0] as JSONObject
                     try {
 
-                    }
-                    catch (ex:JSONException){
+                    } catch (ex: JSONException) {
                         ex.printStackTrace()
                     }
 

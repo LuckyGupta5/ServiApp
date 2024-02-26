@@ -1,5 +1,6 @@
 package com.example.servivet.ui.main.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,10 +13,13 @@ import com.example.servivet.R
 import com.example.servivet.databinding.DeleteAccountBottomSheetBinding
 import com.example.servivet.databinding.FragmentSettingsBinding
 import com.example.servivet.ui.base.BaseFragment
+import com.example.servivet.ui.main.activity.HomeActivity
+import com.example.servivet.ui.main.activity.MainActivity
 import com.example.servivet.ui.main.view_model.SettingsViewModel
 import com.example.servivet.utils.CommonUtils.showSnackBar
 import com.example.servivet.utils.CommonUtils.showToast
 import com.example.servivet.utils.Constants
+import com.example.servivet.utils.Constants.SWITCH_ACC
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
@@ -23,7 +27,8 @@ import com.example.servivet.utils.StatusCode
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
 
-class SettingsFragment:BaseFragment<FragmentSettingsBinding,SettingsViewModel>(R.layout.fragment_settings) {
+class SettingsFragment :
+    BaseFragment<FragmentSettingsBinding, SettingsViewModel>(R.layout.fragment_settings) {
     override val binding: FragmentSettingsBinding by viewBinding(FragmentSettingsBinding::bind)
     override val mViewModel: SettingsViewModel by viewModels()
     private var deleteUserBottomSheetDialog: BottomSheetDialog? = null
@@ -37,24 +42,28 @@ class SettingsFragment:BaseFragment<FragmentSettingsBinding,SettingsViewModel>(R
 
     override fun setupViews() {
         binding.apply {
-            lifecycleOwner=viewLifecycleOwner
-            viewModel=mViewModel
-            click=mViewModel.ClickAction(requireActivity())
+            lifecycleOwner = viewLifecycleOwner
+            viewModel = mViewModel
+            click = mViewModel.ClickAction(requireActivity())
+            clickEvents = ::onClick
         }
 
-        if(Session.notificationStatus!=null){
-            if(Session.notificationStatus==true){
-                binding.switchBtn.isChecked=true
-            }else{
-                binding.switchBtn.isChecked=false
+        if (Session.notificationStatus != null) {
+            if (Session.notificationStatus == true) {
+                binding.switchBtn.isChecked = true
+            } else {
+                binding.switchBtn.isChecked = false
             }
         }
         setClick()
     }
+
     private fun openBottomSheetForDelete() {
-        deleteUserBottomSheetDialog = BottomSheetDialog(requireContext(), R.style.AppBottomSheetDialogTheme)
+        deleteUserBottomSheetDialog =
+            BottomSheetDialog(requireContext(), R.style.AppBottomSheetDialogTheme)
         val bottomSheetBinding: DeleteAccountBottomSheetBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(context), R.layout.delete_account_bottom_sheet, null, false)
+            LayoutInflater.from(context), R.layout.delete_account_bottom_sheet, null, false
+        )
         deleteUserBottomSheetDialog!!.setContentView(bottomSheetBinding.root)
         bottomSheetBinding.noBtn.setOnClickListener { deleteUserBottomSheetDialog!!.dismiss() }
         bottomSheetBinding.yesBtn.setOnClickListener {
@@ -62,6 +71,31 @@ class SettingsFragment:BaseFragment<FragmentSettingsBinding,SettingsViewModel>(R
 
         }
         deleteUserBottomSheetDialog!!.show()
+    }
+
+    private fun onClick(type: Int) {
+        when (type) {
+            0 -> {
+                findNavController().navigate(R.id.action_settingsFragment_to_changeLanguageBottomSheet)
+
+            }
+
+            1 -> {
+                SWITCH_ACC = true
+                Constants.COUNTRY_CODE = Session.userDetails.countryCode
+                Constants.MOBILE_NUMBER = Session.userDetails.mobile
+                var intent = Intent(context, MainActivity::class.java)
+                startActivity(intent)
+
+                //               var bundle = Bundle()
+//            bundle.putString(Constants.MOBILE_NUMBER, Session.userDetails.mobile)
+//            bundle.putString(Constants.COUNTRY_CODE, "+91")
+//            findNavController().navigate(R.id.action_settingsFragment_to_business_Verification_Fragment2,bundle)
+            }
+            2->{
+                findNavController().navigate(R.id.action_settingsFragment_to_contactUsFragment)
+            }
+        }
     }
 
     private fun setClick() {
@@ -75,14 +109,6 @@ class SettingsFragment:BaseFragment<FragmentSettingsBinding,SettingsViewModel>(R
                 mViewModel.hitNotificationStatusApi()
                 Session.saveNotificationStatus(false)
             }
-        }
-
-        binding.idSwitchBusiness.setOnClickListener{
-
-//            var bundle = Bundle()
-//            bundle.putString(Constants.MOBILE_NUMBER, Session.userDetails.mobile)
-//            bundle.putString(Constants.COUNTRY_CODE, "+91")
-//            findNavController().navigate(R.id.action_settingsFragment_to_business_Verification_Fragment2,bundle)
         }
 
 

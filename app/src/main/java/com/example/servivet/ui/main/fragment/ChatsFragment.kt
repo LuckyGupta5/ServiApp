@@ -122,12 +122,8 @@ class ChatsFragment : BaseFragment<FragmentChatsBinding, ChatViewModel>(R.layout
 
         when (identifires) {
             getString(R.string.container) -> {
-                findNavController().navigate(
-                    ChatsFragmentDirections.actionChatFragmentToChattingFragment(
-                        data,
-                        getString(R.string.chatfragment)
-                    )
-                )
+                Log.e("TAG", "checkCheck: ${data}", )
+                findNavController().navigate(ChatsFragmentDirections.actionChatFragmentToChattingFragment(data, getString(R.string.chatfragment)))
 
             }
 

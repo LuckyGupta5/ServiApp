@@ -461,7 +461,7 @@ class SettingAddLocationFragment :
                     binding.address.text = address!!.getAddressLine(0)
                     mViewModel.saveAddressRequest.addressActionType="add"
                     mViewModel.saveAddressRequest.addressId =""
-                    mViewModel.saveAddressRequest.city =address.locality
+                    mViewModel.saveAddressRequest.city =address.locality?:address.countryName
                     mViewModel.saveAddressRequest.country =address.countryName
                     mViewModel.saveAddressRequest.fullAddress =address.getAddressLine(0)
                     mViewModel.saveAddressRequest.latitute =address.latitude.toString()

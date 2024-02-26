@@ -29,6 +29,8 @@ class SettingLocationListViewModel: BaseViewModel() {
         }
 
         fun addAddress(view:View){
+
+
             var bundle=Bundle()
             bundle.putString("action","add")
             view.findNavController().navigate(R.id.action_settingLocationListFragment_to_settingAddLocationFragment,bundle)

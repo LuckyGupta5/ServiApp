@@ -1,5 +1,6 @@
 package com.example.servivet.ui.main.fragment.settings_module
 
+import android.Manifest
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -18,12 +19,24 @@ import com.example.servivet.utils.Constants
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
+import com.example.servivet.utils.requestMultiplePermissions
 
 
-class SettingLocationListFragment : BaseFragment<FragmentSettingLocationListBinding, SettingLocationListViewModel>(
-    R.layout.fragment_setting_location_list) {
-    override val binding: FragmentSettingLocationListBinding by viewBinding(FragmentSettingLocationListBinding::bind)
+class SettingLocationListFragment :
+    BaseFragment<FragmentSettingLocationListBinding, SettingLocationListViewModel>(R.layout.fragment_setting_location_list) {
+    override val binding: FragmentSettingLocationListBinding by viewBinding(
+        FragmentSettingLocationListBinding::bind
+    )
     override val mViewModel: SettingLocationListViewModel by viewModels()
+    private val lPermission = arrayOf(
+        Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.ACCESS_COARSE_LOCATION
+    )
+    private var addressData = SettingAddress()
+    private var isAddAddress = false
+
+    private var checkLocationPermission = false
+
     override fun isNetworkAvailable(boolean: Boolean) {
     }
 
@@ -35,19 +48,29 @@ class SettingLocationListFragment : BaseFragment<FragmentSettingLocationListBind
             lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
             click = mViewModel.ClickAction()
+            setClickEvents()
         }
 
         mViewModel.hitAddressListApi()
     }
 
+    private fun setClickEvents() {
+        binding.idAddAddress.setOnClickListener {
+            checkLocationIsTrue()
+            isAddAddress = true
+
+        }
+    }
+
     private fun setAdapter(list: ArrayList<SettingAddress>) {
-        if(list!=null && list.isNotEmpty()){
-            binding.saveAddressRecycler.visibility=View.VISIBLE
-            binding.noDataLayout.visibility=View.GONE
-            binding.saveAddressRecycler.adapter=SettingAddressListAdapter(requireContext(),list,onItemClick)
-        }else{
-            binding.saveAddressRecycler.visibility=View.GONE
-            binding.noDataLayout.visibility=View.VISIBLE
+        if (list != null && list.isNotEmpty()) {
+            binding.saveAddressRecycler.visibility = View.VISIBLE
+            binding.noDataLayout.visibility = View.GONE
+            binding.saveAddressRecycler.adapter =
+                SettingAddressListAdapter(requireContext(), list, onItemClick)
+        } else {
+            binding.saveAddressRecycler.visibility = View.GONE
+            binding.noDataLayout.visibility = View.VISIBLE
         }
 
     }
@@ -55,29 +78,36 @@ class SettingLocationListFragment : BaseFragment<FragmentSettingLocationListBind
     private val onItemClick: (String, SettingAddress) -> Unit = { key, data ->
         when (key) {
             "update" -> {
-                var bundle= Bundle()
-                bundle.putString("action","update")
-                bundle.putSerializable(Constants.DATA,data)
-                findNavController().navigate(R.id.action_settingLocationListFragment_to_settingAddLocationFragment,bundle)
+                addressData = data
+                isAddAddress = false
+
+                checkLocationIsTrue()
+
+//                var bundle= Bundle()
+//                bundle.putString("action","update")
+//                bundle.putSerializable(Constants.DATA,data)
+//                findNavController().navigate(R.id.action_settingLocationListFragment_to_settingAddLocationFragment,bundle)
 
             }
+
             "delete" -> {
-                mViewModel.saveAddressRequest.addressActionType="delete"
-                mViewModel.saveAddressRequest.addressId =data._id
-                mViewModel.saveAddressRequest.city =data.city
-                mViewModel.saveAddressRequest.fullAddress =data.fullAddress
+                mViewModel.saveAddressRequest.addressActionType = "delete"
+                mViewModel.saveAddressRequest.addressId = data._id
+                mViewModel.saveAddressRequest.city = data.city
+                mViewModel.saveAddressRequest.fullAddress = data.fullAddress
                 mViewModel.saveAddressRequest.latitute = data.location!!.coordinates[0].toString()
-                mViewModel.saveAddressRequest.longitute =data.location!!.coordinates[1].toString()
+                mViewModel.saveAddressRequest.longitute = data.location!!.coordinates[1].toString()
                 mViewModel.saveAddressRequest.postalCode = data.postalCode.toString()
                 mViewModel.hitSaveAddressAPI()
             }
+
             "makedefault" -> {
-                mViewModel.saveAddressRequest.addressActionType="makedefault"
-                mViewModel.saveAddressRequest.addressId =data._id
-                mViewModel.saveAddressRequest.city =data.city
-                mViewModel.saveAddressRequest.fullAddress =data.fullAddress
+                mViewModel.saveAddressRequest.addressActionType = "makedefault"
+                mViewModel.saveAddressRequest.addressId = data._id
+                mViewModel.saveAddressRequest.city = data.city
+                mViewModel.saveAddressRequest.fullAddress = data.fullAddress
                 mViewModel.saveAddressRequest.latitute = data.location!!.coordinates[0].toString()
-                mViewModel.saveAddressRequest.longitute =data.location.coordinates[1].toString()
+                mViewModel.saveAddressRequest.longitute = data.location.coordinates[1].toString()
                 mViewModel.saveAddressRequest.postalCode = data.postalCode.toString()
                 mViewModel.hitSaveAddressAPI()
             }
@@ -96,6 +126,7 @@ class SettingLocationListFragment : BaseFragment<FragmentSettingLocationListBind
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             setAdapter(it.data.result.address)
                         }
+
                         StatusCode.STATUS_CODE_FAIL -> {
                             showSnackBar(it.data.message)
                         }
@@ -162,6 +193,40 @@ class SettingLocationListFragment : BaseFragment<FragmentSettingLocationListBind
         }
     }
 
+
+    private fun checkLocationIsTrue() {
+        if (!checkLocationPermission) {
+            checkLocation()
+        } else {
+            openMap()
+        }
+    }
+
+    private fun checkLocation() {
+        checkLocationPermission =
+            requestMultiplePermissions(requireContext(), lPermission, "Please allow permission")
+    }
+
+    private fun openMap() {
+        if (isAddAddress) {
+            var bundle = Bundle()
+            bundle.putString("action", "add")
+            findNavController().navigate(
+                R.id.action_settingLocationListFragment_to_settingAddLocationFragment,
+                bundle
+            )
+        } else {
+            var bundle = Bundle()
+            bundle.putString("action", "update")
+            bundle.putSerializable(Constants.DATA, addressData)
+            findNavController().navigate(
+                R.id.action_settingLocationListFragment_to_settingAddLocationFragment,
+                bundle
+            )
+        }
+
+
+    }
 
 
 }

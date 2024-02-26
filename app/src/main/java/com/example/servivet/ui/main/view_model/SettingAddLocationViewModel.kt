@@ -25,16 +25,17 @@ class SettingAddLocationViewModel : BaseViewModel() {
     var isCheck = MutableLiveData(false)
     var isClick = false
 
-    var action: String=""
+    var action: String = ""
     val name = MutableLiveData(false)
     val number = MutableLiveData(false)
-    var saveAddressResponse= SingleLiveEvent<Resource<SaveAddressResponse>>()
-    var saveAddressRequest= SaveAddressRequest()
+    var saveAddressResponse = SingleLiveEvent<Resource<SaveAddressResponse>>()
+    var saveAddressRequest = SaveAddressRequest()
 
     inner class ClickAction() {
         fun backbtn(view: View) {
             view.findNavController().popBackStack()
         }
+
         fun onNameChange(text: CharSequence) {
             name.value = text.isNotEmpty()
             saveAddressRequest.name = text.toString().trim().replace("\\s+".toRegex(), " ")
@@ -44,6 +45,7 @@ class SettingAddLocationViewModel : BaseViewModel() {
             number.value = text.isNotEmpty()
             saveAddressRequest.mobileNumber = text.toString().trim().replace("\\s+".toRegex(), " ")
         }
+
         fun agree(view: View) {
             isClick = if (!isClick) {
                 isCheck.postValue(true)
@@ -54,11 +56,11 @@ class SettingAddLocationViewModel : BaseViewModel() {
             }
         }
 
-        fun saveAddressBtn(view: View){
-            if(action=="add"){
-                saveAddressRequest.addressActionType="add"
-            }else if(action=="update"){
-                saveAddressRequest.addressActionType="update"
+        fun saveAddressBtn(view: View) {
+            if (action == "add") {
+                saveAddressRequest.addressActionType = "add"
+            } else if (action == "update") {
+                saveAddressRequest.addressActionType = "update"
             }
             hitSaveAddressAPI()
         }
@@ -70,11 +72,22 @@ class SettingAddLocationViewModel : BaseViewModel() {
         viewModelScope.launch {
             saveAddressResponse.postValue(Resource.loading(null))
             try {
-                saveAddressResponse.postValue(Resource.success(mainRepository.saveAddressApi(saveAddressRequest)))
+                saveAddressResponse.postValue(
+                    Resource.success(
+                        mainRepository.saveAddressApi(
+                            saveAddressRequest
+                        )
+                    )
+                )
             } catch (ex: IOException) {
                 ex.printStackTrace()
-                saveAddressResponse.postValue(Resource.error(StatusCode.STATUS_CODE_INTERNET_VALIDATION, null))
-            }catch (exception: Exception) {
+                saveAddressResponse.postValue(
+                    Resource.error(
+                        StatusCode.STATUS_CODE_INTERNET_VALIDATION,
+                        null
+                    )
+                )
+            } catch (exception: Exception) {
                 exception.printStackTrace()
                 saveAddressResponse.postValue(Resource.error(StatusCode.SERVER_ERROR_MESSAGE, null))
             }

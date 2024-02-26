@@ -119,6 +119,12 @@
 
         </RelativeLayout>
 
+        <include
+            android:id="@+id/idNoDataFound"
+            layout="@layout/nodata_found_layout"
+            android:visibility="visible"
+            />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/idChatRequestRecycle"
             android:layout_width="match_parent"

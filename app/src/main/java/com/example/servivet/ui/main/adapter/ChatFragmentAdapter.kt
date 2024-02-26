@@ -46,20 +46,10 @@ class ChatFragmentAdapter(
             idButtonContainer.isVisible = !check
             listData = filteredList[position]
             userDetails = Session.userDetails
-            idContainer.setOnClickListener {
-                onItemClick(
-                    context.getString(R.string.container), Gson().toJson(chatList[position])
-                )
+            idContainer.setOnClickListener {onItemClick(context.getString(R.string.container), Gson().toJson(chatList[position])) }
+            idAcceptBtn.setOnClickListener { onItemClick(context.getString(R.string.accept), chatList[position]._id)
             }
-            idAcceptBtn.setOnClickListener {
-                onItemClick(
-                    context.getString(R.string.accept), chatList[position]._id
-                )
-            }
-            idDeclineBtn.setOnClickListener {
-                onItemClick(
-                    context.getString(R.string.decline), chatList[position]._id
-                )
+            idDeclineBtn.setOnClickListener { onItemClick(context.getString(R.string.decline), chatList[position]._id)
             }
 
             if (isDeletedByContainsId) {

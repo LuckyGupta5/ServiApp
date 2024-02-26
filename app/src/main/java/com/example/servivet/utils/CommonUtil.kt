@@ -31,7 +31,10 @@ import android.text.SpannableString
 import android.text.TextUtils
 import android.text.style.StyleSpan
 import android.util.Log
+import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.DatePicker
 import android.widget.ImageView
 import android.widget.TextView
@@ -174,7 +177,7 @@ object CommonUtils {
         dialog.show()
     }
 
-    fun getPostalCodeByCoordinates(
+    fun     getPostalCodeByCoordinates(
         placeSelectionListener: PlaceSelectionListener, lat: Double, lon: Double, context: Context
     ): String {
         val geocoder = Geocoder(context, Locale.getDefault())
@@ -1267,6 +1270,69 @@ fun downloadFile(
 }
 
 
+fun requestMultiplePermissions(
+    context: Context,
+    permissions: Array<String>,
+    msg: String
+): Boolean {
+    var isAllowed: Boolean = false
+    Dexter.withContext(context as Activity)
+        .withPermissions(*permissions)
+        .withListener(object : MultiplePermissionsListener {
+            override fun onPermissionsChecked(report: MultiplePermissionsReport) {
+                isAllowed = true
+                // check if all permissions are granted
+                if (!report.areAllPermissionsGranted()) {
+                    val intent = Intent()
+                    intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+                    val uri = Uri.fromParts("package", "com.example.servivet", null)
+                    intent.data = uri
+                    showDialog(context, msg, intent)
+                }
+
+
+                // check for permanent denial of any permission
+                if (report.isAnyPermissionPermanentlyDenied) {
+                    // show alert dialog navigating to Settings
+                }
+            }
+
+            override fun onPermissionRationaleShouldBeShown(
+                permissions: List<PermissionRequest?>?,
+                token: PermissionToken
+            ) {
+                token.continuePermissionRequest()
+            }
+        }).withErrorListener {
+
+        }.onSameThread().check()
+    Log.e("TAG", "requestMultiplePermissions: $isAllowed")
+    return isAllowed
+}
+
+fun showDialog(context: Context, msg: String?, intent: Intent?) {
+    val dialog = Dialog(context)
+    (dialog.window!!.decorView as ViewGroup).getChildAt(0)
+        .startAnimation(AnimationUtils.loadAnimation(context, android.R.anim.fade_in))
+    dialog.setCancelable(true)
+    dialog.setCanceledOnTouchOutside(false)
+    dialog.setContentView(R.layout.alert_dialog)
+    dialog.window!!.setBackgroundDrawableResource(R.drawable.all_fill_white_greyborder_8dp)
+    val title = dialog.findViewById<TextView>(R.id.title)
+    title.setText(R.string.app_name)
+    val message = dialog.findViewById<TextView>(R.id.message)
+    message.text = msg
+    val view = dialog.findViewById<View>(R.id.viewCenter)
+    view.visibility = View.GONE
+    val dialogButton = dialog.findViewById<TextView>(R.id.okCenter)
+    dialogButton.visibility = View.VISIBLE
+    dialogButton.gravity = Gravity.CENTER_HORIZONTAL
+    dialogButton.setOnClickListener { v: View? ->
+        context.startActivity(intent)
+        dialog.dismiss()
+    }
+    dialog.show()
+}
 
 
 

@@ -161,6 +161,8 @@ class OtpVarificationFragment :
                                     binding.otpPin.setText("")
                                 } else {
                                     var bundle = Bundle()
+                                    Constants.MOBILE_NUMBER = mViewModel.mobilenumber
+                                    Constants.COUNTRY_CODE = mViewModel.countrycode
                                     bundle.putString(Constants.MOBILE_NUMBER, mViewModel.mobilenumber)
                                     bundle.putString(Constants.COUNTRY_CODE, mViewModel.countrycode)
                                     findNavController().navigate(R.id.action_otpVarificationFragment_to_completeProfileFragment, bundle)

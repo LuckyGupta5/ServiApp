@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+        <import type="android.view.View"/>
 
         <variable
             name="data"
@@ -57,6 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:visibility="@{data.isDefault?View.GONE:View.VISIBLE}"
             android:background="@drawable/delete_address_icon"/>
 
         <TextView
@@ -88,7 +90,7 @@
             android:fontFamily="@font/poppins_medium"
             android:paddingHorizontal="20dp"
             android:paddingVertical="6dp"
-            android:text="Use as Default"
+            android:text="@{data.isDefault?@string/_default:@string/use_as_default}"
             android:textColor="@{data.isDefault==true?@color/black:@color/white}"
             android:textSize="15dp" />
 

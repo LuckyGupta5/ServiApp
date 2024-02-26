@@ -62,7 +62,7 @@ class Business_Verification_Fragment : BaseFragment<FragmentBusinessVerification
 
     private fun initClickEvent() {
         binding.idAddress.setOnClickListener {
-            number = arguments?.getString(Constants.COUNTRY_CODE)!! + " " + arguments?.getString(Constants.MOBILE_NUMBER)!!
+            number = Constants.COUNTRY_CODE!! + " " +Constants.MOBILE_NUMBER
             findNavController().navigate(Business_Verification_FragmentDirections.actionBusinessVerificationFragmentToAddLocationFragment2(number, ""))
         }
     }

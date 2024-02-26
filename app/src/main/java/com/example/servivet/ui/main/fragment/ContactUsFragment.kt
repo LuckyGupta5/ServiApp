@@ -12,6 +12,7 @@ import com.example.servivet.ui.main.view_model.ContactUsViewModel
 import com.example.servivet.utils.CommonUtils.showSnackBar
 import com.example.servivet.utils.CommonUtils.showToast
 import com.example.servivet.utils.ProcessDialog
+import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
 
@@ -36,8 +37,8 @@ class ContactUsFragment : BaseFragment<FragmentContactUsBinding, ContactUsViewMo
     }
 
     private fun setClick() {
-        binding.callLayout.setOnClickListener { callNumber("1234567890") }
-        binding.emailLayout.setOnClickListener { sendEmail("tabish@gmail.com") }
+        binding.callLayout.setOnClickListener { callNumber(Session.masterData.adminContactNumber) }
+        binding.emailLayout.setOnClickListener { sendEmail(Session.masterData.adminEmail    ) }
     }
 
     private fun callNumber(phoneNumber: String) {

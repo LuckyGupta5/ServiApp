@@ -1,7 +1,9 @@
 package com.example.servivet.ui.main.fragment
 
 import android.util.Log
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
 import com.example.servivet.data.model.chat_models.request_list.response.ChatListResponse
@@ -83,6 +85,8 @@ class ChatRequestFragment :
     }
 
     private fun initChatAdapter() {
+        binding.idNoDataFound.root.isVisible = chatList.size <= 0
+
         binding.chatListAdapter =
             ChatFragmentAdapter(requireContext(), chatList, false, onItemClick)
     }
@@ -97,6 +101,15 @@ class ChatRequestFragment :
             getString(R.string.accept) -> {
                 initAcceptRejectChat(data, true)
 
+            }
+
+            getString(R.string.container) -> {
+                findNavController().navigate(
+                    ChatRequestFragmentDirections.actionChatRequestFragmentToChattingFragment(
+                        data,
+                        getString(R.string.chatfragment)
+                    )
+                )
             }
         }
 
@@ -115,13 +128,7 @@ class ChatRequestFragment :
                         val acceptRejectChat = args[0] as JSONObject
                         try {
                             Log.e("TAG", "acceptRejectChat:${acceptRejectChat} ")
-//                            chatListResponse = Gson().fromJson(
-//                                JSONArray().put(acceptRejectChat)[0].toString(),
-//                                ChatListResponse::class.java
-//                            )
-//                            chatList.clear()
-//                            chatList.addAll(chatListResponse.result.chatlist)
-//                            initChatAdapter()
+
 
 
                         } catch (ex: JSONException) {

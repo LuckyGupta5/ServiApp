@@ -2,10 +2,12 @@ package com.example.servivet.ui.main.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.example.servivet.R
 import com.example.servivet.data.model.chat_models.chat_list.ChatMessage
+import com.example.servivet.data.model.chat_models.manual_chating_objest.ManualUserDataClass
 import com.example.servivet.databinding.CustomChattingViewBinding
 import com.example.servivet.ui.base.BaseAdapter
 import com.example.servivet.utils.Session
@@ -15,7 +17,8 @@ import com.google.gson.Gson
 class ChattingAdapter(
     val requireContext: Context,
     var chattingList: ArrayList<ChatMessage>,
-    var onItemClick: (Int, String) -> Unit
+    var onItemClick: (Int, String) -> Unit,
+    val manualUserDataClass: ManualUserDataClass
 ) :
     BaseAdapter<CustomChattingViewBinding, ChatMessage>(chattingList) {
     override val layoutId: Int = R.layout.custom_chatting_view
@@ -43,6 +46,10 @@ class ChattingAdapter(
             binding.idReceiverMessage.text = chattingList[position].message
             binding.idReceiverTime.text =
                 convertTimeStampToTime(chattingList[position].createdAt, 10, 0)
+            Glide.with(requireContext).load(manualUserDataClass.image)
+                .placeholder(R.drawable.userprofile).into(binding.idImageView)
+
+
             if (chattingList[position].file != null && chattingList[position].file.isNotEmpty())
                 Glide.with(requireContext).load(chattingList[position].file[0])
                     .placeholder(R.drawable.userprofile).into(binding.idReceiverImage)

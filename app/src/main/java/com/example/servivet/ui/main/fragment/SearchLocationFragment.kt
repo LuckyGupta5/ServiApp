@@ -43,6 +43,7 @@ import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
+import com.google.gson.Gson
 import java.io.IOException
 import java.util.Locale
 
@@ -255,6 +256,7 @@ class SearchLocationFragment :
                     val address: Address = addressList[0]
                     autoCompleteSupportFragment.setText(address.getAddressLine(0))
                     Session.saveLocationInfo(LocationInfo(address.getAddressLine(0),address.featureName, address.latitude.toString(), address.longitude.toString()))
+                    Log.e("TAG", "CheckLocation:${Gson().toJson(LocationInfo(address.getAddressLine(0),address.featureName, address.latitude.toString(), address.longitude.toString()))} ", )
                     Log.e("TAG", "onPlaceSelected: "+address.locality )
                     findNavController().popBackStack()
 

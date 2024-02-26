@@ -2,6 +2,7 @@ package com.example.servivet.utils
 
 
 import com.example.servivet.data.model.current_api.response.CurrentUser
+import com.example.servivet.data.model.current_api.response.MasterData
 import com.example.servivet.data.model.home.response.HomeServiceCategory
 import com.example.servivet.data.model.location.LocationInfo
 import com.example.servivet.data.model.save_address.request.SaveAddressRequest
@@ -11,7 +12,9 @@ import com.example.servivet.utils.PreferenceEntity.CATEGORY
 import com.example.servivet.utils.PreferenceEntity.DEVICE_TOKEN
 import com.example.servivet.utils.PreferenceEntity.IS_LOGIN
 import com.example.servivet.utils.PreferenceEntity.LOCATION
+import com.example.servivet.utils.PreferenceEntity.LOCATION_ADDRESS_INFO
 import com.example.servivet.utils.PreferenceEntity.LOCATION_INFO
+import com.example.servivet.utils.PreferenceEntity.MASTER_DATA
 import com.example.servivet.utils.PreferenceEntity.NOTIFICATION_DATA
 import com.example.servivet.utils.PreferenceEntity.NOTIFY_STATUS
 import com.example.servivet.utils.PreferenceEntity.SAVE_ADDRESS
@@ -33,9 +36,11 @@ object Session {
     var userProfile = Hawk.get<UserProfile>(USER_PROFILE, null)
     var category = Hawk.get<ArrayList<HomeServiceCategory>>(CATEGORY, null)
     var userDetails = Hawk.get<CurrentUser>(USER_DETAILS, null)
+    var masterData = Hawk.get<MasterData>(MASTER_DATA, null)
     var saveAddress = Hawk.get<SaveAddressRequest>(SAVE_ADDRESS, null)
     var fcmToken = Hawk.get<String>(DEVICE_TOKEN, null)
     var notificationData = Hawk.get<String>(NOTIFICATION_DATA, null)
+    var saveLocationInfo = Hawk.get<LocationInfo>(LOCATION_ADDRESS_INFO, null)
     fun saveToken(token: String) {
         Hawk.put(TOKEN, token)
         Session.token = token
@@ -45,6 +50,7 @@ object Session {
         Hawk.put(DEVICE_TOKEN, deviceToken)
         fcmToken = deviceToken
     }
+
     fun saveNotificationData(notificationData: String) {
         Hawk.put(NOTIFICATION_DATA, notificationData)
         this.notificationData = notificationData
@@ -71,7 +77,8 @@ object Session {
     }
 
     fun saveLocationInfo(locationInfo: LocationInfo) {
-
+        Hawk.put(LOCATION_ADDRESS_INFO, locationInfo)
+        saveLocationInfo = locationInfo
     }
 
 
@@ -100,6 +107,11 @@ object Session {
         this.userDetails = user
     }
 
+    fun saveMasterData(user: MasterData) {
+        Hawk.put(MASTER_DATA, user)
+        this.masterData = user
+    }
+
 
     fun logout() {
         verifiedData = null
@@ -109,7 +121,7 @@ object Session {
         userProfile = null
         category = null
         userDetails = null
-        notificationStatus=null
+        notificationStatus = null
         val deviceToken = fcmToken
         Hawk.deleteAll()
         saveDeviceToken(deviceToken)

@@ -79,6 +79,7 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/app_theme_color_button_12dp"
+                    android:onClick="@{()->clickEvents.invoke(1)}"
                     android:orientation="horizontal"
                     android:paddingTop="16dp"
                     android:paddingBottom="8dp">
@@ -187,10 +188,10 @@
                     android:drawableStart="@drawable/wallet_icon"
                     android:drawableEnd="@drawable/profile_path"
                     android:drawablePadding="11dp"
-                    android:paddingVertical="20dp"
                     android:fontFamily="@font/poppins_semi_bold"
                     android:maxLines="1"
                     android:onClick="@{click::gotoMyWallet}"
+                    android:paddingVertical="20dp"
                     android:text="@string/my_wallet"
                     android:textColor="@color/black"
                     android:textSize="17sp" />
@@ -210,9 +211,9 @@
                     android:drawablePadding="11dp"
                     android:fontFamily="@font/poppins_semi_bold"
                     android:maxLines="1"
+                    android:onClick="@{click::aboutUs}"
                     android:paddingVertical="20dp"
                     android:text="@string/about_us"
-                    android:onClick="@{click::aboutUs}"
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
@@ -231,18 +232,18 @@
                     android:drawablePadding="11dp"
                     android:fontFamily="@font/poppins_semi_bold"
                     android:maxLines="1"
-                    android:visibility="gone"
                     android:text="@string/distance"
                     android:textColor="@color/black"
-                    android:textSize="17sp" />
+                    android:textSize="17sp"
+                    android:visibility="gone" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginVertical="20dp"
                     android:layout_marginStart="20dp"
-                    android:visibility="gone"
-                    android:background="@color/grey_707070_opicity_6" />
+                    android:background="@color/grey_707070_opicity_6"
+                    android:visibility="gone" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -251,9 +252,10 @@
                     android:drawableStart="@drawable/change_language_icon"
                     android:drawableEnd="@drawable/profile_path"
                     android:drawablePadding="11dp"
-                    android:paddingVertical="20dp"
                     android:fontFamily="@font/poppins_semi_bold"
                     android:maxLines="1"
+                    android:onClick="@{()->clickEvents.invoke(0)}"
+                    android:paddingVertical="20dp"
                     android:text="@string/change_language"
                     android:textColor="@color/black"
                     android:textSize="17sp" />
@@ -289,13 +291,13 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="@{click::faq}"
                     android:layout_marginHorizontal="20dp"
                     android:drawableStart="@drawable/fqa_icon"
                     android:drawableEnd="@drawable/profile_path"
                     android:drawablePadding="11dp"
                     android:fontFamily="@font/poppins_semi_bold"
                     android:maxLines="1"
+                    android:onClick="@{click::faq}"
                     android:paddingVertical="20dp"
                     android:text="@string/faq_s"
                     android:textColor="@color/black"
@@ -316,7 +318,7 @@
                     android:drawablePadding="11dp"
                     android:fontFamily="@font/poppins_semi_bold"
                     android:maxLines="1"
-
+                    android:onClick="@{()->clickEvents.invoke(2)}"
                     android:paddingVertical="20dp"
                     android:text="@string/contact_us"
                     android:textColor="@color/black"
@@ -401,8 +403,8 @@
                     android:fontFamily="@font/poppins_semi_bold"
                     android:gravity="center_horizontal"
                     android:maxLines="1"
-                    android:paddingVertical="20dp"
                     android:onClick="@{click::goLogout}"
+                    android:paddingVertical="20dp"
                     android:text="@string/log_out"
                     android:textColor="@color/black"
                     android:textSize="17sp" />

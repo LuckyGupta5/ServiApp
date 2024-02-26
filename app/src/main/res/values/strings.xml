@@ -440,6 +440,8 @@
     <string name="hour">hour</string>
     <string name="minute">minute</string>
     <string name="pick_your_media_file">Pick Your Media File</string>
+    <string name="use_as_default">Use as Default</string>
+    <string name="_default"> Default</string>
 
 
     <string-array name="select_issue">

@@ -8,10 +8,10 @@ object Constants {
     const val SERVICE_ID: String ="service_id"
     const val OTP_NUMBER: String ="otp_number"
     const val DATA: String="data"
-    const val COUNTRY_CODE: String="country_code"
+    var COUNTRY_CODE: String="country_code"
     const val AT_HOME = "At home"
     const val AT_CENTER = "At center"
-    const val MOBILE_NUMBER: String ="mobile_number"
+    var MOBILE_NUMBER: String ="mobile_number"
     const val typebooking :String="type"
     var APPLIED_COUPON=""
     const val SECURITY_KEY = "D#5599Beh2$%$#$%MC&^$@#^*&%I"
@@ -32,6 +32,7 @@ object Constants {
     var CALL_END = "noAnswerCall"
     var NOTIFICATION = "notification"
     var RECEIVER_ID = "receiver_id"
+    var SWITCH_ACC:Boolean= false
 
 
 

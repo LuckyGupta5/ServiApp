@@ -17,6 +17,7 @@ import com.example.servivet.data.model.call_module.video_call.VideoCallResponse
 import com.example.servivet.data.model.chat_models.chat_list.ChatMessage
 import com.example.servivet.data.model.chat_models.chat_list.ChattingListResponse
 import com.example.servivet.data.model.chat_models.initiate_chat.InitiateChatResponse
+import com.example.servivet.data.model.chat_models.manual_chating_objest.ManualUserDataClass
 import com.example.servivet.data.model.chat_models.request_list.response.Chatlist
 import com.example.servivet.data.model.user_profile.response.UserProfile
 import com.example.servivet.databinding.FragmentChattingBinding
@@ -68,6 +69,7 @@ class ChattingFragment :
     private var callType = 0
     private var list = ArrayList<String>()
     private var isMediaCome = false
+    private var manualUserDataClass = ManualUserDataClass()
 
     override fun isNetworkAvailable(boolean: Boolean) {
 
@@ -95,6 +97,8 @@ class ChattingFragment :
                 roomId = profileData.roomId
                 recieverId = profileData._id
                 binding.idUserName.text = profileData.name
+                manualUserDataClass.image = profileData.image
+                manualUserDataClass.userName = profileData.name
 
                 if (profileData.roomId.isNotEmpty()) {
                     initChatListSocket()
@@ -104,18 +108,47 @@ class ChattingFragment :
             getString(R.string.chatfragment) -> {
                 chatListData = Gson().fromJson(argumentData.data, Chatlist::class.java)
                 roomId = chatListData._id
+                binding.idFirstMessageContainer.isVisible = !chatListData.isAccepeted
                 if (chatListData.senderId._id == Session.userDetails._id) {
                     binding.idUserName.text = chatListData.receiverId.name
                     recieverId = chatListData.receiverId._id
 
+                    manualUserDataClass.image = chatListData.receiverId.image
+                    manualUserDataClass.userName = chatListData.receiverId.name
+
                 } else {
                     binding.idUserName.text = chatListData.senderId.name
                     recieverId = chatListData.senderId._id
+
+                    manualUserDataClass.image = chatListData.senderId.image
+                    manualUserDataClass.userName = chatListData.senderId.name
                 }
                 if (roomId.isNotEmpty()) {
                     initChatListSocket()
                 }
 
+            }
+
+            getString(R.string.chat_requests) -> {
+                chatListData = Gson().fromJson(argumentData.data, Chatlist::class.java)
+                roomId = chatListData._id
+                if (chatListData.senderId._id == Session.userDetails._id) {
+                    binding.idUserName.text = chatListData.receiverId.name
+                    recieverId = chatListData.receiverId._id
+
+                    manualUserDataClass.image = chatListData.receiverId.image
+                    manualUserDataClass.userName = chatListData.receiverId.name
+
+                } else {
+                    binding.idUserName.text = chatListData.senderId.name
+                    recieverId = chatListData.senderId._id
+
+                    manualUserDataClass.image = chatListData.senderId.image
+                    manualUserDataClass.userName = chatListData.senderId.name
+                }
+                if (roomId.isNotEmpty()) {
+                    initChatListSocket()
+                }
             }
 
         }
@@ -155,6 +188,17 @@ class ChattingFragment :
             getString(R.string.cross) -> {
                 binding.idUploadImageCard.isVisible = false
                 mediaList.clear()
+            }
+
+            getString(R.string.accept) -> {
+                initAcceptRejectChat(roomId, true)
+
+            }
+
+            getString(R.string.decline) -> {
+                initAcceptRejectChat(roomId, false)
+                findNavController().popBackStack()
+
             }
 
 
@@ -321,7 +365,7 @@ class ChattingFragment :
                 socket.emit("sendMessage", data)
                 binding.idMessage.setText("")
                 typeOfMessage = 1
-                isMediaCome =false
+                isMediaCome = false
                 mediaList.clear()
                 Log.d("TAG", "sentMessage: ${Gson().toJson(data)}")
 
@@ -343,7 +387,10 @@ class ChattingFragment :
                         val unBlockChat = args[0] as JSONObject
                         try {
                             Log.e("TAG", "chatListDataMessages:${unBlockChat}")
-                            chatListResponse = Gson().fromJson(JSONArray().put(unBlockChat)[0].toString(), ChattingListResponse::class.java)
+                            chatListResponse = Gson().fromJson(
+                                JSONArray().put(unBlockChat)[0].toString(),
+                                ChattingListResponse::class.java
+                            )
                             chattingList = chatListResponse.result.message
                             initChattingAdapter()
                             binding.idChatRecycle.scrollToPosition(chattingList.size - 1)
@@ -387,7 +434,8 @@ class ChattingFragment :
     }
 
     private fun initChattingAdapter() {
-        binding.chattingAdapter = ChattingAdapter(requireContext(), chattingList, onItemClick)
+        binding.chattingAdapter =
+            ChattingAdapter(requireContext(), chattingList, onItemClick, manualUserDataClass)
     }
 
     override fun setupObservers() {
@@ -397,7 +445,8 @@ class ChattingFragment :
                     ProcessDialog.dismissDialog()
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            Log.e("TAG",
+                            Log.e(
+                                "TAG",
                                 "xsetupObserveradjads: ${Gson().toJson(it.data.result.uploadImage)}",
                             )
                             mediaList.clear()
@@ -646,6 +695,35 @@ class ChattingFragment :
             }
         }
 
+    }
+
+
+    private fun initAcceptRejectChat(id: String, isAccept: Boolean) {
+        try {
+            socket = SocketManager.getSocket()
+            val data = JSONObject()
+            data.put("roomId", id)
+            data.put("isAccept", isAccept)
+            socket.emit("acceptRejectChat", data)
+            socket.on("acceptRejectChat", fun(args: Array<Any?>) {
+                if (isAdded) {
+                    requireActivity().runOnUiThread {
+                        val acceptRejectChat = args[0] as JSONObject
+                        try {
+                            Log.e("TAG", "acceptRejectChat:${acceptRejectChat} ")
+                            binding.idFirstMessageContainer.isVisible = !chatListData.isAccepeted
+
+
+                        } catch (ex: JSONException) {
+                            ex.printStackTrace()
+                        }
+                    }
+                }
+            })
+
+        } catch (ex: Exception) {
+
+        }
     }
 
 

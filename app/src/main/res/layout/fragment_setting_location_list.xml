@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -16,10 +16,10 @@
     </data>
 
     <RelativeLayout
-        android:background="#F8F8F8"
         android:layout_width="match_parent"
-        android:orientation="vertical"
         android:layout_height="match_parent"
+        android:background="#F8F8F8"
+        android:orientation="vertical"
         tools:context=".ui.main.fragments.SaveAddresesFragment">
 
         <LinearLayout
@@ -62,21 +62,22 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_below="@id/tapLayoutLinear"
-            android:layout_width="match_parent"
-            android:layout_marginTop="12dp"
-            android:layout_above="@+id/bottomLayout"
             android:id="@+id/saveAddressRecycler"
-            tools:listitem="@layout/save_aadresses_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottomLayout"
+            android:layout_below="@id/tapLayoutLinear"
+            android:layout_marginTop="12dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:layout_height="match_parent"/>
+            tools:listitem="@layout/save_aadresses_recycler" />
+
         <RelativeLayout
             android:id="@+id/noDataLayout"
-            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_above="@+id/bottomLayout"
             android:layout_below="@id/tapLayoutLinear"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:id="@+id/no_dataIcon"
@@ -84,16 +85,17 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:background="@drawable/no_data_icon" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/no_dataIcon"
                 android:layout_centerHorizontal="true"
-                android:text="No Data Found !"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/poppins_medium"
+                android:text="No Data Found !"
                 android:textColor="@color/black"
-                android:textSize="18dp"/>
+                android:textSize="18dp" />
 
         </RelativeLayout>
 
@@ -101,26 +103,26 @@
         <RelativeLayout
             android:id="@+id/bottomLayout"
             android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
             android:layout_height="wrap_content"
-            android:paddingTop="6dp"
-            android:paddingBottom="15dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
             android:paddingHorizontal="15dp"
-            android:background="@color/white">
+            android:paddingTop="6dp"
+            android:paddingBottom="15dp">
+
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/idAddAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/add_new_address"
-                android:textSize="19dp"
-                android:textAllCaps="false"
-                android:onClick="@{click::addAddress}"
-                android:fontFamily="@font/poppins_medium"
-                android:textColor="@color/white"
+                android:background="@drawable/app_theme_color_button_12dp"
                 android:backgroundTint="@null"
-                app:backgroundTint="@null"
-                android:background="@drawable/app_theme_color_button_12dp"/>
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/add_new_address"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="19dp"
+                app:backgroundTint="@null" />
         </RelativeLayout>
-
 
 
     </RelativeLayout>

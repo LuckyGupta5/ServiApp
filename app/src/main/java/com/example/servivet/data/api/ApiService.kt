@@ -48,6 +48,7 @@ import com.example.servivet.data.model.setting.contact.request.ContactUsRequest
 import com.example.servivet.data.model.setting.faq_list.response.FaqListResponse
 import com.example.servivet.data.model.setting.faq_type_list.response.FaqTypeListResponse
 import com.example.servivet.data.model.setting.notification.request.NotificationRequest
+import com.example.servivet.data.model.setting_module.request.ChangeRoleRequest
 import com.example.servivet.data.model.user_profile.response.UserProfileResponse
 import com.example.servivet.data.model.verifyotp.request.VerifyOtpRequest
 import com.example.servivet.data.model.verifyotp.response.VerifyOTPResponse
@@ -58,7 +59,6 @@ import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Query
 import retrofit2.http.QueryMap
-import retrofit2.http.QueryName
 
 
 interface ApiService {
@@ -78,6 +78,7 @@ interface ApiService {
 
     @POST("addService")
     suspend fun addServices(@Body addServicesRequest: MultipartBody): AddServiceResponse
+
     @POST("uploadChatFile")
     suspend fun uploadChatFileApi(@Body addServicesRequest: MultipartBody): ChatMediaResponse
 
@@ -178,7 +179,7 @@ interface ApiService {
 
     //setting
     @GET("setting/cmsData")
-    suspend fun cmsData(@Query("type") type:String): CmsResponse
+    suspend fun cmsData(@Query("type") type: String): CmsResponse
 
     @POST("setting/notificationStatus")
     suspend fun notificationStatus(@Body request: NotificationRequest): CommonResponse
@@ -187,15 +188,18 @@ interface ApiService {
     suspend fun addContactUs(@Body request: ContactUsRequest): CommonResponse
 
     @GET("address/list")
-    suspend fun addressList():SettingAddressListResponse
+    suspend fun addressList(): SettingAddressListResponse
 
     @GET("faq/faqList")
-    suspend fun faqList(@Query("faqTypeId") faqTypeId:String):FaqListResponse
+    suspend fun faqList(@Query("faqTypeId") faqTypeId: String): FaqListResponse
 
     @GET("faq/faqTypeList")
-    suspend fun faqTypeList():FaqTypeListResponse
+    suspend fun faqTypeList(): FaqTypeListResponse
 
     @POST("setting/deleteAccount")
-    suspend fun deleteAccount():CommonResponse
+    suspend fun deleteAccount(): CommonResponse
+
+    @POST("setting/changeRole")
+    suspend fun changeRoleApi(@Body request: ChangeRoleRequest): CommonResponse
 
 }

@@ -113,6 +113,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                 setClick()
             }
         Log.e("TAG", "setupViewModelFCM: ${Session.fcmToken}")
+        Log.e("TAG", "setupViewModelDAtaVALL: ${Session.userDetails}")
 
 
     }

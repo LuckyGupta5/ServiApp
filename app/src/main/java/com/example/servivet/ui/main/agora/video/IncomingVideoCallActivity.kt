@@ -366,7 +366,6 @@ class IncomingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
             data.put("chatMessageId", msgId)
             data.put("receiverId", receiverId)
             data.put("roomId", roomId)
-            data.put("roomId", roomId)
             mSocket.emit("endedCall", data)
             mSocket.on("endedCall", fun(args: Array<Any?>) {
                 runOnUiThread {

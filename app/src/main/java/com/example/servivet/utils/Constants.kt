@@ -33,6 +33,7 @@ object Constants {
     var NOTIFICATION = "notification"
     var RECEIVER_ID = "receiver_id"
     var SWITCH_ACC:Boolean= false
+    var CHECK_BCK:Boolean= true
 
 
 

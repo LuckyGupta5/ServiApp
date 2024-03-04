@@ -234,6 +234,7 @@
                                 android:hint="Enter Mobile"
                                 android:inputType="number"
                                 android:maxLines="1"
+                                android:maxLength="10"
                                 android:textColor="@color/black"
                                 android:textColorHint="@color/gray_777777"
                                 android:textSize="15dp" />

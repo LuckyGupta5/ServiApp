@@ -169,6 +169,8 @@ class OtpVarificationFragment :
                                 }
                             } else if (Session.type.equals("2"))
                                 if (it.data.result.isBusinessVerify==0) {
+                                    Constants.MOBILE_NUMBER = mViewModel.mobilenumber
+                                    Constants.COUNTRY_CODE = mViewModel.countrycode
                                     var bundle = Bundle()
                                     bundle.putString(Constants.MOBILE_NUMBER, mViewModel.mobilenumber)
                                     bundle.putString(Constants.COUNTRY_CODE, mViewModel.countrycode)

@@ -20,7 +20,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/apptheme_outline_with_solid_white_corner_12"
         android:backgroundTint="@color/white"
         tools:context=".ui.main.bottom_sheet.ChangeLanguageBottomSheet">
@@ -40,8 +40,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/languagerecycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/idAddAddress"
+            android:layout_height="wrap_content"
             android:layout_below="@id/idText"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/idAddAddress"
@@ -54,7 +53,7 @@
             android:id="@+id/idAddAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@id/languagerecycler"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/app_theme_color_button_12dp"
@@ -64,6 +63,7 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="19dp"
+            android:onClick="@{()->clickEvent.invoke(1)}"
             app:backgroundTint="@null" />
 
     </RelativeLayout>

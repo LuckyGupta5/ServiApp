@@ -84,6 +84,7 @@
         <activity
             android:name=".ui.main.agora.video.OutgoingVideoCallActivity"
             android:exported="true"
+            android:launchMode="singleTask"
             android:theme="@style/Theme.ServiVet."
             android:windowSoftInputMode="adjustResize"/>
 

@@ -16,6 +16,7 @@ import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.adapter.ChatFragmentAdapter
 import com.example.servivet.ui.main.view_model.ChatViewModel
 import com.example.servivet.utils.ProcessDialog
+import com.example.servivet.utils.Session
 import com.example.servivet.utils.SocketManager
 import com.google.gson.Gson
 import io.socket.client.Socket
@@ -90,7 +91,9 @@ class ChatsFragment : BaseFragment<FragmentChatsBinding, ChatViewModel>(R.layout
                     requireActivity().runOnUiThread {
                         val providerData = args[0] as JSONObject
                         try {
-                           // Log.e("TAG", "checkData123:${providerData} ")
+                            Log.e("TAG", "checkData123:${providerData} ")
+                            Log.e("TAG", "checkDsdfasdfsata123:${Session.userDetails._id} ")
+
                             chatListResponse = Gson().fromJson(
                                 JSONArray().put(providerData)[0].toString(),
                                 ChatListResponse::class.java
@@ -124,19 +127,10 @@ class ChatsFragment : BaseFragment<FragmentChatsBinding, ChatViewModel>(R.layout
             getString(R.string.container) -> {
                 Log.e("TAG", "checkCheck: ${data}", )
                 findNavController().navigate(ChatsFragmentDirections.actionChatFragmentToChattingFragment(data, getString(R.string.chatfragment)))
-
             }
-
-            getString(R.string.accept) -> {
-
-            }
+            getString(R.string.accept) -> {}
             getString(R.string.filterdata)->{
-                if(data.toInt()>0){
-                    binding.idNoDataFound.isVisible = false
-                }else{
-                    binding.idNoDataFound.isVisible = true
-
-                }
+                binding.idNoDataFound.isVisible = data.toInt() <= 0
             }
         }
 

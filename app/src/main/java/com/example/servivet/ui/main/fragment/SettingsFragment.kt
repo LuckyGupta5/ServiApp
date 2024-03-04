@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.CompoundButton
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -19,6 +20,7 @@ import com.example.servivet.ui.main.view_model.SettingsViewModel
 import com.example.servivet.utils.CommonUtils.showSnackBar
 import com.example.servivet.utils.CommonUtils.showToast
 import com.example.servivet.utils.Constants
+import com.example.servivet.utils.Constants.CHECK_BCK
 import com.example.servivet.utils.Constants.SWITCH_ACC
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
@@ -47,6 +49,7 @@ class SettingsFragment :
             click = mViewModel.ClickAction(requireActivity())
             clickEvents = ::onClick
         }
+        checkSwitchProfileVisiblity()
 
         if (Session.notificationStatus != null) {
             if (Session.notificationStatus == true) {
@@ -56,6 +59,10 @@ class SettingsFragment :
             }
         }
         setClick()
+    }
+
+    private fun checkSwitchProfileVisiblity() {
+        binding.idSwitchBusiness.isVisible = Session.userDetails.businessType != "4"
     }
 
     private fun openBottomSheetForDelete() {
@@ -82,15 +89,10 @@ class SettingsFragment :
 
             1 -> {
                 SWITCH_ACC = true
+                CHECK_BCK = false
                 Constants.COUNTRY_CODE = Session.userDetails.countryCode
                 Constants.MOBILE_NUMBER = Session.userDetails.mobile
-                var intent = Intent(context, MainActivity::class.java)
-                startActivity(intent)
-
-                //               var bundle = Bundle()
-//            bundle.putString(Constants.MOBILE_NUMBER, Session.userDetails.mobile)
-//            bundle.putString(Constants.COUNTRY_CODE, "+91")
-//            findNavController().navigate(R.id.action_settingsFragment_to_business_Verification_Fragment2,bundle)
+                findNavController().navigate(R.id.action_settingsFragment_to_mainActivity3)
             }
             2->{
                 findNavController().navigate(R.id.action_settingsFragment_to_contactUsFragment)

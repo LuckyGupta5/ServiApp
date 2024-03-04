@@ -140,9 +140,12 @@ class IncomingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
 
 
     private fun joinChannel() {
-        mRtcEngine!!.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING)
-        mRtcEngine!!.setClientRole(IRtcEngineEventHandler.ClientRole.CLIENT_ROLE_BROADCASTER)
-        mRtcEngine!!.setDefaultAudioRoutetoSpeakerphone(false)
+        mRtcEngine?.let {
+            it.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING)
+            it.setClientRole(IRtcEngineEventHandler.ClientRole.CLIENT_ROLE_BROADCASTER)
+            it.setDefaultAudioRoutetoSpeakerphone(false)
+        }
+
         audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
         audioManager.isSpeakerphoneOn = false
 
@@ -299,7 +302,7 @@ class IncomingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
             data.put("roomId", roomId)
             data.put("rejectedBy", Session.userDetails._id)
             mSocket.emit("rejectCall", data)
-            mSocket.on("acceptedCall", fun(args: Array<Any?>) {
+            mSocket.on("rejectCall", fun(args: Array<Any?>) {
 
                 runOnUiThread {
                     val rejectCall = args[0] as JSONObject

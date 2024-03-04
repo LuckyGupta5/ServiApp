@@ -489,6 +489,13 @@ object CommonUtils {
         Glide.with(view!!).load(image_url).error(R.drawable.userprofile).into(imageView!!)
     }
 
+    @JvmStatic
+    @BindingAdapter("android:bannerUrl")
+    fun loadBannerImage(view: View?, image_url: String?) {
+        val imageView = view as ImageView?
+        Glide.with(view!!).load(image_url).error(R.drawable.disable_button).into(imageView!!)
+    }
+
 
     @SuppressLint("SimpleDateFormat")
     fun getDateTimeStampConvert(timestamp: String): String? {

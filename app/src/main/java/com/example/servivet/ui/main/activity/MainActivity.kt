@@ -21,10 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         if (Constants.SWITCH_ACC) {
             Constants.SWITCH_ACC = false
-
-            val navHostFragment =
-                supportFragmentManager.findFragmentById(R.id.navigation) as NavHostFragment
-
+            val navHostFragment = supportFragmentManager.findFragmentById(R.id.navigation) as NavHostFragment
             val navController: NavController = navHostFragment.navController
             val currentGraph = navController.navInflater.inflate(R.navigation.login_nav)
             currentGraph.setStartDestination(R.id.business_Verification_Fragment)
@@ -35,12 +32,16 @@ class MainActivity : AppCompatActivity() {
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         super.onBackPressed()
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.navigation)
-        val backStackEntryCount = navHostFragment?.childFragmentManager?.backStackEntryCount
-        if (backStackEntryCount != null) {
-            if (backStackEntryCount == 0) {
-                this.finishAffinity()
+        if(Constants.CHECK_BCK) {
+            val navHostFragment = supportFragmentManager.findFragmentById(R.id.navigation)
+            val backStackEntryCount = navHostFragment?.childFragmentManager?.backStackEntryCount
+            if (backStackEntryCount != null) {
+                if (backStackEntryCount == 0) {
+                    this.finishAffinity()
+                }
             }
+        }else{
+           // Constants.CHECK_BCK = true
         }
     }
 }

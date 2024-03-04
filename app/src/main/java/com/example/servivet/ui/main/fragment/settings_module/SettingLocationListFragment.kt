@@ -203,26 +203,19 @@ class SettingLocationListFragment :
     }
 
     private fun checkLocation() {
-        checkLocationPermission =
-            requestMultiplePermissions(requireContext(), lPermission, "Please allow permission")
+        checkLocationPermission = requestMultiplePermissions(requireContext(), lPermission, "Please allow permission")
     }
 
     private fun openMap() {
         if (isAddAddress) {
             var bundle = Bundle()
             bundle.putString("action", "add")
-            findNavController().navigate(
-                R.id.action_settingLocationListFragment_to_settingAddLocationFragment,
-                bundle
-            )
+            findNavController().navigate(R.id.action_settingLocationListFragment_to_settingAddLocationFragment, bundle)
         } else {
             var bundle = Bundle()
             bundle.putString("action", "update")
             bundle.putSerializable(Constants.DATA, addressData)
-            findNavController().navigate(
-                R.id.action_settingLocationListFragment_to_settingAddLocationFragment,
-                bundle
-            )
+            findNavController().navigate(R.id.action_settingLocationListFragment_to_settingAddLocationFragment, bundle)
         }
 
 

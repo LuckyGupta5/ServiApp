@@ -393,6 +393,9 @@
         <action
             android:id="@+id/action_settingsFragment_to_contactUsFragment"
             app:destination="@id/contactUsFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_mainActivity3"
+            app:destination="@id/mainActivity" />
     </fragment>
     <fragment
         android:id="@+id/myWalletFragment"
@@ -684,6 +687,10 @@
         android:name="com.example.servivet.ui.main.fragment.ContactUsFragment"
         android:label="ContactUsFragment"
         tools:layout="@layout/fragment_contact_us" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.servivet.ui.main.activity.MainActivity"
+        android:label="MainActivity" />
 
 
     <!-- <fragment

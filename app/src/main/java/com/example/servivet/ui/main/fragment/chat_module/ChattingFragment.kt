@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.bumptech.glide.Glide
 import com.example.servivet.R
 import com.example.servivet.data.model.call_module.video_call.VideoCallResponse
 import com.example.servivet.data.model.chat_models.chat_list.ChatMessage
@@ -97,12 +98,15 @@ class ChattingFragment :
                 roomId = profileData.roomId
                 recieverId = profileData._id
                 binding.idUserName.text = profileData.name
+                binding.nameTextView.text = profileData.name
+                Glide.with(requireContext()).load(profileData.image).placeholder(R.drawable.userprofile).into(binding.profileImageView)
                 manualUserDataClass.image = profileData.image
                 manualUserDataClass.userName = profileData.name
-
                 if (profileData.roomId.isNotEmpty()) {
                     initChatListSocket()
                 }
+                isBlocked = profileData.blockUser!=null && profileData.blockUser.size>0&&!profileData  .blockUser.contains(Session.userDetails._id)
+
             }
 
             getString(R.string.chatfragment) -> {
@@ -111,17 +115,20 @@ class ChattingFragment :
                 binding.idFirstMessageContainer.isVisible = !chatListData.isAccepeted
                 if (chatListData.senderId._id == Session.userDetails._id) {
                     binding.idUserName.text = chatListData.receiverId.name
+                    binding.nameTextView.text = chatListData.receiverId.name
+                    Glide.with(requireContext()).load(chatListData.receiverId.image).placeholder(R.drawable.userprofile).into(binding.profileImageView)
                     recieverId = chatListData.receiverId._id
-
                     manualUserDataClass.image = chatListData.receiverId.image
                     manualUserDataClass.userName = chatListData.receiverId.name
-
+                    isBlocked = chatListData.blockUser!=null && chatListData.blockUser.size>0&&!chatListData.blockUser.contains(Session.userDetails._id)
                 } else {
                     binding.idUserName.text = chatListData.senderId.name
                     recieverId = chatListData.senderId._id
-
+                    binding.nameTextView.text = chatListData.senderId.name
+                    Glide.with(requireContext()).load(chatListData.senderId.image).placeholder(R.drawable.userprofile).into(binding.profileImageView)
                     manualUserDataClass.image = chatListData.senderId.image
                     manualUserDataClass.userName = chatListData.senderId.name
+                    isBlocked = chatListData.blockUser!=null && chatListData.blockUser.size>0&&!chatListData.blockUser.contains(Session.userDetails._id)
                 }
                 if (roomId.isNotEmpty()) {
                     initChatListSocket()
@@ -129,27 +136,31 @@ class ChattingFragment :
 
             }
 
-            getString(R.string.chat_requests) -> {
-                chatListData = Gson().fromJson(argumentData.data, Chatlist::class.java)
-                roomId = chatListData._id
-                if (chatListData.senderId._id == Session.userDetails._id) {
-                    binding.idUserName.text = chatListData.receiverId.name
-                    recieverId = chatListData.receiverId._id
-
-                    manualUserDataClass.image = chatListData.receiverId.image
-                    manualUserDataClass.userName = chatListData.receiverId.name
-
-                } else {
-                    binding.idUserName.text = chatListData.senderId.name
-                    recieverId = chatListData.senderId._id
-
-                    manualUserDataClass.image = chatListData.senderId.image
-                    manualUserDataClass.userName = chatListData.senderId.name
-                }
-                if (roomId.isNotEmpty()) {
-                    initChatListSocket()
-                }
-            }
+//            getString(R.string.chat_requests) -> {
+//                chatListData = Gson().fromJson(argumentData.data, Chatlist::class.java)
+//                roomId = chatListData._id
+//                if (chatListData.senderId._id == Session.userDetails._id) {
+//                    binding.idUserName.text = chatListData.receiverId.name
+//                    binding.nameTextView.text = chatListData.receiverId.name
+//                    Glide.with(requireContext()).load(chatListData.receiverId.image).placeholder(R.drawable.userprofile).into(binding.profileImageView)
+//                    recieverId = chatListData.receiverId._id
+//
+//                    manualUserDataClass.image = chatListData.receiverId.image
+//                    manualUserDataClass.userName = chatListData.receiverId.name
+//
+//                } else {
+//                    binding.idUserName.text = chatListData.senderId.name
+//                    recieverId = chatListData.senderId._id
+//                    binding.nameTextView.text = chatListData.senderId.name
+//                    Glide.with(requireContext()).load(chatListData.senderId.image).placeholder(R.drawable.userprofile).into(binding.profileImageView)
+//                    manualUserDataClass.image = chatListData.senderId.image
+//                    manualUserDataClass.userName = chatListData.senderId.name
+//                    binding.nameTextView.text = chatListData.senderId.name
+//                }
+//                if (roomId.isNotEmpty()) {
+//                    initChatListSocket()
+//                }
+//            }
 
         }
     }
@@ -366,6 +377,7 @@ class ChattingFragment :
                 binding.idMessage.setText("")
                 typeOfMessage = 1
                 isMediaCome = false
+                binding.idMessage.isEnabled = true
                 mediaList.clear()
                 Log.d("TAG", "sentMessage: ${Gson().toJson(data)}")
 
@@ -452,7 +464,7 @@ class ChattingFragment :
                             mediaList.clear()
                             mediaList.addAll(it.data.result.uploadImage)
                             binding.uploadFileData = it.data.result
-                            binding.idMessage.setText("..")
+                            binding.idMessage.isEnabled = false
                             isMediaCome = true
                             binding.idUploadImageCard.isVisible = true
 
@@ -563,21 +575,18 @@ class ChattingFragment :
                             when (callType) {
                                 6 -> {
                                     CoroutineScope(Dispatchers.Main).launch {
-                                        delay(1000)
+                                        delay(500)
                                         findNavController().navigate(
-                                            ChattingFragmentDirections.actionChattingFragmentToOutgoingAudioCallActivity(
-                                                Gson().toJson(videoCallResponse),
-                                                getString(
+                                            ChattingFragmentDirections.actionChattingFragmentToOutgoingAudioCallActivity(Gson().toJson(videoCallResponse), getString(
                                                     R.string.outgoing_Audio
-                                                )
-                                            )
+                                                ))
                                         )
                                     }
                                 }
 
                                 7 -> {
                                     CoroutineScope(Dispatchers.Main).launch {
-                                        delay(1000)
+                                        delay(500)
                                         findNavController().navigate(
                                             ChattingFragmentDirections.actionChattingFragmentToOutgoingVideoCallActivity(
                                                 Gson().toJson(videoCallResponse),
@@ -641,9 +650,6 @@ class ChattingFragment :
 
                 } else {
                     val file = FileMaker.from(requireContext(), data?.data)
-
-
-
                     if (file!!.path!!.isNotEmpty()) {
                         imagePath = file.path
                         checkMediaList.add(imagePath)

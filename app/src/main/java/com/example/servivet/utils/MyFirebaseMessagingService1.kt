@@ -59,7 +59,7 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
         intentData.putExtra(NOTIFICATION, rMessage.notification?.body)
         sendBroadcast(intentData)
 
-        Log.e("TAG", "checkCallBody: ${Gson().toJson(rMessage.data)}")
+        Log.e("TAG", "checkCallBody: ${Gson().toJson(rMessage)}")
 
 
         Log.e("TAG", "onMessageReceived: $message")
@@ -219,6 +219,19 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
         bundle.putString(RECEIVER_ID, callBody.receiverId)
         launchActivityWithBundle(IncomingAudioCallActivity::class.java, bundle)
     }
+
+    private fun sendDm() {
+        val newDm = Intent("newDmMsg")
+        newDm.`package` = "com.example.servivet"
+        applicationContext.sendBroadcast(newDm)
+    }
+
+    private fun callEnd() {
+        val callEnd = Intent("callEnd")
+        callEnd.`package` = "com.ripenapps.conveyr"
+        applicationContext.sendBroadcast(callEnd)
+    }
+
 }
 
 

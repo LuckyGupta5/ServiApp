@@ -120,7 +120,7 @@ class SettingAddLocationFragment :
 
         if(arguments?.getSerializable(Constants.DATA)!=null){
             addressForEdit= arguments?.getSerializable(Constants.DATA) as SettingAddress?
-            mViewModel.saveAddressRequest.addressId =addressForEdit!!._id
+            mViewModel.saveAddressRequest.addressId =addressForEdit?._id?:""
             mViewModel.saveAddressRequest.city =addressForEdit!!.city
             mViewModel.saveAddressRequest.fullAddress =addressForEdit!!.fullAddress
             mViewModel.saveAddressRequest.latitute = addressForEdit!!.location!!.coordinates[0].toString()
@@ -181,7 +181,7 @@ class SettingAddLocationFragment :
                             mMap.addMarker(MarkerOptions().position(latLngs).icon(bitmapDescriptorFromVector(requireContext(), R.drawable.currentlocationicon)).anchor(0.8f, 0.5f))
                             binding.address.text =addressForEdit!!.fullAddress
                             autoCompleteSupportFragment.setText(addressForEdit!!.fullAddress)
-                            mViewModel.saveAddressRequest.addressId =addressForEdit!!._id
+                            mViewModel.saveAddressRequest.addressId =addressForEdit?._id?:""
                             mViewModel.saveAddressRequest.city =addressForEdit!!.city
                             mViewModel.saveAddressRequest.fullAddress =addressForEdit!!.fullAddress
                             mViewModel.saveAddressRequest.latitute = addressForEdit!!.location!!.coordinates[0].toString()
@@ -193,7 +193,7 @@ class SettingAddLocationFragment :
                                 autoCompleteSupportFragment.setText(address!!.getAddressLine(0))
                                 binding.address.text = address!!.getAddressLine(0)
                                 mViewModel.saveAddressRequest.addressActionType="add"
-                                mViewModel.saveAddressRequest.addressId =""
+                                mViewModel.saveAddressRequest.addressId =addressForEdit?._id?:""
                                 mViewModel.saveAddressRequest.city =address.locality
                                 mViewModel.saveAddressRequest.country =address.countryName
                                 mViewModel.saveAddressRequest.fullAddress =address.getAddressLine(0)
@@ -460,7 +460,7 @@ class SettingAddLocationFragment :
                     autoCompleteSupportFragment.setText(address.getAddressLine(0))
                     binding.address.text = address!!.getAddressLine(0)
                     mViewModel.saveAddressRequest.addressActionType="add"
-                    mViewModel.saveAddressRequest.addressId =""
+                    mViewModel.saveAddressRequest.addressId =addressForEdit?._id?:""
                     mViewModel.saveAddressRequest.city =address.locality?:address.countryName
                     mViewModel.saveAddressRequest.country =address.countryName
                     mViewModel.saveAddressRequest.fullAddress =address.getAddressLine(0)

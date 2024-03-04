@@ -1,5 +1,7 @@
 package com.example.servivet.ui.main.fragment
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -39,6 +41,7 @@ class ConnectionsRequestFragment :
             viewModel = mViewModel
             click = mViewModel.ClickAction()
         }
+        initEditText()
         backbtn()
         initAcceptRejectModel()
     }
@@ -46,6 +49,24 @@ class ConnectionsRequestFragment :
     fun backbtn() {
         binding.idTopLayout.idBack.setOnClickListener(View.OnClickListener {
             findNavController().popBackStack()
+        })
+    }
+
+    private fun initEditText() {
+        binding.idTopLayout.idSearch.setOnClickListener {
+            binding.idTopLayout.idSearchLayout.isVisible = true
+        }
+        binding.idTopLayout.idCloseSearch.setOnClickListener {
+            binding.idTopLayout.idSearchLayout.isVisible = false
+        }
+        binding.idTopLayout.idSearchText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.requestAdapter?.filter(s.toString())
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
         })
     }
 
@@ -142,8 +163,7 @@ class ConnectionsRequestFragment :
 
     private fun initRequestAdapter() {
         binding.idNoDataFound.root.isVisible = requestList.size <= 0
-        binding.requestAdapter =
-            ConnectionRequestAdapter(requireContext(), requestList, onItemClick)
+        binding.requestAdapter = ConnectionRequestAdapter(requireContext(), requestList, onItemClick)
     }
 
     private val onItemClick: (Int, String) -> Unit = { identifier, data ->
@@ -155,6 +175,10 @@ class ConnectionsRequestFragment :
 
             2 -> {
                 acceptRejectModel.getAcceptRejectRequest(identifier, data)
+            }
+
+            3 -> {
+                binding.idNoDataFound.root.isVisible = data.toInt() <= 0
             }
         }
 

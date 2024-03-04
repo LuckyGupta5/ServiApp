@@ -33,11 +33,11 @@
             tools:layout_editor_absoluteX="-68dp"
             tools:layout_editor_absoluteY="16dp" />
 
+
         <include
             android:id="@+id/idNoDataFound"
             layout="@layout/nodata_found_layout"
-            android:visibility="gone"
-            />
+            android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/idConnectionRequestList"

@@ -49,9 +49,9 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginStart="20dp"
-                            android:onClick="@{click::backbtn}"
                             android:background="@drawable/map_back_btn"
-                            android:elevation="10dp" />
+                            android:elevation="10dp"
+                            android:onClick="@{click::backbtn}" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"

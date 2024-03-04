@@ -7,8 +7,14 @@ import com.example.servivet.databinding.MyConnectionDesignRecyclerviewBinding
 import com.example.servivet.ui.base.BaseAdapter
 import com.example.servivet.utils.interfaces.ListAdapterItem
 
-class MyConnectionAdapter(val requireContext: Context, val connectionList: ArrayList<MyConnection>, val onItemClick: (Int, String) -> Unit) : BaseAdapter<MyConnectionDesignRecyclerviewBinding, MyConnection>(connectionList) {
+class MyConnectionAdapter(
+    val requireContext: Context,
+    val connectionList: ArrayList<MyConnection>,
+    val onItemClick: (Int, String) -> Unit
+) : BaseAdapter<MyConnectionDesignRecyclerviewBinding, MyConnection>(connectionList) {
     override val layoutId: Int = R.layout.my_connection_design_recyclerview
+    private var filteredList: List<MyConnection> = connectionList.toList()
+
 
     override fun bind(
         binding: MyConnectionDesignRecyclerviewBinding,
@@ -26,6 +32,18 @@ class MyConnectionAdapter(val requireContext: Context, val connectionList: Array
     }
 
     override fun getItemCount(): Int {
-        return connectionList.size
+        return filteredList.size
+    }
+
+    fun filter(text: String) {
+        filteredList = if (text.isEmpty()) {
+            connectionList
+        } else {
+            connectionList.filter {
+                it.userDetail.name.contains(text, ignoreCase = true)
+            }
+        }
+        onItemClick(3, filteredList.size.toString())
+        notifyDataSetChanged()
     }
 }

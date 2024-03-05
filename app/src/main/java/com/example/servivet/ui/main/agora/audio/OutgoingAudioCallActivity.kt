@@ -223,7 +223,7 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
         stopService(Intent(this@OutgoingAudioCallActivity, OnClearFromRecentService::class.java))
     }
 
-    public fun endCall() {
+     fun endCall() {
         try {
             val data = JSONObject()
             data.put("chatMessageId", msgId)
@@ -236,6 +236,8 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
                     val rejectCall = args[0] as JSONObject
                     try {
                         Log.e("TAG", "CallEnd:${rejectCall} ")
+                        Toast.makeText(this@OutgoingAudioCallActivity, "endCall", Toast.LENGTH_SHORT).show()
+
                         finish()
 
 
@@ -273,12 +275,13 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
 //        }
     }
 
-    public fun noAnswerCall() {
+    fun noAnswerCall() {
         try {
             val data = JSONObject()
             data.put("chatMessageId", msgId)
             data.put("roomId", roomId)
             data.put("rejectedBy", Session.userDetails._id)
+            data.put("receiverId", receiverId)
             mSocket.emit("rejectCall", data)
             mSocket.on("rejectCall", fun(args: Array<Any?>) {
 
@@ -286,9 +289,8 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
                     val rejectCall = args[0] as JSONObject
                     try {
                         Log.e("TAG", "CallEnd:${rejectCall} ")
+                        Toast.makeText(this@OutgoingAudioCallActivity, "noAnswer", Toast.LENGTH_SHORT).show()
                         finish()
-
-
                     } catch (ex: JSONException) {
                         ex.printStackTrace()
                     }
@@ -354,7 +356,7 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
 
     open inner class ClickAction {
         open fun endCall(view: View) {
-            //   endCall()
+        //       endCall()
             if (isCallConnected)
                 endCall()
             else

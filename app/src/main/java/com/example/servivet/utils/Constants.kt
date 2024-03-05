@@ -35,6 +35,8 @@ object Constants {
     var SWITCH_ACC:Boolean= false
     var CHECK_BCK:Boolean= true
 
+    var ABCD = false
+
 
 
 

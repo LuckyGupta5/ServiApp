@@ -266,25 +266,6 @@ class IncomingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
     }
 
     private fun acceptCall() {
-        val data = JSONObject()
-//        try {
-//            data.put("msgId", msgId)
-//            if (mSocket.connected()) {
-//                mSocket.emit(ACCEPT_CALL, data, object : Ack {
-//                    override fun call(vararg args: Any?) {
-//                        runOnUiThread {
-//                            val jsonObject = Gson().toJson(args[0])
-//                            Log.i(TAG, "acceptAudioCall: ${Gson().toJson(jsonObject)}")
-//                            joinChannel()
-//                        }
-//                    }
-//                })
-//            }/* else toast(getString(R.string.socket_not_connected))*/
-//        } catch (e: JSONException) {
-//            e.printStackTrace()
-//        }
-
-
         try {
             val data = JSONObject()
             data.put("chatMessageId", msgId)
@@ -311,7 +292,7 @@ class IncomingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
         }
     }
 
-    public fun rejectCall() {
+    fun rejectCall() {
 
         try {
             val data = JSONObject()
@@ -338,33 +319,14 @@ class IncomingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
         } catch (ex: Exception) {
 
         }
-
-//        val currentUserId = Session.userDetails._id
-//        val data = JSONObject()
-//        try {
-//            data.put("msgId", msgId)
-//            data.put("endedByUserId", currentUserId)
-//            if (mSocket.connected()) {
-//                mSocket.emit(REJECT_CALL, data, object : Ack {
-//                    override fun call(vararg args: Any?) {
-//                        runOnUiThread {
-//                            val jsonObject = Gson().toJson(args[0])
-//                            Log.i(TAG, "rejectAudioCall: ${Gson().toJson(jsonObject)}")
-//                            finish()
-//                        }
-//                    }
-//                })
-//            } /*else toast(getString(R.string.socket_not_connected))*/
-//        } catch (e: JSONException) {
-//            e.printStackTrace()
-//        }
     }
 
-    public fun endCall() {
+    fun endCall() {
         try {
             val data = JSONObject()
             data.put("chatMessageId", msgId)
             data.put("receiverId", receiverId)
+
             data.put("roomId", roomId)
             mSocket.emit("endedCall", data)
             mSocket.on("endedCall", fun(args: Array<Any?>) {

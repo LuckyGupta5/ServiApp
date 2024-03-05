@@ -6,7 +6,7 @@ import java.io.Serializable
 data class ChatMessage(
     val __v: Int,
     val _id: String,
-    val blockUser: List<Any>,
+    val blockUser: List<String>,
     var createdAt: String,
     val deletedBy: List<Any>,
     val `file`: ArrayList<String>,

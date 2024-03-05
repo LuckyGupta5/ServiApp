@@ -57,7 +57,7 @@ class ChatsFragment : BaseFragment<FragmentChatsBinding, ChatViewModel>(R.layout
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-               binding.chatListAdapter?.filter(s.toString())
+                binding.chatListAdapter?.filter(s.toString())
             }
 
             override fun afterTextChanged(s: Editable?) {}
@@ -101,7 +101,7 @@ class ChatsFragment : BaseFragment<FragmentChatsBinding, ChatViewModel>(R.layout
                             chatList.clear()
                             chatList.addAll(chatListResponse.result.chatlist)
                             initChatAdapter()
-                          //  socket.off("chatList")
+                            //  socket.off("chatList")
 
 
                         } catch (ex: JSONException) {
@@ -125,11 +125,17 @@ class ChatsFragment : BaseFragment<FragmentChatsBinding, ChatViewModel>(R.layout
 
         when (identifires) {
             getString(R.string.container) -> {
-                Log.e("TAG", "checkCheck: ${data}", )
-                findNavController().navigate(ChatsFragmentDirections.actionChatFragmentToChattingFragment(data, getString(R.string.chatfragment)))
+                Log.e("TAG", "checkCheck: ${data}")
+                findNavController().navigate(
+                    ChatsFragmentDirections.actionChatFragmentToChattingFragment(
+                        data,
+                        getString(R.string.chatfragment)
+                    )
+                )
             }
+
             getString(R.string.accept) -> {}
-            getString(R.string.filterdata)->{
+            getString(R.string.filterdata) -> {
                 binding.idNoDataFound.isVisible = data.toInt() <= 0
             }
         }

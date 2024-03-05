@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitBuilder {
     private const val DEVELOPMENT_BASE_URL = "http://13.235.137.221:3476/mobileApi/"
-   // private const val DEVELOPMENT_BASE_URL="https://cdf8-2401-4900-1c5b-4bcf-697b-2842-73f8-81a3.ngrok-free.app/mobileApi/"
+    //private const val DEVELOPMENT_BASE_URL="https://46e5-2401-4900-1c5d-592a-732-1865-4d02-30d6.ngrok-free.app/mobileApi/"
 
     private fun getRetrofit(): Retrofit {
         return Retrofit.Builder()

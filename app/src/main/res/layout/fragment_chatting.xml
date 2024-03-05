@@ -88,6 +88,8 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/idFirstMessageContainer"
             android:layout_width="match_parent"
@@ -175,11 +177,11 @@
             android:id="@+id/idChatRecycle"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_above="@id/bottomlayput"
+            android:layout_above="@id/idChatBoxContainer"
             android:layout_marginHorizontal="20dp"
             android:adapter="@{chattingAdapter}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@id/bottomlayput"
+            app:layout_constraintBottom_toTopOf="@id/idChatBoxContainer"
             app:layout_constraintTop_toBottomOf="@id/idFirstMessageContainer"
             tools:itemCount="2"
             tools:listitem="@layout/custom_chatting_view" />
@@ -192,7 +194,7 @@
             android:layout_marginBottom="5dp"
             android:visibility="gone"
             app:cardCornerRadius="30dp"
-            app:layout_constraintBottom_toTopOf="@id/bottomlayput"
+            app:layout_constraintBottom_toTopOf="@id/idChatBoxContainer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -214,18 +216,19 @@
                 android:imageViewUrl="@{uploadFileData.uploadImage.get(0)}"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/banner_image"
-                app:layout_constraintBottom_toTopOf="@id/bottomlayput"
+                app:layout_constraintBottom_toTopOf="@id/idChatBoxContainer"
                 app:layout_constraintStart_toEndOf="parent" />
         </androidx.cardview.widget.CardView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/bottomlayput"
+            android:id="@+id/idChatBoxContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
+
 
             <View
                 android:id="@+id/viewid"

@@ -33,7 +33,6 @@ class ChattingAdapter(
             binding.messageData = chattingList[position]
             binding.userDetails = Session.userDetails
             binding.idSenderMedia.setOnClickListener {
-
                 onItemClick(0, Gson().toJson(item?.file))
             }
             binding.idMedia.setOnClickListener { onItemClick(0, Gson().toJson(item?.file)) }
@@ -44,10 +43,8 @@ class ChattingAdapter(
             binding.idReceiverLayout.isVisible = true
             binding.idSenderLayout.isVisible = false
             binding.idReceiverMessage.text = chattingList[position].message
-            binding.idReceiverTime.text =
-                convertTimeStampToTime(chattingList[position].createdAt, 10, 0)
-            Glide.with(requireContext).load(manualUserDataClass.image)
-                .placeholder(R.drawable.userprofile).into(binding.idImageView)
+            binding.idReceiverTime.text = convertTimeStampToTime(chattingList[position].createdAt, 10, 0)
+            Glide.with(requireContext).load(manualUserDataClass.image).placeholder(R.drawable.userprofile).into(binding.idImageView)
 
 
             if (chattingList[position].file != null && chattingList[position].file.isNotEmpty()) {
@@ -60,9 +57,10 @@ class ChattingAdapter(
             if (chattingList[position].messageType == 1) {
                 binding.idMedia.isVisible = false
                 binding.idReceiverMessage.isVisible = true
+                binding.idImageView.isVisible = true
             } else if (chattingList[position].messageType == 6 || chattingList[position].messageType == 7) {
-                binding.idSenderMedia.isVisible = false
-                binding.idSenderMessage.isVisible = false
+                binding.idReceiverLayout.isVisible = false
+                binding.idSenderLayout.isVisible = false
             } else {
                 binding.idMedia.isVisible = true
                 binding.idReceiverMessage.isVisible = false
@@ -84,8 +82,8 @@ class ChattingAdapter(
                 binding.idSenderMedia.isVisible = false
                 binding.idSenderMessage.isVisible = true
             } else if (chattingList[position].messageType == 6 || chattingList[position].messageType == 7) {
-                binding.idSenderMedia.isVisible = false
-                binding.idSenderMessage.isVisible = false
+                binding.idReceiverLayout.isVisible = false
+                binding.idSenderLayout.isVisible = false
             } else {
                 binding.idSenderMedia.isVisible = true
                 binding.idSenderMessage.isVisible = false

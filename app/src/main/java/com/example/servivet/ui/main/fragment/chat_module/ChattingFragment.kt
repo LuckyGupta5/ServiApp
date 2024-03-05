@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
@@ -47,8 +48,7 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
-class ChattingFragment :
-    BaseFragment<FragmentChattingBinding, ChattingViewModel>(R.layout.fragment_chatting) {
+class ChattingFragment : BaseFragment<FragmentChattingBinding, ChattingViewModel>(R.layout.fragment_chatting) {
     override val binding: FragmentChattingBinding by viewBinding(FragmentChattingBinding::bind)
     override val mViewModel: ChattingViewModel by viewModels()
     private lateinit var socket: Socket
@@ -68,6 +68,7 @@ class ChattingFragment :
     private var checkMediaList: ArrayList<String> = ArrayList()
     private var typeOfMessage = 1
     private var callType = 0
+    private var blockUserId = false
     private var list = ArrayList<String>()
     private var isMediaCome = false
     private var manualUserDataClass = ManualUserDataClass()
@@ -105,7 +106,9 @@ class ChattingFragment :
                 if (profileData.roomId.isNotEmpty()) {
                     initChatListSocket()
                 }
-                isBlocked = profileData.blockUser!=null && profileData.blockUser.size>0&&!profileData  .blockUser.contains(Session.userDetails._id)
+                isBlocked = profileData.blockUser!=null && profileData.blockUser.size>0&&!profileData.blockUser.contains(Session.userDetails._id)
+                blockUserId = profileData.blockUser.contains(Session.userDetails._id)
+                checkChattingVisibility()
 
             }
 
@@ -120,7 +123,9 @@ class ChattingFragment :
                     recieverId = chatListData.receiverId._id
                     manualUserDataClass.image = chatListData.receiverId.image
                     manualUserDataClass.userName = chatListData.receiverId.name
-                    isBlocked = chatListData.blockUser!=null && chatListData.blockUser.size>0&&!chatListData.blockUser.contains(Session.userDetails._id)
+                    isBlocked = chatListData.blockUser!=null && chatListData.blockUser.isNotEmpty() &&!chatListData.blockUser.contains(Session.userDetails._id)
+                    blockUserId = chatListData.blockUser.contains(Session.userDetails._id)
+
                 } else {
                     binding.idUserName.text = chatListData.senderId.name
                     recieverId = chatListData.senderId._id
@@ -128,8 +133,10 @@ class ChattingFragment :
                     Glide.with(requireContext()).load(chatListData.senderId.image).placeholder(R.drawable.userprofile).into(binding.profileImageView)
                     manualUserDataClass.image = chatListData.senderId.image
                     manualUserDataClass.userName = chatListData.senderId.name
-                    isBlocked = chatListData.blockUser!=null && chatListData.blockUser.size>0&&!chatListData.blockUser.contains(Session.userDetails._id)
+                    isBlocked = chatListData.blockUser!=null && chatListData.blockUser.isNotEmpty() &&!chatListData.blockUser.contains(Session.userDetails._id)
+                    blockUserId = chatListData.blockUser.contains(Session.userDetails._id)
                 }
+                checkChattingVisibility()
                 if (roomId.isNotEmpty()) {
                     initChatListSocket()
                 }
@@ -162,7 +169,15 @@ class ChattingFragment :
 //                }
 //            }
 
+
         }
+
+        Log.e("TAG", "checkRoomIdIsEmpty: ${recieverId}", )
+    }
+
+    private fun checkChattingVisibility() {
+        binding.idChatBoxContainer.isVisible = !blockUserId
+
     }
 
     private fun onClick(type: String) {
@@ -188,12 +203,7 @@ class ChattingFragment :
 
             getString(R.string.open_gallery) -> {
                 //   findNavController().navigate(R.id.action_chattingFragment_to_selectMediaBottomSheet)
-                findNavController().navigate(
-                    ChattingFragmentDirections.actionChattingFragmentToSelectMediaBottomSheet(
-                        "",
-                        getString(R.string.gallery)
-                    )
-                )
+                findNavController().navigate(ChattingFragmentDirections.actionChattingFragmentToSelectMediaBottomSheet("", getString(R.string.gallery)))
             }
 
             getString(R.string.cross) -> {
@@ -221,7 +231,8 @@ class ChattingFragment :
         val popupMenu = PopupMenu(requireContext(), binding.idMenuItems)
         popupMenu.inflate(R.menu.chat_menu)
         val menuItem = popupMenu.menu.findItem(R.id.idBlockUser)
-        menuItem.title = if (isBlocked) getString(R.string.unblock) else getString(R.string.block)
+        menuItem.title = if (isBlocked){ getString(R.string.unblock)} else {getString(R.string.block)}
+        Toast.makeText(requireContext(), "${isBlocked}", Toast.LENGTH_SHORT).show()
 
         // Set item click listener
         popupMenu.setOnMenuItemClickListener { menuItem ->
@@ -235,7 +246,6 @@ class ChattingFragment :
                     } else {
                         menuItem.title = getString(R.string.block)
                         initUnblockUser()
-
                     }
                     true
 
@@ -248,12 +258,16 @@ class ChattingFragment :
 
                 R.id.idCall -> {
 //                    findNavController().navigate(R.id.action_chattingFragment_to_selectMediaBottomSheet)
-                    findNavController().navigate(
-                        ChattingFragmentDirections.actionChattingFragmentToSelectMediaBottomSheet(
-                            "",
-                            getString(R.string.call)
+                    if(blockUserId){
+                        showSnackBar("You are unable to call this user. ")
+                    }else {
+                        findNavController().navigate(
+                            ChattingFragmentDirections.actionChattingFragmentToSelectMediaBottomSheet(
+                                "",
+                                getString(R.string.call)
+                            )
                         )
-                    )
+                    }
                     true
                 }
 
@@ -318,10 +332,11 @@ class ChattingFragment :
 
     private fun initBlockUnblockUser() {
         try {
+            //ritualId = 65d44efe4bf54e2782cbd912
             socket = SocketManager.getSocket()
             val data = JSONObject()
             data.put("roomId", roomId)
-            data.put("blockUserId", "65c5f68112f8237e89e4770e")
+            data.put("blockUserId", recieverId)
             socket.emit("blockedUser", data)
             socket.on("blockedUser", fun(args: Array<Any?>) {
                 if (isAdded) {
@@ -345,7 +360,7 @@ class ChattingFragment :
             socket = SocketManager.getSocket()
             val data = JSONObject()
             data.put("roomId", roomId)
-            data.put("blockUserId", "65c5f68112f8237e89e4770e")
+            data.put("blockUserId", recieverId)
             socket.emit("unBlockeUser", data)
             socket.on("blockedUser", fun(args: Array<Any?>) {
                 if (isAdded) {
@@ -511,6 +526,7 @@ class ChattingFragment :
                 when (type) {
                     getString(R.string.audio_call) -> {
                         callType = 6
+                        Toast.makeText(requireContext(), "kamakama", Toast.LENGTH_SHORT).show()
                         generateAgoraToken()
 
                     }
@@ -561,6 +577,7 @@ class ChattingFragment :
             data.put("message", "")
             data.put("uid", "0")
             socket.emit("agoraToken", data)
+
             socket.on("agoraToken", fun(args: Array<Any?>) {
                 if (isAdded) {
                     requireActivity().runOnUiThread {
@@ -576,6 +593,7 @@ class ChattingFragment :
                                 6 -> {
                                     CoroutineScope(Dispatchers.Main).launch {
                                         delay(500)
+                                        Toast.makeText(requireContext(), "asdsd", Toast.LENGTH_SHORT).show()
                                         findNavController().navigate(
                                             ChattingFragmentDirections.actionChattingFragmentToOutgoingAudioCallActivity(Gson().toJson(videoCallResponse), getString(
                                                     R.string.outgoing_Audio
@@ -598,6 +616,7 @@ class ChattingFragment :
                                     }
                                 }
                             }
+                            socket.off("agoraToken")
 
 
                         } catch (ex: JSONException) {
@@ -690,11 +709,7 @@ class ChattingFragment :
                     )
                 } else {
                     findNavController().navigate(
-                        ChattingFragmentDirections.actionChattingFragmentToImageVideoViewFragment(
-                            data,
-                            getString(R.string.chatfragment),
-                            position
-                        )
+                        ChattingFragmentDirections.actionChattingFragmentToImageVideoViewFragment(data, getString(R.string.chatfragment), position)
                     )
                 }
 

@@ -8,6 +8,7 @@ import android.view.View
 import android.webkit.WebSettings
 import android.webkit.WebViewClient
 import android.widget.MediaController
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.servivet.R
 import com.example.servivet.databinding.CustomMediaLayoutBinding
@@ -26,9 +27,7 @@ class MediaAdapter(
     BaseAdapter<CustomMediaLayoutBinding, ImageVideoViewFragment.MediaItem>(ArrayList()) {
     override val layoutId: Int = R.layout.custom_media_layout
     override fun bind(
-        binding: CustomMediaLayoutBinding,
-        item: ImageVideoViewFragment.MediaItem?,
-        position: Int
+        binding: CustomMediaLayoutBinding, item: ImageVideoViewFragment.MediaItem?, position: Int
     ) {
         bindMedia(mediaList[position], binding)
     }
@@ -40,21 +39,18 @@ class MediaAdapter(
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun bindMedia(
-        mediaItem: ImageVideoViewFragment.MediaItem,
-        binding: CustomMediaLayoutBinding
+        mediaItem: ImageVideoViewFragment.MediaItem, binding: CustomMediaLayoutBinding
     ) {
         when (mediaItem.mediaType) {
             ImageVideoViewFragment.MediaType.IMAGE -> {
                 binding.imageView.visibility = View.VISIBLE
                 binding.videoView.visibility = View.GONE
-                binding.idWebView.visibility = View.GONE
                 Glide.with(requireContext).load(mediaItem.path).into(binding.imageView)
             }
 
             ImageVideoViewFragment.MediaType.VIDEO -> {
                 binding.imageView.visibility = View.GONE
                 binding.videoView.visibility = View.VISIBLE
-                binding.idWebView.visibility = View.GONE
                 val mediaController = MediaController(requireContext)
                 mediaController.setAnchorView(binding.videoView)
 

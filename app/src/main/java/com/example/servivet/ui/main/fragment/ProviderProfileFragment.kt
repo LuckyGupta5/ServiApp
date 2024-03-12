@@ -84,7 +84,8 @@ class ProviderProfileFragment :
                         Gson().toJson(profileData),
                         getString(
                             R.string.provider_profile
-                        )
+                        ),
+                        false
                     )
                 )
             }

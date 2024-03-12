@@ -297,7 +297,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
             data.put("latitude", 28.6230811)
             data.put("longitude", 77.2975935)
             data.put("page", 1)
-            data.put("limit", 10)
+            data.put("limit", 100)
 
             socket.emit("nearByProvider", data)
             socket.on("nearByProvider", fun(args: Array<Any?>) {

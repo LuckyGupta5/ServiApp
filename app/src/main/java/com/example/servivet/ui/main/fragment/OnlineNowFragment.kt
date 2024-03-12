@@ -59,11 +59,6 @@ class OnlineNowFragment :
     }
 
     private val onItemClick: (String, String) -> Unit = { identifire, data ->
-        findNavController().navigate(
-            OnlineNowFragmentDirections.actionOnlineNowFragmentToProviderProfileFragment(
-                data,
-                getString(R.string.onlinefr)
-            )
-        )
+        findNavController().navigate(OnlineNowFragmentDirections.actionOnlineNowFragmentToProviderProfileFragment(data, getString(R.string.onlinefr)))
     }
 }

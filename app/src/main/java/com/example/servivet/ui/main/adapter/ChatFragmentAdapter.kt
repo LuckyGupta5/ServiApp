@@ -10,6 +10,7 @@ import com.example.servivet.data.model.chat_models.request_list.response.Chatlis
 import com.example.servivet.databinding.ChatRecyclerviewDesignBinding
 import com.example.servivet.ui.base.BaseAdapter
 import com.example.servivet.utils.Session
+import com.example.servivet.utils.convertTimeStampToTime
 import com.example.servivet.utils.dateDifferenceExample
 import com.google.gson.Gson
 
@@ -39,7 +40,11 @@ class ChatFragmentAdapter(
             id == Session.userDetails._id
         } ?: false
 
-        item?.createdAt = dateDifferenceExample(context, item?.createdAt) ?: ""
+
+        Log.e("TAG", "checkLastMessageTime: ${item?.createdAt}", )
+
+        //item?.createdAt = dateDifferenceExample(context, item?.updatedAt) ?: ""
+        item?.createdAt = convertTimeStampToTime(item?.updatedAt,10,0) ?: ""
 
         binding.apply {
             item?.isSeenBy = isSeenBy

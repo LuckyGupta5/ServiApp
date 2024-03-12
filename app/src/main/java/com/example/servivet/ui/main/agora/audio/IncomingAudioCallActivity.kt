@@ -15,27 +15,22 @@ import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Chronometer
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import com.example.servivet.R
 import com.example.servivet.databinding.ActivityIncomingAudioCallBinding
 import com.example.servivet.ui.base.BaseActivity
-import com.example.servivet.ui.main.activity.MainActivity
 import com.example.servivet.ui.main.agora.SoundPoolManager
 import com.example.servivet.utils.AppStateLiveData
-import com.example.servivet.utils.Constants.ACCEPT_CALL
 import com.example.servivet.utils.Constants.AGORA_APP_ID
 import com.example.servivet.utils.Constants.AGORA_TOKEN
 import com.example.servivet.utils.Constants.CALL_USER_IMAGE
 import com.example.servivet.utils.Constants.CALL_USER_NAME
 import com.example.servivet.utils.Constants.CHANNEL_NAME
-import com.example.servivet.utils.Constants.END_CALL
 import com.example.servivet.utils.Constants.MSG_ID
 import com.example.servivet.utils.Constants.NO_ANSWER_CALL
 import com.example.servivet.utils.Constants.RECEIVER_ID
-import com.example.servivet.utils.Constants.REJECT_CALL
 import com.example.servivet.utils.Constants.ROOM_ID
 import com.example.servivet.utils.ForegroundServiceUtils
 import com.example.servivet.utils.Session
@@ -47,8 +42,6 @@ import com.example.servivet.utils.soundservices.OnClearFromRecentService
 import com.example.servivet.utils.startBackgroundMusicService
 import com.example.servivet.utils.stopBackgroundMusicService
 import com.google.gson.Gson
-
-
 import io.agora.rtc2.ChannelMediaOptions
 import io.agora.rtc2.Constants
 import io.agora.rtc2.IRtcEngineEventHandler
@@ -150,8 +143,8 @@ class IncomingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
             it.setAudioProfile(Constants.AUDIO_PROFILE_DEFAULT, Constants.AUDIO_SCENARIO_DEFAULT)
         }
 
-//        audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-//        audioManager.isSpeakerphoneOn = false
+        audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        audioManager.isSpeakerphoneOn = false
 
 
         val option = ChannelMediaOptions()
@@ -324,12 +317,6 @@ class IncomingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
                     val rejectCall = args[0] as JSONObject
                     try {
                         Log.e("TAG", "CallEnd:${rejectCall} ")
-                        Toast.makeText(
-                            this@IncomingAudioCallActivity,
-                            "endCall",
-                            Toast.LENGTH_SHORT
-                        ).show()
-
                         finish()
 
 

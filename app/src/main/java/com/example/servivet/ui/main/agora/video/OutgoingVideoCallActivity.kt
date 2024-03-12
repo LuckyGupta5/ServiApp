@@ -23,6 +23,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.navArgs
 import com.example.servivet.R
 import com.example.servivet.data.model.call_module.video_call.VideoCallResponse
+import com.example.servivet.data.model.chat_models.manual_chating_objest.ManualUserDataClass
 import com.example.servivet.databinding.ActivityOutgoingVideoCallBinding
 import com.example.servivet.ui.base.BaseActivity
 import com.example.servivet.ui.main.agora.SoundPoolManager
@@ -170,6 +171,7 @@ class OutgoingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
         when (argumentData.from) {
             getString(R.string.outgoing_video) -> {
                 val data = Gson().fromJson(argumentData.data, VideoCallResponse::class.java)
+                val userData = Gson().fromJson(argumentData.userData, ManualUserDataClass::class.java)
                 agoraToken = data.result.callToken
                 channelName = data.result.channelName
                 callUserImage = data.result.senderId.image
@@ -178,8 +180,8 @@ class OutgoingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
                 roomId = data.result.roomId
 
 
-                mBinding.callUserImage = callUserImage
-                mBinding.userName = callUserName
+                mBinding.callUserImage = userData.image
+                mBinding.userName = userData.userName
 
 
             }

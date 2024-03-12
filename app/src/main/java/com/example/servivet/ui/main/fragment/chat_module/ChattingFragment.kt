@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.util.Log
+import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
@@ -16,6 +17,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.example.servivet.R
 import com.example.servivet.data.model.call_module.video_call.VideoCallResponse
+import com.example.servivet.data.model.chat_models.accept_reject.AcceptRejectReposne
 import com.example.servivet.data.model.chat_models.chat_list.ChatMessage
 import com.example.servivet.data.model.chat_models.chat_list.ChattingListResponse
 import com.example.servivet.data.model.chat_models.initiate_chat.InitiateChatResponse
@@ -48,12 +50,14 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
-class ChattingFragment : BaseFragment<FragmentChattingBinding, ChattingViewModel>(R.layout.fragment_chatting) {
+class ChattingFragment :
+    BaseFragment<FragmentChattingBinding, ChattingViewModel>(R.layout.fragment_chatting) {
     override val binding: FragmentChattingBinding by viewBinding(FragmentChattingBinding::bind)
     override val mViewModel: ChattingViewModel by viewModels()
     private lateinit var socket: Socket
     private val argumentData: ChattingFragmentArgs by navArgs()
     private lateinit var chatListResponse: ChattingListResponse
+    private lateinit var commonResponse: AcceptRejectReposne
     private lateinit var initateChatResponse: InitiateChatResponse
     private lateinit var videoCallResponse: VideoCallResponse
     private lateinit var profileData: UserProfile
@@ -61,6 +65,7 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding, ChattingViewModel
     private var isBlocked = false
     private lateinit var roomId: String
     private lateinit var recieverId: String
+    private lateinit var senderId: String
     private lateinit var type: String
     private var imagePath: String = ""
     private var chattingList = ArrayList<ChatMessage>()
@@ -71,6 +76,7 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding, ChattingViewModel
     private var blockUserId = false
     private var list = ArrayList<String>()
     private var isMediaCome = false
+    private lateinit var userName: String
     private var manualUserDataClass = ManualUserDataClass()
 
     override fun isNetworkAvailable(boolean: Boolean) {
@@ -79,7 +85,7 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding, ChattingViewModel
 
     override fun setupViewModel() {
         binding.apply {
-            // lifecycleOwner = viewLifecycleOwner
+            lifecycleOwner = this@ChattingFragment
             viewModel = mViewModel
             binding.clickEvents = ::onClick
 
@@ -98,16 +104,29 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding, ChattingViewModel
                 profileData = Gson().fromJson(argumentData.data, UserProfile::class.java)
                 roomId = profileData.roomId
                 recieverId = profileData._id
+                senderId = profileData.senderId
                 binding.idUserName.text = profileData.name
                 binding.nameTextView.text = profileData.name
-                Glide.with(requireContext()).load(profileData.image).placeholder(R.drawable.userprofile).into(binding.profileImageView)
+                Glide.with(requireContext()).load(profileData.image)
+                    .placeholder(R.drawable.userprofile).into(binding.profileImageView)
                 manualUserDataClass.image = profileData.image
                 manualUserDataClass.userName = profileData.name
                 if (profileData.roomId.isNotEmpty()) {
                     initChatListSocket()
                 }
-                isBlocked = profileData.blockUser!=null && profileData.blockUser.size>0&&!profileData.blockUser.contains(Session.userDetails._id)
+                isBlocked =
+                    profileData.blockUser != null && profileData.blockUser.size > 0 && !profileData.blockUser.contains(
+                        Session.userDetails._id
+                    )
                 blockUserId = profileData.blockUser.contains(Session.userDetails._id)
+                if (profileData.senderId.equals(Session.userDetails._id) || profileData.senderId.isEmpty()) {
+                    binding.idFirstMessageContainer.isVisible = false
+                    //  binding.idChatBoxContainer.isVisible = true
+                } else {
+                    binding.idFirstMessageContainer.isVisible = true
+                    //  binding.idChatBoxContainer.isVisible = false
+
+                }
                 checkChattingVisibility()
 
             }
@@ -116,27 +135,41 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding, ChattingViewModel
                 chatListData = Gson().fromJson(argumentData.data, Chatlist::class.java)
                 roomId = chatListData._id
                 binding.idFirstMessageContainer.isVisible = !chatListData.isAccepeted
+                if (argumentData.isVisible) {
+                    checkChattingVisibility()
+                } else {
+                    binding.idChatBoxContainer.isVisible = false
+                    binding.idMenuItems.visibility = View.INVISIBLE
+                }
                 if (chatListData.senderId._id == Session.userDetails._id) {
                     binding.idUserName.text = chatListData.receiverId.name
                     binding.nameTextView.text = chatListData.receiverId.name
-                    Glide.with(requireContext()).load(chatListData.receiverId.image).placeholder(R.drawable.userprofile).into(binding.profileImageView)
+                    Glide.with(requireContext()).load(chatListData.receiverId.image)
+                        .placeholder(R.drawable.userprofile).into(binding.profileImageView)
                     recieverId = chatListData.receiverId._id
                     manualUserDataClass.image = chatListData.receiverId.image
                     manualUserDataClass.userName = chatListData.receiverId.name
-                    isBlocked = chatListData.blockUser!=null && chatListData.blockUser.isNotEmpty() &&!chatListData.blockUser.contains(Session.userDetails._id)
+                    isBlocked =
+                        chatListData.blockUser != null && chatListData.blockUser.isNotEmpty() && !chatListData.blockUser.contains(
+                            Session.userDetails._id
+                        )
                     blockUserId = chatListData.blockUser.contains(Session.userDetails._id)
 
                 } else {
                     binding.idUserName.text = chatListData.senderId.name
                     recieverId = chatListData.senderId._id
                     binding.nameTextView.text = chatListData.senderId.name
-                    Glide.with(requireContext()).load(chatListData.senderId.image).placeholder(R.drawable.userprofile).into(binding.profileImageView)
+                    Glide.with(requireContext()).load(chatListData.senderId.image)
+                        .placeholder(R.drawable.userprofile).into(binding.profileImageView)
                     manualUserDataClass.image = chatListData.senderId.image
                     manualUserDataClass.userName = chatListData.senderId.name
-                    isBlocked = chatListData.blockUser!=null && chatListData.blockUser.isNotEmpty() &&!chatListData.blockUser.contains(Session.userDetails._id)
+                    isBlocked =
+                        chatListData.blockUser != null && chatListData.blockUser.isNotEmpty() && !chatListData.blockUser.contains(
+                            Session.userDetails._id
+                        )
                     blockUserId = chatListData.blockUser.contains(Session.userDetails._id)
                 }
-                checkChattingVisibility()
+                //checkChattingVisibility()
                 if (roomId.isNotEmpty()) {
                     initChatListSocket()
                 }
@@ -172,13 +205,9 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding, ChattingViewModel
 
         }
 
-        Log.e("TAG", "checkRoomIdIsEmpty: ${recieverId}", )
+        Log.e("TAG", "checkRoomIdIsEmpty: ${recieverId}")
     }
 
-    private fun checkChattingVisibility() {
-        binding.idChatBoxContainer.isVisible = !blockUserId
-
-    }
 
     private fun onClick(type: String) {
         when (type) {
@@ -203,11 +232,17 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding, ChattingViewModel
 
             getString(R.string.open_gallery) -> {
                 //   findNavController().navigate(R.id.action_chattingFragment_to_selectMediaBottomSheet)
-                findNavController().navigate(ChattingFragmentDirections.actionChattingFragmentToSelectMediaBottomSheet("", getString(R.string.gallery)))
+                findNavController().navigate(
+                    ChattingFragmentDirections.actionChattingFragmentToSelectMediaBottomSheet(
+                        "",
+                        getString(R.string.gallery)
+                    )
+                )
             }
 
             getString(R.string.cross) -> {
                 binding.idUploadImageCard.isVisible = false
+                isMediaCome = false
                 mediaList.clear()
             }
 
@@ -218,11 +253,23 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding, ChattingViewModel
 
             getString(R.string.decline) -> {
                 initAcceptRejectChat(roomId, false)
-                findNavController().popBackStack()
+                //  findNavController().popBackStack()
 
             }
 
 
+        }
+    }
+
+    private fun checkChattingVisibility() {
+        if (isBlocked) {
+            binding.idChatBoxContainer.isVisible = false
+        } else if (argumentData.from == getString(R.string.provider_profile)&&senderId != Session.userDetails._id && senderId.isNotEmpty()) {
+            binding.idChatBoxContainer.isVisible = false
+            binding.idMenuItems.visibility = View.INVISIBLE
+            Toast.makeText(requireContext(), "aaya", Toast.LENGTH_SHORT).show()
+        } else {
+            binding.idChatBoxContainer.isVisible = true
         }
     }
 
@@ -231,9 +278,19 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding, ChattingViewModel
         val popupMenu = PopupMenu(requireContext(), binding.idMenuItems)
         popupMenu.inflate(R.menu.chat_menu)
         val menuItem = popupMenu.menu.findItem(R.id.idBlockUser)
-        menuItem.title = if (isBlocked){ getString(R.string.unblock)} else {getString(R.string.block)}
-        Toast.makeText(requireContext(), "${isBlocked}", Toast.LENGTH_SHORT).show()
+        menuItem.title = if (isBlocked) {
+            getString(R.string.unblock)
+        } else {
+            getString(R.string.block)
+        }
 
+//        if (isBlocked) {
+//            menuItem.title = getString(R.string.unblock)
+//            binding.idChatBoxContainer.isVisible = false
+//        } else {
+//            menuItem.title = getString(R.string.block)
+//            binding.idChatBoxContainer.isVisible = true
+//        }
         // Set item click listener
         popupMenu.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
@@ -241,10 +298,12 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding, ChattingViewModel
                     isBlocked = !isBlocked
                     if (isBlocked) {
                         menuItem.title = getString(R.string.unblock)
+                        binding.idChatBoxContainer.isVisible = false
                         initBlockUnblockUser()
 
                     } else {
                         menuItem.title = getString(R.string.block)
+                        binding.idChatBoxContainer.isVisible = true
                         initUnblockUser()
                     }
                     true
@@ -257,10 +316,9 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding, ChattingViewModel
                 }
 
                 R.id.idCall -> {
-//                    findNavController().navigate(R.id.action_chattingFragment_to_selectMediaBottomSheet)
-                    if(blockUserId){
+                    if (isBlocked) {
                         showSnackBar("You are unable to call this user. ")
-                    }else {
+                    } else {
                         findNavController().navigate(
                             ChattingFragmentDirections.actionChattingFragmentToSelectMediaBottomSheet(
                                 "",
@@ -299,7 +357,7 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding, ChattingViewModel
             val data = JSONObject()
             data.put("receiverId", profileData._id)
             data.put("messageType", typeOfMessage)
-            data.put("message", binding.idMessage.text.toString())
+            data.put("message", mViewModel.messageText.value)
             data.put("file", Gson().toJson(mediaList))
             socket.emit("initiateChat", data)
             socket.on("getRoomId", fun(args: Array<Any?>) {
@@ -313,7 +371,8 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding, ChattingViewModel
                                 InitiateChatResponse::class.java
                             )
                             roomId = initateChatResponse.result.roomDetail._id
-                            binding.idMessage.setText("")
+                            // binding.idMessage.setText("")
+                            mViewModel.messageText.value = ""
                             initChatListSocket()
 
 
@@ -380,16 +439,17 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding, ChattingViewModel
     }
 
     private fun initSendMessageEvent() {
-        if (binding.idMessage.text.toString().trim() != "" || isMediaCome) {
+        if (mViewModel.messageText.value.toString().trim() != "" || isMediaCome) {
             val data = JSONObject()
             try {
                 data.put("receiverId", recieverId)
                 data.put("roomId", roomId)
                 data.put("messageType", typeOfMessage)
-                data.put("message", binding.idMessage.text.toString())
+                data.put("message", mViewModel.messageText.value)
                 data.put("file", Gson().toJson(mediaList))
                 socket.emit("sendMessage", data)
-                binding.idMessage.setText("")
+                // binding.idMessage.setText("")
+                mViewModel.messageText.value = ""
                 typeOfMessage = 1
                 isMediaCome = false
                 binding.idMessage.isEnabled = true
@@ -526,7 +586,6 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding, ChattingViewModel
                 when (type) {
                     getString(R.string.audio_call) -> {
                         callType = 6
-                        Toast.makeText(requireContext(), "kamakama", Toast.LENGTH_SHORT).show()
                         generateAgoraToken()
 
                     }
@@ -593,11 +652,12 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding, ChattingViewModel
                                 6 -> {
                                     CoroutineScope(Dispatchers.Main).launch {
                                         delay(500)
-                                        Toast.makeText(requireContext(), "asdsd", Toast.LENGTH_SHORT).show()
                                         findNavController().navigate(
-                                            ChattingFragmentDirections.actionChattingFragmentToOutgoingAudioCallActivity(Gson().toJson(videoCallResponse), getString(
-                                                    R.string.outgoing_Audio
-                                                ))
+                                            ChattingFragmentDirections.actionChattingFragmentToOutgoingAudioCallActivity(
+                                                Gson().toJson(videoCallResponse),
+                                                getString(R.string.outgoing_Audio),
+                                                Gson().toJson(manualUserDataClass)
+                                            )
                                         )
                                     }
                                 }
@@ -607,10 +667,9 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding, ChattingViewModel
                                         delay(500)
                                         findNavController().navigate(
                                             ChattingFragmentDirections.actionChattingFragmentToOutgoingVideoCallActivity(
-                                                Gson().toJson(videoCallResponse),
-                                                getString(
+                                                Gson().toJson(videoCallResponse), getString(
                                                     R.string.outgoing_video
-                                                )
+                                                ), Gson().toJson(manualUserDataClass)
                                             )
                                         )
                                     }
@@ -709,7 +768,11 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding, ChattingViewModel
                     )
                 } else {
                     findNavController().navigate(
-                        ChattingFragmentDirections.actionChattingFragmentToImageVideoViewFragment(data, getString(R.string.chatfragment), position)
+                        ChattingFragmentDirections.actionChattingFragmentToImageVideoViewFragment(
+                            data,
+                            getString(R.string.chatfragment),
+                            position
+                        )
                     )
                 }
 
@@ -731,8 +794,24 @@ class ChattingFragment : BaseFragment<FragmentChattingBinding, ChattingViewModel
                     requireActivity().runOnUiThread {
                         val acceptRejectChat = args[0] as JSONObject
                         try {
-                            Log.e("TAG", "acceptRejectChat:${acceptRejectChat} ")
-                            binding.idFirstMessageContainer.isVisible = !chatListData.isAccepeted
+                            Log.e("TAG", "acceptRejectChat22:${acceptRejectChat} ")
+
+                            commonResponse = Gson().fromJson(
+                                JSONArray().put(acceptRejectChat)[0].toString(),
+                                AcceptRejectReposne::class.java
+                            )
+                            when (commonResponse.status) {
+                                0 -> {
+                                    findNavController().popBackStack()
+                                }
+
+                                1 -> {
+                                    binding.idFirstMessageContainer.isVisible = false
+                                    binding.idChatBoxContainer.isVisible = true
+                                    binding.idMenuItems.isVisible = true
+
+                                }
+                            }
 
 
                         } catch (ex: JSONException) {

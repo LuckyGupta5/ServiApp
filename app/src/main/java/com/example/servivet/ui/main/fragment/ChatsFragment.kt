@@ -3,6 +3,7 @@ package com.example.servivet.ui.main.fragment
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -101,7 +102,6 @@ class ChatsFragment : BaseFragment<FragmentChatsBinding, ChatViewModel>(R.layout
                             chatList.clear()
                             chatList.addAll(chatListResponse.result.chatlist)
                             initChatAdapter()
-                            //  socket.off("chatList")
 
 
                         } catch (ex: JSONException) {
@@ -129,7 +129,8 @@ class ChatsFragment : BaseFragment<FragmentChatsBinding, ChatViewModel>(R.layout
                 findNavController().navigate(
                     ChatsFragmentDirections.actionChatFragmentToChattingFragment(
                         data,
-                        getString(R.string.chatfragment)
+                        getString(R.string.chatfragment),
+                        true
                     )
                 )
             }

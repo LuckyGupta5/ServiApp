@@ -116,7 +116,7 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding,EditProfileV
 
         }
         binding.profileImage.setOnClickListener {
-            EditProfileVewModel.isPhotoSelected = true
+           // EditProfileVewModel.isPhotoSelected = true
             type="1"
             selectImage()
         }

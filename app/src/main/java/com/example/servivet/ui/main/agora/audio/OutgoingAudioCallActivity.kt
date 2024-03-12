@@ -20,6 +20,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.navArgs
 import com.example.servivet.R
 import com.example.servivet.data.model.call_module.video_call.VideoCallResponse
+import com.example.servivet.data.model.chat_models.manual_chating_objest.ManualUserDataClass
 import com.example.servivet.databinding.ActivityOutgoingAudioCallBinding
 import com.example.servivet.ui.base.BaseActivity
 import com.example.servivet.ui.main.agora.SoundPoolManager
@@ -102,6 +103,10 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
         when (argumentData.from) {
             getString(R.string.outgoing_Audio) -> {
                 val data = Gson().fromJson(argumentData.data, VideoCallResponse::class.java)
+                val userData = Gson().fromJson(argumentData.userData, ManualUserDataClass::class.java)
+
+
+                Log.e(TAG, "getArgumentData: ${argumentData.userData}", )
 
                 agoraToken = data.result.callToken
                 channelName = data.result.channelName
@@ -111,8 +116,8 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
                 roomId = data.result.roomId
                 receiverId = data.result.receiverId
 
-                mBinding.userImage = callUserImage
-                mBinding.userName = callUserName
+                mBinding.userImage = userData.image
+                mBinding.userName = userData.userName
 
 
             }
@@ -236,7 +241,6 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
                     val rejectCall = args[0] as JSONObject
                     try {
                         Log.e("TAG", "CallEnd:${rejectCall} ")
-                        Toast.makeText(this@OutgoingAudioCallActivity, "endCall", Toast.LENGTH_SHORT).show()
 
                         finish()
 
@@ -289,7 +293,6 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
                     val rejectCall = args[0] as JSONObject
                     try {
                         Log.e("TAG", "CallEnd:${rejectCall} ")
-                        Toast.makeText(this@OutgoingAudioCallActivity, "noAnswer", Toast.LENGTH_SHORT).show()
                         finish()
                     } catch (ex: JSONException) {
                         ex.printStackTrace()

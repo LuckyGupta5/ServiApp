@@ -1,6 +1,7 @@
 package com.example.servivet.ui.main.view_model
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.servivet.data.api.RetrofitBuilder
 import com.example.servivet.data.model.chat_models.chat_media.ChatMediaResponse
@@ -18,6 +19,8 @@ import java.io.File
 import java.io.IOException
 
 class ChattingViewModel : BaseViewModel() {
+
+    val messageText = MutableLiveData("")
 
     private val uploadDocumentLiveData = SingleLiveEvent<Resource<ChatMediaResponse>>()
 

@@ -56,7 +56,7 @@ class ChatRequestFragment :
             val data = JSONObject()
             data.put("isRequestedChatList", true)
             socket.emit("chatList", data)
-            socket.on("chatList", fun(args: Array<Any?>) {
+            socket.on("requestedChatList", fun(args: Array<Any?>) {
                 if (isAdded) {
                     requireActivity().runOnUiThread {
                         val providerData = args[0] as JSONObject
@@ -107,7 +107,8 @@ class ChatRequestFragment :
                 findNavController().navigate(
                     ChatRequestFragmentDirections.actionChatRequestFragmentToChattingFragment(
                         data,
-                        getString(R.string.chatfragment)
+                        getString(R.string.chatfragment),
+                        false
                     )
                 )
             }
@@ -128,7 +129,7 @@ class ChatRequestFragment :
                         val acceptRejectChat = args[0] as JSONObject
                         try {
                             Log.e("TAG", "acceptRejectChat:${acceptRejectChat} ")
-
+                            initSocket()
 
 
                         } catch (ex: JSONException) {

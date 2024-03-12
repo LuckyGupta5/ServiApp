@@ -589,6 +589,9 @@
         <argument
             android:name="from"
             app:argType="string" />
+        <argument
+            android:name="isVisible"
+            app:argType="boolean"/>
         <action
             android:id="@+id/action_chattingFragment_to_selectMediaBottomSheet"
             app:destination="@id/selectMediaBottomSheet" />
@@ -625,6 +628,10 @@
         <argument
             android:name="from"
             app:argType="string" />
+        <argument
+            android:name="userData"
+            app:argType="string"/>
+
     </activity>
     <activity
         android:id="@+id/outgoingAudioCallActivity"
@@ -637,6 +644,11 @@
         <argument
             android:name="from"
             app:argType="string" />
+        <argument
+            android:name="userData"
+            app:argType="string"/>
+
+
     </activity>
     <fragment
         android:id="@+id/aboutUsFragment"

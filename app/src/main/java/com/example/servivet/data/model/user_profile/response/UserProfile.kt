@@ -15,5 +15,7 @@ data class UserProfile(
     val countryCode: String,
     val role: Int,
     val roomId: String,
-    val businessType: Int
+    val businessType: Int,
+    val isAccepted:Boolean,
+    val senderId:String
 )

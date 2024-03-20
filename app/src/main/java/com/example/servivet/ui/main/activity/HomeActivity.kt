@@ -2,6 +2,7 @@ package com.example.servivet.ui.main.activity
 
 import BottomNavigationHelper
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -30,8 +31,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 
 
-class HomeActivity : BaseActivity(),MyServiceFragment.CallBack1{
-    lateinit var navigationBar:BottomNavigationView
+class HomeActivity : BaseActivity(), MyServiceFragment.CallBack1 {
+    lateinit var navigationBar: BottomNavigationView
     lateinit var view1: View
     lateinit var view2: View
     lateinit var view3: View
@@ -44,16 +45,34 @@ class HomeActivity : BaseActivity(),MyServiceFragment.CallBack1{
         setContentView(R.layout.activity_home)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-        navigationBar=findViewById(R.id.navigation_bar)
-        view1=findViewById(R.id.view1)
-        view2=findViewById(R.id.view2)
-        view3=findViewById(R.id.view3)
-        view4=findViewById(R.id.view4)
-        bottom=findViewById(R.id.bottom)
+        navigationBar = findViewById(R.id.navigation_bar)
+        view1 = findViewById(R.id.view1)
+        view2 = findViewById(R.id.view2)
+        view3 = findViewById(R.id.view3)
+        view4 = findViewById(R.id.view4)
+        bottom = findViewById(R.id.bottom)
         val navController = this.findNavController(R.id.home_navigation)
         setUpBottomNavMenu(navController)
         ProcessDialog.dismissDialog()
+        val notificationData = intent.getStringExtra("notificationData")
+        if (notificationData != null) {
+            Session.saveNotificationData(notificationData!!)
+        } else {
+            Session.deleteNotificationData()
+        }
 
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        val notificationData = intent?.getStringExtra("notificationData")
+
+        if (notificationData != null) {
+            Session.saveNotificationData(notificationData)
+        } else {
+            Session.deleteNotificationData()
+        }
     }
 
     private fun setUpBottomNavMenu(navController: NavController) {
@@ -62,11 +81,11 @@ class HomeActivity : BaseActivity(),MyServiceFragment.CallBack1{
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {
                 R.id.homeFragment -> {
-                   bottom.visibility = View.VISIBLE
-                   view1.visibility = View.VISIBLE
-                   view2.visibility = View.INVISIBLE
-                   view3.visibility = View.INVISIBLE
-                   view4.visibility = View.INVISIBLE
+                    bottom.visibility = View.VISIBLE
+                    view1.visibility = View.VISIBLE
+                    view2.visibility = View.INVISIBLE
+                    view3.visibility = View.INVISIBLE
+                    view4.visibility = View.INVISIBLE
 
                 }
 
@@ -80,39 +99,40 @@ class HomeActivity : BaseActivity(),MyServiceFragment.CallBack1{
                 }
 
                 R.id.profileFragment -> {
-                   bottom.visibility = View.VISIBLE
-                   view1.visibility = View.INVISIBLE
-                   view2.visibility = View.INVISIBLE
-                   view3.visibility = View.INVISIBLE
-                   view4.visibility = View.VISIBLE
+                    bottom.visibility = View.VISIBLE
+                    view1.visibility = View.INVISIBLE
+                    view2.visibility = View.INVISIBLE
+                    view3.visibility = View.INVISIBLE
+                    view4.visibility = View.VISIBLE
                 }
+
                 R.id.bookingsFragment -> {
-                   bottom.visibility = View.VISIBLE
-                   view1.visibility = View.INVISIBLE
-                   view2.visibility = View.VISIBLE
-                   view3.visibility = View.INVISIBLE
-                   view4.visibility = View.INVISIBLE
-                }else->
-                  bottom.isVisible = false
+                    bottom.visibility = View.VISIBLE
+                    view1.visibility = View.INVISIBLE
+                    view2.visibility = View.VISIBLE
+                    view3.visibility = View.INVISIBLE
+                    view4.visibility = View.INVISIBLE
+                }
+
+                else ->
+                    bottom.isVisible = false
             }
         }
 
 
-
     }
 
 
-    companion object{
-        var isProfileShow=false
-        var  CONNECTIVITY_SERVICE: String=""
+    companion object {
+        var isProfileShow = false
+        var CONNECTIVITY_SERVICE: String = ""
 
     }
 
     override fun callBack() {
-        
+
 //        binding.navigationBar.selectedItemId = R.id.profileFragment
     }
-
 
 
 }

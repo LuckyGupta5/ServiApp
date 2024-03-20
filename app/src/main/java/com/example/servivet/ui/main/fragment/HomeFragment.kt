@@ -3,6 +3,9 @@ package com.example.servivet.ui.main.fragment
 import android.app.AlertDialog
 import android.content.Context
 import android.content.res.Configuration
+import android.location.Address
+import android.location.Geocoder
+import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -17,6 +20,7 @@ import com.example.servivet.data.model.home.response.HomeBanner
 import com.example.servivet.data.model.home.response.HomeServiceCategory
 import com.example.servivet.data.model.home.response.nearbyprovider.NearByProviderResponse
 import com.example.servivet.data.model.home.response.nearbyprovider.Provider
+import com.example.servivet.data.model.location.LocationInfo
 import com.example.servivet.data.model.notification_data.NotificationData
 import com.example.servivet.databinding.FragmentHomeBinding
 import com.example.servivet.ui.base.BaseFragment
@@ -28,6 +32,7 @@ import com.example.servivet.ui.main.view_model.HomeViewModel
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.CommonUtils.showSnackBar
 import com.example.servivet.utils.CommonUtils.showToast
+import com.example.servivet.utils.GPSTracker
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.SocketManager
@@ -49,6 +54,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
     private lateinit var nearByProviderResponse: NearByProviderResponse
     private var providerList = ArrayList<Provider>()
     private val type = 1
+    private var longitude: Double = 0.0
+    private var lattitude: Double = 0.0
+    private var fullAddress: String? = ""
+
+    private lateinit var locationManager: LocationManager
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -61,6 +71,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
     }
 
     override fun isNetworkAvailable(boolean: Boolean) {}
+    override fun onResume() {
+        super.onResume()
+        val data = Gson().fromJson(Session.notificationData, NotificationData::class.java)
+
+//        if (Session.notificationData!=null && Session.notificationData.isNotEmpty() && data.bookingId != null) {
+//            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToBookingDetailsFragment(Session.notificationData, data.serviceStatus!!.minus(1), data.userType?:"", getString(R.string.home)))
+//        } else {
+//            activity?.let {
+//                mViewModel.hitHomeApi(
+//                    mContext,
+//                    it,
+//                    activity?.isFinishing == true
+//                )
+//            }
+//
+//        }
+    }
 
     override fun setupViewModel() {
         if (isAdded)
@@ -69,20 +96,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                 viewModel = mViewModel
                 click = mViewModel.ClickAction()
                 clickEvents = ::onClick
+                if(Session.saveLocationInfo ==null){
+                    getCurrentLocation()
+                }
                 setLocationValue()
 
                 setBack()
                 val data = Gson().fromJson(Session.notificationData, NotificationData::class.java)
 
-                if (Session.notificationData != null && data.bookingId != null) {
-                    findNavController().navigate(
-                        HomeFragmentDirections.actionHomeFragmentToBookingDetailsFragment(
-                            Session.notificationData,
-                            data.serviceStatus!!.minus(1),
-                            "",
-                            getString(R.string.home)
-                        )
-                    )
+                if (Session.notificationData!=null && Session.notificationData.isNotEmpty() && data.bookingId != null) {
+                    findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToBookingDetailsFragment(Session.notificationData, data.serviceStatus!!.minus(1), data.userType?:"", getString(R.string.home)))
                 } else {
                     activity?.let {
                         mViewModel.hitHomeApi(
@@ -117,6 +140,26 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 
 
     }
+
+
+    private fun getCurrentLocation() {
+        locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val gpsTracker = GPSTracker(requireActivity())
+        lattitude = gpsTracker.latitude.toDouble()
+        longitude = gpsTracker.longitude.toDouble()
+
+        try {
+            var geocoder = Geocoder(requireContext());
+            val adr: List<Address> = geocoder.getFromLocation(lattitude, longitude, 1)!!
+            fullAddress = adr[0].getAddressLine(0)
+            lattitude = adr[0].latitude
+            lattitude = adr[0].longitude
+            Session.saveLocationInfo(LocationInfo(adr[0].getAddressLine(0),adr[0].featureName, adr[0].latitude.toString(), adr[0].longitude.toString()))
+        } catch (e: Exception) {
+            Log.e("TAG", "getCurrentLocation: " + e)
+        }
+    }
+
 
     private fun setLocationValue() {
         if (Session.saveLocationInfo != null) {
@@ -288,16 +331,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
             SocketManager.connect()
             socket = SocketManager.getSocket()
 
+            Log.e("TAG", "checkLocationInfo: ${Session.saveLocationInfo}", )
+
 
             Log.e("TAG", "initSocket:${socket.connected()} ")
-            initSocketEvents()
 
+            initSocketEvents()
             val data = JSONObject()
             data.put("userId", Session.userDetails._id)
-            data.put("latitude", 28.6230811)
-            data.put("longitude", 77.2975935)
+            data.put("latitude", Session?.saveLocationInfo?.latitude?.toDouble()?:"")
+            data.put("longitude", Session?.saveLocationInfo?.longitude?.toDouble()?:"")
             data.put("page", 1)
-            data.put("limit", 100)
+            data.put("limit", 10)
 
             socket.emit("nearByProvider", data)
             socket.on("nearByProvider", fun(args: Array<Any?>) {
@@ -314,8 +359,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                                 "nearByProviderResponse:${Gson().toJson(nearByProviderResponse)} ",
                             )
                             providerList.clear()
-                            providerList.addAll(nearByProviderResponse.result.providerList)
-                            initProviderAdapter()
+                            nearByProviderResponse.result.providerList?.let {
+                                providerList.addAll(it)
+                                initProviderAdapter()
+                            }
 
 
                         } catch (ex: JSONException) {

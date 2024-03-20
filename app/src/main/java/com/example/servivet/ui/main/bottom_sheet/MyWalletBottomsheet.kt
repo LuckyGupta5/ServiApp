@@ -253,8 +253,7 @@ class MyWalletBottomsheet :
             if (isChecked) {
                 checkPayData()
             } else {
-                binding.idPayButton.text =
-                    getString(R.string.pay) + (paymentAmountData.payableAmount?.toFloat())
+                binding.idPayButton.text = getString(R.string.pay) + (paymentAmountData.payableAmount?.toFloat())
 
 
             }

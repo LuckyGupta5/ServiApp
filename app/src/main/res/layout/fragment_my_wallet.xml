@@ -66,7 +66,8 @@
                     android:id="@+id/threedot"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/chat_three_dot" />
+                    android:src="@drawable/chat_three_dot"
+                    android:visibility="invisible" />
 
             </LinearLayout>
         </LinearLayout>
@@ -135,7 +136,8 @@
                             android:paddingVertical="9dp"
                             android:text="@string/deactivate"
                             android:textColor="@color/black_2"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:visibility="gone" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -147,7 +149,7 @@
                             android:gravity="center"
                             android:paddingHorizontal="21dp"
                             android:paddingVertical="9dp"
-                            android:text="@string/send_money"
+                            android:text="Withdraw"
                             android:textColor="@color/white"
                             android:textSize="15sp" />
 
@@ -172,17 +174,17 @@
                     android:id="@+id/idTabLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@color/grey_F8F8F8"
                     android:fillViewport="true"
                     android:textSize="15sp"
                     app:tabGravity="fill"
-                    android:layout_marginHorizontal="20dp"
-                    android:background="@color/grey_F8F8F8"
+                    app:tabIndicator="@color/app_theme"
                     app:tabIndicatorHeight="2dp"
                     app:tabPaddingBottom="5dp"
                     app:tabPaddingTop="5dp"
-                    app:tabSelectedTextColor="@color/app_theme"
-                    app:tabIndicator="@color/app_theme"
                     app:tabRippleColor="@null"
+                    app:tabSelectedTextColor="@color/app_theme"
                     app:tabTextColor="@color/black" />
 
 

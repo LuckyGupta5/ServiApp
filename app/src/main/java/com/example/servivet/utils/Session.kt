@@ -128,5 +128,12 @@ object Session {
 
     }
 
+    fun deleteNotificationData(){
+
+        notificationData = null
+        Hawk.delete(NOTIFICATION_DATA)
+
+    }
+
 
 }

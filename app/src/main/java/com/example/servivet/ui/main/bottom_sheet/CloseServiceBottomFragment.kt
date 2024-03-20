@@ -1,6 +1,7 @@
 package com.example.servivet.ui.main.bottom_sheet
 
 import android.app.DatePickerDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -69,11 +70,7 @@ class CloseServiceBottomFragment :
                     ProcessDialog.dismissDialog()
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            findNavController().previousBackStackEntry?.savedStateHandle?.set(
-                                getString(
-                                    R.string.leave
-                                ), "false"
-                            )
+                            findNavController().previousBackStackEntry?.savedStateHandle?.set(getString(R.string.leave), false)
                             dialog?.dismiss()
                         }
 
@@ -157,7 +154,6 @@ class CloseServiceBottomFragment :
 
 
     private fun getBottomSheetCallBack() {
-
         findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(getString(R.string.close_service))
             ?.observe(viewLifecycleOwner) {
                 Log.e("TAG", "getBottomSheetCallBack:data ")
@@ -167,9 +163,10 @@ class CloseServiceBottomFragment :
     }
 
 
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        findNavController().previousBackStackEntry?.savedStateHandle?.set(getString(R.string.leave), true)
 
-    override fun dismiss() {
-        super.dismiss()
     }
 
 }

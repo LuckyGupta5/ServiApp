@@ -7,6 +7,7 @@ import com.example.servivet.R
 import com.example.servivet.data.model.booking_module.wallte_transaction.response.WalletTransaction
 import com.example.servivet.databinding.TransactionsDesignRecyclerviewBinding
 import com.example.servivet.ui.base.BaseAdapter
+import com.google.gson.Gson
 
 class TransactionAdapter(var list: ArrayList<WalletTransaction>, val requireContext: Context) :
     BaseAdapter<TransactionsDesignRecyclerviewBinding, WalletTransaction>(list) {
@@ -19,8 +20,9 @@ class TransactionAdapter(var list: ArrayList<WalletTransaction>, val requireCont
     ) {
         binding.apply {
             data = item
-            Glide.with(requireContext).load(list[0].service.images).error(R.drawable.flower_img)
-                .into(binding.profileImage)
+            Log.e("TAG", "bind: ${Gson().toJson(item?.service?.images?.get(0) ?: "")}", )
+
+            Glide.with(requireContext).load(item?.service?.images?.get(0) ?: "").error(R.drawable.userprofile).into(binding.profileImage)
         }
     }
 

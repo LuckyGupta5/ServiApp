@@ -196,7 +196,6 @@ class MyWalletFragment :
                     when (data.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             if (data.result.walletTransaction != null && data.result.walletTransaction.isNotEmpty()) {
-//                                mViewModel.list.cle
                                 binding.transitionRecycler.isVisible = true
 
                                 isLoading = true
@@ -221,6 +220,7 @@ class MyWalletFragment :
                                 }
                             }else{
                                binding.transitionRecycler.isVisible = false
+                            //    list = data.result.walletTransaction
 
                             }
 

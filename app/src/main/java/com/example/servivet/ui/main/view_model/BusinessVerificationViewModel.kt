@@ -78,7 +78,8 @@ class BusinessVerificationViewModel : BaseViewModel() {
         }
 
         fun backPress(view: View) {
-            view.findNavController().popBackStack()
+      //      view.findNavController().popBackStack()
+            requireActivity.onBackPressed()
         }
 
         fun onNameChange(text: CharSequence) {

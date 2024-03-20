@@ -103,7 +103,7 @@ class BookingsFragment :
                         // setPagination()
                     } else if (Session.type == "2") {
                         if (Constants.TYPEOFUSERS == "bought") {
-                            mViewModel.hitBookingListAPI(mViewModel.bookingStatus, 1, 1)
+                            mViewModel.hitBookingListAPI(mViewModel.bookingStatus, 1, 10)
 
                         } else {
                             mViewModel.hitSoldBookingListAPI(mViewModel.bookingStatus, 1, 10)

@@ -33,6 +33,7 @@ import com.example.servivet.data.model.connection.accept_reject.request.AcceptRe
 import com.example.servivet.data.model.connection.connection_list.responnse.ConnectionListResponse
 import com.example.servivet.data.model.connection.connection_request.request.ConnectionRequest
 import com.example.servivet.data.model.connection.connection_request.response.ConnnectionResponse
+import com.example.servivet.data.model.notification_list.response.NotificationListResponse
 import com.example.servivet.data.model.review_ratinng.ReviewRatingResponse
 import com.example.servivet.data.model.save_address.request.SaveAddressRequest
 import com.example.servivet.data.model.save_address.response.SaveAddressResponse
@@ -201,5 +202,8 @@ interface ApiService {
 
     @POST("setting/changeRole")
     suspend fun changeRoleApi(@Body request: ChangeRoleRequest): CommonResponse
+
+    @GET("notification/notificationListing")
+    suspend fun notificationListing(@QueryMap request: HashMap<String, String>): NotificationListResponse
 
 }

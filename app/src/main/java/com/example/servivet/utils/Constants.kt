@@ -32,10 +32,14 @@ object Constants {
     var CALL_END = "noAnswerCall"
     var NOTIFICATION = "notification"
     var RECEIVER_ID = "receiver_id"
+    var SENDER_ID = "sender_id"
     var SWITCH_ACC:Boolean= false
     var CHECK_BCK:Boolean= true
 
     var ABCD = false
+
+    var MOBNUMBER = "mob_number"
+    var C_Code = "c_code"
 
 
 

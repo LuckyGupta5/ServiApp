@@ -42,7 +42,7 @@ class HomeServiceAdapter(
         }
 
         binding.serviceName.text = list[position].name
-        Glide.with(context).load(list[position].imageUrl).error(R.drawable.flower_img)
+        Glide.with(context).load(list[position].imageUrl).error(R.drawable.userprofile)
             .into(binding.serviceImage)
     }
 

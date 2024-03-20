@@ -34,6 +34,8 @@ class ChooseLanguageViewModel:BaseViewModel()
             if(SplashViewModel.isLogout==true){
                 view.findNavController().navigate(R.id.action_choosePreferredLanguageFragment_to_loginFragment)
             }else{
+              //  view.findNavController().navigate(R.id.action_choosePreferredLanguageFragment_to_loginFragment)
+
                 view.findNavController().navigate(R.id.action_choosePreferredLanguageFragment_to_onboardingFragment)
             }
         }

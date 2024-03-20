@@ -1,5 +1,6 @@
 package com.example.servivet.ui.main.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.View
@@ -7,6 +8,7 @@ import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 
 import com.example.servivet.R
+import com.example.servivet.data.model.chat_models.request_list.response.Chatlist
 import com.example.servivet.data.model.service_list.response.ServiceList
 import com.example.servivet.databinding.MyServiceRecyclerBinding
 import com.example.servivet.ui.base.BaseAdapter
@@ -23,10 +25,13 @@ class MyServiceAdapter(
 ) : BaseAdapter<MyServiceRecyclerBinding, ServiceList>(list)
 {
     override val layoutId: Int = R.layout.my_service_recycler
+    private var filteredList: List<ServiceList> = list.toList()
+
 
     override fun bind(binding: MyServiceRecyclerBinding, item: ServiceList?, position: Int) {
         binding.apply {
-            binding.data=item
+         //   binding.data=item
+            binding.data=filteredList[position]
             binding.click=ClickAction(position)
         }
 
@@ -60,7 +65,7 @@ class MyServiceAdapter(
 
 
     override fun getItemCount(): Int {
-        return list.size
+        return filteredList.size
     }
 
 
@@ -68,6 +73,19 @@ class MyServiceAdapter(
         val start = if (this.list.size > 0) this.list.size else 0
         this.list.addAll(list)
         notifyItemRangeInserted(start, this.list.size)
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun filter(text: String) {
+        filteredList = if (text.isEmpty()) {
+            list
+        } else {
+            list.filter { it.serviceName?.contains(text, ignoreCase = true)!!}
+
+        }
+
+       // onItemClick(context.getString(R.string.filterdata), filteredList.size.toString())
+        notifyDataSetChanged()
     }
 
 

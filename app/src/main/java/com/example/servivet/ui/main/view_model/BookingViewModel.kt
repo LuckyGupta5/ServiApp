@@ -31,7 +31,7 @@ import java.io.IOException
 
 class BookingViewModel:BaseViewModel() {
     val soldRequest = HashMap<String,String>()
-    var bookingStatus = 0
+    var bookingStatus = 1
     //var typeOfUser = "sold"
    // var typeOfUser = MutableLiveData<String>("sold")
 
@@ -109,6 +109,7 @@ class BookingViewModel:BaseViewModel() {
         val repository = MainRepository(RetrofitBuilder.apiService)
 
         cancelBookingResponse.postValue(Resource.loading(null))
+        Log.e("TAG", "hitCancelBookingApi: ${Gson().toJson(cancelBookingRequest)}", )
         viewModelScope.launch {
             try {
                 cancelBookingResponse.postValue(Resource.success(repository.cancelBooking(cancelBookingRequest)))

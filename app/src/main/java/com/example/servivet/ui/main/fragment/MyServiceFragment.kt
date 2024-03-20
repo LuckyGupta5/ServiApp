@@ -4,6 +4,8 @@ import PaginationScrollListener
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
@@ -63,10 +65,18 @@ class MyServiceFragment :
     }
 
     private fun bottomSheetCallBack() {
-        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(getString(R.string.leave))
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Boolean>(getString(R.string.leave))
             ?.observe(viewLifecycleOwner) {
 
-                binding.idCloseService.text = getString(R.string.start_service)
+                if(!it){
+                    binding.idCloseService.text = getString(R.string.start_service)
+                    binding.idCloseService.isEnabled = true
+
+                }else{
+                    binding.idCloseService.isEnabled = true
+
+                }
+
 
             }
     }
@@ -83,6 +93,7 @@ class MyServiceFragment :
 
 
         if (argumentData.from == getString(R.string.provider_profile)) {
+            binding.catName.text = "Services"
             mViewModel.serviceListRequest.category = data!![0].id
             mViewModel.serviceListRequest.isMyService = 0
             mViewModel.serviceListRequest.providerId = argumentData.data
@@ -91,6 +102,7 @@ class MyServiceFragment :
         } else {
             mViewModel.serviceListRequest.category = data!![0].id
             mViewModel.serviceListRequest.isMyService = 1
+            binding.idServiceLayout.isVisible = true
             isBook = false
         }
 
@@ -106,6 +118,7 @@ class MyServiceFragment :
                 requireActivity().isFinishing
             )
         }
+        initEditText()
         initCloseServiceModel()
         setSubCatAdapter(data!!)
         onBackCall()
@@ -124,6 +137,19 @@ class MyServiceFragment :
         }
     }
 
+    private fun initEditText() {
+        binding.idSearchText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                adapter.filter(s.toString())
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+    }
+
     private fun setSubCatAdapter(list: ArrayList<HomeServiceCategory>) {
         if (list.isNotEmpty())
             binding.serviceSubCatRecycler.adapter =
@@ -136,7 +162,6 @@ class MyServiceFragment :
             var intent = Intent(context, HomeActivity::class.java)
             requireActivity().startActivity(intent)
             listN.callBack()
-
         }
 
         val callback: OnBackPressedCallback =
@@ -201,7 +226,8 @@ class MyServiceFragment :
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             if (it.data.result.service.isNotEmpty()) {
-                                binding.idServiceLayout.isVisible = true
+
+                           //     binding.idServiceLayout.isVisible = true
                                 isLoading = true
                                 if (currentPage == 1)
                                     list = ArrayList()
@@ -302,11 +328,7 @@ class MyServiceFragment :
         mViewModel.serviceListRequest.category = id
         mViewModel.serviceListRequest.page = 1
         setAdapter(tabPosition)
-        mViewModel.hitServiceListAPI(
-            requireContext(),
-            requireActivity(),
-            requireActivity().isFinishing
-        )
+        mViewModel.hitServiceListAPI(requireContext(), requireActivity(), requireActivity().isFinishing)
     }
 
     private fun onClick(type: String) {
@@ -317,6 +339,7 @@ class MyServiceFragment :
 
             getString(R.string.close_service) -> {
                 if (binding.idCloseService.text.toString() == getString(R.string.close_service)) {
+                    binding.idCloseService.isEnabled = false
                     findNavController().navigate(R.id.action_myServiceFragment_to_closeServiceBottomFragment)
                 } else {
                     closeServiceModel.getMarkAsCompleteRequest("", "", true)

@@ -7,7 +7,6 @@ class CallEndBroadcast(private val callEndCallback: CallEndCallback): BroadcastR
     override fun onReceive(context: Context?, intent: Intent?) {
         callEndCallback.onCallEnd()
     }
-
     interface CallEndCallback{
         fun onCallEnd()
     }

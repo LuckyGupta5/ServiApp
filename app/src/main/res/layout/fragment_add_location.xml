@@ -37,7 +37,6 @@
                     android:layout_height="wrap_content">
 
                     <RelativeLayout
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="50dp"
@@ -223,7 +222,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_below="@id/MobileNumberTextView"
-                                android:layout_marginStart="15sp"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="1dp"
                                 android:layout_marginEnd="15dp"
                                 android:layout_marginBottom="5dp"
                                 android:layout_toEndOf="@+id/MobileNoIcon"
@@ -233,8 +233,8 @@
                                 android:fontFamily="@font/poppins_medium"
                                 android:hint="Enter Mobile"
                                 android:inputType="number"
+                                android:maxLength="14"
                                 android:maxLines="1"
-                                android:maxLength="10"
                                 android:textColor="@color/black"
                                 android:textColorHint="@color/gray_777777"
                                 android:textSize="15dp" />

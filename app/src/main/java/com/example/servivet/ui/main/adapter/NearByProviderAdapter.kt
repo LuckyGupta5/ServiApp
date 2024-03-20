@@ -41,6 +41,11 @@ class NearByProviderAdapter(
 
 
     }
+    fun addItems(newItems: List<Provider>) {
+        val startPosition = providerList.size
+        providerList += newItems
+        notifyItemRangeInserted(startPosition, newItems.size)
+    }
 
 
 }

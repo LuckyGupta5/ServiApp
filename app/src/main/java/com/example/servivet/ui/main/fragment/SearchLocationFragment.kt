@@ -85,8 +85,9 @@ class SearchLocationFragment :
             click = mViewModel.ClickAction(requireContext())
         }
         mapInitialization()
-        getCurrentLocation()
         binding.currentLocationLayout.setOnClickListener {
+            getCurrentLocation()
+
             findNavController().popBackStack()
         }
     }

@@ -89,7 +89,7 @@
                     android:layout_marginTop="40dp"
                     android:fontFamily="@font/poppins_medium"
                     android:gravity="center"
-                    android:hint="incominn"
+                    android:hint="incoming"
                     android:includeFontPadding="false"
                     android:text="@{callStatus}"
                     android:textColor="@color/white"

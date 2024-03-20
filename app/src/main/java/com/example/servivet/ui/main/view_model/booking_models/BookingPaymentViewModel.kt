@@ -53,13 +53,7 @@ class BookingPaymentViewModel : BaseViewModel() {
         fun goToWallerBottom(view: View) {
 
             if (isConfirm) {
-                view.findNavController().navigate(
-                    BookingPaymentFragmentDirections.actionBookingPaymentFragmentToMyWalletBottomsheet2(
-                        Gson().toJson(payAmountResult),
-                        Gson().toJson(bookingData),
-                        R.string.booking
-                    )
-                )
+                view.findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToMyWalletBottomsheet2(Gson().toJson(payAmountResult), Gson().toJson(bookingData), R.string.booking))
 
             } else {
                 view.findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToSuretoConfirmBottomSheet())
@@ -73,6 +67,9 @@ class BookingPaymentViewModel : BaseViewModel() {
                 binding.applyCouponName.text = context.getText(R.string.apply_coupon)
                 binding.appliedCoupon.isVisible = false
                 binding.promoDiscountLayout.isVisible = false
+                bookingData.couponCode = ""
+                getPaymentAmountRequest(bookingData)
+
 
             } else {
                 binding.applyCoupon.isVisible = false
@@ -96,10 +93,8 @@ class BookingPaymentViewModel : BaseViewModel() {
             serviceId = serviceData._id
             serviceMode = serviceData.serviceModeLocal
             slotId = serviceData.slotId
-            isCouponApply = serviceData.couponCode?.isNotEmpty()
-            couponCode = serviceData.couponCode
-
-
+            isCouponApply = bookingData.couponCode?.isNotEmpty()
+            couponCode = bookingData.couponCode
         }
         Log.e("TAG", "getPaymentAmountRequest: ${Gson().toJson(amountRequest)}")
         SECURE_HEADER = "secure"

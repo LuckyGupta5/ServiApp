@@ -33,6 +33,10 @@ import com.example.servivet.utils.getCurrentTimeInFormat
 import com.example.servivet.utils.isTimeGapGreaterThan24Hours
 import com.example.servivet.utils.updateButtonState
 import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -54,6 +58,7 @@ class BookingDetailsFragment :
     private lateinit var userType: String
     private lateinit var bookingDetail: BookingDetail
     private val bookingViewModel: BookingViewModel by viewModels()
+    private var notificationUser = ""
     private val markAsCompleteModel: MarkAsCompleteViewModel by viewModels()
 
 
@@ -62,6 +67,11 @@ class BookingDetailsFragment :
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun setupViews() {
+       // Session.deleteNotificationData()
+
+
+        Log.e("TAG", "printNotificationData: ${Session.notificationData} ", )
+
         getBookingData()
 
         if (Session.type == "1") {
@@ -85,7 +95,10 @@ class BookingDetailsFragment :
         gotocancelBottomsheet()
         initBookingViewModel()
         initMarkAsCompleteModel()
+        getBottomSheetCallBack()
     }
+
+
 
 
     private fun getBookingData() {
@@ -99,7 +112,10 @@ class BookingDetailsFragment :
 
             getString(R.string.home) -> {
                 notificationData = Gson().fromJson(argumentData.data, NotificationData::class.java)
+                notificationUser = notificationData.userType!!
                 bookingId = notificationData.bookingId?:""
+
+                Session.deleteNotificationData()
 
             }
 
@@ -140,6 +156,9 @@ class BookingDetailsFragment :
                     BookingDetailsFragmentDirections.actionBookingDetailsFragmentToBookingSummaryFragment(
                         Gson().toJson(bookingDetail),
                         getString(R.string.booking_details)
+
+
+
                     )
                 )
             }
@@ -172,20 +191,16 @@ class BookingDetailsFragment :
     fun gotocancelBottomsheet() {
 
         binding.idCancelBooking.setOnClickListener(View.OnClickListener {
-            findNavController().navigate(
-                BookingDetailsFragmentDirections.actionBookingDetailsFragmentToReasonForCancelBottomsheet(
+            findNavController().navigate(BookingDetailsFragmentDirections.actionBookingDetailsFragmentToReasonForCancelBottomsheet(
                     bookingId,
-                    getString(R.string.booking_details)
+                    getString(R.string.booking_details),notificationUser
                 )
             )
         })
         binding.cancelButton.setOnClickListener(View.OnClickListener {
 //            val fragment=ReasonForCancelBottomsheet()
 //            fragment.show(childFragmentManager,"CancelBottomSheetFragment")
-            findNavController().navigate(
-                BookingDetailsFragmentDirections.actionBookingDetailsFragmentToReasonForCancelBottomsheet(
-                    bookingId,
-                    getString(R.string.booking_details)
+            findNavController().navigate(BookingDetailsFragmentDirections.actionBookingDetailsFragmentToReasonForCancelBottomsheet(bookingId, getString(R.string.booking_details),notificationUser
                 )
             )
         })
@@ -263,28 +278,24 @@ class BookingDetailsFragment :
             0 -> {
                 if (Session.type == "2") {
                     if (Constants.TYPEOFUSERS == getString(R.string.bought_small)) {
-                        if (isTimeGapGreaterThan24Hours(
-                                getCurrentTimeInFormat(),
-                                bookingDetail.startTime,
-                                24
-                            )
-                        ) {
+                        if (isTimeGapGreaterThan24Hours(getCurrentTimeInFormat(), bookingDetail.startTime, 24)) {
                             binding.idCancelBooking.isVisible = true
                         } else {
                             binding.idNotCancellable.isVisible = true
                         }
 
                     } else {
-                        binding.acceptRejectLayout.isVisible = true
+
+                        if(this::notificationData.isInitialized && notificationData.userType =="user"){
+                            binding.acceptRejectLayout.isVisible = false
+                            binding.idCancelBooking.isVisible = true
+                        }else {
+                            binding.acceptRejectLayout.isVisible = true
+                        }
                     }
 
                 } else {
-                    if (isTimeGapGreaterThan24Hours(
-                            getCurrentTimeInFormat(),
-                            bookingDetail.startTime,
-                            24
-                        )
-                    ) {
+                    if (isTimeGapGreaterThan24Hours(getCurrentTimeInFormat(), bookingDetail.startTime, 24)) {
                         binding.idCancelBooking.isVisible = true
                     } else {
                         binding.idNotCancellable.isVisible = true
@@ -447,6 +458,16 @@ class BookingDetailsFragment :
                 }
 
                 else -> {}
+            }
+        }
+    }
+
+    private fun getBottomSheetCallBack() {
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>("")?.observe(viewLifecycleOwner){
+            CoroutineScope(Dispatchers.Main).launch {
+                delay(500)
+                findNavController().popBackStack()
+
             }
         }
     }

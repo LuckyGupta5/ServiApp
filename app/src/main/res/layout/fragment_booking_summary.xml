@@ -112,7 +112,8 @@
                             <ImageView
                                 android:layout_width="86dp"
                                 android:layout_height="86dp"
-                                android:background="@drawable/flower_img" />
+                                android:scaleType="centerCrop"
+                                android:imageViewUrl="@{summaryData.images.get(0)}"/>
                         </androidx.cardview.widget.CardView>
 
 

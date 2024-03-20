@@ -53,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="165dp"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/banner_image"
+                android:bannerUrl="@{detailData.coverImage}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -175,6 +175,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/whatsapp_icon"
+                android:onClick="@{()->clickEvents.invoke(@string/whatsApp)}"
                 app:layout_constraintEnd_toStartOf="@id/idShareIcon"
                 app:layout_constraintStart_toEndOf="@id/idCallIcon"
                 app:layout_constraintTop_toTopOf="@id/idCallIcon" />

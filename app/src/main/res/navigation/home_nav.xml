@@ -500,6 +500,9 @@
         <argument
             android:name="from"
             app:argType="string" />
+        <argument
+            android:name="notificationData"
+            app:argType="string" />
     </dialog>
     <dialog
         android:id="@+id/fragmentRatingUsBottomSheet"

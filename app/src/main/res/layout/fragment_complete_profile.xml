@@ -33,7 +33,7 @@
                 android:background="@color/app_theme"
                 android:paddingTop="54dp"
                 android:paddingBottom="60dp"
-                android:src="@drawable/servivet_name" />
+                android:src="@drawable/splash_new_icon" />
 
             <ImageView
                 android:layout_width="wrap_content"

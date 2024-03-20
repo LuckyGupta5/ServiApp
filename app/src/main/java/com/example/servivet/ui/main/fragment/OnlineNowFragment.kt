@@ -5,6 +5,8 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
 import com.example.servivet.data.model.home.response.nearbyprovider.NearByProviderResponse
@@ -23,6 +25,8 @@ class OnlineNowFragment :
     private val argumentData: OnlineNowFragmentArgs by navArgs()
     private val type = 2
     private var providerList = ArrayList<Provider>()
+    private var isLoading = false
+
 
     override fun isNetworkAvailable(boolean: Boolean) {
     }
@@ -37,7 +41,25 @@ class OnlineNowFragment :
             click = mViewModel.ClickAction()
         }
         getArgumentData()
-        binding.serviceRecycler.isVisible = true
+       // setPagination()
+        binding.nearByProviderRecycle.isVisible = true
+    }
+
+    private fun setPagination() {
+
+        binding.nearByProviderRecycle.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                val totalItemCount = layoutManager.itemCount
+                val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
+
+                if (!isLoading && totalItemCount <= (lastVisibleItemPosition + 3)) {
+                  //  loadMoreItems()
+                    isLoading = true
+                }
+            }
+        })
     }
 
     private fun getArgumentData() {

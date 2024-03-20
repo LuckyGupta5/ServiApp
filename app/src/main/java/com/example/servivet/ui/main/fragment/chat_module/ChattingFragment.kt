@@ -135,12 +135,7 @@ class ChattingFragment :
                 chatListData = Gson().fromJson(argumentData.data, Chatlist::class.java)
                 roomId = chatListData._id
                 binding.idFirstMessageContainer.isVisible = !chatListData.isAccepeted
-                if (argumentData.isVisible) {
-                    checkChattingVisibility()
-                } else {
-                    binding.idChatBoxContainer.isVisible = false
-                    binding.idMenuItems.visibility = View.INVISIBLE
-                }
+
                 if (chatListData.senderId._id == Session.userDetails._id) {
                     binding.idUserName.text = chatListData.receiverId.name
                     binding.nameTextView.text = chatListData.receiverId.name
@@ -149,10 +144,7 @@ class ChattingFragment :
                     recieverId = chatListData.receiverId._id
                     manualUserDataClass.image = chatListData.receiverId.image
                     manualUserDataClass.userName = chatListData.receiverId.name
-                    isBlocked =
-                        chatListData.blockUser != null && chatListData.blockUser.isNotEmpty() && !chatListData.blockUser.contains(
-                            Session.userDetails._id
-                        )
+                    isBlocked = chatListData.blockUser != null && chatListData.blockUser.isNotEmpty() && !chatListData.blockUser.contains(Session.userDetails._id)
                     blockUserId = chatListData.blockUser.contains(Session.userDetails._id)
 
                 } else {
@@ -163,11 +155,15 @@ class ChattingFragment :
                         .placeholder(R.drawable.userprofile).into(binding.profileImageView)
                     manualUserDataClass.image = chatListData.senderId.image
                     manualUserDataClass.userName = chatListData.senderId.name
-                    isBlocked =
-                        chatListData.blockUser != null && chatListData.blockUser.isNotEmpty() && !chatListData.blockUser.contains(
-                            Session.userDetails._id
-                        )
+                    isBlocked = chatListData.blockUser != null && chatListData.blockUser.isNotEmpty() && !chatListData.blockUser.contains(Session.userDetails._id)
                     blockUserId = chatListData.blockUser.contains(Session.userDetails._id)
+                }
+
+                if (argumentData.isVisible) {
+                    checkChattingVisibility()
+                } else {
+                    binding.idChatBoxContainer.isVisible = false
+                    binding.idMenuItems.visibility = View.INVISIBLE
                 }
                 //checkChattingVisibility()
                 if (roomId.isNotEmpty()) {
@@ -232,12 +228,8 @@ class ChattingFragment :
 
             getString(R.string.open_gallery) -> {
                 //   findNavController().navigate(R.id.action_chattingFragment_to_selectMediaBottomSheet)
-                findNavController().navigate(
-                    ChattingFragmentDirections.actionChattingFragmentToSelectMediaBottomSheet(
-                        "",
-                        getString(R.string.gallery)
-                    )
-                )
+                binding.idMediaView.isEnabled = false
+                findNavController().navigate(ChattingFragmentDirections.actionChattingFragmentToSelectMediaBottomSheet("", getString(R.string.gallery)))
             }
 
             getString(R.string.cross) -> {
@@ -583,6 +575,7 @@ class ChattingFragment :
         findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(getString(R.string.videos))
             ?.observe(viewLifecycleOwner) {
                 type = it
+                binding.idMediaView.isEnabled = true
                 when (type) {
                     getString(R.string.audio_call) -> {
                         callType = 6
@@ -620,6 +613,7 @@ class ChattingFragment :
                             showSnackBar("Permission not Granted")
                         }
                     }
+                    
                 }
 
 
@@ -824,6 +818,12 @@ class ChattingFragment :
         } catch (ex: Exception) {
 
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        Toast.makeText(requireContext(), "show on pause", Toast.LENGTH_SHORT).show()
     }
 
 

@@ -70,5 +70,11 @@ class SelectMediaBottomSheet : BaseBottomSheetDailogFragment<FragmentSelectMedia
         }
     }
 
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        findNavController().previousBackStackEntry?.savedStateHandle?.set(getString(R.string.videos),"")
+
+    }
+
 
 }

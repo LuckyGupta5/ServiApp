@@ -97,21 +97,23 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, Booki
 
     private fun getCouponCode() {
         sharedViewModel.getData().observe(viewLifecycleOwner) { couponCode ->
-        //    mViewModel.bookingData.couponCode = couponCode
-            serviceData.couponCode = couponCode
+           // serviceData.couponCode = couponCode
+            mViewModel.bookingData.couponCode = couponCode
             Log.e("TAG", "getCouponCode: $couponCode", )
-            Log.e("TAG", "getCouponCode: ${serviceData.couponCode }")
-           // setupObservers()
+         //   Log.e("TAG", "getCouponCode: ${serviceData.couponCode }")
+            setupObservers()
         }
     }
 
     private fun getTimeSlot() {
         when (getString(timeSlotData.from)) {
             getString(R.string.booking_summary) -> {
-                serviceData = Gson().fromJson(timeSlotData.data, ServiceDetail::class.java)
-                mViewModel.bookingData = serviceData
-                binding.slotData = serviceData
-                Log.e("TAG", "getTimeSlot: ${Gson().toJson(serviceData)}")
+              //  serviceData = Gson().fromJson(timeSlotData.data, ServiceDetail::class.java)
+                mViewModel.bookingData = Gson().fromJson(timeSlotData.data, ServiceDetail::class.java)
+               // mViewModel.bookingData = serviceData
+               // binding.slotData = serviceData
+                binding.slotData = mViewModel.bookingData
+               // Log.e("TAG", "getTimeSlot: ${Gson().toJson(serviceData)}")
             }
         }
     }
@@ -125,7 +127,8 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, Booki
     }
 
     override fun setupObservers() {
-        mViewModel.getPaymentAmountRequest(serviceData)
+       // mViewModel.getPaymentAmountRequest(serviceData)
+        mViewModel.getPaymentAmountRequest(mViewModel.bookingData)
         mViewModel.getPaymentAmountData().observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
@@ -183,7 +186,8 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, Booki
     }
 
     private fun initSlotModel() {
-        slotViewModel.getCouponAvailabilityRequest(serviceData)
+       // slotViewModel.getCouponAvailabilityRequest(serviceData)
+        slotViewModel.getCouponAvailabilityRequest(mViewModel.bookingData)
         slotViewModel.getCouponAvailabilityData().observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {

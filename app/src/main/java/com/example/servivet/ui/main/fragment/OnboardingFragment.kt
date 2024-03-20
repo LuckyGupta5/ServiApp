@@ -10,10 +10,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
+import com.example.servivet.data.model.TutorialModel
 import com.example.servivet.data.model.view_pager_model.ViewPagerTutorialModel
 import com.example.servivet.databinding.FragmentOnboardingBinding
 import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.adapter.OnBoardingAdapter
+import com.example.servivet.ui.main.adapter.TutorialServiceAdapter
 import com.example.servivet.ui.main.view_model.OnboardingViewModel
 import com.zhpan.indicator.enums.IndicatorSlideMode
 import com.zhpan.indicator.enums.IndicatorStyle
@@ -24,6 +26,10 @@ class OnboardingFragment :
 
     override val binding: FragmentOnboardingBinding by viewBinding(FragmentOnboardingBinding::bind)
     override val mViewModel: OnboardingViewModel by viewModels()
+
+    var serviceList=ArrayList<TutorialModel>()
+
+
 
 
     override fun isNetworkAvailable(boolean: Boolean) {
@@ -36,10 +42,36 @@ class OnboardingFragment :
                 viewModel = mViewModel
                 click = mViewModel.ClickAction(requireContext(), binding)
             }
-        setViewPagerAdapter()
-        setViewPagerConditions()
+      //  setViewPagerAdapter()
+       // setViewPagerConditions()
+        setAdapterItems()
         onBackCall()
     }
+
+
+
+    private fun setAdapterItems() {
+        serviceList.clear()
+        serviceList.addAll(listOf(
+            TutorialModel(R.drawable.wellness_2, "Wellness"),
+            TutorialModel(R.drawable.household, "HouseHold"),
+            TutorialModel(R.drawable.electronics, "Electronic"),
+            TutorialModel(R.drawable.finance_2, "Finance"),
+            TutorialModel(R.drawable.vedios_photos_2, "VideoPhoto "),
+            TutorialModel(R.drawable.enterteainment, "Showbiz"),
+            TutorialModel(R.drawable.realstate, "Real Estate"),
+            TutorialModel(R.drawable.spa_n_beauty, "Spa-Beauty"),
+            TutorialModel(R.drawable.software, "Security"),
+            TutorialModel(R.drawable.software, "Software"),
+            TutorialModel(R.drawable.legal, "Legal"),
+            TutorialModel(R.drawable.pet_services, "Pet Service"),
+            TutorialModel(R.drawable.travels, "Travel"),
+            TutorialModel(R.drawable.others, "Other")))
+        binding.idRecycle.adapter= TutorialServiceAdapter(requireContext(),serviceList)
+        binding.idBackPress.setOnClickListener { findNavController().popBackStack() }
+
+    }
+
 
 
 

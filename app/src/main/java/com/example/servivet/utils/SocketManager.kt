@@ -15,7 +15,7 @@ object SocketManager {
     init {
         val socketUrl = "http://13.235.137.221:3476"
 
-        // val socketUrl = "https://46e5-2401-4900-1c5d-592a-732-1865-4d02-30d6.ngrok-free.app"
+        // val socketUrl = "https://3618-122-176-117-180.ngrok-free.app"
 
         val token = Session.token
         try {

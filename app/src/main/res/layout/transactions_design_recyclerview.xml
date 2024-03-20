@@ -75,8 +75,8 @@
             android:fontFamily="@font/poppins_semi_bold"
             android:includeFontPadding="false"
             android:maxLength="8"
-            android:text="@{data.amount}"
-            android:textColor="@color/black"
+            android:text='@{"R"+" "+data.amount}'
+            android:textColor="@color/app_theme"
             android:textSize="13dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/profile_image" />

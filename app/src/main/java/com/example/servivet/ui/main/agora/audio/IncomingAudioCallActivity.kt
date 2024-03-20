@@ -32,6 +32,7 @@ import com.example.servivet.utils.Constants.MSG_ID
 import com.example.servivet.utils.Constants.NO_ANSWER_CALL
 import com.example.servivet.utils.Constants.RECEIVER_ID
 import com.example.servivet.utils.Constants.ROOM_ID
+import com.example.servivet.utils.Constants.SENDER_ID
 import com.example.servivet.utils.ForegroundServiceUtils
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.SocketManager
@@ -75,6 +76,7 @@ class IncomingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
     private var isAutoEnd = true
     private var roomId = ""
     private var receiverId = ""
+    private var senderId = ""
 
     private val backgroundReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -107,13 +109,15 @@ class IncomingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
         startRinging()
         val bundle = intent.getBundleExtra("bundle")
         if (bundle != null) {
-            agoraToken = bundle.getString(AGORA_TOKEN)!!
-            channelName = bundle.getString(CHANNEL_NAME)!!
-            callUserImage = bundle.getString(CALL_USER_IMAGE)!!
-            callUserName = bundle.getString(CALL_USER_NAME)!!
-            msgId = bundle.getString(MSG_ID)!!
-            roomId = bundle.getString(ROOM_ID)!!
-            receiverId = bundle.getString(RECEIVER_ID)!!
+            agoraToken = bundle.getString(AGORA_TOKEN)?:""
+            channelName = bundle.getString(CHANNEL_NAME)?:""
+            callUserImage = bundle.getString(CALL_USER_IMAGE)?:""
+            callUserName = bundle.getString(CALL_USER_NAME)?:""
+            msgId = bundle.getString(MSG_ID)?:""
+            roomId = bundle.getString(ROOM_ID)?:""
+            receiverId = bundle.getString(RECEIVER_ID)?:""
+            senderId = bundle.getString(SENDER_ID)?:""
+
             //Preference.setPreference(this@IncomingAudioCallActivity, PrefEntity.messageId, msgId)
             mBinding.userImage = callUserImage
             mBinding.userName = callUserName
@@ -279,7 +283,7 @@ class IncomingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
             data.put("chatMessageId", msgId)
             data.put("roomId", roomId)
             data.put("rejectedBy", Session.userDetails._id)
-            data.put("receiverId", receiverId)
+            data.put("receiverId", senderId)
             mSocket.emit("rejectCall", data)
             mSocket.on("rejectCall", fun(args: Array<Any?>) {
 

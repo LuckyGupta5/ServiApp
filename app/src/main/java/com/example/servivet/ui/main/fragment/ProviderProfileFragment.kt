@@ -1,6 +1,10 @@
 package com.example.servivet.ui.main.fragment
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -71,6 +75,28 @@ class ProviderProfileFragment :
             }
 
             getString(R.string.call) -> {
+                val intent = Intent(Intent.ACTION_DIAL)
+                intent.data = Uri.parse("tel:${7830203108}")
+                startActivity(intent)
+
+
+            }
+
+            getString(R.string.whatsApp) -> {
+                val url = "https://api.whatsapp.com/send?phone=$7830203108"
+                val i = Intent(Intent.ACTION_VIEW)
+                i.data = Uri.parse(url)
+
+                try {
+                    startActivity(i)
+                } catch (e: ActivityNotFoundException) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Whatsapp app not installed in your phone",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    e.printStackTrace()
+                }
 
             }
 

@@ -123,7 +123,7 @@
                                         android:id="@+id/image_1"
                                         android:layout_width="86dp"
                                         android:layout_height="86dp"
-                                        android:background="@drawable/flower_img"
+                                        android:imageViewUrl="@{slotData.images.get(0)}"
                                         android:scaleType="centerCrop" />
                                 </androidx.cardview.widget.CardView>
 

@@ -1,6 +1,7 @@
 package com.example.servivet.ui.main.fragment
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -104,6 +105,7 @@ class AddLocationFragment :
     }
 
 
+    @SuppressLint("SetTextI18n")
     override fun setupViews() {
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
@@ -125,7 +127,7 @@ class AddLocationFragment :
                 mViewModel.saveAddressRequest.mobileNumber = Session.userDetails.mobile
             }
         }else{
-            binding.mobileNumberText.setText(argumentData.number)
+            binding.mobileNumberText.setText("+"+""+argumentData.number)
         }
     }
 

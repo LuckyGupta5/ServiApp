@@ -29,6 +29,6 @@ class LanguageAdapter(
     }
 
     override fun getItemCount(): Int {
-        return 3
+        return list.size
     }
 }

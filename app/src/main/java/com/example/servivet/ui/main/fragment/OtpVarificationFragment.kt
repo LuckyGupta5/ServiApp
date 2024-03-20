@@ -161,16 +161,16 @@ class OtpVarificationFragment :
                                     binding.otpPin.setText("")
                                 } else {
                                     var bundle = Bundle()
-                                    Constants.MOBILE_NUMBER = mViewModel.mobilenumber
-                                    Constants.COUNTRY_CODE = mViewModel.countrycode
+                                    Constants.MOBNUMBER = mViewModel.mobilenumber
+                                    Constants.C_Code = mViewModel.countrycode
                                     bundle.putString(Constants.MOBILE_NUMBER, mViewModel.mobilenumber)
                                     bundle.putString(Constants.COUNTRY_CODE, mViewModel.countrycode)
                                     findNavController().navigate(R.id.action_otpVarificationFragment_to_completeProfileFragment, bundle)
                                 }
                             } else if (Session.type.equals("2"))
                                 if (it.data.result.isBusinessVerify==0) {
-                                    Constants.MOBILE_NUMBER = mViewModel.mobilenumber
-                                    Constants.COUNTRY_CODE = mViewModel.countrycode
+                                    Constants.MOBNUMBER = mViewModel.mobilenumber
+                                    Constants.C_Code = mViewModel.countrycode
                                     var bundle = Bundle()
                                     bundle.putString(Constants.MOBILE_NUMBER, mViewModel.mobilenumber)
                                     bundle.putString(Constants.COUNTRY_CODE, mViewModel.countrycode)

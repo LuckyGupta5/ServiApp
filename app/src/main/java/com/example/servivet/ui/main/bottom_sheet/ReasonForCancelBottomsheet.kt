@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.RadioButton
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.servivet.R
 import com.example.servivet.databinding.FragmentReasonForCancelBottomsheetBinding
@@ -13,6 +14,7 @@ import com.example.servivet.ui.main.adapter.ReasonForCancelAdapterbottomsheet
 import com.example.servivet.ui.main.view_model.BookingViewModel
 import com.example.servivet.ui.main.view_model.ReasonForCancellationViewModel
 import com.example.servivet.utils.CommonUtils.showSnackBar
+import com.example.servivet.utils.Constants
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
@@ -90,7 +92,7 @@ class ReasonForCancelBottomsheet() :
 
 
     fun dismissbottomsheet() {
-        if(Session.type =="1"){
+        if(Constants.TYPEOFUSERS=="bought" || bookingId.notificationData == "user" ){
             cancelModel.cancelBookingRequest.isWantRefundInWallet= true
             binding.idRefundContainer.isVisible = true
         }else{
@@ -114,7 +116,7 @@ class ReasonForCancelBottomsheet() :
 //            val fragment=BookingCancelledBottomSheet()
 //            fragment.show(childFragmentManager,"jhgfds")
 
-            if(Session.type =="1"){
+            if(Constants.TYPEOFUSERS == "bought"){
                 cancelBy = "user"
             }else{
                 cancelBy = "provider"
@@ -123,8 +125,6 @@ class ReasonForCancelBottomsheet() :
             cancelModel.cancelBookingRequest.bookingId= bookingId.cancelReq
             cancelModel.cancelBookingRequest.reason= reason
             cancelModel.cancelBookingRequest.cancelledBy= cancelBy
-
-            Log.e("TAG", "dfsdfsfsfds: ${Gson().toJson(cancelModel.cancelBookingRequest)}", )
 
             cancelModel.hitCancelBookingApi()
 
@@ -160,10 +160,17 @@ class ReasonForCancelBottomsheet() :
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             dialog?.dismiss()
                             Log.e("TAG", "hitCancelBookingApi: ${it.data.message}", )
+                            findNavController().previousBackStackEntry?.savedStateHandle?.set("","")
+                            dialog?.dismiss()
+
 
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
+                            showSnackBar(it.data.message)
+                            findNavController().previousBackStackEntry?.savedStateHandle?.set("","")
+                            dialog?.dismiss()
+
                             Log.e("TAG", "hitCancelBookingApi: ${it.data.message}", )
 
                         }

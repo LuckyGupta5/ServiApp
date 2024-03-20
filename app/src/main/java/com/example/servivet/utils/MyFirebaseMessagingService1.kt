@@ -29,6 +29,7 @@ import com.example.servivet.utils.Constants.MSG_ID
 import com.example.servivet.utils.Constants.NOTIFICATION
 import com.example.servivet.utils.Constants.RECEIVER_ID
 import com.example.servivet.utils.Constants.ROOM_ID
+import com.example.servivet.utils.Constants.SENDER_ID
 import com.example.servivet.utils.soundservices.OnClearFromRecentService
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -39,11 +40,13 @@ import java.net.URL
 import java.util.Random
 
 open class MyFirebaseMessagingService : FirebaseMessagingService() {
-    private lateinit var message: String
-    private lateinit var title: String
+    private var message = ""
+    private var title = ""
     private lateinit var image: String
     private var count = 0
     private lateinit var notification: NotificationData
+
+    private var notificationData = ""
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
@@ -56,11 +59,13 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
         rMessage.notification?.let { Log.e("TAG", "onMessageReceived: ${Gson().toJson(it)}") }
         val callBody = Gson().fromJson(rMessage.data["customData"], CallBody::class.java)
 
-        title = rMessage.notification?.title.toString()
-        message = rMessage.notification?.body.toString()
-
-        title = rMessage.data["title"].toString()
-        message = rMessage.data["message"].toString()
+        if (rMessage.notification?.title != null && rMessage.notification?.title.toString() != "") {
+            title = rMessage.notification?.title.toString()
+            message = rMessage.notification?.body.toString()
+        } else {
+            title = rMessage.data["title"].toString()
+            message = rMessage.data["message"].toString()
+        }
 
 
         val intentData = Intent(NOTIFICATION)
@@ -74,12 +79,12 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         if (callBody.messageType == 0) {
             //  Log.e("tag2","ruby")
-          //  if (callBody.isDm) sendDm()
+            //  if (callBody.isDm) sendDm()
 //            if (callBody.msgType != null)
 //                Log.e("tag3", callBody.msgType.toString())
             NotificationManagerCompat.from(applicationContext).cancelAll()
 //            stopBackgroundMusicService(applicationContext)
-            sendNotification1(title, message)
+//            sendNotification1(title, message)
 
             val mainHandler = Handler(Looper.getMainLooper())
             mainHandler.post {
@@ -89,7 +94,7 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
                 ) {
                     val intent = Intent("app_background_action")
                     sendBroadcast(intent)
-                } else if (AppStateLiveData.instance.getIsForeground().value!=null && !AppStateLiveData.instance.getIsForeground().value!!) {
+                } else if (AppStateLiveData.instance.getIsForeground().value != null && !AppStateLiveData.instance.getIsForeground().value!!) {
                     val intent = Intent("app_background_action")
                     sendBroadcast(intent)
                 } else {
@@ -98,7 +103,7 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
             }
         } else {
             sendNotification(message, title, count, callBody)
-         //   Log.e("tag1", callBody.callType.toString())
+            //   Log.e("tag1", callBody.callType.toString())
             when (callBody.messageType) {
 
                 6 -> {
@@ -152,7 +157,7 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
         notificationBuilder.setOngoing(true)
         notificationBuilder.priority = NotificationCompat.PRIORITY_HIGH
         notificationBuilder.setCategory(NotificationCompat.CATEGORY_CALL)
-      //  Log.d("ConveyerData  firebase--->", Gson().toJson(callBody.callType))
+        //  Log.d("ConveyerData  firebase--->", Gson().toJson(callBody.callType))
 
         startBackgroundMusicService(applicationContext)
 
@@ -302,27 +307,33 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
 //    }
 
 
-
-
     private fun sendNotification1(title: String, message: String) {
         val intent: Intent?
         val pendingIntent: PendingIntent
-        intent = Intent(baseContext, HomeActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            pendingIntent = PendingIntent.getActivity(
-                this,
-                0, intent,
-                PendingIntent.FLAG_IMMUTABLE
-            );
-        } else {
-            pendingIntent = PendingIntent.getActivity(
-                this,
-                0, intent,
-                PendingIntent.FLAG_ONE_SHOT
-            );
+        intent = Intent(baseContext, HomeActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            putExtra("notificationData", notificationData)
         }
+        pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+//            pendingIntent = PendingIntent.getActivity(
+//                this,
+//                0, intent,
+//                PendingIntent.FLAG_IMMUTABLE
+//            );
+//        } else {
+//            pendingIntent = PendingIntent.getActivity(
+//                this,
+//                0, intent,
+//                PendingIntent.FLAG_ONE_SHOT
+//            );
+//        }
         // val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
         val channelId = "channel-05434377729111997"
         val channelName = "Conveyr"
@@ -371,7 +382,6 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
     }
 
 
-
     private fun getRequestCode(): Int {
         val rnd = Random()
         return 100 + rnd.nextInt(900000)
@@ -394,10 +404,13 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun handleIntent(intent: Intent?) {
         super.handleIntent(intent)
-        val notificationData = intent!!.getStringExtra("customData")
+        notificationData = intent!!.getStringExtra("customData") ?: ""
         Log.e("TAG", "handleIntent: ${notificationData}")
-        if (notificationData != null)
-            Session.saveNotificationData(notificationData!!)
+
+        sendNotification1(title, message)
+
+        // if (notificationData != null)
+        //  Session.saveNotificationData(notificationData!!)
     }
 
 
@@ -410,11 +423,13 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
         bundle.putString(MSG_ID, callBody.chatMessageId)
         bundle.putString(ROOM_ID, callBody.roomId)
         bundle.putString(RECEIVER_ID, callBody.receiverId)
+        bundle.putString(SENDER_ID, callBody.senderId.id)
         launchActivityWithBundle(IncomingVideoCallActivity::class.java, bundle)
     }
 
     private fun inviteForAudioCall(callBody: CallBody) {
         val bundle = Bundle()
+        Log.e("TAG", "inviteForAudioCalssssl: ${Gson().toJson(callBody)}")
         bundle.putString(AGORA_TOKEN, callBody.callToken)
         bundle.putString(CHANNEL_NAME, callBody.channelName)
         bundle.putString(CALL_USER_IMAGE, callBody.senderId.image)
@@ -422,6 +437,8 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
         bundle.putString(MSG_ID, callBody.chatMessageId)
         bundle.putString(ROOM_ID, callBody.roomId)
         bundle.putString(RECEIVER_ID, callBody.receiverId)
+        bundle.putString(SENDER_ID, callBody.senderId.id)
+
         launchActivityWithBundle(IncomingAudioCallActivity::class.java, bundle)
     }
 

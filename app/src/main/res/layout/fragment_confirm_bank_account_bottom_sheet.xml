@@ -1,14 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.main.bottom_sheet.bank_module.ConfirmBankAccountBottomSheet">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        tools:context=".ui.main.bottom_sheet.bank_module.ConfirmBankAccountBottomSheet">
 
-</FrameLayout>
+        <View
+            android:id="@+id/idView"
+            android:layout_width="100dp"
+            android:layout_height="3dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/gray_8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/idHeadingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="Add Bank Account"
+            android:textColor="@color/black"
+            android:textSize="19sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idView" />
+
+        <TextView
+            android:id="@+id/idConfirmNumberText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="17dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Confirm Bank Account Number"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idHeadingText" />
+
+
+        <EditText
+            android:id="@+id/idConfirmNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/grey_outline_with_solid_white_corner_12dp"
+            android:hint="Conform account number"
+            android:paddingVertical="15dp"
+            android:paddingStart="10dp"
+            android:textColorHint="@color/hint_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/idConfirmNumberText" />
+
+        <View
+            android:id="@+id/idView1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="38dp"
+            android:background="@color/gray_8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idConfirmNumber" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/idCancelButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/grey_E9EBEA"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingVertical="10dp"
+            android:text="@string/cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            app:cornerRadius="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/idSaveBtn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/idView1" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/idSaveBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingVertical="10dp"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:cornerRadius="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/idCancelButton"
+            app:layout_constraintTop_toBottomOf="@id/idView1" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

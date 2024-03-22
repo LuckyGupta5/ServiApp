@@ -396,6 +396,9 @@
         <action
             android:id="@+id/action_settingsFragment_to_mainActivity3"
             app:destination="@id/mainActivity" />
+        <action
+            android:id="@+id/action_settingsFragment_to_myBankAccountFragment"
+            app:destination="@id/myBankAccountFragment" />
     </fragment>
     <fragment
         android:id="@+id/myWalletFragment"
@@ -594,7 +597,7 @@
             app:argType="string" />
         <argument
             android:name="isVisible"
-            app:argType="boolean"/>
+            app:argType="boolean" />
         <action
             android:id="@+id/action_chattingFragment_to_selectMediaBottomSheet"
             app:destination="@id/selectMediaBottomSheet" />
@@ -633,7 +636,7 @@
             app:argType="string" />
         <argument
             android:name="userData"
-            app:argType="string"/>
+            app:argType="string" />
 
     </activity>
     <activity
@@ -649,7 +652,7 @@
             app:argType="string" />
         <argument
             android:name="userData"
-            app:argType="string"/>
+            app:argType="string" />
 
 
     </activity>
@@ -706,6 +709,37 @@
         android:id="@+id/mainActivity"
         android:name="com.example.servivet.ui.main.activity.MainActivity"
         android:label="MainActivity" />
+    <fragment
+        android:id="@+id/myBankAccountFragment"
+        android:name="com.example.servivet.ui.main.fragment.bank_module.MyBankAccountFragment"
+        android:label="MyBankAccountFragment"
+        tools:layout="@layout/fragment_my_bank_account">
+        <action
+            android:id="@+id/action_myBankAccountFragment_to_addBankAccountFragment"
+            app:destination="@id/addBankAccountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addBankAccountFragment"
+        android:name="com.example.servivet.ui.main.adapter.bank_module.AddBankAccountFragment"
+        android:label="AddBankAccountFragment"
+        tools:layout="@layout/fragment_add_bank_account">
+        <action
+            android:id="@+id/action_addBankAccountFragment_to_bankListBottomSheet"
+            app:destination="@id/bankListBottomSheet" />
+        <action
+            android:id="@+id/action_addBankAccountFragment_to_confirmBankAccountBottomSheet"
+            app:destination="@id/confirmBankAccountBottomSheet" />
+    </fragment>
+    <dialog
+        android:id="@+id/bankListBottomSheet"
+        android:name="com.example.servivet.ui.main.bottom_sheet.bank_module.BankListBottomSheet"
+        android:label="BankListBottomSheet"
+        tools:layout="@layout/fragment_bank_list_bottom_sheet" />
+    <dialog
+        android:id="@+id/confirmBankAccountBottomSheet"
+        android:name="com.example.servivet.ui.main.bottom_sheet.bank_module.ConfirmBankAccountBottomSheet"
+        android:label="fragment_confirm_bank_account_bottom_sheet"
+        tools:layout="@layout/fragment_confirm_bank_account_bottom_sheet" />
 
 
     <!-- <fragment

@@ -1,14 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.main.adapter.bank_module.AddBankAccountFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="clickEvents"
+            type="kotlin.jvm.functions.Function1" />
+
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        tools:context=".ui.main.adapter.bank_module.AddBankAccountFragment">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/idToolbar"
+                layout="@layout/connection_top_layout" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/select_bank"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/grey_outline_with_solid_white_corner_12dp"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="@string/select_bank"
+                android:onClick="@{()->clickEvents.invoke(0)}"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="13dp"
+                android:textSize="15sp"
+                app:drawableEndCompat="@drawable/down_faq_arrow" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/account_number"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/grey_outline_with_solid_white_corner_12dp"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="@string/enter_account_number"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="13dp"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/account_name"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/grey_outline_with_solid_white_corner_12dp"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="@string/enter_account_name"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="13dp"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/document_number"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/grey_outline_with_solid_white_corner_12dp"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="@string/enter_document_number"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="13dp"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/document_type"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/grey_outline_with_solid_white_corner_12dp"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="@string/enter_document_type"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="13dp"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/select_account_type"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/app_theme"
+                    android:text="@string/savings_account"
+                    android:textSize="15sp" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/current_account"
+                    android:textSize="15sp" />
+
+            </RadioGroup>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:paddingVertical="15dp"
+                android:text="@string/save"
+                android:onClick="@{()->clickEvents.invoke(1)}"
+                android:textColor="@color/white"
+                app:cornerRadius="12dp" />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</layout>

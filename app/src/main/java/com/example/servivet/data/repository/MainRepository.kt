@@ -126,6 +126,7 @@ class MainRepository(private val apiService: ApiService) {
     suspend fun faqTypeListApi() = apiService.faqTypeList()
     suspend fun deleteAccountApi() = apiService.deleteAccount()
     suspend fun changeRoleApi(request: ChangeRoleRequest) = apiService.changeRoleApi(request)
-    suspend fun notificationListing(request: HashMap<String, String>) =
-        apiService.notificationListing(request)
+    suspend fun notificationListing(request: HashMap<String, String>) = apiService.notificationListing(request)
+
+    suspend fun bankListApi(request: HashMap<String, String>) = apiService.bankListApi(request)
 }

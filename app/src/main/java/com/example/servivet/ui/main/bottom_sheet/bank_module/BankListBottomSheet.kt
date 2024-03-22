@@ -1,17 +1,11 @@
-package com.example.servivet.ui.main.bottom_sheet
+package com.example.servivet.ui.main.bottom_sheet.bank_module
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.servivet.R
 import com.example.servivet.databinding.FragmentBankListBottomSheetBinding
 import com.example.servivet.ui.base.BaseBottomSheetDailogFragment
 import com.example.servivet.ui.main.adapter.bank_module.BankListAdapter
 import com.example.servivet.ui.main.view_model.bank_module.MyBankAccountViewModel
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
 class BankListBottomSheet :

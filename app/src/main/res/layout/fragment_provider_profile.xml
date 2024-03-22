@@ -186,6 +186,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="35dp"
                 android:src="@drawable/share_icon"
+                android:onClick="@{()->clickEvents.invoke(@string/share)}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/idCallIcon" />
 

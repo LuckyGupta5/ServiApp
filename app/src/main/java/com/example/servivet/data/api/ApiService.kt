@@ -3,6 +3,7 @@ package com.example.servivet.data.api
 import com.example.servivet.data.model.accept_booking.request.AcceptBookingRequest
 import com.example.servivet.data.model.accept_booking.response.AcceptBookingResponse
 import com.example.servivet.data.model.add_service.response.AddServiceResponse
+import com.example.servivet.data.model.bank_module.bank_list_response.response.BankListResposne
 import com.example.servivet.data.model.booking_detail.request.BookingDetailRequest
 import com.example.servivet.data.model.booking_detail.response.BookingDetailResponse
 import com.example.servivet.data.model.booking_list.response.BookingListResponse
@@ -205,5 +206,12 @@ interface ApiService {
 
     @GET("notification/notificationListing")
     suspend fun notificationListing(@QueryMap request: HashMap<String, String>): NotificationListResponse
+
+    @GET("provider/bank/list")
+    suspend fun bankListApi(@QueryMap request: HashMap<String, String>):BankListResposne
+
+    @GET("provider/saved/account/list")
+    suspend fun createBankListApi(@QueryMap request: HashMap<String, String>):BankListResposne
+
 
 }

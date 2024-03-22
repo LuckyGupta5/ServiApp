@@ -17,7 +17,7 @@ import com.example.servivet.ui.main.view_model.SaveAddressBottomsheetViewModel
 import com.example.servivet.ui.main.view_model.SureToConfirmViewModel
 
 
-class SelectMediaBottomSheet : BaseBottomSheetDailogFragment<FragmentSelectMediaBottomSheetBinding, SureToConfirmViewModel>(R.layout.fragment_select_media_bottom_sheet) {
+class  SelectMediaBottomSheet : BaseBottomSheetDailogFragment<FragmentSelectMediaBottomSheetBinding, SureToConfirmViewModel>(R.layout.fragment_select_media_bottom_sheet) {
 
     private val argumentData:SelectMediaBottomSheetArgs by navArgs()
 

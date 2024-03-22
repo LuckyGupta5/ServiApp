@@ -115,6 +115,16 @@ class ProviderProfileFragment :
                     )
                 )
             }
+
+
+            getString(R.string.share)->{
+                val shareIntent = Intent()
+                shareIntent.action = Intent.ACTION_SEND
+                shareIntent.type="text/plain"
+                shareIntent.putExtra(Intent.EXTRA_TEXT, "Share Via this that");
+                startActivity(Intent.createChooser(shareIntent,"Share via"))
+
+            }
         }
     }
 

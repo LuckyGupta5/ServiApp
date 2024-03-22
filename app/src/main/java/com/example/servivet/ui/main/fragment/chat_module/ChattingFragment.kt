@@ -144,7 +144,10 @@ class ChattingFragment :
                     recieverId = chatListData.receiverId._id
                     manualUserDataClass.image = chatListData.receiverId.image
                     manualUserDataClass.userName = chatListData.receiverId.name
-                    isBlocked = chatListData.blockUser != null && chatListData.blockUser.isNotEmpty() && !chatListData.blockUser.contains(Session.userDetails._id)
+                    isBlocked =
+                        chatListData.blockUser != null && chatListData.blockUser.isNotEmpty() && !chatListData.blockUser.contains(
+                            Session.userDetails._id
+                        )
                     blockUserId = chatListData.blockUser.contains(Session.userDetails._id)
 
                 } else {
@@ -155,7 +158,10 @@ class ChattingFragment :
                         .placeholder(R.drawable.userprofile).into(binding.profileImageView)
                     manualUserDataClass.image = chatListData.senderId.image
                     manualUserDataClass.userName = chatListData.senderId.name
-                    isBlocked = chatListData.blockUser != null && chatListData.blockUser.isNotEmpty() && !chatListData.blockUser.contains(Session.userDetails._id)
+                    isBlocked =
+                        chatListData.blockUser != null && chatListData.blockUser.isNotEmpty() && !chatListData.blockUser.contains(
+                            Session.userDetails._id
+                        )
                     blockUserId = chatListData.blockUser.contains(Session.userDetails._id)
                 }
 
@@ -229,7 +235,12 @@ class ChattingFragment :
             getString(R.string.open_gallery) -> {
                 //   findNavController().navigate(R.id.action_chattingFragment_to_selectMediaBottomSheet)
                 binding.idMediaView.isEnabled = false
-                findNavController().navigate(ChattingFragmentDirections.actionChattingFragmentToSelectMediaBottomSheet("", getString(R.string.gallery)))
+                findNavController().navigate(
+                    ChattingFragmentDirections.actionChattingFragmentToSelectMediaBottomSheet(
+                        "",
+                        getString(R.string.gallery)
+                    )
+                )
             }
 
             getString(R.string.cross) -> {
@@ -256,7 +267,7 @@ class ChattingFragment :
     private fun checkChattingVisibility() {
         if (isBlocked) {
             binding.idChatBoxContainer.isVisible = false
-        } else if (argumentData.from == getString(R.string.provider_profile)&&senderId != Session.userDetails._id && senderId.isNotEmpty()) {
+        } else if (argumentData.from == getString(R.string.provider_profile) && senderId != Session.userDetails._id && senderId.isNotEmpty()) {
             binding.idChatBoxContainer.isVisible = false
             binding.idMenuItems.visibility = View.INVISIBLE
             Toast.makeText(requireContext(), "aaya", Toast.LENGTH_SHORT).show()
@@ -576,6 +587,7 @@ class ChattingFragment :
             ?.observe(viewLifecycleOwner) {
                 type = it
                 binding.idMediaView.isEnabled = true
+                Toast.makeText(requireContext(), "${type}", Toast.LENGTH_SHORT).show()
                 when (type) {
                     getString(R.string.audio_call) -> {
                         callType = 6
@@ -613,7 +625,7 @@ class ChattingFragment :
                             showSnackBar("Permission not Granted")
                         }
                     }
-                    
+
                 }
 
 
@@ -773,6 +785,7 @@ class ChattingFragment :
             }
         }
 
+
     }
 
 
@@ -818,12 +831,6 @@ class ChattingFragment :
         } catch (ex: Exception) {
 
         }
-    }
-
-    override fun onPause() {
-        super.onPause()
-
-        Toast.makeText(requireContext(), "show on pause", Toast.LENGTH_SHORT).show()
     }
 
 

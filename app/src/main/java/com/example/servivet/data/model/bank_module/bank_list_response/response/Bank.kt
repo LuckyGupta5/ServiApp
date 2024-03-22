@@ -1,5 +1,8 @@
 package com.example.servivet.data.model.bank_module.bank_list_response.response
 
+import com.example.servivet.utils.interfaces.ListAdapterItem
+import java.io.Serializable
+
 data class Bank(
     val active: Boolean,
     val code: String,
@@ -16,4 +19,4 @@ data class Bank(
     val supports_transfer: Boolean,
     val type: String,
     val updatedAt: String
-)
+):Serializable,ListAdapterItem

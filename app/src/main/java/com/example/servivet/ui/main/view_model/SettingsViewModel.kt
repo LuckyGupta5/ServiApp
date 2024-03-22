@@ -26,7 +26,7 @@ import java.io.IOException
 
 class SettingsViewModel : BaseViewModel() {
     var logoutResponse = SingleLiveEvent<Resource<CommonResponse>>()
-    var notificationRequest=NotificationRequest()
+    var notificationRequest = NotificationRequest()
     var notificationResponse = SingleLiveEvent<Resource<CommonResponse>>()
     var deleteResponse = SingleLiveEvent<Resource<CommonResponse>>()
     fun getLogoutData(): LiveData<Resource<CommonResponse>> {
@@ -43,41 +43,54 @@ class SettingsViewModel : BaseViewModel() {
         }
 
 
-
         fun goLogout(view: View) {
-            view.findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToCloseServiceAlert("", "logOut"))
-           // CommonUtils.customalertdialog(frgmentActivity, frgmentActivity.getString(R.string.are_you_sure_you_want_to_logout), 1)
+            view.findNavController().navigate(
+                SettingsFragmentDirections.actionSettingsFragmentToCloseServiceAlert(
+                    "",
+                    "logOut"
+                )
+            )
+            // CommonUtils.customalertdialog(frgmentActivity, frgmentActivity.getString(R.string.are_you_sure_you_want_to_logout), 1)
         }
 
         fun aboutUs(view: View) {
-            val bundle= Bundle()
-            bundle.putString("type","1")
-            view.findNavController().navigate(R.id.action_settingsFragment_to_aboutUsFragment,bundle)
+            val bundle = Bundle()
+            bundle.putString("type", "1")
+            view.findNavController()
+                .navigate(R.id.action_settingsFragment_to_aboutUsFragment, bundle)
             // CommonUtils.customalertdialog(frgmentActivity, frgmentActivity.getString(R.string.are_you_sure_you_want_to_logout), 1)
         }
 
         fun termCondition(view: View) {
-            val bundle= Bundle()
-            bundle.putString("type","2")
-            view.findNavController().navigate(R.id.action_settingsFragment_to_aboutUsFragment,bundle)
+            val bundle = Bundle()
+            bundle.putString("type", "2")
+            view.findNavController()
+                .navigate(R.id.action_settingsFragment_to_aboutUsFragment, bundle)
             // CommonUtils.customalertdialog(frgmentActivity, frgmentActivity.getString(R.string.are_you_sure_you_want_to_logout), 1)
         }
+
         fun privacyPolicy(view: View) {
-            val bundle= Bundle()
-            bundle.putString("type","3")
-            view.findNavController().navigate(R.id.action_settingsFragment_to_aboutUsFragment,bundle)
+            val bundle = Bundle()
+            bundle.putString("type", "3")
+            view.findNavController()
+                .navigate(R.id.action_settingsFragment_to_aboutUsFragment, bundle)
             // CommonUtils.customalertdialog(frgmentActivity, frgmentActivity.getString(R.string.are_you_sure_you_want_to_logout), 1)
         }
 
         fun address(view: View) {
 
-            view.findNavController().navigate(R.id.action_settingsFragment_to_settingLocationListFragment)
+            view.findNavController()
+                .navigate(R.id.action_settingsFragment_to_settingLocationListFragment)
             // CommonUtils.customalertdialog(frgmentActivity, frgmentActivity.getString(R.string.are_you_sure_you_want_to_logout), 1)
         }
 
         fun faq(view: View) {
 
             view.findNavController().navigate(R.id.action_settingsFragment_to_faqFragment)
+        }
+
+        fun gotoBankAccount(view: View) {
+            view.findNavController().navigate(R.id.action_settingsFragment_to_myBankAccountFragment)
         }
 
     }
@@ -90,10 +103,15 @@ class SettingsViewModel : BaseViewModel() {
         viewModelScope.launch {
             try {
                 logoutResponse.postValue(Resource.success(repository.logoutUser()))
-            }catch (ex: IOException) {
+            } catch (ex: IOException) {
                 ex.printStackTrace()
-                logoutResponse.postValue(Resource.error(StatusCode.STATUS_CODE_INTERNET_VALIDATION, null))
-            }catch (exception: Exception) {
+                logoutResponse.postValue(
+                    Resource.error(
+                        StatusCode.STATUS_CODE_INTERNET_VALIDATION,
+                        null
+                    )
+                )
+            } catch (exception: Exception) {
                 exception.printStackTrace()
                 logoutResponse.postValue(Resource.error(StatusCode.SERVER_ERROR_MESSAGE, null))
             }
@@ -106,13 +124,29 @@ class SettingsViewModel : BaseViewModel() {
         notificationResponse.postValue(Resource.loading(null))
         viewModelScope.launch {
             try {
-                notificationResponse.postValue(Resource.success(repository.notificationStatusApi(notificationRequest)))
-            }catch (ex: IOException) {
+                notificationResponse.postValue(
+                    Resource.success(
+                        repository.notificationStatusApi(
+                            notificationRequest
+                        )
+                    )
+                )
+            } catch (ex: IOException) {
                 ex.printStackTrace()
-                notificationResponse.postValue(Resource.error(StatusCode.STATUS_CODE_INTERNET_VALIDATION, null))
-            }catch (exception: Exception) {
+                notificationResponse.postValue(
+                    Resource.error(
+                        StatusCode.STATUS_CODE_INTERNET_VALIDATION,
+                        null
+                    )
+                )
+            } catch (exception: Exception) {
                 exception.printStackTrace()
-                notificationResponse.postValue(Resource.error(StatusCode.SERVER_ERROR_MESSAGE, null))
+                notificationResponse.postValue(
+                    Resource.error(
+                        StatusCode.SERVER_ERROR_MESSAGE,
+                        null
+                    )
+                )
             }
         }
     }
@@ -124,10 +158,15 @@ class SettingsViewModel : BaseViewModel() {
         viewModelScope.launch {
             try {
                 deleteResponse.postValue(Resource.success(repository.deleteAccountApi()))
-            }catch (ex: IOException) {
+            } catch (ex: IOException) {
                 ex.printStackTrace()
-                deleteResponse.postValue(Resource.error(StatusCode.STATUS_CODE_INTERNET_VALIDATION, null))
-            }catch (exception: Exception) {
+                deleteResponse.postValue(
+                    Resource.error(
+                        StatusCode.STATUS_CODE_INTERNET_VALIDATION,
+                        null
+                    )
+                )
+            } catch (exception: Exception) {
                 exception.printStackTrace()
                 deleteResponse.postValue(Resource.error(StatusCode.SERVER_ERROR_MESSAGE, null))
             }

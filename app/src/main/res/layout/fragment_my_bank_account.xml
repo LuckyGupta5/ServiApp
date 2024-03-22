@@ -1,14 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.main.fragment.bank_module.MyBankAccountFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+        <variable
+            name="clickEvents"
+            type="kotlin.jvm.functions.Function1" />
+
+        <variable
+            name="adapter"
+            type="com.example.servivet.ui.main.adapter.bank_module.AddedBankAccountAdapter" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".ui.main.fragment.bank_module.MyBankAccountFragment">
 
-</FrameLayout>
+        <include
+            android:id="@+id/idToolbar"
+            layout="@layout/connection_top_layout" />
+
+        <!--Start Add Bank Account Layout-->
+        <LinearLayout
+            android:id="@+id/idAddAccountContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idToolbar">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/add_bank_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/add_your_bank_account"
+                android:textColor="@color/black"
+                android:textSize="19sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:onClick="@{()->clickEvents.invoke(0)}"
+                android:paddingHorizontal="45dp"
+                android:paddingVertical="10dp"
+                android:text="Add Bank Account"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:cornerRadius="12dp" />
+
+        </LinearLayout>
+        <!--End Add Bank Account Layout-->
+
+        <!--Start Add new Bank Account Layout when already created any-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/idAlreadyCreatedBankAccountContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->clickEvents.invoke(0)}"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idToolbar">
+
+            <ImageView
+                android:id="@+id/idBankIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="12dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/new_bank_accounti_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/idNewBankText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="@string/add_new_bank_account"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toStartOf="@+id/idForewordIcon"
+                app:layout_constraintStart_toEndOf="@+id/idBankIcon"
+                app:layout_constraintTop_toTopOf="@id/idBankIcon" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/choose_bank_with_your_account"
+                android:textColor="@color/grey_505050"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@id/idBankIcon"
+                app:layout_constraintEnd_toStartOf="@+id/idForewordIcon"
+                app:layout_constraintStart_toStartOf="@+id/idNewBankText"
+                app:layout_constraintTop_toBottomOf="@id/idNewBankText" />
+
+            <ImageView
+                android:id="@+id/idForewordIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/forword_blue_icon"
+                app:layout_constraintBottom_toBottomOf="@id/idBankIcon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/idBankIcon" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:adapter="@{adapter}"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/idAlreadyCreatedBankAccountContainer"
+            tools:itemCount="3"
+            tools:listitem="@layout/custom_add_bank_layout" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

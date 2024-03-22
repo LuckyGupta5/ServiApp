@@ -99,7 +99,7 @@
                             android:id="@+id/callIcon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/call_app_theme_icon" />
+                            android:background="@drawable/email_app_theme_icon" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -131,7 +131,7 @@
                             android:id="@+id/emailIcon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/email_app_theme_icon" />
+                            android:background="@drawable/call_app_theme_icon" />
 
                         <TextView
                             android:layout_width="wrap_content"

@@ -453,6 +453,25 @@
         <item>Item 5</item>
     </string-array>
 
+    <!--bank module strings-->
+    <string name="add_your_bank_account">Add Your Bank Account</string>
+    <string name="add_new_bank_account">Add New Bank Account</string>
+    <string name="choose_bank_with_your_account">Choose bank with your account.</string>
+    <string name="select_bank">Select Bank</string>
+    <string name="current_account">Current account</string>
+    <string name="savings_account">Savings account</string>
+    <string name="select_account_type">Select Account type</string>
+    <string name="enter_document_type">Enter document type</string>
+    <string name="document_type">Document Type</string>
+    <string name="enter_document_number">Enter document number</string>
+    <string name="document_number">Document number</string>
+    <string name="enter_account_name">Enter account name</string>
+    <string name="account_name">Account Name</string>
+    <string name="enter_account_number">Enter account number</string>
+    <string name="account_number">Account Number</string>
+    <string name="my_bank_account">My Bank Account</string>
+
+
     <!--String files for click events-->
     <string name="cross">Cross</string>
     <string name="audio_call">Audio Call</string>
@@ -468,5 +487,7 @@
     <string name="whatsApp">whatsApp</string>
     <string name="description">Description</string>
     <string name="issue_type">Issue Type</string>
+    <string name="notification">Notification</string>
+
 
 </resources>

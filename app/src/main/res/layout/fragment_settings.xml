@@ -206,6 +206,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
+                    android:drawableStart="@drawable/setting_bank_icon"
+                    android:drawableEnd="@drawable/profile_path"
+                    android:drawablePadding="11dp"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:maxLines="1"
+                    android:onClick="@{click::gotoBankAccount}"
+                    android:paddingVertical="20dp"
+                    android:text="@string/my_bank_account"
+                    android:textColor="@color/black"
+                    android:textSize="17sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="20dp"
+                    android:background="@color/grey_707070_opicity_6" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
                     android:drawableStart="@drawable/about_icon"
                     android:drawableEnd="@drawable/profile_path"
                     android:drawablePadding="11dp"

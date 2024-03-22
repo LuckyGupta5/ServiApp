@@ -1,6 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <variable
+            name="bankData"
+            type="com.example.servivet.data.model.bank_module.bank_list_response.response.Bank" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/idBankIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="12dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/bank_icon_grey_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/idNewBankText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="5dp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@{bankData.name}"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toStartOf="@+id/idForewordIcon"
+            app:layout_constraintStart_toEndOf="@+id/idBankIcon"
+            app:layout_constraintTop_toTopOf="@id/idBankIcon" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="**** **** **** 2233"
+            android:textColor="@color/grey_505050"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toStartOf="@+id/idForewordIcon"
+            app:layout_constraintStart_toStartOf="@+id/idNewBankText"
+            app:layout_constraintTop_toBottomOf="@id/idNewBankText" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/idForewordIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="@color/grey_f6f6f6"
+            android:fontFamily="@font/poppins_medium"
+            android:src="@drawable/forword_blue_icon"
+            android:text="@string/remove"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            app:cornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/idBankIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/idBankIcon" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/grey_F3F3F3"
+            app:layout_constraintBottom_toBottomOf="@id/idBankIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/idBankIcon" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

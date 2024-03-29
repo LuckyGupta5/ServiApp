@@ -519,6 +519,10 @@
         <argument
             android:name="from"
             app:argType="string" />
+
+        <argument
+            android:name="serviceName"
+            app:argType="string" />
     </dialog>
     <dialog
         android:id="@+id/closeServiceBottomFragment"
@@ -582,6 +586,9 @@
         <action
             android:id="@+id/action_providerProfileFragment_to_chattingFragment"
             app:destination="@id/chattingFragment" />
+        <action
+            android:id="@+id/action_providerProfileFragment_to_outgoingVideoCallActivity"
+            app:destination="@id/outgoingVideoCallActivity" />
 
     </fragment>
     <fragment
@@ -734,23 +741,52 @@
         android:id="@+id/bankListBottomSheet"
         android:name="com.example.servivet.ui.main.bottom_sheet.bank_module.BankListBottomSheet"
         android:label="BankListBottomSheet"
-        tools:layout="@layout/fragment_bank_list_bottom_sheet" />
+        tools:layout="@layout/fragment_bank_list_bottom_sheet" >
+
+        <argument
+            android:name="data"
+            app:argType="string"/>
+
+        <argument
+            android:name="from"
+            app:argType="string"/>
+
+    </dialog>
     <dialog
         android:id="@+id/confirmBankAccountBottomSheet"
         android:name="com.example.servivet.ui.main.bottom_sheet.bank_module.ConfirmBankAccountBottomSheet"
         android:label="fragment_confirm_bank_account_bottom_sheet"
-        tools:layout="@layout/fragment_confirm_bank_account_bottom_sheet" />
+        tools:layout="@layout/fragment_confirm_bank_account_bottom_sheet" >
+
+        <argument
+            android:name="data"
+            app:argType="string"/>
+        <argument
+            android:name="from"
+            app:argType="string"/>
+    </dialog>
 
 
-    <!-- <fragment
-         android:id="@+id/businessBookingFragment"
-         android:name="com.example.servivet.ui.main.fragment.BusinessBookingFragment"
-         android:label="BusinessBookingFragment"
-         tools:layout="@layout/fragment_business_booking">
-         <action
-             android:id="@+id/action_businessBookingFragment_to_bookingDetailsFragment"
-             app:destination="@id/bookingDetailsFragment" />
-     </fragment>-->
+    <fragment
+        android:id="@+id/testingFragment"
+        android:name="com.example.servivet.ui.main.fragment.testing.TestingFragment"
+        android:label="TestingFragment"
+        tools:layout="@layout/fragment_testing">
+        <action
+            android:id="@+id/action_testingFragment_to_testingBottomSheet7"
+            app:destination="@id/testingBottomSheet" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/testingBottomSheet"
+        android:name="com.example.servivet.ui.main.fragment.testing.TestingBottomSheet"
+        android:label="fragment_testing_bottom_sheet"
+        tools:layout="@layout/fragment_testing_bottom_sheet">
+
+        <argument
+            android:name="data"
+            app:argType="string" />
+    </dialog>
 
 
 </navigation>

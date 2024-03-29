@@ -46,7 +46,7 @@ class BookingListAdapter(
 
         binding.idViewDetails.setOnClickListener {
             if (types == 2 && typesOfUser == requireContext.getString(R.string.bought)) {
-                findNavController.navigate(BookingsFragmentDirections.actionBookingsFragmentToFragmentRatingUsBottomSheet(bookingList[position].serviceDetail._id,"BookingList"))
+                findNavController.navigate(BookingsFragmentDirections.actionBookingsFragmentToFragmentRatingUsBottomSheet(bookingList[position].serviceDetail._id,"BookingList",bookingList[position].serviceDetail.serviceName))
 
             } else {
                 findNavController.navigate(BookingsFragmentDirections.actionBookingsFragmentToBookingDetailsFragment(Gson().toJson(bookingList[position]), types,typesOfUser, requireContext.getString(R.string.bookinglist)))

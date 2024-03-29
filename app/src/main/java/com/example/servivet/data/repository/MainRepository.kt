@@ -2,6 +2,7 @@ package com.example.servivet.data.repository
 
 import com.example.servivet.data.api.ApiService
 import com.example.servivet.data.model.accept_booking.request.AcceptBookingRequest
+import com.example.servivet.data.model.bank_module.remove_bank_accont.RemoveBankAccountRequest
 import com.example.servivet.data.model.booking_detail.request.BookingDetailRequest
 import com.example.servivet.data.model.booking_module.booking_model.request.RatingRequest
 import com.example.servivet.data.model.booking_module.coupon.request.CouponAvalabilityRequest
@@ -129,4 +130,7 @@ class MainRepository(private val apiService: ApiService) {
     suspend fun notificationListing(request: HashMap<String, String>) = apiService.notificationListing(request)
 
     suspend fun bankListApi(request: HashMap<String, String>) = apiService.bankListApi(request)
+    suspend fun createBankListApi() = apiService.createBankListApi()
+    suspend fun createBankApi(request: CommonRequest) = apiService.createBankApi(request)
+    suspend fun removeBankAccount(request: RemoveBankAccountRequest) = apiService.removeBankAccount(request)
 }

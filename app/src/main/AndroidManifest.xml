@@ -47,11 +47,12 @@
 
     <application
         android:name=".utils.AppController"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/new_round_app_icon"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/new_app_icon_circle"
         android:supportsRtl="true"
         android:theme="@style/Theme.ServiVet."

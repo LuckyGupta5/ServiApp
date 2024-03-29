@@ -11,12 +11,18 @@
             name="clickEvents"
             type="kotlin.jvm.functions.Function1" />
 
+        <variable
+            name="viewModel"
+            type="com.example.servivet.ui.main.view_model.bank_module.BankListViewModel" />
+
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         android:orientation="vertical"
+        android:fitsSystemWindows="true"
         tools:context=".ui.main.adapter.bank_module.AddBankAccountFragment">
 
         <LinearLayout
@@ -49,6 +55,8 @@
                 android:onClick="@{()->clickEvents.invoke(0)}"
                 android:paddingHorizontal="15dp"
                 android:paddingVertical="13dp"
+                android:text="@{viewModel.bankListResult != null ? viewModel.bankListResult.bankName : ``}"
+                android:textColor="@color/black"
                 android:textSize="15sp"
                 app:drawableEndCompat="@drawable/down_faq_arrow" />
 
@@ -72,6 +80,8 @@
                 android:hint="@string/enter_account_number"
                 android:paddingHorizontal="15dp"
                 android:paddingVertical="13dp"
+                android:text="@={viewModel.accountNumber}"
+                android:textColor="@color/black"
                 android:textSize="15sp" />
 
             <TextView
@@ -94,6 +104,8 @@
                 android:hint="@string/enter_account_name"
                 android:paddingHorizontal="15dp"
                 android:paddingVertical="13dp"
+                android:text="@={viewModel.accountName}"
+                android:textColor="@color/black"
                 android:textSize="15sp" />
 
             <TextView
@@ -116,6 +128,8 @@
                 android:hint="@string/enter_document_number"
                 android:paddingHorizontal="15dp"
                 android:paddingVertical="13dp"
+                android:text="@={viewModel.documentNumber}"
+                android:textColor="@color/black"
                 android:textSize="15sp" />
 
             <TextView
@@ -138,6 +152,8 @@
                 android:hint="@string/enter_document_type"
                 android:paddingHorizontal="15dp"
                 android:paddingVertical="13dp"
+                android:text="@={viewModel.documentType}"
+                android:textColor="@color/black"
                 android:textSize="15sp" />
 
             <TextView
@@ -160,16 +176,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:checked="@{viewModel.isSavingsAccountChecked}"
                     android:buttonTint="@color/app_theme"
                     android:text="@string/savings_account"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:onCheckedChanged="@{(buttonView, isChecked) -> viewModel.onSavingsAccountCheckedChanged(isChecked)}" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:checked="@{!viewModel.isSavingsAccountChecked()}"
                     android:text="@string/current_account"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:buttonTint="@color/app_theme"
+                    android:onCheckedChanged="@{(buttonView, isChecked) -> viewModel.onSavingsAccountCheckedChanged(!isChecked)}" />
+
 
             </RadioGroup>
 
@@ -180,9 +202,9 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
+                android:onClick="@{() -> viewModel.saveData()}"
                 android:paddingVertical="15dp"
                 android:text="@string/save"
-                android:onClick="@{()->clickEvents.invoke(1)}"
                 android:textColor="@color/white"
                 app:cornerRadius="12dp" />
 

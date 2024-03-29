@@ -5,6 +5,17 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.example.servivet.ui.main.view_model.bank_module.BankListViewModel" />
+
+        <variable
+            name="data"
+            type="com.example.servivet.data.model.bank_module.create_bankAccount.request.CreateBankAccountRequest" />
+        
+        <variable
+            name="clickEvents"
+            type="kotlin.jvm.functions.Function1" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,6 +70,8 @@
             android:hint="Conform account number"
             android:paddingVertical="15dp"
             android:paddingStart="10dp"
+            android:text="@{data.account_number}"
+            android:textColor="@color/black"
             android:textColorHint="@color/hint_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -87,6 +100,7 @@
             android:textAllCaps="false"
             android:textColor="@color/black"
             app:cornerRadius="12dp"
+            android:onClick="@{()->clickEvents.invoke(0)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/idSaveBtn"
             app:layout_constraintStart_toStartOf="parent"
@@ -101,6 +115,7 @@
             android:fontFamily="@font/poppins_medium"
             android:paddingVertical="10dp"
             android:text="@string/save"
+            android:onClick="@{()->clickEvents.invoke(1)}"
             android:textAllCaps="false"
             android:textColor="@color/white"
             app:cornerRadius="12dp"

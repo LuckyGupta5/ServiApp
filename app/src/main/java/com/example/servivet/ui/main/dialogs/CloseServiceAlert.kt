@@ -152,10 +152,12 @@ class CloseServiceAlert : DialogFragment() {
                     ProcessDialog.dismissDialog()
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            Log.e("", "initLogoutModel: trye")
                             Session.logout()
                             SplashViewModel.isLogout = false
+                            Session.isLogin = false
                             Session.saveIsLogin(false)
+
+
                             var intent = Intent(context, MainActivity::class.java)
                             requireActivity().startActivity(intent)
 

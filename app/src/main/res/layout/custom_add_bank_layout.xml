@@ -6,7 +6,7 @@
 
         <variable
             name="bankData"
-            type="com.example.servivet.data.model.bank_module.bank_list_response.response.Bank" />
+            type="com.example.servivet.data.model.bank_module.create_bank_account_list.response.UserBank" />
 
     </data>
 
@@ -32,10 +32,10 @@
             android:layout_marginStart="12dp"
             android:layout_marginEnd="5dp"
             android:fontFamily="@font/poppins_semi_bold"
-            android:text="@{bankData.name}"
+            android:text="@{bankData.bankName}"
             android:textColor="@color/black"
             android:textSize="17sp"
-            app:layout_constraintEnd_toStartOf="@+id/idForewordIcon"
+            app:layout_constraintEnd_toStartOf="@+id/idRemoveAccount"
             app:layout_constraintStart_toEndOf="@+id/idBankIcon"
             app:layout_constraintTop_toTopOf="@id/idBankIcon" />
 
@@ -44,15 +44,15 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="**** **** **** 2233"
+            android:text="@{bankData.accountNumber}"
             android:textColor="@color/grey_505050"
             android:textSize="13sp"
-            app:layout_constraintEnd_toStartOf="@+id/idForewordIcon"
+            app:layout_constraintEnd_toStartOf="@+id/idRemoveAccount"
             app:layout_constraintStart_toStartOf="@+id/idNewBankText"
             app:layout_constraintTop_toBottomOf="@id/idNewBankText" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/idForewordIcon"
+            android:id="@+id/idRemoveAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"

@@ -45,15 +45,11 @@ class ChattingAdapter(
             binding.idReceiverMessage.text = chattingList[position].message
             binding.idReceiverTime.text = convertTimeStampToTime(chattingList[position].createdAt, 10, 0)
             Glide.with(requireContext).load(manualUserDataClass.image).placeholder(R.drawable.userprofile).into(binding.idImageView)
-
-
             if (chattingList[position].file != null && chattingList[position].file.isNotEmpty()) {
                 Glide.with(requireContext).load(chattingList[position].file[0])
                     .placeholder(R.drawable.userprofile).into(binding.idReceiverImage)
-
                 binding.idReceiverPlay.isVisible = item?.file?.get(0)?.endsWith(".mp4")!!
             }
-
             if (chattingList[position].messageType == 1) {
                 binding.idMedia.isVisible = false
                 binding.idReceiverMessage.isVisible = true
@@ -64,7 +60,6 @@ class ChattingAdapter(
             } else {
                 binding.idMedia.isVisible = true
                 binding.idReceiverMessage.isVisible = false
-
             }
         } else {
             binding.idReceiverLayout.isVisible = false
@@ -87,10 +82,7 @@ class ChattingAdapter(
             } else {
                 binding.idSenderMedia.isVisible = true
                 binding.idSenderMessage.isVisible = false
-
             }
-
-
         }
     }
 

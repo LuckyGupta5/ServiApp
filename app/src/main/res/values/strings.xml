@@ -470,6 +470,18 @@
     <string name="enter_account_number">Enter account number</string>
     <string name="account_number">Account Number</string>
     <string name="my_bank_account">My Bank Account</string>
+    <string name="connecting">Connecting</string>
+
+
+
+    <!--validation Texts-->
+
+    <string name="please_enter_account_number">Please Enter Account Number</string>
+    <string name="please_enter_account_name">Please Enter Account Name</string>
+    <string name="please_enter_document_number">Please Enter Document Number</string>
+    <string name="please_enter_document_type">Please Enter document type</string>
+
+
 
 
     <!--String files for click events-->
@@ -488,6 +500,10 @@
     <string name="description">Description</string>
     <string name="issue_type">Issue Type</string>
     <string name="notification">Notification</string>
+    <string name="addbank">addBank</string>
+
+    <string name="openbottomsheet">openBottomSheet</string>
+    <string name="personal">personal</string>
 
 
 </resources>

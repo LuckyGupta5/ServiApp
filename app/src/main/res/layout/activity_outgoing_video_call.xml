@@ -104,7 +104,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
-                        android:hint="@string/connected"
+                        android:hint="@string/connecting"
                         android:includeFontPadding="false"
                         android:text="@{callStatus}"
                         android:textColor="@color/white"

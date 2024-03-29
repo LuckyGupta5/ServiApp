@@ -331,6 +331,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
             SocketManager.connect()
             socket = SocketManager.getSocket()
 
+
+            Log.e("TAG", "initSocketCheckConnect: ${socket.connected()}", )
+
             Log.e("TAG", "checkLocationInfo: ${Session.saveLocationInfo}", )
 
 

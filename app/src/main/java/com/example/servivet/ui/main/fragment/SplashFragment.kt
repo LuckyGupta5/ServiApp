@@ -83,7 +83,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>(R.la
 
     private fun initObserver() {
         mViewModel.getLiveData().observe(viewLifecycleOwner) {
-            if (Session.isLogin == true) {
+            if (Session.isLogin) {
                 startActivity(Intent(requireActivity(), HomeActivity::class.java))
                 requireActivity().finish()
             } else

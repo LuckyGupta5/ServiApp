@@ -45,10 +45,7 @@ class SettingsViewModel : BaseViewModel() {
 
         fun goLogout(view: View) {
             view.findNavController().navigate(
-                SettingsFragmentDirections.actionSettingsFragmentToCloseServiceAlert(
-                    "",
-                    "logOut"
-                )
+                SettingsFragmentDirections.actionSettingsFragmentToCloseServiceAlert("", "logOut")
             )
             // CommonUtils.customalertdialog(frgmentActivity, frgmentActivity.getString(R.string.are_you_sure_you_want_to_logout), 1)
         }
@@ -90,7 +87,7 @@ class SettingsViewModel : BaseViewModel() {
         }
 
         fun gotoBankAccount(view: View) {
-            view.findNavController().navigate(R.id.action_settingsFragment_to_myBankAccountFragment)
+          //  view.findNavController().navigate(R.id.action_settingsFragment_to_myBankAccountFragment)
         }
 
     }

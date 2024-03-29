@@ -4,6 +4,8 @@ import com.example.servivet.data.model.accept_booking.request.AcceptBookingReque
 import com.example.servivet.data.model.accept_booking.response.AcceptBookingResponse
 import com.example.servivet.data.model.add_service.response.AddServiceResponse
 import com.example.servivet.data.model.bank_module.bank_list_response.response.BankListResposne
+import com.example.servivet.data.model.bank_module.create_bank_account_list.response.CreateBankListResponse
+import com.example.servivet.data.model.bank_module.remove_bank_accont.RemoveBankAccountRequest
 import com.example.servivet.data.model.booking_detail.request.BookingDetailRequest
 import com.example.servivet.data.model.booking_detail.response.BookingDetailResponse
 import com.example.servivet.data.model.booking_list.response.BookingListResponse
@@ -208,10 +210,16 @@ interface ApiService {
     suspend fun notificationListing(@QueryMap request: HashMap<String, String>): NotificationListResponse
 
     @GET("provider/bank/list")
-    suspend fun bankListApi(@QueryMap request: HashMap<String, String>):BankListResposne
+    suspend fun bankListApi(@QueryMap request: HashMap<String, String>): BankListResposne
 
     @GET("provider/saved/account/list")
-    suspend fun createBankListApi(@QueryMap request: HashMap<String, String>):BankListResposne
+    suspend fun createBankListApi(): CreateBankListResponse
+
+    @POST("provider/bank/createAccount")
+    suspend fun createBankApi(@Body request: CommonRequest): String
+
+    @POST("provider/bank/remove")
+    suspend fun removeBankAccount(request: RemoveBankAccountRequest): CommonResponse
 
 
 }

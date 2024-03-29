@@ -3,11 +3,15 @@
 
     <data>
 
+        <variable
+            name="bankData"
+            type="com.example.servivet.data.model.bank_module.bank_list_response.response.Bank" />
 
 
     </data>
 
     <LinearLayout
+        android:id="@+id/idContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -18,7 +22,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="bank name"
+            android:text="@{bankData.name}"
             android:textColor="@color/black"
             android:textSize="15sp" />
 

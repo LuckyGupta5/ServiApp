@@ -10,17 +10,30 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
+import com.example.servivet.data.model.call_module.video_call.VideoCallResponse
+import com.example.servivet.data.model.chat_models.initiate_chat.InitiateChatResponse
+import com.example.servivet.data.model.chat_models.manual_chating_objest.ManualUserDataClass
 import com.example.servivet.data.model.user_profile.response.UserProfile
 import com.example.servivet.databinding.FragmentProviderProfileBinding
 import com.example.servivet.ui.base.BaseFragment
+import com.example.servivet.ui.main.fragment.chat_module.ChattingFragmentDirections
 import com.example.servivet.ui.main.view_model.ConnectionRequestViewModel
 import com.example.servivet.ui.main.view_model.ProfileViewModel
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.CommonUtils.showSnackBar
 import com.example.servivet.utils.ProcessDialog
+import com.example.servivet.utils.SocketManager
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
 import com.google.gson.Gson
+import io.socket.client.Socket
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
 
 
 class ProviderProfileFragment :
@@ -32,6 +45,14 @@ class ProviderProfileFragment :
     private val requestViewModel: ConnectionRequestViewModel by viewModels()
     private val argumentData: ProviderProfileFragmentArgs by navArgs()
     private lateinit var profileData: UserProfile
+    private var callType = 7
+    private lateinit var socket: Socket
+    private lateinit var initateChatResponse: InitiateChatResponse
+    private lateinit var videoCallResponse: VideoCallResponse
+    private var mediaList: ArrayList<String> = ArrayList()
+    private lateinit var roomId: String
+    private var manualUserDataClass = ManualUserDataClass()
+
 
     override fun isNetworkAvailable(boolean: Boolean) {
     }
@@ -83,20 +104,29 @@ class ProviderProfileFragment :
             }
 
             getString(R.string.whatsApp) -> {
-                val url = "https://api.whatsapp.com/send?phone=$7830203108"
-                val i = Intent(Intent.ACTION_VIEW)
-                i.data = Uri.parse(url)
+                manualUserDataClass.userName = profileData.name
+                manualUserDataClass.image = profileData.image
 
-                try {
-                    startActivity(i)
-                } catch (e: ActivityNotFoundException) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Whatsapp app not installed in your phone",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    e.printStackTrace()
+                if (roomId.isNotEmpty()) {
+                    generateAgoraToken()
+                } else {
+                    initInitiateChatSocket()
                 }
+
+//                val url = "https://api.whatsapp.com/send?phone=$7830203108"
+//                val i = Intent(Intent.ACTION_VIEW)
+//                i.data = Uri.parse(url)
+//
+//                try {
+//                    startActivity(i)
+//                } catch (e: ActivityNotFoundException) {
+//                    Toast.makeText(
+//                        requireContext(),
+//                        "Whatsapp app not installed in your phone",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                    e.printStackTrace()
+//                }
 
             }
 
@@ -117,14 +147,94 @@ class ProviderProfileFragment :
             }
 
 
-            getString(R.string.share)->{
+            getString(R.string.share) -> {
                 val shareIntent = Intent()
                 shareIntent.action = Intent.ACTION_SEND
-                shareIntent.type="text/plain"
+                shareIntent.type = "text/plain"
                 shareIntent.putExtra(Intent.EXTRA_TEXT, "Share Via this that");
-                startActivity(Intent.createChooser(shareIntent,"Share via"))
+                startActivity(Intent.createChooser(shareIntent, "Share via"))
 
             }
+        }
+    }
+
+    private fun generateAgoraToken() {
+        socket = SocketManager.getSocket()
+        val data = JSONObject()
+        try {
+            data.put("receiverId", profileData._id)
+            data.put("roomId", roomId)
+            data.put("messageType", callType)
+            data.put("message", "")
+            data.put("uid", "0")
+            socket.emit("agoraToken", data)
+
+            socket.on("agoraToken", fun(args: Array<Any?>) {
+                if (isAdded) {
+                    requireActivity().runOnUiThread {
+                        val agoraToken = args[0] as JSONObject
+                        try {
+                            Log.e("TAG", "chatListDataMessages121221:${agoraToken}")
+                            videoCallResponse = Gson().fromJson(
+                                JSONArray().put(agoraToken)[0].toString(),
+                                VideoCallResponse::class.java
+                            )
+
+
+                            findNavController().navigate(
+                                ProviderProfileFragmentDirections.actionProviderProfileFragmentToOutgoingVideoCallActivity(
+                                    Gson().toJson(videoCallResponse), getString(
+                                        R.string.outgoing_video
+                                    ), Gson().toJson(manualUserDataClass)
+                                )
+                            )
+
+
+                            socket.off("agoraToken")
+
+
+                        } catch (ex: JSONException) {
+                            ex.printStackTrace()
+                        }
+                    }
+                }
+            })
+        } catch (ex: JSONException) {
+        }
+    }
+
+
+    private fun initInitiateChatSocket() {
+        try {
+            socket = SocketManager.getSocket()
+            val data = JSONObject()
+            data.put("receiverId", profileData._id)
+            data.put("messageType", 7)
+            data.put("message", "")
+            data.put("file", Gson().toJson(mediaList))
+            socket.emit("initiateChat", data)
+            socket.on("getRoomId", fun(args: Array<Any?>) {
+                if (isAdded) {
+                    requireActivity().runOnUiThread {
+                        val initChatData = args[0] as JSONObject
+                        try {
+                            Log.e("TAG", "initChatDatafirst:${initChatData} ")
+                            initateChatResponse = Gson().fromJson(
+                                JSONArray().put(initChatData)[0].toString(),
+                                InitiateChatResponse::class.java
+                            )
+                            roomId = initateChatResponse.result.roomDetail._id
+                            generateAgoraToken()
+
+                        } catch (ex: JSONException) {
+                            ex.printStackTrace()
+                        }
+                    }
+                }
+            })
+
+        } catch (ex: Exception) {
+
         }
     }
 
@@ -139,6 +249,7 @@ class ProviderProfileFragment :
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             profileData = it.data.result.profile
                             binding.detailData = profileData
+                            roomId = profileData.roomId
                             Log.e("TAG", "setupObservers: ${Gson().toJson(profileData)}")
                         }
 

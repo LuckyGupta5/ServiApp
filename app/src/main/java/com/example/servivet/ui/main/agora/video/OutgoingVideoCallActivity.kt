@@ -179,11 +179,8 @@ class OutgoingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
                 msgId = data.result.chatMessageId
                 roomId = data.result.roomId
 
-
                 mBinding.callUserImage = userData.image
                 mBinding.userName = userData.userName
-
-
             }
         }
     }
@@ -215,25 +212,9 @@ class OutgoingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
     private fun showLocalVideo() {
         val localSurfaceView = RtcEngine.CreateRendererView(baseContext)
         if (mBinding.localFrame.childCount > 0) mBinding.localFrame.removeAllViews()
-        mBinding.localFrame.addView(
-            localSurfaceView,
-            FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
-        )
-        mRtcEngine!!.setupLocalVideo(
-            VideoCanvas(
-                localSurfaceView,
-                VideoCanvas.RENDER_MODE_HIDDEN,
-                0
-            )
-        )
-        if (ContextCompat.checkSelfPermission(
-                this,
-                android.Manifest.permission.BLUETOOTH_CONNECT
-            ) == PackageManager.PERMISSION_GRANTED && isBluetoothConnectd()
-        )
+        mBinding.localFrame.addView(localSurfaceView, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
+        mRtcEngine!!.setupLocalVideo(VideoCanvas(localSurfaceView, VideoCanvas.RENDER_MODE_HIDDEN, 0))
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED && isBluetoothConnectd())
             mRtcEngine!!.setDefaultAudioRoutetoSpeakerphone(false)
         else
             mRtcEngine!!.setDefaultAudioRoutetoSpeakerphone(true)

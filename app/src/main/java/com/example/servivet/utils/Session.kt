@@ -27,7 +27,7 @@ import com.orhanobut.hawk.Hawk
 
 object Session {
     var token = Hawk.get<String>(TOKEN, null)
-    var isLogin = Hawk.get<Boolean>(IS_LOGIN, null)
+    var isLogin = Hawk.get<Boolean>(IS_LOGIN, false)
     var notificationStatus = Hawk.get<Boolean>(NOTIFY_STATUS, null)
     var location = Hawk.get<String>(LOCATION, null)
     var type = Hawk.get<String>(TYPE, null)

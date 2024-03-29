@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="clickEvents"
             type="kotlin.jvm.functions.Function1" />
@@ -31,7 +33,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="visible"
+            android:visibility="@{adapter.list== null?View.VISIBLE:adapter.list.size()>0?View.GONE:View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="@{()->clickEvents.invoke(0)}"
-            android:visibility="gone"
+            android:visibility="@{adapter.list== null?View.GONE:adapter.list.size()>0?View.VISIBLE:View.GONE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/idToolbar">
 
@@ -134,7 +136,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:adapter="@{adapter}"
-            android:visibility="gone"
+            android:visibility="@{adapter.list== null?View.GONE:adapter.list.size()>0?View.VISIBLE:View.GONE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/idAlreadyCreatedBankAccountContainer"

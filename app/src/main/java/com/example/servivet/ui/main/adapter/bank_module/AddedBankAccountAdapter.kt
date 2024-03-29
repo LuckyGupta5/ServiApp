@@ -2,19 +2,29 @@ package com.example.servivet.ui.main.adapter.bank_module
 
 import android.content.Context
 import com.example.servivet.R
-import com.example.servivet.data.model.bank_module.bank_list_response.response.Bank
+import com.example.servivet.data.model.bank_module.create_bank_account_list.response.UserBank
 import com.example.servivet.databinding.CustomAddBankLayoutBinding
 import com.example.servivet.ui.base.BaseAdapter
 import com.example.servivet.utils.interfaces.ListAdapterItem
+import com.google.gson.Gson
 
 class AddedBankAccountAdapter(
-    val list: ArrayList<Bank>,
+    val list: ArrayList<UserBank>,
     val requireContext: Context,
     val onItemClick: (String, Int) -> Unit
 ) :
-    BaseAdapter<CustomAddBankLayoutBinding, ListAdapterItem>(list) {
+    BaseAdapter<CustomAddBankLayoutBinding, UserBank>(list) {
     override val layoutId: Int = R.layout.custom_add_bank_layout
-    override fun bind(binding: CustomAddBankLayoutBinding, item: ListAdapterItem?, position: Int) {
+    override fun bind(binding: CustomAddBankLayoutBinding, item: UserBank?, position: Int) {
+        binding.apply {
+            bankData = item
+
+            idRemoveAccount.setOnClickListener {
+                onItemClick(item?._id?:"",1)
+            }
+        }
+
+
     }
 
     override fun getItemCount(): Int {

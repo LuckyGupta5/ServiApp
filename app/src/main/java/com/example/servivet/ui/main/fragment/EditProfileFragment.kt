@@ -198,8 +198,9 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding,EditProfileV
                     }
                 } else {
                     val fileUri = data.data
-                    if (fileUri!!.path!!.isNotEmpty())
+                    if (fileUri!!.path!!.isNotEmpty()) {
                         imagePath = getRealPathFromURI(requireActivity(), fileUri).toString()
+                    }
 
                     when (type) {
                         "1" -> {

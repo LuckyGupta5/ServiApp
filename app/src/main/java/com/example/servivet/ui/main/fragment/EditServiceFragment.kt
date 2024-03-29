@@ -579,6 +579,8 @@ class EditServiceFragment :
                     if (fileUri!!.path!!.isNotEmpty()) {
                         imagePath =
                             CommonUtils.getRealPathFromURI(requireActivity(), fileUri).toString()
+
+                        Log.e("TAG", "imagePath:${imagePath} ", )
                         mViewModel.isPhotoSelected = true
                         mViewModel.imageListing.add(SimpleImageModel("0", "0", imagePath))
                         mViewModel.addServicesRequest.image.add(imagePath)

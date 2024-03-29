@@ -1,5 +1,8 @@
 package com.example.servivet.data.model.bank_module.create_bank_account_list.response
 
+import com.example.servivet.utils.interfaces.ListAdapterItem
+import java.io.Serializable
+
 data class UserBank(
     val __v: Int,
     val _id: String,
@@ -15,4 +18,4 @@ data class UserBank(
     val type: String,
     val updatedAt: String,
     val user: String
-)
+):Serializable,ListAdapterItem

@@ -107,8 +107,7 @@ class ChattingFragment :
                 senderId = profileData.senderId
                 binding.idUserName.text = profileData.name
                 binding.nameTextView.text = profileData.name
-                Glide.with(requireContext()).load(profileData.image)
-                    .placeholder(R.drawable.userprofile).into(binding.profileImageView)
+                Glide.with(requireContext()).load(profileData.image).placeholder(R.drawable.userprofile).into(binding.profileImageView)
                 manualUserDataClass.image = profileData.image
                 manualUserDataClass.userName = profileData.name
                 if (profileData.roomId.isNotEmpty()) {
@@ -235,8 +234,7 @@ class ChattingFragment :
             getString(R.string.open_gallery) -> {
                 //   findNavController().navigate(R.id.action_chattingFragment_to_selectMediaBottomSheet)
                 binding.idMediaView.isEnabled = false
-                findNavController().navigate(
-                    ChattingFragmentDirections.actionChattingFragmentToSelectMediaBottomSheet(
+                findNavController().navigate(ChattingFragmentDirections.actionChattingFragmentToSelectMediaBottomSheet(
                         "",
                         getString(R.string.gallery)
                     )
@@ -323,9 +321,7 @@ class ChattingFragment :
                         showSnackBar("You are unable to call this user. ")
                     } else {
                         findNavController().navigate(
-                            ChattingFragmentDirections.actionChattingFragmentToSelectMediaBottomSheet(
-                                "",
-                                getString(R.string.call)
+                            ChattingFragmentDirections.actionChattingFragmentToSelectMediaBottomSheet("", getString(R.string.call)
                             )
                         )
                     }
@@ -587,12 +583,10 @@ class ChattingFragment :
             ?.observe(viewLifecycleOwner) {
                 type = it
                 binding.idMediaView.isEnabled = true
-                Toast.makeText(requireContext(), "${type}", Toast.LENGTH_SHORT).show()
                 when (type) {
                     getString(R.string.audio_call) -> {
                         callType = 6
                         generateAgoraToken()
-
                     }
 
                     getString(R.string.video_call) -> {

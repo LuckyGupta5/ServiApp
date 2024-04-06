@@ -49,7 +49,6 @@ class BankListViewModel : BaseViewModel() {
 
     /* Click Events */
     fun saveData() {
-        ///x Log.e("TAG", "chsjjsynd: ${accountType.value}")
         if (checkValidation()) {
             addRequestValue()
             Log.e("TAG", "checkBefore: ${Gson().toJson(bankAccountRequest)}")
@@ -64,8 +63,8 @@ class BankListViewModel : BaseViewModel() {
             account_name = accountName.value ?: ""
             account_number = accountNumber.value ?: ""
             account_type = if (accountType.value!!) "personal" else "personal"
-            document_type = documentType.value ?: ""
-            document_number = documentNumber.value ?: ""
+            document_type = documentType.value ?: "identityNumber"
+            document_number = documentNumber.value ?: "1234567890123"
             type = bankData?.type ?: ""
             name = bankData?.name ?: ""
             currency = bankData?.currency ?: ""
@@ -80,13 +79,15 @@ class BankListViewModel : BaseViewModel() {
         } else if (accountName.value.isNullOrBlank()) {
             errorMessage.postValue(R.string.please_enter_account_name)
             return false
-        } else if (documentNumber.value.isNullOrBlank()) {
-            errorMessage.postValue(R.string.please_enter_document_number)
-            return false
-        } else if (documentType.value.isNullOrBlank()) {
-            errorMessage.postValue(R.string.please_enter_document_type)
+
+        } else if (accountName.value?.length!! < 13) {
+            errorMessage.postValue(R.string.invalid_account_number)
             return false
         }
+        //else if (documentType.value.isNullOrBlank()) {
+//            errorMessage.postValue(R.string.please_enter_document_type)
+//            return false
+//        }
         return true
     }
 
@@ -137,15 +138,17 @@ class BankListViewModel : BaseViewModel() {
     private val createBankData = SingleLiveEvent<Resource<String>>()
 
 
-     fun getLiveData(): LiveData<Resource<String>> {
+    fun getLiveData(): LiveData<Resource<String>> {
         return createBankData
     }
 
     fun getCreateBankRequest() {
         Constants.SECURE_HEADER = "secure"
+
+        Log.e("TAG", "getCreateBankRequest: ${Gson().toJson(bankAccountRequest)}")
         createBankRequest.servivet_user_req =
             AESHelper.encrypt(Constants.SECURITY_KEY, Gson().toJson(bankAccountRequest))
-
+        Log.e("TAG", "getCreateBankRequest11: ${createBankRequest.servivet_user_req}")
         hitCreateBankApi()
 
 
@@ -153,7 +156,6 @@ class BankListViewModel : BaseViewModel() {
 
 
     private fun hitCreateBankApi() {
-
         val mainRepository = MainRepository(RetrofitBuilder.apiService)
         viewModelScope.launch {
             createBankData.postValue(Resource.loading(null))
@@ -178,6 +180,4 @@ class BankListViewModel : BaseViewModel() {
             }
         }
     }
-
-
 }

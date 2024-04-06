@@ -13,6 +13,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.servivet.R
@@ -58,6 +59,8 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
         super.onMessageReceived(rMessage)
         rMessage.notification?.let { Log.e("TAG", "onMessageReceived: ${Gson().toJson(it)}") }
         val callBody = Gson().fromJson(rMessage.data["customData"], CallBody::class.java)
+        Log.e("TAG", "checkCallBody111: ${Gson().toJson(callBody)}")
+
 
         if (rMessage.notification?.title != null && rMessage.notification?.title.toString() != "") {
             title = rMessage.notification?.title.toString()
@@ -71,6 +74,8 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
         val intentData = Intent(NOTIFICATION)
         intentData.putExtra(NOTIFICATION, rMessage.notification?.body)
         sendBroadcast(intentData)
+
+
 
         Log.e("TAG", "checkCallBody: ${Gson().toJson(rMessage)}")
 
@@ -105,7 +110,6 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
             sendNotification(message, title, count, callBody)
             //   Log.e("tag1", callBody.callType.toString())
             when (callBody.messageType) {
-
                 6 -> {
                     inviteForAudioCall(callBody)
                 }
@@ -158,9 +162,7 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
         notificationBuilder.priority = NotificationCompat.PRIORITY_HIGH
         notificationBuilder.setCategory(NotificationCompat.CATEGORY_CALL)
         //  Log.d("ConveyerData  firebase--->", Gson().toJson(callBody.callType))
-
         startBackgroundMusicService(applicationContext)
-
         val intent: Intent = when (callBody.messageType) {
             6 -> Intent(baseContext, IncomingAudioCallActivity::class.java)
             7 -> Intent(baseContext, IncomingVideoCallActivity::class.java)

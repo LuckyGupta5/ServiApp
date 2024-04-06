@@ -1,6 +1,7 @@
 package com.example.servivet.ui.main.adapter.bank_module
 
 import android.util.Log
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -40,7 +41,14 @@ class AddBankAccountFragment :
 
 
     override fun setupViews() {
+        initToolbar()
         getBottomSheetCallBack()
+    }
+
+    private fun initToolbar() {
+        binding.idToolbar.idBack.setOnClickListener { findNavController().popBackStack() }
+        binding.idToolbar.idTitle.text = getString(R.string.add_bank_account)
+        binding.idToolbar.idSearch.isVisible = false
     }
 
 
@@ -106,7 +114,7 @@ class AddBankAccountFragment :
         mViewModel.errorMessage.observe(viewLifecycleOwner) {
             when (getString(it)) {
                 getString(R.string.openbottomsheet) -> {
-                 //   findNavController().navigate(R.id.action_addBankAccountFragment_to_confirmBankAccountBottomSheet)
+                    //   findNavController().navigate(R.id.action_addBankAccountFragment_to_confirmBankAccountBottomSheet)
                     findNavController().navigate(
                         AddBankAccountFragmentDirections.actionAddBankAccountFragmentToConfirmBankAccountBottomSheet(
                             Gson().toJson(mViewModel.bankAccountRequest),
@@ -114,14 +122,12 @@ class AddBankAccountFragment :
                         )
                     )
                 }
-
                 else -> {
                     showSnackBar(getString(it))
 
                 }
             }
         }
-
 
 
         /*createBank Observer*/
@@ -132,15 +138,14 @@ class AddBankAccountFragment :
                     ProcessDialog.dismissDialog()
 
                     val data = Gson().fromJson(
-                        AESHelper.decrypt(Constants.SECURITY_KEY, it.data), CommonResponse::class.java
+                        AESHelper.decrypt(Constants.SECURITY_KEY, it.data),
+                        CommonResponse::class.java
                     )
                     when (data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             showSnackBar(data.message)
-                           // mViewModel.bankListResult = it.data.result
-
+                            // mViewModel.bankListResult = it.data.result
                         }
-
                         StatusCode.STATUS_CODE_FAIL -> {
                             showSnackBar(data.message)
                         }
@@ -173,8 +178,6 @@ class AddBankAccountFragment :
         }
 
 
-
-
     }
 
     private fun getBottomSheetCallBack() {
@@ -192,7 +195,7 @@ class AddBankAccountFragment :
             ?.observe(viewLifecycleOwner) {
                 if (it.isNotEmpty()) {
                     mViewModel.bankAccountRequest.account_number = it
-                    mViewModel
+                    mViewModel.getCreateBankRequest()
                     Log.e("TAG", "checkAfter: ${Gson().toJson(mViewModel.bankAccountRequest)}")
 
                 }

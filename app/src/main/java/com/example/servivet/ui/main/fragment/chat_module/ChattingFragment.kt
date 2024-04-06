@@ -3,6 +3,9 @@ package com.example.servivet.ui.main.fragment.chat_module
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.pdf.PdfRenderer
+import android.os.ParcelFileDescriptor
 import android.util.Log
 import android.view.View
 import android.widget.PopupMenu
@@ -46,6 +49,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -531,10 +535,7 @@ class ChattingFragment :
                     ProcessDialog.dismissDialog()
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            Log.e(
-                                "TAG",
-                                "xsetupObserveradjads: ${Gson().toJson(it.data.result.uploadImage)}",
-                            )
+                            Log.e("TAG", "xsetupObserveradjads: ${Gson().toJson(it.data.result.uploadImage)}")
                             mediaList.clear()
                             mediaList.addAll(it.data.result.uploadImage)
                             binding.uploadFileData = it.data.result
@@ -826,6 +827,9 @@ class ChattingFragment :
 
         }
     }
+
+
+
 
 
 }

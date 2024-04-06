@@ -105,7 +105,7 @@ class MyBankAccountFragment :
                     ProcessDialog.dismissDialog()
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            showSnackBar(it.data.message)
+                           // showSnackBar(it.data.message)
 
                         }
                         StatusCode.STATUS_CODE_FAIL -> {

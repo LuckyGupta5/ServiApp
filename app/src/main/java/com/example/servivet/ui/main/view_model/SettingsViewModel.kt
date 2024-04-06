@@ -87,7 +87,7 @@ class SettingsViewModel : BaseViewModel() {
         }
 
         fun gotoBankAccount(view: View) {
-          //  view.findNavController().navigate(R.id.action_settingsFragment_to_myBankAccountFragment)
+            view.findNavController().navigate(R.id.action_settingsFragment_to_myBankAccountFragment)
         }
 
     }

@@ -78,7 +78,6 @@
                         android:id="@+id/idReceiverImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:imageViewUrl='@{messageData.file.isEmpty?"":messageData.file.get(0)}'
                         android:scaleType="centerCrop" />
                 </androidx.cardview.widget.CardView>
 
@@ -150,7 +149,6 @@
                         android:id="@+id/idSenderImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:imageViewUrl='@{messageData.file.isEmpty?"":messageData.file.get(0)}'
                         android:scaleType="centerCrop" />
                 </androidx.cardview.widget.CardView>
 

@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="70dp"
-            android:src="@drawable/servivet_name" />
+            android:src="@drawable/splash_new_icon" />
 
         <RelativeLayout
             android:layout_width="match_parent"

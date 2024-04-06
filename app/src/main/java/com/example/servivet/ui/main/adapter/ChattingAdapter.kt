@@ -2,6 +2,9 @@ package com.example.servivet.ui.main.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.pdf.PdfRenderer
+import android.os.ParcelFileDescriptor
 import android.util.Log
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
@@ -10,9 +13,15 @@ import com.example.servivet.data.model.chat_models.chat_list.ChatMessage
 import com.example.servivet.data.model.chat_models.manual_chating_objest.ManualUserDataClass
 import com.example.servivet.databinding.CustomChattingViewBinding
 import com.example.servivet.ui.base.BaseAdapter
+import com.example.servivet.utils.PDFThumbnailLoader
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.convertTimeStampToTime
 import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.FileDescriptor
 
 class ChattingAdapter(
     val requireContext: Context,
@@ -46,8 +55,19 @@ class ChattingAdapter(
             binding.idReceiverTime.text = convertTimeStampToTime(chattingList[position].createdAt, 10, 0)
             Glide.with(requireContext).load(manualUserDataClass.image).placeholder(R.drawable.userprofile).into(binding.idImageView)
             if (chattingList[position].file != null && chattingList[position].file.isNotEmpty()) {
-                Glide.with(requireContext).load(chattingList[position].file[0])
-                    .placeholder(R.drawable.userprofile).into(binding.idReceiverImage)
+
+                if(item?.file?.get(0)?.endsWith(".pdf") == true){
+                    CoroutineScope(Dispatchers.Main).launch {
+                        val bitmap = PDFThumbnailLoader.loadThumbnailFromUrl(chattingList[position].file[0])
+                        binding.idReceiverImage.setImageBitmap(bitmap)
+                    }
+                }else{
+                    Glide.with(requireContext).load(chattingList[position].file[0]).placeholder(R.drawable.userprofile).into(binding.idReceiverImage)
+
+                }
+
+
+
                 binding.idReceiverPlay.isVisible = item?.file?.get(0)?.endsWith(".mp4")!!
             }
             if (chattingList[position].messageType == 1) {
@@ -68,9 +88,22 @@ class ChattingAdapter(
             binding.idSenderTime.text =
                 convertTimeStampToTime(chattingList[position].createdAt, 10, 0)
             if (chattingList[position].file != null && chattingList[position].file.isNotEmpty()) {
-                Glide.with(requireContext).load(chattingList[position].file[0])
-                    .placeholder(R.drawable.userprofile).into(binding.idSenderImage)
+                if(item?.file?.get(0)?.endsWith(".pdf") == true){
+                                    CoroutineScope(Dispatchers.Main).launch {
+                    val bitmap = PDFThumbnailLoader.loadThumbnailFromUrl(chattingList[position].file[0])
+                    binding.idSenderImage.setImageBitmap(bitmap)
+                }
+                }else{
+                    Glide.with(requireContext).load(chattingList[position].file[0])
+                        .placeholder(R.drawable.userprofile).into(binding.idSenderImage)
+
+                }
                 binding.idButton.isVisible = item?.file?.get(0)?.endsWith(".mp4")!!
+
+
+
+
+
             }
 
             if (chattingList[position].messageType == 1) {
@@ -95,6 +128,9 @@ class ChattingAdapter(
     override fun getItemCount(): Int {
         return chattingList.size
     }
+
+
+
 
 
     /*

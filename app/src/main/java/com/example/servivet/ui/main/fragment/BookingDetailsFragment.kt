@@ -116,7 +116,7 @@ class BookingDetailsFragment :
                 bookingId = notificationData.bookingId?:""
 
                 Session.deleteNotificationData()
-
+  //686565668866
             }
 
         }

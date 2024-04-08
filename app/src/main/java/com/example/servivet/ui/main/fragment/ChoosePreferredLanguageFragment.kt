@@ -13,6 +13,8 @@ import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.adapter.LanguageAdapter
 import com.example.servivet.ui.main.view_model.ChooseLanguageViewModel
 import com.example.servivet.ui.main.view_model.SplashViewModel
+import com.example.servivet.utils.CommonUtils
+import com.example.servivet.utils.setLocal
 
 
 class ChoosePreferredLanguageFragment : BaseFragment<FragmentChoosePreferredLanguageBinding,ChooseLanguageViewModel>(R.layout.fragment_choose_preferred_language) {
@@ -52,8 +54,8 @@ class ChoosePreferredLanguageFragment : BaseFragment<FragmentChoosePreferredLang
 
     private fun  addData() {
 
-        language.add(LanguageModel( "English", "Hi, I am John Doe.",true,""))
-        language.add(LanguageModel( "Mandarin Chinese", "嗨，我是約翰·多伊。",false,""))
+        language.add(LanguageModel( "English", "Hi, I am John Doe.",true,"en"))
+        language.add(LanguageModel( "Mandarin Chinese", "嗨，我是約翰·多伊。",false,"fr"))
         language.add(LanguageModel( "Spanish", "Spanish",false,""))
         language.add(LanguageModel( "Hindi", "नमस्ते, मैं जॉन डो हूं।",false,""))
         language.add(LanguageModel( "Arabic", "مرحبًا، أنا جون دو.",false,""))
@@ -87,6 +89,8 @@ class ChoosePreferredLanguageFragment : BaseFragment<FragmentChoosePreferredLang
 
     }
     private val onItemClick: (String) -> Unit = { key ->
+
+        requireActivity().setLocal(key,2)
 
     }
 

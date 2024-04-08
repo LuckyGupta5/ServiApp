@@ -1,6 +1,8 @@
 package com.example.servivet.ui.main.fragment.bank_module
 
+import android.util.Log
 import androidx.core.view.isVisible
+import androidx.core.view.marginStart
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -41,6 +43,8 @@ class MyBankAccountFragment :
     private fun initToolbar() {
         binding.idToolbar.idBack.setOnClickListener { findNavController().popBackStack() }
         binding.idToolbar.idSearch.isVisible = false
+        binding.idToolbar.idTitle.textSize = 30.0f
+        binding.idToolbar.idTitle.text= getString(R.string.my_bank_account)
     }
 
 
@@ -63,6 +67,7 @@ class MyBankAccountFragment :
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             mViewModel.createBankResult = it.data.result
+                            mViewModel.bankList.clear()
                             mViewModel?.createBankResult?.userBankList?.let { it1 ->
                                 mViewModel.bankList.addAll(it1)
                             }
@@ -99,7 +104,7 @@ class MyBankAccountFragment :
 
         /*remove bank data observer */
 
-        mViewModel.getAddBankListData().observe(viewLifecycleOwner) {
+        mViewModel.getRemoveBankData().observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     ProcessDialog.dismissDialog()
@@ -109,7 +114,7 @@ class MyBankAccountFragment :
 
                         }
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showSnackBar(it.data.message)
+                           // showSnackBar(it.data.message)
                         }
                     }
                 }
@@ -152,7 +157,14 @@ class MyBankAccountFragment :
 
         when(position){
             1->{
-                mViewModel.getRemoveBankRequest(data)
+                if(mViewModel.bankList.size<=1){
+                    initAdapter()
+                    mViewModel.getRemoveBankRequest(data)
+                }else{
+                    mViewModel.getRemoveBankRequest(data)
+
+                }
+
             }
         }
     }

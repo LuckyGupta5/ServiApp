@@ -51,7 +51,6 @@ class BankListViewModel : BaseViewModel() {
     fun saveData() {
         if (checkValidation()) {
             addRequestValue()
-            Log.e("TAG", "checkBefore: ${Gson().toJson(bankAccountRequest)}")
             errorMessage.postValue(R.string.openbottomsheet)
         }
     }
@@ -80,7 +79,7 @@ class BankListViewModel : BaseViewModel() {
             errorMessage.postValue(R.string.please_enter_account_name)
             return false
 
-        } else if (accountName.value?.length!! < 13) {
+        } else if (accountNumber.value?.length!! < 13) {
             errorMessage.postValue(R.string.invalid_account_number)
             return false
         }

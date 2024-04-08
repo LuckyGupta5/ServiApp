@@ -18,6 +18,7 @@ import com.example.servivet.utils.Constants
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
+import com.example.servivet.utils.addCreditCardNumberFormattingTextWatcher
 import com.google.gson.Gson
 
 
@@ -43,6 +44,7 @@ class AddBankAccountFragment :
     override fun setupViews() {
         initToolbar()
         getBottomSheetCallBack()
+
     }
 
     private fun initToolbar() {
@@ -74,13 +76,13 @@ class AddBankAccountFragment :
                     ProcessDialog.dismissDialog()
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            showSnackBar(it.data.message)
+                          //  showSnackBar(it.data.message)
                             mViewModel.bankListResult = it.data.result
 
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showSnackBar(it.data.message)
+                          //  showSnackBar(it.data.message)
                         }
 
                     }
@@ -114,7 +116,7 @@ class AddBankAccountFragment :
         mViewModel.errorMessage.observe(viewLifecycleOwner) {
             when (getString(it)) {
                 getString(R.string.openbottomsheet) -> {
-                    //   findNavController().navigate(R.id.action_addBankAccountFragment_to_confirmBankAccountBottomSheet)
+                    binding.idSaveBtn.isEnabled = false
                     findNavController().navigate(
                         AddBankAccountFragmentDirections.actionAddBankAccountFragmentToConfirmBankAccountBottomSheet(
                             Gson().toJson(mViewModel.bankAccountRequest),
@@ -143,7 +145,8 @@ class AddBankAccountFragment :
                     )
                     when (data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            showSnackBar(data.message)
+                            findNavController().popBackStack()
+                           // showSnackBar(data.message)
                             // mViewModel.bankListResult = it.data.result
                         }
                         StatusCode.STATUS_CODE_FAIL -> {
@@ -193,6 +196,8 @@ class AddBankAccountFragment :
 
         findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>("acc_number")
             ?.observe(viewLifecycleOwner) {
+                binding.idSaveBtn.isEnabled = true
+
                 if (it.isNotEmpty()) {
                     mViewModel.bankAccountRequest.account_number = it
                     mViewModel.getCreateBankRequest()

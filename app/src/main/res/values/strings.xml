@@ -1,44 +1,44 @@
 <resources>
-    <string name="app_name">Servi</string>
-    <string name="servivet_require_this_permission">Servi need to allow this permission.</string>
+    <string name="app_name" translatable="false">Servi</string>
+    <string name="servivet_require_this_permission" translatable="false">Servi need to allow this permission.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <!--
     //google map key
     <string name="google_map_key">AIzaSyA18dEiaaZ69sQr0sgJvWcusLhTIAUqxbw</string>-->
-    <string name="google_map_key">AIzaSyDxvOzm-9yjdnd5L4iJrVDwk-_KbUkmN8A</string>
-    <string name="please_connect_to_the_internet">Please Connect to the internet.\n</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="google_map_key" translatable="false">AIzaSyDxvOzm-9yjdnd5L4iJrVDwk-_KbUkmN8A</string>
+    <string name="please_connect_to_the_internet" translatable="false">Please Connect to the internet.\n</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="choose_your_preferred_language">Choose your\n Preferred Language</string>
-    <string name="english">English</string>
-    <string name="hi_i_am_john_doe">Hi, I am John Doe.</string>
-    <string name="swahii">Swahili</string>
-    <string name="habari_mimi_ni_john_doe">Habari, mimi ni John Doe.</string>
-    <string name="zulu">Zulu</string>
-    <string name="gps_enable_message">You have to turn on GPS Location</string>
-    <string name="sawubona_ngingu_john_doe">Sawubona, ngingu-John Doe.</string>
-    <string name="continues">Continue</string>
-    <string name="skip">Skip</string>
-    <string name="next">Next</string>
-    <string name="get_started">Get Started</string>
-    <string name="clientel">Clientelé</string>
-    <string name="business">Business</string>
-    <string name="mobile_number">Mobile number</string>
-    <string name="we_will_send_you_a_confirmation_code">We will send you a confirmation code</string>
-    <string name="_123_456_7890">123–456-7890</string>
-    <string name="i_agree_to_terms_and_conditions_and_data_privacy_policies">I agree to Terms and Conditions and Data Privacy policies.</string>
-    <string name="verify">Verify</string>
-    <string name="please_enter_the_otp_sent_your_mobile_number">Please enter the OTP sent your mobile number.</string>
-    <string name="otp_verification">OTP Verification</string>
-    <string name="resend_otp_in_30_seconds">Resend OTP in 30 Seconds</string>
-    <string name="title_activity_home">HomeActivity</string>
+    <string name="english" translatable="false">English</string>
+    <string name="hi_i_am_john_doe" translatable="false">Hi, I am John Doe.</string>
+    <string name="swahii" translatable="false">Swahili</string>
+    <string name="habari_mimi_ni_john_doe" translatable="false">Habari, mimi ni John Doe.</string>
+    <string name="zulu" translatable="false">Zulu</string>
+    <string name="gps_enable_message" translatable="false">You have to turn on GPS Location</string>
+    <string name="sawubona_ngingu_john_doe" translatable="false">Sawubona, ngingu-John Doe.</string>
+    <string name="continues" translatable="false">Continue</string>
+    <string name="skip" translatable="false">Skip</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="get_started" translatable="false">Get Started</string>
+    <string name="clientel" translatable="false">Clientelé</string>
+    <string name="business" translatable="false">Business</string>
+    <string name="mobile_number" translatable="false">Mobile number</string>
+    <string name="we_will_send_you_a_confirmation_code" translatable="false">We will send you a confirmation code</string>
+    <string name="_123_456_7890" translatable="false">123–456-7890</string>
+    <string name="i_agree_to_terms_and_conditions_and_data_privacy_policies" translatable="false">I agree to Terms and Conditions and Data Privacy policies.</string>
+    <string name="verify" translatable="false">Verify</string>
+    <string name="please_enter_the_otp_sent_your_mobile_number" translatable="false">Please enter the OTP sent your mobile number.</string>
+    <string name="otp_verification" translatable="false">OTP Verification</string>
+    <string name="resend_otp_in_30_seconds" translatable="false">Resend OTP in 30 Seconds</string>
+    <string name="title_activity_home" translatable="false">HomeActivity</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="previous">Previous</string>
-    <string name="search_for_area_street_name_etc">Search for area, street name, etc...</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="previous" translatable="false">Previous</string>
+    <string name="search_for_area_street_name_etc" translatable="false">Search for area, street name, etc...</string>
 
 
-    <string name="lorem_ipsum">
+    <string name="lorem_ipsum" translatable="false">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
         dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
@@ -74,10 +74,10 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
-    <string name="home">Home</string>
-    <string name="chats">Chats</string>
-    <string name="bookings">Bookings</string>
-    <string name="profile">Profile</string>
+    <string name="home" translatable="false">Home</string>
+    <string name="chats" translatable="false">Chats</string>
+    <string name="bookings" translatable="false">Bookings</string>
+    <string name="profile" translatable="false">Profile</string>
     <string name="noida">Noida</string>
     <string name="sadarpur_sector_44_noida">Sadarpur, Sector-44  Noida</string>
     <string name="search_for_service_etc"><![CDATA[search for service & etc]]></string>

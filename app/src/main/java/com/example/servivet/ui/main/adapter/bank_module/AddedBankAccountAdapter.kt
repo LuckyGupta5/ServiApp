@@ -20,7 +20,9 @@ class AddedBankAccountAdapter(
             bankData = item
 
             idRemoveAccount.setOnClickListener {
-                onItemClick(item?._id?:"",1)
+                onItemClick(item?._id ?: "", 1)
+                list.removeAt(position)
+                notifyDataSetChanged()
             }
         }
 

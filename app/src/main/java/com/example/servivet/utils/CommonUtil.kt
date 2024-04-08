@@ -1341,5 +1341,19 @@ fun showDialog(context: Context, msg: String?, intent: Intent?) {
     dialog.show()
 }
 
+fun Activity.setLocal(languageName: String, types: Int) {
+//    Preferences.setStringPreference(this, LOCAL_LANGUAGE, languageName)
+//    UserPreference.datingPreferenceData
+    val local = Locale(languageName)
+    val configration = resources.configuration
+    val displayMatrix = resources.displayMetrics
+    configration.setLocale(local)
+    resources.updateConfiguration(configration, displayMatrix)
+    if (types == 2) {
+        startActivity(Intent(this, MainActivity::class.java))
+        finishAffinity()
+    }
+}
+
 
 

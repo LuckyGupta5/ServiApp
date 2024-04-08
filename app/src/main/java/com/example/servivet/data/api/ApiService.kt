@@ -219,7 +219,7 @@ interface ApiService {
     suspend fun createBankApi(@Body request: CommonRequest): String
 
     @POST("provider/bank/remove")
-    suspend fun removeBankAccount(request: RemoveBankAccountRequest): CommonResponse
+    suspend fun removeBankAccount(@Body request: RemoveBankAccountRequest): CommonResponse
 
 
 }

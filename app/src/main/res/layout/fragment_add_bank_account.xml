@@ -71,6 +71,7 @@
                 android:textSize="15sp" />
 
             <EditText
+                android:id="@+id/idAccountNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -80,6 +81,8 @@
                 android:hint="@string/enter_account_number"
                 android:paddingHorizontal="15dp"
                 android:paddingVertical="13dp"
+                android:maxLength="13"
+                app:addCreditCardNumberFormattingTextWatcher="true"
                 android:inputType="numberDecimal"
                 android:text="@={viewModel.accountNumber}"
                 android:textColor="@color/black"
@@ -203,6 +206,7 @@
 
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/idSaveBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"

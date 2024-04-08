@@ -5,6 +5,7 @@ import com.example.servivet.R
 import com.example.servivet.data.model.language_model.LanguageModel
 import com.example.servivet.databinding.LanguageRecylerBinding
 import com.example.servivet.ui.base.BaseAdapter
+import com.example.servivet.utils.Constants.SELECTED_LANGUAGE_POSITION
 
 class LanguageAdapter(
     val requireContext: Context,
@@ -12,7 +13,7 @@ class LanguageAdapter(
     val onItemClick: (String) -> Unit,
 ) : BaseAdapter<LanguageRecylerBinding, LanguageModel>(list) {
     override val layoutId: Int = R.layout.language_recyler
-    private var rawIndex = 0
+    private var rawIndex = SELECTED_LANGUAGE_POSITION
 
     override fun bind(binding: LanguageRecylerBinding, item: LanguageModel?, position: Int) {
         binding.apply {
@@ -24,7 +25,9 @@ class LanguageAdapter(
             rawIndex = position
             notifyItemChanged(copy)
             notifyItemChanged(rawIndex)
-            // item!!.isSelected = !(item.isSelected)
+            onItemClick(list[position].tag)
+            SELECTED_LANGUAGE_POSITION = position
+            //item!!.isSelected = !(item.isSelected)
         }
     }
 

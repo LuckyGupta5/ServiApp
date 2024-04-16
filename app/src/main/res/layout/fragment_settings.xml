@@ -118,7 +118,7 @@
                             android:fontFamily="@font/poppins_regular"
                             android:maxLength="65"
                             android:maxLines="2"
-                            android:text="@string/lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut"
+                            android:text="@string/dummy_string"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
                     </LinearLayout>

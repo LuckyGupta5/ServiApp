@@ -82,7 +82,6 @@
                 android:paddingHorizontal="15dp"
                 android:paddingVertical="13dp"
                 android:maxLength="13"
-                app:addCreditCardNumberFormattingTextWatcher="true"
                 android:inputType="numberDecimal"
                 android:text="@={viewModel.accountNumber}"
                 android:textColor="@color/black"

@@ -14,16 +14,11 @@ object SocketManager {
 
     init {
         val socketUrl = "http://13.235.137.221:3476"
-        //val socketUrl = "https://3618-122-176-117-180.ngrok-free.app"
-
         val token = Session.token
         try {
             val options = IO.Options().apply {
                 auth = mapOf("token" to token)
             }
-            Log.e("TAG", "socketDAta:${socketUrl} ")
-            Log.e("TAG", "socketDAta:${options} ")
-
             socket = IO.socket(socketUrl, options)
         } catch (e: URISyntaxException) {
             e.printStackTrace()

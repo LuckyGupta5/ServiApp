@@ -319,7 +319,7 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
         pendingIntent = PendingIntent.getActivity(
             this,
             0,
-            intent,
+             intent,
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
 
@@ -408,11 +408,7 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
         super.handleIntent(intent)
         notificationData = intent!!.getStringExtra("customData") ?: ""
         Log.e("TAG", "handleIntent: ${notificationData}")
-
         sendNotification1(title, message)
-
-        // if (notificationData != null)
-        //  Session.saveNotificationData(notificationData!!)
     }
 
 

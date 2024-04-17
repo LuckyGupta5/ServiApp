@@ -2,6 +2,7 @@ package com.example.servivet.ui.main.view_model
 
 import android.app.Activity
 import android.content.Context
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -19,6 +20,7 @@ import com.example.servivet.utils.PreciseCountdown
 import com.example.servivet.utils.Resource
 import com.example.servivet.utils.SingleLiveEvent
 import com.example.servivet.utils.StatusCode
+import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
@@ -73,6 +75,7 @@ class OtpViewModel : BaseViewModel() {
 
     fun hitVerifyOtpApi(context: Context, requireActivity: Activity, finishing: Boolean) {
         val mainRepository = MainRepository(RetrofitBuilder.apiService)
+        Log.e("TAG", "hitVerifyOtpApi: ${Gson().toJson(verifyOtpRequest)}", )
         viewModelScope.launch {
             verifyOtpResponse.postValue(Resource.loading(null))
             try {

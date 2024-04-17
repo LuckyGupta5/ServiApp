@@ -4,6 +4,23 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="clickEvent"
+            type="kotlin.jvm.functions.Function1" />
+
+        <variable
+            name="type"
+            type="Integer" />
+
+        <variable
+            name="loginAs"
+            type="Integer" />
+
+        <variable
+            name="checkUserType"
+            type="String" />
 
         <variable
             name="data"
@@ -117,7 +134,8 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="4dp"
                     android:gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="@{loginAs == 1?View.VISIBLE:View.GONE}">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -146,7 +164,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:gravity="center_horizontal"
                         android:maxLines="1"
-                        android:text="@string/at_centre"
+                        android:text="@{data.serviceDetail.serviceMode.atHome?@string/at_home:@string/at_center}"
                         android:textColor="@color/grey_717171"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -182,7 +200,7 @@
                         android:layout_marginStart="5dp"
                         android:fontFamily="@font/poppins_semi_bold"
                         android:maxLength="12"
-                        android:text="@string/booking_id_num"
+                        android:text="@{data.bookingId}"
                         android:textColor="@color/black_2"
                         android:textSize="15dp" />
 
@@ -199,7 +217,7 @@
                             android:fontFamily="@font/poppins_regular"
                             android:paddingHorizontal="9dp"
                             android:paddingVertical="5dp"
-                            android:text="@string/individual"
+                            android:text="@{loginAs == 2?data.bookedFor:data.serviceDetail.bussinessType==3?@string/individual:@string/institutional}"
                             android:textColor="@color/app_theme"
                             android:textSize="11sp" />
                     </LinearLayout>
@@ -209,6 +227,51 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/grey_F3F3F3" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="22dp"
+                    android:orientation="horizontal"
+                    android:visibility="@{(loginAs == 2 &amp;&amp; checkUserType.equals(@string/sold_small)) ? View.VISIBLE : View.GONE}">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/booked_by_icon" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/poppins_medium"
+                            android:maxLines="1"
+                            android:text="@string/booked_by"
+                            android:textColor="@color/black_000"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:id="@+id/idBookedByName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/poppins_regular"
+                            android:maxLines="1"
+                            android:text="@{data.userDetail.name}"
+                            android:textColor="@color/grey_6E6E6E"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -254,12 +317,14 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/idLocationContainer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="19dp"
                     android:layout_marginTop="22dp"
                     android:layout_marginBottom="27dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="@{data.address.empty?View.GONE:View.VISIBLE}">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -290,7 +355,7 @@
                             android:ellipsize="end"
                             android:fontFamily="@font/poppins_regular"
                             android:maxLines="1"
-                            android:text="@string/a_199_sector_63_noida"
+                            android:text="@{data.address}"
                             android:textColor="@color/grey_6E6E6E"
                             android:textSize="15sp" />
                     </LinearLayout>
@@ -307,14 +372,6 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="15dp"
                     android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
-                        android:text="@string/payment_info"
-                        android:textColor="@color/black_2"
-                        android:textSize="17sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -338,13 +395,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:drawableStart="@drawable/rupree_icon"
                             android:drawablePadding="3dp"
                             android:ellipsize="end"
                             android:fontFamily="@font/poppins_regular"
                             android:gravity="end"
                             android:maxLength="10"
-                            android:text="@string/_1420"
+                            android:text='@{@string/r+" "+data.baseAmount}'
                             android:textColor="@color/black_242424"
                             android:textSize="15dp" />
                     </LinearLayout>
@@ -361,7 +417,7 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/poppins_regular"
                             android:maxLength="25"
-                            android:text="@string/gst_18"
+                            android:text="Tax"
                             android:textColor="@color/black_242424"
                             android:textSize="15dp" />
 
@@ -370,14 +426,45 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:drawableStart="@drawable/rupree_icon"
                             android:drawablePadding="3dp"
                             android:ellipsize="end"
                             android:fontFamily="@font/poppins_regular"
                             android:gravity="end"
                             android:maxLength="10"
                             android:maxLines="1"
-                            android:text="@string/_25"
+                            android:text='@{@string/r+" "+data.taxAmount}'
+                            android:textColor="@color/black_242424"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:visibility="@{data.coupon.isCouponApply?View.VISIBLE:View.GONE}"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/poppins_regular"
+                            android:maxLength="25"
+                            android:text='@{@string/promocode+" "+data.coupon.couponCode}'
+                            android:textColor="@color/black_242424"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/idCouponAmount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:drawablePadding="3dp"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="end"
+                            android:maxLength="10"
+                            android:maxLines="1"
+                            android:text='@{@string/r+" "+data.coupon.couponAmount}'
                             android:textColor="@color/black_242424"
                             android:textSize="15sp" />
                     </LinearLayout>
@@ -408,12 +495,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:drawableStart="@drawable/rupree_icon"
                             android:drawablePadding="3dp"
                             android:fontFamily="@font/poppins_medium"
                             android:gravity="end"
                             android:maxLength="15"
-                            android:text="@string/_1524"
+                            android:text='@{@string/r+" "+data.paidAmount}'
                             android:textColor="@color/black_242424"
                             android:textSize="15sp" />
                     </LinearLayout>
@@ -451,7 +537,7 @@
                         android:ellipsize="end"
                         android:fontFamily="@font/poppins_regular"
                         android:maxLines="1"
-                        android:text="@string/credit_card"
+                        android:text='@{data.paymentMode.equals(@string/wallet)?@string/wallet:data.paymentMode.equals(@string/paymentGateway)?data.payBy:"wallet"+" + "+data.payBy}'
                         android:textColor="@color/grey_6E6E6E"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -461,7 +547,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="visible">
+                    android:visibility="@{type == 3?View.VISIBLE:View.GONE}">
 
                     <View
                         android:layout_width="match_parent"
@@ -552,7 +638,7 @@
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:visibility="visible">
+                android:visibility="@{type==2?View.VISIBLE:View.GONE}">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -584,7 +670,7 @@
                         android:fontFamily="@font/poppins_semi_bold"
                         android:maxLength="8"
                         android:stateListAnimator="@null"
-                        android:text="@string/_1524"
+                        android:text="@{data.paidAmount}"
                         android:textAllCaps="false"
                         android:textColor="@color/black_242424"
                         android:textSize="19sp"
@@ -600,7 +686,7 @@
                     android:background="@drawable/apptheme_outline_with_solid_white_corner_12"
                     android:backgroundTint="@null"
                     android:fontFamily="@font/poppins_medium"
-                    android:onClick="@{click::gotoBookingSummary}"
+                    android:onClick="@{()->clickEvent.invoke(@string/book_again)}"
                     android:stateListAnimator="@null"
                     android:text="@string/book_again"
                     android:textAllCaps="false"
@@ -617,13 +703,47 @@
                 android:background="@drawable/apptheme_outline_with_solid_white_corner_12"
                 android:backgroundTint="@null"
                 android:fontFamily="@font/poppins_medium"
+                android:onClick="@{()->clickEvent.invoke(@string/mark_as_completed)}"
                 android:stateListAnimator="@null"
                 android:text="@string/mark_as_completed"
                 android:textAllCaps="false"
                 android:textColor="@color/app_theme"
                 android:textSize="19sp"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:backgroundTint="@null" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/idNotCancellable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/red_dot_bg"
+                android:backgroundTint="@null"
+                android:fontFamily="@font/poppins_medium"
+                android:stateListAnimator="@null"
+                android:text="@string/not_cancelable"
+                android:textAllCaps="false"
+                android:textColor="@color/carnation"
+                android:textSize="19sp"
+                android:visibility="gone"
+                app:backgroundTint="@null" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/idCancelBooking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/apptheme_outline_with_solid_white_corner_12"
+                android:backgroundTint="@color/app_theme"
+                android:fontFamily="@font/poppins_medium"
+                android:stateListAnimator="@null"
+                android:text="@string/cancel_booking"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="19sp"
+                android:visibility="gone"
+                app:backgroundTint="@null" />
+            <!--                android:visibility="@{(loginAs == 1 &amp;&amp; type == 0) ? View.VISIBLE : View.GONE}"
+-->
 
             <LinearLayout
                 android:id="@+id/reSchedule_layout"
@@ -662,6 +782,7 @@
                     android:backgroundTint="@null"
                     android:fontFamily="@font/poppins_medium"
                     android:maxLines="1"
+                    android:onClick="@{()->clickEvent.invoke(@string/reschedule)}"
                     android:stateListAnimator="@null"
                     android:text="@string/reschedule"
                     android:textAllCaps="false"
@@ -669,6 +790,63 @@
                     android:textSize="17sp"
                     app:backgroundTint="@null" />
             </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/payment_info"
+                android:textColor="@color/black_2"
+                android:textSize="17sp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/acceptRejectLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/idReject"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="15sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle_button_color_grey_e8e8e8_12dp"
+                    android:backgroundTint="@null"
+                    android:fontFamily="@font/poppins_medium"
+                    android:onClick="@{()->clickEvent.invoke(@string/reject)}"
+                    android:stateListAnimator="@null"
+                    android:text="@string/reject"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black_2"
+                    android:textSize="17sp"
+                    app:backgroundTint="@null" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/idAccept"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="15sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_corner_grey_12dp"
+                    android:backgroundTint="@null"
+                    android:fontFamily="@font/poppins_medium"
+                    android:maxLines="1"
+                    android:onClick="@{()->clickEvent.invoke(@string/accept)}"
+                    android:stateListAnimator="@null"
+                    android:text="@string/accept"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    app:backgroundTint="@null" />
+            </LinearLayout>
+
         </LinearLayout>
     </RelativeLayout>
 </layout>

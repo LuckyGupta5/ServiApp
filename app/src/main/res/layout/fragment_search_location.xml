@@ -3,14 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.servivet.ui.main.view_model.SearchLocationViewModel" />
+
         <variable
             name="click"
             type="com.example.servivet.ui.main.view_model.SearchLocationViewModel.ClickAction" />
 
     </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,24 +26,24 @@
             android:layout_height="wrap_content"
             android:elevation="1dp"
             android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
-                android:onClick="@{click::backBtn}"
                 android:layout_marginStart="20dp"
-                android:background="@drawable/back_circle_btn"/>
+                android:layout_marginTop="60dp"
+                android:background="@drawable/back_circle_btn"
+                android:onClick="@{click::backBtn}" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="20dp"
                 android:layout_marginTop="57dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginBottom="13dp"
                 android:background="@drawable/light_grey_round_corner_12_dp"
                 android:orientation="horizontal">
-
 
 
                 <fragment
@@ -62,93 +65,96 @@
             android:background="@color/light_grey">
 
 
-        <LinearLayout
-            android:id="@+id/currentLocationLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
-            android:background="@color/white"
-            android:orientation="horizontal"
-            android:paddingHorizontal="15dp"
-            android:paddingVertical="15dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/current_location" />
-
             <LinearLayout
+                android:id="@+id/currentLocationLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:orientation="vertical">
+                android:layout_marginTop="13dp"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="15dp">
 
-                <TextView
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/current_location" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="@string/current_location"
-                    android:textColor="@color/black"
-                    android:textSize="17dp" />
+                    android:layout_marginStart="20dp"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="@string/using_gps"
-                    android:textColor="#A3153745"
-                    android:textSize="15dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="@string/current_location"
+                        android:textColor="@color/black"
+                        android:textSize="17dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/using_gps"
+                        android:textColor="#A3153745"
+                        android:textSize="15dp" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:background="@color/white"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/currentLocationLayout"
-                android:layout_height="wrap_content">
+                android:visibility="gone"
+                android:background="@color/white">
 
-        <View
-            android:id="@+id/view1"
-            android:layout_width="match_parent"
-            android:background="@color/light_grey"
-            android:layout_height="1dp"/>
-
-
-        <TextView
-            android:id="@+id/or"
-            android:layout_below="@+id/view1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_marginStart="56dp"
-            android:text="@string/or"
-            android:textSize="15dp"
-            android:fontFamily="@font/poppins_medium"
-            android:layout_marginVertical="15dp"
-            android:textColor="#A3153745"/>
-        <View
-            android:id="@+id/view2"
-            android:layout_below="@+id/or"
-            android:layout_width="match_parent"
-            android:background="@color/light_grey"
-            android:layout_height="1dp"/>
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/light_grey" />
 
 
-        <TextView
-            android:layout_below="@+id/view2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/app_theme"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="17dp"
-            android:onClick="@{click::gottoManualMap}"
-            android:drawablePadding="16dp"
-            android:drawableStart="@drawable/manual_location"
-            android:layout_marginHorizontal="20dp"
-            android:layout_gravity="center_horizontal"
-            android:paddingVertical="16dp"
-            android:text="@string/enter_location_manually"/>
+                <TextView
+                    android:id="@+id/or"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/view1"
+                    android:layout_marginVertical="15dp"
+                    android:layout_marginStart="56dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center_horizontal"
+                    android:text="@string/or"
+                    android:textColor="#A3153745"
+                    android:textSize="15dp" />
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/or"
+                    android:background="@color/light_grey" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/view2"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginHorizontal="20dp"
+                    android:drawableStart="@drawable/manual_location"
+                    android:drawablePadding="16dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:onClick="@{click::gottoManualMap}"
+                    android:paddingVertical="16dp"
+                    android:text="@string/enter_location_manually"
+                    android:textColor="@color/app_theme"
+                    android:textSize="17dp" />
             </RelativeLayout>
 
         </RelativeLayout>

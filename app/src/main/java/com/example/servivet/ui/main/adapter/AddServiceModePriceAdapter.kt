@@ -44,15 +44,13 @@ class AddServiceModePriceAdapter(var context: Context, var list: ArrayList<Custo
         binding.addHour.setOnClickListener {
             if (item?.daysList!![daysPosition!!].slotList?.get(item?.daysList!![daysPosition!!].slotList?.size!! - 1)!!.startTime == "") {
                 Toast.makeText(context, "Choose the start time", Toast.LENGTH_SHORT).show()
-            } else if (item?.daysList!![daysPosition!!].slotList?.get(item?.daysList!![daysPosition!!].slotList?.size!! - 1)!!.endTime == "") {
+            } else if (item.daysList!![daysPosition!!].slotList?.get(item.daysList!![daysPosition!!].slotList?.size!! - 1)!!.endTime == "") {
                 Toast.makeText(context, "Choose the end time", Toast.LENGTH_SHORT).show()
-            }else if(!CommonUtils.checkDates(item?.daysList!![daysPosition!!].slotList?.get(item?.daysList!![daysPosition!!].slotList?.size!! - 1)!!.startTime!!,
-                    item?.daysList!![daysPosition!!].slotList?.get(item?.daysList!![daysPosition!!].slotList?.size!! - 1)!!.endTime!!
-                )){
+            }else if(!CommonUtils.checkDates(item.daysList!![daysPosition!!].slotList?.get(item.daysList!![daysPosition!!].slotList?.size!! - 1)!!.startTime!!, item.daysList!![daysPosition!!].slotList?.get(item.daysList!![daysPosition!!].slotList?.size!! - 1)!!.endTime!!)){
                 Toast.makeText(context, "Start time should not be greater than end time", Toast.LENGTH_SHORT).show()
             } else if (item?.daysList!![daysPosition!!].slotList?.size!! < 4) {
 
-                item.daysList!![daysPosition!!].slotList?.add(ServiceListSlot("", "", ""))
+                item.daysList!![daysPosition!!].slotList?.add(ServiceListSlot("", "10", ""))
                 listener(CallBackData(item!!, position))
             }
         }
@@ -79,7 +77,7 @@ class AddServiceModePriceAdapter(var context: Context, var list: ArrayList<Custo
 
                 var newDayslist = ArrayList<AddServiceFragment.Days>()
                 for (i in item?.daysList!!.indices) {
-                    if (item.daysList!![i].slotList?.get(0)?.startTime != "") {
+                    if (item.daysList!![i].slotList?.get(0)?.startTime != null && item.daysList!![i].slotList?.get(0)?.startTime != ""  ) {
                         newDayslist.add(item.daysList!![i])
 
                     }

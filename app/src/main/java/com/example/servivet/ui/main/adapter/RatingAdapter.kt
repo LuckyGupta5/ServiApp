@@ -12,7 +12,7 @@ import com.example.servivet.utils.interfaces.ListAdapterItem
 class RatingAdapter(
     var context: Context,
     var list: ArrayList<ListAdapterItem>,
-    onItemClick: (String, String) -> Unit,
+    onItemClick: (String, String,Int) -> Unit,
     val reviews: RatingReviews
 ) :
     BaseAdapter<CustomRatingbarLayoutBinding, ListAdapterItem>(list) {

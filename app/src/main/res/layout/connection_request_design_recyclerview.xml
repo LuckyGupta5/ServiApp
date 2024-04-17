@@ -1,119 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
-            name="click"
-            type="com.example.servivet.ui.main.view_model.ConnectionRequestViewModel.ClickAction" />
-
-
+            name="listData"
+            type="com.example.servivet.data.model.connection.connection_list.responnse.MyConnection" />
     </data>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:background="@color/white"
-        android:layout_marginTop="15sp"
-        android:layout_marginStart="10sp"
-        android:layout_height="wrap_content">
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/img"
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="15sp"
+        android:background="@color/white">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/idProfileImage"
             android:layout_width="62dp"
             android:layout_height="62dp"
-            android:src="@mipmap/profile_background_icon" />
+            android:imageViewUrl="@{listData.userDetail.image}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <RelativeLayout
-            android:id="@+id/toplayout"
-            android:layout_toRightOf="@+id/img"
+
+        <TextView
+            android:id="@+id/idName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:layout_marginEnd="20dp"
-            android:layout_width="match_parent"
-            android:layout_marginStart="13dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="wrap_content"
-                    android:textSize="14dp"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textColor="@color/black"
-                    android:maxLines="2"
-                    android:layout_marginBottom="2dp"
-                    android:layout_marginEnd="5dp"
-                    android:ellipsize="end"
-                    android:text="@string/ravi_bishnoi_sent_you_a_connections_request"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_toRightOf="@+id/name"
-                    android:layout_width="wrap_content"
-                    android:textSize="13dp"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textColor="@color/black_2"
-                    android:maxLines="2"
-                    android:visibility="gone"
-                    android:layout_marginEnd="20dp"
-                    android:ellipsize="end"
-                    android:text="@string/hello_abhishek_how_are_you"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="11dp"
-                    android:layout_below="@+id/name"
-                    android:layout_marginEnd="20dp"
-                    android:maxLength="15"
-                    android:fontFamily="@font/poppins_regular"
-                    android:layout_marginTop="4dp"
-                    android:textColor="#818181"
-                    android:text="@string/_10_30_am"/>
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_regular"
+            android:maxLines="2"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/idProfileImage"
+            app:layout_constraintTop_toTopOf="@id/idProfileImage" />
 
-        </RelativeLayout>
-
-        <LinearLayout
-            android:id="@+id/btnLayout"
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
+            android:layout_toRightOf="@+id/idName"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_regular"
+            android:maxLines="2"
+            android:text="@string/hello_abhishek_how_are_you"
+            android:textColor="@color/black_2"
+            android:textSize="13dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/idTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/poppins_regular"
+            android:maxLength="15"
+            android:text="@string/_10_30_am"
+            android:textColor="#818181"
+            android:textSize="11dp"
+            app:layout_constraintStart_toStartOf="@id/idName"
+            app:layout_constraintTop_toBottomOf="@id/idName" />
+
+
+        <TextView
+            android:id="@+id/idDeclineBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginStart="13dp"
-            android:layout_toEndOf="@+id/img"
-            android:layout_below="@+id/toplayout"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:text="@string/decline"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:paddingVertical="7dp"
-                android:layout_marginEnd="15dp"
-                android:textSize="15dp"
-                android:background="@drawable/rectangle_grey_e9ebea_8dp"
-                android:textColor="@color/black_2"
-                android:fontFamily="@font/poppins_medium"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:text="@string/accept"
-                android:textSize="15dp"
-                android:layout_marginStart="15dp"
-                android:background="@drawable/round_corner_app_theme_8dp"
-                android:textColor="@color/white"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:paddingVertical="7dp"
-                android:fontFamily="@font/poppins_medium"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"/>
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/rectangle_grey_e9ebea_8dp"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:paddingVertical="7dp"
+            android:text="@string/decline"
+            android:textColor="@color/black_2"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@id/idAccept"
+            app:layout_constraintStart_toEndOf="@id/idProfileImage"
+            app:layout_constraintTop_toBottomOf="@id/idTime" />
 
-        </LinearLayout>
+        <TextView
+            android:id="@+id/idAccept"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_corner_app_theme_8dp"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:paddingVertical="7dp"
+            android:text="@string/accept"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/idDeclineBtn"
+            app:layout_constraintTop_toBottomOf="@id/idTime" />
+
+
         <View
-            android:layout_toRightOf="@+id/img"
-            android:layout_below="@+id/btnLayout"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginStart="13dp"
             android:layout_marginTop="15dp"
-            android:background="@color/grey_F3F3F3" />
+            android:background="@color/grey_F3F3F3"
+            app:layout_constraintTop_toBottomOf="@id/idDeclineBtn" />
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

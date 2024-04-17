@@ -3,16 +3,14 @@ package com.example.servivet.ui.main.view_model
 import android.view.View
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
-import com.example.servivet.R
 import com.example.servivet.data.api.RetrofitBuilder
-import com.example.servivet.data.model.accept_booking.request.AcceptBookingRequest
-import com.example.servivet.data.model.accept_booking.response.AcceptBookingResponse
 import com.example.servivet.data.model.booking_detail.request.BookingDetailRequest
 import com.example.servivet.data.model.booking_detail.response.BookingDetailResponse
 import com.example.servivet.data.repository.MainRepository
 import com.example.servivet.ui.base.BaseViewModel
 import com.example.servivet.ui.main.fragment.BookingDetailsFragmentDirections
 import com.example.servivet.utils.Resource
+import com.example.servivet.utils.Session
 import com.example.servivet.utils.SingleLiveEvent
 import com.example.servivet.utils.StatusCode
 import kotlinx.coroutines.launch
@@ -23,7 +21,9 @@ class BookingDetailsViewModel :BaseViewModel() {
     var bookingDetailRequest= BookingDetailRequest()
     inner class ClickAction(){
         fun backbtn(view:View){
-            view.findNavController().popBackStack()
+          //  view.findNavController().popBackStack()
+            view.findNavController().navigateUp()
+
         }
         fun gotoBookingSummary(view: View){
             view.findNavController().navigate(BookingDetailsFragmentDirections.actionBookingDetailsFragmentToBookingSummaryFragment("",""))
@@ -31,7 +31,16 @@ class BookingDetailsViewModel :BaseViewModel() {
 
     }
 
-    fun hitBookingDetailApi(){
+    fun getBookingDetailsRequest(bookingId: String) {
+        bookingDetailRequest.apply {
+           this.bookingId = bookingId
+            isMybooking= Session.type =="1"
+        }
+        hitBookingDetailApi()
+
+    }
+
+    private fun hitBookingDetailApi(){
         val repository = MainRepository(RetrofitBuilder.apiService)
 
         bookingDetailResponse.postValue(Resource.loading(null))

@@ -1,4 +1,5 @@
 package com.example.servivet.ui.main.fragment
+
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.servivet.R
 import com.example.servivet.data.model.review_ratinng.ReviewRating
 import com.example.servivet.data.model.service_category_details.response.RatingReviews
+import com.example.servivet.data.model.service_category_details.response.ServiceDetail
 import com.example.servivet.data.model.service_list.response.ServiceList
 import com.example.servivet.databinding.FragmentSubCategoryDetailsBinding
 import com.example.servivet.ui.base.BaseFragment
@@ -25,52 +27,69 @@ import com.example.servivet.utils.Constants
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
+import com.google.gson.Gson
 import java.text.DecimalFormat
 import kotlin.math.max
 import kotlin.math.min
 
-class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBinding, SubCategoryDetailsViewModel>(R.layout.fragment_sub_category_details) {
-    override val binding: FragmentSubCategoryDetailsBinding by viewBinding(FragmentSubCategoryDetailsBinding::bind)
+class SubCategoryDetailsFragment :
+    BaseFragment<FragmentSubCategoryDetailsBinding, SubCategoryDetailsViewModel>(R.layout.fragment_sub_category_details) {
+    override val binding: FragmentSubCategoryDetailsBinding by viewBinding(
+        FragmentSubCategoryDetailsBinding::bind
+    )
     override val mViewModel: SubCategoryDetailsViewModel by viewModels()
-    private val reportViewModel:RatingReportViewModel by viewModels()
-    private val reviewViewModel:RatingReviewViewModel by viewModels()
+    private val reportViewModel: RatingReportViewModel by viewModels()
+    private val reviewViewModel: RatingReviewViewModel by viewModels()
     private val ratingList = ArrayList<ReviewRating>()
-    private lateinit var reviews:RatingReviews
-    private lateinit var smallest:String
-    private lateinit var largest:String
-    var serviceData: ServiceList?=null
+    private lateinit var reviews: RatingReviews
+    private lateinit var smallest: String
+    private lateinit var largest: String
+    var serviceData: ServiceList? = null
+    private lateinit var serviceDetails: ServiceDetail
+    private var mediaList = ArrayList<String>()
     override fun isNetworkAvailable(boolean: Boolean) {
     }
 
-    override fun setupViewModel() {
-
-
-    }
-
-
-
-
+    override fun setupViewModel() {}
     private fun initRatingAdapter() {
-        binding.ratingAdapter = RatingAdapter(requireContext(), ArrayList(),onItemClick,reviews)
+        binding.ratingAdapter = RatingAdapter(requireContext(), ArrayList(), onItemClick, reviews)
 
     }
 
     override fun setupViews() {
 
-        serviceData= arguments?.getSerializable(Constants.DATA) as ServiceList?
-        mViewModel.serviceCategoryDetailsRequest.serviceId=serviceData!!._id
-        Log.e("TAG", "setupViews11: ${serviceData!!._id}", )
+        serviceData = arguments?.getSerializable(Constants.DATA) as ServiceList?
+        mViewModel.serviceCategoryDetailsRequest.serviceId = serviceData!!._id
+        Log.e("TAG", "setupViews11: ${serviceData!!._id}")
 
         binding.apply {
-            lifecycleOwner=viewLifecycleOwner
-            viewModel=mViewModel
-            click=mViewModel.ClickAction(requireActivity(),binding,serviceData!!._id!!)
+            lifecycleOwner = viewLifecycleOwner
+            viewModel = mViewModel
+            click = mViewModel.ClickAction(requireActivity(), binding, serviceData!!._id!!)
+            clickEvents = ::onClick
         }
 
 
-        mViewModel.hitServiceDetailsAPI(requireContext(),requireActivity(),requireActivity().isFinishing)
+        mViewModel.hitServiceDetailsAPI(
+            requireContext(),
+            requireActivity(),
+            requireActivity().isFinishing
+        )
         initReviewViewModel()
         initReportViewModel()
+    }
+
+    private fun onClick(type: Int) {
+        when (type) {
+            0 -> {
+                findNavController().navigate(
+                    SubCategoryDetailsFragmentDirections.actionSubCategoryDetailsFragmentToProviderProfileFragment(
+                        serviceDetails.createdBy?._id?:"", ""
+                    )
+                )
+            }
+
+        }
     }
 
     override fun setupObservers() {
@@ -80,28 +99,43 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
                     ProcessDialog.dismissDialog()
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            binding.data=it.data.result!!.serviceDetail
+                            serviceDetails = it.data.result!!.serviceDetail!!
+                            binding.data =serviceDetails
                             reviews = it.data.result.serviceDetail?.ratingReview!!
-                            setImageAdapter(it.data.result.serviceDetail.images!!)
-                            smallest = min(it.data.result.serviceDetail.atCenterPrice?:0.0, it.data.result.serviceDetail.atHomePrice?:0.0).toString()
-                            largest = max(it.data.result.serviceDetail.atCenterPrice?:0.0,it.data.result.serviceDetail.atHomePrice?:0.0).toString()
-                            binding.smallest.text=commaSaparator(smallest.toDouble()).toString()
-                            binding.largest.text=commaSaparator(largest.toDouble()).toString()
+                            mediaList.clear()
+                            mediaList.addAll(it.data.result.serviceDetail.images!!)
+                            setImageAdapter(mediaList)
+                            smallest = min(
+                                it.data.result.serviceDetail.atCenterPrice ?: 0.0,
+                                it.data.result.serviceDetail.atHomePrice ?: 0.0
+                            ).toString()
+                            largest = max(
+                                it.data.result.serviceDetail.atCenterPrice ?: 0.0,
+                                it.data.result.serviceDetail.atHomePrice ?: 0.0
+                            ).toString()
+                            binding.smallest.text = commaSaparator(smallest.toDouble()).toString()
+                            binding.largest.text = commaSaparator(largest.toDouble()).toString()
                             checkVisibility()
-                            if(it.data.result.serviceDetail.images.isNotEmpty()&&it.data.result.serviceDetail.images!=null)
-                                 Glide.with(requireContext()).load(it.data.result.serviceDetail.images!![0]).into(binding.image2)
+                            mediaList?.let {
+                                Glide.with(requireContext())
+                                    .load(mediaList[0])
+                                    .into(binding.image2)
+                            }
                             initRatingAdapter()
 
                         }
+
                         StatusCode.STATUS_CODE_FAIL -> {
                             showSnackBar(it.data.message!!)
                         }
 
                     }
                 }
+
                 Status.LOADING -> {
                     ProcessDialog.startDialog(requireContext())
                 }
+
                 Status.ERROR -> {
                     ProcessDialog.dismissDialog()
 
@@ -110,6 +144,7 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
 
                     }
                 }
+
                 Status.UNAUTHORIZED -> {
                     CommonUtils.logoutAlert(
                         requireContext(),
@@ -126,8 +161,9 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
 
     private fun checkVisibility() {
         binding.smallest.isVisible = smallest != "0.0"
-        binding.idView.isVisible = smallest!="0.0"
-        binding.largest.isVisible = largest!="0.0"    }
+        binding.idView.isVisible = smallest != "0.0"
+        binding.largest.isVisible = largest != "0.0"
+    }
 
     private fun initReviewViewModel() {
         serviceData!!._id?.let { reviewViewModel.getReviewRequest(it) }
@@ -137,20 +173,24 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
                     ProcessDialog.dismissDialog()
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                           // showSnackBar(it.data.message!!)
+                            // showSnackBar(it.data.message!!)
+                            ratingList.clear()
                             ratingList.addAll(it.data.result.ratingList)
                             initReviewAdapter()
 
                         }
+
                         StatusCode.STATUS_CODE_FAIL -> {
                             showSnackBar(it.data.message!!)
                         }
 
                     }
                 }
+
                 Status.LOADING -> {
                     ProcessDialog.startDialog(requireContext())
                 }
+
                 Status.ERROR -> {
                     ProcessDialog.dismissDialog()
 
@@ -159,14 +199,21 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
 
                     }
                 }
+
                 Status.UNAUTHORIZED -> {
-                    CommonUtils.logoutAlert(requireContext(), "Session Expired", "Unauthorized User", requireActivity())
+                    CommonUtils.logoutAlert(
+                        requireContext(),
+                        "Session Expired",
+                        "Unauthorized User",
+                        requireActivity()
+                    )
                 }
             }
-        }    }
+        }
+    }
 
     private fun initReviewAdapter() {
-        binding.reviewAdapter = RatingReviewAdapter(requireContext(),ratingList,onItemClick)
+        binding.reviewAdapter = RatingReviewAdapter(requireContext(), ratingList, onItemClick)
     }
 
     private fun initReportViewModel() {
@@ -179,15 +226,18 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
                             showSnackBar(it.data.message!!)
 
                         }
+
                         StatusCode.STATUS_CODE_FAIL -> {
                             showSnackBar(it.data.message!!)
                         }
 
                     }
                 }
+
                 Status.LOADING -> {
                     ProcessDialog.startDialog(requireContext())
                 }
+
                 Status.ERROR -> {
                     ProcessDialog.dismissDialog()
 
@@ -196,8 +246,14 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
 
                     }
                 }
+
                 Status.UNAUTHORIZED -> {
-                    CommonUtils.logoutAlert(requireContext(), "Session Expired", "Unauthorized User", requireActivity())
+                    CommonUtils.logoutAlert(
+                        requireContext(),
+                        "Session Expired",
+                        "Unauthorized User",
+                        requireActivity()
+                    )
                 }
             }
         }
@@ -207,23 +263,35 @@ class SubCategoryDetailsFragment : BaseFragment<FragmentSubCategoryDetailsBindin
     private fun setImageAdapter(list: ArrayList<String>) {
         if (list != null && list.isNotEmpty()) {
             binding.imageRecycler.visibility = View.VISIBLE
-            binding.imageRecycler.adapter=ServiceDetailsImgAdapter(requireContext(),list)
+            binding.imageRecycler.adapter = ServiceDetailsImgAdapter(requireContext(), list, onItemClick)
         } else {
             binding.imageRecycler.visibility = View.GONE
         }
     }
+
     fun commaSaparator(number: Double?): String? {
         val formatter = DecimalFormat("#,###,###")
         return formatter.format(number)
     }
 
-    private val onItemClick:(String, String)->Unit = { identifier, data->
-        when(identifier){
-            getString(R.string.report)->{
-                val bundle= Bundle()
-                bundle.putString("id",data)
-                findNavController().navigate(R.id.action_subCategoryDetailsFragment_to_ratingReportBottomSheetFragment,bundle)
-               // reportViewModel.getReportRatingRequest(data)
+    private val onItemClick: (String, String, Int) -> Unit = { identifier, data, position ->
+        when (identifier) {
+            getString(R.string.report) -> {
+                val bundle = Bundle()
+                bundle.putString("id", data)
+                findNavController().navigate(
+                    R.id.action_subCategoryDetailsFragment_to_ratingReportBottomSheetFragment,
+                    bundle
+                )
+                // reportViewModel.getReportRatingRequest(data)
+            }
+
+            getString(R.string.openmedia) -> {
+                findNavController().navigate(
+                    SubCategoryDetailsFragmentDirections.actionSubCategoryDetailsFragmentToImageVideoViewFragment(
+                        Gson().toJson(mediaList), getString(R.string.servicedetails), position
+                    )
+                )
             }
         }
 

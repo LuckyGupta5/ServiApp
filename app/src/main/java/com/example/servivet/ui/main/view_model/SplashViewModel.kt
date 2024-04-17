@@ -23,8 +23,6 @@ class SplashViewModel : BaseViewModel(){
 
     private fun initSplashScreen()
     {
-
-
         if (isLogout) {
             viewModelScope.launch {
                 delay(10)
@@ -42,6 +40,7 @@ class SplashViewModel : BaseViewModel(){
 
     private fun updateLiveData() {
         liveData.setValue(SplashModel())
+      //  liveData.postValue(SplashModel())
     }
     fun getLiveData(): SingleLiveEvent<SplashModel> {
         return liveData

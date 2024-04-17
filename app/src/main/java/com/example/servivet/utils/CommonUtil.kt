@@ -1,25 +1,40 @@
 package com.example.servivet.utils
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.ActivityManager
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.Dialog
+import android.app.DownloadManager
 import android.app.TimePickerDialog
+import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothProfile
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.database.Cursor
 import android.graphics.Bitmap
+import android.graphics.Typeface
 import android.location.Address
 import android.location.Geocoder
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
+import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.provider.Settings
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.TextUtils
+import android.text.style.StyleSpan
 import android.util.Log
+import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.DatePicker
 import android.widget.ImageView
 import android.widget.TextView
@@ -29,10 +44,12 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
 import com.example.servivet.R
 import com.example.servivet.ui.main.activity.MainActivity
 import com.example.servivet.ui.main.view_model.SplashViewModel
+import com.example.servivet.utils.soundservices.SoundService
 import com.google.android.gms.maps.model.Marker
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.android.material.snackbar.Snackbar
@@ -42,15 +59,16 @@ import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import java.io.*
-import java.sql.Timestamp
-import java.text.DateFormat
 import java.text.DecimalFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.time.DayOfWeek
 import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
+import java.time.temporal.ChronoUnit
 import java.util.*
 import java.util.concurrent.TimeUnit
 import java.util.regex.Matcher
@@ -58,6 +76,53 @@ import java.util.regex.Pattern
 
 
 object CommonUtils {
+
+    private lateinit var pickerForm: DatePickerDialog
+    private lateinit var fromDateValue: String
+    private var fromDay: Int = 0
+    private var fromMonth: Int = 0
+    var cameraPhotoPath: String? = null
+    private var fromYear: Int = 0
+    val initialYear = 2022 // Set your desired initial year
+    val initialMonth = Calendar.JANUARY // Month is zero-based, so January is 0
+    val initialDay = 1 // Set
+
+    fun selectFromDate(context: Context, date: String, listener: (String) -> Unit) {
+        var selectedDate: Date
+        val calendar = Calendar.getInstance()
+        fromDay = calendar.get(Calendar.DAY_OF_MONTH)
+        fromMonth = calendar.get(Calendar.MONTH)
+        fromYear = calendar.get(Calendar.YEAR)
+        if (date.isNotEmpty()) {
+            selectedDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(date)
+            calendar.time = selectedDate
+        }
+
+
+        pickerForm = DatePickerDialog(
+            context, { datePicker: DatePicker?, years: Int, monthOfYear: Int, dayOfMonth: Int ->
+
+                val month1 = monthOfYear + 1
+                var formattedMonth = "$month1"
+                var formattedDayOfMonth = "$dayOfMonth"
+                if (month1 < 10) formattedMonth = "0$month1"
+                if (dayOfMonth < 10) formattedDayOfMonth = "0$dayOfMonth"
+                fromDay = dayOfMonth
+                fromMonth = monthOfYear
+                fromYear = years
+                fromDateValue = "$years-$formattedMonth-$formattedDayOfMonth"
+                listener(fromDateValue)
+            }, fromYear, fromMonth, fromDay
+        )
+
+        //   calendar.add(Calendar.YEAR, -10)
+
+
+        pickerForm.datePicker.minDate = calendar.timeInMillis
+
+
+        pickerForm.show()
+    }
 
 
     @JvmStatic
@@ -112,7 +177,7 @@ object CommonUtils {
         dialog.show()
     }
 
-    fun getPostalCodeByCoordinates(
+    fun     getPostalCodeByCoordinates(
         placeSelectionListener: PlaceSelectionListener, lat: Double, lon: Double, context: Context
     ): String {
         val geocoder = Geocoder(context, Locale.getDefault())
@@ -197,7 +262,10 @@ object CommonUtils {
 
 
         if (monthCount > 0) {
-            currentDate = LocalDate.now().minusDays(dayOfMonth.toLong())
+            // currentDate = LocalDate.now().minusDays(dayOfMonth.toLong())
+            currentDate =
+                LocalDate.now().plusMonths(monthCount.toLong()).minusDays(dayOfMonth.toLong())
+
             //  currentDate = LocalDate.now()
         } else {
             currentDate = LocalDate.now()
@@ -364,7 +432,8 @@ object CommonUtils {
     }
 
     fun checkDates(d1: String, d2: String): Boolean {
-        val dfDate = SimpleDateFormat("hh:mm a")
+        // val dfDate = SimpleDateFormat("hh:mm a")
+        val dfDate = SimpleDateFormat("HH:mm")
         var b = false
         try {
             if (dfDate.parse(d1).before(dfDate.parse(d2))) {
@@ -389,12 +458,12 @@ object CommonUtils {
         val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
             c.set(Calendar.HOUR_OF_DAY, hour)
             c.set(Calendar.MINUTE, minute)
-            mSelectedTime = SimpleDateFormat("hh:mm a").format(c.time)
+            mSelectedTime = SimpleDateFormat("HH:mm ").format(c.time)
             callback(mSelectedTime)
             textView.text = mSelectedTime
         }
         val timePickerDialog = TimePickerDialog(
-            context, AlertDialog.THEME_HOLO_LIGHT, timeSetListener, hour, minute, false
+            context, AlertDialog.THEME_HOLO_LIGHT, timeSetListener, hour, minute, true
         )
         timePickerDialog.show()
         return mSelectedTime
@@ -417,113 +486,29 @@ object CommonUtils {
     @BindingAdapter("android:imageViewUrl")
     fun loadNormalImage(view: View?, image_url: String?) {
         val imageView = view as ImageView?
-        Glide.with(view!!).load(image_url).error(R.drawable.flower_img).into(imageView!!)
+        Glide.with(view!!).load(image_url).error(R.drawable.userprofile).into(imageView!!)
     }
 
-    fun datePickerNew2(
-        context: Context?, selectedDate: String?, finalListener: CalenderResponseListener<Any?>
-    ) {
-        val mYear: Int
-        val mMonth: Int
-        val mDay: Int
-        val c = Calendar.getInstance()
-        c.add(Calendar.DATE, 0)
-        mYear = c[Calendar.YEAR]
-        mMonth = c[Calendar.MONTH]
-        mDay = c[Calendar.DAY_OF_MONTH]
-        val datePickerDialog = DatePickerDialog(
-            context!!, { view: DatePicker?, year: Int, monthOfYear: Int, dayOfMonth: Int ->
-                var monthOfYear = monthOfYear
-                var day = ""
-                var month = ""
-                day = if (dayOfMonth < 10) {
-                    "0$dayOfMonth"
-                } else {
-                    dayOfMonth.toString()
-                }
-                monthOfYear++
-                month = if (monthOfYear < 10) {
-                    "0$monthOfYear"
-                } else {
-                    monthOfYear.toString()
-                }
-                val calendar: Calendar = GregorianCalendar(year, monthOfYear, dayOfMonth)
-                finalListener.onReceiveResponse("$day-$month-$year")
-                val timestamp = Timestamp(calendar.timeInMillis)
-                finalListener.onDateTimeStamp("$year-$month-$dayOfMonth")
-            }, mYear, mMonth, mDay
-        )
-        if (selectedDate != null && selectedDate != "") {
-            val items1 =
-                selectedDate.split("-".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-            val date1 = items1[0]
-            val month = items1[1]
-            val year = items1[2]
-            datePickerDialog.updateDate(year.toInt(), month.toInt() - 1, date1.toInt())
-        }
-        datePickerDialog.datePicker.minDate = System.currentTimeMillis()
-        // dp.setMinDate(new Date(System.currentTimeMillis() + 2*24*60*60*1000));
-
-//        datePickerDialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-        datePickerDialog.show()
-    }
-
-    fun datePickerNew3(
-        context: Context?, selectedDate: String?, finalListener: CalenderResponseListener<String?>
-    ) {
-        val mYear: Int
-        val mMonth: Int
-        val mDay: Int
-        val c = Calendar.getInstance()
-        c.add(Calendar.DATE, 0)
-        mYear = c[Calendar.YEAR]
-        mMonth = c[Calendar.MONTH]
-        mDay = c[Calendar.DAY_OF_MONTH]
-        val datePickerDialog = DatePickerDialog(
-            context!!, { view: DatePicker?, year: Int, monthOfYear: Int, dayOfMonth: Int ->
-                var day = ""
-                var month = ""
-                day = if (dayOfMonth < 10) {
-                    "0$dayOfMonth"
-                } else {
-                    dayOfMonth.toString()
-                }
-                var strMonth = monthOfYear
-                strMonth++
-                month = if (strMonth!! < 10) {
-                    "0$strMonth"
-                } else {
-                    strMonth.toString()
-                }
-                val calendar: Calendar = GregorianCalendar(year, monthOfYear, dayOfMonth)
-                finalListener.onReceiveResponse("$day-$month-$year")
-                val timestamp = Timestamp(calendar.timeInMillis)
-                finalListener.onDateTimeStamp("$year-$month-$dayOfMonth")
-            }, mYear, mMonth, mDay
-        )
-        if (selectedDate != null && selectedDate != "") {
-            val items1 = selectedDate.split("-").toTypedArray()
-            val date1 = items1[0]
-            val month = items1[1]
-            val year = items1[2]
-            datePickerDialog.updateDate(year.toInt(), month.toInt() - 1, date1.toInt())
-        }
-        datePickerDialog.datePicker.minDate = System.currentTimeMillis() - 1000
-        datePickerDialog.show()
+    @JvmStatic
+    @BindingAdapter("android:bannerUrl")
+    fun loadBannerImage(view: View?, image_url: String?) {
+        val imageView = view as ImageView?
+        Glide.with(view!!).load(image_url).error(R.drawable.disable_button).into(imageView!!)
     }
 
 
-    fun getDateTimeStampConvert(date: String):String?{
-        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    @SuppressLint("SimpleDateFormat")
+    fun getDateTimeStampConvert(timestamp: String): String? {
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
         inputFormat.timeZone = TimeZone.getTimeZone("UTC")
-        val date: Date = inputFormat.parse(date)
 
-        val outputFormat = SimpleDateFormat("dd MMM, hh:mm a")
+        val outputFormat = SimpleDateFormat("dd MMM HH:mm", Locale.getDefault())
         outputFormat.timeZone = TimeZone.getDefault()
 
-        val outputDateString = outputFormat.format(date)
-        return  outputDateString
+        val date = inputFormat.parse(timestamp)
+        return outputFormat.format(date)
     }
+
     @SuppressLint("SimpleDateFormat")
     fun getDateFromTimeStamp(date: String?): String? {
         val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
@@ -545,42 +530,6 @@ object CommonUtils {
     private const val DAY_MILLIS = 24 * HOUR_MILLIS
 
 
-    fun setDate(date: String?): String? {
-        @SuppressLint("SimpleDateFormat") val sdf = SimpleDateFormat("yyyy-MM-dd")
-        @SuppressLint("SimpleDateFormat") val outputFormat = SimpleDateFormat("dd MMM yyyy")
-        sdf.timeZone = TimeZone.getTimeZone("UTC")
-        var dateTimeStamp: Date? = Date()
-        try {
-            dateTimeStamp = sdf.parse(date)
-        } catch (e: ParseException) {
-            e.printStackTrace()
-        }
-        assert(dateTimeStamp != null)
-        return outputFormat.format(dateTimeStamp)
-    }
-
-    fun setDate2(date: String?): String? {
-        @SuppressLint("SimpleDateFormat") val sdf = SimpleDateFormat("dd-mm-yyyy")
-        @SuppressLint("SimpleDateFormat") val outputFormat = SimpleDateFormat("yyyy-mm-dd")
-        sdf.timeZone = TimeZone.getTimeZone("UTC")
-        var dateTimeStamp: Date? = Date()
-        try {
-            dateTimeStamp = sdf.parse(date)
-        } catch (e: ParseException) {
-            e.printStackTrace()
-        }
-        assert(dateTimeStamp != null)
-        return outputFormat.format(dateTimeStamp)
-    }
-
-    fun convertDateFormate(date: String): String {
-        val inputFormat: DateFormat = SimpleDateFormat("yyyy-MM-dd")
-        val outputFormat: DateFormat = SimpleDateFormat("dd MMM yyyy")
-        val date: Date = inputFormat.parse(date)
-        val outputDateStr: String = outputFormat.format(date)
-        return outputDateStr
-    }
-
     @SuppressLint("SimpleDateFormat")
     @Throws(ParseException::class)
     fun formatDate(date: String?, initDateFormat: String?, endDateFormat: String?): String? {
@@ -589,32 +538,8 @@ object CommonUtils {
         return formatter.format(initDate!!)
     }
 
-    interface CalenderResponseListener<T> {
-        fun onReceiveResponse(response: T)
-        fun onTimeResponse(response: T)
-        fun onDateTimeStamp(response: T)
-    }
 
-
-    fun getRealPathFromDocumentUri(context: Context, uri: Uri): String? {/*        var filePath = ""
-                val p = Pattern.compile("(\\d+)$")
-                val m = p.matcher(uri.toString())
-                if (!m.find()) {
-                    return filePath
-                }
-                val imgId = m.group()
-                val column = arrayOf(MediaStore.Images.Media.DATA)
-                val sel = MediaStore.Images.Media._ID + "=?"
-                val cursor = context.contentResolver.query(
-                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI, column, sel, arrayOf(imgId), null
-                )
-                val columnIndex = cursor!!.getColumnIndex(column[0])
-                if (cursor.moveToFirst()) {
-                    filePath = cursor.getString(columnIndex)
-                }
-                cursor.close()
-                return filePath*/
-
+    fun getRealPathFromDocumentUri(context: Context, uri: Uri): String? {
         uri ?: return null
         uri.path ?: return null
 
@@ -805,25 +730,6 @@ object CommonUtils {
         return null
     }
 
-    /*    fun getImageUri(inContext: Context, inImage: Bitmap): File {
-
-            //create a file to write bitmap data
-            val f = File(inContext.cacheDir, "filename.jpg")
-            f.createNewFile()
-
-            //Convert bitmap to byte array
-            val bitmap = inImage
-            val bos = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.PNG, 0, bos)
-            val bitmapdata = bos.toByteArray()
-
-            //write the bytes in file
-            val fos = FileOutputStream(f)
-            fos.write(bitmapdata)
-            fos.flush()
-            fos.close()
-            return f
-        }*/
 
     fun openShareBottomSheet(context: Activity, uri: Uri) {
         val intent = Intent(Intent.ACTION_SEND)
@@ -979,26 +885,21 @@ object CommonUtils {
 
             1 -> {
                 return "Before entering the apartment"
-
             }
 
             2 -> {
-
                 return "After entering the apartment"
             }
 
             3 -> {
                 return "Under process"
-
             }
 
             4 -> {
-
                 return "Before leaving the apartment"
             }
 
             5 -> {
-
                 return "After leaving the apartment"
             }
         }
@@ -1048,6 +949,411 @@ fun getLastWordFromUrl(url: String): String {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
+fun updateButtonState(exceedTime: String): Boolean {
+//    val startTime = LocalTime.parse(currentTime(), DateTimeFormatter.ofPattern("hh:mm a"))
+//    val endTime = LocalTime.parse(exceedTime, DateTimeFormatter.ofPattern("hh:mm a"))
+    val startTime =
+        LocalTime.parse(currentTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"))
+    val endTime =
+        LocalTime.parse(exceedTime, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"))
+    val timeDifference = calculateTimeDifference(startTime, endTime)
+    return timeDifference < TimeUnit.HOURS.toMillis(24)
+
+}
+
+fun compareDateDifferenceInHours(date1: String, date2: String): Long {
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    val parsedDate1 = dateFormat.parse(date1) ?: Date()
+    val parsedDate2 = dateFormat.parse(date2) ?: Date()
+
+    val differenceInMillis = parsedDate2.time - parsedDate1.time
+    return TimeUnit.MILLISECONDS.toHours(differenceInMillis)
+}
+
+fun getCurreentDate(): String {
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
+    dateFormat.timeZone = TimeZone.getDefault() // Set the timezone to UTC
+    val currentDate = Date(System.currentTimeMillis())
+    return dateFormat.format(currentDate)
+}
+
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun currentTime(): String {
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+    Log.e("TAG", "manageMarkAsCompleteView32132: ${dateFormat.format(Date())}")
+    return dateFormat.format(Date())
+
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun calculateTimeDifference(startTime: LocalTime, endTime: LocalTime): Long {
+    val startMillis = startTime.toSecondOfDay() * 1000L
+    val endMillis = endTime.toSecondOfDay() * 1000L
+    return endMillis - startMillis
+}
+
+fun convertTo24HourFormat(time12Hour: String): String {
+    val inputFormat = SimpleDateFormat("hh:mm", Locale.getDefault())
+    val outputFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+
+    try {
+        val date = inputFormat.parse(time12Hour)
+        return outputFormat.format(date!!)
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+
+    return "" // Return an empty string if there's an error
+}
+
+fun getCurrentDateTimeInISO8601Format(myDate: String): String {
+//    val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
+//    dateFormat.timeZone = TimeZone.getDefault() // Set the timezone to UTC
+//    val currentDate = Date(System.currentTimeMillis())
+//    return dateFormat.format(currentDate)
+
+    val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val date = inputFormat.parse(myDate)
+
+    val outputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+    val outputDateStr = outputFormat.format(date)
+    return outputDateStr
+
+}
+
+
+@SuppressLint("SimpleDateFormat")
+fun compareTwoDates(startDate: String, endDate: String, myDate: String): Boolean {
+    val dates = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    val start: Date = dates.parse(startDate)!!
+    val end: Date = dates.parse(endDate)!!
+    val currentDate: Date = dates.parse(getCurrentDateTimeInISO8601Format(myDate))!!
+    Log.e("TAG", "compareTwoDates: ${start},${end},${currentDate}")
+    return currentDate in start..end
+}
+
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun isTimeGapGreaterThan24Hours(dateTime1: String, dateTime2: String, hoursGap: Int): Boolean {
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    val parsedDateTime1 = LocalDateTime.parse(dateTime1, formatter)
+    val parsedDateTime2 = LocalDateTime.parse(dateTime2, formatter)
+
+    val gapInHours = ChronoUnit.HOURS.between(parsedDateTime1, parsedDateTime2)
+    Log.e("TAG", "isTimeGapGreaterThan24Hours: $gapInHours")
+
+    return gapInHours > hoursGap
+}
+
+fun getCurrentTimeInFormat(): String {
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+    dateFormat.timeZone = TimeZone.getTimeZone("UTC")
+    return dateFormat.format(Date())
+}
+
+fun convertDateTimeFormat(inputDateTime: String): String {
+    // Define input and output date-time formatters
+    val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a")
+    val outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+
+    // Parse the input date-time string
+    val parsedDateTime = LocalDateTime.parse(inputDateTime, inputFormatter)
+
+    // Format the parsed date-time into the desired output format
+    return parsedDateTime.format(outputFormatter)
+}
+
+fun getVideoPathFromUri(context: Context, videoUri: Uri): String? {
+    var path: String? = null
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && DocumentsContract.isDocumentUri(
+            context,
+            videoUri
+        )
+    ) {
+        // Document URI (e.g., content://com.android.providers.media.documents/document/video:12345)
+        val documentId = DocumentsContract.getDocumentId(videoUri)
+        val id = documentId.split(":")[1]
+
+        val selection = MediaStore.Video.Media._ID + "=?"
+        val selectionArgs = arrayOf(id)
+
+        val column = "_data"
+        val projection = arrayOf(column)
+
+        val contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI
+        val cursor: Cursor? =
+            context.contentResolver.query(contentUri, projection, selection, selectionArgs, null)
+
+        cursor?.use {
+            if (it.moveToFirst()) {
+                val columnIndex = it.getColumnIndexOrThrow(column)
+                path = it.getString(columnIndex)
+            }
+        }
+    } else {
+        // MediaStore URI
+        val projection = arrayOf(MediaStore.Video.Media.DATA)
+        val cursor: Cursor? = context.contentResolver.query(videoUri, projection, null, null, null)
+
+        cursor?.use {
+            if (it.moveToFirst()) {
+                val columnIndex = it.getColumnIndexOrThrow(MediaStore.Video.Media.DATA)
+                path = it.getString(columnIndex)
+            }
+        }
+    }
+
+    return path
+}
+
+
+fun getFileExtensionFromUrl(url: String): String? {
+    val lastDotIndex = url.lastIndexOf('.')
+    return if (lastDotIndex != -1) {
+        url.substring(lastDotIndex + 1)
+    } else {
+        null
+    }
+}
+
+fun checkVideoFileSize(videoFilePath: String): Long {
+    val videoFile = File(videoFilePath)
+
+    // Check if the file exists
+    if (!videoFile.exists()) {
+        // Handle the case when the file doesn't exist
+        return -1
+    }
+
+    // Get the file size in bytes
+    val fileSizeInBytes = videoFile.length()
+
+    // Convert bytes to megabytes (1 MB = 1024 KB)
+    val fileSizeInMB = fileSizeInBytes / (1024 * 1024)
+
+    // Log or print the file size
+    println("Video File Size: $fileSizeInMB MB")
+    Log.e("TAG", "checkVideoFileSize: $fileSizeInMB")
+
+    return fileSizeInMB
+}
+
+fun formatDecimalNumber(inputNumber: Double): String {
+    val decimalFormat = DecimalFormat("#.#")
+    return decimalFormat.format(inputNumber)
+}
+
+fun isMiUi(): Boolean {
+    return !TextUtils.isEmpty(getSystemProperty("ro.miui.ui.version.name"))
+}
+
+fun getSystemProperty(propName: String): String? {
+    val line: String
+    var input: BufferedReader? = null
+    try {
+        val p = Runtime.getRuntime().exec("getprop $propName")
+        input = BufferedReader(InputStreamReader(p.inputStream), 1024)
+        line = input.readLine()
+        input.close()
+    } catch (ex: IOException) {
+        return null
+    } finally {
+        if (input != null) {
+            try {
+                input.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+    }
+    return line
+}
+
+fun stopBackgroundMusicService(context: Context) {
+    val svc = Intent(context, SoundService::class.java)
+    context.stopService(svc)
+}
+
+fun startBackgroundMusicService(context: Context) {
+    try {
+        val svc = Intent(context, SoundService::class.java)
+        context.startService(svc)
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+
+
+}
+
+fun isBluetoothConnectd(): Boolean {
+    val bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+    return (bluetoothAdapter != null && BluetoothAdapter.STATE_CONNECTED == bluetoothAdapter.getProfileConnectionState(
+        BluetoothProfile.HEADSET
+    ))
+}
+
+fun isAppOnForeground(context: Context): Boolean {
+    val appPackageName = context.packageName.toString()
+    val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+    val appProcesses = activityManager.runningAppProcesses ?: return false
+    for (appProcess in appProcesses) {
+        if (appProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND && appProcess.processName == appPackageName) {
+            return true
+        }
+    }
+    return false
+}
+
+
+fun setSpannable(data1: String?, data2: String): Spannable {
+    val fullText = "$data1 $data2"
+    val spannable = SpannableString(fullText)
+    spannable.setSpan(
+        StyleSpan(Typeface.BOLD),
+        0,
+        data1!!.length,
+        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+    )
+    spannable.setSpan(
+        StyleSpan(Typeface.NORMAL),
+        data1.length + 1,
+        fullText.length,
+        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+    )
+    return spannable
+}
+
+
+fun checkMediaPermission(requireActivity: FragmentActivity):Boolean {
+    val permission: Array<String?> =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arrayOf(Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.CAMERA)
+        } else {
+            arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
+        }
+    return CommonUtils.requestPermissions(requireActivity, 100, permission)
+}
+
+
+fun <A : Activity> Context.launchActivityWithBundle(activity: Class<A>, bundle: Bundle) {
+    Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION).also {
+        it.putExtra("bundle", bundle)
+        it.setClassName("com.example.servivet", activity.name)
+        it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        it.flags = Intent.FLAG_FROM_BACKGROUND
+        it.flags = Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT
+        it.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(it)
+    }
+}
+fun downloadFile(
+    context: Context,
+    URL: String?,
+    fileName: String?,
+    fileNameExtension: String?,
+) {
+    Log.w("URL-->", URL!!)
+    val downloadmanager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+    val uri = Uri.parse(URL)
+    val request = DownloadManager.Request(uri)
+    request.setTitle(fileName)
+    request.setDescription("Downloading...")
+    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+    request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName)
+    request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
+        .setAllowedOverRoaming(false).setTitle(fileName)
+        .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileNameExtension)
+    downloadmanager.enqueue(request)
+    //  Snackbar.make(requireContext, "Downloading File...", Snackbar.LENGTH_SHORT).show()
+
+
+
+
+    //openPdfBottom(childFragmentManager,URL)
+}
+
+
+fun requestMultiplePermissions(
+    context: Context,
+    permissions: Array<String>,
+    msg: String
+): Boolean {
+    var isAllowed: Boolean = false
+    Dexter.withContext(context as Activity)
+        .withPermissions(*permissions)
+        .withListener(object : MultiplePermissionsListener {
+            override fun onPermissionsChecked(report: MultiplePermissionsReport) {
+                isAllowed = true
+                // check if all permissions are granted
+                if (!report.areAllPermissionsGranted()) {
+                    val intent = Intent()
+                    intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+                    val uri = Uri.fromParts("package", "com.example.servivet", null)
+                    intent.data = uri
+                    showDialog(context, msg, intent)
+                }
+
+
+                // check for permanent denial of any permission
+                if (report.isAnyPermissionPermanentlyDenied) {
+                    // show alert dialog navigating to Settings
+                }
+            }
+
+            override fun onPermissionRationaleShouldBeShown(
+                permissions: List<PermissionRequest?>?,
+                token: PermissionToken
+            ) {
+                token.continuePermissionRequest()
+            }
+        }).withErrorListener {
+
+        }.onSameThread().check()
+    Log.e("TAG", "requestMultiplePermissions: $isAllowed")
+    return isAllowed
+}
+
+fun showDialog(context: Context, msg: String?, intent: Intent?) {
+    val dialog = Dialog(context)
+    (dialog.window!!.decorView as ViewGroup).getChildAt(0)
+        .startAnimation(AnimationUtils.loadAnimation(context, android.R.anim.fade_in))
+    dialog.setCancelable(true)
+    dialog.setCanceledOnTouchOutside(false)
+    dialog.setContentView(R.layout.alert_dialog)
+    dialog.window!!.setBackgroundDrawableResource(R.drawable.all_fill_white_greyborder_8dp)
+    val title = dialog.findViewById<TextView>(R.id.title)
+    title.setText(R.string.app_name)
+    val message = dialog.findViewById<TextView>(R.id.message)
+    message.text = msg
+    val view = dialog.findViewById<View>(R.id.viewCenter)
+    view.visibility = View.GONE
+    val dialogButton = dialog.findViewById<TextView>(R.id.okCenter)
+    dialogButton.visibility = View.VISIBLE
+    dialogButton.gravity = Gravity.CENTER_HORIZONTAL
+    dialogButton.setOnClickListener { v: View? ->
+        context.startActivity(intent)
+        dialog.dismiss()
+    }
+    dialog.show()
+}
+
+fun Activity.setLocal(languageName: String, types: Int) {
+//    Preferences.setStringPreference(this, LOCAL_LANGUAGE, languageName)
+//    UserPreference.datingPreferenceData
+    val local = Locale(languageName)
+    val configration = resources.configuration
+    val displayMatrix = resources.displayMetrics
+    configration.setLocale(local)
+    resources.updateConfiguration(configration, displayMatrix)
+    if (types == 2) {
+        startActivity(Intent(this, MainActivity::class.java))
+        finishAffinity()
+    }
+}
 
 
 

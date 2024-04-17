@@ -26,5 +26,6 @@ data class ServiceDetail(
     val subCategory: String?=null,
     val subCategoryDetail: SubCategoryDeatils?=null,
     val updatedAt: String?=null,
-    val ratingReview: RatingReviews?=null
+    val ratingReview: RatingReviews?=null,
+    var localImage:String?=null
 ):Serializable

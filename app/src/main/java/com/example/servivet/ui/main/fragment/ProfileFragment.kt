@@ -1,14 +1,20 @@
 package com.example.servivet.ui.main.fragment
 
+import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
+import com.example.servivet.data.model.connection.connection_list.responnse.MyConnection
 import com.example.servivet.databinding.FragmentProfileBinding
 import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.adapter.HomeServiceAdapter
+import com.example.servivet.ui.main.adapter.MyConnectionAdapter
+import com.example.servivet.ui.main.adapter.ProfileConnectionAdapter
+import com.example.servivet.ui.main.view_model.MyConnectionModelView
 import com.example.servivet.ui.main.view_model.ProfileViewModel
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.CommonUtils.showSnackBar
@@ -20,6 +26,8 @@ import com.example.servivet.utils.StatusCode
 class ProfileFragment : BaseFragment<FragmentProfileBinding,ProfileViewModel> (R.layout.fragment_profile){
     override val binding: FragmentProfileBinding by viewBinding(FragmentProfileBinding::bind)
     override val mViewModel: ProfileViewModel by activityViewModels()
+    private val connectionModel: MyConnectionModelView by viewModels()
+    private val connectionList = ArrayList<MyConnection>()
 
     override fun isNetworkAvailable(boolean: Boolean) {
     }
@@ -34,19 +42,20 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding,ProfileViewModel> (R
         }
         if(Session.userDetails!=null)
           mViewModel.hitUserProfileApi(Session.userDetails._id,Session.type.toInt(),requireContext(),requireActivity(),requireActivity().isFinishing)
-    }
 
+        initMyConnectionModel()
+    }
 
 
 
     private fun setServiceAdapter(type: String, myContact: List<Any>) {
         if( myContact!=null && myContact.isNotEmpty()) {
-            binding.serviceRecycler.visibility=View.VISIBLE
-            binding.noDataLayout.visibility=View.GONE
-            binding.serviceRecycler.adapter = HomeServiceAdapter(requireContext(), type, ArrayList())
+         //   binding.serviceRecycler.visibility=View.VISIBLE
+           // binding.noDataLayout.visibility=View.GONE
+//            binding.serviceRecycler.adapter = HomeServiceAdapter(requireContext(), type, ArrayList())
         }else{
-            binding.serviceRecycler.visibility=View.GONE
-            binding.noDataLayout.visibility=View.VISIBLE
+         //   binding.serviceRecycler.visibility=View.GONE
+           //    binding.noDataLayout.visibility=View.VISIBLE
         }
 
     }
@@ -61,12 +70,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding,ProfileViewModel> (R
         mViewModel.userProfileResponse.observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
-
                     ProcessDialog.dismissDialog()
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             binding.data=it.data.result.profile
                             Session.saveUserProfile(it.data.result.profile)
+                            Log.e("TAG", "setupObservers: ${it.data.result.profile}", )
 
                             if(Session.userDetails.businessType!=null) {
                                 if (Session.userDetails.businessType == "3")
@@ -126,6 +135,59 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding,ProfileViewModel> (R
         }
     }
 
+    private fun initMyConnectionModel() {
+        connectionModel.getConnectionListRequest()
+        connectionModel.getConnectionData().observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    ProcessDialog.dismissDialog()
+                    when (it.data!!.code) {
+                        StatusCode.STATUS_CODE_SUCCESS -> {
+                            connectionList.clear()
+                            connectionList.addAll(it.data.result.myConnectionList)
+                            initConnectionAdapter()
+
+                        }
+
+                        StatusCode.STATUS_CODE_FAIL -> {
+                            showSnackBar(it.data.message!!)
+                        }
+
+                    }
+                }
+
+                Status.LOADING -> {
+                    ProcessDialog.startDialog(requireContext())
+                }
+
+                Status.ERROR -> {
+                    ProcessDialog.dismissDialog()
+
+                    it.message?.let {
+                        showSnackBar(it)
+
+                    }
+                }
+
+                Status.UNAUTHORIZED -> {
+                    CommonUtils.logoutAlert(
+                        requireContext(),
+                        "Session Expired",
+                        "Unauthorized User",
+                        requireActivity()
+                    )
+                }
+            }
+        }    }
+
+    private fun initConnectionAdapter() {
+
+
+        binding.connectionAdapter = ProfileConnectionAdapter(requireContext(), connectionList, onItemClick)
+
+    }
+
+
     private fun setBack() {
         val callback: OnBackPressedCallback =
             object : OnBackPressedCallback(true) {
@@ -134,6 +196,18 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding,ProfileViewModel> (R
                 }
             }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+    }
+
+
+    private val onItemClick: (Int, String) -> Unit = { identifire, data ->
+
+        when (identifire) {
+            0 -> {
+               // acceptRejectModel.getAcceptRejectRequest(identifire, data)
+            }
+        }
+
+
     }
 
 

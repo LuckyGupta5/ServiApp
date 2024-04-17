@@ -8,8 +8,7 @@ import com.example.servivet.ui.base.BaseBottomSheetDailogFragment
 import com.example.servivet.ui.main.view_model.SaveAddressBottomsheetViewModel
 import com.example.servivet.utils.Session
 
-class SavedAddressesBottomsheet:BaseBottomSheetDailogFragment<FragmentSavedAddressesBottomsheetBinding,SaveAddressBottomsheetViewModel>(
-    R.layout.fragment_saved_addresses_bottomsheet) {
+class SavedAddressesBottomsheet:BaseBottomSheetDailogFragment<FragmentSavedAddressesBottomsheetBinding,SaveAddressBottomsheetViewModel>(R.layout.fragment_saved_addresses_bottomsheet) {
     override val mViewModel: SaveAddressBottomsheetViewModel by viewModels()
 
     override fun getLayout(): Int {
@@ -42,6 +41,7 @@ class SavedAddressesBottomsheet:BaseBottomSheetDailogFragment<FragmentSavedAddre
 
         binding.changeAddress.setOnClickListener {
             findNavController().navigate(R.id.action_savedAddressesBottomsheet_to_addLocationFragment)
+            dismiss()
         }
 
 

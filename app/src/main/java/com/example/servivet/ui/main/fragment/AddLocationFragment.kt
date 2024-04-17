@@ -1,6 +1,7 @@
 package com.example.servivet.ui.main.fragment
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -32,6 +33,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
 import com.example.servivet.databinding.FragmentAddLocationBinding
@@ -76,7 +78,6 @@ class AddLocationFragment :
     private var isFirstTime: Boolean=false
     private var fullAddress: String? = ""
     private var lastKnownLocation: Location? = null
-
     private var manager: LocationManager? = null
     private var dialog: Dialog? = null
     private var isDialogShow: Boolean = false
@@ -85,7 +86,7 @@ class AddLocationFragment :
     override val binding: FragmentAddLocationBinding by viewBinding(FragmentAddLocationBinding::bind)
     override val mViewModel: AddLocationViewModel by viewModels()
     private lateinit var mMap: GoogleMap
-
+    private val argumentData:AddLocationFragmentArgs by navArgs()
     private var fusedLocationProviderClient: FusedLocationProviderClient? = null
     private lateinit var autoCompleteSupportFragment: AutocompleteSupportFragment
     private lateinit var locationManager: LocationManager
@@ -98,10 +99,13 @@ class AddLocationFragment :
 
     private fun setClick() {
 
-
+        binding.backBtn.setOnClickListener{
+            findNavController().popBackStack()
+        }
     }
 
 
+    @SuppressLint("SetTextI18n")
     override fun setupViews() {
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
@@ -110,16 +114,20 @@ class AddLocationFragment :
         }
         mapInitialization()
         setClick()
-        if(Session.userDetails.name!=null && Session.userDetails.name.isNotEmpty()){
-            binding.fullName.setText(Session.userDetails.name)
-            mViewModel.name.value=true
-            mViewModel.saveAddressRequest.name=Session.userDetails.name
-        }
+        if(Session.userDetails!=null) {
+            if (Session.userDetails.name != null && Session.userDetails.name.isNotEmpty()) {
+                binding.fullName.setText(Session.userDetails.name)
+                mViewModel.name.value = true
+                mViewModel.saveAddressRequest.name = Session.userDetails.name
+            }
 
-        if(Session.userDetails.mobile!=null && Session.userDetails.mobile.isNotEmpty()){
-            binding.mobileNumberText.setText(Session.userDetails.mobile)
-            mViewModel.number.value=true
-            mViewModel.saveAddressRequest.mobileNumber=Session.userDetails.mobile
+            if (Session.userDetails.mobile != null && Session.userDetails.mobile.isNotEmpty()) {
+                binding.mobileNumberText.setText(Session.userDetails.mobile)
+                mViewModel.number.value = true
+                mViewModel.saveAddressRequest.mobileNumber = Session.userDetails.mobile
+            }
+        }else{
+            binding.mobileNumberText.setText("+"+""+argumentData.number)
         }
     }
 

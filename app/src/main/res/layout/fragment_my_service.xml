@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.servivet.ui.main.view_model.MyServiceViewModel" />
+
         <variable
             name="click"
             type="com.example.servivet.ui.main.view_model.MyServiceViewModel.ClickAction" />
+
+        <variable
+            name="clickEvent"
+            type="kotlin.jvm.functions.Function1" />
+
 
     </data>
 
@@ -20,15 +27,47 @@
         tools:context=".ui.main.fragment.MyServiceFragment">
 
         <LinearLayout
-            android:orientation="vertical"
             android:id="@id/topLayout"
             android:layout_width="match_parent"
-            android:elevation="4dp"
+            android:layout_height="wrap_content"
             android:background="@color/white"
-            android:layout_height="wrap_content">
+            android:elevation="4dp"
+            android:orientation="vertical">
 
 
             <LinearLayout
+                android:id="@+id/idSearchLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/white_round_corner_12_dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/idSearchText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:drawableStart="@drawable/search"
+                    android:drawablePadding="5dp"
+                    android:hint="Search here..."
+                    android:paddingStart="10dp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.1"
+                    android:onClick="@{click::closeSearch}"
+                    android:src="@drawable/white_cross_gray_bg_icon" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/idTopLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -39,8 +78,7 @@
                     android:id="@+id/backBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/servishback_btn"
-                    />
+                    android:src="@drawable/servishback_btn" />
 
                 <TextView
                     android:id="@+id/catName"
@@ -58,43 +96,42 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="@{click::clickSearch}"
                     android:src="@drawable/search_circle_icon" />
 
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/serviceSubCatRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/serviceSubCatRecycler"
+                android:layout_below="@id/topLayout"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:paddingVertical="5dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:layout_marginTop="10dp"
-                tools:listitem="@layout/sub_category_services_recycler"
-                android:layout_below="@id/topLayout"/>
-
-
-
+                tools:listitem="@layout/sub_category_services_recycler" />
         </LinearLayout>
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/serviceRecycler"
-            android:layout_below="@id/topLayout"
             android:layout_width="match_parent"
-            android:visibility="visible"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/idServiceLayout"
+            android:layout_below="@id/topLayout"
             android:layout_marginTop="10dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="vertical"
-            tools:listitem="@layout/my_service_recycler"/>
+            android:visibility="visible"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/my_service_recycler" />
+
         <RelativeLayout
             android:id="@+id/noDataLayout"
-            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_below="@id/topLayout"
             android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/no_dataIcon"
@@ -102,18 +139,70 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:background="@drawable/no_data_icon" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/no_dataIcon"
                 android:layout_centerHorizontal="true"
-                android:text="No Data Found !"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/poppins_medium"
+                android:text="No Data Found !"
                 android:textColor="@color/black"
-                android:textSize="18dp"/>
+                android:textSize="18dp" />
 
         </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/idServiceLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="10dp"
+            android:visibility="visible">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/idCloseService"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="15sp"
+                android:layout_weight="1"
+                android:background="@drawable/rectangle_button_color_grey_e8e8e8_12dp"
+                android:backgroundTint="@null"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_medium"
+                android:maxLines="1"
+                android:onClick="@{()->clickEvent.invoke(@string/close_service)}"
+                android:stateListAnimator="@null"
+                android:text="@string/close_service"
+                android:textAllCaps="false"
+                android:textColor="@color/black_2"
+                android:textSize="17sp"
+                app:backgroundTint="@null" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/idAccept"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="15sp"
+                android:layout_weight="1"
+                android:background="@drawable/round_corner_grey_12dp"
+                android:backgroundTint="@null"
+                android:fontFamily="@font/poppins_medium"
+                android:maxLines="1"
+                android:onClick="@{()->clickEvent.invoke(@string/add_service)}"
+                android:stateListAnimator="@null"
+                android:text="@string/add_service"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:backgroundTint="@null" />
+        </LinearLayout>
 
 
     </RelativeLayout>

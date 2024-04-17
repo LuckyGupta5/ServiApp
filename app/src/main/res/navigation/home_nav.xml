@@ -28,6 +28,15 @@
         <action
             android:id="@+id/action_homeFragment_to_onlineNowFragment"
             app:destination="@id/onlineNowFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_providerProfileFragment"
+            app:destination="@id/providerProfileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_bookingDetailsFragment"
+            app:destination="@id/bookingDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_bookingDetailsFragment2"
+            app:destination="@id/bookingDetailsFragment" />
     </fragment>
 
     <fragment
@@ -41,6 +50,9 @@
         <action
             android:id="@+id/action_chatFragment_to_chatRequestFragment"
             app:destination="@id/chatRequestFragment" />
+        <action
+            android:id="@+id/action_chatFragment_to_chattingFragment"
+            app:destination="@id/chattingFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -83,7 +95,11 @@
             app:destination="@id/homeFragment" />
         <action
             android:id="@+id/action_bookingsFragment_to_bookingDetailsFragment"
-            app:destination="@id/bookingDetailsFragment" />
+            app:destination="@id/bookingDetailsFragment"
+            app:popUpToSaveState="@+id/bookingsFragment" />
+        <action
+            android:id="@+id/action_bookingsFragment_to_fragmentRatingUsBottomSheet"
+            app:destination="@id/fragmentRatingUsBottomSheet" />
     </fragment>
     <fragment
         android:id="@+id/servicesFragment"
@@ -128,6 +144,12 @@
         <action
             android:id="@+id/action_subCategoryDetailsFragment_to_ratingReportBottomSheetFragment"
             app:destination="@id/ratingReportBottomSheetFragment" />
+        <action
+            android:id="@+id/action_subCategoryDetailsFragment_to_imageVideoViewFragment"
+            app:destination="@id/imageVideoViewFragment" />
+        <action
+            android:id="@+id/action_subCategoryDetailsFragment_to_providerProfileFragment"
+            app:destination="@id/providerProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/myServiceFragment"
@@ -145,7 +167,25 @@
             android:id="@+id/action_myServiceFragment_to_homeFragment"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/myServiceFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_myServiceFragment_to_addServiceFragment"
+            app:destination="@id/addServiceFragment" />
+        <action
+            android:id="@+id/action_myServiceFragment_to_closeServiceBottomFragment"
+            app:destination="@id/closeServiceBottomFragment" />
+
+        <argument
+            android:name="data"
+            app:argType="string" />
+
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_myServiceFragment_to_subCategoryDetailsFragment"
+            app:destination="@id/subCategoryDetailsFragment" />
+
 
     </fragment>
     <fragment
@@ -156,22 +196,25 @@
         <action
             android:id="@+id/action_myServiceDetailFragment_to_editServiceFragment"
             app:destination="@id/editServiceFragment" />
+        <action
+            android:id="@+id/action_myServiceDetailFragment_to_imageVideoViewFragment"
+            app:destination="@id/imageVideoViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/editServiceFragment"
         android:name="com.example.servivet.ui.main.fragment.EditServiceFragment"
         android:label="fragment_edit_service"
         tools:layout="@layout/fragment_edit_service" />
-	
-	   <fragment
+
+    <fragment
         android:id="@+id/searchLocationFragment"
         android:name="com.example.servivet.ui.main.fragment.SearchLocationFragment"
         android:label="SearchLocationFragment"
-        tools:layout="@layout/fragment_search_location" >
-           <action
-               android:id="@+id/action_searchLocationFragment_to_setLocationFragment"
-               app:destination="@id/setLocationFragment" />
-       </fragment>
+        tools:layout="@layout/fragment_search_location">
+        <action
+            android:id="@+id/action_searchLocationFragment_to_setLocationFragment"
+            app:destination="@id/setLocationFragment" />
+    </fragment>
 
 
     <fragment
@@ -185,6 +228,25 @@
         <action
             android:id="@+id/action_bookingDetailsFragment_to_changedateFragment"
             app:destination="@id/changedateFragment" />
+        <action
+            android:id="@+id/action_bookingDetailsFragment_to_reasonForCancelBottomsheet"
+            app:destination="@id/reasonForCancelBottomsheet" />
+
+
+        <argument
+            android:name="data"
+            app:argType="string" />
+        <argument
+            android:name="type"
+            app:argType="integer" />
+        <argument
+            android:name="typeUsers"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+
+
     </fragment>
 
 
@@ -223,7 +285,7 @@
         <action
             android:id="@+id/action_bookingPaymentFragment_to_couponsFragment"
             app:destination="@id/couponsFragment" />
-=
+        =
 
         <argument
             android:name="data"
@@ -248,10 +310,13 @@
         android:id="@+id/couponsFragment"
         android:name="com.example.servivet.ui.main.fragment.CouponsFragment"
         android:label="CouponsFragment"
-        tools:layout="@layout/coupon_design_recycler" >
+        tools:layout="@layout/coupon_design_recycler">
 
         <argument
             android:name="data"
+            app:argType="string" />
+        <argument
+            android:name="paymentData"
             app:argType="string" />
 
         <argument
@@ -263,20 +328,36 @@
         android:id="@+id/chatRequestFragment"
         android:name="com.example.servivet.ui.main.fragment.ChatRequestFragment"
         android:label="ChatRequestFragment"
-        tools:layout="@layout/fragment_chat_request"/>
+        tools:layout="@layout/fragment_chat_request">
+        <action
+            android:id="@+id/action_chatRequestFragment_to_chattingFragment"
+            app:destination="@id/chattingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/changedateFragment"
         android:name="com.example.servivet.ui.main.fragment.ChangedateFragment"
         android:label="ChangedateFragment"
-        tools:layout="@layout/fragment_changedate"/>
+        tools:layout="@layout/fragment_changedate" />
+
     <fragment
         android:id="@+id/onlineNowFragment"
         android:name="com.example.servivet.ui.main.fragment.OnlineNowFragment"
         android:label="OnlineNowFragment"
         tools:layout="@layout/fragment_online_now">
+
+        <argument
+            android:name="data"
+            app:argType="string" />
+
+        <argument
+            android:name="from"
+            app:argType="string" />
         <action
             android:id="@+id/action_onlineNowFragment_to_connectionProfileFragment"
             app:destination="@id/connectionProfileFragment" />
+        <action
+            android:id="@+id/action_onlineNowFragment_to_providerProfileFragment"
+            app:destination="@id/providerProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/connectionProfileFragment"
@@ -291,6 +372,33 @@
         <action
             android:id="@+id/action_settingsFragment_to_myWalletFragment"
             app:destination="@id/myWalletFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_closeServiceAlert"
+            app:destination="@id/closeServiceAlert" />
+        <action
+            android:id="@+id/action_settingsFragment_to_aboutUsFragment"
+            app:destination="@id/aboutUsFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_settingLocationListFragment"
+            app:destination="@id/settingLocationListFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_faqFragment"
+            app:destination="@id/faqFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_business_Verification_Fragment2"
+            app:destination="@id/business_Verification_Fragment2" />
+        <action
+            android:id="@+id/action_settingsFragment_to_changeLanguageBottomSheet"
+            app:destination="@id/changeLanguageBottomSheet" />
+        <action
+            android:id="@+id/action_settingsFragment_to_contactUsFragment"
+            app:destination="@id/contactUsFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_mainActivity3"
+            app:destination="@id/mainActivity" />
+        <action
+            android:id="@+id/action_settingsFragment_to_myBankAccountFragment"
+            app:destination="@id/myBankAccountFragment" />
     </fragment>
     <fragment
         android:id="@+id/myWalletFragment"
@@ -308,9 +416,9 @@
     </fragment>
     <fragment
         android:id="@+id/connectionsRequestFragment"
-        tools:layout="@layout/fragment_connections_request"
         android:name="com.example.servivet.ui.main.fragment.ConnectionsRequestFragment"
-        android:label="ConnectionsRequestFragment" />
+        android:label="ConnectionsRequestFragment"
+        tools:layout="@layout/fragment_connections_request" />
     <fragment
         android:id="@+id/setLocationFragment"
         android:name="com.example.servivet.ui.main.fragment.SetLocationFragment"
@@ -323,7 +431,7 @@
     <dialog
         android:id="@+id/savedAddressesBottomsheet"
         android:name="com.example.servivet.ui.main.bottom_sheet.SavedAddressesBottomsheet"
-        android:label="SavedAddressesBottomsheet" >
+        android:label="SavedAddressesBottomsheet">
         <action
             android:id="@+id/action_savedAddressesBottomsheet_to_addLocationFragment"
             app:destination="@id/addLocationFragment" />
@@ -332,7 +440,7 @@
         android:id="@+id/ratingReportBottomSheetFragment"
         android:name="com.example.servivet.ui.main.bottom_sheet.RatingReportBottomSheetFragment"
         android:label="RatingReportBottomSheetFragment"
-        tools:layout="@layout/fragment_rating_report_bottom_sheet"/>
+        tools:layout="@layout/fragment_rating_report_bottom_sheet" />
     <dialog
         android:id="@+id/myWalletBottomsheet"
         android:name="com.example.servivet.ui.main.bottom_sheet.MyWalletBottomsheet"
@@ -348,13 +456,22 @@
         <argument
             android:name="from"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_myWalletBottomsheet_to_bookingsFragment"
+            app:destination="@id/bookingsFragment" />
+        <action
+            android:id="@+id/action_myWalletBottomsheet_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+        <action
+            android:id="@+id/action_myWalletBottomsheet_to_homeFragment"
+            app:destination="@id/homeFragment" />
 
     </dialog>
     <dialog
         android:id="@+id/suretoConfirmBottomSheet"
         android:name="com.example.servivet.ui.main.bottom_sheet.SuretoConfirmBottomSheet"
         android:label="SuretoConfirmBottomSheet"
-        tools:layout="@layout/fragment_sureto_conform_bottom_sheet"/>
+        tools:layout="@layout/fragment_sureto_conform_bottom_sheet" />
     <fragment
         android:id="@+id/paymentFragment"
         android:name="com.example.servivet.ui.main.fragment.bookinng_module.PaymentFragment"
@@ -370,16 +487,306 @@
         <action
             android:id="@+id/action_paymentFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_paymentFragment_to_bookingsFragment"
+            app:destination="@id/bookingsFragment" />
     </fragment>
-    <!-- <fragment
-         android:id="@+id/businessBookingFragment"
-         android:name="com.example.servivet.ui.main.fragment.BusinessBookingFragment"
-         android:label="BusinessBookingFragment"
-         tools:layout="@layout/fragment_business_booking">
-         <action
-             android:id="@+id/action_businessBookingFragment_to_bookingDetailsFragment"
-             app:destination="@id/bookingDetailsFragment" />
-     </fragment>-->
+    <dialog
+        android:id="@+id/reasonForCancelBottomsheet"
+        android:name="com.example.servivet.ui.main.bottom_sheet.ReasonForCancelBottomsheet"
+        android:label="ReasonForCancelBottomsheet"
+        tools:layout="@layout/reasonforcanceldesign">
+        <argument
+            android:name="cancelReq"
+            app:argType="string" />
+
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="notificationData"
+            app:argType="string" />
+    </dialog>
+    <dialog
+        android:id="@+id/fragmentRatingUsBottomSheet"
+        android:name="com.example.servivet.ui.main.bottom_sheet.FragmentRatingUsBottomSheet"
+        android:label="FragmentRatingUsBottomSheet"
+        tools:layout="@layout/fragment_rating_us_bottom_sheet">
+        <argument
+            android:name="serviceId"
+            app:argType="string" />
+
+        <argument
+            android:name="from"
+            app:argType="string" />
+
+        <argument
+            android:name="serviceName"
+            app:argType="string" />
+    </dialog>
+    <dialog
+        android:id="@+id/closeServiceBottomFragment"
+        android:name="com.example.servivet.ui.main.bottom_sheet.CloseServiceBottomFragment"
+        android:label="CloseServiceBottomFragment"
+        tools:layout="@layout/fragment_close_service_bottom">
+        <argument
+            android:name="cancelReq"
+            app:argType="string" />
+
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_closeServiceBottomFragment_to_closeServiceAlert"
+            app:destination="@id/closeServiceAlert" />
+    </dialog>
+    <dialog
+        android:id="@+id/closeServiceAlert"
+        android:name="com.example.servivet.ui.main.dialogs.CloseServiceAlert"
+        android:label="fragment_close_service_alert"
+        tools:layout="@layout/fragment_close_service_alert">
+        <argument
+            android:name="data"
+            app:argType="string" />
+
+        <argument
+            android:name="from"
+            app:argType="string" />
+    </dialog>
+    <fragment
+        android:id="@+id/imageVideoViewFragment"
+        android:name="com.example.servivet.ui.main.fragment.ImageVideoViewFragment"
+        android:label="ImageVideoViewFragment"
+        tools:layout="@layout/fragment_image_video_view">
+        <argument
+            android:name="data"
+            app:argType="string" />
+
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="position"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/providerProfileFragment"
+        android:name="com.example.servivet.ui.main.fragment.ProviderProfileFragment"
+        android:label="ProviderProfileFragment"
+        tools:layout="@layout/fragment_provider_profile">
+        <argument
+            android:name="data"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_providerProfileFragment_to_myServiceFragment"
+            app:destination="@id/myServiceFragment" />
+        <action
+            android:id="@+id/action_providerProfileFragment_to_chattingFragment"
+            app:destination="@id/chattingFragment" />
+        <action
+            android:id="@+id/action_providerProfileFragment_to_outgoingVideoCallActivity"
+            app:destination="@id/outgoingVideoCallActivity" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/chattingFragment"
+        android:name="com.example.servivet.ui.main.fragment.chat_module.ChattingFragment"
+        android:label="ChattingFragment"
+        tools:layout="@layout/fragment_chatting">
+        <argument
+            android:name="data"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="isVisible"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_chattingFragment_to_selectMediaBottomSheet"
+            app:destination="@id/selectMediaBottomSheet" />
+        <action
+            android:id="@+id/action_chattingFragment_to_imageVideoViewFragment"
+            app:destination="@id/imageVideoViewFragment" />
+        <action
+            android:id="@+id/action_chattingFragment_to_outgoingVideoCallActivity"
+            app:destination="@id/outgoingVideoCallActivity" />
+        <action
+            android:id="@+id/action_chattingFragment_to_outgoingAudioCallActivity"
+            app:destination="@id/outgoingAudioCallActivity" />
+    </fragment>
+    <dialog
+        android:id="@+id/selectMediaBottomSheet"
+        android:name="com.example.servivet.ui.main.bottom_sheet.SelectMediaBottomSheet"
+        android:label="SelectMediaBottomSheet"
+        tools:layout="@layout/fragment_select_media_bottom_sheet">
+        <argument
+            android:name="data"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+    </dialog>
+    <activity
+        android:id="@+id/outgoingVideoCallActivity"
+        android:name="com.example.servivet.ui.main.agora.video.OutgoingVideoCallActivity"
+        android:label="OutgoingVideoCallActivity"
+        tools:layout="@layout/activity_outgoing_video_call">
+        <argument
+            android:name="data"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="userData"
+            app:argType="string" />
+
+    </activity>
+    <activity
+        android:id="@+id/outgoingAudioCallActivity"
+        android:name="com.example.servivet.ui.main.agora.audio.OutgoingAudioCallActivity"
+        android:label="OutgoingAudioCallActivity"
+        tools:layout="@layout/activity_outgoing_audio_call">
+        <argument
+            android:name="data"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="userData"
+            app:argType="string" />
+
+
+    </activity>
+    <fragment
+        android:id="@+id/aboutUsFragment"
+        android:name="com.example.servivet.ui.main.fragment.settings_module.AboutUsFragment"
+        android:label="AboutUsFragment" />
+    <fragment
+        android:id="@+id/settingLocationListFragment"
+        android:name="com.example.servivet.ui.main.fragment.settings_module.SettingLocationListFragment"
+        android:label="SettingLocationListFragment"
+        tools:layout="@layout/fragment_setting_location_list">
+        <action
+            android:id="@+id/action_settingLocationListFragment_to_settingAddLocationFragment"
+            app:destination="@id/settingAddLocationFragment" />
+        <action
+            android:id="@+id/action_settingLocationListFragment_to_addLocationFragment"
+            app:destination="@id/addLocationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingAddLocationFragment"
+        android:name="com.example.servivet.ui.main.fragment.settings_module.SettingAddLocationFragment"
+        android:label="SettingAddLocationFragment" />
+    <fragment
+        android:id="@+id/faqFragment"
+        android:name="com.example.servivet.ui.main.fragment.settings_module.FaqFragment"
+        android:label="FaqFragment"
+        tools:layout="@layout/fragment_faq" />
+    <fragment
+        android:id="@+id/business_Verification_Fragment2"
+        android:name="com.example.servivet.ui.main.fragment.Business_Verification_Fragment"
+        android:label="Business_Verification_Fragment"
+        tools:layout="@layout/fragment_business__verification">
+
+        <argument
+            android:name="data"
+            app:argType="string" />
+        <argument
+            android:name="from"
+            app:argType="string" />
+
+    </fragment>
+    <dialog
+        android:id="@+id/changeLanguageBottomSheet"
+        android:name="com.example.servivet.ui.main.bottom_sheet.ChangeLanguageBottomSheet"
+        android:label="ChangeLanguageBottomSheet"
+        tools:layout="@layout/fragment_change_language_bottom_sheet" />
+    <fragment
+        android:id="@+id/contactUsFragment"
+        android:name="com.example.servivet.ui.main.fragment.ContactUsFragment"
+        android:label="ContactUsFragment"
+        tools:layout="@layout/fragment_contact_us" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.servivet.ui.main.activity.MainActivity"
+        android:label="MainActivity" />
+    <fragment
+        android:id="@+id/myBankAccountFragment"
+        android:name="com.example.servivet.ui.main.fragment.bank_module.MyBankAccountFragment"
+        android:label="MyBankAccountFragment"
+        tools:layout="@layout/fragment_my_bank_account">
+        <action
+            android:id="@+id/action_myBankAccountFragment_to_addBankAccountFragment"
+            app:destination="@id/addBankAccountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addBankAccountFragment"
+        android:name="com.example.servivet.ui.main.adapter.bank_module.AddBankAccountFragment"
+        android:label="AddBankAccountFragment"
+        tools:layout="@layout/fragment_add_bank_account">
+        <action
+            android:id="@+id/action_addBankAccountFragment_to_bankListBottomSheet"
+            app:destination="@id/bankListBottomSheet" />
+        <action
+            android:id="@+id/action_addBankAccountFragment_to_confirmBankAccountBottomSheet"
+            app:destination="@id/confirmBankAccountBottomSheet" />
+    </fragment>
+    <dialog
+        android:id="@+id/bankListBottomSheet"
+        android:name="com.example.servivet.ui.main.bottom_sheet.bank_module.BankListBottomSheet"
+        android:label="BankListBottomSheet"
+        tools:layout="@layout/fragment_bank_list_bottom_sheet" >
+
+        <argument
+            android:name="data"
+            app:argType="string"/>
+
+        <argument
+            android:name="from"
+            app:argType="string"/>
+
+    </dialog>
+    <dialog
+        android:id="@+id/confirmBankAccountBottomSheet"
+        android:name="com.example.servivet.ui.main.bottom_sheet.bank_module.ConfirmBankAccountBottomSheet"
+        android:label="fragment_confirm_bank_account_bottom_sheet"
+        tools:layout="@layout/fragment_confirm_bank_account_bottom_sheet" >
+
+        <argument
+            android:name="data"
+            app:argType="string"/>
+        <argument
+            android:name="from"
+            app:argType="string"/>
+    </dialog>
+
+
+    <fragment
+        android:id="@+id/testingFragment"
+        android:name="com.example.servivet.ui.main.fragment.testing.TestingFragment"
+        android:label="TestingFragment"
+        tools:layout="@layout/fragment_testing">
+        <action
+            android:id="@+id/action_testingFragment_to_testingBottomSheet7"
+            app:destination="@id/testingBottomSheet" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/testingBottomSheet"
+        android:name="com.example.servivet.ui.main.fragment.testing.TestingBottomSheet"
+        android:label="fragment_testing_bottom_sheet"
+        tools:layout="@layout/fragment_testing_bottom_sheet">
+
+        <argument
+            android:name="data"
+            app:argType="string" />
+    </dialog>
 
 
 </navigation>

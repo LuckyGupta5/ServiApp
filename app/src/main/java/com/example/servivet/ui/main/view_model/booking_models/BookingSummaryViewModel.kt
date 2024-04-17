@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Build
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.lifecycle.LiveData
@@ -27,12 +28,13 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 import com.example.servivet.data.model.booking_module.booking_summary.response.Result
+import com.example.servivet.utils.Session
 import kotlin.math.log
 
-class BookingSummaryViewModel:BaseViewModel() {
-    var atCenter=MutableLiveData(true)
-    var atHome=MutableLiveData(false)
-    val request = HashMap<String,String>()
+class BookingSummaryViewModel : BaseViewModel() {
+    var atCenter = MutableLiveData(true)
+    var atHome = MutableLiveData(false)
+    val request = HashMap<String, String>()
     var result = Result()
     private val summaryMData = SingleLiveEvent<Resource<BookingSummaryResponse>>()
 
@@ -46,50 +48,72 @@ class BookingSummaryViewModel:BaseViewModel() {
         hitSummaryApi()
 
     }
-    inner class ClickAction(var context: Context,var binding:FragmentBookingSummaryBinding){
-        fun backbtn(view:View){
+
+    inner class ClickAction(var context: Context, var binding: FragmentBookingSummaryBinding) {
+        fun backbtn(view: View) {
             view.findNavController().popBackStack()
         }
-        fun atCenter(view: View){
+
+        fun atCenter(view: View) {
             atCenter.postValue(true)
             atHome.postValue(false)
-            binding.addAddressLayout.isVisible=false
+            binding.addAddressLayout.isVisible = false
 
         }
-        fun atHome(view: View){
+
+        fun atHome(view: View) {
             atHome.postValue(true)
-            binding.addAddressLayout.isVisible=true
             atCenter.postValue(false)
-
         }
 
 
-        fun gotopayment(view: View){
-            Log.e("TAG", "gotopayment: ${Gson().toJson(result.serviceDetail)}", )
-            view.findNavController().navigate(BookingSummaryFragmentDirections.actionBookingSummaryFragmentToBookingPaymentFragment(Gson().toJson(result.serviceDetail), R.string.booking_summary))
+        fun gotopayment(view: View) {
+            Log.e("TAG", "gotopayment: ${Gson().toJson(result.serviceDetail)}")
+            if ((atHome.value!! && Session.saveAddress != null) || atCenter.value!!) {
+                view.findNavController().navigate(
+                    BookingSummaryFragmentDirections.actionBookingSummaryFragmentToBookingPaymentFragment(
+                        Gson().toJson(result.serviceDetail),
+                        R.string.booking_summary
+                    )
+                )
+            } else {
+                Toast.makeText(view.context, "Address Required", Toast.LENGTH_SHORT).show()
+            }
         }
-        fun gotoaddlocation(view: View){
+
+        fun gotoaddlocation(view: View) {
             view.findNavController().navigate(R.id.action_bookingSummaryFragment_to_addLocationFragment)
         }
 
 
     }
-    private fun hitSummaryApi(){
+
+    private fun hitSummaryApi() {
         val repository = MainRepository(RetrofitBuilder.apiService)
         summaryMData.postValue(Resource.loading(null))
         viewModelScope.launch {
             try {
                 summaryMData.postValue(Resource.success(repository.bookingSummaryApi(request)))
-            }catch (ex: IOException) {
+            } catch (ex: IOException) {
                 ex.printStackTrace()
-                summaryMData.postValue(Resource.error(StatusCode.STATUS_CODE_INTERNET_VALIDATION, null))
-            }catch (exception: Exception) {
+                summaryMData.postValue(
+                    Resource.error(
+                        StatusCode.STATUS_CODE_INTERNET_VALIDATION,
+                        null
+                    )
+                )
+            } catch (exception: Exception) {
                 exception.printStackTrace()
                 if (exception is HttpException && exception.code() == StatusCode.HTTP_EXCEPTION) {
-                    summaryMData.postValue(Resource.error(StatusCode.HTTP_EXCEPTION.toString(), null))
+                    summaryMData.postValue(
+                        Resource.error(
+                            StatusCode.HTTP_EXCEPTION.toString(),
+                            null
+                        )
+                    )
 //                    if(!finishing)
 //                        CommonUtils.logoutAlert(context, "Session Expired", "Your account has been blocked by Admin . Please contact to the Admin", requireActivity)
-                }else
+                } else
                     summaryMData.postValue(Resource.error(StatusCode.SERVER_ERROR_MESSAGE, null))
 
 

@@ -5,6 +5,7 @@
     <color name="black_2">#1C1C1C</color>
     <color name="black_opicity_6">#0F1C1C1C</color>
     <color name="app_theme">#1F728E</color>
+    <color name="fade_app_theme">#48A7CEDC</color>
     <color name="app_theme_255B6D">#255B6D</color>
     <color name="app_theme_6_opicty">#141F728E</color>
     <color name="light_sky_blue">#1F728E0A</color>
@@ -76,5 +77,6 @@
     <color name="malachite">#07C55F</color>
     <color name="spring_green">#2CEF94</color>
     <color name="jaffa">#F39044</color>
+    <color name="hint_color">#B8B8B8</color>
 
 </resources>

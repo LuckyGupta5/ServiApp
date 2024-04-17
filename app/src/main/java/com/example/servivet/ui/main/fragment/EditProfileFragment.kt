@@ -116,7 +116,7 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding,EditProfileV
 
         }
         binding.profileImage.setOnClickListener {
-            EditProfileVewModel.isPhotoSelected = true
+           // EditProfileVewModel.isPhotoSelected = true
             type="1"
             selectImage()
         }
@@ -198,8 +198,9 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding,EditProfileV
                     }
                 } else {
                     val fileUri = data.data
-                    if (fileUri!!.path!!.isNotEmpty())
+                    if (fileUri!!.path!!.isNotEmpty()) {
                         imagePath = getRealPathFromURI(requireActivity(), fileUri).toString()
+                    }
 
                     when (type) {
                         "1" -> {

@@ -7,6 +7,9 @@ data class CouponList(
     val _id: String,
     val accountStatus: Int,
     val bearerBy: Int,
+    val couponMaxAmount: Int,
+    val minAmount: Int,
+    val amount: Int,
     val couponCode: String,
     val description: String
 ):ListAdapterItem,Serializable

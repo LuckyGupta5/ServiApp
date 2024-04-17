@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/idBlockUser"
+        android:title="@string/block" />
+    <item
+        android:id="@+id/idDeleteChat"
+        android:title="@string/delete_chat" />
+
+    <item
+        android:id="@+id/idCall"
+        android:title="@string/call" />
+</menu>

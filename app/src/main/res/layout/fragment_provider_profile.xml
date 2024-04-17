@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.servivet.ui.main.view_model.ProfileViewModel" />
+
+        <variable
+            name="click"
+            type="com.example.servivet.ui.main.view_model.ProfileViewModel.ClickAction" />
+
+        <variable
+            name="detailData"
+            type="com.example.servivet.data.model.user_profile.response.UserProfile" />
+
+        <variable
+            name="clickEvents"
+            type="kotlin.jvm.functions.Function1" />
+
+    </data>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:id="@+id/idBackPress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:elevation="1dp"
+                android:onClick="@{()->clickEvents.invoke(@string/back_press)}"
+                android:src="@drawable/grey_back_icon"
+                app:layout_constraintBottom_toBottomOf="@id/idLabelImage"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/idLabelImage" />
+
+            <ImageView
+                android:id="@+id/idLabelImage"
+                android:layout_width="match_parent"
+                android:layout_height="165dp"
+                android:scaleType="centerCrop"
+                android:bannerUrl="@{detailData.coverImage}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/idProfileBg"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:background="@drawable/back_circle_btn"
+                android:backgroundTint="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/idLabelImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/idLabelImage" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="135dp"
+                android:layout_height="135dp"
+                android:imageViewUrl="@{detailData.image}"
+                app:layout_constraintBottom_toBottomOf="@id/idProfileBg"
+                app:layout_constraintEnd_toEndOf="@id/idProfileBg"
+                app:layout_constraintStart_toStartOf="@id/idProfileBg"
+                app:layout_constraintTop_toTopOf="@id/idProfileBg" />
+
+            <TextView
+                android:id="@+id/idName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="@{detailData.name}"
+                android:textColor="@color/black"
+                android:textSize="23sp"
+                app:layout_constraintEnd_toEndOf="@id/idProfileBg"
+                app:layout_constraintStart_toStartOf="@id/idProfileBg"
+                app:layout_constraintTop_toBottomOf="@id/idProfileBg" />
+
+            <TextView
+                android:id="@+id/idBusinessType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/round_corner_app_theme_8dp"
+                android:backgroundTint="@color/fade_app_theme"
+                android:fontFamily="@font/poppins_regular"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:text="@{detailData.businessType==3?@string/individual:@string/institutional}"
+                android:textColor="@color/app_theme"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="@id/idName"
+                app:layout_constraintStart_toStartOf="@id/idName"
+                app:layout_constraintTop_toBottomOf="@id/idName" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/idConnectBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="6dp"
+                android:backgroundTint="@color/app_theme"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:onClick="@{()->clickEvents.invoke(@string/connect)}"
+                android:paddingVertical="13dp"
+                android:text="@{detailData.isConnected() == 0?@string/connect:detailData.isConnected() == 1?@string/connected:@string/pending}"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                app:cornerRadius="10dp"
+                app:icon="@drawable/connect_user_icon"
+                app:iconGravity="textStart"
+                app:iconTint="@color/white"
+                app:layout_constraintEnd_toStartOf="@id/idMessageBtn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/idBusinessType" />
+
+            <!---->
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/idMessageBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="35dp"
+                android:backgroundTint="@color/white"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:onClick="@{()->clickEvents.invoke(@string/message)}"
+                android:paddingVertical="13dp"
+                android:text="Message"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:cornerRadius="10dp"
+                app:icon="@drawable/message_icon"
+                app:iconGravity="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/idConnectBtn"
+                app:layout_constraintTop_toBottomOf="@id/idBusinessType"
+                app:strokeColor="@color/gray_5"
+                app:strokeWidth="1dp" />
+
+            <ImageView
+                android:id="@+id/idCallIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="35dp"
+                android:onClick="@{()->clickEvents.invoke(@string/call)}"
+                android:src="@drawable/call_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/idMessageBtn" />
+
+            <ImageView
+                android:id="@+id/idChatIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/video_icon"
+                android:onClick="@{()->clickEvents.invoke(@string/whatsApp)}"
+                app:layout_constraintEnd_toStartOf="@id/idShareIcon"
+                app:layout_constraintStart_toEndOf="@id/idCallIcon"
+                app:layout_constraintTop_toTopOf="@id/idCallIcon" />
+
+            <ImageView
+                android:id="@+id/idShareIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="35dp"
+                android:src="@drawable/share_icon"
+                android:onClick="@{()->clickEvents.invoke(@string/share)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/idCallIcon" />
+
+            <TextView
+                android:id="@+id/idCallText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/call"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@id/idCallIcon"
+                app:layout_constraintStart_toStartOf="@id/idCallIcon"
+                app:layout_constraintTop_toBottomOf="@id/idCallIcon" />
+
+            <TextView
+                android:id="@+id/idChatText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:src="@drawable/whatsapp_icon"
+                android:text="@string/video_call"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@id/idChatIcon"
+                app:layout_constraintStart_toStartOf="@id/idChatIcon"
+                app:layout_constraintTop_toTopOf="@id/idCallText" />
+
+            <TextView
+                android:id="@+id/idShareText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:src="@drawable/share_icon"
+                android:text="@string/share"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@id/idShareIcon"
+                app:layout_constraintStart_toStartOf="@id/idShareIcon"
+                app:layout_constraintTop_toTopOf="@id/idCallText" />
+
+            <View
+                android:id="@+id/idView"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="19dp"
+                android:background="@color/black_opicity_6"
+                app:layout_constraintTop_toBottomOf="@id/idCallText" />
+
+            <TextView
+                android:id="@+id/idOfferServices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginVertical="20sp"
+                android:drawablePadding="17dp"
+                android:fontFamily="@font/poppins_medium"
+                android:onClick="@{()->clickEvents.invoke(@string/services)}"
+                android:paddingHorizontal="20dp"
+                android:text="@string/services_we_offer"
+                android:textColor="@color/black_2"
+                android:textSize="17sp"
+                app:drawableEndCompat="@drawable/img_path"
+                app:drawableStartCompat="@drawable/serviceoffer_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/idView" />
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/black_opicity_6"
+                app:layout_constraintTop_toBottomOf="@+id/idOfferServices" />
+
+            <TextView
+                android:id="@+id/idAboutText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="23dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="@string/about"
+                android:textColor="@color/black_2"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view1" />
+
+
+            <TextView
+                android:id="@+id/idEmailAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="18dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_medium"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="@string/email_address"
+                android:textColor="@color/black_000"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@id/idMessageIcon"
+                app:layout_constraintTop_toBottomOf="@id/idAboutText" />
+
+            <ImageView
+                android:id="@+id/idMessageIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/email_address_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/idEmailAddress" />
+
+            <TextView
+                android:id="@+id/idMail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_regular"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="@{detailData.email}"
+                android:textColor="@color/grey_6E6E6E"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@id/idMessageIcon"
+                app:layout_constraintTop_toBottomOf="@id/idMessageIcon" />
+
+
+            <TextView
+                android:id="@+id/idNumberText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="18dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_medium"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="@string/mobile_number"
+                android:textColor="@color/black_000"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@id/idMessageIcon"
+                app:layout_constraintTop_toBottomOf="@id/idMail" />
+
+            <ImageView
+                android:id="@+id/idNumberIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/mobile_number_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/idNumberText" />
+
+            <TextView
+                android:id="@+id/idNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_regular"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text='@{detailData.countryCode+" "+detailData.mobile}'
+                android:textColor="@color/grey_6E6E6E"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@id/idNumberIcon"
+                app:layout_constraintTop_toBottomOf="@id/idNumberIcon" />
+
+
+            <TextView
+                android:id="@+id/AboutText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="18dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_medium"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="@string/about"
+                android:textColor="@color/black_000"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@id/idMessageIcon"
+                app:layout_constraintTop_toBottomOf="@id/idNumber" />
+
+            <ImageView
+                android:id="@+id/idAboutIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/about_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/AboutText" />
+
+            <TextView
+                android:id="@+id/idAbout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="20dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_regular"
+                android:includeFontPadding="false"
+                android:text="@{detailData.description}"
+                android:textColor="@color/grey_6E6E6E"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/idAboutIcon"
+                app:layout_constraintTop_toBottomOf="@id/idAboutIcon" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+</layout>

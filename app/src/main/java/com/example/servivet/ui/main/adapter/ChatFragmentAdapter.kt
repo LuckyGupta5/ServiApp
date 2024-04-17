@@ -1,28 +1,84 @@
 package com.example.servivet.ui.main.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
+import android.view.View
+import androidx.core.view.isVisible
 import com.example.servivet.R
+import com.example.servivet.data.model.chat_models.request_list.response.Chatlist
 import com.example.servivet.databinding.ChatRecyclerviewDesignBinding
 import com.example.servivet.ui.base.BaseAdapter
-import com.example.servivet.utils.interfaces.ListAdapterItem
+import com.example.servivet.utils.Session
+import com.example.servivet.utils.convertTimeStampToTime
+import com.example.servivet.utils.dateDifferenceExample
+import com.google.gson.Gson
 
-class ChatFragmentAdapter(var context:Context,var list:ArrayList<ListAdapterItem>):BaseAdapter<ChatRecyclerviewDesignBinding,ListAdapterItem>(list) {
+class ChatFragmentAdapter(
+    var context: Context,
+    val chatList: ArrayList<Chatlist>,
+    val check: Boolean,
+    val onItemClick: (String, String) -> Unit
+) : BaseAdapter<ChatRecyclerviewDesignBinding, Chatlist>(chatList) {
+    private var filteredList: List<Chatlist> = chatList.toList()
 
-
-    inner class ClickAction(var position: Int){
-
-    }
 
     override fun getItemCount(): Int {
-        return 7
+        return filteredList.size
     }
-    override val layoutId: Int= R.layout.chat_recyclerview_design
+
+    override val layoutId: Int = R.layout.chat_recyclerview_design
 
 
-    override fun bind(binding: ChatRecyclerviewDesignBinding, item: ListAdapterItem?, position: Int, ) {
+    override fun bind(binding: ChatRecyclerviewDesignBinding, item: Chatlist?, position: Int) {
+
+        val isDeletedByContainsId = item?.deletedBy?.any { id ->
+            id == Session.userDetails._id
+        } ?: false
+
+        val isSeenBy = item?.seenBy?.any { id ->
+            id == Session.userDetails._id
+        } ?: false
+
+
+        Log.e("TAG", "checkLastMessageTime: ${item?.createdAt}", )
+
+        //item?.createdAt = dateDifferenceExample(context, item?.updatedAt) ?: ""
+        item?.createdAt = convertTimeStampToTime(item?.updatedAt,10,0) ?: ""
+
         binding.apply {
-            binding.click=ClickAction(position)
+            item?.isSeenBy = isSeenBy
+            idButtonContainer.isVisible = !check
+            listData = filteredList[position]
+            userDetails = Session.userDetails
+            idContainer.setOnClickListener {onItemClick(context.getString(R.string.container), Gson().toJson(chatList[position])) }
+            idAcceptBtn.setOnClickListener { onItemClick(context.getString(R.string.accept), chatList[position]._id)
+            }
+            idDeclineBtn.setOnClickListener { onItemClick(context.getString(R.string.decline), chatList[position]._id)
+            }
+
+            if (isDeletedByContainsId) {
+                binding.idLastMsg.visibility = View.INVISIBLE
+            } else {
+                binding.idLastMsg.visibility = View.VISIBLE
+            }
+            Log.e("TAG", "checkSender: ${chatList[position].senderId.name}")
+            Log.e("TAG", "checkReceiver: ${chatList[position].receiverId.name}")
+        }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun filter(text: String) {
+        filteredList = if (text.isEmpty()) {
+            chatList
+        } else {
+            chatList.filter {
+                it.senderId.name.contains(text, ignoreCase = true) || it.receiverId.name.contains(text, ignoreCase = true)
+            }
 
         }
+
+        onItemClick(context.getString(R.string.filterdata), filteredList.size.toString())
+        notifyDataSetChanged()
     }
 }

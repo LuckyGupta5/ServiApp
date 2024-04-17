@@ -73,6 +73,9 @@
         <action
             android:id="@+id/action_business_Verification_Fragment_to_homeActivity"
             app:destination="@id/homeActivity" />
+        <action
+            android:id="@+id/action_business_Verification_Fragment_to_addLocationFragment2"
+            app:destination="@id/addLocationFragment2" />
     </fragment>
     <fragment
         android:id="@+id/completeProfileFragment"
@@ -82,5 +85,23 @@
         <action
             android:id="@+id/action_completeProfileFragment_to_homeActivity"
             app:destination="@id/homeActivity" />
+        <action
+            android:id="@+id/action_completeProfileFragment_to_addLocationFragment2"
+            app:destination="@id/addLocationFragment2" />
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/addLocationFragment2"
+        android:name="com.example.servivet.ui.main.fragment.AddLocationFragment"
+        android:label="AddLocationFragment"
+        tools:layout="@layout/fragment_add_location">
+        <argument
+            android:name="number"
+            app:argType="string" />
+
+        <argument
+            android:name="from"
+            app:argType="string" />
     </fragment>
 </navigation>

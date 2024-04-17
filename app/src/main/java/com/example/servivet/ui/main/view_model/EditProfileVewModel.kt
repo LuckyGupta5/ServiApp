@@ -109,17 +109,13 @@ class EditProfileVewModel : BaseViewModel() {
             editProfileRequest.countryCode?.let { builder.addFormDataPart("countryCode", it) }
             if (editProfileRequest.email != null && editProfileRequest.email != "")
                 editProfileRequest.email?.let { builder.addFormDataPart("email", it) }
-            editProfileRequest.mobile?.let { builder.addFormDataPart("mobile", it) }
+             editProfileRequest.mobile?.let { builder.addFormDataPart("mobile", it) }
             editProfileRequest.aboutus?.let { builder.addFormDataPart("aboutus", it) }
 
 
             if (isPhotoSelected) {
                 val file = File(editProfileRequest.image!!)
-                builder.addFormDataPart(
-                    "image",
-                    file.name,
-                    RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
-                )
+                builder.addFormDataPart("image", file.name, RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file))
 
             }
             if (isPhotoSelectedCoverImage) {
@@ -140,21 +136,12 @@ class EditProfileVewModel : BaseViewModel() {
                 } catch (ex: IOException) {
                     ex.printStackTrace()
                     Log.d("exception", "" + ex.localizedMessage)
-                    editProfileResponse.postValue(
-                        Resource.error(
-                            StatusCode.STATUS_CODE_INTERNET_VALIDATION,
-                            null
-                        )
-                    )
+                    editProfileResponse.postValue(Resource.error(StatusCode.STATUS_CODE_INTERNET_VALIDATION, null))
                 }catch (exception: Exception) {
                     exception.printStackTrace()
                     if (exception is HttpException && exception.code() == 401) {
                         if(!finishing)
-                            CommonUtils.logoutAlert(
-                            context,
-                            "Session Expired",
-                            "Your account has been blocked by Admin . Please contact to the Admin",
-                            requireActivity)
+                            CommonUtils.logoutAlert(context, "Session Expired", "Your account has been blocked by Admin . Please contact to the Admin",requireActivity)
                     }else
                         editProfileResponse.postValue(Resource.error(StatusCode.SERVER_ERROR_MESSAGE, null))
 

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.servivet.ui.main.view_model.CompleteProfileViewModel" />
+
         <variable
             name="click"
             type="com.example.servivet.ui.main.view_model.CompleteProfileViewModel.ClickAction" />
@@ -17,10 +19,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.main.fragment.CompleteProfileFragment">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:fitsSystemWindows="true"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
 
             <ImageView
                 android:id="@+id/servivet_img"
@@ -30,7 +33,7 @@
                 android:background="@color/app_theme"
                 android:paddingTop="54dp"
                 android:paddingBottom="60dp"
-                android:src="@drawable/servivet_name" />
+                android:src="@drawable/splash_new_icon" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -38,8 +41,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/backbtn"
-                android:onClick="@{click::backbtn}"
-                />
+                android:onClick="@{click::backbtn}" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -51,53 +53,57 @@
                 android:layout_marginBottom="15dp"
                 android:background="@drawable/top_round_corner_white_24dp">
 
-                    <LinearLayout
-                        android:id="@+id/completeProfilelayout"
-                        android:orientation="vertical"
-                        android:layout_centerHorizontal="true"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_marginTop="22dp"
-                            android:layout_width="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_semi_bold"
-                            android:text="@string/complete_profile"
-                            android:textColor="@color/black_2"
-                            android:textSize="27dp" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="11dp"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_regular"
-                            android:text="@string/enter_your_information_below"
-                            android:textColor="@color/gray_878787"
-                            android:textSize="17dp" />
-                    </LinearLayout>
-              <!--  </RelativeLayout>
--->
+                <LinearLayout
+                    android:id="@+id/completeProfilelayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="22dp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:text="@string/complete_profile"
+                        android:textColor="@color/black_2"
+                        android:textSize="27dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="11dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="@string/enter_your_information_below"
+                        android:textColor="@color/gray_878787"
+                        android:textSize="17dp" />
+                </LinearLayout>
+                <!--  </RelativeLayout>
+  -->
 
 
                 <androidx.core.widget.NestedScrollView
                     android:id="@+id/main_layout"
-                    android:layout_below="@+id/completeProfilelayout"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="15dp"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/completeProfilelayout"
+                    android:layout_marginTop="15dp"
                     android:fillViewport="true"
                     android:fitsSystemWindows="true">
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
+
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/profile_image"
                             android:layout_width="130dp"
                             android:layout_height="130dp"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="70dp"
                             android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="70dp"
                             android:background="@drawable/white_circle"
                             android:src="@drawable/userprofile" />
 
@@ -105,17 +111,19 @@
                             android:id="@+id/camera"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:layout_marginStart="-35dp"
                             android:layout_below="@id/profile_image"
+                            android:layout_marginStart="-35dp"
                             android:layout_marginTop="-110dp"
                             android:layout_toRightOf="@+id/profile_image"
                             android:background="@drawable/camera_icon" />
+
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="26dp"
                             android:layout_below="@id/camera"
+                            android:layout_marginTop="26dp"
                             android:orientation="vertical">
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -136,12 +144,12 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginHorizontal="20dp"
                                     android:layout_marginTop="11dp"
+                                    android:afterTextChanged="@{(text)->click.onNameChange(text)}"
                                     android:background="@drawable/white_round_corner_12_dp"
                                     android:fontFamily="@font/poppins_regular"
-                                    android:afterTextChanged="@{(text)->click.onNameChange(text)}"
                                     android:hint="@string/enter_name"
-                                    android:maxLength="30"
                                     android:inputType="textPersonName"
+                                    android:maxLength="30"
                                     android:maxLines="1"
                                     android:paddingHorizontal="20dp"
                                     android:paddingVertical="17dp"
@@ -182,6 +190,34 @@
                                     android:layout_marginStart="20dp"
                                     android:layout_marginTop="20dp"
                                     android:fontFamily="@font/poppins_semi_bold"
+                                    android:text="@string/address"
+                                    android:visibility="gone"
+                                    android:textColor="@color/black_262626"
+                                    android:textSize="17dp" />
+
+                                <TextView
+                                    android:id="@+id/idAddress"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_marginTop="11dp"
+                                    android:background="@drawable/white_round_corner_12_dp"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:hint="@string/add_address"
+                                    android:maxLength="50"
+                                    android:visibility="gone"
+                                    android:paddingHorizontal="20dp"
+                                    android:paddingVertical="17dp"
+                                    android:textColor="@color/black"
+                                    android:textColorHint="@color/grey_848484"
+                                    android:textSize="17dp" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/poppins_semi_bold"
                                     android:text="@string/email_address"
                                     android:textColor="@color/black_262626"
                                     android:textSize="17dp" />
@@ -192,14 +228,14 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginHorizontal="20dp"
                                     android:layout_marginTop="11dp"
+                                    android:afterTextChanged="@{(text)->click.onEmailChange(text)}"
                                     android:background="@drawable/white_round_corner_12_dp"
                                     android:fontFamily="@font/poppins_regular"
                                     android:hint="@string/email_address"
-                                    android:afterTextChanged="@{(text)->click.onEmailChange(text)}"
                                     android:inputType="textEmailAddress"
+                                    android:maxLength="50"
                                     android:paddingHorizontal="20dp"
                                     android:paddingVertical="17dp"
-                                    android:maxLength="50"
                                     android:textColor="@color/black"
                                     android:textColorHint="@color/grey_848484"
                                     android:textSize="17dp" />
@@ -229,9 +265,9 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center_vertical"
                                         android:layout_weight="1"
-                                        android:maxLength="150"
                                         android:fontFamily="@font/poppins_regular"
                                         android:gravity="end"
+                                        android:maxLength="150"
                                         android:text="@string/_0_150"
                                         android:textColor="@color/grey_848484"
                                         android:textSize="11dp" />
@@ -244,19 +280,16 @@
                                     android:layout_height="110dp"
                                     android:layout_marginHorizontal="20dp"
                                     android:layout_marginBottom="15dp"
+                                    android:afterTextChanged="@{(text)->click.onAboutTextChanged(text)}"
                                     android:background="@drawable/white_round_corner_12_dp"
                                     android:fontFamily="@font/poppins_regular"
                                     android:gravity="start"
-                                    android:afterTextChanged="@{(text)->click.onAboutTextChanged(text)}"
                                     android:hint="@string/message"
-                                    android:padding="17dp"
                                     android:maxLength="150"
+                                    android:padding="17dp"
                                     android:textColor="@color/black_262626"
                                     android:textColorHint="@color/grey_848484"
                                     android:textSize="13dp" />
-
-
-
 
 
                             </LinearLayout>
@@ -266,26 +299,22 @@
                 </androidx.core.widget.NestedScrollView>
 
 
-
-
-
-
             </RelativeLayout>
 
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/verifyBtn"
-                android:onClick="@{click::updateBtn}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginBottom="15sp"
                 android:background="@drawable/button_selector"
+                android:enabled='@{(viewModel.name==true &amp; viewModel.enailET==true &amp; viewModel.about)?true:false }'
                 android:fontFamily="@font/poppins_medium"
+                android:onClick="@{click::updateBtn}"
                 android:paddingVertical="8dp"
                 android:text="@string/verify"
-                android:enabled='@{(viewModel.name==true &amp; viewModel.enailET==true &amp; viewModel.about)?true:false }'
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="19dp"
@@ -293,7 +322,6 @@
 
 
         </RelativeLayout>
-
 
 
     </RelativeLayout>

@@ -115,7 +115,7 @@
                                 android:id="@+id/centreCheckBox"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:background="@drawable/unselected_checkbox"/>
+                                android:background="@drawable/unselected_checkbox" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -136,9 +136,9 @@
 
                             <ImageView
                                 android:id="@+id/homeCheckBox"
-                                android:background="@drawable/unselected_checkbox"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/unselected_checkbox" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -153,13 +153,14 @@
 
                     </LinearLayout>
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:visibility="gone">
-">
+                    ">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -177,15 +178,15 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="15dp"
                         android:layout_marginTop="15dp"
-                        android:enabled="false"
                         android:background="@drawable/white_round_corner_12_dp"
                         android:drawableEnd="@drawable/location_path_icon"
+                        android:enabled="false"
                         android:fontFamily="@font/poppins_medium"
                         android:hint="@string/address"
-                        android:text="@string/a_block_sector_63_noida"
                         android:paddingVertical="15dp"
                         android:paddingLeft="15dp"
                         android:paddingEnd="15dp"
+                        android:text="@string/a_block_sector_63_noida"
                         android:textColor="@color/black_2"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -223,7 +224,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="15dp"
                         android:background="@drawable/arraow_path"
-                        android:rotation="90"/>
+                        android:rotation="90" />
 
                 </LinearLayout>
 
@@ -267,7 +268,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginEnd="15dp"
                             android:background="@drawable/arraow_path"
-                            android:rotation="90"/>
+                            android:rotation="90" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -287,15 +288,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
+                    android:layout_marginTop="5dp"
                     android:afterTextChanged="@{(text)->click.onNameChange(text)}"
                     android:background="@drawable/white_round_corner_12_dp"
                     android:fontFamily="@font/poppins_medium"
                     android:hint="Service Name"
-                    android:maxLength="100"
-                    android:layout_marginTop="5dp"
                     android:inputType="textPersonName"
-                    android:paddingVertical="15dp"
+                    android:maxLength="100"
                     android:paddingHorizontal="15dp"
+                    android:paddingVertical="15dp"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
 
@@ -335,8 +336,8 @@
                     android:layout_height="110dp"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="10dp"
-                    android:afterTextChanged="@{(text)->click.aboutTextChange(text)}"
                     android:layout_marginBottom="20dp"
+                    android:afterTextChanged="@{(text)->click.aboutTextChange(text)}"
 
                     android:background="@drawable/white_round_corner_12_dp"
                     android:fontFamily="@font/poppins_regular"
@@ -366,25 +367,51 @@
                     android:layout_marginTop="15dp"
                     android:nestedScrollingEnabled="false"
                     android:orientation="horizontal"
-                    android:visibility="gone"
+                    android:visibility="visible"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/add_service_image_recycler" />
 
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-                <TextView
-                    android:id="@+id/addImageBtn"
+                <LinearLayout
+                    android:id="@+id/idMediaContaier"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:background="@drawable/white_round_corner_12_dp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:gravity="center_horizontal"
-                    android:paddingVertical="15dp"
-                    android:text="@string/add_image"
-                    android:textColor="@color/app_theme"
-                    android:textSize="13dp" />
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/addImageBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/white_round_corner_12_dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center_horizontal"
+                        android:paddingVertical="15dp"
+                        android:text="@string/add_image"
+                        android:textColor="@color/app_theme"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/addVideo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/white_round_corner_12_dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center_horizontal"
+                        android:paddingVertical="15dp"
+                        android:text="@string/add_video"
+                        android:textColor="@color/app_theme"
+                        android:textSize="13dp" />
+                </LinearLayout>
+
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/priceRecycler"
@@ -408,11 +435,11 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="15dp"
             android:background="@drawable/button_selector"
+            android:enabled='@{(viewModel.name==true &amp;viewModel.aboutService==true)?true:false}'
             android:fontFamily="@font/poppins_medium"
+            android:onClick="@{click::addService}"
             android:paddingVertical="10dp"
             android:text="@string/add"
-            android:onClick="@{click::addService}"
-            android:enabled='@{(viewModel.name==true &amp;viewModel.aboutService==true)?true:false}'
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="19dp"

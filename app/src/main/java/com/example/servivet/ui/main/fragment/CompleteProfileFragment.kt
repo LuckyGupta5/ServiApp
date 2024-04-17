@@ -14,6 +14,7 @@ import android.os.Build
 import android.provider.MediaStore
 import android.provider.Settings
 import android.text.InputFilter
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.WindowManager
 import android.widget.Toast
@@ -21,6 +22,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.example.servivet.R
@@ -46,6 +48,7 @@ class CompleteProfileFragment :
     var dialog: Dialog? = null
     private var type = ""
     private var imagePath: String = ""
+    private var number = ""
     override val binding: FragmentCompleteProfileBinding by viewBinding(
         FragmentCompleteProfileBinding::bind
     )
@@ -57,16 +60,30 @@ class CompleteProfileFragment :
     override fun setupViewModel() {
         if (isAdded)
             binding.apply {
-            lifecycleOwner = viewLifecycleOwner
-            viewModel = mViewModel
-            click = mViewModel.ClickAction(binding, requireContext(),requireActivity(),requireActivity().isFinishing)
-        }
+                lifecycleOwner = viewLifecycleOwner
+                viewModel = mViewModel
+                click = mViewModel.ClickAction(
+                    binding,
+                    requireContext(),
+                    requireActivity(),
+                    requireActivity().isFinishing
+                )
+            }
         mViewModel.mobilenumber = arguments?.getString(Constants.MOBILE_NUMBER)!!
         mViewModel.countrycode = arguments?.getString(Constants.COUNTRY_CODE)!!
         binding.mobileNo.setText("+" + mViewModel.countrycode + " " + mViewModel.mobilenumber)
+        number =  mViewModel.countrycode + " " + mViewModel.mobilenumber
         setData()
         setBack()
+        setClickEvents()
 
+    }
+
+    private fun setClickEvents() {
+        binding.idAddress.setOnClickListener {
+
+           // findNavController().navigate(CompleteProfileFragmentDirections.actionCompleteProfileFragmentToAddLocationFragment2(number,""))
+        }
     }
 
     private fun setData() {
@@ -280,6 +297,7 @@ class CompleteProfileFragment :
                         showSnackBar(it)
                     }
                 }
+
                 Status.UNAUTHORIZED -> {
                     CommonUtils.logoutAlert(
                         requireContext(),

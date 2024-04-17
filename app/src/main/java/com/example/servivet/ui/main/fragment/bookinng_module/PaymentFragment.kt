@@ -19,6 +19,7 @@ import com.example.servivet.databinding.FragmentAddServiceBinding
 import com.example.servivet.databinding.FragmentPaymentBinding
 import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.view_model.wallet.PaymentViewModel
+import com.example.servivet.utils.Constants
 import com.example.servivet.utils.getLastWordFromUrl
 import com.google.gson.Gson
 import org.json.JSONObject
@@ -84,6 +85,8 @@ class PaymentFragment :
 
             if (reponse.equals("Success", ignoreCase = true)) {
                 findNavController().navigate(R.id.action_paymentFragment_to_homeFragment)
+                Constants.APPLIED_COUPON = ""
+
 
             } else if (url.toString() == "https://standard.paystack.co/close") {
                 // finish()

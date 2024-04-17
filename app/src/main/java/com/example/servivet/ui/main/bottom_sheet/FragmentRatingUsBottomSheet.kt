@@ -1,32 +1,22 @@
 package com.example.servivet.ui.main.bottom_sheet
 
-import android.app.Activity
-import android.content.Intent
-import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.RatingBar
+import android.widget.Toast
 import androidx.fragment.app.viewModels
-import by.kirich1409.viewbindingdelegate.viewBinding
+import androidx.navigation.fragment.navArgs
 import com.example.servivet.R
-import com.example.servivet.databinding.FragmentLoginBinding
 import com.example.servivet.databinding.FragmentRatingUsBottomSheetBinding
 import com.example.servivet.ui.base.BaseBottomSheetDailogFragment
-import com.example.servivet.ui.main.activity.HomeActivity
 import com.example.servivet.ui.main.view_model.RateUseBottomSheetViewModel
 import com.example.servivet.utils.CommonUtils
-import com.example.servivet.utils.CommonUtils.showSnackBar
 import com.example.servivet.utils.ProcessDialog
-import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
 
 class FragmentRatingUsBottomSheet :
     BaseBottomSheetDailogFragment<FragmentRatingUsBottomSheetBinding, RateUseBottomSheetViewModel>(R.layout.fragment_rating_us_bottom_sheet) {
     override val mViewModel: RateUseBottomSheetViewModel by viewModels()
+    private val serviceId: FragmentRatingUsBottomSheetArgs by navArgs()
 
 
     override fun getLayout(): Int {
@@ -42,12 +32,17 @@ class FragmentRatingUsBottomSheet :
 
     override fun setupViews() {
         binding.apply {
-
             lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
             click = mViewModel.ClickAction(binding)
         }
         onclick()
+        getData()
+    }
+
+    private fun getData() {
+        binding.name.text = serviceId.serviceName
+        mViewModel.ratingRequest.serviceId = serviceId.serviceId
     }
 
     fun onclick() {
@@ -73,11 +68,14 @@ class FragmentRatingUsBottomSheet :
 
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            showSnackBar(it.data.message)
+                            Toast.makeText(requireContext(), it.data.message, Toast.LENGTH_SHORT)
+                                .show()
+                            dialog?.dismiss()
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showSnackBar(it.data.message)
+                            Toast.makeText(requireContext(), it.data.message, Toast.LENGTH_SHORT)
+                                .show()
                         }
 
                     }

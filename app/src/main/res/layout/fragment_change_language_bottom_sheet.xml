@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="clickEvent"
+            type="kotlin.jvm.functions.Function1" />
+
+        <variable
+            name="click"
+            type="com.example.servivet.ui.main.view_model.wallet.MyWalletBottomsheetViewModel.ClickAction" />
+
+        <variable
+            name="viewModel"
+            type="com.example.servivet.ui.main.view_model.wallet.MyWalletBottomsheetViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/apptheme_outline_with_solid_white_corner_12"
+        android:backgroundTint="@color/white"
+        tools:context=".ui.main.bottom_sheet.ChangeLanguageBottomSheet">
+
+        <TextView
+            android:id="@+id/idText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/change_language"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/languagerecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idText"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/idAddAddress"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:itemCount="3"
+            tools:listitem="@layout/language_recyler" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/idAddAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/languagerecycler"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/app_theme_color_button_12dp"
+            android:backgroundTint="@null"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/update"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="19dp"
+            android:onClick="@{()->clickEvent.invoke(1)}"
+            app:backgroundTint="@null" />
+
+    </RelativeLayout>
+</layout>

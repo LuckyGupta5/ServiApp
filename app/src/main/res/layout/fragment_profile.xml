@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewMOdel"
             type="com.example.servivet.ui.main.view_model.ProfileViewModel" />
@@ -16,6 +18,10 @@
         <variable
             name="data"
             type="com.example.servivet.data.model.user_profile.response.UserProfile" />
+
+        <variable
+            name="connectionAdapter"
+            type="com.example.servivet.ui.main.adapter.ProfileConnectionAdapter" />
 
     </data>
 
@@ -44,7 +50,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:imageViewUrl="@{data.coverImage}"
+                        android:bannerUrl="@{data.coverImage}"
                         android:scaleType="fitXY" />
 
                     <TextView
@@ -59,33 +65,33 @@
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:onClick="@{click::goMyWallet}"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="20dp"
-                        android:background="@drawable/img_setting" />
-<!--
+                        android:background="@drawable/img_setting"
+                        android:onClick="@{click::goMyWallet}" />
+                    <!--
 
-                    <TextView
-                        android:id="@+id/logout"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="20dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="18dp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginBottom="15dp"
-                        android:background="@drawable/app_theme_color_button_12dp"
-                        android:fontFamily="@font/poppins_semi_bold"
-                        android:onClick="@{click::logOut}"
-                        android:paddingHorizontal="20dp"
-                        android:paddingVertical="5dp"
-                        android:text="@string/log_out"
-                        android:textColor="@color/white"
-                        android:textSize="17dp" />
--->
+                                        <TextView
+                                            android:id="@+id/logout"
+                                            android:layout_alignParentEnd="true"
+                                            android:layout_marginEnd="20dp"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="20dp"
+                                            android:layout_marginTop="18dp"
+                                            android:layout_centerVertical="true"
+                                            android:layout_marginBottom="15dp"
+                                            android:background="@drawable/app_theme_color_button_12dp"
+                                            android:fontFamily="@font/poppins_semi_bold"
+                                            android:onClick="@{click::logOut}"
+                                            android:paddingHorizontal="20dp"
+                                            android:paddingVertical="5dp"
+                                            android:text="@string/log_out"
+                                            android:textColor="@color/white"
+                                            android:textSize="17dp" />
+                    -->
 
                 </RelativeLayout>
 
@@ -104,11 +110,11 @@
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
                     android:layout_below="@id/profile_image"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2dp"
                     android:fontFamily="@font/poppins_semi_bold"
+                    android:gravity="center_horizontal"
                     android:text="@{data.name}"
                     android:textColor="@color/black_2"
                     android:textSize="23sp" />
@@ -303,19 +309,20 @@
                     android:text="@string/my_connections"
                     android:textColor="@color/black_2"
                     android:textSize="17dp" />
+
                 <TextView
                     android:id="@+id/gotomyConnection"
-                    android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/view3"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="18dp"
                     android:layout_marginEnd="20dp"
-                    android:paddingVertical="5dp"
+                    android:background="@drawable/app_theme_color_button_12dp"
+                    android:fontFamily="@font/poppins_semi_bold"
                     android:onClick="@{click::goMyConnection}"
                     android:paddingHorizontal="10dp"
-                    android:background="@drawable/app_theme_color_button_12dp"
-                    android:layout_below="@id/view3"
-                    android:layout_marginTop="18dp"
-                    android:fontFamily="@font/poppins_semi_bold"
+                    android:paddingVertical="5dp"
                     android:text="See My Connection "
                     android:textColor="@color/white"
                     android:textSize="11dp" />
@@ -333,9 +340,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
+                        android:adapter="@{connectionAdapter}"
                         android:clickable="false"
                         android:nestedScrollingEnabled="false"
-                        android:visibility="gone"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:spanCount="3"
                         tools:listitem="@layout/home_services_recycler" />
@@ -345,14 +352,15 @@
                         android:id="@+id/noDataLayout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
                         android:layout_marginBottom="30dp"
-                        android:layout_marginTop="10dp">
+                        android:visibility="@{connectionAdapter.connectionList==null?View.GONE:connectionAdapter.connectionList.size()>0?View.GONE:View.VISIBLE}">
 
                         <ImageView
                             android:id="@+id/no_dataIcon"
                             android:layout_width="wrap_content"
-                            android:layout_centerHorizontal="true"
                             android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
                             android:background="@drawable/no_data_icon" />
 
                         <TextView

@@ -24,6 +24,9 @@
         <variable
             name="data"
             type="com.example.servivet.data.model.service_category_details.response.ServiceDetail" />
+        <variable
+            name="clickEvents"
+            type="kotlin.jvm.functions.Function1" />
 
     </data>
 
@@ -177,7 +180,7 @@
                                         android:gravity="end"
                                         android:paddingHorizontal="6dp"
                                         android:paddingVertical="1dp"
-                                        android:text="4.5"
+                                        android:text="@{data.avgRating}"
                                         android:textColor="@color/white"
                                         android:textSize="13dp" />
 
@@ -207,9 +210,11 @@
 
 
                         <LinearLayout
+                            android:id="@+id/idProviderProfile"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="15dp"
+                            android:onClick="@{()->clickEvents.invoke(0)}"
                             android:paddingBottom="12dp">
 
                             <de.hdodenhof.circleimageview.CircleImageView
@@ -280,7 +285,6 @@
                     android:background="@color/white"
                     android:orientation="horizontal"
                     android:paddingHorizontal="20dp"
-
                     android:paddingTop="15dp">
 
                     <com.google.android.material.textview.MaterialTextView
@@ -301,7 +305,8 @@
                         android:gravity="end"
                         android:text="@string/view_all"
                         android:textColor="@color/app_theme"
-                        android:textSize="15dp" />
+                        android:textSize="15dp"
+                        android:visibility="invisible" />
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -380,6 +385,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="18dp"
                             android:rating='@{data.ratingReview.averageRating == null?0.0F:data.ratingReview.averageRating}'
+                            android:theme="@style/RatingBar"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/idRatingCount" />
 
@@ -390,7 +396,7 @@
                             android:layout_marginStart="18dp"
                             android:layout_marginTop="9dp"
                             android:fontFamily="@font/poppins_regular"
-                            android:text="@{data.ratingReview.totalReview}"
+                            android:text='@{data.ratingReview.totalReview== null?"0"+" "+@string/review:data.ratingReview.totalReview+" "+@string/review}'
                             android:textSize="15sp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/idRatingBar" />
@@ -451,22 +457,26 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <ImageView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="5dp"
-                    android:background="@drawable/rupree_icon" />
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@string/r"
+                    android:textColor="@color/black"
+                    android:textSize="23sp" />
 
                 <TextView
                     android:id="@+id/smallest"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="5dp"
                     android:drawablePadding="3dp"
                     android:fontFamily="@font/poppins_bold"
                     android:textColor="@color/black_2"
-                    android:textSize="18dp" />
+                    android:textSize="18sp" />
 
                 <View
                     android:id="@+id/idView"
@@ -480,17 +490,18 @@
                     android:id="@+id/largest"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginStart="5dp"
                     android:drawablePadding="3dp"
                     android:fontFamily="@font/poppins_bold"
                     android:textColor="@color/black_2"
-                    android:textSize="18dp" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.3"
                 android:background="@drawable/app_theme_color_button_12dp"
                 android:fontFamily="@font/poppins_medium"
                 android:onClick="@{click::callSummaryFragment}"

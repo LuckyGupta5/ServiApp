@@ -23,9 +23,9 @@
 
         <ScrollView
             android:id="@+id/scrollview"
-            android:layout_above="@id/nextBtn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@id/nextBtn"
             android:layout_marginBottom="10dp"
             android:fillViewport="true">
 
@@ -45,7 +45,7 @@
                         android:background="@color/app_theme"
                         android:paddingTop="54dp"
                         android:paddingBottom="60dp"
-                        android:src="@drawable/servivet_name" />
+                        android:src="@drawable/splash_new_icon" />
 
 
                     <RelativeLayout
@@ -176,6 +176,7 @@
                                     android:background="@color/white"
                                     android:orientation="horizontal"
                                     app:backgroundTint="@null">
+
                                     <com.hbb20.CountryCodePicker
                                         android:id="@+id/countryCode"
                                         android:layout_width="wrap_content"
@@ -258,23 +259,24 @@
 
             </RelativeLayout>
         </ScrollView>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/nextBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginHorizontal="20sp"
-            android:backgroundTint="@null"
-            android:visibility="gone"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/button_selector"
+            android:backgroundTint="@null"
             android:enabled="@{viewModel.numberET &amp;viewModel.isCheck?true:false}"
             android:fontFamily="@font/poppins_medium"
             android:onClick="@{click::next}"
             android:text="@string/next"
-            android:layout_marginBottom="15dp"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="17sp"
+            android:visibility="visible"
             app:backgroundTint="@null" />
     </RelativeLayout>
 

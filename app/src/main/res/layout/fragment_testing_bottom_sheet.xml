@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".ui.main.fragment.testing.TestingBottomSheet">
+
+        <TextView
+            android:id="@+id/idGetData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/grey_outline_with_solid_white_corner_12dp"
+            android:hint="Empty Data"
+            android:textAlignment="center"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="15dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/quantum_googred"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingHorizontal="40dp"
+            android:text="Okay"
+            android:textAllCaps="false"
+            android:textColor="@color/grey_E9EBEA"
+            app:cornerRadius="10dp" />
+
+    </LinearLayout>
+</layout>

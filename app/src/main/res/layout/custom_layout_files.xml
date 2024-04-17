@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/idCalculationContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/grey_outline_with_solid_white_corner_12dp"
+        android:backgroundTint="@color/green"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/idHoursText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total hours"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@id/idView1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/idView1" />
+
+        <TextView
+            android:id="@+id/idText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="4"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/idView1"
+            app:layout_constraintEnd_toEndOf="@id/idHoursText"
+            app:layout_constraintStart_toStartOf="@id/idHoursText"
+            app:layout_constraintTop_toBottomOf="@id/idHoursText" />
+
+        <View
+            android:id="@+id/idView1"
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:layout_marginVertical="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/idMilesText"
+            app:layout_constraintStart_toEndOf="@id/idHoursText"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/idMilesText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total miles"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@id/idView2"
+            app:layout_constraintStart_toEndOf="@id/idView1"
+            app:layout_constraintTop_toTopOf="@id/idView2" />
+
+        <TextView
+            android:id="@+id/idMiles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="4"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/idView2"
+            app:layout_constraintEnd_toEndOf="@id/idMilesText"
+            app:layout_constraintStart_toStartOf="@id/idMilesText"
+            app:layout_constraintTop_toBottomOf="@id/idMilesText" />
+
+        <View
+            android:id="@+id/idView2"
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:layout_marginVertical="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/idEarningText"
+            app:layout_constraintStart_toEndOf="@id/idMilesText"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/idEarningText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total miles"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/idView2"
+            app:layout_constraintTop_toTopOf="@id/idView2" />
+
+        <TextView
+            android:id="@+id/idEarning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="4"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/idView2"
+            app:layout_constraintEnd_toEndOf="@id/idEarningText"
+            app:layout_constraintStart_toStartOf="@id/idEarningText"
+            app:layout_constraintTop_toBottomOf="@id/idEarningText" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Earning History"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/idDate"
+        app:layout_constraintStart_toStartOf="@id/idCalculationContainer"
+        app:layout_constraintTop_toTopOf="@id/idDate" />
+
+    <TextView
+        android:id="@+id/idDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/grey_outline_with_solid_white_corner_12dp"
+        android:drawableEnd="@drawable/down_faq_arrow"
+        android:drawablePadding="10dp"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="10dp"
+        android:text="Select Date"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@id/idCalculationContainer"
+        app:layout_constraintTop_toBottomOf="@id/idCalculationContainer" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

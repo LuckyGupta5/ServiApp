@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><!-- res/drawable/custom_radio_button.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Selected state -->
+    <item android:state_checked="true">
+        <layer-list>
+            <item android:drawable="@color/app_theme" />
+            <!-- Add other layers if needed, such as an icon -->
+        </layer-list>
+    </item>
+    <!-- Unselected state -->
+    <item>
+        <layer-list>
+            <item android:drawable="@color/black" />
+            <!-- Add other layers if needed, such as an icon -->
+        </layer-list>
+    </item>
+</selector>

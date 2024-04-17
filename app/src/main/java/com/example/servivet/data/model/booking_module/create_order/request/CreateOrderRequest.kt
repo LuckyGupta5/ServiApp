@@ -9,7 +9,7 @@ data class CreateOrderRequest(
     var endTime: String?=null,
     var isCouponApply: Boolean?=null,
     var isWalletAmountInclude: Boolean?=null,
-    var payableAmount: Float?=null,
+    var payableAmount: Double?=null,
     var paymentMode: String?=null,
     var saveApplyCouponId: String?=null,
     var serviceAmount: Float?=null,
@@ -18,5 +18,5 @@ data class CreateOrderRequest(
     var slotId: String?=null,
     var startTime: String?=null,
     var taxAmount: Float?=null,
-    var walletAmount: Float?=null
+    var walletAmount: Double?=null
 )

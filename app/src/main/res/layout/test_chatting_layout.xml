@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="messageData"
+            type="com.example.servivet.data.model.chat_models.chat_list.ChatMessage" />
+
+        <variable
+            name="userDetails"
+            type="com.example.servivet.data.model.current_api.response.CurrentUser" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/idMainContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="10dp">
+
+        <RelativeLayout
+            android:id="@+id/idReceiverLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="100dp"
+            android:visibility="@{messageData==null?View.GONE:messageData.senderId._id.equals(userDetails._id)?View.GONE:View.VISIBLE}">
+
+            <RelativeLayout
+                android:id="@+id/idReceiverMediaContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/idImageView"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/user_icon"
+                    android:visibility="gone" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/idReceiverMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_toEndOf="@+id/idImageView"
+                    android:background="@drawable/reciever_drawable"
+                    android:fontFamily="@font/poppins_medium"
+                    android:paddingHorizontal="23dp"
+                    android:paddingVertical="15dp"
+                    android:text="@{messageData.message}"
+                    android:textColor="@color/black"
+                    android:textSize="13dp"
+                    android:visibility="@{messageData.messageType==1?View.VISIBLE:View.GONE}" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/idMedia"
+                    android:layout_width="196dp"
+                    android:layout_height="133dp"
+                    android:layout_margin="10dp"
+                    android:visibility="@{messageData==null?View.GONE:messageData.messageType==1?View.GONE:View.VISIBLE}"
+                    app:cardCornerRadius="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:elevation="1dp"
+                        android:src="@android:drawable/ic_media_play"
+                        android:visibility="@{messageData.containMP4?View.VISIBLE:View.GONE}" />
+
+                    <ImageView
+                        android:id="@+id/idReceiverImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:imageViewUrl='@{messageData.file.isEmpty?"":messageData.file.get(0)}'
+                        android:scaleType="centerCrop"
+                        />
+                </androidx.cardview.widget.CardView>
+
+
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/idReceiverTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/idReceiverMediaContainer"
+                android:layout_alignEnd="@id/idReceiverMediaContainer"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@{messageData.createdAt}"
+                android:textColor="@color/black"
+                android:textSize="11sp" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/idSenderLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idReceiverLayout"
+            android:layout_alignParentEnd="true"
+            android:visibility="@{messageData==null?View.GONE:messageData.senderId._id.equals(userDetails._id)?View.VISIBLE:View.GONE}">
+
+
+            <RelativeLayout
+                android:id="@+id/idTextChatSenderContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/idSenderMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/sender_drawable"
+                    android:fontFamily="@font/poppins_medium"
+                    android:paddingHorizontal="23dp"
+                    android:paddingVertical="15dp"
+                    android:text="@{messageData.message}"
+                    android:textColor="@color/white"
+                    android:textSize="13dp"
+                    android:visibility="@{messageData.messageType==1?View.VISIBLE:View.GONE}" />
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/idSenderMedia"
+                    android:layout_width="196dp"
+                    android:layout_height="133dp"
+                    android:layout_margin="10dp"
+                    android:visibility="@{messageData==null?View.GONE:messageData.messageType==1?View.GONE:View.VISIBLE}"
+                    app:cardCornerRadius="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:elevation="1dp"
+                        android:src="@android:drawable/ic_media_play"
+                        android:visibility="@{messageData.containMP4?View.VISIBLE:View.GONE}" />
+
+                    <ImageView
+                        android:id="@+id/idSenderImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:imageViewUrl='@{messageData.file.isEmpty?"":messageData.file.get(0)}'
+                        android:scaleType="centerCrop"
+                        />
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/idSenderTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/idTextChatSenderContainer"
+                android:layout_alignEnd="@id/idTextChatSenderContainer"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@{messageData.createdAt}"
+                android:textColor="@color/black"
+                android:textSize="11sp" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</layout>

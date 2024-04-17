@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.core.view.isVisible
@@ -77,8 +78,10 @@ class OtpVarificationFragment :
         mViewModel.verifyOtpRequest.deviceModelNo = "mozila"//change when the firebase is implement
         mViewModel.verifyOtpRequest.deviceVersion = "14"//change when the firebase is implement
         mViewModel.verifyOtpRequest.deviceType = "website"//change when the firebase is implement
-        mViewModel.verifyOtpRequest.deviceToken = "sdifjsd"//change when the firebase is implement
+        mViewModel.verifyOtpRequest.deviceToken = Session.fcmToken//change when the firebase is implement
         mViewModel.verifyOtpRequest.userType = Session.type.toInt()   // 1-> consumer, 2-> Business
+
+        Log.e("TAG", "setRequest1234: ${Session.fcmToken}", )
     }
 
     fun showSoftKeyboard(context: Context, editText: EditText) {
@@ -158,13 +161,20 @@ class OtpVarificationFragment :
                                     binding.otpPin.setText("")
                                 } else {
                                     var bundle = Bundle()
+                                    Constants.MOBNUMBER = mViewModel.mobilenumber
+                                    Constants.C_Code = mViewModel.countrycode
                                     bundle.putString(Constants.MOBILE_NUMBER, mViewModel.mobilenumber)
                                     bundle.putString(Constants.COUNTRY_CODE, mViewModel.countrycode)
                                     findNavController().navigate(R.id.action_otpVarificationFragment_to_completeProfileFragment, bundle)
                                 }
                             } else if (Session.type.equals("2"))
                                 if (it.data.result.isBusinessVerify==0) {
-                                    findNavController().navigate(R.id.action_otpVarificationFragment_to_business_Verification_Fragment)
+                                    Constants.MOBNUMBER = mViewModel.mobilenumber
+                                    Constants.C_Code = mViewModel.countrycode
+                                    var bundle = Bundle()
+                                    bundle.putString(Constants.MOBILE_NUMBER, mViewModel.mobilenumber)
+                                    bundle.putString(Constants.COUNTRY_CODE, mViewModel.countrycode)
+                                    findNavController().navigate(R.id.action_otpVarificationFragment_to_business_Verification_Fragment,bundle)
                                 } else{
                                     val intent = Intent(requireContext(), HomeActivity::class.java)
                                     startActivity(intent)

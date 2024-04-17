@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="chattingAdapter"
+            type="com.example.servivet.ui.main.adapter.ChattingAdapter" />
+
+        <variable
+            name="viewModel"
+            type="com.example.servivet.ui.main.view_model.ChattingViewModel" />
+
+        <variable
+            name="clickEvents"
+            type="kotlin.jvm.functions.Function1" />
+
+        <variable
+            name="profileData"
+            type="com.example.servivet.data.model.user_profile.response.UserProfile" />
+
+        <variable
+            name="uploadFileData"
+            type="com.example.servivet.data.model.chat_models.chat_media.ChatMediaResult" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/idMainContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_grey"
+        android:elevation="10dp"
+        android:fitsSystemWindows="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/idTopContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/idBackPress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="10dp"
+                android:onClick="@{()->clickEvents.invoke(@string/back_press)}"
+                android:src="@drawable/back_circle_btn"
+                app:layout_constraintBottom_toBottomOf="@id/idTopContainer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/idUserName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:maxLength="18"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="19sp"
+                app:layout_constraintBottom_toBottomOf="@id/idBackPress"
+                app:layout_constraintEnd_toStartOf="@id/idMenuItems"
+                app:layout_constraintStart_toEndOf="@+id/idBackPress"
+                app:layout_constraintTop_toTopOf="@id/idBackPress" />
+
+            <ImageView
+                android:id="@+id/idMenuItems"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:onClick="@{()->clickEvents.invoke(@string/pop_up)}"
+                android:src="@drawable/chat_three_dot"
+                app:layout_constraintBottom_toBottomOf="@id/idTopContainer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/idFirstMessageContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/white_rectangle_12dp"
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@id/idTopContainer">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileImageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="24dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/user_icon"
+                app:layout_constraintCircleRadius="50dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/nameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="bol"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toEndOf="@id/profileImageView"
+                app:layout_constraintStart_toStartOf="@id/profileImageView"
+                app:layout_constraintTop_toBottomOf="@id/profileImageView" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/declineButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/grey_E9EBEA"
+                android:onClick="@{()->clickEvents.invoke(@string/decline)}"
+                android:text="Decline"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/acceptButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/nameTextView" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/acceptButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="30dp"
+                android:backgroundTint="@color/app_theme"
+                android:fontFamily="@font/poppins_regular"
+                android:onClick="@{()->clickEvents.invoke(@string/accept)}"
+                android:paddingHorizontal="20dp"
+                android:text="Accept"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/declineButton"
+                app:layout_constraintTop_toBottomOf="@id/nameTextView" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/idChatRecycle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_above="@id/idChatBoxContainer"
+            android:layout_marginHorizontal="20dp"
+            android:adapter="@{chattingAdapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/idChatBoxContainer"
+            app:layout_constraintTop_toBottomOf="@id/idFirstMessageContainer"
+            tools:itemCount="2"
+            tools:listitem="@layout/custom_chatting_view" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/idUploadImageCard"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginBottom="5dp"
+            android:visibility="visible"
+            app:cardCornerRadius="30dp"
+            app:layout_constraintBottom_toTopOf="@id/idChatBoxContainer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/idClearImage"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:elevation="10dp"
+                android:onClick="@{()->clickEvents.invoke(@string/cross)}"
+                android:padding="5dp"
+                android:src="@drawable/white_cross_gray_bg_icon" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:imageViewUrl="@{uploadFileData.uploadImage.get(0)}"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/banner_image"
+                app:layout_constraintBottom_toTopOf="@id/idChatBoxContainer"
+                app:layout_constraintStart_toEndOf="parent" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/idChatBoxContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+
+            <View
+                android:id="@+id/viewid"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#707070"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/idMessage"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="15dp"
+                android:layout_toStartOf="@+id/idSendMessage"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Type message here..."
+                android:maxLines="5"
+                android:text="@={viewModel.messageText}"
+                android:padding="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toStartOf="@id/idMediaView"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/idMediaView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:onClick="@{()->clickEvents.invoke(@string/open_gallery)}"
+                android:padding="3dp"
+                android:visibility="@{idMessage.text.length()==0?View.VISIBLE:View.INVISIBLE}"
+                android:src="@drawable/send_media_icon"
+                app:layout_constraintBottom_toBottomOf="@id/idSendMessage"
+                app:layout_constraintEnd_toStartOf="@id/idSendMessage"
+                app:layout_constraintTop_toTopOf="@id/idSendMessage" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/idSendMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="12dp"
+                android:onClick="@{()->clickEvents.invoke(@string/message)}"
+                android:padding="3dp"
+                android:src="@drawable/send_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -26,11 +26,9 @@ abstract class BaseFragment<Binding : ViewBinding, ViewModel : BaseViewModel>(la
         CoroutineScope(Dispatchers.Main).launch {
             if (isAdded)
                 setupViews()
-              setupViewModel()
+            setupViewModel()
               setupObservers()
         }
-
-
     }
 
     open fun hasPermission(str: String?): Boolean {

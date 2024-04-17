@@ -212,7 +212,7 @@
                 android:background="@color/app_theme"
                 android:paddingTop="54dp"
                 android:paddingBottom="80dp"
-                android:src="@drawable/servivet_name"
+                android:src="@drawable/splash_new_icon"
                 app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"

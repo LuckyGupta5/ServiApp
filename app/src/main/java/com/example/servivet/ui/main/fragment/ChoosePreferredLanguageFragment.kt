@@ -57,7 +57,7 @@ class ChoosePreferredLanguageFragment : BaseFragment<FragmentChoosePreferredLang
         language.add(LanguageModel( "English", "Hi, I am John Doe.",true,"en"))
         language.add(LanguageModel( "Mandarin Chinese", "嗨，我是約翰·多伊。",false,"fr"))
         language.add(LanguageModel( "Spanish", "Spanish",false,""))
-        language.add(LanguageModel( "Hindi", "नमस्ते, मैं जॉन डो हूं।",false,""))
+        language.add(LanguageModel( "Hindi", "नमस्ते, मैं जॉन डो हूं।",false,"hi"))
         language.add(LanguageModel( "Arabic", "مرحبًا، أنا جون دو.",false,""))
         language.add(LanguageModel( "French", "Bonjour, je m'appelle John Doe.",false,""))
         language.add(LanguageModel( "Bengali", "হাই, আমি জন ডো",false,""))

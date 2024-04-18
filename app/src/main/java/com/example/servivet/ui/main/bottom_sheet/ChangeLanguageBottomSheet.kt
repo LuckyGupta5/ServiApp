@@ -39,7 +39,6 @@ class ChangeLanguageBottomSheet :
         }
         addData()
 
-
     }
 
     override fun setupViews() {

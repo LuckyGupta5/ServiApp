@@ -1349,10 +1349,10 @@ fun Activity.setLocal(languageName: String, types: Int) {
     val displayMatrix = resources.displayMetrics
     configration.setLocale(local)
     resources.updateConfiguration(configration, displayMatrix)
-    if (types == 2) {
+   /* if (types == 2) {
         startActivity(Intent(this, MainActivity::class.java))
         finishAffinity()
-    }
+    }*/
 }
 
 

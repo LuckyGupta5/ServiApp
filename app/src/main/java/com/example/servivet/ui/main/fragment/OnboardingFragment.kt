@@ -53,20 +53,20 @@ class OnboardingFragment :
     private fun setAdapterItems() {
         serviceList.clear()
         serviceList.addAll(listOf(
-            TutorialModel(R.drawable.wellness_2, "Wellness"),
-            TutorialModel(R.drawable.household, "HouseHold"),
-            TutorialModel(R.drawable.electronics, "Electronic"),
-            TutorialModel(R.drawable.finance_2, "Finance"),
-            TutorialModel(R.drawable.vedios_photos_2, "VideoPhoto "),
-            TutorialModel(R.drawable.enterteainment, "Showbiz"),
-            TutorialModel(R.drawable.realstate, "Real Estate"),
-            TutorialModel(R.drawable.spa_n_beauty, "Spa-Beauty"),
-            TutorialModel(R.drawable.software, "Security"),
-            TutorialModel(R.drawable.software, "Software"),
-            TutorialModel(R.drawable.legal, "Legal"),
-            TutorialModel(R.drawable.pet_services, "Pet Service"),
-            TutorialModel(R.drawable.travels, "Travel"),
-            TutorialModel(R.drawable.others, "Other")))
+            TutorialModel(R.drawable.wellness_2, getString(R.string.wellness)),
+            TutorialModel(R.drawable.household, getString(R.string.household)),
+            TutorialModel(R.drawable.electronics, getString(R.string.electronic)),
+            TutorialModel(R.drawable.finance_2, getString(R.string.finance)),
+            TutorialModel(R.drawable.vedios_photos_2, getString(R.string.videophoto)),
+            TutorialModel(R.drawable.enterteainment, getString(R.string.showbiz)),
+            TutorialModel(R.drawable.realstate, getString(R.string.real_estate)),
+            TutorialModel(R.drawable.spa_n_beauty, getString(R.string.spa_beauty)),
+            TutorialModel(R.drawable.software, getString(R.string.security)),
+            TutorialModel(R.drawable.software, getString(R.string.software)),
+            TutorialModel(R.drawable.legal, getString(R.string.legal)),
+            TutorialModel(R.drawable.pet_services, getString(R.string.pet_service)),
+            TutorialModel(R.drawable.travels, getString(R.string.travel)),
+            TutorialModel(R.drawable.others, getString(R.string.other))))
         binding.idRecycle.adapter= TutorialServiceAdapter(requireContext(),serviceList)
         binding.idBackPress.setOnClickListener { findNavController().popBackStack() }
 

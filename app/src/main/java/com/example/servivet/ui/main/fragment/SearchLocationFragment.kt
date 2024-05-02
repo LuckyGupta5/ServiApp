@@ -54,7 +54,6 @@ class SearchLocationFragment :
     private val LOCATION_PERMISSION_REQUEST_CODE: Int=101
     private var isLocationSerach=false
     private var isFirstTime: Boolean=false
-
     private var fullAddress: String? = ""
     private var manager: LocationManager? = null
     private var dialog: Dialog? = null
@@ -70,7 +69,9 @@ class SearchLocationFragment :
 
     private lateinit var autoCompleteSupportFragment: AutocompleteSupportFragment
     private lateinit var locationManager: LocationManager
-
+companion object{
+    var isSearchLocation=false
+}
 
     override fun isNetworkAvailable(boolean: Boolean) {
     }
@@ -84,10 +85,10 @@ class SearchLocationFragment :
             viewModel = mViewModel
             click = mViewModel.ClickAction(requireContext())
         }
+        isSearchLocation=true
         mapInitialization()
         binding.currentLocationLayout.setOnClickListener {
             getCurrentLocation()
-
             findNavController().popBackStack()
         }
     }
@@ -111,8 +112,7 @@ class SearchLocationFragment :
     fun checkConnectivity() {
         isFirstTime = false
         if (!isNetworkAvailable()) {
-            Toast.makeText(context, R.string.please_connect_to_the_internet, Toast.LENGTH_LONG)
-                .show()
+            Toast.makeText(context, R.string.please_connect_to_the_internet, Toast.LENGTH_LONG).show()
         } else {
             if (!isLocationSerach) {
                 getCurrentLocation()
@@ -172,7 +172,7 @@ class SearchLocationFragment :
                 getCurrentLocation()
             } else {
                 Toast.makeText(requireContext(), R.string.please_allow_location_permission_to_move_ahead, Toast.LENGTH_SHORT).show()
-                permissions_denied = true
+                  permissions_denied = true
             }
             return
         }

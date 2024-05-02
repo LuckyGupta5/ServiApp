@@ -35,7 +35,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="19dp"
                 android:fontFamily="@font/poppins_semi_bold"
-
                 android:text="@{data.language}"
                 android:textColor='@{isSelected==true?@color/app_theme:@color/black3}'
                 android:textSize="19sp" />

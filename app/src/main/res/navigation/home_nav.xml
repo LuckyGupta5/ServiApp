@@ -399,6 +399,9 @@
         <action
             android:id="@+id/action_settingsFragment_to_myBankAccountFragment"
             app:destination="@id/myBankAccountFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_self"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/myWalletFragment"

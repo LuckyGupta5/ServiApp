@@ -4,6 +4,8 @@ package com.example.servivet.utils
 import com.example.servivet.data.model.current_api.response.CurrentUser
 import com.example.servivet.data.model.current_api.response.MasterData
 import com.example.servivet.data.model.home.response.HomeServiceCategory
+import com.example.servivet.data.model.language_model.LanguageModel
+import com.example.servivet.data.model.language_model.Savelanguage
 import com.example.servivet.data.model.location.LocationInfo
 import com.example.servivet.data.model.save_address.request.SaveAddressRequest
 import com.example.servivet.data.model.user_profile.response.UserProfile
@@ -11,6 +13,7 @@ import com.example.servivet.data.model.verifyotp.response.VerifyOTPResult
 import com.example.servivet.utils.PreferenceEntity.CATEGORY
 import com.example.servivet.utils.PreferenceEntity.DEVICE_TOKEN
 import com.example.servivet.utils.PreferenceEntity.IS_LOGIN
+import com.example.servivet.utils.PreferenceEntity.LANGUAGE
 import com.example.servivet.utils.PreferenceEntity.LOCATION
 import com.example.servivet.utils.PreferenceEntity.LOCATION_ADDRESS_INFO
 import com.example.servivet.utils.PreferenceEntity.LOCATION_INFO
@@ -41,6 +44,8 @@ object Session {
     var fcmToken = Hawk.get<String>(DEVICE_TOKEN, null)
     var notificationData = Hawk.get<String>(NOTIFICATION_DATA, null)
     var saveLocationInfo = Hawk.get<LocationInfo>(LOCATION_ADDRESS_INFO, null)
+    var language=Hawk.get<String>(LANGUAGE,null)
+
     fun saveToken(token: String) {
         Hawk.put(TOKEN, token)
         Session.token = token
@@ -66,6 +71,20 @@ object Session {
         Session.type = type
     }
 
+
+
+    fun saveIsLanguage(language: String){
+        Hawk.put(LANGUAGE,language)
+        this.language=language
+    }
+
+/*
+    fun saveLocationInfo(locationInfo: LocationInfo) {
+        Hawk.put(LOCATION_ADDRESS_INFO, locationInfo)
+        saveLocationInfo = locationInfo
+    }*/
+
+
     fun saveIsLogin(isLogin: Boolean) {
         Hawk.put(IS_LOGIN, isLogin)
         Session.isLogin = isLogin
@@ -80,6 +99,7 @@ object Session {
         Hawk.put(LOCATION_ADDRESS_INFO, locationInfo)
         saveLocationInfo = locationInfo
     }
+
 
 
     fun saveVerifyUserData(userData: VerifyOTPResult) {

@@ -31,11 +31,8 @@ class HomeServiceAdapter(
         }
     }
 
-    override fun bind(
-        binding: HomeServicesRecyclerBinding,
-        item: HomeServiceCategory?,
-        position: Int,
-    ) {
+    override fun bind(binding: HomeServicesRecyclerBinding, item: HomeServiceCategory?, position: Int, )
+    {
         binding.apply {
             binding.click = ClickAction(position, item)
 
@@ -55,17 +52,11 @@ class HomeServiceAdapter(
                     bundle.putSerializable(Constants.DATA, item)
                     view.findNavController().navigate(R.id.action_homeFragment_to_servicesTypeListingFragment, bundle)
                 }
-
                 "2" -> {
                     bundle.putString(Constants.SERVICE_ID, list[position].id)
                     bundle.putSerializable(Constants.DATA, item)
-                    view.findNavController()
-                        .navigate(
-                            R.id.action_servicesFragment_to_servicesTypeListingFragment,
-                            bundle
-                        )
+                    view.findNavController().navigate(R.id.action_servicesFragment_to_servicesTypeListingFragment, bundle)
                 }
-
                 else -> {
                     bundle.putString(Constants.SERVICE_ID, list[position].id)
                     bundle.putSerializable(Constants.DATA, item)

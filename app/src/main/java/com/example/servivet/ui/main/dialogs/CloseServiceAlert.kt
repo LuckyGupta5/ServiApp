@@ -27,18 +27,13 @@ import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
 import com.google.gson.Gson
-
-
 class CloseServiceAlert : DialogFragment() {
+    private var saveLanguage: String?=""
     private lateinit var binding: FragmentCloseServiceAlertBinding
     val mViewModel: CloseServiceViewModel by viewModels()
-
     val logoutModel: SettingsViewModel by viewModels()
-
     private val closingDates: CloseServiceAlertArgs by navArgs()
     private lateinit var sendDate: SendDate
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,44 +44,42 @@ class CloseServiceAlert : DialogFragment() {
         getDates()
         initLogoutModel()
         binding.clickEvent = ::onClick
-
         return binding.root
     }
-
-
     private fun getDates() {
         when (closingDates.from) {
-            getString(R.string.closeservice) -> {
+            "closeService" /*getString(R.string.closeservice)*/ -> {
+                Log.d("TAG", "getDates:  ${closingDates.from}   and ${closingDates.data} and closeService is $ ")
                 sendDate = Gson().fromJson(closingDates.data, SendDate::class.java)
                 binding.dates = sendDate
             }
-
-            getString(R.string.logout) -> {
+           "logOut" /*getString(R.string.logout)*/ -> {
                 binding.from = closingDates.from
             }
         }
 
     }
 
-    private fun onClick(type: String) {
+    private fun onClick(type: String)
+    {
+        Log.d("TAG", "onClick:1 $type")
         when (type) {
             getString(R.string.cancel) -> {
+                Log.d("TAG", "onClick:2 $type")
                 dismiss()
-
             }
 
             getString(R.string.close_service) -> {
-                when (closingDates.from) {
+                when (closingDates.from)
+                {
                     getString(R.string.closeservice) -> {
                         findNavController().previousBackStackEntry?.savedStateHandle?.set(
                             getString(R.string.close_service),
                             getString(R.string.close_service)
                         )
                         dismiss()
-
                     }
-
-                    getString(R.string.logout) -> {
+                  "logOut" /* getString(R.string.logout)*/ -> {
                         logoutModel.hitLogoutApi()
                     }
                 }
@@ -152,14 +145,15 @@ class CloseServiceAlert : DialogFragment() {
                     ProcessDialog.dismissDialog()
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
+                            saveLanguage=Session.language
                             Session.logout()
+                           // Session.saveIsLanguage(saveLanguage!!)
                             SplashViewModel.isLogout = false
                             Session.isLogin = false
                             Session.saveIsLogin(false)
-
-
                             var intent = Intent(context, MainActivity::class.java)
                             requireActivity().startActivity(intent)
+
 
                         }
 

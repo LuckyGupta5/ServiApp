@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Servi</string>
-    <string name="servivet_require_this_permission" translatable="false">Servi need to allow this permission.</string>
+    <string name="servivet_require_this_permission" translatable="false">Servi bi sɔ yɛ yi anoba.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <!--
     //google map key
     <string name="google_map_key">AIzaSyA18dEiaaZ69sQr0sgJvWcusLhTIAUqxbw</string>-->
     <string name="google_map_key" translatable="false">AIzaSyDxvOzm-9yjdnd5L4iJrVDwk-_KbUkmN8A</string>
-    <string name="please_connect_to_the_internet" translatable="false">Please Connect to the internet.\n</string>
+    <string name="please_connect_to_the_internet">Dēnglì yuē tóngwǎng.</string>
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="choose_your_preferred_language" translatable="false">Choose your\n Preferred Language</string>
+    <string name="choose_your_preferred_language" translatable="false">Qoka uLwimi Lakho</string>
     <string name="english" translatable="false">English</string>
-    <string name="hi_i_am_john_doe" translatable="false">Hi, I am John Doe.</string>
+    <string name="hi_i_am_john_doe" translatable="false">Sawubona, ngingu-John Doe.</string>
     <string name="swahii" translatable="false">Swahili</string>
     <string name="habari_mimi_ni_john_doe" translatable="false">Habari, mimi ni John Doe.</string>
     <string name="zulu" translatable="false">Zulu</string>
-    <string name="gps_enable_message" translatable="false">You have to turn on GPS Location</string>
+    <string name="gps_enable_message" translatable="false">Kufanele uvule Indawo ye-GPS</string>
     <string name="sawubona_ngingu_john_doe" translatable="false">Sawubona, ngingu-John Doe.</string>
-    <string name="continues" translatable="false">Continue</string>
-    <string name="skip" translatable="false">Skip</string>
-    <string name="next" translatable="false">Next</string>
-    <string name="get_started" translatable="false">Get Started</string>
-    <string name="clientel" translatable="false">Clientelé</string>
+    <string name="continues" translatable="false">Qhubeka</string>
+    <string name="skip" translatable="false">Yeqa</string>
+    <string name="next" translatable="false">Okulandelayo</string>
+    <string name="get_started" translatable="false">usungaQala</string>
+    <string name="clientel" translatable="false">abaThengi</string>
     <string name="business" translatable="false">abaDayisi</string>
     <string name="mobile_number" translatable="false">uCingoSibalo</string>
     <string name="we_will_send_you_a_confirmation_code" translatable="false">Siyeza isiQinisekiso-Sibalo</string>
     <string name="_123_456_7890" translatable="false">123–456-7890</string>
-    <string name="i_agree_to_terms_and_conditions_and_data_privacy_policies" translatable="false">I agree to Terms and Conditions and Data Privacy policies.</string>
-    <string name="verify" translatable="false">Verify</string>
+    <string name="i_agree_to_terms_and_conditions_and_data_privacy_policies" translatable="false">NgiyaziBophezela ukuLandela imiGomo nemiBandela eshicileliwe.</string>
+    <string name="verify" translatable="false">Bukisisa</string>
     <string name="please_enter_the_otp_sent_your_mobile_number" translatable="false">Faka isiQinisekisoSiBalo-SesiKhashana</string>
-    <string name="otp_verification" translatable="false">OTP Verification</string>
-    <string name="resend_otp_in_30_seconds" translatable="false">Resend OTP in 30 Seconds</string>
-    <string name="title_activity_home" translatable="false">HomeActivity</string>
+    <string name="otp_verification" translatable="false">isiQinisekisoSiBalo-SesiKhashana (iss)</string>
+    <string name="resend_otp_in_30_seconds" translatable="false">Thumela kabusha i-OTP kumasekhondi angu-30</string>
+    <string name="title_activity_home" translatable="false">Umsebenzi Wasekhaya</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label" translatable="false">First Fragment</string>
-    <string name="second_fragment_label" translatable="false">Second Fragment</string>
-    <string name="previous" translatable="false">Previous</string>
+    <string name="first_fragment_label" translatable="false">Isiqephu sokuqala</string>
+    <string name="second_fragment_label" translatable="false">Ucezu Lwesibili</string>
+    <string name="previous" translatable="false">Ngaphambilini</string>
     <string name="search_for_area_street_name_etc" translatable="false">Search for area, street name, etc...</string>
 
 
@@ -75,435 +75,453 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
-    <string name="home" translatable="false">Home</string>
-    <string name="chats" translatable="false">Chats</string>
-    <string name="bookings" translatable="false">Bookings</string>
-    <string name="profile" translatable="false">Profile</string>
+    <string name="home" translatable="false">eKhaya</string>
+    <string name="chats" translatable="false">iziNgxoxo</string>
+    <string name="bookings" translatable="false">iziCelo zokuBekisa</string>
+    <string name="profile" translatable="false">iSaZiso</string>
     <string name="noida" translatable="false">Noida</string>
     <string name="sadarpur_sector_44_noida" translatable="false">Sadarpur, Sector-44  Noida</string>
-    <string name="search_for_service_etc" translatable="false"><![CDATA[search for service & etc]]></string>
-    <string name="services" translatable="false">Services</string>
-    <string name="view_all" translatable="false">View All\n</string>
-    <string name="provider_view_all" translatable="false">ProviderViewAll</string>
-    <string name="user_view_all" translatable="false">UserViewAll</string>
-    <string name="online_now" translatable="false">Online now</string>
-    <string name="fitness" translatable="false">Fitness</string>
-    <string name="finance" translatable="false">FINANCE\n</string>
-    <string name="_1_km_away" translatable="false">km. away</string>
+    <string name="search_for_service_etc" translatable="false"><![CDATA[sesha isevisi nokunye]]></string>
+    <string name="services" translatable="false">uSizo</string>
+    <string name="view_all" translatable="false">Buka Konke\n</string>
+    <string name="provider_view_all" translatable="false">nikezaukubukakonke</string>
+    <string name="user_view_all" translatable="false">UmsebenzisiBukaKonke</string>
+    <string name="online_now" translatable="false">siseMkhathini Manje</string>
+    <string name="fitness" translatable="false">ezeMpilo</string>
+    <string name="finance" translatable="false">IZIMALI\n</string>
+    <string name="_1_km_away" translatable="false">km. kude</string>
     <string name="dev_gupta" translatable="false">Dev Gupta</string>
-    <string name="gym" translatable="false">gym</string>
+    <string name="gym" translatable="false">indawo yokuzivocavoca</string>
     <string name="riepneapps_technology_noida" translatable="false">riepneapps technology noida</string>
-    <string name="view_details" translatable="false">View Details</string>
-    <string name="individual" translatable="false">Individual</string>
-    <string name="individualcap" translatable="false">INDIVIDUAL</string>
-    <string name="institutional" translatable="false">Institutional</string>
-    <string name="institutionalcap" translatable="false">INSTITUTIONAL</string>
-    <string name="edit_profile" translatable="false">Edit Profile</string>
+    <string name="view_details" translatable="false">Bheka imiNiningwane</string>
+    <string name="individual" translatable="false">Ngayedwana</string>
+    <string name="individualcap" translatable="false">Ngayedwana</string>
+    <string name="institutional" translatable="false">uWonkeWonke</string>
+    <string name="institutionalcap" translatable="false">uWonkeWonke</string>
+    <string name="edit_profile" translatable="false">Hluza iSaziso</string>
     <string name="abhishek_mehra" translatable="false">Abhishek Mehra</string>
-    <string name="about" translatable="false">About</string>
+    <string name="about" translatable="false">Mayelana</string>
     <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut_labore_et_dolore_magna_aliquyam_erat_sed_diam_voluptua_eos_et_accusam_et_justo_duo_dolores_et_ea_rebum_stet_clita_kasd_gubergren_no_sea_takimata_sanctus_est_lorem_ipsum_dolor_sit_amet_lorem_ipsum_dolor_sit_amet" translatable="false">Lorem ipsum dolor sit amet, consetetur tempor invidunt ut labore et  est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet</string>
-    <string name="accept_the_term_and_condition" translatable="false">Accept the Term and Condition\n</string>
-    <string name="accept_the_privacy_policy" translatable="false">Accept the Privacy Policy</string>
-    <string name="term_and_condition" translatable="false">Terms and Conditions</string>
-    <string name="privacy_policy" translatable="false">Data Privacy</string>
-    <string name="terms_conditions" translatable="false"><![CDATA[Terms & Conditions]]></string>
-    <string name="last_updated_on_23_may_2023" translatable="false">Last updated on 23 May 2023</string>
-    <string name="reject" translatable="false">Reject</string>
-    <string name="accept" translatable="false">Accept</string>
-    <string name="my_connections" translatable="false">My Connections</string>
-    <string name="name" translatable="false">Name</string>
-    <string name="enter_name" translatable="false">Enter name</string>
+    <string name="accept_the_term_and_condition" translatable="false">Yamukela Imigomo Nemibandela\n</string>
+    <string name="accept_the_privacy_policy" translatable="false">Yamukela Inqubomgomo Yobumfihlo</string>
+    <string name="term_and_condition" translatable="false">Imibandela</string>
+    <string name="privacy_policy" translatable="false">UubuChophoBuchwepheshe obuyiMfihlo</string>
+    <string name="terms_conditions" translatable="false">Izimo</string>
+    <string name="last_updated_on_23_may_2023" translatable="false">esiGcine ngakho ukukuLungisa 23 May 2023</string>
+    <string name="reject" translatable="false">Hoxisa</string>
+    <string name="accept" translatable="false">Vuma</string>
+    <string name="my_connections" translatable="false">eNgazana nabo</string>
+    <string name="name" translatable="false">Igama</string>
+    <string name="enter_name" translatable="false">Faka igama</string>
     <string name="_91_1234567890" translatable="false">+91 1234567890</string>
-    <string name="email_address" translatable="false">Email Address</string>
+    <string name="email_address" translatable="false">iKheliBuchwepheshe</string>
     <string name="_0_150" translatable="false">(0/150)</string>
     <string name="_150_150" translatable="false">(150/150)\n</string>
-    <string name="write_here" translatable="false">write here</string>
-    <string name="update" translatable="false">Update</string>
-    <string name="change_cover" translatable="false">Change cover</string>
-    <string name="business_n_verification" translatable="false">Business \nVerification</string>
-    <string name="select_your_business_type" translatable="false">Select your Business type</string>
-    <string name="full_name" translatable="false">Full name</string>
-    <string name="enter_full_name" translatable="false">Enter full name</string>
-    <string name="using_gps" translatable="false">Using GPS</string>
-    <string name="current_location" translatable="false">Current Location</string>
-    <string name="enter_location_manually" translatable="false">Enter Location Manually</string>
-    <string name="or" translatable="false">or</string>
-    <string name="want_to_earn_money" translatable="false">Want to Earn Money?</string>
-    <string name="add_the_service_which_you_are_expert_in" translatable="false">Add the service which you are expert in</string>
-    <string name="add_service" translatable="false">+ Add Service</string>
-    <string name="near_by" translatable="false">Near by</string>
-    <string name="add_service_" translatable="false">Add Service</string>
-    <string name="service_mode" translatable="false">Service Mode</string>
-    <string name="at_centre" translatable="false">At Centre</string>
-    <string name="at_home" translatable="false">At home</string>
-    <string name="category" translatable="false">Category</string>
-    <string name="sub_category" translatable="false">Sub-category</string>
-    <string name="yoga" translatable="false">Yoga</string>
-    <string name="about_service" translatable="false">About Service</string>
-    <string name="photos" translatable="false">Photos</string>
-    <string name="add_image" translatable="false">+ Add Image</string>
-    <string name="add" translatable="false">Add</string>
-    <string name="availability" translatable="false">Availability</string>
-    <string name="select_session" translatable="false">Select Session</string>
-    <string name="add_hours" translatable="false">+ Add hours</string>
-    <string name="start_time" translatable="false">Start time</string>
-    <string name="end_time" translatable="false">End time</string>
+    <string name="write_here" translatable="false">Bhala La</string>
+    <string name="update" translatable="false">Lungisa</string>
+    <string name="change_cover" translatable="false">Guqula ukuBukeka</string>
+    <string name="business_n_verification" translatable="false">Ukulawula \nokwe-bhizinisi</string>
+    <string name="select_your_business_type" translatable="false">Khetha usayizi we-bhizinisi yakho</string>
+    <string name="full_name" translatable="false">iGama eliPhelele</string>
+    <string name="enter_full_name" translatable="false">Faka igama eliphelele</string>
+    <string name="using_gps" translatable="false">Ukuhamba nge-GPS</string>
+    <string name="current_location" translatable="false">iNdawo yakho yaManje</string>
+    <string name="enter_location_manually" translatable="false">ziFakele wena iNdawo</string>
+    <string name="or" translatable="false">Noma</string>
+    <string name="want_to_earn_money" translatable="false">Ufuna ukuthola imali?</string>
+    <string name="add_the_service_which_you_are_expert_in" translatable="false">Faka isivikelo osezinakekela kuyo</string>
+    <string name="add_service" translatable="false">+ Yengeza olunye uSizo</string>
+    <string name="near_by" translatable="false">eDuzane</string>
+    <string name="add_service_" translatable="false">Yengeza olunye uSizo</string>
+    <string name="service_mode" translatable="false">iNqubo yoSizo</string>
+    <string name="at_centre" translatable="false">esiKhungweni</string>
+    <string name="at_home" translatable="false">Ekhaya</string>
+    <string name="category" translatable="false">uMkhakha</string>
+    <string name="sub_category" translatable="false">uMkhakhana</string>
+    <string name="yoga" translatable="false">I-Yoga</string>
+    <string name="about_service" translatable="false">Mayelana noSizo</string>
+    <string name="photos" translatable="false">IZithombe</string>
+    <string name="add_image" translatable="false">+ Shutheka uMfanekiso</string>
+    <string name="add" translatable="false">Faka</string>
+    <string name="availability" translatable="false">okuTholakalayo</string>
+    <string name="select_session" translatable="false">Tomula okuHambisana nawe</string>
+    <string name="add_hours" translatable="false">+ Yengeza amanye amaHola esiKhathi</string>
+    <string name="start_time" translatable="false">Isikhathi oqale ngaso</string>
+    <string name="end_time" translatable="false">Isikhathi ogcine ngaso</string>
     <string name="mon" translatable="false">Mon</string>
-    <string name="enter_price" translatable="false">Enter price</string>
-    <string name="price_at_centre" translatable="false">Price (At Centre)</string>
-    <string name="camera" translatable="false">Camera</string>
-    <string name="gallery" translatable="false">Gallery</string>
-    <string name="price" translatable="false">Price</string>
-    <string name="my_services" translatable="false">My Services</string>
-    <string name="business_name" translatable="false">Business name</string>
-    <string name="the_electronic_hub" translatable="false">The Electronic Hub</string>
-    <string name="edit" translatable="false">Edit</string>
-    <string name="please_enter_a_valid_e_mail" translatable="false">Please enter valid email\n</string>
-    <string name="enter_email_address" translatable="false">Enter Email Address</string>
-    <string name="address" translatable="false">Address</string>
+    <string name="enter_price" translatable="false">Faka intengo</string>
+    <string name="price_at_centre" translatable="false">iNani endaweni yokuSebenzela</string>
+    <string name="camera" translatable="false">Ikhamera</string>
+    <string name="gallery" translatable="false">Igalari</string>
+    <string name="price" translatable="false">Isilinganiso</string>
+    <string name="my_services" translatable="false">Izinkonzo Zami</string>
+    <string name="business_name" translatable="false">Igama lebhizinisi</string>
+    <string name="the_electronic_hub" translatable="false">I-Electronic Hub</string>
+    <string name="edit" translatable="false">Hlela kaBusha</string>
+    <string name="please_enter_a_valid_e_mail" translatable="false">Sicela ufake i-imeyili evumelekile\n</string>
+    <string name="enter_email_address" translatable="false">Faka iKheliBuChwepheshe</string>
+    <string name="address" translatable="false">iKheli</string>
     <string name="a_block_sector_63_noida" translatable="false">a block sectore 62 noida</string>
-    <string name="under_development" translatable="false">Under Development</string>
-    <string name="resend_otp_in" translatable="false"> Resend OTP in </string>
-    <string name="are_you_logout" translatable="false">Are you sure want to exit?</string>
-    <string name="log_out" translatable="false">Log out</string>
-    <string name="start_time_should_not_be_greater_than_end_time_for_centre_mode" translatable="false">Start time should begreater than the end time for the centre mode.</string>
-    <string name="start_time_should_not_be_greater_than_end_time_for_home_mode" translatable="false">Start time should begreater than the end time for the home mode.</string>
-    <string name="please_enter_the_price_for_the_centre_service_mode" translatable="false">Please enter the price for the centre service mode.</string>
-    <string name="please_enter_the_price_for_the_home_service_mode" translatable="false">Please enter the price for the home service mode.</string>
-    <string name="please_select_a_service_model" translatable="false">Please Select a service model.</string>
-    <string name="please_select_the_category" translatable="false">Please Select the Category.</string>
-    <string name="please_select_at_one_image" translatable="false">Please Select at least one image.</string>
-    <string name="images_must_be_less_than_five" translatable="false">Images must be five or less than five.</string>
-    <string name="please_select_sub_category" translatable="false">Please select the sub category.</string>
-    <string name="select_sub_category" translatable="false">Select sub category</string>
-    <string name="select_session_should_not_be_empty_for_the_center_service_mode" translatable="false">Select Session should not be empty for the Center Service Mode</string>
-    <string name="select_session_should_not_be_empty_for_the_home_service_mode" translatable="false">Select Session should not be empty for the Home Service Mode</string>
-    <string name="details" translatable="false">Details</string>
+    <string name="under_development" translatable="false">Ngaphansi Kwentuthuko</string>
+    <string name="resend_otp_in" translatable="false">Thumela kabusha i-OTP ngaphakathi</string>
+    <string name="are_you_logout" translatable="false">Uqinisekile ukuthi ufuna ukuphuma?</string>
+    <string name="log_out" translatable="false">Phuma eNkundleni yobuChwepheshe</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_centre_mode" translatable="false">Isikhathi sokuqala kufanele sibe sikhulu kunesikhathi sokugcina semodi emaphakathi.</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_home_mode" translatable="false">Isikhathi sokuqala kufanele sibe sikhulu kunesikhathi sokugcina semodi yasekhaya.</string>
+    <string name="please_enter_the_price_for_the_centre_service_mode" translatable="false">Sicela ufake inani lemodi yesevisi yesikhungo..</string>
+    <string name="please_enter_the_price_for_the_home_service_mode" translatable="false">Sicela ufake intengo yemodi yesevisi yasekhaya</string>
+    <string name="please_select_a_service_model" translatable="false">Sicela Khetha imodeli yesevisi.</string>
+    <string name="please_select_the_category" translatable="false">Sicela ukhethe Isigaba.</string>
+    <string name="please_select_at_one_image" translatable="false">Sicela Khetha okungenani isithombe esisodwa</string>
+    <string name="images_must_be_less_than_five" translatable="false">Izithombe kufanele zibe ezinhlanu noma zibe ngaphansi kwezinhlanu.</string>
+    <string name="please_select_sub_category" translatable="false">Sicela ukhethe isigaba esingaphansi.</string>
+    <string name="select_sub_category" translatable="false">Khetha isigaba esincane</string>
+    <string name="select_session_should_not_be_empty_for_the_center_service_mode" translatable="false">Khetha Iseshini akufanele ingabi nalutho Kumodi Yesevisi Yesikhungo</string>
+    <string name="select_session_should_not_be_empty_for_the_home_service_mode" translatable="false">Khetha Iseshini akufanele ingabi nalutho kuModi Yesevisi Yasekhaya</string>
+    <string name="details" translatable="false">imiNiningwane</string>
     <string name="_1_km" translatable="false">1 km.</string>
-    <string name="away" translatable="false">away</string>
+    <string name="away" translatable="false">kude</string>
     <string name="prateek_mehta" translatable="false">Prateek Mehta</string>
-    <string name="media" translatable="false">Media</string>
+    <string name="media" translatable="false">abeziNdaba</string>
     <string name="_1499_2999" translatable="false">1499 - 2999</string>
-    <string name="book_now" translatable="false">Book Now</string>
-    <string name="my_booking" translatable="false">My Bookings</string>
-    <string name="booking_id" translatable="false">Booking ID</string>
+    <string name="book_now" translatable="false">Bekisa isiCelo manje</string>
+    <string name="my_booking" translatable="false">iziCeloKuBekisa Zami</string>
+    <string name="booking_id" translatable="false">uPhawu LwesiCeloKuBekisa</string>
     <string name="booking_id_num" translatable="false">#262638</string>
-    <string name="by_prateek_mehta" translatable="false">by Prateek Mehta</string>
+    <string name="by_prateek_mehta" translatable="false">nge Prateek Mehta</string>
     <string name="tuesday_21_oct_11_00_am" translatable="false">Tuesday, 21 Oct, 11:00 AM</string>
-    <string name="complete_profile" translatable="false">Complete Profile</string>
-    <string name="enter_your_information_below" translatable="false">Enter your information below</string>
-    <string name="edit_service" translatable="false">Edit Service</string>
-    <string name="message" translatable="false">Message</string>
-    <string name="upcoming" translatable="false">Upcoming</string>
-    <string name="completed" translatable="false">Completed</string>
-    <string name="cancelled" translatable="false">Cancelled</string>
+    <string name="complete_profile" translatable="false">Qedelela iSaziso</string>
+    <string name="enter_your_information_below" translatable="false">Faka konke owaziwa ngakho</string>
+    <string name="edit_service" translatable="false">Hlela isiqondiso</string>
+    <string name="message" translatable="false">uMlayezo</string>
+    <string name="upcoming" translatable="false">EziSazongena</string>
+    <string name="completed" translatable="false">osekuPhelele</string>
+    <string name="cancelled" translatable="false">EziYekiwe</string>
     <string name="_1799" translatable="false">1799</string>
     <string name="_1499" translatable="false">1499</string>
-    <string name="reschedule" translatable="false">Reschedule</string>
-    <string name="cancel" translatable="false">Cancel</string>
-    <string name="ok" translatable="false">Ok</string>
-    <string name="rate_us" translatable="false">Rate us</string>
-    <string name="date_time" translatable="false"><![CDATA[Date & Time]]></string>
-    <string name="payment_info" translatable="false">Payment Info</string>
-    <string name="subtotal" translatable="false">Subtotal</string>
-    <string name="gst_18" translatable="false">GST (18%)</string>
-    <string name="total" translatable="false">Total</string>
-    <string name="personal_document" translatable="false">Personal Document</string>
-    <string name="business_document" translatable="false">Business Document</string>
+    <string name="reschedule" translatable="false">Hlela Kabusha</string>
+    <string name="cancel" translatable="false">Yeka</string>
+    <string name="ok" translatable="false">kulungile</string>
+    <string name="rate_us" translatable="false">Ncoma noma ukhalaze ngathi</string>
+    <string name="date_time" translatable="false">uSuku nesiKhathi</string>
+    <string name="payment_info" translatable="false">iNkokhelo Lwazi</string>
+    <string name="subtotal" translatable="false">iSamba SiliNganiso</string>
+    <string name="gst_18" translatable="false">iNkece yokuThelela iMpahla oyiDayisayo Kanye noSizo oliDayiSayo (18%)</string>
+    <string name="total" translatable="false">iSamba</string>
+    <string name="personal_document" translatable="false">uMquluNcwadi Wakho</string>
+    <string name="business_document" translatable="false">uMquluNcwadi woMdayisi</string>
     <string name="_25" translatable="false">25</string>
     <string name="_1524" translatable="false">1524</string>
-    <string name="booking_details" translatable="false">Booking Details</string>
-    <string name="location" translatable="false">Location</string>
+    <string name="booking_details" translatable="false">imiNiningwane YeziCeloKuBekisa</string>
+    <string name="location" translatable="false">isiGodi</string>
     <string name="a_199_sector_63_noida" translatable="false">A-199, Sector-63, Noida</string>
-    <string name="mark_as_completed" translatable="false">Mark as Completed</string>
-    <string name="ac_repair" translatable="false">AC Repair</string>
-    <string name="review" translatable="false">Review</string>
-    <string name="give_a_feedback" translatable="false">Give a feedback...</string>
-    <string name="do_this_later" translatable="false">Do this later</string>
-    <string name="submit" translatable="false">Submit</string>
-    <string name="today" translatable="false">Today</string>
-    <string name="hello_abhishek_how_are_you" translatable="false">Hello Abhishek, How are you?</string>
+    <string name="mark_as_completed" translatable="false">Qinisekisa ukuthi kwenziwe</string>
+    <string name="ac_repair" translatable="false">Ukulungisa i-AC</string>
+    <string name="review" translatable="false">Bhekisisa</string>
+    <string name="give_a_feedback" translatable="false">Thungela iNjobo eBandla</string>
+    <string name="do_this_later" translatable="false">Gcina ngakho</string>
+    <string name="submit" translatable="false">Hambisa</string>
+    <string name="today" translatable="false">NaMhlanje</string>
+    <string name="hello_abhishek_how_are_you" translatable="false">Sawubona Abhishek, unjani?</string>
     <string name="saad_rahman" translatable="false">Saad Rahman</string>
-    <string name="no_chats_found" translatable="false">No Chats Found!</string>
-    <string name="start_new_chat" translatable="false">Start new chat</string>
-    <string name="amount_paid" translatable="false">Amount Paid</string>
-    <string name="book_again" translatable="false">Book Again</string>
+    <string name="no_chats_found" translatable="false">amaNcoko awaVeli!</string>
+    <string name="start_new_chat" translatable="false">Qala amaNcoko amaSha</string>
+    <string name="amount_paid" translatable="false">Imali ethunyelwe</string>
+    <string name="book_again" translatable="false">Faka isiCeloKubekisa Futhi</string>
     <string name="_1420" translatable="false">1420</string>
-    <string name="payment_mode" translatable="false">Payment Mode</string>
-    <string name="reason_for_cancellation" translatable="false">Reason for cancellation</string>
-    <string name="provider_is_not_available_at_this_time" translatable="false">Provider is not available at this time.</string>
-    <string name="credit_card" translatable="false">Credit Card</string>
-    <string name="refund_status" translatable="false">Refund Status</string>
-    <string name="refund_initiated_you_will_receive_your_n_amount_in_48_hours" translatable="false">Refund initiated. You will receive your \n amount in 48 hours.</string>
-    <string name="save" translatable="false">Save</string>
+    <string name="payment_mode" translatable="false">isiZathu sokuYeka</string>
+    <string name="reason_for_cancellation" translatable="false">isiZathu sokuYeka</string>
+    <string name="provider_is_not_available_at_this_time" translatable="false">uMthengisi akekho okwamanje.</string>
+    <string name="credit_card" translatable="false">iKhasiNkece yokuSiselwa</string>
+    <string name="refund_status" translatable="false">oKusha mayelana neNkece ebuyiswayo</string>
+    <string name="refund_initiated_you_will_receive_your_n_amount_in_48_hours" translatable="false">iNkece isiJikisiwe,uzoyiThola zingakapheli iziNsuku  eziMbili.</string>
+    <string name="save" translatable="false">Londoloza</string>
     <string name="a_192_sector_44_noida" translatable="false">A-192, Sector-44, Noida</string>
-    <string name="save_this_address_for_future_services" translatable="false">Save this address for future services.</string>
-    <string name="booking_summary" translatable="false">Booking Summary</string>
-    <string name="change" translatable="false">Change</string>
+    <string name="save_this_address_for_future_services" translatable="false">Londolozela isiKhathi esiZayo Leli Kheli.</string>
+    <string name="booking_summary" translatable="false">isiCeloSihloko</string>
+    <string name="change" translatable="false">Guqula</string>
     <string name="june_2023" translatable="false">June 2023</string>
     <string name="_4_5" translatable="false">4.5</string>
-    <string name="proceed" translatable="false">Proceed</string>
-    <string name="add_address" translatable="false">Add Address</string>
-    <string name="days" translatable="false">Days</string>
+    <string name="proceed" translatable="false">Qhubeka</string>
+    <string name="add_address" translatable="false">Faka isifunda</string>
+    <string name="days" translatable="false">Izinsuku</string>
     <string name="_16" translatable="false">16</string>
-    <string name="time" translatable="false">Time</string>
-    <string name="alert" translatable="false">Alert</string>
+    <string name="time" translatable="false">isiKhathi</string>
+    <string name="alert" translatable="false">Izibonelo</string>
     <string-array name="select_category">
-        <item>Select Category</item>
-        <item>Finance</item>
-        <item>Electronics</item>
-        <item>Fitness</item>
+        <item>Tomula uMkhakha Wakho</item>
+        <item>Ezezimali</item>
+        <item>Ezogesi</item>
+        <item>ezeMpilo</item>
 
 
     </string-array>
 
     <string-array name="select_sub_category">
-        <item>Select Sub Category</item>
-        <item>Item 1</item>
-        <item>Item 2</item>
-        <item>Item 3</item>
-        <item>Item 4</item>
+        <item>Tomula uMkhakhana Wakho</item>
+        <item>Into 1</item>
+        <item>Into 2</item>
+        <item>Into 3</item>
+        <item>Into 4</item>
 
 
     </string-array>
     <!-- Strings related to login -->
-    <string name="prompt_email" translatable="false">Email</string>
-    <string name="prompt_password" translatable="false">Password</string>
-    <string name="action_sign_in" translatable="false">Sign in or register</string>
-    <string name="action_sign_in_short" translatable="false">Sign in</string>
-    <string name="welcome" translatable="false">"Welcome!"</string>
-    <string name="invalid_username" translatable="false">Not a valid username</string>
-    <string name="invalid_password" translatable="false">Password must be >5 characters</string>
-    <string name="login_failed" translatable="false">"Login failed"</string>
-    <string name="if_cancellation_done_after_24_hours_of_booking_date_you_will_get_refund" translatable="false">If cancellation done after 24 hours of booking date, you will get refund.</string>
-    <string name="service_provider_is_not_available_and_has_requested_to_cancel" translatable="false">Service Provider is not available and has requested to cancel</string>
-    <string name="i_found_this_service_at_a_cheaper_price" translatable="false">I found this service at a cheaper price</string>
-    <string name="i_don_t_need_this_service_now" translatable="false">I don\'t need this service now</string>
-    <string name="i_am_unavailable_at_the_scheduled_time" translatable="false">I am unavailable at the scheduled time</string>
+    <string name="prompt_email" translatable="false">I-imeyili</string>
+    <string name="prompt_password" translatable="false">Iphasiwedi</string>
+    <string name="action_sign_in" translatable="false">Ngena ngemvume noma ubhalise</string>
+    <string name="action_sign_in_short" translatable="false">Ngena ngemvume</string>
+    <string name="welcome" translatable="false">"Siyakwamukela!"</string>
+    <string name="invalid_username" translatable="false">Akulona igama lomsebenzisi elivumelekile</string>
+    <string name="invalid_password" translatable="false">Iphasiwedi kufanele ibe yizinhlamvu ezingu->5</string>
+    <string name="login_failed" translatable="false">"ukungena kokuyimfihlo ayiphumelelanga"</string>
+    <string name="if_cancellation_done_after_24_hours_of_booking_date_you_will_get_refund" translatable="false">izoBuya iNkece Yakho uma uyeke emva koSuku olugcwele(24 amaHola).</string>
+    <string name="service_provider_is_not_available_and_has_requested_to_cancel" translatable="false">Umhlinzeki Wesevisi akatholakali futhi ucele ukukhansela</string>
+    <string name="i_found_this_service_at_a_cheaper_price" translatable="false">Ngithole le sevisi ngentengo eshibhile</string>
+    <string name="i_don_t_need_this_service_now" translatable="false">Angiyidingi le sevisi manje</string>
+    <string name="i_am_unavailable_at_the_scheduled_time" translatable="false">Angitholakali ngesikhathi esihleliwe</string>
     <string name="_262638" translatable="false">#262638</string>
-    <string name="your_booking_has_been_cancelled" translatable="false">Your Booking has been cancelled.</string>
-    <string name="please_track_status_of_refund_under_my_bookings_cancelled" translatable="false"><![CDATA[Please track status of refund under \'My Bookings->Cancelled]]></string>
-    <string name="go_to_my_bookings" translatable="false">Go to My Bookings</string>
-    <string name="payment" translatable="false">Payment</string>
-    <string name="service_details" translatable="false">Service Details</string>
+    <string name="your_booking_has_been_cancelled" translatable="false">basiYekile isiCeloKuBekisa sakho</string>
+    <string name="please_track_status_of_refund_under_my_bookings_cancelled" translatable="false"><![CDATA[Landela uMkhondo weNkece yakho ebuyiSwayo kwiziCelo eziseKhona neziYekiwe]]></string>
+    <string name="go_to_my_bookings" translatable="false">Yana KwiziCeloKubekisa Zakho</string>
+    <string name="payment" translatable="false">iNkokhelo</string>
+    <string name="service_details" translatable="false">imiNiningwane yoSizo</string>
     <string name="_21_jun_2023_11_00am" translatable="false">21 Jun 2023, 11:00AM</string>
     <string name="abhishek_mehra_a_192_sector_44_noida" translatable="false">Abhishek Mehra | A-192, Sector-44, Noida</string>
-    <string name="apply_coupon" translatable="false">Apply Coupon</string>
-    <string name="tax" translatable="false">Tax</string>
-    <string name="payable_amount" translatable="false">Payable Amount</string>
-    <string name="pay_now" translatable="false">Pay now</string>
-    <string name="code" translatable="false">Code</string>
-    <string name="applied" translatable="false">Applied</string>
-    <string name="coupons" translatable="false">Coupons</string>
-    <string name="enter_promocode" translatable="false">Enter promocode</string>
-    <string name="apply" translatable="false">Apply</string>
-    <string name="available_coupons" translatable="false">Available Coupons</string>
+    <string name="apply_coupon" translatable="false">Sikaza iNkeceMvumo</string>
+    <string name="tax" translatable="false">ukuThela</string>
+    <string name="payable_amount" translatable="false">Inani Elikhokhelwayo</string>
+    <string name="pay_now" translatable="false">Khokha manje</string>
+    <string name="code" translatable="false">ikhodi</string>
+    <string name="applied" translatable="false">Sikaza</string>
+    <string name="coupons" translatable="false">iNkeceMvumo</string>
+    <string name="enter_promocode" translatable="false">Faka iSaPhulelo SiBalo</string>
+    <string name="apply" translatable="false">Sikaza</string>
+    <string name="available_coupons" translatable="false">iNkeceZiMvumo eziseKhona</string>
     <string name="sbi100" translatable="false">SBI100</string>
-    <string name="state_bank_of_india" translatable="false">State Bank of India</string>
-    <string name="cashback_up_to_usd_10_on_the_item_total_above_1100" translatable="false">Cashback up to USD 10 on the item total above \n1100</string>
-    <string name="saved_addresses" translatable="false">Saved Addresses</string>
+    <string name="state_bank_of_india" translatable="false">Ibhange Lombuso laseNdiya</string>
+    <string name="cashback_up_to_usd_10_on_the_item_total_above_1100" translatable="false">Imbuyiselo ifika ku-USD 10 entweni isiyonke engaphezu kuka-\n1100</string>
+    <string name="saved_addresses" translatable="false">amaKheli aLondoloziwe</string>
     <string name="a_192_sector_44_noida_201301" translatable="false">A-192, Sector-44, Noida, 201301</string>
     <string name="_91_989_123_4567" translatable="false">+91 989 123 4567</string>
-    <string name="add_new_address" translatable="false">Add New Address</string>
-    <string name="chat_requests" translatable="false">Chat Requests</string>
-    <string name="no_chat_requests_found" translatable="false">No Chat Requests Found!</string>
-    <string name="see_your_chats" translatable="false">See your chats</string>
-    <string name="decline" translatable="false">Decline</string>
+    <string name="add_new_address" translatable="false"> Yengeza Elinye iKheli</string>
+    <string name="chat_requests" translatable="false">imiLayezo edinga ukuphendulwa.</string>
+    <string name="no_chat_requests_found" translatable="false">Ayikho imiLayezo engenile</string>
+    <string name="see_your_chats" translatable="false">Buka imiLayezo yakho</string>
+    <string name="decline" translatable="false">Nqaba</string>
     <string name="kuldeep_srivastava" translatable="false">Kuldeep Srivastava</string>
-    <string name="connect" translatable="false">Connect</string>
-    <string name="call" translatable="false">Call</string>
+    <string name="connect" translatable="false">Xhumana</string>
+    <string name="call" translatable="false">Shaya uCingo</string>
     <string name="whatsapp" translatable="false">WhatsApp</string>
-    <string name="share" translatable="false">Share</string>
-    <string name="services_we_offer" translatable="false">Services we offer</string>
-    <string name="settings" translatable="false">Settings</string>
-    <string name="switch_to_business" translatable="false">Switch to Business</string>
+    <string name="share" translatable="false">Dlulisela</string>
+    <string name="services_we_offer" translatable="false">uSizo esiNalo</string>
+    <string name="settings" translatable="false">Izilungiselelo</string>
+    <string name="switch_to_business" translatable="false">Cindezela kuMdayisi</string>
     <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut" translatable="false">Lorem ipsum dolor sit amet,\nconsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</string>
-    <string name="push_notifications" translatable="false">Push Notifications</string>
-    <string name="account_settings" translatable="false">Account Settings</string>
-    <string name="my_wallet" translatable="false">My Wallet</string>
-    <string name="wallet" translatable="false">wallet</string>
-    <string name="paymentGateway" translatable="false">paymentGateway</string>
-    <string name="walletWithPg" translatable="false">walletWithPg</string>
-    <string name="about_us" translatable="false">About us</string>
-    <string name="distance" translatable="false">Distance</string>
-    <string name="change_language" translatable="false">Change Language</string>
-    <string name="faq_s" translatable="false">FAQ\'s</string>
-    <string name="contact_us" translatable="false">Contact us</string>
-    <string name="data_privacy" translatable="false">Data Privacy</string>
-    <string name="terms_and_conditions" translatable="false">Terms and Conditions</string>
-    <string name="delete_account" translatable="false">Delete Account</string>
-    <string name="your_available_balance" translatable="false">Your Available Balance</string>
-    <string name="deactivate" translatable="false">Deactivate</string>
-    <string name="send_money" translatable="false">Send Money</string>
-    <string name="transactions" translatable="false">Transactions</string>
+    <string name="push_notifications" translatable="false">Vumela ukuThola iZaziso</string>
+    <string name="account_settings" translatable="false">ukuLawulwa kweNqolobaneBuchwepheshe</string>
+    <string name="my_wallet" translatable="false">iNkohlomba YeNkece Yami</string>
+    <string name="wallet" translatable="false">ikhwalithi</string>
+    <string name="paymentGateway" translatable="false">inkokheloGateway</string>
+    <string name="walletWithPg" translatable="false">isikhwamaNgePg</string>
+    <string name="about_us" translatable="false">Mayelana nathi</string>
+    <string name="distance" translatable="false">Ibanga</string>
+    <string name="change_language" translatable="false">Guqukela kolunye uLimi</string>
+    <string name="faq_s" translatable="false">imiBuzo ejwayelekile</string>
+    <string name="contact_us" translatable="false">Xhumana Nathi</string>
+    <string name="data_privacy" translatable="false">UubuChophoBuchwepheshe obuyiMfihlo</string>
+    <string name="terms_and_conditions" translatable="false">ImiGomo nemiBandela</string>
+    <string name="delete_account" translatable="false">YeSule iNqolobaneBuChwepheshe</string>
+    <string name="your_available_balance" translatable="false">aMandla eNkece oNawo okwaManje</string>
+    <string name="deactivate" translatable="false">Linqundiwe</string>
+    <string name="send_money" translatable="false">Thumela iNkece</string>
+    <string name="transactions" translatable="false">ukuNgena nokuPhuma kweNkece</string>
     <string name="_200" translatable="false">₹200</string>
     <string name="_123456789" translatable="false">123456789</string>
-    <string name="please_allow_location_permission_to_move_ahead" translatable="false">Please allow location permission to move ahead.</string>
-    <string name="connections_requests" translatable="false">Connections Requests</string>
-    <string name="accept_or_decline_requests" translatable="false">Accept or Decline Requests</string>
-    <string name="are_you_sure_you_want_to_logout" translatable="false">Are you sure you want to logout ?</string>
-    <string name="no" translatable="false">No</string>
-    <string name="yes" translatable="false">Yes</string>
-    <string name="log_out_successfully" translatable="false">Log out successfully !</string>
-    <string name="remove" translatable="false">Remove</string>
+    <string name="please_allow_location_permission_to_move_ahead" translatable="false">Sicela uvumele imvume yendawo ukuze uqhubekele phambili.</string>
+    <string name="connections_requests" translatable="false">iZiCelo zabaNgaziyo</string>
+    <string name="accept_or_decline_requests" translatable="false">Vuma noma Nqaba isiCelo</string>
+    <string name="are_you_sure_you_want_to_logout" translatable="false">Ngampela ufuna ukuphuma eNkundleni yobuChwepheshe?</string>
+    <string name="no" translatable="false">Cha</string>
+    <string name="yes" translatable="false">Yebo</string>
+    <string name="log_out_successfully" translatable="false">Phuma ngempumelelo!</string>
+    <string name="remove" translatable="false">Susa</string>
     <string name="surya_mouly" translatable="false">Surya Mouly</string>
     <string name="_100" translatable="false">100</string>
-    <string name="individual_business" translatable="false">Individual Business</string>
-    <string name="rating_raviews" translatable="false"><![CDATA[Rating & Reviews]]></string>
-    <string name="report" translatable="false">Report</string>
-    <string name="promocode_discount" translatable="false">Promocode Discount</string>
+    <string name="individual_business" translatable="false">uzoSizwa oyedwa</string>
+    <string name="rating_raviews" translatable="false">iziNcomo neziKhalo</string>
+    <string name="report" translatable="false">Bika</string>
+    <string name="promocode_discount" translatable="false">iSaPhulelo SiBalo esiPhindiwe</string>
     <string name="sorry_this_time_slot_is_not_available" translatable="false">
-        Sorry this time slot is not available</string>
+       Uxolo lesi sikhathi asitholakali</string>
     <string name="_10_30_am" translatable="false">10:30 AM</string>
-    <string name="ravi_bishnoi_sent_you_a_connections_request" translatable="false">sent you a Connections request</string>
+    <string name="ravi_bishnoi_sent_you_a_connections_request" translatable="false">iQondene nawe imiLayezo</string>
     <string name="ravi_bishnoi" translatable="false">Ravi Bishnoi.</string>
-    <string name="your_available_balance_insufficient_balance" translatable="false">Your Available Balance</string>
-    <string name="insufficient_balance" translatable="false">(Insufficient Balance)</string>
-    <string name="add_money" translatable="false">Add Money</string>
-    <string name="pay_1548" translatable="false">Pay ₹ 1548</string>
-    <string name="are_you_sure_you_want_to_conform" translatable="false">Are you sure you want to \nconfirm?</string>
-    <string name="calendar" translatable="false">calendar</string>
+    <string name="your_available_balance_insufficient_balance" translatable="false">aMandla eNkece oNawo okwaManje</string>
+    <string name="insufficient_balance" translatable="false">(iNkece onayo ayeNele)</string>
+    <string name="add_money" translatable="false">Yengeza iNkece</string>
+    <string name="pay_1548" translatable="false">khokha ₹ 1548</string>
+    <string name="are_you_sure_you_want_to_conform" translatable="false">Uyajabulela ukufaka isikrini?</string>
+    <string name="calendar" translatable="false">ikhalenda</string>
     <string name="slot" translatable="false">slot</string>
-    <string name="at_center" translatable="false">At Center</string>
+    <string name="at_center" translatable="false">esiKhungweni</string>
     <string name="aman" translatable="false">Aman</string>
-    <string name="set_location" translatable="false">Set Location</string>
-    <string name="house_flat_office_no" translatable="false">House/Flat/Office no.*</string>
-    <string name="road_name_area_colony" translatable="false">Road name/ Area / Colony*</string>
-    <string name="pincode" translatable="false">Pincode*</string>
-    <string name="confirm_location" translatable="false">Confirm Location</string>
-    <string name="sold" translatable="false">Sold</string>
-    <string name="sold_small" translatable="false">sold</string>
-    <string name="bought" translatable="false">Bought</string>
-    <string name="search_location" translatable="false">Search Location</string>
-    <string name="location_is_not_avialable" translatable="false">Location is not available.</string>
-    <string name="request" translatable="false">Request</string>
-    <string name="atcenter" translatable="false">atCenter</string>
-    <string name="athome" translatable="false">atHome</string>
-    <string name="confirm" translatable="false">confirm</string>
-    <string name="booking" translatable="false">booking</string>
-    <string name="pay" translatable="false">Pay ₹</string>
-    <string name="pending" translatable="false">Pending</string>
-    <string name="paymeturl" translatable="false">paymetUrl</string>
-    <string name="cancel_booking" translatable="false">Cancel Booking</string>
+    <string name="set_location" translatable="false">Cupha indawo yakho</string>
+    <string name="house_flat_office_no" translatable="false">iNdluSibalo*</string>
+    <string name="road_name_area_colony" translatable="false">Igama LoMzila*</string>
+    <string name="pincode" translatable="false">isiBalo SokuVula*</string>
+    <string name="confirm_location" translatable="false">Qinisekisa Indawo</string>
+    <string name="sold" translatable="false">okuDayisiwe</string>
+    <string name="sold_small" translatable="false">okuDayisiwe</string>
+    <string name="bought" translatable="false">okuThengiwe</string>
+    <string name="search_location" translatable="false">Sesha Indawo</string>
+    <string name="location_is_not_avialable" translatable="false">Indawo ayitholakali.</string>
+    <string name="request" translatable="false">Izicelo</string>
+    <string name="atcenter" translatable="false">esiKhungweni</string>
+    <string name="athome" translatable="false">Ekhaya</string>
+    <string name="confirm" translatable="false">qinisekisa</string>
+    <string name="booking" translatable="false">iziCelo zokuBekisa</string>
+    <string name="pay" translatable="false">khokha ₹</string>
+    <string name="pending" translatable="false">Kusalindile</string>
+    <string name="paymeturl" translatable="false">i-Urlyokukhokha</string>
+    <string name="cancel_booking" translatable="false">Khansela Ukubhuka</string>
     <string name="bookinglist" translatable="false">bookingList</string>
-    <string name="booked_by" translatable="false">Booked by</string>
-    <string name="bought_small" translatable="false">bought</string>
+    <string name="booked_by" translatable="false">oCelile ukuBekiselwa</string>
+    <string name="bought_small" translatable="false">okuThengiwe</string>
     <string name="r" translatable="false"></string>
-    <string name="close_service" translatable="false">Close Service</string>
-    <string name="start_date" translatable="false">Start Date</string>
-    <string name="end_date" translatable="false">End Date</string>
-    <string name="close" translatable="false">Close</string>
-    <string name="start_service" translatable="false">Start Service</string>
-    <string name="leave" translatable="false">leave</string>
-    <string name="not_cancelable" translatable="false">Not Cancelable</string>
-    <string name="back_to_original_payment_source" translatable="false">Back to original payment source</string>
-    <string name="refund_in_wallet" translatable="false">Refund in Wallet</string>
-    <string name="promocode" translatable="false">Promocode</string>
-    <string name="closeservice" translatable="false">closeService</string>
-    <string name="before_date_text" translatable="false">Are you sure want to close service if you close the service, all booking of</string>
-    <string name="to" translatable="false">to</string>
-    <string name="after_date_text" translatable="false">will be automatically cancelled</string>
-    <string name="image" translatable="false">image</string>
-    <string name="videos" translatable="false">videos</string>
-    <string name="servicedetails" translatable="false">serviceDetails</string>
-    <string name="openmedia" translatable="false">openMedia</string>
-    <string name="back_press" translatable="false">BackPress</string>
-    <string name="goBack" translatable="false">back</string>
-    <string name="goForeword" translatable="false">foreword</string>
-    <string name="home_fr" translatable="false">Home_FR</string>
-    <string name="onlinefr" translatable="false">OnlineFR</string>
-    <string name="back" translatable="false">Back</string>
-    <string name="provider_profile" translatable="false">provider_profile</string>
-    <string name="profile_fr" translatable="false">profile_Fr</string>
-    <string name="add_video" translatable="false">+ Add Video</string>
-    <string name="logout" translatable="false">logOut</string>
-    <string name="join_call" translatable="false">joinCall</string>
-    <string name="leave_call" translatable="false">leaveCall</string>
-    <string name="mute_call" translatable="false">muteCall</string>
-    <string name="connected" translatable="false">Connected</string>
-    <string name="callended" translatable="false">callEnded</string>
-    <string name="pop_up" translatable="false">popup</string>
-    <string name="block" translatable="false">Block</string>
-    <string name="delete_chat" translatable="false">Delete Chat</string>
-    <string name="unblock" translatable="false">Unblock</string>
-    <string name="container" translatable="false">container</string>
-    <string name="chatfragment" translatable="false">chatFragment</string>
-    <string name="open_gallery" translatable="false">openGallery</string>
-    <string name="images" translatable="false">Images</string>
-    <string name="files" translatable="false">Files</string>
-    <string name="media_size_check" translatable="false">Media Size Must be Less than 100 MB</string>
+    <string name="close_service" translatable="false">Vala uSizo</string>
+    <string name="start_date" translatable="false">Usuku okuqalwa ngalo</string>
+    <string name="end_date" translatable="false">usuku lokugcina</string>
+    <string name="close" translatable="false">Vala</string>
+    <string name="start_service" translatable="false">selungaQala uSizo</string>
+    <string name="leave" translatable="false">hamba</string>
+    <string name="not_cancelable" translatable="false">Ayivunyiwe</string>
+    <string name="back_to_original_payment_source" translatable="false">Kumabuyekezwe okuthunyelwe okuphambili</string>
+    <string name="refund_in_wallet" translatable="false">Ikhwalithi elibuyiswe</string>
+    <string name="promocode" translatable="false">Ikhodi yephromo</string>
+    <string name="closeservice" translatable="false">vala Isevisi</string>
+    <string name="before_date_text" translatable="false">Ingabe uqinisekile ukuthi ufuna ukuvala isevisi uma uvala isevisi, konke ukubhukha</string>
+    <string name="to" translatable="false">ku</string>
+    <string name="after_date_text" translatable="false">zizovunjwa ngokuzenzakalelayo</string>
+    <string name="image" translatable="false">isithombe</string>
+    <string name="videos" translatable="false">amavidiyo</string>
+    <string name="servicedetails" translatable="false">serviceImininingwane</string>
+    <string name="openmedia" translatable="false">vulaImidiya</string>
+    <string name="back_press" translatable="false">CindezelaEmuva</string>
+    <string name="goBack" translatable="false">emuva</string>
+    <string name="goForeword" translatable="false">isandulela</string>
+    <string name="home_fr" translatable="false">Ikhaya_FR</string>
+    <string name="onlinefr" translatable="false">I-intanethiFR</string>
+    <string name="back" translatable="false">Emuva</string>
+    <string name="provider_profile" translatable="false">iphrofayili_yomhlinzeki</string>
+    <string name="profile_fr" translatable="false">iphrofayili_Fr</string>
+    <string name="add_video" translatable="false">+ Engeza ividiyo</string>
+    <string name="logout" translatable="false">Phuma eNkundleni yobuChwepheshe</string>
+    <string name="join_call" translatable="false">joyinaUcingo</string>
+    <string name="leave_call" translatable="false">shiya Ucingo</string>
+    <string name="mute_call" translatable="false">thulisaCall</string>
+    <string name="connected" translatable="false">Ixhunyiwe</string>
+    <string name="callended" translatable="false">ucingoLuphelile</string>
+    <string name="pop_up" translatable="false">vela</string>
+    <string name="block" translatable="false">Qinisa</string>
+    <string name="delete_chat" translatable="false">Susa i-chat</string>
+    <string name="unblock" translatable="false">Vulela</string>
+    <string name="container" translatable="false">isitsha</string>
+    <string name="chatfragment" translatable="false">ingxoxoFragment</string>
+    <string name="open_gallery" translatable="false">vulaIgalari</string>
+    <string name="images" translatable="false">Izithombe</string>
+    <string name="files" translatable="false">Amafayela</string>
+    <string name="media_size_check" translatable="false">Usayizi Wemidiya Kufanele ube Ngaphansi kuka-100 MB</string>
 
 
-    <string name="weeks" translatable="false">weeks</string>
-    <string name="months" translatable="false">month</string>
-    <string name="years" translatable="false">years</string>
-    <string name="min" translatable="false">min</string>
-    <string name="hour" translatable="false">hour</string>
-    <string name="minute" translatable="false">minute</string>
-    <string name="pick_your_media_file" translatable="false">Pick Your Media File</string>
-    <string name="use_as_default" translatable="false">Use as Default</string>
-    <string name="_default" translatable="false"> Default</string>
+    <string name="weeks" translatable="false">amasonto</string>
+    <string name="months" translatable="false">inyanga</string>
+    <string name="years" translatable="false">iminyaka</string>
+    <string name="min" translatable="false">imizuzu</string>
+    <string name="hour" translatable="false">ihora</string>
+    <string name="minute" translatable="false">umzuzu</string>
+    <string name="pick_your_media_file" translatable="false">Khetha Ifayela Lakho Lemidiya</string>
+    <string name="use_as_default" translatable="false">okuzoSetshenziswa</string>
+    <string name="_default" translatable="false"> Okuzenzakalelayo</string>
 
 
     <string-array name="select_issue">
         <item>Select Issue</item>
-        <item>Item 1</item>
-        <item>Item 2</item>
-        <item>Item 3</item>
-        <item>Item 4</item>
-        <item>Item 5</item>
+        <item>into 1</item>
+        <item>into 2</item>
+        <item>into 3</item>
+        <item>into 4</item>
+        <item>into 5</item>
     </string-array>
 
     <!--bank module strings-->
-    <string name="add_your_bank_account" translatable="false">Add Your Bank Account</string>
-    <string name="add_new_bank_account" translatable="false">Add New Bank Account</string>
-    <string name="choose_bank_with_your_account" translatable="false">Choose bank with your account.</string>
-    <string name="select_bank" translatable="false">Select Bank</string>
-    <string name="current_account" translatable="false">Current account</string>
-    <string name="savings_account" translatable="false">Savings account</string>
+    <string name="add_your_bank_account" translatable="false">Faka i-akhawunti yakho yebhange</string>
+    <string name="add_new_bank_account" translatable="false">Faka i-akhawunti entsha yebhange</string>
+    <string name="choose_bank_with_your_account" translatable="false">Khetha ibhange nge-akhawunti yakho.</string>
+    <string name="select_bank" translatable="false">Khetha ibhange</string>
+    <string name="current_account" translatable="false">I-akhawunti yesikhathi esizayo</string>
+    <string name="savings_account" translatable="false">I-akhawunti yokuncintisana</string>
     <string name="select_account_type" translatable="false">Select Account type</string>
-    <string name="enter_document_type" translatable="false">Enter document type</string>
-    <string name="document_type" translatable="false">Document Type</string>
-    <string name="enter_document_number" translatable="false">Enter document number</string>
-    <string name="document_number" translatable="false">Document number</string>
-    <string name="enter_account_name" translatable="false">Enter account name</string>
-    <string name="account_name" translatable="false">Account Name</string>
-    <string name="enter_account_number" translatable="false">Enter account number</string>
-    <string name="account_number" translatable="false">Account Number</string>
-    <string name="my_bank_account" translatable="false">My Bank Account</string>
-    <string name="connecting" translatable="false">Connecting</string>
-    <string name="add_bank_account" translatable="false">Add Bank Account</string>
+    <string name="enter_document_type" translatable="false">Faka uhlobo lwedokhumenti</string>
+    <string name="document_type" translatable="false">Uhlobo lwedokhumenti</string>
+    <string name="enter_document_number" translatable="false">Faka inombolo yodokhumenti</string>
+    <string name="document_number" translatable="false">Inombolo yodokhumenti</string>
+    <string name="enter_account_name" translatable="false">Faka igama le-akhawunti</string>
+    <string name="account_name" translatable="false">Igama le-akhawunti</string>
+    <string name="enter_account_number" translatable="false">Faka inombolo yekhawunti</string>
+    <string name="account_number" translatable="false">Inombolo yekhawunti</string>
+    <string name="my_bank_account" translatable="false">I-akhawunti yami yebhange</string>
+    <string name="connecting" translatable="false">Iyaxhuma</string>
+    <string name="add_bank_account" translatable="false">Faka i-akhawunti yebhange</string>
 
 
     <!--validation Texts-->
 
-    <string name="please_enter_account_number" translatable="false">Please Enter Account Number</string>
-    <string name="please_enter_account_name" translatable="false">Please Enter Account Name</string>
-    <string name="invalid_account_number" translatable="false">Account Number is Invalid</string>
-    <string name="please_enter_document_number" translatable="false">Please Enter Document Number</string>
-    <string name="please_enter_document_type" translatable="false">Please Enter document type</string>
+    <string name="please_enter_account_number" translatable="false">Sicela ufake inombolo ye-akhawunti</string>
+    <string name="please_enter_account_name" translatable="false">Sicela ufake igama le-akhawunti</string>
+    <string name="invalid_account_number" translatable="false">Inombolo ye-akhawunti ayivumelekile</string>
+    <string name="please_enter_document_number" translatable="false">Sicela Faka Inombolo Yedokhumenti</string>
+    <string name="please_enter_document_type" translatable="false">Sicela Faka uhlobo lwedokhumenti</string>
 
 
     <!--String files for click events-->
-    <string name="cross" translatable="false">Cross</string>
-    <string name="audio_call" translatable="false">Audio Call</string>
-    <string name="video_call" translatable="false">Video Call</string>
-    <string name="connect_with_the_user_as" translatable="false">Connect with the user as</string>
-    <string name="outgoing_video" translatable="false">outgoingVideo</string>
-    <string name="outgoing_Audio" translatable="false">outgoingAudio</string>
-    <string name="user_name" translatable="false">user_name</string>
-    <string name="are_you_sure_want_to_delete_this_account" translatable="false">Are you sure you want to delete this account?</string>
-    <string name="filterdata" translatable="false">filterData</string>
-    <string name="connection_remove_successfully" translatable="false">Connection Remove Successfully</string>
-
+    <string name="cross" translatable="false">Yeqa</string>
+    <string name="audio_call" translatable="false">Ucingo Lomsindo</string>
+    <string name="video_call" translatable="false">Ucingo Lwevidiyo</string>
+    <string name="connect_with_the_user_as" translatable="false">Xhuma nomsebenzisi njenge</string>
+    <string name="outgoing_video" translatable="false">uyaphumaVideo</string>
+    <string name="outgoing_Audio" translatable="false">iphumai-Audio</string>
+    <string name="user_name" translatable="false">igama_lomsebenzisi</string>
+    <string name="are_you_sure_want_to_delete_this_account" translatable="false">Ngampela ufuna ukuyeSula LeNqoloBaneBuChwepheshe ?</string>
+    <string name="filterdata" translatable="false">isihlungiIdatha</string>
+    <string name="connection_remove_successfully" translatable="false">Ukuxhuma Kususwe Ngempumelelo</string>
     <string name="whatsApp" translatable="false">whatsApp</string>
-    <string name="description" translatable="false">Description</string>
-    <string name="issue_type" translatable="false">Issue Type</string>
-    <string name="notification" translatable="false">Notification</string>
-    <string name="addbank" translatable="false">addBank</string>
+    <string name="description" translatable="false">Umbono</string>
+    <string name="issue_type" translatable="false">Uhlobo lodaba</string>
+    <string name="notification" translatable="false">Isaziso</string>
+    <string name="addbank" translatable="false">engezaiBhange</string>
 
-    <string name="openbottomsheet" translatable="false">openBottomSheet</string>
-    <string name="personal" translatable="false">personal</string>
+    <string name="openbottomsheet" translatable="false">vulaIshidiElingezansi</string>
+    <string name="personal" translatable="false">okomuntu siqu</string>
+    <string name="service_we_offer">Isevisi esiyinikezayo</string>
 
+
+    <string name="wellness">Impilo</string>
+    <string name="household">Umndeni</string>
+    <string name="electronic">I-elekthronikhi</string>
+    <string name="videophoto">"IsithombeSevidiyo"</string>
+    <string name="showbiz">I-Showbiz</string>
+    <string name="real_estate">Ukuthengisa izindlu</string>
+    <string name="spa_beauty">I-Spa-Ubuhle</string>
+    <string name="security">Ezokuphepha</string>
+    <string name="software">Isofthiwe</string>
+    <string name="legal">Okusemthethweni</string>
+    <string name="pet_service">Isevisi yezilwane ezifuywayo</string>
+    <string name="travel">Ukuhamba</string>
+    <string name="other">Okunye</string>
+    <string name="allow_gps_location">Allow location Access</string>
+
+   <!-- servi needs access to your location turn on location Services in your device Setting
+-->
 
 </resources>

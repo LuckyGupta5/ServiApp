@@ -163,7 +163,7 @@
             android:layout_below="@id/servivet_img"
             android:layout_marginTop="46dp"
             android:fontFamily="@font/poppins_semi_bold"
-            android:text="Service we Offer"
+            android:text="@string/service_we_offer"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="24sp"

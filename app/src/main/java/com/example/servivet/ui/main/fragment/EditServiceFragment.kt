@@ -135,7 +135,7 @@ class EditServiceFragment :
             setAdapter(showDayList, data, data.atCenterPrice, data.atHomePrice, "center")
             binding.centreCheckBox.setBackgroundResource(R.drawable.selected_checkbox)
             mViewModel.addServicesRequest.address = binding.addressEt.text.toString()
-            mViewModel.addServicesRequest.latitute = "28.612673"
+            mViewModel.addServicesRequest.latitute =  "28.612673"
             mViewModel.addServicesRequest.longitute = "77.377400"
             mViewModel.addServicesRequest.atCenter = true
             mViewModel.isCentreClick = true
@@ -341,8 +341,8 @@ class EditServiceFragment :
                 setAdapter(showDayList, data!!, data!!.atCenterPrice, data!!.atHomePrice)
                 binding.centreCheckBox.setBackgroundResource(R.drawable.selected_checkbox)
                 mViewModel.addServicesRequest.address = binding.addressEt.text.toString()
-                mViewModel.addServicesRequest.latitute = "28.612673"
-                mViewModel.addServicesRequest.longitute = "77.377400"
+                mViewModel.addServicesRequest.latitute ="28.612673"
+                mViewModel.addServicesRequest.longitute ="77.377400"
                 mViewModel.addServicesRequest.atCenter = true
                 true
             } else {

@@ -15,3 +15,4 @@ open class BaseViewModel: ViewModel() {
         coroutineScope.cancel()
     }
 }
+

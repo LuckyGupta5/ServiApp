@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.servivet.R
 import com.example.servivet.data.api.RetrofitBuilder
 import com.example.servivet.data.model.common.response.CommonResponse
@@ -18,6 +20,7 @@ import com.example.servivet.ui.base.BaseViewModel
 import com.example.servivet.ui.main.fragment.SettingsFragmentDirections
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.Resource
+import com.example.servivet.utils.Session
 import com.example.servivet.utils.SingleLiveEvent
 import com.example.servivet.utils.StatusCode
 import kotlinx.coroutines.launch
@@ -29,13 +32,29 @@ class SettingsViewModel : BaseViewModel() {
     var notificationRequest = NotificationRequest()
     var notificationResponse = SingleLiveEvent<Resource<CommonResponse>>()
     var deleteResponse = SingleLiveEvent<Resource<CommonResponse>>()
+
+    private val _selectedLanguage = MutableLiveData<String>()
+    val selectedLanguage: LiveData<String> get() = _selectedLanguage
+
+    fun updateLanguage(language: String) {
+        _selectedLanguage.value = language
+    }
+
+    private val _data = MutableLiveData<String>()
+    val data: LiveData<String> = _data
+
+    fun setData(data: String) {
+        _data.value = data
+    }
     fun getLogoutData(): LiveData<Resource<CommonResponse>> {
         return logoutResponse
     }
 
     inner class ClickAction(var frgmentActivity: Activity) {
         fun backbtn(view: View) {
-            view.findNavController().popBackStack()
+            view.findNavController().popBackStack(R.id.profileFragment, false)
+
+          //  view.findNavController().popBackStack()
         }
 
         fun gotoMyWallet(view: View) {
@@ -44,9 +63,7 @@ class SettingsViewModel : BaseViewModel() {
 
 
         fun goLogout(view: View) {
-            view.findNavController().navigate(
-                SettingsFragmentDirections.actionSettingsFragmentToCloseServiceAlert("", "logOut")
-            )
+            view.findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToCloseServiceAlert("", "logOut"))
             // CommonUtils.customalertdialog(frgmentActivity, frgmentActivity.getString(R.string.are_you_sure_you_want_to_logout), 1)
         }
 
@@ -102,6 +119,7 @@ class SettingsViewModel : BaseViewModel() {
                 logoutResponse.postValue(Resource.success(repository.logoutUser()))
             } catch (ex: IOException) {
                 ex.printStackTrace()
+                Session.language=""
                 logoutResponse.postValue(
                     Resource.error(
                         StatusCode.STATUS_CODE_INTERNET_VALIDATION,

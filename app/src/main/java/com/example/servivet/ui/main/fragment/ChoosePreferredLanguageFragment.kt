@@ -1,20 +1,25 @@
 package com.example.servivet.ui.main.fragment
 
 import android.app.AlertDialog
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
 import com.example.servivet.data.model.language_model.LanguageModel
+import com.example.servivet.data.model.language_model.Savelanguage
 import com.example.servivet.databinding.FragmentChoosePreferredLanguageBinding
-import com.example.servivet.databinding.FragmentSplashBinding
 import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.adapter.LanguageAdapter
 import com.example.servivet.ui.main.view_model.ChooseLanguageViewModel
 import com.example.servivet.ui.main.view_model.SplashViewModel
 import com.example.servivet.utils.CommonUtils
+import com.example.servivet.utils.PreferenceEntity
+import com.example.servivet.utils.Session
 import com.example.servivet.utils.setLocal
+import com.hbb20.CountryCodePicker.Language
+import kotlin.math.log
 
 
 class ChoosePreferredLanguageFragment : BaseFragment<FragmentChoosePreferredLanguageBinding,ChooseLanguageViewModel>(R.layout.fragment_choose_preferred_language) {
@@ -22,7 +27,6 @@ class ChoosePreferredLanguageFragment : BaseFragment<FragmentChoosePreferredLang
     override val binding: FragmentChoosePreferredLanguageBinding by viewBinding(FragmentChoosePreferredLanguageBinding::bind)
     override val mViewModel: ChooseLanguageViewModel by viewModels()
     private var language=ArrayList<LanguageModel>()
-
 
 
     override fun isNetworkAvailable(boolean: Boolean) {
@@ -33,7 +37,7 @@ class ChoosePreferredLanguageFragment : BaseFragment<FragmentChoosePreferredLang
         binding.apply {
             lifecycleOwner=viewLifecycleOwner
             viewModel=mViewModel
-            click=mViewModel.ClickAction()
+            click=mViewModel.ClickAction(requireContext(),requireActivity())
             setBack()
 
         }
@@ -53,11 +57,10 @@ class ChoosePreferredLanguageFragment : BaseFragment<FragmentChoosePreferredLang
     }
 
     private fun  addData() {
-
         language.add(LanguageModel( "English", "Hi, I am John Doe.",true,"en"))
         language.add(LanguageModel( "Mandarin Chinese", "嗨，我是約翰·多伊。",false,"fr"))
         language.add(LanguageModel( "Spanish", "Spanish",false,""))
-        language.add(LanguageModel( "Hindi", "नमस्ते, मैं जॉन डो हूं।",false,""))
+        language.add(LanguageModel( "Hindi", "नमस्ते, मैं जॉन डो हूं।", false,"hi"))
         language.add(LanguageModel( "Arabic", "مرحبًا، أنا جون دو.",false,""))
         language.add(LanguageModel( "French", "Bonjour, je m'appelle John Doe.",false,""))
         language.add(LanguageModel( "Bengali", "হাই, আমি জন ডো",false,""))
@@ -69,7 +72,7 @@ class ChoosePreferredLanguageFragment : BaseFragment<FragmentChoosePreferredLang
         language.add(LanguageModel( "Japanese", "こんにちは、ジョン・ドゥです。",false,""))
         language.add(LanguageModel( "Swahili", "Habari, mimi ni John Doe.",false,""))
         language.add(LanguageModel( "Korean", "안녕하세요, 저는 John Doe입니다.",false,""))
-        language.add(LanguageModel( "Zulu", "Sawubona, ngingu-John Doe.",false,""))
+        language.add(LanguageModel( "Zulu", "Sawubona, ngingu-John Doe.",false,"zu"))
         language.add(LanguageModel( "Afrikaans", "Hallo, ek is John Doe.",false,""))
         language.add(LanguageModel( "Modern Standard Arabic", "مرحبًا، أنا جون دو.",false,""))
         language.add(LanguageModel( "Vietnamese", "Xin chào, tôi là John Doe.",false,""))
@@ -86,11 +89,161 @@ class ChoosePreferredLanguageFragment : BaseFragment<FragmentChoosePreferredLang
         language.add(LanguageModel( "Filipino", "Hi, ako si John Doe.",false,""))
         language.add(LanguageModel( "Dutch", "Hallo, ik ben John Doe.",false,""))
         binding.languagerecycler.adapter= LanguageAdapter(requireContext(),language,onItemClick)
-
     }
-    private val onItemClick: (String) -> Unit = { key ->
+    private val onItemClick: (String,Int) -> Unit = { key,position ->
 
-        requireActivity().setLocal(key,2)
+       when(language[position].language){
+           "English"->{
+               context.let { requireActivity().setLocal("en",2) }
+                   Session.saveIsLanguage("en")
+               Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+           }
+           "Mandarin Chinese"->{
+               context.let { requireActivity().setLocal("en",2)
+                   //Session.saveIsLanguage("ch")
+               }
+               Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+
+           }
+           "Spanish"->{
+               context.let { requireActivity().setLocal("en",2) }
+               Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+
+           }
+           "Hindi"-> {
+               context.let { requireActivity().setLocal("en",2) }
+               Session.saveIsLanguage("hi")
+
+           }
+           "Arabic"-> {
+               context.let { requireActivity().setLocal("en",2) }
+               Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+           }
+           "French"-> {
+               context.let { requireActivity().setLocal("en",2) }
+               Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+           }
+           "Bengali"->
+           {
+               context.let { requireActivity().setLocal("en",2) }
+               Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+
+           }
+           "Russian"->{
+               context.let { requireActivity().setLocal("en",2) }
+               Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+
+           }
+           "Portuguese"-> {
+               context.let { requireActivity().setLocal("en",2) }
+              Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+
+           }
+           "Urdu"->{
+               context.let { requireActivity().setLocal("en",2) }
+               Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+
+           }
+           "Indonesian"->{
+               context.let { requireActivity().setLocal("en",2) }
+               Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+
+           }
+           "German"->{
+               context.let { requireActivity().setLocal("en",2) }
+               Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+
+           }
+           "Japanese"->{
+               context.let { requireActivity().setLocal("en",2) }
+               Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+
+           }
+           "Swahili"->{
+               context.let { requireActivity().setLocal("en",2) }
+               Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+
+           }
+           "Korean"->{
+               context.let { requireActivity().setLocal("en",2) }
+               Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+
+           }
+           "Zulu"->{
+               context.let { requireActivity().setLocal("zu",2) }
+               Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+               Session.saveIsLanguage("zu")
+           }
+           "Afrikaans"->{
+               context.let { requireActivity().setLocal("en",2) }
+               Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+
+           }
+           "Modern Standard Arabic"->{
+               context.let { requireActivity().setLocal("en",2) }
+               Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+
+           }
+           "Vietnamese"->{
+               context.let { requireActivity().setLocal("en",2) }
+               Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+           }
+           "Telugu"->{
+               context.let { requireActivity().setLocal("en",2) }
+               Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+           }
+           "Turkish"->{
+               context.let { requireActivity().setLocal("en",2) }
+               Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+           }
+           "Marathi"->{
+               context.let { requireActivity().setLocal("en",2) }
+                Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+           }
+           "Sesotho"->{
+               context.let { requireActivity().setLocal("en",2) }
+                Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+           }
+           "Tamil"->{
+               context.let { requireActivity().setLocal("en",2) }
+              // Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+           }
+           "Romanian"->{
+               context.let { requireActivity().setLocal("en",2) }
+              // Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+           }
+           "Polish"->{
+               context.let { requireActivity().setLocal("en",2) }
+             //  Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+           }
+           "Ukrainian"->{
+               context.let { requireActivity().setLocal("en",2) }
+             //  Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+           }
+           "Italian"->{
+               context.let { requireActivity().setLocal("en",2) }
+             //  Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+           }
+           "Thai"->{
+               context.let { requireActivity().setLocal("en",2) }
+              // Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+           }
+           "Filipino"->{
+               context.let { requireActivity().setLocal("en",2) }
+              // Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+           }
+          "Dutch"->{
+              context.let { requireActivity().setLocal("en",2) }
+             // Session.saveIsLanguage(PreferenceEntity.LANGUAGE)
+          }
+
+           else->{
+               Toast.makeText(requireContext(),"new one is  ${language[position].language.toString()}",Toast.LENGTH_LONG).show()
+           }
+       }
+        if(language[position].language=="English") {
+            requireActivity().setLocal(key, 2)
+        }
 
     }
 

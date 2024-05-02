@@ -3,6 +3,7 @@ package com.example.servivet.ui.main.activity
 import BottomNavigationHelper
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -27,9 +28,10 @@ import com.example.servivet.utils.Constants
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
+import com.example.servivet.utils.setLocal
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
-
+import java.util.Locale
 
 class HomeActivity : BaseActivity(), MyServiceFragment.CallBack1 {
     lateinit var navigationBar: BottomNavigationView
@@ -61,6 +63,30 @@ class HomeActivity : BaseActivity(), MyServiceFragment.CallBack1 {
             Session.deleteNotificationData()
         }
 
+    }
+
+
+
+
+
+    fun changeLocale(context: Context, lang: String?): Map<Int, String?> {
+        Session.language
+       // viewModel.preference.retrieveLanguage(languageKey)
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+
+        val configuration = Configuration(context.resources.configuration)
+        configuration.locale = locale
+        context.resources.updateConfiguration(configuration, context.resources.displayMetrics)
+
+        // Return a map of menu item IDs to their localized titles
+        return mapOf(
+            R.id.homeFragment to getString(R.string.home),
+            R.id.bookingsFragment to getString(R.string.bookings),
+            R.id.chatFragment to getString(R.string.chats),
+            R.id.profileFragment to getString(R.string.profile)
+            // Add more items as needed
+        )
     }
 
     override fun onNewIntent(intent: Intent?) {

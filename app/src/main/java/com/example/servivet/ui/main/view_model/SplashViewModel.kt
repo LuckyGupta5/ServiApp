@@ -8,10 +8,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class SplashViewModel : BaseViewModel(){
-
-
-    companion object
-    {
+    companion object {
         var isLogout=false
     }
 

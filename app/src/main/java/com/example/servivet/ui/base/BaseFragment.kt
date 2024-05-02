@@ -26,8 +26,8 @@ abstract class BaseFragment<Binding : ViewBinding, ViewModel : BaseViewModel>(la
         CoroutineScope(Dispatchers.Main).launch {
             if (isAdded)
                 setupViews()
-            setupViewModel()
-              setupObservers()
+               setupViewModel()
+               setupObservers()
         }
     }
 

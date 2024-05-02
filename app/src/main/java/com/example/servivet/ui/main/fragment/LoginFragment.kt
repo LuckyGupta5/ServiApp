@@ -121,49 +121,57 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(R.layou
 
     }
 
-    private fun setTermConditionPrivacy()
-    {
+    private fun setTermConditionPrivacy() {
         val ss = SpannableString(getString(R.string.i_agree_to_terms_and_conditions_and_data_privacy_policies))
         val value = getString(R.string.i_agree_to_terms_and_conditions_and_data_privacy_policies)
         val firstString = getString(R.string.term_and_condition)
         val secondString = getString(R.string.privacy_policy)
+
         val firstIndex = value.indexOf(firstString)
-        val firstLastCharIndex = firstIndex + firstString.length
         val secondIndex = value.indexOf(secondString)
-        val secondLastIndex = secondIndex + secondString.length
-        val clickableSpan1: ClickableSpan = object : ClickableSpan() {
-            override fun onClick(widget: View) {
-                openBottomSheet("1")
-            }
 
-            @RequiresApi(Build.VERSION_CODES.Q)
-            override fun updateDrawState(ds: TextPaint) {
-                super.updateDrawState(ds)
-                ds.color = resources.getColor(R.color.black)
-                ds.isUnderlineText = true
-                ds.underlineColor = resources.getColor(R.color.black)
-                ds.typeface = Typeface.create("bold", Typeface.BOLD)
+        if (firstIndex != -1 && secondIndex != -1)
+        {
+            val firstLastCharIndex = firstIndex + firstString.length
+            val secondLastIndex = secondIndex + secondString.length
+
+
+            val clickableSpan1: ClickableSpan = object : ClickableSpan() {
+                override fun onClick(widget: View) {
+                    openBottomSheet("1")
+                }
+
+                @RequiresApi(Build.VERSION_CODES.Q)
+                override fun updateDrawState(ds: TextPaint) {
+                    super.updateDrawState(ds)
+                    ds.color = resources.getColor(R.color.black)
+                    ds.isUnderlineText = true
+                    ds.underlineColor = resources.getColor(R.color.black)
+                    ds.typeface = Typeface.create("bold", Typeface.BOLD)
+                }
             }
+            val clickableSpan2: ClickableSpan = object : ClickableSpan() {
+                override fun onClick(widget: View) {
+                    openBottomSheet("2")
+                }
+
+                @RequiresApi(Build.VERSION_CODES.Q)
+                override fun updateDrawState(ds: TextPaint) {
+                    super.updateDrawState(ds)
+                    ds.color = resources.getColor(R.color.black)
+                    ds.isUnderlineText = true
+                    ds.underlineColor = resources.getColor(R.color.black)
+                    ds.typeface = Typeface.create("bold", Typeface.BOLD)
+                }
+            }
+            ss.setSpan(clickableSpan1, firstIndex, firstLastCharIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            ss.setSpan(clickableSpan2, secondIndex, secondLastIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            binding.termConditionPolicy.text = ss
+            binding.termConditionPolicy.movementMethod = LinkMovementMethod.getInstance()
         }
-        val clickableSpan2: ClickableSpan = object : ClickableSpan() {
-            override fun onClick(widget: View) {
-                openBottomSheet("2")
-            }
+        else{
 
-            @RequiresApi(Build.VERSION_CODES.Q)
-            override fun updateDrawState(ds: TextPaint) {
-                super.updateDrawState(ds)
-                ds.color = resources.getColor(R.color.black)
-                ds.isUnderlineText = true
-                ds.underlineColor = resources.getColor(R.color.black)
-                ds.typeface = Typeface.create("bold", Typeface.BOLD)
-            }
         }
-        ss.setSpan(clickableSpan1, firstIndex, firstLastCharIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        ss.setSpan(clickableSpan2, secondIndex, secondLastIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        binding.termConditionPolicy.text = ss
-        binding.termConditionPolicy.movementMethod = LinkMovementMethod.getInstance()
-
     }
 
     private fun openBottomSheet(type: String) {

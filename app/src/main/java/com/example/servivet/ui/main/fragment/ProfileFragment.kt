@@ -1,5 +1,7 @@
 package com.example.servivet.ui.main.fragment
 
+import android.content.Context
+import android.content.res.Configuration
 import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
@@ -9,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
 import com.example.servivet.data.model.connection.connection_list.responnse.MyConnection
+import com.example.servivet.data.model.notification_data.NotificationData
 import com.example.servivet.databinding.FragmentProfileBinding
 import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.adapter.HomeServiceAdapter
@@ -22,6 +25,9 @@ import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.gson.Gson
+import java.util.Locale
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding,ProfileViewModel> (R.layout.fragment_profile){
     override val binding: FragmentProfileBinding by viewBinding(FragmentProfileBinding::bind)
@@ -59,6 +65,60 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding,ProfileViewModel> (R
         }
 
     }
+
+
+    override fun onResume() {
+        super.onResume()
+        val bottomNavigation = requireActivity().findViewById<BottomNavigationView>(R.id.navigation_bar)
+        val menu = bottomNavigation.menu
+        val languageSelectInPreference = Session.language   // viewModel.preference.retrieveLanguage(languageKey)
+
+        if (languageSelectInPreference != null) {
+            val titleMap =   changeLocale(requireContext(),languageSelectInPreference)
+            // Update titles for each menu item based on the selected language
+            titleMap.forEach { (itemId, title) ->
+                menu.findItem(itemId).title = title
+            }
+        }
+
+
+
+
+//        if (Session.notificationData!=null && Session.notificationData.isNotEmpty() && data.bookingId != null) {
+//            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToBookingDetailsFragment(Session.notificationData, data.serviceStatus!!.minus(1), data.userType?:"", getString(R.string.home)))
+//        } else {
+//            activity?.let {
+//                mViewModel.hitHomeApi(
+//                    mContext,
+//                    it,
+//                    activity?.isFinishing == true
+//                )
+//            }
+//
+//        }
+    }
+
+
+    fun changeLocale(context: Context, lang: String?): Map<Int, String?> {
+        Session.language
+        // viewModel.preference.retrieveLanguage(languageKey)
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+
+        val configuration = Configuration(context.resources.configuration)
+        configuration.locale = locale
+        context.resources.updateConfiguration(configuration, context.resources.displayMetrics)
+
+        // Return a map of menu item IDs to their localized titles
+        return mapOf(
+            R.id.homeFragment to getString(R.string.home),
+            R.id.bookingsFragment to getString(R.string.bookings),
+            R.id.chatFragment to getString(R.string.chats),
+            R.id.profileFragment to getString(R.string.profile)
+            // Add more items as needed
+        )
+    }
+
 
 
     override fun setupViews() {
@@ -181,8 +241,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding,ProfileViewModel> (R
         }    }
 
     private fun initConnectionAdapter() {
-
-
         binding.connectionAdapter = ProfileConnectionAdapter(requireContext(), connectionList, onItemClick)
 
     }

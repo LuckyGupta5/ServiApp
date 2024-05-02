@@ -2,5 +2,23 @@
 <resources>
     <string name="app_name">Servi</string>
     <string name="choose_your_preferred_language">Choisissez votre\n langue préférée</string>
+    <string name="service_we_offer">Service we Offer</string>
+
+
+    <string name="wellness">Wellness</string>
+    <string name="household">HouseHold</string>
+    <string name="electronic">Electronic</string>
+    <string name="videophoto">"VideoPhoto "</string>
+    <string name="showbiz">Showbiz</string>
+    <string name="real_estate">Real Estate</string>
+    <string name="spa_beauty">Spa-Beauty</string>
+    <string name="security">Security</string>
+    <string name="software">Software</string>
+    <string name="legal">Legal</string>
+    <string name="pet_service">Pet Service</string>
+    <string name="travel">Travel</string>
+    <string name="other">Other</string>
+    <string name="allow_gps_location">allow servi location</string>
+
 
 </resources>

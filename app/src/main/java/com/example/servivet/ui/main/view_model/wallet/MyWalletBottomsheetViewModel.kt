@@ -2,21 +2,17 @@ package com.example.servivet.ui.main.view_model.wallet
 
 import android.content.Context
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.servivet.data.api.RetrofitBuilder
-import com.example.servivet.data.model.booking_module.booking_summary.response.ServiceDetail
-import com.example.servivet.data.model.payment.payment_amount.response.PayAmountResult
 import com.example.servivet.data.repository.MainRepository
 import com.example.servivet.ui.base.BaseViewModel
-import com.example.servivet.ui.main.bottom_sheet.BookingCancelledBottomSheet
-import com.example.servivet.utils.AESHelper
+import com.example.servivet.ui.main.fragment.SettingsFragment
 import com.example.servivet.utils.Constants
 import com.example.servivet.utils.Resource
 import com.example.servivet.utils.SingleLiveEvent
 import com.example.servivet.utils.StatusCode
-import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
@@ -24,11 +20,22 @@ import java.io.IOException
 
 class MyWalletBottomsheetViewModel : BaseViewModel() {
 
-
     private val walletData = SingleLiveEvent<Resource<String>>()
     fun getWalletData(): LiveData<Resource<String>> {
         return walletData
     }
+
+
+    private val languageChanged = MutableLiveData<Boolean>()
+
+    fun setLanguageChanged(changed: Boolean) {
+        languageChanged.value = changed
+    }
+
+    fun getLanguageChanged(): LiveData<Boolean> {
+        return languageChanged
+    }
+    var instanceOfSettingClass=SettingsFragment()
 
 
     inner class ClickAction(var context: Context) {

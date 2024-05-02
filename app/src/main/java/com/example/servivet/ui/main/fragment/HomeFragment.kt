@@ -1,16 +1,25 @@
 package com.example.servivet.ui.main.fragment
 
+import android.Manifest
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.location.Address
 import android.location.Geocoder
 import android.location.LocationManager
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
+import android.view.Gravity
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -25,7 +34,6 @@ import com.example.servivet.data.model.notification_data.NotificationData
 import com.example.servivet.databinding.FragmentHomeBinding
 import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.adapter.NearByProviderAdapter
-import com.example.servivet.ui.main.adapter.HomeOnlineNowAdapter
 import com.example.servivet.ui.main.adapter.HomePagerAdapter
 import com.example.servivet.ui.main.adapter.HomeServiceAdapter
 import com.example.servivet.ui.main.view_model.HomeViewModel
@@ -38,14 +46,17 @@ import com.example.servivet.utils.Session
 import com.example.servivet.utils.SocketManager
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
 import io.socket.client.Socket
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import java.util.Locale
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.fragment_home) {
 
+    private var permissions_denied: Boolean=false
     override val binding: FragmentHomeBinding by viewBinding(FragmentHomeBinding::bind)
     override val mViewModel: HomeViewModel by activityViewModels()
     private lateinit var mContext: Context
@@ -57,6 +68,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
     private var longitude: Double = 0.0
     private var lattitude: Double = 0.0
     private var fullAddress: String? = ""
+    private var dialog: Dialog? = null
+    private var isDialogShow: Boolean = false
+    private val LOCATION_PERMISSION_REQUEST_CODE: Int=101
+     var boolean:Boolean=false
+    val msg = R.string.allow_gps_location // Replace with your message resource ID
+    val intent: Intent? = null // Replace null with your intent
+    val requestCode = 1 // Replace with your request code
+    val type1 = 1 // Replace with your type
+
+
 
     private lateinit var locationManager: LocationManager
 
@@ -71,9 +92,78 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
     }
 
     override fun isNetworkAvailable(boolean: Boolean) {}
-    override fun onResume() {
+    override fun onStart() {
+        super.onStart()
+        if(SearchLocationFragment.isSearchLocation==true){
+            setLocationValue()
+            SearchLocationFragment.isSearchLocation=false
+        }else{
+            if (!checkLocationPermission())
+                requestLocationPermission()
+
+            if(isLocationEnabled()){
+                getCurrentLocation()
+                setLocationValue()
+            }
+            else{
+                showDialog(msg,intent,requestCode,type1)
+            }
+        }
+
+
+    }
+
+    // Check if the user has granted location permission
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
+            var finePermissionGranted = false
+            var coarsePermissionGranted = false
+
+            for (i in permissions.indices) {
+                if (permissions[i] == Manifest.permission.ACCESS_FINE_LOCATION && grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                    finePermissionGranted = true
+                }
+                if (permissions[i] == Manifest.permission.ACCESS_COARSE_LOCATION && grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                    coarsePermissionGranted = true
+                }
+            }
+            if (finePermissionGranted || coarsePermissionGranted) {
+                permissions_denied = false
+                if (dialog != null) {
+                    isDialogShow = false
+                    dialog!!.dismiss()
+                }
+                getCurrentLocation()
+                setLocationValue()
+                initSocket()
+            } else {
+                Toast.makeText(requireContext(), R.string.please_allow_location_permission_to_move_ahead, Toast.LENGTH_SHORT).show()
+                permissions_denied = true
+            }
+            return
+        }
+    }
+
+    override fun onResume()
+    {
         super.onResume()
-        val data = Gson().fromJson(Session.notificationData, NotificationData::class.java)
+        val bottomNavigation = requireActivity().findViewById<BottomNavigationView>(R.id.navigation_bar)
+            val menu = bottomNavigation.menu
+
+            val languageSelectInPreference = Session.language   // viewModel.preference.retrieveLanguage(languageKey)
+
+            if (languageSelectInPreference != null) {
+                val titleMap =   changeLocale(requireContext(),languageSelectInPreference)
+                // Update titles for each menu item based on the selected language
+                titleMap.forEach { (itemId, title) ->
+                    menu.findItem(itemId).title = title
+                }
+            }
+
+
+
 
 //        if (Session.notificationData!=null && Session.notificationData.isNotEmpty() && data.bookingId != null) {
 //            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToBookingDetailsFragment(Session.notificationData, data.serviceStatus!!.minus(1), data.userType?:"", getString(R.string.home)))
@@ -89,6 +179,26 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 //        }
     }
 
+
+    fun changeLocale(context: Context, lang: String?): Map<Int, String?> {
+        Session.language
+        // viewModel.preference.retrieveLanguage(languageKey)
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+
+        val configuration = Configuration(context.resources.configuration)
+        configuration.locale = locale
+        context.resources.updateConfiguration(configuration, context.resources.displayMetrics)
+
+        // Return a map of menu item IDs to their localized titles
+        return mapOf(
+            R.id.homeFragment to getString(R.string.home),
+            R.id.bookingsFragment to getString(R.string.bookings),
+            R.id.chatFragment to getString(R.string.chats),
+            R.id.profileFragment to getString(R.string.profile)
+            // Add more items as needed
+        )
+    }
     override fun setupViewModel() {
         if (isAdded)
             binding.apply {
@@ -96,11 +206,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                 viewModel = mViewModel
                 click = mViewModel.ClickAction()
                 clickEvents = ::onClick
+                /*if(!isLocationEnabled())
+                    showDialog(msg,intent,requestCode,type1)
+                else{
+                    getCurrentLocation()
+                    setLocationValue()
+                }*/
+              //  setLocationValue()
+               /* if(checkLocationPermission()){
+                   requestLocationPermission()
+                }*/
+/*
                 if(Session.saveLocationInfo ==null){
                     getCurrentLocation()
+                }*/
+                if(Session.saveLocationInfo !=null){
+                    setLocationValue()
                 }
-                setLocationValue()
-
                 setBack()
                 val data = Gson().fromJson(Session.notificationData, NotificationData::class.java)
 
@@ -138,7 +260,22 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         Log.e("TAG", "setupViewModelFCM: ${Session.fcmToken}")
         Log.e("TAG", "setupViewModelDAtaVALL: ${Session.userDetails}")
 
+    }
 
+    private fun requestLocationPermission() {
+        requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
+    }
+
+    private fun isLocationEnabled(): Boolean {
+        boolean=true
+        val locationManager = mContext.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+    }
+
+    private fun checkLocationPermission(): Boolean {
+        val finePermissionState = ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+        val coarsePermissionState = ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
+        return finePermissionState == PackageManager.PERMISSION_GRANTED && coarsePermissionState == PackageManager.PERMISSION_GRANTED
     }
 
 
@@ -154,7 +291,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
             fullAddress = adr[0].getAddressLine(0)
             lattitude = adr[0].latitude
             lattitude = adr[0].longitude
+            binding.fullAddress.text=fullAddress
+            Log.d("TAG", "getCugfdrrentLocation:$fullAddress ${LocationInfo(adr[0].getAddressLine(0),adr[0].featureName)} ")
             Session.saveLocationInfo(LocationInfo(adr[0].getAddressLine(0),adr[0].featureName, adr[0].latitude.toString(), adr[0].longitude.toString()))
+
         } catch (e: Exception) {
             Log.e("TAG", "getCurrentLocation: " + e)
         }
@@ -212,12 +352,45 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         binding.viewPager.pageMargin = 20
         binding.tabLayout.setupWithViewPager(binding.viewPager)
     }
-
-    override fun setupViews() {
-
+    fun showDialog(msg: Int, intent: Intent?, requestCode: Int, type: Int) {
+        isDialogShow = true
+        dialog = Dialog(requireContext())
+        dialog!!.setCancelable(false)
+        dialog!!.setCanceledOnTouchOutside(false)
+        dialog!!.setContentView(R.layout.alert_dialog)
+        dialog!!.window!!.setBackgroundDrawableResource(R.drawable.gray_5_round_outline_corner_12_dp)
+        val title = dialog!!.findViewById<TextView>(R.id.title)
+        title.setText(R.string.app_name)
+        val message = dialog!!.findViewById<TextView>(R.id.message)
+        message.setText(msg)
+        val view = dialog!!.findViewById<View>(R.id.viewCenter)
+        view.visibility = View.GONE
+        val dialogButton = dialog!!.findViewById<TextView>(R.id.okCenter)
+        dialogButton.visibility = View.VISIBLE
+        dialogButton.gravity = Gravity.CENTER_HORIZONTAL
+        dialogButton.setOnClickListener { v: View? ->
+            isDialogShow = false
+            dialog!!.dismiss()
+            if (type == 1) {
+                val intent1 =
+                    Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+              //  val uri = Uri.fromParts("package", "com.app.csc_mobile", null)
+                //intent1.data = uri
+                startActivity(intent1)
+            } else {
+                startActivityForResult(intent!!, requestCode)
+            }
+        }
+        dialog!!.show()
     }
 
-    override fun setupObservers() {
+
+    override fun setupViews() {
+    }
+
+
+    override fun setupObservers()
+    {
         mViewModel.currentResponse.observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
@@ -231,9 +404,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                             setVisibility(it.data.result.user.role)
                             if (isAdded)
                                 initSocket()
-
                         }
-
                         StatusCode.STATUS_CODE_FAIL -> {
                             showToast(it.data.message)
                         }
@@ -272,6 +443,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                                 setServiceAdapter("1", it.data.result.serviceCategory)
                                 binding.viewPagerLayout.visibility = View.VISIBLE
                                 binding.singleBannerImage.visibility = View.GONE
+
                             } else {
                                 binding.viewPagerLayout.visibility = View.GONE
                                 binding.singleBannerImage.visibility = View.VISIBLE
@@ -325,18 +497,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         }
     }
 
-
     private fun initSocket() {
         try {
             SocketManager.connect()
             socket = SocketManager.getSocket()
-
-
             Log.e("TAG", "initSocketCheckConnect: ${socket.connected()}", )
-
             Log.e("TAG", "checkLocationInfo: ${Session.saveLocationInfo}", )
-
-
             Log.e("TAG", "initSocket:${socket.connected()} ")
 
             initSocketEvents()
@@ -357,9 +523,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                                 JSONArray().put(providerData)[0].toString(),
                                 NearByProviderResponse::class.java
                             )
-                            Log.e(
-                                "TAG",
-                                "nearByProviderResponse:${Gson().toJson(nearByProviderResponse)} ",
+                            Log.e("TAG", "nearByProviderResponse:${Gson().toJson(nearByProviderResponse)} ",
                             )
                             providerList.clear()
                             nearByProviderResponse.result.providerList?.let {
@@ -457,13 +621,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
     }
 
     private val onItemClick: (String, String) -> Unit = { identifire, data ->
-
-        findNavController().navigate(
-            HomeFragmentDirections.actionHomeFragmentToProviderProfileFragment(
-                data,
-                getString(R.string.home_fr)
-            )
-        )
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToProviderProfileFragment(data, getString(R.string.home_fr)))
     }
 
 

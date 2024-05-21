@@ -21,4 +21,5 @@ object  PreferenceEntity {
     const val NOTIFICATION_DATA="notification_data"
     const val LOCATION_ADDRESS_INFO="location_address_info"
     const val LANGUAGE="language"
+    const val POSITION="position"
 }

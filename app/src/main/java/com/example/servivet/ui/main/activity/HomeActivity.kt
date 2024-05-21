@@ -69,7 +69,8 @@ class HomeActivity : BaseActivity(), MyServiceFragment.CallBack1 {
 
 
 
-    fun changeLocale(context: Context, lang: String?): Map<Int, String?> {
+    fun changeLocale(context: Context, lang: String?): Map<Int, String?>
+    {
         Session.language
        // viewModel.preference.retrieveLanguage(languageKey)
         val locale = Locale(lang)

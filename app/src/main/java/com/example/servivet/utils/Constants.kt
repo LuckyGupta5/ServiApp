@@ -41,7 +41,7 @@ object Constants {
     var MOBNUMBER = "mob_number"
     var C_Code = "c_code"
 
-    var  SELECTED_LANGUAGE_POSITION = 0
+   // var  SELECTED_LANGUAGE_POSITION = 0
 
 
 

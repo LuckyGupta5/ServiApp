@@ -15,7 +15,6 @@ import com.example.servivet.databinding.FragmentSplashBinding
 import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.activity.HomeActivity
 import com.example.servivet.ui.main.view_model.SplashViewModel
-import com.example.servivet.utils.PreferenceEntity
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.isMiUi
 import com.example.servivet.utils.setLocal
@@ -86,18 +85,21 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>(R.la
     private fun initObserver() {
         mViewModel.getLiveData().observe(viewLifecycleOwner)
         {
-            if (Session.isLogin) {
-                startActivity(Intent(requireActivity(), HomeActivity::class.java))
-                requireActivity().finish()
-            } else{
-                    findNavController().navigate(R.id.action_splashFragment_to_choosePreferredLanguageFragment)
-                }
-            if (Session.language !=null ){
+            Log.i("TAG", "initObserver12345: "+Session.language)
+            if (!Session.language.isNullOrEmpty() /*|| Session.language=="language"*/ ){
                 context.let {requireActivity().setLocal(Session.language,2)}
             }else{
                 Session.saveIsLanguage("en")
                 context.let { requireActivity().setLocal("en",2)}
             }
+
+            if (Session.isLogin) {
+                startActivity(Intent(requireActivity(), HomeActivity::class.java))
+                requireActivity().finish()
+            } else{
+                findNavController().navigate(R.id.action_splashFragment_to_choosePreferredLanguageFragment)
+            }
+
 
         }
     }

@@ -28,7 +28,7 @@ import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
 import com.google.gson.Gson
 class CloseServiceAlert : DialogFragment() {
-    private var saveLanguage: String?=""
+    private var saveLanguage: String=""
     private lateinit var binding: FragmentCloseServiceAlertBinding
     val mViewModel: CloseServiceViewModel by viewModels()
     val logoutModel: SettingsViewModel by viewModels()
@@ -145,15 +145,16 @@ class CloseServiceAlert : DialogFragment() {
                     ProcessDialog.dismissDialog()
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            saveLanguage=Session.language
+                           // saveLanguage=Session.language
                             Session.logout()
-                           // Session.saveIsLanguage(saveLanguage!!)
                             SplashViewModel.isLogout = false
                             Session.isLogin = false
                             Session.saveIsLogin(false)
+                           // Session.saveIsLanguage(saveLanguage)
+                            Log.d("TAG", "initLogoutModel: ${Session.language} ")
                             var intent = Intent(context, MainActivity::class.java)
                             requireActivity().startActivity(intent)
-
+                            Log.d("TAG", "initLogoutModel: ${Session.language} ")
 
                         }
 

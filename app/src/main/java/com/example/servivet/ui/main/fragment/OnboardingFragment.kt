@@ -157,7 +157,7 @@ class OnboardingFragment :
                 "Discover, Schedule, and get your\n service done."
             )
         )
-        binding.viewPager.adapter = OnBoardingAdapter(requireContext(), mViewModel.list)
+        binding.viewPager.adapter =    OnBoardingAdapter(requireContext(), mViewModel.list)
         binding.indicatorView.apply {
             setSliderWidth(55f)
             setSliderHeight(7f)

@@ -527,9 +527,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                             )
                             providerList.clear()
                             nearByProviderResponse.result.providerList?.let {
-                                providerList.addAll(it)
-                                initProviderAdapter()
-                            }
+                                if(isAdded){
+                                    providerList.addAll(it)
+                                    initProviderAdapter()
+                                }
+                               }
 
 
                         } catch (ex: JSONException) {
@@ -597,8 +599,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
     }
 
     private fun initProviderAdapter() {
-
-        binding.adapter = NearByProviderAdapter(requireContext(), providerList, onItemClick, type)
+          if(isAdded)
+              binding.adapter = NearByProviderAdapter(requireContext(), providerList, onItemClick, type)
     }
 
 

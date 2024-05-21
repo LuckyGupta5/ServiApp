@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
         }
         window.statusBarColor = Color.WHITE
         setContentView(R.layout.activity_main)
-
         if (Constants.SWITCH_ACC) {
             Constants.SWITCH_ACC = false
             val navHostFragment = supportFragmentManager.findFragmentById(R.id.navigation) as NavHostFragment

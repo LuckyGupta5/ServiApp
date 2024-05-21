@@ -20,6 +20,7 @@ import com.example.servivet.utils.PreferenceEntity.LOCATION_INFO
 import com.example.servivet.utils.PreferenceEntity.MASTER_DATA
 import com.example.servivet.utils.PreferenceEntity.NOTIFICATION_DATA
 import com.example.servivet.utils.PreferenceEntity.NOTIFY_STATUS
+import com.example.servivet.utils.PreferenceEntity.POSITION
 import com.example.servivet.utils.PreferenceEntity.SAVE_ADDRESS
 import com.example.servivet.utils.PreferenceEntity.TOKEN
 import com.example.servivet.utils.PreferenceEntity.TYPE
@@ -45,7 +46,11 @@ object Session {
     var notificationData = Hawk.get<String>(NOTIFICATION_DATA, null)
     var saveLocationInfo = Hawk.get<LocationInfo>(LOCATION_ADDRESS_INFO, null)
     var language=Hawk.get<String>(LANGUAGE,null)
-
+    var position=Hawk.get<Int>(POSITION,-1)
+fun savePosition(position:Int){
+       Hawk.put(POSITION,position)
+       Session.position= position
+   }
     fun saveToken(token: String) {
         Hawk.put(TOKEN, token)
         Session.token = token
@@ -143,8 +148,10 @@ object Session {
         userDetails = null
         notificationStatus = null
         val deviceToken = fcmToken
+        val languageKey= language
         Hawk.deleteAll()
         saveDeviceToken(deviceToken)
+        saveIsLanguage(languageKey)
 
     }
 

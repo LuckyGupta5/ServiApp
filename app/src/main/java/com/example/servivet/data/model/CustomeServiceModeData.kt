@@ -11,5 +11,4 @@ data class CustomeServiceModeData(
     var previousPosition:Int?=null,
     var price:String=""
 
-) :
-    ListAdapterItem
+) : ListAdapterItem

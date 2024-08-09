@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">سر وی</string>
+    <string name="servivet_require_this_permission" translatable="false">سر وی کو اس اجازت کی ضرورت ہے۔</string>
+    <string name="google_map_key" translatable="false">AIzaSyDxvOzm-9yjdnd5L4iJrVDwk-_KbUkmN8A</string>
+    <string name="please_connect_to_the_internet" translatable="false">براہ کرم انٹرنیٹ سے جڑیں۔</string>
+    <string name="hello_blank_fragment" translatable="false">ہیلو خالی فریگمنٹ</string>
+    <string name="choose_your_preferred_language" translatable="false">اپنی پسندیدہ زبان منتخب کریں</string>
+    <string name="english" translatable="false">انگریزی</string>
+    <string name="hi_i_am_john_doe" translatable="false">ہیلو، میں جان ڈو ہوں۔</string>
+    <string name="swahii" translatable="false">سواحلی</string>
+    <string name="habari_mimi_ni_john_doe" translatable="false">ہباباری، میں جان ڈو ہوں۔</string>
+    <string name="zulu" translatable="false">زولو</string>
+    <string name="gps_enable_message" translatable="false">آپ کو GPS مقام آن کرنا ہوگا</string>
+    <string name="sawubona_ngingu_john_doe" translatable="false">ساوبونا، میں جان ڈو ہوں۔</string>
+    <string name="continues" translatable="false">جاری رکھیں</string>
+    <string name="skip" translatable="false">چھوڑیں</string>
+    <string name="next" translatable="false">اگلا</string>
+    <string name="get_started" translatable="false">شروع کریں</string>
+    <string name="clientel" translatable="false">کلائنٹیل</string>
+    <string name="business" translatable="false">کاروبار</string>
+    <string name="mobile_number" translatable="false">موبائل نمبر</string>
+    <string name="we_will_send_you_a_confirmation_code" translatable="false">ہم آپ کو ایک تصدیقی کوڈ بھیجیں گے</string>
+    <string name="_123_456_7890" translatable="false">123–456-7890</string>
+    <string name="i_agree_to_terms_and_conditions_and_data_privacy_policies" translatable="false">میں شرائط و ضوابط اور ڈیٹا پرائیویسی پالیسیوں سے اتفاق کرتا ہوں۔</string>
+    <string name="verify" translatable="false">تصدیق کریں</string>
+    <string name="please_enter_the_otp_sent_your_mobile_number" translatable="false">براہ کرم اپنے موبائل نمبر پر بھیجا گیا OTP درج کریں۔</string>
+    <string name="otp_verification" translatable="false">OTP تصدیق</string>
+    <string name="resend_otp_in_30_seconds" translatable="false">30 سیکنڈ میں OTP دوبارہ بھیجیں</string>
+    <string name="title_activity_home" translatable="false">HomeActivity</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label" translatable="false">پہلا فریگمنٹ</string>
+    <string name="second_fragment_label" translatable="false">دوسرا فریگمنٹ</string>
+    <string name="previous" translatable="false">پچھلا</string>
+    <string name="search_for_area_street_name_etc" translatable="false">علاقہ، سٹریٹ کا نام، وغیرہ تلاش کریں...</string>
+    <string name="home" translatable="false">گھر</string>
+    <string name="chats" translatable="false">چیٹس</string>
+    <string name="bookings" translatable="false">بکنگز</string>
+    <string name="profile" translatable="false">پروفائل</string>
+    <string name="noida" translatable="false">نوئڈا</string>
+    <string name="sadarpur_sector_44_noida" translatable="false">سدارپور، سیکٹر-44 نوئڈا</string>
+    <string name="search_for_service_etc" translatable="false"><![CDATA[خدمات وغیرہ تلاش کریں]]></string>
+    <string name="services" translatable="false">خدمات</string>
+    <string name="view_all" translatable="false">سب دیکھیں</string>
+    <string name="provider_view_all" translatable="false">پرووائیڈر دیکھیں سب</string>
+    <string name="user_view_all" translatable="false">صارف دیکھیں سب</string>
+    <string name="online_now" translatable="false">اب آن لائن</string>
+    <string name="fitness" translatable="false">فٹنس</string>
+    <string name="finance" translatable="false">مالیات</string>
+    <string name="_1_km_away" translatable="false">کلومیٹر دور</string>
+    <string name="dev_gupta" translatable="false">دیو گپتا</string>
+    <string name="gym" translatable="false">جم</string>
+    <string name="riepneapps_technology_noida" translatable="false">ریپنی ایپس ٹیکنالوجی نوئڈا</string>
+    <string name="view_details" translatable="false">تفصیلات دیکھیں</string>
+    <string name="individual" translatable="false">انفرادی</string>
+    <string name="individualcap" translatable="false">انفرادی</string>
+    <string name="institutional" translatable="false">ادارہ جاتی</string>
+    <string name="institutionalcap" translatable="false">ادارہ جاتی</string>
+    <string name="edit_profile" translatable="false">پروفائل ایڈٹ کریں</string>
+    <string name="abhishek_mehra" translatable="false">ابھیشیک مہرا</string>
+    <string name="about" translatable="false">بارے میں</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut_labore_et_dolore_magna_aliquyam_erat_sed_diam_voluptua_eos_et_accusam_et_justo_duo_dolores_et_ea_rebum_stet_clita_kasd_gubergren_no_sea_takimata_sanctus_est_lorem_ipsum_dolor_sit_amet_lorem_ipsum_dolor_sit_amet" translatable="false">لورم اپسوم ڈولر سٹ امیٹ، کنسیٹیٹور تیمپور انویدنٹ یوٹ لیبور اور ایست لورم اپسوم ڈولر سٹ امیٹ۔ لورم اپسوم ڈولر سٹ امیٹ</string>
+    <string name="accept_the_term_and_condition" translatable="false">شرائط و ضوابط کو قبول کریں</string>
+    <string name="accept_the_privacy_policy" translatable="false">پرائیویسی پالیسی کو قبول کریں</string>
+    <string name="term_and_condition" translatable="false">شرائط و ضوابط</string>
+    <string name="privacy_policy" translatable="false">ڈیٹا پرائیویسی</string>
+    <string name="terms_conditions" translatable="false"><![CDATA[شرائط و ضوابط]]></string>
+    <string name="last_updated_on_23_may_2023" translatable="false">آخری بار 23 مئی 2023 کو اپ ڈیٹ کیا گیا</string>
+    <string name="reject" translatable="false">رد کریں</string>
+    <string name="accept" translatable="false">قبول کریں</string>
+    <string name="my_connections" translatable="false">میرے روابط</string>
+    <string name="name" translatable="false">نام</string>
+    <string name="enter_name" translatable="false">نام درج کریں</string>
+    <string name="_91_1234567890" translatable="false">+91 1234567890</string>
+    <string name="email_address" translatable="false">ای میل ایڈریس</string>
+    <string name="_0_150" translatable="false">(0/150)</string>
+    <string name="_150_150" translatable="false">(150/150)</string>
+    <string name="write_here" translatable="false">یہاں لکھیں</string>
+    <string name="update" translatable="false">اپ ڈیٹ کریں</string>
+    <string name="change_cover" translatable="false">کور تبدیل کریں</string>
+    <string name="business_n_verification" translatable="false">کاروبار کی تصدیق</string>
+    <string name="select_your_business_type" translatable="false">اپنی کاروباری قسم منتخب کریں</string>
+    <string name="full_name" translatable="false">پورا نام</string>
+    <string name="enter_full_name" translatable="false">پورا نام درج کریں</string>
+    <string name="using_gps" translatable="false">GPS استعمال کر رہے ہیں</string>
+    <string name="current_location" translatable="false">موجودہ مقام</string>
+    <string name="enter_location_manually" translatable="false">مقام دستی طور پر درج کریں</string>
+    <string name="or" translatable="false">یا</string>
+    <string name="want_to_earn_money" translatable="false">پیسہ کمانا چاہتے ہیں؟</string>
+    <string name="add_the_service_which_you_are_expert_in" translatable="false">اس خدمت کو شامل کریں جس میں آپ ماہر ہیں</string>
+    <string name="add_service" translatable="false">+ خدمت شامل کریں</string>
+    <string name="near_by" translatable="false">قریب</string>
+    <string name="add_service_" translatable="false">خدمت شامل کریں</string>
+    <string name="service_mode" translatable="false">خدمت کا طریقہ</string>
+    <string name="at_centre" translatable="false">مرکز پر</string>
+    <string name="at_home" translatable="false">گھر پر</string>
+    <string name="category" translatable="false">زمرہ</string>
+    <string name="sub_category" translatable="false">ذیلی زمرہ</string>
+    <string name="yoga" translatable="false">یوگا</string>
+    <string name="about_service" translatable="false">خدمت کے بارے میں</string>
+    <string name="photos" translatable="false">تصاویر</string>
+    <string name="add_image" translatable="false">+ تصویر شامل کریں</string>
+    <string name="add" translatable="false">شامل کریں</string>
+    <string name="availability" translatable="false">دستیابی</string>
+    <string name="select_session" translatable="false">سیشن منتخب کریں</string>
+    <string name="add_hours" translatable="false">+ گھنٹے شامل کریں</string>
+    <string name="start_time" translatable="false">شروع ہونے کا وقت</string>
+    <string name="end_time" translatable="false">ختم ہونے کا وقت</string>
+    <string name="mon" translatable="false">پیر</string>
+    <string name="enter_price" translatable="false">قیمت درج کریں</string>
+    <string name="price_at_centre" translatable="false">قیمت (مرکز پر)</string>
+    <string name="camera" translatable="false">کیمرہ</string>
+    <string name="gallery" translatable="false">گیلری</string>
+    <string name="price" translatable="false">قیمت</string>
+    <string name="my_services" translatable="false">میری خدمات</string>
+    <string name="business_name" translatable="false">کاروبار کا نام</string>
+    <string name="the_electronic_hub" translatable="false">الیکٹرانک حب</string>
+    <string name="edit" translatable="false">ترمیم کریں</string>
+    <string name="please_enter_a_valid_e_mail" translatable="false">براہ کرم درست ای میل درج کریں</string>
+    <string name="enter_email_address" translatable="false">ای میل ایڈریس درج کریں</string>
+    <string name="address" translatable="false">پتہ</string>
+    <string name="a_block_sector_63_noida" translatable="false">A بلاک سیکٹر 63 نوئڈا</string>
+    <string name="under_development" translatable="false">ترقی کے مراحل میں</string>
+    <string name="resend_otp_in" translatable="false">OTP دوبارہ بھیجیں</string>
+    <string name="are_you_logout" translatable="false">کیا آپ واقعی باہر نکلنا چاہتے ہیں؟</string>
+    <string name="log_out" translatable="false">لاگ آؤٹ</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_centre_mode" translatable="false">مرکز کے طریقے کے لیے شروع ہونے کا وقت ختم ہونے کے وقت سے زیادہ نہیں ہونا چاہیے۔</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_home_mode" translatable="false">گھر کے طریقے کے لیے شروع ہونے کا وقت ختم ہونے کے وقت سے زیادہ نہیں ہونا چاہیے۔</string>
+    <string name="please_enter_the_price_for_the_centre_service_mode" translatable="false">براہ کرم مرکز کے طریقے کے لیے قیمت درج کریں۔</string>
+    <string name="please_enter_the_price_for_the_home_service_mode" translatable="false">براہ کرم گھر کے طریقے کے لیے قیمت درج کریں۔</string>
+    <string name="please_select_a_service_model" translatable="false">براہ کرم ایک خدمت ماڈل منتخب کریں۔</string>
+    <string name="please_select_the_category" translatable="false">براہ کرم زمرہ منتخب کریں۔</string>
+    <string name="please_select_at_one_image" translatable="false">براہ کرم کم از کم ایک تصویر منتخب کریں۔</string>
+    <string name="images_must_be_less_than_five" translatable="false">تصاویر پانچ یا پانچ سے کم ہونی چاہئیں۔</string>
+    <string name="please_select_sub_category" translatable="false">براہ کرم ذیلی زمرہ منتخب کریں۔</string>
+    <string name="select_sub_category" translatable="false">ذیلی زمرہ منتخب کریں</string>
+    <string name="select_session_should_not_be_empty_for_the_center_service_mode" translatable="false">مرکز کے خدمت کے طریقے کے لیے سیشن منتخب خالی نہیں ہونا چاہیے</string>
+    <string name="select_session_should_not_be_empty_for_the_home_service_mode" translatable="false">گھر کے خدمت کے طریقے کے لیے سیشن منتخب خالی نہیں ہونا چاہیے</string>
+    <string name="details" translatable="false">تفصیلات</string>
+    <string name="_1_km" translatable="false">1 کلومیٹر</string>
+    <string name="away" translatable="false">دور</string>
+    <string name="prateek_mehta" translatable="false">پرتیک مہتا</string>
+    <string name="media" translatable="false">میڈیا</string>
+    <string name="_1499_2999" translatable="false">1499 - 2999</string>
+    <string name="book_now" translatable="false">ابھی بک کریں</string>
+    <string name="my_booking" translatable="false">میری بکنگز</string>
+    <string name="booking_id" translatable="false">بکنگ آئی ڈی</string>
+    <string name="booking_id_num" translatable="false">#262638</string>
+    <string name="by_prateek_mehta" translatable="false">پرتیک مہتا کی طرف سے</string>
+    <string name="tuesday_21_oct_11_00_am" translatable="false">منگل، 21 اکتوبر، 11:00 AM</string>
+    <string name="complete_profile" translatable="false">پروفائل مکمل کریں</string>
+    <string name="enter_your_information_below" translatable="false">نیچے اپنی معلومات درج کریں</string>
+    <string name="edit_service" translatable="false">خدمت میں ترمیم کریں</string>
+    <string name="message" translatable="false">پیغام</string>
+    <string name="upcoming" translatable="false">آنے والا</string>
+    <string name="completed" translatable="false">مکمل</string>
+    <string name="cancelled" translatable="false">منسوخ</string>
+    <string name="_1799" translatable="false">1799</string>
+    <string name="_1499" translatable="false">1499</string>
+    <string name="reschedule" translatable="false">دوبارہ شیڈول کریں</string>
+    <string name="cancel" translatable="false">منسوخ کریں</string>
+    <string name="ok" translatable="false">ٹھیک ہے</string>
+    <string name="rate_us" translatable="false">ہمیں درجہ دیں</string>
+    <string name="date_time" translatable="false"><![CDATA[تاریخ اور وقت]]></string>
+    <string name="payment_info" translatable="false">ادائیگی کی معلومات</string>
+    <string name="subtotal" translatable="false">ذیلی کل</string>
+    <string name="gst_18" translatable="false">GST (18%)</string>
+    <string name="total" translatable="false">کل</string>
+    <string name="personal_document" translatable="false">ذاتی دستاویز</string>
+    <string name="business_document" translatable="false">کاروباری دستاویز</string>
+    <string name="_25" translatable="false">25</string>
+    <string name="_1524" translatable="false">1524</string>
+    <string name="booking_details" translatable="false">بکنگ کی تفصیلات</string>
+    <string name="location" translatable="false">مقام</string>
+    <string name="a_199_sector_63_noida" translatable="false">A-199، سیکٹر-63، نوئڈا</string>
+    <string name="mark_as_completed" translatable="false">مکمل کے طور پر نشان زد کریں</string>
+    <string name="ac_repair" translatable="false">اے سی کی مرمت</string>
+    <string name="review" translatable="false">جائزہ</string>
+    <string name="give_a_feedback" translatable="false">تبصرہ دیں...</string>
+    <string name="do_this_later" translatable="false">بعد میں کریں</string>
+    <string name="submit" translatable="false">جمع کریں</string>
+    <string name="today" translatable="false">آج</string>
+    <string name="hello_abhishek_how_are_you" translatable="false">ہیلو ابھیشیک، آپ کیسے ہیں؟</string>
+    <string name="saad_rahman" translatable="false">سعد رحمان</string>
+    <string name="no_chats_found" translatable="false">کوئی چیٹس نہیں ملی!</string>
+    <string name="start_new_chat" translatable="false">نیا چیٹ شروع کریں</string>
+    <string name="amount_paid" translatable="false">ادائیگی کی گئی رقم</string>
+    <string name="book_again" translatable="false">دوبارہ بک کریں</string>
+    <string name="_1420" translatable="false">1420</string>
+    <string name="payment_mode" translatable="false">ادائیگی کا طریقہ</string>
+    <string name="reason_for_cancellation" translatable="false">منسوخی کی وجہ</string>
+    <string name="provider_is_not_available_at_this_time" translatable="false">یہ فراہم کنندہ اس وقت دستیاب نہیں ہے۔</string>
+    <string name="credit_card" translatable="false">کریڈٹ کارڈ</string>
+    <string name="refund_status" translatable="false">ریفنڈ کی حیثیت</string>
+    <string name="refund_initiated_you_will_receive_your_n_amount_in_48_hours" translatable="false">ریفنڈ کا آغاز ہوگیا ہے۔ آپ کو اپنی رقم 48 گھنٹوں میں مل جائے گی۔</string>
+    <string name="save" translatable="false">محفوظ کریں</string>
+    <string name="a_192_sector_44_noida" translatable="false">A-192، سیکٹر-44، نوئڈا</string>
+    <string name="save_this_address_for_future_services" translatable="false">اس پتہ کو مستقبل کی خدمات کے لیے محفوظ کریں۔</string>
+    <string name="booking_summary" translatable="false">بکنگ کا خلاصہ</string>
+    <string name="change" translatable="false">تبدیل کریں</string>
+    <string name="june_2023" translatable="false">جون 2023</string>
+    <string name="_4_5" translatable="false">4.5</string>
+    <string name="proceed" translatable="false">آگے بڑھیں</string>
+    <string name="add_address" translatable="false">پتہ شامل کریں</string>
+    <string name="days" translatable="false">دن</string>
+    <string name="_16" translatable="false">16</string>
+    <string name="time" translatable="false">وقت</string>
+    <string name="alert" translatable="false"> الرٹ</string>
+    <string-array name="select_category">
+        <item>زمرہ منتخب کریں</item>
+        <item>مالیات</item>
+        <item>الیکٹرانکس</item>
+        <item>فٹنس</item>
+    </string-array>
+
+    <string-array name="select_sub_category">
+        <item>ذیلی زمرہ منتخب کریں</item>
+        <item>آئٹم 1</item>
+        <item>آئٹم 2</item>
+        <item>آئٹم 3</item>
+        <item>آئٹم 4</item>
+    </string-array>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email" translatable="false">ای میل</string>
+    <string name="prompt_password" translatable="false">پاس ورڈ</string>
+    <string name="action_sign_in" translatable="false">سائن ان یا رجسٹر کریں</string>
+    <string name="action_sign_in_short" translatable="false">سائن ان</string>
+    <string name="welcome" translatable="false">"خوش آمدید!"</string>
+    <string name="invalid_username" translatable="false">درست صارف نام نہیں</string>
+    <string name="invalid_password" translatable="false">پاس ورڈ 5 حروف سے زیادہ ہونا چاہیے</string>
+    <string name="login_failed" translatable="false">"لاگ ان ناکام"</string>
+    <string name="if_cancellation_done_after_24_hours_of_booking_date_you_will_get_refund" translatable="false">اگر منسوخی بکنگ کی تاریخ کے 24 گھنٹوں کے بعد کی جائے، تو آپ کو ریفنڈ ملے گا۔</string>
+    <string name="service_provider_is_not_available_and_has_requested_to_cancel" translatable="false">سروس فراہم کنندہ دستیاب نہیں ہے اور اس نے منسوخی کی درخواست کی ہے</string>
+    <string name="i_found_this_service_at_a_cheaper_price" translatable="false">مجھے یہ سروس سستی قیمت پر ملی ہے</string>
+    <string name="i_don_t_need_this_service_now" translatable="false">مجھے اس سروس کی ضرورت نہیں ہے</string>
+    <string name="i_am_unavailable_at_the_scheduled_time" translatable="false">میں شیڈول کردہ وقت پر دستیاب نہیں ہوں</string>
+    <string name="_262638" translatable="false">#262638</string>
+    <string name="your_booking_has_been_cancelled" translatable="false">آپ کی بکنگ منسوخ کر دی گئی ہے۔</string>
+    <string name="please_track_status_of_refund_under_my_bookings_cancelled" translatable="false"><![CDATA[براہ کرم \'میری بکنگز منسوخ شدہ\' کے تحت ریفنڈ کی حیثیت کا جائزہ لیں]]></string>
+
+    <string name="go_to_my_bookings" translatable="false">میری بکنگز پر جائیں</string>
+    <string name="payment" translatable="false">ادائیگی</string>
+    <string name="service_details" translatable="false">سروس کی تفصیلات</string>
+    <string name="_21_jun_2023_11_00am" translatable="false">21 جون 2023، 11:00AM</string>
+    <string name="abhishek_mehra_a_192_sector_44_noida" translatable="false">ابھیشیک مہرا | A-192، سیکٹر-44، نوئڈا</string>
+    <string name="apply_coupon" translatable="false">کوپن لگائیں</string>
+    <string name="tax" translatable="false">ٹیکس</string>
+    <string name="payable_amount" translatable="false">قابل ادائیگی رقم</string>
+    <string name="pay_now" translatable="false">ابھی ادائیگی کریں</string>
+    <string name="code" translatable="false">کوڈ</string>
+    <string name="applied" translatable="false">لگایا گیا</string>
+    <string name="coupons" translatable="false">کوپن</string>
+    <string name="enter_promocode" translatable="false">پرومو کوڈ درج کریں</string>
+    <string name="apply" translatable="false">لگائیں</string>
+    <string name="available_coupons" translatable="false">دستیاب کوپن</string>
+    <string name="sbi100" translatable="false">SBI100</string>
+    <string name="state_bank_of_india" translatable="false">اسٹیٹ بینک آف انڈیا</string>
+    <string name="cashback_up_to_usd_10_on_the_item_total_above_1100" translatable="false">آئٹم کے کل سے 1100 روپے پر USD 10 تک کیش بیک</string>
+    <string name="saved_addresses" translatable="false">محفوظ شدہ پتے</string>
+    <string name="a_192_sector_44_noida_201301" translatable="false">A-192، سیکٹر-44، نوئڈا، 201301</string>
+    <string name="_91_989_123_4567" translatable="false">+91 989 123 4567</string>
+    <string name="add_new_address" translatable="false">نیا پتہ شامل کریں</string>
+    <string name="chat_requests" translatable="false">چیٹ کی درخواستیں</string>
+    <string name="no_chat_requests_found" translatable="false">کوئی چیٹ کی درخواستیں نہیں ملیں!</string>
+    <string name="see_your_chats" translatable="false">اپنی چیٹس دیکھیں</string>
+    <string name="decline" translatable="false">انکار کریں</string>
+    <string name="kuldeep_srivastava" translatable="false">کلدیپ شری واستو</string>
+    <string name="connect" translatable="false">جڑیں</string>
+    <string name="call" translatable="false">کال کریں</string>
+    <string name="whatsapp" translatable="false">واٹس ایپ</string>
+    <string name="share" translatable="false">شیئر کریں</string>
+    <string name="services_we_offer" translatable="false">ہماری فراہم کردہ خدمات</string>
+    <string name="settings" translatable="false">سیٹنگز</string>
+    <string name="switch_to_business" translatable="false">کاروبار پر سوئچ کریں</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut" translatable="false">لورم اپسم ڈولر سٹ امیٹ،\nکنسیٹیٹر سادیپسنگ ایلیٹر، سیڈ ڈیم نونمی ایئرموڈ ٹیمپور انویڈنٹ یوٹ</string>
+    <string name="push_notifications" translatable="false">پش نوٹیفیکیشنز</string>
+    <string name="account_settings" translatable="false">اکاؤنٹ کی سیٹنگز</string>
+    <string name="my_wallet" translatable="false">میرا بٹوہ</string>
+    <string name="wallet" translatable="false">بٹوہ</string>
+    <string name="paymentGateway" translatable="false">ادائیگی گیٹ وے</string>
+    <string name="walletWithPg" translatable="false">بٹوہ اور پی جی</string>
+    <string name="about_us" translatable="false">ہمارے بارے میں</string>
+    <string name="distance" translatable="false">فاصلہ</string>
+    <string name="change_language" translatable="false">زبان تبدیل کریں</string>
+    <string name="faq_s" translatable="false">عمومی سوالات</string>
+    <string name="contact_us" translatable="false">ہم سے رابطہ کریں</string>
+    <string name="data_privacy" translatable="false">ڈیٹا کی پرائیویسی</string>
+    <string name="terms_and_conditions" translatable="false">شرائط و ضوابط</string>
+    <string name="delete_account" translatable="false">اکاؤنٹ حذف کریں</string>
+    <string name="your_available_balance" translatable="false">آپ کا دستیاب بیلنس</string>
+    <string name="deactivate" translatable="false">غیر فعال کریں</string>
+    <string name="send_money" translatable="false">پیسہ بھیجیں</string>
+    <string name="transactions" translatable="false">لین دین</string>
+    <string name="_200" translatable="false">₹200</string>
+    <string name="_123456789" translatable="false">123456789</string>
+    <string name="please_allow_location_permission_to_move_ahead" translatable="false">براہ کرم آگے بڑھنے کے لیے مقام کی اجازت دیں۔</string>
+    <string name="connections_requests" translatable="false">کنیکشن کی درخواستیں</string>
+    <string name="accept_or_decline_requests" translatable="false">درخواستوں کو قبول یا مسترد کریں</string>
+    <string name="are_you_sure_you_want_to_logout" translatable="false">کیا آپ واقعی لاگ آؤٹ ہونا چاہتے ہیں؟</string>
+    <string name="no" translatable="false">نہیں</string>
+    <string name="yes" translatable="false">ہاں</string>
+    <string name="log_out_successfully" translatable="false">بہت خوشی سے لاگ آؤٹ!</string>
+    <string name="remove" translatable="false">ہٹائیں</string>
+    <string name="surya_mouly" translatable="false">سوریا ماؤلی</string>
+    <string name="_100" translatable="false">100</string>
+    <string name="individual_business" translatable="false">انفرادی کاروبار</string>
+    <string name="rating_raviews" translatable="false"><![CDATA[ریٹنگ اور جائزے]]></string>
+    <string name="report" translatable="false">رپورٹ</string>
+    <string name="promocode_discount" translatable="false">پروموکوڈ ڈسکاؤنٹ</string>
+    <string name="sorry_this_time_slot_is_not_available" translatable="false">معذرت، یہ وقت دستیاب نہیں ہے</string>
+    <string name="_10_30_am" translatable="false">10:30 AM</string>
+    <string name="ravi_bishnoi_sent_you_a_connections_request" translatable="false">آپ کو کنیکشن کی درخواست بھیجی</string>
+    <string name="ravi_bishnoi" translatable="false">راوی بشنوئی</string>
+    <string name="your_available_balance_insufficient_balance" translatable="false">آپ کا دستیاب بیلنس</string>
+    <string name="insufficient_balance" translatable="false">(ناکافی بیلنس)</string>
+    <string name="add_money" translatable="false">پیسہ شامل کریں</string>
+    <string name="pay_1548" translatable="false">ادائیگی ₹ 1548</string>
+    <string name="are_you_sure_you_want_to_conform" translatable="false">کیا آپ واقعی تصدیق کرنا چاہتے ہیں؟</string>
+    <string name="calendar" translatable="false">کیلنڈر</string>
+    <string name="slot" translatable="false">اسلاٹ</string>
+    <string name="at_center" translatable="false">سنٹر پر</string>
+    <string name="aman" translatable="false">امان</string>
+    <string name="set_location" translatable="false">مقام سیٹ کریں</string>
+    <string name="house_flat_office_no" translatable="false">گھر/فلیٹ/دفتر نمبر*</string>
+    <string name="road_name_area_colony" translatable="false">سڑک کا نام/علاقہ/کالونی*</string>
+    <string name="pincode" translatable="false">پِن کوڈ*</string>
+    <string name="confirm_location" translatable="false">مقام کی تصدیق کریں</string>
+    <string name="sold" translatable="false">فروخت شدہ</string>
+    <string name="sold_small" translatable="false">فروخت شدہ</string>
+    <string name="bought" translatable="false">خریدی</string>
+    <string name="search_location" translatable="false">مقام تلاش کریں</string>
+    <string name="location_is_not_avialable" translatable="false">مقام دستیاب نہیں ہے۔</string>
+    <string name="request" translatable="false">درخواست</string>
+    <string name="atcenter" translatable="false">سنٹر پر</string>
+    <string name="athome" translatable="false">گھر پر</string>
+    <string name="confirm" translatable="false">تصدیق کریں</string>
+    <string name="booking" translatable="false">بکنگ</string>
+    <string name="pay" translatable="false">ادائیگی ₹</string>
+    <string name="pending" translatable="false">زیر التواء</string>
+    <string name="paymeturl" translatable="false">ادائیگی کا یو آر ایل</string>
+    <string name="cancel_booking" translatable="false">بکنگ منسوخ کریں</string>
+    <string name="bookinglist" translatable="false">بکنگ کی فہرست</string>
+    <string name="booked_by" translatable="false">کی طرف سے بک کیا گیا</string>
+    <string name="bought_small" translatable="false">خریدی</string>
+    <string name="r" translatable="false"></string>
+    <string name="close_service" translatable="false">سروس بند کریں</string>
+    <string name="start_date" translatable="false">آغاز کی تاریخ</string>
+    <string name="end_date" translatable="false">ختم ہونے کی تاریخ</string>
+    <string name="close" translatable="false">بند کریں</string>
+    <string name="start_service" translatable="false">سروس شروع کریں</string>
+    <string name="leave" translatable="false">چھوڑیں</string>
+    <string name="not_cancelable" translatable="false">منسوخ نہیں کیا جا سکتا</string>
+    <string name="back_to_original_payment_source" translatable="false">اصل ادائیگی کے ذریعے واپس</string>
+    <string name="refund_in_wallet" translatable="false">والٹ میں ریفنڈ</string>
+    <string name="promocode" translatable="false">پروموکوڈ</string>
+    <string name="closeservice" translatable="false">سروس بند کریں</string>
+    <string name="before_date_text" translatable="false">کیا آپ واقعی سروس بند کرنا چاہتے ہیں؟ اگر آپ سروس بند کرتے ہیں، تو</string>
+    <string name="to" translatable="false">سے</string>
+    <string name="after_date_text" translatable="false">تمام بکنگ خودبخود منسوخ ہو جائے گی</string>
+    <string name="image" translatable="false">تصویر</string>
+    <string name="videos" translatable="false">ویڈیوز</string>
+    <string name="servicedetails" translatable="false">سروس کی تفصیلات</string>
+    <string name="openmedia" translatable="false">میڈیا کھولیں</string>
+    <string name="back_press" translatable="false">پچھلا دبائیں</string>
+    <string name="goBack" translatable="false">پیچھے جائیں</string>
+    <string name="goForeword" translatable="false">آگے جائیں</string>
+    <string name="home_fr" translatable="false">ہوم_FR</string>
+    <string name="onlinefr" translatable="false">آن لائن_FR</string>
+    <string name="back" translatable="false">پیچھے</string>
+    <string name="provider_profile" translatable="false">فراہم کنندہ کا پروفائل</string>
+    <string name="profile_fr" translatable="false">پروفائل_Fr</string>
+    <string name="add_video" translatable="false">+ ویڈیو شامل کریں</string>
+    <string name="logout" translatable="false">لاگ آؤٹ</string>
+    <string name="join_call" translatable="false">کال میں شامل ہوں</string>
+    <string name="leave_call" translatable="false">کال چھوڑ دیں</string>
+    <string name="mute_call" translatable="false">کال کو خاموش کریں</string>
+    <string name="connected" translatable="false">جڑا ہوا</string>
+    <string name="callended" translatable="false">کال ختم ہوگئی</string>
+    <string name="pop_up" translatable="false">پاپ اپ</string>
+    <string name="block" translatable="false">بلاک کریں</string>
+    <string name="delete_chat" translatable="false">چیٹ حذف کریں</string>
+    <string name="unblock" translatable="false">ان بلاک کریں</string>
+    <string name="container" translatable="false">کنٹینر</string>
+    <string name="chatfragment" translatable="false">چیٹ فریگمنٹ</string>
+    <string name="open_gallery" translatable="false">گیلری کھولیں</string>
+    <string name="images" translatable="false">تصاویر</string>
+    <string name="files" translatable="false">فائلیں</string>
+    <string name="media_size_check" translatable="false">میڈیا کا حجم 100 MB سے کم ہونا چاہئے</string>
+    <string name="weeks" translatable="false">ہفتے</string>
+    <string name="months" translatable="false">مہینے</string>
+    <string name="years" translatable="false">سال</string>
+    <string name="min" translatable="false">منٹ</string>
+    <string name="hour" translatable="false">گھنٹہ</string>
+    <string name="minute" translatable="false">منٹ</string>
+    <string name="pick_your_media_file" translatable="false">اپنی میڈیا فائل منتخب کریں</string>
+    <string name="use_as_default" translatable="false">بطور ڈیفالٹ استعمال کریں</string>
+    <string name="_default" translatable="false"> ڈیفالٹ</string>
+
+    <string-array name="select_issue">
+        <item>مسئلہ منتخب کریں</item>
+        <item>آئٹم 1</item>
+        <item>آئٹم 2</item>
+        <item>آئٹم 3</item>
+        <item>آئٹم 4</item>
+        <item>آئٹم 5</item>
+    </string-array>
+    <string name="add_your_bank_account" translatable="false">اپنا بینک اکاؤنٹ شامل کریں</string>
+    <string name="add_new_bank_account" translatable="false">نیا بینک اکاؤنٹ شامل کریں</string>
+    <string name="choose_bank_with_your_account" translatable="false">اپنے اکاؤنٹ کے ساتھ بینک منتخب کریں</string>
+    <string name="select_bank" translatable="false">بینک منتخب کریں</string>
+    <string name="current_account" translatable="false">کرنٹ اکاؤنٹ</string>
+    <string name="savings_account" translatable="false">سیونگ اکاؤنٹ</string>
+    <string name="select_account_type" translatable="false">اکاؤنٹ کی قسم منتخب کریں</string>
+    <string name="enter_document_type" translatable="false">دستاویز کی قسم درج کریں</string>
+    <string name="document_type" translatable="false">دستاویز کی قسم</string>
+    <string name="enter_document_number" translatable="false">دستاویز کا نمبر درج کریں</string>
+    <string name="document_number" translatable="false">دستاویز کا نمبر</string>
+    <string name="enter_account_name" translatable="false">اکاؤنٹ کا نام درج کریں</string>
+    <string name="account_name" translatable="false">اکاؤنٹ کا نام</string>
+    <string name="enter_account_number" translatable="false">اکاؤنٹ نمبر درج کریں</string>
+    <string name="account_number" translatable="false">اکاؤنٹ نمبر</string>
+    <string name="my_bank_account" translatable="false">میرا بینک اکاؤنٹ</string>
+    <string name="connecting" translatable="false">منسلک ہو رہا ہے</string>
+    <string name="add_bank_account" translatable="false">بینک اکاؤنٹ شامل کریں</string>
+
+    <!--validation Texts-->
+    <string name="please_enter_account_number" translatable="false">براہ کرم اکاؤنٹ نمبر درج کریں</string>
+    <string name="please_enter_account_name" translatable="false">براہ کرم اکاؤنٹ کا نام درج کریں</string>
+    <string name="invalid_account_number" translatable="false">اکاؤنٹ نمبر غلط ہے</string>
+    <string name="please_enter_document_number" translatable="false">براہ کرم دستاویز کا نمبر درج کریں</string>
+    <string name="please_enter_document_type" translatable="false">براہ کرم دستاویز کی قسم درج کریں</string>
+
+    <!--String files for click events-->
+    <string name="cross" translatable="false">کراس</string>
+    <string name="audio_call" translatable="false">آڈیو کال</string>
+    <string name="video_call" translatable="false">ویڈیو کال</string>
+    <string name="connect_with_the_user_as" translatable="false">صارف کے ساتھ جڑیں بطور</string>
+    <string name="outgoing_video" translatable="false">آؤٹ گوئنگ ویڈیو</string>
+    <string name="outgoing_Audio" translatable="false">آؤٹ گوئنگ آڈیو</string>
+    <string name="user_name" translatable="false">صارف کا نام</string>
+    <string name="are_you_sure_want_to_delete_this_account" translatable="false">کیا آپ واقعی اس اکاؤنٹ کو حذف کرنا چاہتے ہیں؟</string>
+    <string name="filterdata" translatable="false">فلٹر ڈیٹا</string>
+    <string name="connection_remove_successfully" translatable="false">کنکشن کامیابی کے ساتھ ہٹا دیا گیا</string>
+    <string name="whatsApp" translatable="false">واٹس ایپ</string>
+    <string name="description" translatable="false">تفصیل</string>
+    <string name="issue_type" translatable="false">مسئلے کی قسم</string>
+    <string name="notification" translatable="false">نوٹیفکیشن</string>
+    <string name="addbank" translatable="false">بینک شامل کریں</string>
+    <string name="openbottomsheet" translatable="false">نیچے کا شیٹ کھولیں</string>
+    <string name="personal" translatable="false">ذاتی</string>
+    <string name="dummy_string" translatable="false">ڈمی اسٹرانگ</string>
+    <string name="service_we_offer" translatable="false">ہم جو خدمات پیش کرتے ہیں</string>
+    <string name="wellness" translatable="false">صحت</string>
+    <string name="household" translatable="false">گھریلو</string>
+    <string name="electronic" translatable="false">الیکٹرانکس</string>
+    <string name="videophoto" translatable="false">ویڈیو/تصویر</string>
+    <string name="showbiz" translatable="false">شو بز</string>
+    <string name="real_estate" translatable="false">ریئل اسٹیٹ</string>
+    <string name="spa_beauty" translatable="false">اسپا-بیوٹی</string>
+    <string name="security" translatable="false">سیکیورٹی</string>
+    <string name="software" translatable="false">سافٹ ویئر</string>
+    <string name="legal" translatable="false">قانونی</string>
+    <string name="pet_service" translatable="false">پالتو جانور کی خدمت</string>
+    <string name="travel" translatable="false">سفر</string>
+    <string name="other" translatable="false">دیگر</string>
+    <string name="allow_gps_location" translatable="false">سروس کی جگہ کی اجازت دیں</string>
+    <string name="welcome_to_servivet_we_are_passionate_about_creating_meaningful_connections_and_facilitating_seamless_interactions_our_mission_is_to_provide_a_platform_that_fosters_community_encourages_collaboration_and_sparks_engaging_conversations_among_users">Servivet میں خوش آمدید! ہم معنی خیز روابط بنانے اور ہموار تعاملات کو فروغ دینے کے لیے پرجوش ہیں۔ ہمارا مشن ایک ایسی پلیٹ فارم فراہم کرنا ہے جو کمیونٹی کو فروغ دے، تعاون کی حوصلہ افزائی کرے اور صارفین کے درمیان دلچسپ گفتگو کو جنم دے۔</string>
+    <string name="title">عنوان</string>
+    <string name="enter_title">عنوان درج کریں</string>
+    <string name="your_feedback_or_suggestion_here">اپنی رائے یا تجویز یہاں درج کریں...</string>
+    <string name="_0_200">(0/200)</string>
+    <string name="email">ای میل</string>
+    <string name="we_are_keen_to_know_how_we_can_make_e_yugam_better_for_you_send_your_feedback_or_suggestion">ہم جاننا چاہتے ہیں کہ ہم E-Yugam کو آپ کے لیے کیسے بہتر بنا سکتے ہیں۔ اپنی رائے یا تجویز بھیجیں</string>
+    <string name="withdraw">واپس لیں</string>
+    <string name="no_data_found">کوئی ڈیٹا دستیاب نہیں!</string>
+    <string name="delhi">دہلی</string>
+
+</resources>

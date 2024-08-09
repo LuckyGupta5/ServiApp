@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">セルビ</string>
+    <string name="servivet_require_this_permission" translatable="false">セルビ はこの権限を許可する必要があります。</string>
+    <string name="google_map_key" translatable="false">AIzaSyDxvOzm-9yjdnd5L4iJrVDwk-_KbUkmN8A</string>
+    <string name="please_connect_to_the_internet" translatable="false">インターネットに接続してください。\n</string>
+    <string name="hello_blank_fragment" translatable="false">こんにちは、空のフラグメント</string>
+    <string name="choose_your_preferred_language" translatable="false">お好みの言語を選択してください</string>
+    <string name="english" translatable="false">英語</string>
+    <string name="hi_i_am_john_doe" translatable="false">こんにちは、私はジョン・ドーです。</string>
+    <string name="swahii" translatable="false">スワヒリ語</string>
+    <string name="habari_mimi_ni_john_doe" translatable="false">こんにちは、私はジョン・ドーです。</string>
+    <string name="zulu" translatable="false">ズールー語</string>
+    <string name="gps_enable_message" translatable="false">GPS位置情報をオンにする必要があります</string>
+    <string name="sawubona_ngingu_john_doe" translatable="false">こんにちは、私はジョン・ドーです。</string>
+    <string name="continues" translatable="false">続ける</string>
+    <string name="skip" translatable="false">スキップ</string>
+    <string name="next" translatable="false">次へ</string>
+    <string name="get_started" translatable="false">開始する</string>
+    <string name="clientel" translatable="false">顧客層</string>
+    <string name="business" translatable="false">ビジネス</string>
+    <string name="mobile_number" translatable="false">携帯番号</string>
+    <string name="we_will_send_you_a_confirmation_code" translatable="false">確認コードをお送りします</string>
+    <string name="_123_456_7890" translatable="false">123–456-7890</string>
+    <string name="i_agree_to_terms_and_conditions_and_data_privacy_policies" translatable="false">利用規約およびデータプライバシーポリシーに同意します。</string>
+    <string name="verify" translatable="false">確認する</string>
+    <string name="please_enter_the_otp_sent_your_mobile_number" translatable="false">携帯番号に送信されたOTPを入力してください。</string>
+    <string name="otp_verification" translatable="false">OTP確認</string>
+    <string name="resend_otp_in_30_seconds" translatable="false">30秒後にOTPを再送信</string>
+    <string name="title_activity_home" translatable="false">ホームアクティビティ</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label" translatable="false">最初のフラグメント</string>
+    <string name="second_fragment_label" translatable="false">第二のフラグメント</string>
+    <string name="previous" translatable="false">前へ</string>
+    <string name="search_for_area_street_name_etc" translatable="false">エリア、通り名などを検索...</string>
+    <string name="home" translatable="false">ホーム</string>
+    <string name="chats" translatable="false">チャット</string>
+    <string name="bookings" translatable="false">予約</string>
+    <string name="profile" translatable="false">プロフィール</string>
+    <string name="noida" translatable="false">ノイダ</string>
+    <string name="sadarpur_sector_44_noida" translatable="false">サダルプール、セクター44 ノイダ</string>
+    <string name="search_for_service_etc" translatable="false"><![CDATA[サービスなどを検索]]></string>
+    <string name="services" translatable="false">サービス</string>
+    <string name="view_all" translatable="false">すべて表示\n</string>
+    <string name="provider_view_all" translatable="false">プロバイダすべて表示</string>
+    <string name="user_view_all" translatable="false">ユーザーすべて表示</string>
+    <string name="online_now" translatable="false">現在オンライン</string>
+    <string name="fitness" translatable="false">フィットネス</string>
+    <string name="finance" translatable="false">ファイナンス\n</string>
+    <string name="_1_km_away" translatable="false">km 離れた</string>
+    <string name="dev_gupta" translatable="false">デブ・グプタ</string>
+    <string name="gym" translatable="false">ジム</string>
+    <string name="riepneapps_technology_noida" translatable="false">リエプネアプリ技術ノイダ</string>
+    <string name="view_details" translatable="false">詳細を見る</string>
+    <string name="individual" translatable="false">個人</string>
+    <string name="individualcap" translatable="false">個人</string>
+    <string name="institutional" translatable="false">法人</string>
+    <string name="institutionalcap" translatable="false">法人</string>
+    <string name="edit_profile" translatable="false">プロフィールを編集</string>
+    <string name="abhishek_mehra" translatable="false">アビシェーク・メーラ</string>
+    <string name="about" translatable="false">概要</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut_labore_et_dolore_magna_aliquyam_erat_sed_diam_voluptua_eos_et_accusam_et_justo_duo_dolores_et_ea_rebum_stet_clita_kasd_gubergren_no_sea_takimata_sanctus_est_lorem_ipsum_dolor_sit_amet_lorem_ipsum_dolor_sit_amet" translatable="false">ロレム・イプサム・ドロール・シット・アメット、コンセテトゥール・サディプシン・エリトル・セッド・ディアム・ノヌミ・エイルモド・テンポル・インヴィダント・ウト・ラボーレ・エット・ドローレ・マグナ・アリクィアム・エラット・セッド・ディアム・ヴォルプトゥア・エオス・エット・アクサム・エット・ジュスト・ドゥオ・ドローレス・エット・エア・レブム・ステット・クリタ・カスド・グベレグレン・ノー・セア・タキマタ・サンクタス・エスト・ロレム・イプサム・ドロール・シット・アメット・ロレム・イプサム・ドロール・シット・アメット</string>
+    <string name="accept_the_term_and_condition" translatable="false">利用規約に同意する\n</string>
+    <string name="accept_the_privacy_policy" translatable="false">プライバシーポリシーに同意する</string>
+    <string name="term_and_condition" translatable="false">利用規約</string>
+    <string name="privacy_policy" translatable="false">データプライバシー</string>
+    <string name="terms_conditions" translatable="false"><![CDATA[利用規約]]></string>
+    <string name="last_updated_on_23_may_2023" translatable="false">2023年5月23日に最終更新</string>
+    <string name="reject" translatable="false">拒否</string>
+    <string name="accept" translatable="false">承諾</string>
+    <string name="my_connections" translatable="false">マイコネクション</string>
+    <string name="name" translatable="false">名前</string>
+    <string name="enter_name" translatable="false">名前を入力</string>
+    <string name="_91_1234567890" translatable="false">+91 1234567890</string>
+    <string name="email_address" translatable="false">メールアドレス</string>
+    <string name="_0_150" translatable="false">(0/150)</string>
+    <string name="_150_150" translatable="false">(150/150)\n</string>
+    <string name="write_here" translatable="false">ここに書く</string>
+    <string name="update" translatable="false">更新</string>
+    <string name="change_cover" translatable="false">カバーを変更</string>
+    <string name="business_n_verification" translatable="false">ビジネス\n確認</string>
+    <string name="select_your_business_type" translatable="false">ビジネスの種類を選択してください</string>
+    <string name="full_name" translatable="false">フルネーム</string>
+    <string name="enter_full_name" translatable="false">フルネームを入力してください</string>
+    <string name="using_gps" translatable="false">GPSを使用中</string>
+    <string name="current_location" translatable="false">現在の位置</string>
+    <string name="enter_location_manually" translatable="false">位置を手動で入力</string>
+    <string name="or" translatable="false">または</string>
+    <string name="want_to_earn_money" translatable="false">お金を稼ぎたいですか？</string>
+    <string name="add_the_service_which_you_are_expert_in" translatable="false">専門とするサービスを追加してください</string>
+    <string name="add_service" translatable="false">+ サービスを追加</string>
+    <string name="near_by" translatable="false">近くの</string>
+    <string name="add_service_" translatable="false">サービスを追加</string>
+    <string name="service_mode" translatable="false">サービスモード</string>
+    <string name="at_centre" translatable="false">センターで</string>
+    <string name="at_home" translatable="false">自宅で</string>
+    <string name="category" translatable="false">カテゴリ</string>
+    <string name="sub_category" translatable="false">サブカテゴリ</string>
+    <string name="yoga" translatable="false">ヨガ</string>
+    <string name="about_service" translatable="false">サービスについて</string>
+    <string name="photos" translatable="false">写真</string>
+    <string name="add_image" translatable="false">+ 画像を追加</string>
+    <string name="add" translatable="false">追加</string>
+    <string name="availability" translatable="false">利用可能時間</string>
+    <string name="select_session" translatable="false">セッションを選択</string>
+    <string name="add_hours" translatable="false">+ 時間を追加</string>
+    <string name="start_time" translatable="false">開始時間</string>
+    <string name="end_time" translatable="false">終了時間</string>
+    <string name="mon" translatable="false">月</string>
+    <string name="enter_price" translatable="false">価格を入力</string>
+    <string name="price_at_centre" translatable="false">価格（センターで）</string>
+    <string name="camera" translatable="false">カメラ</string>
+    <string name="gallery" translatable="false">ギャラリー</string>
+    <string name="price" translatable="false">価格</string>
+    <string name="my_services" translatable="false">私のサービス</string>
+    <string name="business_name" translatable="false">ビジネス名</string>
+    <string name="the_electronic_hub" translatable="false">エレクトロニクスハブ</string>
+    <string name="edit" translatable="false">編集</string>
+    <string name="please_enter_a_valid_e_mail" translatable="false">有効なメールアドレスを入力してください\n</string>
+    <string name="enter_email_address" translatable="false">メールアドレスを入力</string>
+    <string name="address" translatable="false">住所</string>
+    <string name="a_block_sector_63_noida" translatable="false">Aブロック セクター63 ノイダ</string>
+    <string name="under_development" translatable="false">開発中</string>
+    <string name="resend_otp_in" translatable="false">OTPを再送信するまで</string>
+    <string name="are_you_logout" translatable="false">本当にログアウトしますか？</string>
+    <string name="log_out" translatable="false">ログアウト</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_centre_mode" translatable="false">センターモードでは開始時間が終了時間よりも遅くなってはいけません。</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_home_mode" translatable="false">ホームモードでは開始時間が終了時間よりも遅くなってはいけません。</string>
+    <string name="please_enter_the_price_for_the_centre_service_mode" translatable="false">センターサービスモードの価格を入力してください。</string>
+    <string name="please_enter_the_price_for_the_home_service_mode" translatable="false">自宅サービスモードの価格を入力してください。</string>
+    <string name="please_select_a_service_model" translatable="false">サービスモデルを選択してください。</string>
+    <string name="please_select_the_category" translatable="false">カテゴリを選択してください。</string>
+    <string name="please_select_at_one_image" translatable="false">少なくとも1つの画像を選択してください。</string>
+    <string name="images_must_be_less_than_five" translatable="false">画像は5つ以下でなければなりません。</string>
+    <string name="please_select_sub_category" translatable="false">サブカテゴリを選択してください。</string>
+    <string name="select_sub_category" translatable="false">サブカテゴリを選択</string>
+    <string name="select_session_should_not_be_empty_for_the_center_service_mode" translatable="false">センターサービスモードではセッションを選択する必要があります。</string>
+    <string name="select_session_should_not_be_empty_for_the_home_service_mode" translatable="false">ホームサービスモードではセッションを選択する必要があります。</string>
+    <string name="details" translatable="false">詳細</string>
+    <string name="_1_km" translatable="false">1 km</string>
+    <string name="away" translatable="false">離れて</string>
+    <string name="prateek_mehta" translatable="false">プラティーク・メータ</string>
+    <string name="media" translatable="false">メディア</string>
+    <string name="_1499_2999" translatable="false">1499 - 2999</string>
+    <string name="book_now" translatable="false">今すぐ予約</string>
+    <string name="my_booking" translatable="false">マイ予約</string>
+    <string name="booking_id" translatable="false">予約ID</string>
+    <string name="booking_id_num" translatable="false">#262638</string>
+    <string name="by_prateek_mehta" translatable="false">プラティーク・メータによる</string>
+    <string name="tuesday_21_oct_11_00_am" translatable="false">10月21日(火) 午前11:00</string>
+    <string name="complete_profile" translatable="false">プロフィールを完成させてください</string>
+    <string name="enter_your_information_below" translatable="false">下記に情報を入力してください</string>
+    <string name="edit_service" translatable="false">サービスを編集</string>
+    <string name="message" translatable="false">メッセージ</string>
+    <string name="upcoming" translatable="false">今後の予約</string>
+    <string name="completed" translatable="false">完了済み</string>
+    <string name="cancelled" translatable="false">キャンセル済み</string>
+    <string name="_1799" translatable="false">1799</string>
+    <string name="_1499" translatable="false">1499</string>
+    <string name="reschedule" translatable="false">再スケジュール</string>
+    <string name="cancel" translatable="false">キャンセル</string>
+    <string name="ok" translatable="false">OK</string>
+    <string name="rate_us" translatable="false">評価してください</string>
+    <string name="date_time" translatable="false"><![CDATA[日付と時間]]></string>
+    <string name="payment_info" translatable="false">支払い情報</string>
+    <string name="subtotal" translatable="false">小計</string>
+    <string name="gst_18" translatable="false">GST (18%)</string>
+    <string name="total" translatable="false">合計</string>
+    <string name="personal_document" translatable="false">個人文書</string>
+    <string name="business_document" translatable="false">ビジネス文書</string>
+    <string name="_25" translatable="false">25</string>
+    <string name="_1524" translatable="false">1524</string>
+    <string name="booking_details" translatable="false">予約詳細</string>
+    <string name="location" translatable="false">場所</string>
+    <string name="a_199_sector_63_noida" translatable="false">A-199, セクター63, ノイダ</string>
+    <string name="mark_as_completed" translatable="false">完了としてマーク</string>
+    <string name="ac_repair" translatable="false">エアコン修理</string>
+    <string name="review" translatable="false">レビュー</string>
+    <string name="give_a_feedback" translatable="false">フィードバックを送信...</string>
+    <string name="do_this_later" translatable="false">後で行う</string>
+    <string name="submit" translatable="false">送信</string>
+    <string name="today" translatable="false">今日</string>
+    <string name="hello_abhishek_how_are_you" translatable="false">こんにちはアビシェーク、元気ですか？</string>
+    <string name="saad_rahman" translatable="false">サード・ラフマン</string>
+    <string name="no_chats_found" translatable="false">チャットが見つかりませんでした！</string>
+    <string name="start_new_chat" translatable="false">新しいチャットを開始</string>
+    <string name="amount_paid" translatable="false">支払金額</string>
+    <string name="book_again" translatable="false">再度予約</string>
+    <string name="_1420" translatable="false">1420</string>
+    <string name="payment_mode" translatable="false">支払い方法</string>
+    <string name="reason_for_cancellation" translatable="false">キャンセルの理由</string>
+    <string name="provider_is_not_available_at_this_time" translatable="false">この時間にはサービス提供者が利用できません。</string>
+    <string name="credit_card" translatable="false">クレジットカード</string>
+    <string name="refund_status" translatable="false">返金状況</string>
+    <string name="refund_initiated_you_will_receive_your_n_amount_in_48_hours" translatable="false">返金が開始されました。48時間以内に金額を受け取ることができます。</string>
+    <string name="save" translatable="false">保存</string>
+    <string name="a_192_sector_44_noida" translatable="false">A-192, セクター44, ノイダ</string>
+    <string name="save_this_address_for_future_services" translatable="false">将来のサービスのためにこの住所を保存する</string>
+    <string name="booking_summary" translatable="false">予約概要</string>
+    <string name="change" translatable="false">変更</string>
+    <string name="june_2023" translatable="false">2023年6月</string>
+    <string name="_4_5" translatable="false">4.5</string>
+    <string name="proceed" translatable="false">進む</string>
+    <string name="add_address" translatable="false">住所を追加</string>
+    <string name="days" translatable="false">日</string>
+    <string name="_16" translatable="false">16</string>
+    <string name="time" translatable="false">時間</string>
+    <string name="alert" translatable="false">アラート</string>
+    <string-array name="select_category">
+        <item>カテゴリを選択</item>
+        <item>ファイナンス</item>
+        <item>エレクトロニクス</item>
+        <item>フィットネス</item>
+    </string-array>
+
+    <string-array name="select_sub_category">
+        <item>サブカテゴリを選択</item>
+        <item>アイテム1</item>
+        <item>アイテム2</item>
+        <item>アイテム3</item>
+        <item>アイテム4</item>
+    </string-array>
+    <string name="prompt_email" translatable="false">メール</string>
+    <string name="prompt_password" translatable="false">パスワード</string>
+    <string name="action_sign_in" translatable="false">サインインまたは登録</string>
+    <string name="action_sign_in_short" translatable="false">サインイン</string>
+    <string name="welcome" translatable="false">「ようこそ！」</string>
+    <string name="invalid_username" translatable="false">無効なユーザー名</string>
+    <string name="invalid_password" translatable="false">パスワードは5文字以上である必要があります</string>
+    <string name="login_failed" translatable="false">「ログイン失敗」</string>
+    <string name="if_cancellation_done_after_24_hours_of_booking_date_you_will_get_refund" translatable="false">予約日から24時間後のキャンセルの場合、返金されます。</string>
+    <string name="service_provider_is_not_available_and_has_requested_to_cancel" translatable="false">サービス提供者が利用できず、キャンセルを要求しています</string>
+    <string name="i_found_this_service_at_a_cheaper_price" translatable="false">このサービスをより安い価格で見つけました</string>
+    <string name="i_don_t_need_this_service_now" translatable="false">今はこのサービスが必要ありません</string>
+    <string name="i_am_unavailable_at_the_scheduled_time" translatable="false">予定された時間に利用できません</string>
+    <string name="_262638" translatable="false">#262638</string>
+    <string name="your_booking_has_been_cancelled" translatable="false">ご予約がキャンセルされました。</string>
+    <string name="please_track_status_of_refund_under_my_bookings_cancelled" translatable="false"><![CDATA[「マイ予約->キャンセル済み」で返金の状況を追跡してください]]></string>
+    <string name="go_to_my_bookings" translatable="false">マイ予約に移動</string>
+    <string name="payment" translatable="false">支払い</string>
+    <string name="service_details" translatable="false">サービスの詳細</string>
+    <string name="_21_jun_2023_11_00am" translatable="false">2023年6月21日、午前11:00</string>
+    <string name="abhishek_mehra_a_192_sector_44_noida" translatable="false">アビシェーク・メーラ | A-192, セクター44, ノイダ</string>
+    <string name="apply_coupon" translatable="false">クーポンを適用</string>
+    <string name="tax" translatable="false">税金</string>
+    <string name="payable_amount" translatable="false">支払金額</string>
+    <string name="pay_now" translatable="false">今すぐ支払う</string>
+    <string name="code" translatable="false">コード</string>
+    <string name="applied" translatable="false">適用済み</string>
+    <string name="coupons" translatable="false">クーポン</string>
+    <string name="enter_promocode" translatable="false">プロモコードを入力</string>
+    <string name="apply" translatable="false">適用</string>
+    <string name="available_coupons" translatable="false">利用可能なクーポン</string>
+    <string name="sbi100" translatable="false">SBI100</string>
+    <string name="state_bank_of_india" translatable="false">インド州立銀行</string>
+    <string name="cashback_up_to_usd_10_on_the_item_total_above_1100" translatable="false">1100以上のアイテム総額に対して最大USD 10のキャッシュバック</string>
+    <string name="saved_addresses" translatable="false">保存された住所</string>
+    <string name="a_192_sector_44_noida_201301" translatable="false">A-192, セクター44, ノイダ, 201301</string>
+    <string name="_91_989_123_4567" translatable="false">+91 989 123 4567</string>
+    <string name="add_new_address" translatable="false">新しい住所を追加</string>
+    <string name="chat_requests" translatable="false">チャットリクエスト</string>
+    <string name="no_chat_requests_found" translatable="false">チャットリクエストが見つかりませんでした！</string>
+    <string name="see_your_chats" translatable="false">チャットを確認する</string>
+    <string name="decline" translatable="false">拒否</string>
+    <string name="kuldeep_srivastava" translatable="false">クルディープ・スリヴァスタヴァ</string>
+    <string name="connect" translatable="false">接続</string>
+    <string name="call" translatable="false">電話</string>
+    <string name="whatsapp" translatable="false">WhatsApp</string>
+    <string name="share" translatable="false">共有</string>
+    <string name="services_we_offer" translatable="false">提供するサービス</string>
+    <string name="settings" translatable="false">設定</string>
+    <string name="switch_to_business" translatable="false">ビジネスに切り替え</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut" translatable="false">Lorem ipsum dolor sit amet,\nconsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</string>
+    <string name="push_notifications" translatable="false">プッシュ通知</string>
+    <string name="account_settings" translatable="false">アカウント設定</string>
+    <string name="my_wallet" translatable="false">マイウォレット</string>
+    <string name="wallet" translatable="false">ウォレット</string>
+    <string name="paymentGateway" translatable="false">支払いゲートウェイ</string>
+    <string name="walletWithPg" translatable="false">ウォレットと支払いゲートウェイ</string>
+    <string name="about_us" translatable="false">私たちについて</string>
+    <string name="distance" translatable="false">距離</string>
+    <string name="change_language" translatable="false">言語を変更</string>
+    <string name="faq_s" translatable="false">よくある質問</string>
+    <string name="contact_us" translatable="false">お問い合わせ</string>
+    <string name="data_privacy" translatable="false">データプライバシー</string>
+    <string name="terms_and_conditions" translatable="false">利用規約</string>
+    <string name="delete_account" translatable="false">アカウント削除</string>
+    <string name="your_available_balance" translatable="false">利用可能な残高</string>
+    <string name="deactivate" translatable="false">無効化</string>
+    <string name="send_money" translatable="false">お金を送る</string>
+    <string name="transactions" translatable="false">取引</string>
+    <string name="_200" translatable="false">₹200</string>
+    <string name="_123456789" translatable="false">123456789</string>
+    <string name="please_allow_location_permission_to_move_ahead" translatable="false">前に進むには位置情報の許可をお願いします。</string>
+    <string name="connections_requests" translatable="false">接続リクエスト</string>
+    <string name="accept_or_decline_requests" translatable="false">リクエストを承認または拒否</string>
+    <string name="are_you_sure_you_want_to_logout" translatable="false">ログアウトしてもよろしいですか？</string>
+    <string name="no" translatable="false">いいえ</string>
+    <string name="yes" translatable="false">はい</string>
+    <string name="log_out_successfully" translatable="false">正常にログアウトしました！</string>
+    <string name="remove" translatable="false">削除</string>
+    <string name="surya_mouly" translatable="false">スリヤ・マウリー</string>
+    <string name="_100" translatable="false">100</string>
+    <string name="individual_business" translatable="false">個人ビジネス</string>
+    <string name="rating_raviews" translatable="false"><![CDATA[評価とレビュー]]></string>
+    <string name="report" translatable="false">報告</string>
+    <string name="promocode_discount" translatable="false">プロモコード割引</string>
+    <string name="sorry_this_time_slot_is_not_available" translatable="false">申し訳ありませんが、この時間帯は利用できません</string>
+    <string name="_10_30_am" translatable="false">10:30 AM</string>
+    <string name="ravi_bishnoi_sent_you_a_connections_request" translatable="false">が接続リクエストを送りました</string>
+    <string name="ravi_bishnoi" translatable="false">ラヴィ・ビシュノイ</string>
+    <string name="your_available_balance_insufficient_balance" translatable="false">利用可能な残高</string>
+    <string name="insufficient_balance" translatable="false">(残高不足)</string>
+    <string name="add_money" translatable="false">お金を追加</string>
+    <string name="pay_1548" translatable="false">₹ 1548 支払う</string>
+    <string name="are_you_sure_you_want_to_conform" translatable="false">本当に確認してもよろしいですか？</string>
+    <string name="calendar" translatable="false">カレンダー</string>
+    <string name="slot" translatable="false">スロット</string>
+    <string name="at_center" translatable="false">センターで</string>
+    <string name="aman" translatable="false">アマン</string>
+    <string name="set_location" translatable="false">位置を設定</string>
+    <string name="house_flat_office_no" translatable="false">家/フラット/オフィス番号*</string>
+    <string name="road_name_area_colony" translatable="false">道路名/ エリア / コロニー*</string>
+    <string name="pincode" translatable="false">PINコード*</string>
+    <string name="confirm_location" translatable="false">位置を確認</string>
+    <string name="sold" translatable="false">販売済み</string>
+    <string name="sold_small" translatable="false">販売済み</string>
+    <string name="bought" translatable="false">購入済み</string>
+    <string name="search_location" translatable="false">位置を検索</string>
+    <string name="location_is_not_avialable" translatable="false">位置が利用できません。</string>
+    <string name="request" translatable="false">リクエスト</string>
+    <string name="atcenter" translatable="false">センターで</string>
+    <string name="athome" translatable="false">自宅で</string>
+    <string name="confirm" translatable="false">確認</string>
+    <string name="booking" translatable="false">予約</string>
+    <string name="pay" translatable="false">支払う ₹</string>
+    <string name="pending" translatable="false">保留中</string>
+    <string name="paymeturl" translatable="false">支払いURL</string>
+    <string name="cancel_booking" translatable="false">予約をキャンセル</string>
+    <string name="bookinglist" translatable="false">予約リスト</string>
+    <string name="booked_by" translatable="false">予約者</string>
+    <string name="bought_small" translatable="false">購入済み</string>
+    <string name="r" translatable="false"></string>
+    <string name="close_service" translatable="false">サービスを終了</string>
+    <string name="start_date" translatable="false">開始日</string>
+    <string name="end_date" translatable="false">終了日</string>
+    <string name="close" translatable="false">閉じる</string>
+    <string name="start_service" translatable="false">サービスを開始</string>
+    <string name="leave" translatable="false">離れる</string>
+    <string name="not_cancelable" translatable="false">キャンセル不可</string>
+    <string name="back_to_original_payment_source" translatable="false">元の支払い元に戻す</string>
+    <string name="refund_in_wallet" translatable="false">ウォレットに返金</string>
+    <string name="promocode" translatable="false">プロモコード</string>
+    <string name="closeservice" translatable="false">サービスを終了</string>
+    <string name="before_date_text" translatable="false">サービスを終了してもよろしいですか？サービスを終了すると、すべての予約が</string>
+    <string name="to" translatable="false">に</string>
+    <string name="after_date_text" translatable="false">自動的にキャンセルされます</string>
+    <string name="image" translatable="false">画像</string>
+    <string name="videos" translatable="false">動画</string>
+    <string name="servicedetails" translatable="false">サービスの詳細</string>
+    <string name="openmedia" translatable="false">メディアを開く</string>
+    <string name="back_press" translatable="false">戻る</string>
+    <string name="goBack" translatable="false">戻る</string>
+    <string name="goForeword" translatable="false">前に進む</string>
+    <string name="home_fr" translatable="false">ホーム_FR</string>
+    <string name="onlinefr" translatable="false">オンライン_FR</string>
+    <string name="back" translatable="false">戻る</string>
+    <string name="provider_profile" translatable="false">プロバイダーのプロフィール</string>
+    <string name="profile_fr" translatable="false">プロフィール_FR</string>
+    <string name="add_video" translatable="false">+ 動画を追加</string>
+    <string name="logout" translatable="false">ログアウト</string>
+    <string name="join_call" translatable="false">通話に参加</string>
+    <string name="leave_call" translatable="false">通話から退出</string>
+    <string name="mute_call" translatable="false">通話をミュート</string>
+    <string name="connected" translatable="false">接続済み</string>
+    <string name="callended" translatable="false">通話終了</string>
+    <string name="pop_up" translatable="false">ポップアップ</string>
+    <string name="block" translatable="false">ブロック</string>
+    <string name="delete_chat" translatable="false">チャットを削除</string>
+    <string name="unblock" translatable="false">ブロック解除</string>
+    <string name="container" translatable="false">コンテナ</string>
+    <string name="chatfragment" translatable="false">チャットフラグメント</string>
+    <string name="open_gallery" translatable="false">ギャラリーを開く</string>
+    <string name="images" translatable="false">画像</string>
+    <string name="files" translatable="false">ファイル</string>
+    <string name="media_size_check" translatable="false">メディアのサイズは100 MB未満である必要があります</string>
+    <string name="weeks" translatable="false">週</string>
+    <string name="months" translatable="false">月</string>
+    <string name="years" translatable="false">年</string>
+    <string name="min" translatable="false">分</string>
+    <string name="hour" translatable="false">時間</string>
+    <string name="minute" translatable="false">分</string>
+    <string name="pick_your_media_file" translatable="false">メディアファイルを選択</string>
+    <string name="use_as_default" translatable="false">デフォルトとして使用</string>
+    <string name="_default" translatable="false"> デフォルト</string>
+
+    <string-array name="select_issue">
+        <item>問題を選択</item>
+        <item>アイテム 1</item>
+        <item>アイテム 2</item>
+        <item>アイテム 3</item>
+        <item>アイテム 4</item>
+        <item>アイテム 5</item>
+    </string-array>
+    <string name="add_your_bank_account" translatable="false">銀行口座を追加</string>
+    <string name="add_new_bank_account" translatable="false">新しい銀行口座を追加</string>
+    <string name="choose_bank_with_your_account" translatable="false">口座のある銀行を選択してください。</string>
+    <string name="select_bank" translatable="false">銀行を選択</string>
+    <string name="current_account" translatable="false">当座預金口座</string>
+    <string name="savings_account" translatable="false">貯蓄口座</string>
+    <string name="select_account_type" translatable="false">口座の種類を選択</string>
+    <string name="enter_document_type" translatable="false">書類の種類を入力</string>
+    <string name="document_type" translatable="false">書類の種類</string>
+    <string name="enter_document_number" translatable="false">書類番号を入力</string>
+    <string name="document_number" translatable="false">書類番号</string>
+    <string name="enter_account_name" translatable="false">口座名義を入力</string>
+    <string name="account_name" translatable="false">口座名義</string>
+    <string name="enter_account_number" translatable="false">口座番号を入力</string>
+    <string name="account_number" translatable="false">口座番号</string>
+    <string name="my_bank_account" translatable="false">私の銀行口座</string>
+    <string name="connecting" translatable="false">接続中</string>
+    <string name="add_bank_account" translatable="false">銀行口座を追加</string>
+
+    <!-- validation texts -->
+    <string name="please_enter_account_number" translatable="false">口座番号を入力してください</string>
+    <string name="please_enter_account_name" translatable="false">口座名義を入力してください</string>
+    <string name="invalid_account_number" translatable="false">口座番号が無効です</string>
+    <string name="please_enter_document_number" translatable="false">書類番号を入力してください</string>
+    <string name="please_enter_document_type" translatable="false">書類の種類を入力してください</string>
+
+    <!-- strings for click events -->
+    <string name="cross" translatable="false">×</string>
+    <string name="audio_call" translatable="false">音声通話</string>
+    <string name="video_call" translatable="false">ビデオ通話</string>
+    <string name="connect_with_the_user_as" translatable="false">ユーザーと次のように接続</string>
+    <string name="outgoing_video" translatable="false">発信ビデオ</string>
+    <string name="outgoing_Audio" translatable="false">発信音声</string>
+    <string name="user_name" translatable="false">ユーザー名</string>
+    <string name="are_you_sure_want_to_delete_this_account" translatable="false">この口座を削除してもよろしいですか？</string>
+    <string name="filterdata" translatable="false">データをフィルター</string>
+    <string name="connection_remove_successfully" translatable="false">接続が正常に削除されました</string>
+    <string name="whatsApp" translatable="false">WhatsApp</string>
+    <string name="description" translatable="false">説明</string>
+    <string name="issue_type" translatable="false">問題の種類</string>
+    <string name="notification" translatable="false">通知</string>
+    <string name="addbank" translatable="false">銀行を追加</string>
+    <string name="openbottomsheet" translatable="false">ボトムシートを開く</string>
+    <string name="personal" translatable="false">個人</string>
+    <string name="dummy_string" translatable="false">ダミー文字列</string>
+    <string name="service_we_offer" translatable="false">提供するサービス</string>
+    <string name="wellness" translatable="false">ウェルネス</string>
+    <string name="household" translatable="false">家庭</string>
+    <string name="electronic" translatable="false">電子機器</string>
+    <string name="videophoto" translatable="false">ビデオ・写真</string>
+    <string name="showbiz" translatable="false">ショービズ</string>
+    <string name="real_estate" translatable="false">不動産</string>
+    <string name="spa_beauty" translatable="false">スパ・美容</string>
+    <string name="security" translatable="false">セキュリティ</string>
+    <string name="software" translatable="false">ソフトウェア</string>
+    <string name="legal" translatable="false">法律</string>
+    <string name="pet_service" translatable="false">ペットサービス</string>
+    <string name="travel" translatable="false">旅行</string>
+    <string name="other" translatable="false">その他</string>
+    <string name="allow_gps_location" translatable="false">サービスの位置情報を許可</string>
+    <string name="welcome_to_servivet_we_are_passionate_about_creating_meaningful_connections_and_facilitating_seamless_interactions_our_mission_is_to_provide_a_platform_that_fosters_community_encourages_collaboration_and_sparks_engaging_conversations_among_users">Servivetへようこそ！私たちは意味のあるつながりを創造し、シームレスなインタラクションを促進することに情熱を注いでいます。私たちの使命は、コミュニティを育み、コラボレーションを奨励し、ユーザー間で魅力的な会話を引き起こすプラットフォームを提供することです。</string>
+    <string name="title">タイトル</string>
+    <string name="enter_title">タイトルを入力してください</string>
+    <string name="your_feedback_or_suggestion_here">ここにフィードバックや提案を入力してください...</string>
+    <string name="_0_200">(0/200)</string>
+    <string name="email">メール</string>
+    <string name="we_are_keen_to_know_how_we_can_make_e_yugam_better_for_you_send_your_feedback_or_suggestion">E-Yugamをより良くするために、あなたのフィードバックや提案をお聞かせください</string>
+    <string name="withdraw">取り消す</string>
+    <string name="no_data_found">データが見つかりませんでした！</string>
+    <string name="delhi">デリー</string>
+
+</resources>

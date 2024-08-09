@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Servi</string>
+    <string name="servivet_require_this_permission" translatable="false">Servi necesită să permiteți această permisiune.</string>
+    <string name="google_map_key" translatable="false">AIzaSyDxvOzm-9yjdnd5L4iJrVDwk-_KbUkmN8A</string>
+    <string name="please_connect_to_the_internet" translatable="false">Vă rugăm să vă conectați la internet.\n</string>
+    <string name="hello_blank_fragment" translatable="false">Bună, fragment gol</string>
+    <string name="choose_your_preferred_language" translatable="false">Alegeți limba preferată\n</string>
+    <string name="english" translatable="false">Engleză</string>
+    <string name="hi_i_am_john_doe" translatable="false">Bună, sunt John Doe.</string>
+    <string name="swahii" translatable="false">Swahili</string>
+    <string name="habari_mimi_ni_john_doe" translatable="false">Habari, mimi ni John Doe.</string>
+    <string name="zulu" translatable="false">Zulu</string>
+    <string name="gps_enable_message" translatable="false">Trebuie să activați locația GPS</string>
+    <string name="sawubona_ngingu_john_doe" translatable="false">Sawubona, ngingu-John Doe.</string>
+    <string name="continues" translatable="false">Continuă</string>
+    <string name="skip" translatable="false">Sari</string>
+    <string name="next" translatable="false">Următor</string>
+    <string name="get_started" translatable="false">Începeți</string>
+    <string name="clientel" translatable="false">Clientelă</string>
+    <string name="business" translatable="false">Afacere</string>
+    <string name="mobile_number" translatable="false">Număr de telefon mobil</string>
+    <string name="we_will_send_you_a_confirmation_code" translatable="false">Vă vom trimite un cod de confirmare</string>
+    <string name="_123_456_7890" translatable="false">123–456-7890</string>
+    <string name="i_agree_to_terms_and_conditions_and_data_privacy_policies" translatable="false">Sunt de acord cu termenii și condițiile și politicile de confidențialitate a datelor.</string>
+    <string name="verify" translatable="false">Verifică</string>
+    <string name="please_enter_the_otp_sent_your_mobile_number" translatable="false">Vă rugăm să introduceți OTP-ul trimis pe numărul dvs. de telefon mobil.</string>
+    <string name="otp_verification" translatable="false">Verificare OTP</string>
+    <string name="resend_otp_in_30_seconds" translatable="false">Retrimiteți OTP-ul în 30 de secunde</string>
+    <string name="title_activity_home" translatable="false">Activitate Acasă</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label" translatable="false">Primul Fragment</string>
+    <string name="second_fragment_label" translatable="false">Al doilea Fragment</string>
+    <string name="previous" translatable="false">Anterior</string>
+    <string name="search_for_area_street_name_etc" translatable="false">Căutați după zonă, nume de stradă etc.</string>
+    <string name="home" translatable="false">Acasă</string>
+    <string name="chats" translatable="false">Convorbiri</string>
+    <string name="bookings" translatable="false">Rezervări</string>
+    <string name="profile" translatable="false">Profil</string>
+    <string name="noida" translatable="false">Noida</string>
+    <string name="sadarpur_sector_44_noida" translatable="false">Sadarpur, Sector-44 Noida</string>
+    <string name="search_for_service_etc" translatable="false"><![CDATA[căutați servicii și altele]]></string>
+    <string name="services" translatable="false">Servicii</string>
+    <string name="view_all" translatable="false">Vezi tot\n</string>
+    <string name="provider_view_all" translatable="false">Vezi tot furnizor</string>
+    <string name="user_view_all" translatable="false">Vezi tot utilizator</string>
+    <string name="online_now" translatable="false">Online acum</string>
+    <string name="fitness" translatable="false">Fitness</string>
+    <string name="finance" translatable="false">FINANȚE\n</string>
+    <string name="_1_km_away" translatable="false">km distanță</string>
+    <string name="dev_gupta" translatable="false">Dev Gupta</string>
+    <string name="gym" translatable="false">sală de sport</string>
+    <string name="riepneapps_technology_noida" translatable="false">riepneapps tehnologie noida</string>
+    <string name="view_details" translatable="false">Vezi Detalii</string>
+    <string name="individual" translatable="false">Individual</string>
+    <string name="individualcap" translatable="false">INDIVIDUAL</string>
+    <string name="institutional" translatable="false">Instituțional</string>
+    <string name="institutionalcap" translatable="false">INSTITUȚIONAL</string>
+    <string name="edit_profile" translatable="false">Editează Profilul</string>
+    <string name="abhishek_mehra" translatable="false">Abhishek Mehra</string>
+    <string name="about" translatable="false">Despre</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut_labore_et_dolore_magna_aliquyam_erat_sed_diam_voluptua_eos_et_accusam_et_justo_duo_dolores_et_ea_rebum_stet_clita_kasd_gubergren_no_sea_takimata_sanctus_est_lorem_ipsum_dolor_sit_amet_lorem_ipsum_dolor_sit_amet" translatable="false">Lorem ipsum dolor sit amet, consetetur tempor invidunt ut labore et est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet</string>
+    <string name="accept_the_term_and_condition" translatable="false">Acceptă termenii și condițiile\n</string>
+    <string name="accept_the_privacy_policy" translatable="false">Acceptă politica de confidențialitate</string>
+    <string name="term_and_condition" translatable="false">Termeni și condiții</string>
+    <string name="privacy_policy" translatable="false">Confidențialitatea datelor</string>
+    <string name="terms_conditions" translatable="false"><![CDATA[Termeni și condiții]]></string>
+    <string name="last_updated_on_23_may_2023" translatable="false">Ultima actualizare pe 23 mai 2023</string>
+    <string name="reject" translatable="false">Respingere</string>
+    <string name="accept" translatable="false">Acceptă</string>
+    <string name="my_connections" translatable="false">Conexiunile mele</string>
+    <string name="name" translatable="false">Nume</string>
+    <string name="enter_name" translatable="false">Introduceti numele</string>
+    <string name="_91_1234567890" translatable="false">+91 1234567890</string>
+    <string name="email_address" translatable="false">Adresă de email</string>
+    <string name="_0_150" translatable="false">(0/150)</string>
+    <string name="_150_150" translatable="false">(150/150)\n</string>
+    <string name="write_here" translatable="false">scrieți aici</string>
+    <string name="update" translatable="false">Actualizează</string>
+    <string name="change_cover" translatable="false">Schimbă coperta</string>
+    <string name="business_n_verification" translatable="false">Verificare afacere\n</string>
+    <string name="select_your_business_type" translatable="false">Selectați tipul de afacere</string>
+    <string name="full_name" translatable="false">Nume complet</string>
+    <string name="enter_full_name" translatable="false">Introduceți numele complet</string>
+    <string name="using_gps" translatable="false">Folosind GPS</string>
+    <string name="current_location" translatable="false">Locație curentă</string>
+    <string name="enter_location_manually" translatable="false">Introduceți locația manual</string>
+    <string name="or" translatable="false">sau</string>
+    <string name="want_to_earn_money" translatable="false">Vrei să câștigi bani?</string>
+    <string name="add_the_service_which_you_are_expert_in" translatable="false">Adaugă serviciul în care ești expert</string>
+    <string name="add_service" translatable="false">+ Adaugă serviciu</string>
+    <string name="near_by" translatable="false">În apropiere</string>
+    <string name="add_service_" translatable="false">Adaugă serviciu</string>
+    <string name="service_mode" translatable="false">Mod de serviciu</string>
+    <string name="at_centre" translatable="false">La centru</string>
+    <string name="at_home" translatable="false">Acasă</string>
+    <string name="category" translatable="false">Categorie</string>
+    <string name="sub_category" translatable="false">Subcategorie</string>
+    <string name="yoga" translatable="false">Yoga</string>
+    <string name="about_service" translatable="false">Despre serviciu</string>
+    <string name="photos" translatable="false">Fotografii</string>
+    <string name="add_image" translatable="false">+ Adaugă imagine</string>
+    <string name="add" translatable="false">Adaugă</string>
+    <string name="availability" translatable="false">Disponibilitate</string>
+    <string name="select_session" translatable="false">Selectează sesiune</string>
+    <string name="add_hours" translatable="false">+ Adaugă ore</string>
+    <string name="start_time" translatable="false">Ora de început</string>
+    <string name="end_time" translatable="false">Ora de final</string>
+    <string name="mon" translatable="false">Lun</string>
+    <string name="enter_price" translatable="false">Introduceti prețul</string>
+    <string name="price_at_centre" translatable="false">Preț (La centru)</string>
+    <string name="camera" translatable="false">Cameră</string>
+    <string name="gallery" translatable="false">Galerie</string>
+    <string name="price" translatable="false">Preț</string>
+    <string name="my_services" translatable="false">Serviciile mele</string>
+    <string name="business_name" translatable="false">Numele afacerii</string>
+    <string name="the_electronic_hub" translatable="false">Centrul Electronic</string>
+    <string name="edit" translatable="false">Editează</string>
+    <string name="please_enter_a_valid_e_mail" translatable="false">Vă rugăm să introduceți o adresă de email validă\n</string>
+    <string name="enter_email_address" translatable="false">Introduceți adresa de email</string>
+    <string name="address" translatable="false">Adresă</string>
+    <string name="a_block_sector_63_noida" translatable="false">Bl. A, Sector 63, Noida</string>
+    <string name="under_development" translatable="false">În dezvoltare</string>
+    <string name="resend_otp_in" translatable="false">Retrimiteți OTP-ul în</string>
+    <string name="are_you_logout" translatable="false">Sunteți sigur că doriți să ieșiți?</string>
+    <string name="log_out" translatable="false">Deconectare</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_centre_mode" translatable="false">Ora de început nu trebuie să fie mai mare decât ora de final pentru modul centru.</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_home_mode" translatable="false">Ora de început nu trebuie să fie mai mare decât ora de final pentru modul acasă.</string>
+    <string name="please_enter_the_price_for_the_centre_service_mode" translatable="false">Vă rugăm să introduceți prețul pentru modul serviciu la centru.</string>
+    <string name="please_enter_the_price_for_the_home_service_mode" translatable="false">Vă rugăm să introduceți prețul pentru modul serviciu acasă.</string>
+    <string name="please_select_a_service_model" translatable="false">Vă rugăm să selectați un model de serviciu.</string>
+    <string name="please_select_the_category" translatable="false">Vă rugăm să selectați categoria.</string>
+    <string name="please_select_at_one_image" translatable="false">Vă rugăm să selectați cel puțin o imagine.</string>
+    <string name="images_must_be_less_than_five" translatable="false">Imaginile trebuie să fie cinci sau mai puțin de cinci.</string>
+    <string name="please_select_sub_category" translatable="false">Vă rugăm să selectați subcategoria.</string>
+    <string name="select_sub_category" translatable="false">Selectați subcategorie</string>
+    <string name="select_session_should_not_be_empty_for_the_center_service_mode" translatable="false">Selectați sesiunea, care nu trebuie să fie goală pentru modul de serviciu la centru.</string>
+    <string name="select_session_should_not_be_empty_for_the_home_service_mode" translatable="false">Selectați sesiunea, care nu trebuie să fie goală pentru modul de serviciu acasă.</string>
+    <string name="details" translatable="false">Detalii</string>
+    <string name="_1_km" translatable="false">1 km</string>
+    <string name="away" translatable="false">distanță</string>
+    <string name="prateek_mehta" translatable="false">Prateek Mehta</string>
+    <string name="media" translatable="false">Media</string>
+    <string name="_1499_2999" translatable="false">1499 - 2999</string>
+    <string name="book_now" translatable="false">Rezervă acum</string>
+    <string name="my_booking" translatable="false">Rezervările mele</string>
+    <string name="booking_id" translatable="false">ID Rezervare</string>
+    <string name="booking_id_num" translatable="false">#262638</string>
+    <string name="by_prateek_mehta" translatable="false">de Prateek Mehta</string>
+    <string name="tuesday_21_oct_11_00_am" translatable="false">Marți, 21 Oct, 11:00 AM</string>
+    <string name="complete_profile" translatable="false">Completează Profilul</string>
+    <string name="enter_your_information_below" translatable="false">Introduceți informațiile dvs. mai jos</string>
+    <string name="edit_service" translatable="false">Editează serviciul</string>
+    <string name="message" translatable="false">Mesaj</string>
+    <string name="upcoming" translatable="false">Viitor</string>
+    <string name="completed" translatable="false">Finalizat</string>
+    <string name="cancelled" translatable="false">Anulat</string>
+    <string name="_1799" translatable="false">1799</string>
+    <string name="_1499" translatable="false">1499</string>
+    <string name="reschedule" translatable="false">Reprogramare</string>
+    <string name="cancel" translatable="false">Anulează</string>
+    <string name="ok" translatable="false">Ok</string>
+    <string name="rate_us" translatable="false">Evaluează-ne</string>
+    <string name="date_time" translatable="false"><![CDATA[Dată și Oră]]></string>
+    <string name="payment_info" translatable="false">Informații de plată</string>
+    <string name="subtotal" translatable="false">Subtotal</string>
+    <string name="gst_18" translatable="false">GST (18%)</string>
+    <string name="total" translatable="false">Total</string>
+    <string name="personal_document" translatable="false">Document personal</string>
+    <string name="business_document" translatable="false">Document de afaceri</string>
+    <string name="_25" translatable="false">25</string>
+    <string name="_1524" translatable="false">1524</string>
+    <string name="booking_details" translatable="false">Detalii rezervare</string>
+    <string name="location" translatable="false">Locație</string>
+    <string name="a_199_sector_63_noida" translatable="false">A-199, Sector-63, Noida</string>
+    <string name="mark_as_completed" translatable="false">Marchează ca finalizat</string>
+    <string name="ac_repair" translatable="false">Reparație AC</string>
+    <string name="review" translatable="false">Recenzie</string>
+    <string name="give_a_feedback" translatable="false">Oferă un feedback...</string>
+    <string name="do_this_later" translatable="false">Fă asta mai târziu</string>
+    <string name="submit" translatable="false">Trimite</string>
+    <string name="today" translatable="false">Astăzi</string>
+    <string name="hello_abhishek_how_are_you" translatable="false">Salut Abhishek, Ce mai faci?</string>
+    <string name="saad_rahman" translatable="false">Saad Rahman</string>
+    <string name="no_chats_found" translatable="false">Nicio conversație găsită!</string>
+    <string name="start_new_chat" translatable="false">Începe o conversație nouă</string>
+    <string name="amount_paid" translatable="false">Sumă plătită</string>
+    <string name="book_again" translatable="false">Rezervă din nou</string>
+    <string name="_1420" translatable="false">1420</string>
+    <string name="payment_mode" translatable="false">Mod de plată</string>
+    <string name="reason_for_cancellation" translatable="false">Motivul anulării</string>
+    <string name="provider_is_not_available_at_this_time" translatable="false">Furnizorul nu este disponibil în acest moment.</string>
+    <string name="credit_card" translatable="false">Card de credit</string>
+    <string name="refund_status" translatable="false">Stare rambursare</string>
+    <string name="refund_initiated_you_will_receive_your_n_amount_in_48_hours" translatable="false">Rambursarea a fost inițiată. Vei primi suma în 48 de ore.</string>
+    <string name="save" translatable="false">Salvează</string>
+    <string name="a_192_sector_44_noida" translatable="false">A-192, Sector-44, Noida</string>
+    <string name="save_this_address_for_future_services" translatable="false">Salvează această adresă pentru servicii viitoare.</string>
+    <string name="booking_summary" translatable="false">Rezumat rezervare</string>
+    <string name="change" translatable="false">Schimbă</string>
+    <string name="june_2023" translatable="false">Iunie 2023</string>
+    <string name="_4_5" translatable="false">4.5</string>
+    <string name="proceed" translatable="false">Continuă</string>
+    <string name="add_address" translatable="false">Adaugă adresă</string>
+    <string name="days" translatable="false">Zile</string>
+    <string name="_16" translatable="false">16</string>
+    <string name="time" translatable="false">Timp</string>
+    <string name="alert" translatable="false">Avertisment</string>
+
+    <string-array name="select_category">
+        <item>Selectați Categoria</item>
+        <item>Finanțe</item>
+        <item>Electronics</item>
+        <item>Fitness</item>
+    </string-array>
+
+    <string-array name="select_sub_category">
+        <item>Selectați Subcategorie</item>
+        <item>Item 1</item>
+        <item>Item 2</item>
+        <item>Item 3</item>
+        <item>Item 4</item>
+    </string-array>
+    <string name="prompt_email" translatable="false">Email</string>
+    <string name="prompt_password" translatable="false">Parolă</string>
+    <string name="action_sign_in" translatable="false">Autentificare sau înregistrare</string>
+    <string name="action_sign_in_short" translatable="false">Autentificare</string>
+    <string name="welcome" translatable="false">"Bun venit!"</string>
+    <string name="invalid_username" translatable="false">Nume de utilizator invalid</string>
+    <string name="invalid_password" translatable="false">Parola trebuie să fie mai mare de 5 caractere</string>
+    <string name="login_failed" translatable="false">"Autentificare eșuată"</string>
+    <string name="if_cancellation_done_after_24_hours_of_booking_date_you_will_get_refund" translatable="false">Dacă anularea se face după 24 de ore de la data rezervării, vei primi o rambursare.</string>
+    <string name="service_provider_is_not_available_and_has_requested_to_cancel" translatable="false">Furnizorul de servicii nu este disponibil și a solicitat anularea</string>
+    <string name="i_found_this_service_at_a_cheaper_price" translatable="false">Am găsit acest serviciu la un preț mai mic</string>
+    <string name="i_don_t_need_this_service_now" translatable="false">Nu am nevoie de acest serviciu acum</string>
+    <string name="i_am_unavailable_at_the_scheduled_time" translatable="false">Nu sunt disponibil la ora programată</string>
+    <string name="_262638" translatable="false">#262638</string>
+    <string name="your_booking_has_been_cancelled" translatable="false">Rezervarea ta a fost anulată.</string>
+    <string name="please_track_status_of_refund_under_my_bookings_cancelled" translatable="false"><![CDATA[Te rugăm să urmărești starea rambursării sub \'Rezervările Mele->Anulate]]></string>
+    <string name="go_to_my_bookings" translatable="false">Mergi la Rezervările Mele</string>
+    <string name="payment" translatable="false">Plată</string>
+    <string name="service_details" translatable="false">Detalii Serviciu</string>
+    <string name="_21_jun_2023_11_00am" translatable="false">21 Iun 2023, 11:00AM</string>
+    <string name="abhishek_mehra_a_192_sector_44_noida" translatable="false">Abhishek Mehra | A-192, Sector-44, Noida</string>
+    <string name="apply_coupon" translatable="false">Aplică Coupon</string>
+    <string name="tax" translatable="false">Taxă</string>
+    <string name="payable_amount" translatable="false">Sumă de Plătit</string>
+    <string name="pay_now" translatable="false">Plătește acum</string>
+    <string name="code" translatable="false">Cod</string>
+    <string name="applied" translatable="false">Aplicat</string>
+    <string name="coupons" translatable="false">Cupone</string>
+    <string name="enter_promocode" translatable="false">Introduceți codul promoțional</string>
+    <string name="apply" translatable="false">Aplică</string>
+    <string name="available_coupons" translatable="false">Cuponuri Disponibile</string>
+    <string name="sbi100" translatable="false">SBI100</string>
+    <string name="state_bank_of_india" translatable="false">Banca de Stat a Indiei</string>
+    <string name="cashback_up_to_usd_10_on_the_item_total_above_1100" translatable="false">Rambursare de până la USD 10 pentru totalul articolelor de peste \n1100</string>
+    <string name="saved_addresses" translatable="false">Adrese Salvate</string>
+    <string name="a_192_sector_44_noida_201301" translatable="false">A-192, Sector-44, Noida, 201301</string>
+    <string name="_91_989_123_4567" translatable="false">+91 989 123 4567</string>
+    <string name="add_new_address" translatable="false">Adaugă o NouăAdresă</string>
+    <string name="chat_requests" translatable="false">Solicitări de Chat</string>
+    <string name="no_chat_requests_found" translatable="false">Nicio Solicitate de Chat Găsită!</string>
+    <string name="see_your_chats" translatable="false">Vezi conversațiile tale</string>
+    <string name="decline" translatable="false">Refuză</string>
+    <string name="kuldeep_srivastava" translatable="false">Kuldeep Srivastava</string>
+    <string name="connect" translatable="false">Conectează-te</string>
+    <string name="call" translatable="false">Sună</string>
+    <string name="whatsapp" translatable="false">WhatsApp</string>
+    <string name="share" translatable="false">Partajează</string>
+    <string name="services_we_offer" translatable="false">Serviciile pe care le oferim</string>
+    <string name="settings" translatable="false">Setări</string>
+    <string name="switch_to_business" translatable="false">Comută pe Afacere</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut" translatable="false">Lorem ipsum dolor sit amet,\nconsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</string>
+    <string name="push_notifications" translatable="false">Notificări Push</string>
+    <string name="account_settings" translatable="false">Setări Cont</string>
+    <string name="my_wallet" translatable="false">Portofelul Meu</string>
+    <string name="wallet" translatable="false">portofel</string>
+    <string name="paymentGateway" translatable="false">paymentGateway</string>
+    <string name="walletWithPg" translatable="false">walletWithPg</string>
+    <string name="about_us" translatable="false">Despre noi</string>
+    <string name="distance" translatable="false">Distanță</string>
+    <string name="change_language" translatable="false">Schimbă Limba</string>
+    <string name="faq_s" translatable="false">Întrebări Frecvente</string>
+    <string name="contact_us" translatable="false">Contactează-ne</string>
+    <string name="data_privacy" translatable="false">Confidențialitatea Datelor</string>
+    <string name="terms_and_conditions" translatable="false">Termeni și Condiții</string>
+    <string name="delete_account" translatable="false">Șterge Contul</string>
+    <string name="your_available_balance" translatable="false">Soldul Tău Disponibil</string>
+    <string name="deactivate" translatable="false">Dezactivează</string>
+    <string name="send_money" translatable="false">Trimite Bani</string>
+    <string name="transactions" translatable="false">Tranzacții</string>
+    <string name="_200" translatable="false">₹200</string>
+    <string name="_123456789" translatable="false">123456789</string>
+    <string name="please_allow_location_permission_to_move_ahead" translatable="false">Te rugăm să permiți permisiunea de locație pentru a continua.</string>
+    <string name="connections_requests" translatable="false">Solicitări de Conectare</string>
+    <string name="accept_or_decline_requests" translatable="false">Acceptă sau Refuză Solicitările</string>
+    <string name="are_you_sure_you_want_to_logout" translatable="false">Ești sigur că vrei să te deconectezi?</string>
+    <string name="no" translatable="false">Nu</string>
+    <string name="yes" translatable="false">Da</string>
+    <string name="log_out_successfully" translatable="false">Deconectare reușită!</string>
+    <string name="remove" translatable="false">Elimină</string>
+    <string name="surya_mouly" translatable="false">Surya Mouly</string>
+    <string name="_100" translatable="false">100</string>
+    <string name="individual_business" translatable="false">Afacere Individuală</string>
+    <string name="rating_raviews" translatable="false"><![CDATA[Rating & Recenzii]]></string>
+    <string name="report" translatable="false">Raportează</string>
+    <string name="promocode_discount" translatable="false">Reducere cu Cod Promoțional</string>
+    <string name="sorry_this_time_slot_is_not_available" translatable="false">Ne pare rău, acest interval orar nu este disponibil</string>
+    <string name="_10_30_am" translatable="false">10:30 AM</string>
+    <string name="ravi_bishnoi_sent_you_a_connections_request" translatable="false">ți-a trimis o solicitare de conexiune</string>
+    <string name="ravi_bishnoi" translatable="false">Ravi Bishnoi.</string>
+    <string name="your_available_balance_insufficient_balance" translatable="false">Soldul Tău Disponibil</string>
+    <string name="insufficient_balance" translatable="false">(Sold Insuficient)</string>
+    <string name="add_money" translatable="false">Adaugă Bani</string>
+    <string name="pay_1548" translatable="false">Plătește ₹ 1548</string>
+    <string name="are_you_sure_you_want_to_conform" translatable="false">Ești sigur că vrei să confirmi?</string>
+    <string name="calendar" translatable="false">calendar</string>
+    <string name="slot" translatable="false">interval orar</string>
+    <string name="at_center" translatable="false">La Centru</string>
+    <string name="aman" translatable="false">Aman</string>
+    <string name="set_location" translatable="false">Setează Locația</string>
+    <string name="house_flat_office_no" translatable="false">Număr Casă/Etaj/Birou*</string>
+    <string name="road_name_area_colony" translatable="false">Nume Stradă/ Zone / Colonie*</string>
+    <string name="pincode" translatable="false">Cod Poștal*</string>
+    <string name="confirm_location" translatable="false">Confirmă Locația</string>
+    <string name="sold" translatable="false">Sold</string>
+    <string name="sold_small" translatable="false">sold</string>
+    <string name="bought" translatable="false">Achiziționat</string>
+    <string name="search_location" translatable="false">Caută Locația</string>
+    <string name="location_is_not_avialable" translatable="false">Locația nu este disponibilă.</string>
+    <string name="request" translatable="false">Solicitare</string>
+    <string name="atcenter" translatable="false">la Centru</string>
+    <string name="athome" translatable="false">acasă</string>
+    <string name="confirm" translatable="false">confirmă</string>
+    <string name="booking" translatable="false">rezervare</string>
+    <string name="pay" translatable="false">Plătește ₹</string>
+    <string name="pending" translatable="false">În Așteptare</string>
+    <string name="paymeturl" translatable="false">paymetUrl</string>
+    <string name="cancel_booking" translatable="false">Anulează Rezervarea</string>
+    <string name="bookinglist" translatable="false">listaRezervărilor</string>
+    <string name="booked_by" translatable="false">Rezervat de</string>
+    <string name="bought_small" translatable="false">achiziționat</string>
+    <string name="r" translatable="false"></string>
+    <string name="close_service" translatable="false">Închide Serviciul</string>
+    <string name="start_date" translatable="false">Data Începerii</string>
+    <string name="end_date" translatable="false">Data Sfârșitului</string>
+    <string name="close" translatable="false">Închide</string>
+    <string name="start_service" translatable="false">Începe Serviciul</string>
+    <string name="leave" translatable="false">părăsește</string>
+    <string name="not_cancelable" translatable="false">Nu Poate Fi Anulat</string>
+    <string name="back_to_original_payment_source" translatable="false">Înapoi la sursa originală de plată</string>
+    <string name="refund_in_wallet" translatable="false">Rambursare în Portofel</string>
+    <string name="promocode" translatable="false">Cod Promoțional</string>
+    <string name="closeservice" translatable="false">închideServiciul</string>
+    <string name="before_date_text" translatable="false">Ești sigur că vrei să închizi serviciul? Dacă închizi serviciul, toate rezervările de</string>
+    <string name="to" translatable="false">la</string>
+    <string name="after_date_text" translatable="false">vor fi anulate automat</string>
+    <string name="image" translatable="false">imagine</string>
+    <string name="videos" translatable="false">video</string>
+    <string name="servicedetails" translatable="false">detaliiServiciu</string>
+    <string name="openmedia" translatable="false">deschideMedia</string>
+    <string name="back_press" translatable="false">Atingere Înapoi</string>
+    <string name="goBack" translatable="false">înapoi</string>
+    <string name="goForeword" translatable="false">înaintare</string>
+    <string name="home_fr" translatable="false">Acasă_FR</string>
+    <string name="onlinefr" translatable="false">OnlineFR</string>
+    <string name="back" translatable="false">Înapoi</string>
+    <string name="provider_profile" translatable="false">profilFurnizor</string>
+    <string name="profile_fr" translatable="false">profil_Fr</string>
+    <string name="add_video" translatable="false">+ Adaugă Video</string>
+    <string name="logout" translatable="false">deconectare</string>
+    <string name="join_call" translatable="false">alătură-teApelului</string>
+    <string name="leave_call" translatable="false">părăseșteApelul</string>
+    <string name="mute_call" translatable="false">opreșteSunetulApelului</string>
+    <string name="connected" translatable="false">Conectat</string>
+    <string name="callended" translatable="false">apelFinalizat</string>
+    <string name="pop_up" translatable="false">popup</string>
+    <string name="block" translatable="false">Blochează</string>
+    <string name="delete_chat" translatable="false">Șterge Chat-ul</string>
+    <string name="unblock" translatable="false">Deblochează</string>
+    <string name="container" translatable="false">container</string>
+    <string name="chatfragment" translatable="false">fragmentChat</string>
+    <string name="open_gallery" translatable="false">deschideGaleria</string>
+    <string name="images" translatable="false">Imagini</string>
+    <string name="files" translatable="false">Fișiere</string>
+    <string name="media_size_check" translatable="false">Dimensiunea Media trebuie să fie mai mică de 100 MB</string>
+    <string name="weeks" translatable="false">săptămâni</string>
+    <string name="months" translatable="false">luni</string>
+    <string name="years" translatable="false">ani</string>
+    <string name="min" translatable="false">min</string>
+    <string name="hour" translatable="false">oră</string>
+    <string name="minute" translatable="false">minut</string>
+    <string name="pick_your_media_file" translatable="false">Alege Fișierul Tău Media</string>
+    <string name="use_as_default" translatable="false">Folosește ca Implicit</string>
+    <string name="_default" translatable="false"> Implicit</string>
+
+    <string-array name="select_issue">
+        <item>Selectează Problema</item>
+        <item>Articol 1</item>
+        <item>Articol 2</item>
+        <item>Articol 3</item>
+        <item>Articol 4</item>
+        <item>Articol 5</item>
+    </string-array>
+    <string name="add_your_bank_account" translatable="false">Adaugă Contul Tău Bancar</string>
+    <string name="add_new_bank_account" translatable="false">Adaugă Un Nou Cont Bancar</string>
+    <string name="choose_bank_with_your_account" translatable="false">Alege banca cu contul tău.</string>
+    <string name="select_bank" translatable="false">Selectează Banca</string>
+    <string name="current_account" translatable="false">Cont Curent</string>
+    <string name="savings_account" translatable="false">Cont de Economii</string>
+    <string name="select_account_type" translatable="false">Selectează Tipul Contului</string>
+    <string name="enter_document_type" translatable="false">Introdu Tipul Documentului</string>
+    <string name="document_type" translatable="false">Tipul Documentului</string>
+    <string name="enter_document_number" translatable="false">Introdu Numărul Documentului</string>
+    <string name="document_number" translatable="false">Numărul Documentului</string>
+    <string name="enter_account_name" translatable="false">Introdu Numele Contului</string>
+    <string name="account_name" translatable="false">Numele Contului</string>
+    <string name="enter_account_number" translatable="false">Introdu Numărul Contului</string>
+    <string name="account_number" translatable="false">Numărul Contului</string>
+    <string name="my_bank_account" translatable="false">Contul Meu Bancar</string>
+    <string name="connecting" translatable="false">Conectare</string>
+    <string name="add_bank_account" translatable="false">Adaugă Cont Bancar</string>
+
+    <!--validation Texts-->
+    <string name="please_enter_account_number" translatable="false">Te rugăm să introduci numărul contului</string>
+    <string name="please_enter_account_name" translatable="false">Te rugăm să introduci numele contului</string>
+    <string name="invalid_account_number" translatable="false">Numărul contului este invalid</string>
+    <string name="please_enter_document_number" translatable="false">Te rugăm să introduci numărul documentului</string>
+    <string name="please_enter_document_type" translatable="false">Te rugăm să introduci tipul documentului</string>
+
+    <!--String files for click events-->
+    <string name="cross" translatable="false">X</string>
+    <string name="audio_call" translatable="false">Apel Audio</string>
+    <string name="video_call" translatable="false">Apel Video</string>
+    <string name="connect_with_the_user_as" translatable="false">Conectează-te cu utilizatorul ca</string>
+    <string name="outgoing_video" translatable="false">videoIesire</string>
+    <string name="outgoing_Audio" translatable="false">audioIesire</string>
+    <string name="user_name" translatable="false">nume_utilizator</string>
+    <string name="are_you_sure_want_to_delete_this_account" translatable="false">Ești sigur că vrei să ștergi acest cont?</string>
+    <string name="filterdata" translatable="false">dateFiltru</string>
+    <string name="connection_remove_successfully" translatable="false">Conexiune Ștearsă Cu Succes</string>
+    <string name="whatsApp" translatable="false">WhatsApp</string>
+    <string name="description" translatable="false">Descriere</string>
+    <string name="issue_type" translatable="false">Tipul Problemei</string>
+    <string name="notification" translatable="false">Notificare</string>
+    <string name="addbank" translatable="false">adaugăBancă</string>
+    <string name="openbottomsheet" translatable="false">deschideBottomSheet</string>
+    <string name="personal" translatable="false">personal</string>
+    <string name="dummy_string" translatable="false">Șir Dummy</string>
+    <string name="service_we_offer" translatable="false">Serviciul Pe Care Îl Oferim</string>
+    <string name="wellness" translatable="false">Wellness</string>
+    <string name="household" translatable="false">Casnic</string>
+    <string name="electronic" translatable="false">Electronic</string>
+    <string name="videophoto" translatable="false">VideoFoto</string>
+    <string name="showbiz" translatable="false">Showbiz</string>
+    <string name="real_estate" translatable="false">Imobiliare</string>
+    <string name="spa_beauty" translatable="false">Spa-Beauty</string>
+    <string name="security" translatable="false">Securitate</string>
+    <string name="software" translatable="false">Software</string>
+    <string name="legal" translatable="false">Legal</string>
+    <string name="pet_service" translatable="false">Servicii pentru Pești</string>
+    <string name="travel" translatable="false">Călătorie</string>
+    <string name="other" translatable="false">Altceva</string>
+    <string name="allow_gps_location" translatable="false">Permite locația GPS</string>
+    <string name="welcome_to_servivet_we_are_passionate_about_creating_meaningful_connections_and_facilitating_seamless_interactions_our_mission_is_to_provide_a_platform_that_fosters_community_encourages_collaboration_and_sparks_engaging_conversations_among_users">Bine ați venit la Servivet! Suntem pasionați de crearea de conexiuni semnificative și de facilitarea interacțiunilor fără probleme. Misiunea noastră este să oferim o platformă care promovează comunitatea, încurajează colaborarea și stârnește conversații captivante între utilizatori.</string>
+    <string name="title">Titlu</string>
+    <string name="enter_title">Introduceti titlul</string>
+    <string name="your_feedback_or_suggestion_here">Feedback-ul sau sugestia dumneavoastră aici...</string>
+    <string name="_0_200">(0/200)</string>
+    <string name="email">Email</string>
+    <string name="we_are_keen_to_know_how_we_can_make_e_yugam_better_for_you_send_your_feedback_or_suggestion">Suntem dornici să știm cum putem îmbunătăți E-Yugam pentru dumneavoastră. Trimiteți-ne feedback-ul sau sugestia dumneavoastră</string>
+    <string name="withdraw">Retrageți</string>
+    <string name="no_data_found">Niciun dată găsită!</string>
+    <string name="delhi">Delhi</string>
+
+</resources>

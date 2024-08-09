@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Servi</string>
+    <string name="servivet_require_this_permission" translatable="false">Servi bu izni vermenizi gerektirir.</string>
+    <string name="google_map_key" translatable="false">AIzaSyDxvOzm-9yjdnd5L4iJrVDwk-_KbUkmN8A</string>
+    <string name="please_connect_to_the_internet" translatable="false">Lütfen İnternete Bağlanın.\n</string>
+    <string name="hello_blank_fragment" translatable="false">Merhaba boş parça</string>
+    <string name="choose_your_preferred_language" translatable="false">Tercih Ettiğiniz Dili Seçin</string>
+    <string name="english" translatable="false">İngilizce</string>
+    <string name="hi_i_am_john_doe" translatable="false">Merhaba, ben John Doe.</string>
+    <string name="swahii" translatable="false">Svahili</string>
+    <string name="habari_mimi_ni_john_doe" translatable="false">Habari, mimi ni John Doe.</string>
+    <string name="zulu" translatable="false">Zulu</string>
+    <string name="gps_enable_message" translatable="false">GPS Konumunu Açmalısınız</string>
+    <string name="sawubona_ngingu_john_doe" translatable="false">Sawubona, ngingu-John Doe.</string>
+    <string name="continues" translatable="false">Devam Et</string>
+    <string name="skip" translatable="false">Atla</string>
+    <string name="next" translatable="false">Sonraki</string>
+    <string name="get_started" translatable="false">Başlayın</string>
+    <string name="clientel" translatable="false">Müşteri</string>
+    <string name="business" translatable="false">İşletme</string>
+    <string name="mobile_number" translatable="false">Cep telefonu numarası</string>
+    <string name="we_will_send_you_a_confirmation_code" translatable="false">Size bir doğrulama kodu göndereceğiz</string>
+    <string name="_123_456_7890" translatable="false">123–456-7890</string>
+    <string name="i_agree_to_terms_and_conditions_and_data_privacy_policies" translatable="false">Şartlar ve Koşulları ve Veri Gizliliği politikalarını kabul ediyorum.</string>
+    <string name="verify" translatable="false">Doğrula</string>
+    <string name="please_enter_the_otp_sent_your_mobile_number" translatable="false">Lütfen cep telefonunuza gönderilen OTP\'yi girin.</string>
+    <string name="otp_verification" translatable="false">OTP Doğrulaması</string>
+    <string name="resend_otp_in_30_seconds" translatable="false">30 Saniye içinde OTP\'yi Yeniden Gönder</string>
+    <string name="title_activity_home" translatable="false">Ana Sayfa Aktivitesi</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label" translatable="false">İlk Parça</string>
+    <string name="second_fragment_label" translatable="false">İkinci Parça</string>
+    <string name="previous" translatable="false">Önceki</string>
+    <string name="search_for_area_street_name_etc" translatable="false">Bölge, cadde adı vb. arayın...</string>
+    <string name="home" translatable="false">Ana Sayfa</string>
+    <string name="chats" translatable="false">Sohbetler</string>
+    <string name="bookings" translatable="false">Rezervasyonlar</string>
+    <string name="profile" translatable="false">Profil</string>
+    <string name="noida" translatable="false">Noida</string>
+    <string name="sadarpur_sector_44_noida" translatable="false">Sadarpur, Sector-44 Noida</string>
+    <string name="search_for_service_etc" translatable="false"><![CDATA[Hizmet & vb. arayın]]></string>
+    <string name="services" translatable="false">Hizmetler</string>
+    <string name="view_all" translatable="false">Hepsini Gör\n</string>
+    <string name="provider_view_all" translatable="false">Sağlayıcı Hepsini Gör</string>
+    <string name="user_view_all" translatable="false">Kullanıcı Hepsini Gör</string>
+    <string name="online_now" translatable="false">Şu anda çevrimiçi</string>
+    <string name="fitness" translatable="false">Fitness</string>
+    <string name="finance" translatable="false">FINANS\n</string>
+    <string name="_1_km_away" translatable="false">km uzaklıkta</string>
+    <string name="dev_gupta" translatable="false">Dev Gupta</string>
+    <string name="gym" translatable="false">spor salonu</string>
+    <string name="riepneapps_technology_noida" translatable="false">Riepneapps Teknoloji Noida</string>
+    <string name="view_details" translatable="false">Detayları Gör</string>
+    <string name="individual" translatable="false">Bireysel</string>
+    <string name="individualcap" translatable="false">BİREYSEL</string>
+    <string name="institutional" translatable="false">Kurumsal</string>
+    <string name="institutionalcap" translatable="false">KURUMSAL</string>
+    <string name="edit_profile" translatable="false">Profili Düzenle</string>
+    <string name="abhishek_mehra" translatable="false">Abhishek Mehra</string>
+    <string name="about" translatable="false">Hakkında</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut_labore_et_dolore_magna_aliquyam_erat_sed_diam_voluptua_eos_et_accusam_et_justo_duo_dolores_et_ea_rebum_stet_clita_kasd_gubergren_no_sea_takimata_sanctus_est_lorem_ipsum_dolor_sit_amet_lorem_ipsum_dolor_sit_amet" translatable="false">Lorem ipsum dolor sit amet, consetetur tempor invidunt ut labore et  est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet</string>
+    <string name="accept_the_term_and_condition" translatable="false">Şartları ve Koşulları Kabul Ediyorum\n</string>
+    <string name="accept_the_privacy_policy" translatable="false">Gizlilik Politikasını Kabul Ediyorum</string>
+    <string name="term_and_condition" translatable="false">Şartlar ve Koşullar</string>
+    <string name="privacy_policy" translatable="false">Veri Gizliliği</string>
+    <string name="terms_conditions" translatable="false"><![CDATA[Şartlar & Koşullar]]></string>
+    <string name="last_updated_on_23_may_2023" translatable="false">Son güncelleme 23 Mayıs 2023</string>
+    <string name="reject" translatable="false">Reddet</string>
+    <string name="accept" translatable="false">Kabul Et</string>
+    <string name="my_connections" translatable="false">Bağlantılarım</string>
+    <string name="name" translatable="false">İsim</string>
+    <string name="enter_name" translatable="false">İsim girin</string>
+    <string name="_91_1234567890" translatable="false">+91 1234567890</string>
+    <string name="email_address" translatable="false">E-posta Adresi</string>
+    <string name="_0_150" translatable="false">(0/150)</string>
+    <string name="_150_150" translatable="false">(150/150)\n</string>
+    <string name="write_here" translatable="false">buraya yazın</string>
+    <string name="update" translatable="false">Güncelle</string>
+    <string name="change_cover" translatable="false">Kapak Fotoğrafını Değiştir</string>
+    <string name="business_n_verification" translatable="false">İşletme \nDoğrulama</string>
+    <string name="select_your_business_type" translatable="false">İşletme türünüzü seçin</string>
+    <string name="full_name" translatable="false">Tam ad</string>
+    <string name="enter_full_name" translatable="false">Tam adınızı girin</string>
+    <string name="using_gps" translatable="false">GPS Kullanımı</string>
+    <string name="current_location" translatable="false">Mevcut Konum</string>
+    <string name="enter_location_manually" translatable="false">Konumu Manuel Olarak Girin</string>
+    <string name="or" translatable="false">veya</string>
+    <string name="want_to_earn_money" translatable="false">Para Kazanmak mı İstiyorsunuz?</string>
+    <string name="add_the_service_which_you_are_expert_in" translatable="false">Uzman olduğunuz hizmeti ekleyin</string>
+    <string name="add_service" translatable="false">+ Hizmet Ekle</string>
+    <string name="near_by" translatable="false">Yakınlarda</string>
+    <string name="add_service_" translatable="false">Hizmet Ekle</string>
+    <string name="service_mode" translatable="false">Hizmet Modu</string>
+    <string name="at_centre" translatable="false">Merkezde</string>
+    <string name="at_home" translatable="false">Evde</string>
+    <string name="category" translatable="false">Kategori</string>
+    <string name="sub_category" translatable="false">Alt kategori</string>
+    <string name="yoga" translatable="false">Yoga</string>
+    <string name="about_service" translatable="false">Hizmet Hakkında</string>
+    <string name="photos" translatable="false">Fotoğraflar</string>
+    <string name="add_image" translatable="false">+ Görüntü Ekle</string>
+    <string name="add" translatable="false">Ekle</string>
+    <string name="availability" translatable="false">Uygunluk</string>
+    <string name="select_session" translatable="false">Oturum Seçin</string>
+    <string name="add_hours" translatable="false">+ Saat Ekle</string>
+    <string name="start_time" translatable="false">Başlangıç Saati</string>
+    <string name="end_time" translatable="false">Bitiş Saati</string>
+    <string name="mon" translatable="false">Pzt</string>
+    <string name="enter_price" translatable="false">Fiyatı girin</string>
+    <string name="price_at_centre" translatable="false">Fiyat (Merkezde)</string>
+    <string name="camera" translatable="false">Kamera</string>
+    <string name="gallery" translatable="false">Galeri</string>
+    <string name="price" translatable="false">Fiyat</string>
+    <string name="my_services" translatable="false">Hizmetlerim</string>
+    <string name="business_name" translatable="false">İşletme Adı</string>
+    <string name="the_electronic_hub" translatable="false">Elektronik Merkezi</string>
+    <string name="edit" translatable="false">Düzenle</string>
+    <string name="please_enter_a_valid_e_mail" translatable="false">Lütfen geçerli bir e-posta girin\n</string>
+    <string name="enter_email_address" translatable="false">E-posta Adresini Girin</string>
+    <string name="address" translatable="false">Adres</string>
+    <string name="a_block_sector_63_noida" translatable="false">A blok, sektör 63 Noida</string>
+    <string name="under_development" translatable="false">Geliştirme Aşamasında</string>
+    <string name="resend_otp_in" translatable="false"> OTP\'yi yeniden gönder </string>
+    <string name="are_you_logout" translatable="false">Çıkış yapmak istediğinizden emin misiniz?</string>
+    <string name="log_out" translatable="false">Çıkış Yap</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_centre_mode" translatable="false">Başlangıç saati, merkez modu için bitiş saatinden büyük olmamalıdır.</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_home_mode" translatable="false">Başlangıç saati, ev modu için bitiş saatinden büyük olmamalıdır.</string>
+    <string name="please_enter_the_price_for_the_centre_service_mode" translatable="false">Lütfen merkez hizmet modu için fiyatı girin.</string>
+    <string name="please_enter_the_price_for_the_home_service_mode" translatable="false">Lütfen ev hizmet modu için fiyatı girin.</string>
+    <string name="please_select_a_service_model" translatable="false">Lütfen bir hizmet modeli seçin.</string>
+    <string name="please_select_the_category" translatable="false">Lütfen kategoriyi seçin.</string>
+    <string name="please_select_at_one_image" translatable="false">Lütfen en az bir görüntü seçin.</string>
+    <string name="images_must_be_less_than_five" translatable="false">Görüntüler beş veya beşten az olmalıdır.</string>
+    <string name="please_select_sub_category" translatable="false">Lütfen alt kategoriyi seçin.</string>
+    <string name="select_sub_category" translatable="false">Alt kategoriyi seçin</string>
+    <string name="select_session_should_not_be_empty_for_the_center_service_mode" translatable="false">Merkez Hizmet Modu için Oturum Seçimi boş olmamalıdır</string>
+    <string name="select_session_should_not_be_empty_for_the_home_service_mode" translatable="false">Ev Hizmet Modu için Oturum Seçimi boş olmamalıdır</string>
+    <string name="details" translatable="false">Detaylar</string>
+    <string name="_1_km" translatable="false">1 km.</string>
+    <string name="away" translatable="false">uzakta</string>
+    <string name="prateek_mehta" translatable="false">Prateek Mehta</string>
+    <string name="media" translatable="false">Medya</string>
+    <string name="_1499_2999" translatable="false">1499 - 2999</string>
+    <string name="book_now" translatable="false">Şimdi Rezervasyon Yap</string>
+    <string name="my_booking" translatable="false">Rezervasyonlarım</string>
+    <string name="booking_id" translatable="false">Rezervasyon ID</string>
+    <string name="booking_id_num" translatable="false">#262638</string>
+    <string name="by_prateek_mehta" translatable="false">Prateek Mehta tarafından</string>
+    <string name="tuesday_21_oct_11_00_am" translatable="false">Salı, 21 Eki, 11:00 AM</string>
+    <string name="complete_profile" translatable="false">Profili Tamamla</string>
+    <string name="enter_your_information_below" translatable="false">Bilgilerinizi aşağıya girin</string>
+    <string name="edit_service" translatable="false">Hizmeti Düzenle</string>
+    <string name="message" translatable="false">Mesaj</string>
+    <string name="upcoming" translatable="false">Yaklaşan</string>
+    <string name="completed" translatable="false">Tamamlandı</string>
+    <string name="cancelled" translatable="false">İptal Edildi</string>
+    <string name="_1799" translatable="false">1799</string>
+    <string name="_1499" translatable="false">1499</string>
+    <string name="reschedule" translatable="false">Yeniden Planla</string>
+    <string name="cancel" translatable="false">İptal Et</string>
+    <string name="ok" translatable="false">Tamam</string>
+    <string name="rate_us" translatable="false">Bizi Derecelendir</string>
+    <string name="date_time" translatable="false"><![CDATA[Tarih & Saat]]></string>
+    <string name="payment_info" translatable="false">Ödeme Bilgileri</string>
+    <string name="subtotal" translatable="false">Ara Toplam</string>
+    <string name="gst_18" translatable="false">KDV (18%)</string>
+    <string name="total" translatable="false">Toplam</string>
+    <string name="personal_document" translatable="false">Kişisel Belge</string>
+    <string name="business_document" translatable="false">İşletme Belgesi</string>
+    <string name="_25" translatable="false">25</string>
+    <string name="_1524" translatable="false">1524</string>
+    <string name="booking_details" translatable="false">Rezervasyon Detayları</string>
+    <string name="location" translatable="false">Konum</string>
+    <string name="a_199_sector_63_noida" translatable="false">A-199, Sektör-63, Noida</string>
+    <string name="mark_as_completed" translatable="false">Tamamlandı olarak işaretle</string>
+    <string name="ac_repair" translatable="false">Klima Tamiri</string>
+    <string name="review" translatable="false">Yorum</string>
+    <string name="give_a_feedback" translatable="false">Geri bildirim verin...</string>
+    <string name="do_this_later" translatable="false">Bunu daha sonra yap</string>
+    <string name="submit" translatable="false">Gönder</string>
+    <string name="today" translatable="false">Bugün</string>
+    <string name="hello_abhishek_how_are_you" translatable="false">Merhaba Abhishek, nasılsın?</string>
+    <string name="saad_rahman" translatable="false">Saad Rahman</string>
+    <string name="no_chats_found" translatable="false">Chat bulunamadı!</string>
+    <string name="start_new_chat" translatable="false">Yeni bir sohbet başlat</string>
+    <string name="amount_paid" translatable="false">Ödenen Tutar</string>
+    <string name="book_again" translatable="false">Yeniden Rezervasyon Yap</string>
+    <string name="_1420" translatable="false">1420</string>
+    <string name="payment_mode" translatable="false">Ödeme Yöntemi</string>
+    <string name="reason_for_cancellation" translatable="false">İptal nedeni</string>
+    <string name="provider_is_not_available_at_this_time" translatable="false">Sağlayıcı şu anda müsait değil.</string>
+    <string name="credit_card" translatable="false">Kredi Kartı</string>
+    <string name="refund_status" translatable="false">Geri Ödeme Durumu</string>
+    <string name="refund_initiated_you_will_receive_your_n_amount_in_48_hours" translatable="false">Geri ödeme başlatıldı. Tutarınızı 48 saat içinde alacaksınız.</string>
+    <string name="save" translatable="false">Kaydet</string>
+    <string name="a_192_sector_44_noida" translatable="false">A-192, Sektör-44, Noida</string>
+    <string name="save_this_address_for_future_services" translatable="false">Bu adresi gelecekteki hizmetler için kaydedin.</string>
+    <string name="booking_summary" translatable="false">Rezervasyon Özeti</string>
+    <string name="change" translatable="false">Değiştir</string>
+    <string name="june_2023" translatable="false">Haziran 2023</string>
+    <string name="_4_5" translatable="false">4.5</string>
+    <string name="proceed" translatable="false">Devam Et</string>
+    <string name="add_address" translatable="false">Adres Ekle</string>
+    <string name="days" translatable="false">Günler</string>
+    <string name="_16" translatable="false">16</string>
+    <string name="time" translatable="false">Saat</string>
+    <string name="alert" translatable="false">Uyarı</string>
+    <string-array name="select_category">
+        <item>Kategori Seçin</item>
+        <item>Finans</item>
+        <item>Elektronik</item>
+        <item>Fitness</item>
+    </string-array>
+
+    <string-array name="select_sub_category">
+        <item>Alt Kategori Seçin</item>
+        <item>Öğe 1</item>
+        <item>Öğe 2</item>
+        <item>Öğe 3</item>
+        <item>Öğe 4</item>
+    </string-array>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email" translatable="false">E-posta</string>
+    <string name="prompt_password" translatable="false">Şifre</string>
+    <string name="action_sign_in" translatable="false">Giriş yap veya kayıt ol</string>
+    <string name="action_sign_in_short" translatable="false">Giriş Yap</string>
+    <string name="welcome" translatable="false">"Hoş Geldiniz!"</string>
+    <string name="invalid_username" translatable="false">Geçersiz kullanıcı adı</string>
+    <string name="invalid_password" translatable="false">Şifre 5 karakterden uzun olmalıdır</string>
+    <string name="login_failed" translatable="false">"Giriş başarısız"</string>
+    <string name="if_cancellation_done_after_24_hours_of_booking_date_you_will_get_refund" translatable="false">Rezervasyon tarihinden 24 saat sonra iptal yapılırsa, geri ödeme alırsınız.</string>
+    <string name="service_provider_is_not_available_and_has_requested_to_cancel" translatable="false">Hizmet Sağlayıcı müsait değil ve iptal talebinde bulunmuştur</string>
+    <string name="i_found_this_service_at_a_cheaper_price" translatable="false">Bu hizmeti daha ucuz bir fiyata buldum</string>
+    <string name="i_don_t_need_this_service_now" translatable="false">Bu hizmete şu anda ihtiyacım yok</string>
+    <string name="i_am_unavailable_at_the_scheduled_time" translatable="false">Planlanan saatte müsait değilim</string>
+    <string name="_262638" translatable="false">#262638</string>
+    <string name="your_booking_has_been_cancelled" translatable="false">Rezervasyonunuz iptal edilmiştir.</string>
+    <string name="please_track_status_of_refund_under_my_bookings_cancelled" translatable="false"><![CDATA[Geri ödeme durumunu \'Rezervasyonlarım->İptal Edilenler\' altında takip edin]]></string>
+    <string name="go_to_my_bookings" translatable="false">Rezervasyonlarım\'a Git</string>
+    <string name="payment" translatable="false">Ödeme</string>
+    <string name="service_details" translatable="false">Hizmet Detayları</string>
+    <string name="_21_jun_2023_11_00am" translatable="false">21 Haz 2023, 11:00AM</string>
+    <string name="abhishek_mehra_a_192_sector_44_noida" translatable="false">Abhishek Mehra | A-192, Sektör-44, Noida</string>
+    <string name="apply_coupon" translatable="false">Kuponu Uygula</string>
+    <string name="tax" translatable="false">Vergi</string>
+    <string name="payable_amount" translatable="false">Ödenecek Tutar</string>
+    <string name="pay_now" translatable="false">Şimdi Öde</string>
+    <string name="code" translatable="false">Kod</string>
+    <string name="applied" translatable="false">Uygulandı</string>
+    <string name="coupons" translatable="false">Kuponlar</string>
+    <string name="enter_promocode" translatable="false">Promokodunu gir</string>
+    <string name="apply" translatable="false">Uygula</string>
+    <string name="available_coupons" translatable="false">Mevcut Kuponlar</string>
+    <string name="sbi100" translatable="false">SBI100</string>
+    <string name="state_bank_of_india" translatable="false">Hindistan Eyalet Bankası</string>
+    <string name="cashback_up_to_usd_10_on_the_item_total_above_1100" translatable="false">1100\'ün üzerindeki toplam tutarda USD 10\'a kadar geri ödeme</string>
+    <string name="saved_addresses" translatable="false">Kaydedilen Adresler</string>
+    <string name="a_192_sector_44_noida_201301" translatable="false">A-192, Sektör-44, Noida, 201301</string>
+    <string name="_91_989_123_4567" translatable="false">+91 989 123 4567</string>
+    <string name="add_new_address" translatable="false">Yeni Adres Ekle</string>
+    <string name="chat_requests" translatable="false">Sohbet Talepleri</string>
+    <string name="no_chat_requests_found" translatable="false">Sohbet Talebi Bulunamadı!</string>
+    <string name="see_your_chats" translatable="false">Sohbetlerinizi Görün</string>
+    <string name="decline" translatable="false">Reddet</string>
+    <string name="kuldeep_srivastava" translatable="false">Kuldeep Srivastava</string>
+    <string name="connect" translatable="false">Bağlan</string>
+    <string name="call" translatable="false">Ara</string>
+    <string name="whatsapp" translatable="false">WhatsApp</string>
+    <string name="share" translatable="false">Paylaş</string>
+    <string name="services_we_offer" translatable="false">Sunduğumuz Hizmetler</string>
+    <string name="settings" translatable="false">Ayarlar</string>
+    <string name="switch_to_business" translatable="false">İşletmeye Geç</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut" translatable="false">Lorem ipsum dolor sit amet,\nconsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</string>
+    <string name="push_notifications" translatable="false">Bildirimler</string>
+    <string name="account_settings" translatable="false">Hesap Ayarları</string>
+    <string name="my_wallet" translatable="false">Cüzdanım</string>
+    <string name="wallet" translatable="false">cüzdan</string>
+    <string name="paymentGateway" translatable="false">ödemeYöntemi</string>
+    <string name="walletWithPg" translatable="false">cüzdanVePg</string>
+    <string name="about_us" translatable="false">Hakkımızda</string>
+    <string name="distance" translatable="false">Mesafe</string>
+    <string name="change_language" translatable="false">Dil Değiştir</string>
+    <string name="faq_s" translatable="false">SSS</string>
+    <string name="contact_us" translatable="false">Bizimle İletişime Geçin</string>
+    <string name="data_privacy" translatable="false">Veri Gizliliği</string>
+    <string name="terms_and_conditions" translatable="false">Şartlar ve Koşullar</string>
+    <string name="delete_account" translatable="false">Hesabı Sil</string>
+    <string name="your_available_balance" translatable="false">Mevcut Bakiyeniz</string>
+    <string name="deactivate" translatable="false">Devre Dışı Bırak</string>
+    <string name="send_money" translatable="false">Para Gönder</string>
+    <string name="transactions" translatable="false">İşlemler</string>
+    <string name="_200" translatable="false">₹200</string>
+    <string name="_123456789" translatable="false">123456789</string>
+    <string name="please_allow_location_permission_to_move_ahead" translatable="false">İlerlemek için lütfen konum izni verin.</string>
+    <string name="connections_requests" translatable="false">Bağlantı Talepleri</string>
+    <string name="accept_or_decline_requests" translatable="false">Talepleri Kabul Et veya Reddet</string>
+    <string name="are_you_sure_you_want_to_logout" translatable="false">Çıkış yapmak istediğinizden emin misiniz?</string>
+    <string name="no" translatable="false">Hayır</string>
+    <string name="yes" translatable="false">Evet</string>
+    <string name="log_out_successfully" translatable="false">Başarıyla çıkış yaptınız!</string>
+    <string name="remove" translatable="false">Kaldır</string>
+    <string name="surya_mouly" translatable="false">Surya Mouly</string>
+    <string name="_100" translatable="false">100</string>
+    <string name="individual_business" translatable="false">Bireysel İşletme</string>
+    <string name="rating_raviews" translatable="false"><![CDATA[Değerlendirme ve Yorumlar]]></string>
+    <string name="report" translatable="false">Raporla</string>
+    <string name="promocode_discount" translatable="false">Promokod İndirimi</string>
+    <string name="sorry_this_time_slot_is_not_available" translatable="false">Üzgünüz, bu zaman dilimi mevcut değil</string>
+    <string name="_10_30_am" translatable="false">10:30 AM</string>
+    <string name="ravi_bishnoi_sent_you_a_connections_request" translatable="false">sana bir Bağlantı talebi gönderdi</string>
+    <string name="ravi_bishnoi" translatable="false">Ravi Bishnoi.</string>
+    <string name="your_available_balance_insufficient_balance" translatable="false">Mevcut Bakiyeniz</string>
+    <string name="insufficient_balance" translatable="false">(Yetersiz Bakiye)</string>
+    <string name="add_money" translatable="false">Para Ekle</string>
+    <string name="pay_1548" translatable="false">₹ 1548 Öde</string>
+    <string name="are_you_sure_you_want_to_conform" translatable="false">Onaylamak istediğinizden emin misiniz?</string>
+    <string name="calendar" translatable="false">takvim</string>
+    <string name="slot" translatable="false">zaman dilimi</string>
+    <string name="at_center" translatable="false">Merkezde</string>
+    <string name="aman" translatable="false">Aman</string>
+    <string name="set_location" translatable="false">Konum Belirle</string>
+    <string name="house_flat_office_no" translatable="false">Ev/ Daire/ Ofis no.*</string>
+    <string name="road_name_area_colony" translatable="false">Cadde adı/ Bölge/ Koloni*</string>
+    <string name="pincode" translatable="false">Posta Kodu*</string>
+    <string name="confirm_location" translatable="false">Konumu Onayla</string>
+    <string name="sold" translatable="false">Satıldı</string>
+    <string name="sold_small" translatable="false">satıldı</string>
+    <string name="bought" translatable="false">Satın Alındı</string>
+    <string name="search_location" translatable="false">Konum Ara</string>
+    <string name="location_is_not_avialable" translatable="false">Konum mevcut değil.</string>
+    <string name="request" translatable="false">Talep</string>
+    <string name="atcenter" translatable="false">merkezde</string>
+    <string name="athome" translatable="false">evde</string>
+    <string name="confirm" translatable="false">onayla</string>
+    <string name="booking" translatable="false">rezervasyon</string>
+    <string name="pay" translatable="false">Öde ₹</string>
+    <string name="pending" translatable="false">Beklemede</string>
+    <string name="paymeturl" translatable="false">ödemeUrl</string>
+    <string name="cancel_booking" translatable="false">Rezervasyonu İptal Et</string>
+    <string name="bookinglist" translatable="false">rezervasyonListesi</string>
+    <string name="booked_by" translatable="false">Rezervasyonu Yapan</string>
+    <string name="bought_small" translatable="false">satın alındı</string>
+    <string name="r" translatable="false"></string>
+    <string name="close_service" translatable="false">Servisi Kapat</string>
+    <string name="start_date" translatable="false">Başlangıç Tarihi</string>
+    <string name="end_date" translatable="false">Bitiş Tarihi</string>
+    <string name="close" translatable="false">Kapat</string>
+    <string name="start_service" translatable="false">Servisi Başlat</string>
+    <string name="leave" translatable="false">ayrıl</string>
+    <string name="not_cancelable" translatable="false">İptal Edilemez</string>
+    <string name="back_to_original_payment_source" translatable="false">Orijinal ödeme kaynağına dön</string>
+    <string name="refund_in_wallet" translatable="false">Cüzdanda İade</string>
+    <string name="promocode" translatable="false">Promosyon Kodu</string>
+    <string name="closeservice" translatable="false">servisiKapat</string>
+    <string name="before_date_text" translatable="false">Servisi kapatmak istiyor musunuz? Servisi kapatırsanız, tüm rezervasyonlar</string>
+    <string name="to" translatable="false">-e/-a</string>
+    <string name="after_date_text" translatable="false">otomatik olarak iptal edilecektir</string>
+    <string name="image" translatable="false">resim</string>
+    <string name="videos" translatable="false">videolar</string>
+    <string name="servicedetails" translatable="false">servisDetayları</string>
+    <string name="openmedia" translatable="false">medyayıAç</string>
+    <string name="back_press" translatable="false">Geri Bas</string>
+    <string name="goBack" translatable="false">geri dön</string>
+    <string name="goForeword" translatable="false">ileri git</string>
+    <string name="home_fr" translatable="false">AnaSayfa_FR</string>
+    <string name="onlinefr" translatable="false">Online_FR</string>
+    <string name="back" translatable="false">Geri</string>
+    <string name="provider_profile" translatable="false">sağlayıcı_profili</string>
+    <string name="profile_fr" translatable="false">profil_FR</string>
+    <string name="add_video" translatable="false">+ Video Ekle</string>
+    <string name="logout" translatable="false">Çıkış Yap</string>
+    <string name="join_call" translatable="false">Çağrıya Katıl</string>
+    <string name="leave_call" translatable="false">Çağrıyı Bırak</string>
+    <string name="mute_call" translatable="false">Çağrıyı Sessize Al</string>
+    <string name="connected" translatable="false">Bağlandı</string>
+    <string name="callended" translatable="false">Çağrı Sonlandı</string>
+    <string name="pop_up" translatable="false">pencere</string>
+    <string name="block" translatable="false">Engelle</string>
+    <string name="delete_chat" translatable="false">Sohbeti Sil</string>
+    <string name="unblock" translatable="false">Engeli Kaldır</string>
+    <string name="container" translatable="false">kapsayıcı</string>
+    <string name="chatfragment" translatable="false">sohbetParçası</string>
+    <string name="open_gallery" translatable="false">galeriyiAç</string>
+    <string name="images" translatable="false">Görüntüler</string>
+    <string name="files" translatable="false">Dosyalar</string>
+    <string name="media_size_check" translatable="false">Medya Boyutu 100 MB\'den Küçük Olmalıdır</string>
+    <string name="weeks" translatable="false">haftalar</string>
+    <string name="months" translatable="false">aylar</string>
+    <string name="years" translatable="false">yıllar</string>
+    <string name="min" translatable="false">dk</string>
+    <string name="hour" translatable="false">saat</string>
+    <string name="minute" translatable="false">dakika</string>
+    <string name="pick_your_media_file" translatable="false">Medya Dosyanızı Seçin</string>
+    <string name="use_as_default" translatable="false">Varsayılan Olarak Kullan</string>
+    <string name="_default" translatable="false"> Varsayılan</string>
+
+    <string-array name="select_issue">
+        <item>Sorun Seçin</item>
+        <item>Öğe 1</item>
+        <item>Öğe 2</item>
+        <item>Öğe 3</item>
+        <item>Öğe 4</item>
+        <item>Öğe 5</item>
+    </string-array>
+    <string name="add_your_bank_account" translatable="false">Banka Hesabınızı Ekleyin</string>
+    <string name="add_new_bank_account" translatable="false">Yeni Banka Hesabı Ekle</string>
+    <string name="choose_bank_with_your_account" translatable="false">Hesabınızla bir banka seçin.</string>
+    <string name="select_bank" translatable="false">Banka Seçin</string>
+    <string name="current_account" translatable="false">Vadesiz Hesap</string>
+    <string name="savings_account" translatable="false">Tasarruf Hesabı</string>
+    <string name="select_account_type" translatable="false">Hesap Türü Seçin</string>
+    <string name="enter_document_type" translatable="false">Belge Türünü Girin</string>
+    <string name="document_type" translatable="false">Belge Türü</string>
+    <string name="enter_document_number" translatable="false">Belge Numarasını Girin</string>
+    <string name="document_number" translatable="false">Belge Numarası</string>
+    <string name="enter_account_name" translatable="false">Hesap Adını Girin</string>
+    <string name="account_name" translatable="false">Hesap Adı</string>
+    <string name="enter_account_number" translatable="false">Hesap Numarasını Girin</string>
+    <string name="account_number" translatable="false">Hesap Numarası</string>
+    <string name="my_bank_account" translatable="false">Banka Hesabım</string>
+    <string name="connecting" translatable="false">Bağlanıyor</string>
+    <string name="add_bank_account" translatable="false">Banka Hesabı Ekle</string>
+
+    <!--validation Texts-->
+
+    <string name="please_enter_account_number" translatable="false">Lütfen Hesap Numarasını Girin</string>
+    <string name="please_enter_account_name" translatable="false">Lütfen Hesap Adını Girin</string>
+    <string name="invalid_account_number" translatable="false">Hesap Numarası Geçersiz</string>
+    <string name="please_enter_document_number" translatable="false">Lütfen Belge Numarasını Girin</string>
+    <string name="please_enter_document_type" translatable="false">Lütfen Belge Türünü Girin</string>
+
+    <!--String files for click events-->
+    <string name="cross" translatable="false">Çarpı</string>
+    <string name="audio_call" translatable="false">Sesli Arama</string>
+    <string name="video_call" translatable="false">Görüntülü Arama</string>
+    <string name="connect_with_the_user_as" translatable="false">Kullanıcıyla Şu Olarak Bağlanın</string>
+    <string name="outgoing_video" translatable="false">gidenVideo</string>
+    <string name="outgoing_Audio" translatable="false">gidenSes</string>
+    <string name="user_name" translatable="false">kullanıcı_adı</string>
+    <string name="are_you_sure_want_to_delete_this_account" translatable="false">Bu hesabı silmek istediğinizden emin misiniz?</string>
+    <string name="filterdata" translatable="false">filtreVerileri</string>
+    <string name="connection_remove_successfully" translatable="false">Bağlantı Başarıyla Kaldırıldı</string>
+    <string name="whatsApp" translatable="false">WhatsApp</string>
+    <string name="description" translatable="false">Açıklama</string>
+    <string name="issue_type" translatable="false">Sorun Türü</string>
+    <string name="notification" translatable="false">Bildirim</string>
+    <string name="addbank" translatable="false">bankaEkle</string>
+    <string name="openbottomsheet" translatable="false">altYazıyıAç</string>
+    <string name="personal" translatable="false">kişisel</string>
+    <string name="dummy_string" translatable="false">Sahte Dize</string>
+    <string name="service_we_offer">Sunabileceğimiz Hizmetler</string>
+    <string name="wellness">Sağlık</string>
+    <string name="household">Ev</string>
+    <string name="electronic">Elektronik</string>
+    <string name="videophoto">VideoFoto</string>
+    <string name="showbiz">Gösteri Dünyası</string>
+    <string name="real_estate">Gayrimenkul</string>
+    <string name="spa_beauty">Spa-Güzellik</string>
+    <string name="security">Güvenlik</string>
+    <string name="software">Yazılım</string>
+    <string name="legal">Hukuk</string>
+    <string name="pet_service">Evcil Hayvan Hizmeti</string>
+    <string name="travel">Seyahat</string>
+    <string name="other">Diğer</string>
+    <string name="allow_gps_location">Servis konumuna izin ver</string>
+    <string name="welcome_to_servivet_we_are_passionate_about_creating_meaningful_connections_and_facilitating_seamless_interactions_our_mission_is_to_provide_a_platform_that_fosters_community_encourages_collaboration_and_sparks_engaging_conversations_among_users">Servivet\'e hoş geldiniz! Anlamlı bağlantılar kurmaya ve sorunsuz etkileşimler sağlamaya tutkuluyuz. Misyonumuz, toplumu teşvik eden, işbirliğini teşvik eden ve kullanıcılar arasında ilgi çekici sohbetleri ateşleyen bir platform sağlamaktır.</string>
+    <string name="title">Başlık</string>
+    <string name="enter_title">Başlığı girin</string>
+    <string name="your_feedback_or_suggestion_here">Geri bildiriminizi veya önerinizi buraya yazın...</string>
+    <string name="_0_200">(0/200)</string>
+    <string name="email">E-posta</string>
+    <string name="we_are_keen_to_know_how_we_can_make_e_yugam_better_for_you_send_your_feedback_or_suggestion">E-Yugam\'ı sizin için nasıl daha iyi hale getirebileceğimizi öğrenmek istiyoruz. Geri bildiriminizi veya önerinizi gönderin</string>
+    <string name="withdraw">Geri çek</string>
+    <string name="no_data_found">Veri bulunamadı!</string>
+    <string name="delhi">Delhi</string>
+
+</resources>

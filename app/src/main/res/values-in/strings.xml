@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Servi</string>
+    <string name="servivet_require_this_permission" translatable="false">Servi perlu mengizinkan izin ini.</string>
+    <string name="google_map_key" translatable="false">AIzaSyDxvOzm-9yjdnd5L4iJrVDwk-_KbUkmN8A</string>
+    <string name="please_connect_to_the_internet" translatable="false">Harap sambungkan ke internet.\n</string>
+    <string name="hello_blank_fragment" translatable="false">Halo fragmen kosong</string>
+    <string name="choose_your_preferred_language" translatable="false">Pilih Bahasa yang Anda\n Inginkan</string>
+    <string name="english" translatable="false">Inggris</string>
+    <string name="hi_i_am_john_doe" translatable="false">Halo, saya John Doe.</string>
+    <string name="swahii" translatable="false">Swahili</string>
+    <string name="habari_mimi_ni_john_doe" translatable="false">Habari, mimi ni John Doe.</string>
+    <string name="zulu" translatable="false">Zulu</string>
+    <string name="gps_enable_message" translatable="false">Anda harus mengaktifkan Lokasi GPS</string>
+    <string name="sawubona_ngingu_john_doe" translatable="false">Sawubona, ngingu-John Doe.</string>
+    <string name="continues" translatable="false">Lanjutkan</string>
+    <string name="skip" translatable="false">Lewati</string>
+    <string name="next" translatable="false">Berikutnya</string>
+    <string name="get_started" translatable="false">Mulai</string>
+    <string name="clientel" translatable="false">Klien</string>
+    <string name="business" translatable="false">Bisnis</string>
+    <string name="mobile_number" translatable="false">Nomor ponsel</string>
+    <string name="we_will_send_you_a_confirmation_code" translatable="false">Kami akan mengirimkan kode konfirmasi kepada Anda</string>
+    <string name="_123_456_7890" translatable="false">123–456-7890</string>
+    <string name="i_agree_to_terms_and_conditions_and_data_privacy_policies" translatable="false">Saya setuju dengan Syarat dan Ketentuan serta kebijakan Privasi Data.</string>
+    <string name="verify" translatable="false">Verifikasi</string>
+    <string name="please_enter_the_otp_sent_your_mobile_number" translatable="false">Harap masukkan OTP yang dikirim ke nomor ponsel Anda.</string>
+    <string name="otp_verification" translatable="false">Verifikasi OTP</string>
+    <string name="resend_otp_in_30_seconds" translatable="false">Kirim ulang OTP dalam 30 Detik</string>
+    <string name="title_activity_home" translatable="false">Aktivitas Rumah</string>
+    <string name="first_fragment_label" translatable="false">Fragmen Pertama</string>
+    <string name="second_fragment_label" translatable="false">Fragmen Kedua</string>
+    <string name="previous" translatable="false">Sebelumnya</string>
+    <string name="search_for_area_street_name_etc" translatable="false">Cari area, nama jalan, dll...</string>
+    <string name="home" translatable="false">Rumah</string>
+    <string name="chats" translatable="false">Obrolan</string>
+    <string name="bookings" translatable="false">Pemesanan</string>
+    <string name="profile" translatable="false">Profil</string>
+    <string name="noida" translatable="false">Noida</string>
+    <string name="sadarpur_sector_44_noida" translatable="false">Sadarpur, Sektor-44 Noida</string>
+    <string name="search_for_service_etc" translatable="false"><![CDATA[cari layanan & dll]]></string>
+    <string name="services" translatable="false">Layanan</string>
+    <string name="view_all" translatable="false">Lihat Semua\n</string>
+    <string name="provider_view_all" translatable="false">Lihat Semua Penyedia</string>
+    <string name="user_view_all" translatable="false">Lihat Semua Pengguna</string>
+    <string name="online_now" translatable="false">Online sekarang</string>
+    <string name="fitness" translatable="false">Kebugaran</string>
+    <string name="finance" translatable="false">KEUANGAN\n</string>
+    <string name="_1_km_away" translatable="false">km. jauhnya</string>
+    <string name="dev_gupta" translatable="false">Dev Gupta</string>
+    <string name="gym" translatable="false">gym</string>
+    <string name="riepneapps_technology_noida" translatable="false">riepneapps teknologi noida</string>
+    <string name="view_details" translatable="false">Lihat Detail</string>
+    <string name="individual" translatable="false">Individu</string>
+    <string name="individualcap" translatable="false">INDIVIDU</string>
+    <string name="institutional" translatable="false">Institusi</string>
+    <string name="institutionalcap" translatable="false">INSTITUSI</string>
+    <string name="edit_profile" translatable="false">Edit Profil</string>
+    <string name="abhishek_mehra" translatable="false">Abhishek Mehra</string>
+    <string name="about" translatable="false">Tentang</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut_labore_et_dolore_magna_aliquyam_erat_sed_diam_voluptua_eos_et_accusam_et_justo_duo_dolores_et_ea_rebum_stet_clita_kasd_gubergren_no_sea_takimata_sanctus_est_lorem_ipsum_dolor_sit_amet_lorem_ipsum_dolor_sit_amet" translatable="false">Lorem ipsum dolor sit amet, consetetur tempor invidunt ut labore et est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet</string>
+    <string name="accept_the_term_and_condition" translatable="false">Terima Syarat dan Ketentuan\n</string>
+    <string name="accept_the_privacy_policy" translatable="false">Terima Kebijakan Privasi</string>
+    <string name="term_and_condition" translatable="false">Syarat dan Ketentuan</string>
+    <string name="privacy_policy" translatable="false">Privasi Data</string>
+    <string name="terms_conditions" translatable="false"><![CDATA[Syarat & Ketentuan]]></string>
+    <string name="last_updated_on_23_may_2023" translatable="false">Terakhir diperbarui pada 23 Mei 2023</string>
+    <string name="reject" translatable="false">Tolak</string>
+    <string name="accept" translatable="false">Terima</string>
+    <string name="my_connections" translatable="false">Koneksi Saya</string>
+    <string name="name" translatable="false">Nama</string>
+    <string name="enter_name" translatable="false">Masukkan nama</string>
+    <string name="_91_1234567890" translatable="false">+91 1234567890</string>
+    <string name="email_address" translatable="false">Alamat Email</string>
+    <string name="_0_150" translatable="false">(0/150)</string>
+    <string name="_150_150" translatable="false">(150/150)\n</string>
+    <string name="write_here" translatable="false">tulis di sini</string>
+    <string name="update" translatable="false">Perbarui</string>
+    <string name="change_cover" translatable="false">Ubah Sampul</string>
+    <string name="business_n_verification" translatable="false">Verifikasi \n Bisnis</string>
+    <string name="select_your_business_type" translatable="false">Pilih jenis Bisnis Anda</string>
+    <string name="full_name" translatable="false">Nama lengkap</string>
+    <string name="enter_full_name" translatable="false">Masukkan nama lengkap</string>
+    <string name="using_gps" translatable="false">Menggunakan GPS</string>
+    <string name="current_location" translatable="false">Lokasi Saat Ini</string>
+    <string name="enter_location_manually" translatable="false">Masukkan Lokasi Secara Manual</string>
+    <string name="or" translatable="false">atau</string>
+    <string name="want_to_earn_money" translatable="false">Ingin Menghasilkan Uang?</string>
+    <string name="add_the_service_which_you_are_expert_in" translatable="false">Tambahkan layanan yang Anda kuasai</string>
+    <string name="add_service" translatable="false">+ Tambahkan Layanan</string>
+    <string name="near_by" translatable="false">Sekitar</string>
+    <string name="add_service_" translatable="false">Tambah Layanan</string>
+    <string name="service_mode" translatable="false">Mode Layanan</string>
+    <string name="at_centre" translatable="false">Di Pusat</string>
+    <string name="at_home" translatable="false">Di rumah</string>
+    <string name="category" translatable="false">Kategori</string>
+    <string name="sub_category" translatable="false">Sub-kategori</string>
+    <string name="yoga" translatable="false">Yoga</string>
+    <string name="about_service" translatable="false">Tentang Layanan</string>
+    <string name="photos" translatable="false">Foto</string>
+    <string name="add_image" translatable="false">+ Tambah Gambar</string>
+    <string name="add" translatable="false">Tambah</string>
+    <string name="availability" translatable="false">Ketersediaan</string>
+    <string name="select_session" translatable="false">Pilih Sesi</string>
+    <string name="add_hours" translatable="false">+ Tambah jam</string>
+    <string name="start_time" translatable="false">Jam mulai</string>
+    <string name="end_time" translatable="false">Jam selesai</string>
+    <string name="mon" translatable="false">Sen</string>
+    <string name="enter_price" translatable="false">Masukkan harga</string>
+    <string name="price_at_centre" translatable="false">Harga (Di Pusat)</string>
+    <string name="camera" translatable="false">Kamera</string>
+    <string name="gallery" translatable="false">Galeri</string>
+    <string name="price" translatable="false">Harga</string>
+    <string name="my_services" translatable="false">Layanan Saya</string>
+    <string name="business_name" translatable="false">Nama Bisnis</string>
+    <string name="the_electronic_hub" translatable="false">Pusat Elektronik</string>
+    <string name="edit" translatable="false">Edit</string>
+    <string name="please_enter_a_valid_e_mail" translatable="false">Harap masukkan email yang valid\n</string>
+    <string name="enter_email_address" translatable="false">Masukkan Alamat Email</string>
+    <string name="address" translatable="false">Alamat</string>
+    <string name="a_block_sector_63_noida" translatable="false">blok A sektor 63 Noida</string>
+    <string name="under_development" translatable="false">Dalam Pengembangan</string>
+    <string name="resend_otp_in" translatable="false"> Kirim ulang OTP dalam </string>
+    <string name="are_you_logout" translatable="false">Apakah Anda yakin ingin keluar?</string>
+    <string name="log_out" translatable="false">Keluar</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_centre_mode" translatable="false">Jam mulai tidak boleh lebih besar dari jam selesai untuk mode pusat.</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_home_mode" translatable="false">Jam mulai tidak boleh lebih besar dari jam selesai untuk mode rumah.</string>
+    <string name="please_enter_the_price_for_the_centre_service_mode" translatable="false">Harap masukkan harga untuk mode layanan pusat.</string>
+    <string name="please_enter_the_price_for_the_home_service_mode" translatable="false">Harap masukkan harga untuk mode layanan rumah.</string>
+    <string name="please_select_a_service_model" translatable="false">Harap pilih model layanan.</string>
+    <string name="please_select_the_category" translatable="false">Harap pilih Kategori.</string>
+    <string name="please_select_at_one_image" translatable="false">Harap pilih setidaknya satu gambar.</string>
+    <string name="images_must_be_less_than_five" translatable="false">Gambar harus lima atau kurang dari lima.</string>
+    <string name="please_select_sub_category" translatable="false">Harap pilih sub kategori.</string>
+    <string name="select_sub_category" translatable="false">Pilih sub kategori</string>
+    <string name="select_session_should_not_be_empty_for_the_center_service_mode" translatable="false">Pilih Sesi tidak boleh kosong untuk Mode Layanan Pusat</string>
+    <string name="select_session_should_not_be_empty_for_the_home_service_mode" translatable="false">Pilih Sesi tidak boleh kosong untuk Mode Layanan Rumah</string>
+    <string name="details" translatable="false">Detail</string>
+    <string name="_1_km" translatable="false">1 km.</string>
+    <string name="away" translatable="false">jauh</string>
+    <string name="prateek_mehta" translatable="false">Prateek Mehta</string>
+    <string name="media" translatable="false">Media</string>
+    <string name="_1499_2999" translatable="false">1499 - 2999</string>
+    <string name="book_now" translatable="false">Pesan Sekarang</string>
+    <string name="my_booking" translatable="false">Pemesanan Saya</string>
+    <string name="booking_id" translatable="false">ID Pemesanan</string>
+    <string name="booking_id_num" translatable="false">#262638</string>
+    <string name="by_prateek_mehta" translatable="false">oleh Prateek Mehta</string>
+    <string name="tuesday_21_oct_11_00_am" translatable="false">Selasa, 21 Okt, 11:00 AM</string>
+    <string name="complete_profile" translatable="false">Lengkapi Profil</string>
+    <string name="enter_your_information_below" translatable="false">Masukkan informasi Anda di bawah</string>
+    <string name="edit_service" translatable="false">Edit Layanan</string>
+    <string name="message" translatable="false">Pesan</string>
+    <string name="upcoming" translatable="false">Akan Datang</string>
+    <string name="completed" translatable="false">Selesai</string>
+    <string name="cancelled" translatable="false">Dibatalkan</string>
+    <string name="_1799" translatable="false">1799</string>
+    <string name="_1499" translatable="false">1499</string>
+    <string name="reschedule" translatable="false">Jadwalkan Ulang</string>
+    <string name="cancel" translatable="false">Batal</string>
+    <string name="ok" translatable="false">Ok</string>
+    <string name="rate_us" translatable="false">Berikan Penilaian</string>
+    <string name="date_time" translatable="false"><![CDATA[Tanggal & Waktu]]></string>
+    <string name="payment_info" translatable="false">Info Pembayaran</string>
+    <string name="subtotal" translatable="false">Subtotal</string>
+    <string name="gst_18" translatable="false">GST (18%)</string>
+    <string name="total" translatable="false">Total</string>
+    <string name="personal_document" translatable="false">Dokumen Pribadi</string>
+    <string name="business_document" translatable="false">Dokumen Bisnis</string>
+    <string name="_25" translatable="false">25</string>
+    <string name="_1524" translatable="false">1524</string>
+    <string name="booking_details" translatable="false">Detail Pemesanan</string>
+    <string name="location" translatable="false">Lokasi</string>
+    <string name="a_199_sector_63_noida" translatable="false">A-199, Sektor-63, Noida</string>
+    <string name="mark_as_completed" translatable="false">Tandai sebagai Selesai</string>
+    <string name="ac_repair" translatable="false">Perbaikan AC</string>
+    <string name="review" translatable="false">Ulasan</string>
+    <string name="give_a_feedback" translatable="false">Berikan umpan balik...</string>
+    <string name="do_this_later" translatable="false">Lakukan nanti</string>
+    <string name="submit" translatable="false">Kirim</string>
+    <string name="today" translatable="false">Hari Ini</string>
+    <string name="hello_abhishek_how_are_you" translatable="false">Halo Abhishek, apa kabar?</string>
+    <string name="saad_rahman" translatable="false">Saad Rahman</string>
+    <string name="no_chats_found" translatable="false">Tidak Ada Obrolan Ditemukan!</string>
+    <string name="start_new_chat" translatable="false">Mulai obrolan baru</string>
+    <string name="amount_paid" translatable="false">Jumlah Dibayar</string>
+    <string name="book_again" translatable="false">Pesan Lagi</string>
+    <string name="_1420" translatable="false">1420</string>
+    <string name="payment_mode" translatable="false">Mode Pembayaran</string>
+    <string name="reason_for_cancellation" translatable="false">Alasan Pembatalan</string>
+    <string name="provider_is_not_available_at_this_time" translatable="false">Penyedia layanan tidak tersedia saat ini.</string>
+    <string name="credit_card" translatable="false">Kartu Kredit</string>
+    <string name="refund_status" translatable="false">Status Pengembalian Dana</string>
+    <string name="refund_initiated_you_will_receive_your_n_amount_in_48_hours" translatable="false">Pengembalian dana telah dimulai. Anda akan menerima \n jumlah Anda dalam 48 jam.</string>
+    <string name="save" translatable="false">Simpan</string>
+    <string name="a_192_sector_44_noida" translatable="false">A-192, Sektor-44, Noida</string>
+    <string name="save_this_address_for_future_services" translatable="false">Simpan alamat ini untuk layanan mendatang.</string>
+    <string name="booking_summary" translatable="false">Ringkasan Pemesanan</string>
+    <string name="change" translatable="false">Ubah</string>
+    <string name="june_2023" translatable="false">Juni 2023</string>
+    <string name="_4_5" translatable="false">4.5</string>
+    <string name="proceed" translatable="false">Lanjutkan</string>
+    <string name="add_address" translatable="false">Tambah Alamat</string>
+    <string name="days" translatable="false">Hari</string>
+    <string name="_16" translatable="false">16</string>
+    <string name="time" translatable="false">Waktu</string>
+    <string name="alert" translatable="false">Peringatan</string>
+    <string-array name="select_category">
+        <item>Pilih Kategori</item>
+        <item>Keuangan</item>
+        <item>Elektronik</item>
+        <item>Kebugaran</item>
+    </string-array>
+
+    <string-array name="select_sub_category">
+        <item>Pilih Sub Kategori</item>
+        <item>Item 1</item>
+        <item>Item 2</item>
+        <item>Item 3</item>
+        <item>Item 4</item>
+    </string-array>
+    <!-- Strings related to login -->
+    <string name="prompt_email" translatable="false">Email</string>
+    <string name="prompt_password" translatable="false">Kata Sandi</string>
+    <string name="action_sign_in" translatable="false">Masuk atau Daftar</string>
+    <string name="action_sign_in_short" translatable="false">Masuk</string>
+    <string name="welcome" translatable="false">"Selamat datang!"</string>
+    <string name="invalid_username" translatable="false">Nama pengguna tidak valid</string>
+    <string name="invalid_password" translatable="false">Kata sandi harus >5 karakter</string>
+    <string name="login_failed" translatable="false">"Masuk gagal"</string>
+    <string name="if_cancellation_done_after_24_hours_of_booking_date_you_will_get_refund" translatable="false">Jika pembatalan dilakukan setelah 24 jam dari tanggal pemesanan, Anda akan mendapatkan pengembalian dana.</string>
+    <string name="service_provider_is_not_available_and_has_requested_to_cancel" translatable="false">Penyedia layanan tidak tersedia dan telah meminta untuk membatalkan</string>
+    <string name="i_found_this_service_at_a_cheaper_price" translatable="false">Saya menemukan layanan ini dengan harga lebih murah</string>
+    <string name="i_don_t_need_this_service_now" translatable="false">Saya tidak membutuhkan layanan ini sekarang</string>
+    <string name="i_am_unavailable_at_the_scheduled_time" translatable="false">Saya tidak tersedia pada waktu yang dijadwalkan</string>
+    <string name="_262638" translatable="false">#262638</string>
+    <string name="your_booking_has_been_cancelled" translatable="false">Pemesanan Anda telah dibatalkan.</string>
+    <string name="please_track_status_of_refund_under_my_bookings_cancelled" translatable="false"><![CDATA[Harap lacak status pengembalian dana di \'Pemesanan Saya->Dibatalkan]]></string>
+    <string name="go_to_my_bookings" translatable="false">Pergi ke Pemesanan Saya</string>
+    <string name="payment" translatable="false">Pembayaran</string>
+    <string name="service_details" translatable="false">Detail Layanan</string>
+    <string name="_21_jun_2023_11_00am" translatable="false">21 Jun 2023, 11:00AM</string>
+    <string name="abhishek_mehra_a_192_sector_44_noida" translatable="false">Abhishek Mehra | A-192, Sektor-44, Noida</string>
+    <string name="apply_coupon" translatable="false">Gunakan Kupon</string>
+    <string name="tax" translatable="false">Pajak</string>
+    <string name="payable_amount" translatable="false">Jumlah yang Harus Dibayar</string>
+    <string name="pay_now" translatable="false">Bayar Sekarang</string>
+    <string name="code" translatable="false">Kode</string>
+    <string name="applied" translatable="false">Diterapkan</string>
+    <string name="coupons" translatable="false">Kupon</string>
+    <string name="enter_promocode" translatable="false">Masukkan kode promosi</string>
+    <string name="apply" translatable="false">Terapkan</string>
+    <string name="available_coupons" translatable="false">Kupon Tersedia</string>
+    <string name="sbi100" translatable="false">SBI100</string>
+    <string name="state_bank_of_india" translatable="false">Bank Negara India</string>
+    <string name="cashback_up_to_usd_10_on_the_item_total_above_1100" translatable="false">Cashback hingga USD 10 untuk total item di atas \n1100</string>
+    <string name="saved_addresses" translatable="false">Alamat yang Disimpan</string>
+    <string name="a_192_sector_44_noida_201301" translatable="false">A-192, Sektor-44, Noida, 201301</string>
+    <string name="_91_989_123_4567" translatable="false">+91 989 123 4567</string>
+    <string name="add_new_address" translatable="false">Tambah Alamat Baru</string>
+    <string name="chat_requests" translatable="false">Permintaan Obrolan</string>
+    <string name="no_chat_requests_found" translatable="false">Tidak Ada Permintaan Obrolan Ditemukan!</string>
+    <string name="see_your_chats" translatable="false">Lihat obrolan Anda</string>
+    <string name="decline" translatable="false">Tolak</string>
+    <string name="kuldeep_srivastava" translatable="false">Kuldeep Srivastava</string>
+    <string name="connect" translatable="false">Hubungkan</string>
+    <string name="call" translatable="false">Panggil</string>
+    <string name="whatsapp" translatable="false">WhatsApp</string>
+    <string name="share" translatable="false">Bagikan</string>
+    <string name="services_we_offer" translatable="false">Layanan yang Kami Tawarkan</string>
+    <string name="settings" translatable="false">Pengaturan</string>
+    <string name="switch_to_business" translatable="false">Beralih ke Bisnis</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut" translatable="false">Lorem ipsum dolor sit amet,\nconsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</string>
+    <string name="push_notifications" translatable="false">Notifikasi Push</string>
+    <string name="account_settings" translatable="false">Pengaturan Akun</string>
+    <string name="my_wallet" translatable="false">Dompet Saya</string>
+    <string name="wallet" translatable="false">dompet</string>
+    <string name="paymentGateway" translatable="false">paymentGateway</string>
+    <string name="walletWithPg" translatable="false">walletWithPg</string>
+    <string name="about_us" translatable="false">Tentang Kami</string>
+    <string name="distance" translatable="false">Jarak</string>
+    <string name="change_language" translatable="false">Ubah Bahasa</string>
+    <string name="faq_s" translatable="false">FAQ</string>
+    <string name="contact_us" translatable="false">Hubungi Kami</string>
+    <string name="data_privacy" translatable="false">Privasi Data</string>
+    <string name="terms_and_conditions" translatable="false">Syarat dan Ketentuan</string>
+    <string name="delete_account" translatable="false">Hapus Akun</string>
+    <string name="your_available_balance" translatable="false">Saldo Tersedia Anda</string>
+    <string name="deactivate" translatable="false">Nonaktifkan</string>
+    <string name="send_money" translatable="false">Kirim Uang</string>
+    <string name="transactions" translatable="false">Transaksi</string>
+    <string name="_200" translatable="false">₹200</string>
+    <string name="_123456789" translatable="false">123456789</string>
+    <string name="please_allow_location_permission_to_move_ahead" translatable="false">Harap izinkan izin lokasi untuk melanjutkan.</string>
+    <string name="connections_requests" translatable="false">Permintaan Koneksi</string>
+    <string name="accept_or_decline_requests" translatable="false">Terima atau Tolak Permintaan</string>
+    <string name="are_you_sure_you_want_to_logout" translatable="false">Apakah Anda yakin ingin keluar?</string>
+    <string name="no" translatable="false">Tidak</string>
+    <string name="yes" translatable="false">Ya</string>
+    <string name="log_out_successfully" translatable="false">Berhasil keluar!</string>
+    <string name="remove" translatable="false">Hapus</string>
+    <string name="surya_mouly" translatable="false">Surya Mouly</string>
+    <string name="_100" translatable="false">100</string>
+    <string name="individual_business" translatable="false">Bisnis Individu</string>
+    <string name="rating_raviews" translatable="false"><![CDATA[Rating & Ulasan]]></string>
+    <string name="report" translatable="false">Laporkan</string>
+    <string name="promocode_discount" translatable="false">Diskon Kode Promosi</string>
+    <string name="sorry_this_time_slot_is_not_available" translatable="false">Maaf, slot waktu ini tidak tersedia</string>
+    <string name="_10_30_am" translatable="false">10:30 AM</string>
+    <string name="ravi_bishnoi_sent_you_a_connections_request" translatable="false">mengirim permintaan Koneksi kepada Anda</string>
+    <string name="ravi_bishnoi" translatable="false">Ravi Bishnoi.</string>
+    <string name="your_available_balance_insufficient_balance" translatable="false">Saldo Tersedia Anda</string>
+    <string name="insufficient_balance" translatable="false">(Saldo Tidak Cukup)</string>
+    <string name="add_money" translatable="false">Tambah Uang</string>
+    <string name="pay_1548" translatable="false">Bayar ₹ 1548</string>
+    <string name="are_you_sure_you_want_to_conform" translatable="false">Apakah Anda yakin ingin \nkonfirmasi?</string>
+    <string name="calendar" translatable="false">kalender</string>
+    <string name="slot" translatable="false">slot</string>
+    <string name="at_center" translatable="false">Di Pusat</string>
+    <string name="aman" translatable="false">Aman</string>
+    <string name="set_location" translatable="false">Atur Lokasi</string>
+    <string name="house_flat_office_no" translatable="false">Rumah/Flat/Kantor no.*</string>
+    <string name="road_name_area_colony" translatable="false">Nama Jalan/Area/Perumahan*</string>
+    <string name="pincode" translatable="false">Kode Pos*</string>
+    <string name="confirm_location" translatable="false">Konfirmasi Lokasi</string>
+    <string name="sold" translatable="false">Terjual</string>
+    <string name="sold_small" translatable="false">terjual</string>
+    <string name="bought" translatable="false">Dibeli</string>
+    <string name="search_location" translatable="false">Cari Lokasi</string>
+    <string name="location_is_not_avialable" translatable="false">Lokasi tidak tersedia.</string>
+    <string name="request" translatable="false">Permintaan</string>
+    <string name="atcenter" translatable="false">diPusat</string>
+    <string name="athome" translatable="false">diRumah</string>
+    <string name="confirm" translatable="false">konfirmasi</string>
+    <string name="booking" translatable="false">pemesanan</string>
+    <string name="pay" translatable="false">Bayar ₹</string>
+    <string name="pending" translatable="false">Menunggu</string>
+    <string name="paymeturl" translatable="false">paymetUrl</string>
+    <string name="cancel_booking" translatable="false">Batalkan Pemesanan</string>
+    <string name="bookinglist" translatable="false">daftarPemesanan</string>
+    <string name="booked_by" translatable="false">Dipesan oleh</string>
+    <string name="bought_small" translatable="false">dibeli</string>
+    <string name="r" translatable="false"></string>
+    <string name="close_service" translatable="false">Tutup Layanan</string>
+    <string name="start_date" translatable="false">Tanggal Mulai</string>
+    <string name="end_date" translatable="false">Tanggal Akhir</string>
+    <string name="close" translatable="false">Tutup</string>
+    <string name="start_service" translatable="false">Mulai Layanan</string>
+    <string name="leave" translatable="false">tinggalkan</string>
+    <string name="not_cancelable" translatable="false">Tidak Bisa Dibatalkan</string>
+    <string name="back_to_original_payment_source" translatable="false">Kembali ke sumber pembayaran asli</string>
+    <string name="refund_in_wallet" translatable="false">Pengembalian Dana di Dompet</string>
+    <string name="promocode" translatable="false">Kode Promosi</string>
+    <string name="closeservice" translatable="false">tutupLayanan</string>
+    <string name="before_date_text" translatable="false">Apakah Anda yakin ingin menutup layanan? Jika Anda menutup layanan, semua pemesanan dari</string>
+    <string name="to" translatable="false">ke</string>
+    <string name="after_date_text" translatable="false">akan otomatis dibatalkan</string>
+    <string name="image" translatable="false">gambar</string>
+    <string name="videos" translatable="false">video</string>
+    <string name="servicedetails" translatable="false">detailLayanan</string>
+    <string name="openmedia" translatable="false">bukaMedia</string>
+    <string name="back_press" translatable="false">Tekan Kembali</string>
+    <string name="goBack" translatable="false">kembali</string>
+    <string name="goForeword" translatable="false">maju</string>
+    <string name="home_fr" translatable="false">Home_FR</string>
+    <string name="onlinefr" translatable="false">OnlineFR</string>
+    <string name="back" translatable="false">Kembali</string>
+    <string name="provider_profile" translatable="false">profil_penyedia</string>
+    <string name="profile_fr" translatable="false">profil_Fr</string>
+    <string name="add_video" translatable="false">+ Tambah Video</string>
+    <string name="logout" translatable="false">keluar</string>
+    <string name="join_call" translatable="false">gabungPanggilan</string>
+    <string name="leave_call" translatable="false">tinggalkanPanggilan</string>
+    <string name="mute_call" translatable="false">bisukanPanggilan</string>
+    <string name="connected" translatable="false">Terhubung</string>
+    <string name="callended" translatable="false">panggilanBerakhir</string>
+    <string name="pop_up" translatable="false">popup</string>
+    <string name="block" translatable="false">Blokir</string>
+    <string name="delete_chat" translatable="false">Hapus Obrolan</string>
+    <string name="unblock" translatable="false">Buka Blokir</string>
+    <string name="container" translatable="false">wadah</string>
+    <string name="chatfragment" translatable="false">fragmenObrolan</string>
+    <string name="open_gallery" translatable="false">bukaGaleri</string>
+    <string name="images" translatable="false">Gambar</string>
+    <string name="files" translatable="false">Berkas</string>
+    <string name="media_size_check" translatable="false">Ukuran Media Harus Kurang dari 100 MB</string>
+
+    <string name="weeks" translatable="false">minggu</string>
+    <string name="months" translatable="false">bulan</string>
+    <string name="years" translatable="false">tahun</string>
+    <string name="min" translatable="false">menit</string>
+    <string name="hour" translatable="false">jam</string>
+    <string name="minute" translatable="false">menit</string>
+    <string name="pick_your_media_file" translatable="false">Pilih Berkas Media Anda</string>
+    <string name="use_as_default" translatable="false">Gunakan sebagai Default</string>
+    <string name="_default" translatable="false"> Default</string>
+
+    <string-array name="select_issue">
+        <item>Pilih Masalah</item>
+        <item>Item 1</item>
+        <item>Item 2</item>
+        <item>Item 3</item>
+        <item>Item 4</item>
+        <item>Item 5</item>
+    </string-array>
+    <string name="add_your_bank_account" translatable="false">Tambahkan Akun Bank Anda</string>
+    <string name="add_new_bank_account" translatable="false">Tambahkan Akun Bank Baru</string>
+    <string name="choose_bank_with_your_account" translatable="false">Pilih bank dengan akun Anda.</string>
+    <string name="select_bank" translatable="false">Pilih Bank</string>
+    <string name="current_account" translatable="false">Akun Giro</string>
+    <string name="savings_account" translatable="false">Akun Tabungan</string>
+    <string name="select_account_type" translatable="false">Pilih Jenis Akun</string>
+    <string name="enter_document_type" translatable="false">Masukkan jenis dokumen</string>
+    <string name="document_type" translatable="false">Jenis Dokumen</string>
+    <string name="enter_document_number" translatable="false">Masukkan nomor dokumen</string>
+    <string name="document_number" translatable="false">Nomor Dokumen</string>
+    <string name="enter_account_name" translatable="false">Masukkan nama akun</string>
+    <string name="account_name" translatable="false">Nama Akun</string>
+    <string name="enter_account_number" translatable="false">Masukkan nomor akun</string>
+    <string name="account_number" translatable="false">Nomor Akun</string>
+    <string name="my_bank_account" translatable="false">Akun Bank Saya</string>
+    <string name="connecting" translatable="false">Menghubungkan</string>
+    <string name="add_bank_account" translatable="false">Tambahkan Akun Bank</string>
+
+    <!--validation Texts-->
+    <string name="please_enter_account_number" translatable="false">Silakan Masukkan Nomor Akun</string>
+    <string name="please_enter_account_name" translatable="false">Silakan Masukkan Nama Akun</string>
+    <string name="invalid_account_number" translatable="false">Nomor Akun Tidak Valid</string>
+    <string name="please_enter_document_number" translatable="false">Silakan Masukkan Nomor Dokumen</string>
+    <string name="please_enter_document_type" translatable="false">Silakan Masukkan Jenis Dokumen</string>
+
+    <!--String files for click events-->
+    <string name="cross" translatable="false">Tutup</string>
+    <string name="audio_call" translatable="false">Panggilan Suara</string>
+    <string name="video_call" translatable="false">Panggilan Video</string>
+    <string name="connect_with_the_user_as" translatable="false">Hubungkan dengan pengguna sebagai</string>
+    <string name="outgoing_video" translatable="false">videoKeluar</string>
+    <string name="outgoing_Audio" translatable="false">audioKeluar</string>
+    <string name="user_name" translatable="false">nama_pengguna</string>
+    <string name="are_you_sure_want_to_delete_this_account" translatable="false">Apakah Anda yakin ingin menghapus akun ini?</string>
+    <string name="filterdata" translatable="false">dataFilter</string>
+    <string name="connection_remove_successfully" translatable="false">Koneksi Berhasil Dihapus</string>
+
+    <string name="whatsApp" translatable="false">WhatsApp</string>
+    <string name="description" translatable="false">Deskripsi</string>
+    <string name="issue_type" translatable="false">Jenis Masalah</string>
+    <string name="notification" translatable="false">Notifikasi</string>
+    <string name="addbank" translatable="false">tambahkanBank</string>
+
+    <string name="openbottomsheet" translatable="false">bukaBottomSheet</string>
+    <string name="personal" translatable="false">pribadi</string>
+    <string name="dummy_string" translatable="false">String Dummy</string>
+    <string name="service_we_offer" translatable="false">Layanan yang Kami Tawarkan</string>
+    <string name="wellness" translatable="false">Kesehatan</string>
+    <string name="household" translatable="false">Rumah Tangga</string>
+    <string name="electronic" translatable="false">Elektronik</string>
+    <string name="videophoto" translatable="false">VideoFoto</string>
+    <string name="showbiz" translatable="false">Showbiz</string>
+    <string name="real_estate" translatable="false">Real Estate</string>
+    <string name="spa_beauty" translatable="false">Spa-Kecantikan</string>
+    <string name="security" translatable="false">Keamanan</string>
+    <string name="software" translatable="false">Perangkat Lunak</string>
+    <string name="legal" translatable="false">Hukum</string>
+    <string name="pet_service" translatable="false">Layanan Hewan Peliharaan</string>
+    <string name="travel" translatable="false">Perjalanan</string>
+    <string name="other" translatable="false">Lainnya</string>
+    <string name="allow_gps_location" translatable="false">izinkan lokasi servis</string>
+    <string name="welcome_to_servivet_we_are_passionate_about_creating_meaningful_connections_and_facilitating_seamless_interactions_our_mission_is_to_provide_a_platform_that_fosters_community_encourages_collaboration_and_sparks_engaging_conversations_among_users">Selamat datang di Servivet! Kami sangat bersemangat untuk menciptakan koneksi yang berarti dan memfasilitasi interaksi yang mulus. Misi kami adalah menyediakan platform yang mendukung komunitas, mendorong kolaborasi, dan memicu percakapan yang menarik di antara para pengguna.</string>
+    <string name="title">Judul</string>
+    <string name="enter_title">Masukkan judul</string>
+    <string name="your_feedback_or_suggestion_here">Masukkan umpan balik atau saran Anda di sini...</string>
+    <string name="_0_200">(0/200)</string>
+    <string name="email">Email</string>
+    <string name="we_are_keen_to_know_how_we_can_make_e_yugam_better_for_you_send_your_feedback_or_suggestion">Kami ingin tahu bagaimana kami dapat membuat E-Yugam lebih baik untuk Anda. Kirimkan umpan balik atau saran Anda</string>
+    <string name="withdraw">Tarik</string>
+    <string name="no_data_found">Data Tidak Ditemukan!</string>
+    <string name="delhi">Delhi</string>
+
+</resources>

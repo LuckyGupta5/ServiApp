@@ -149,7 +149,7 @@
                             android:gravity="center"
                             android:paddingHorizontal="21dp"
                             android:paddingVertical="9dp"
-                            android:text="Withdraw"
+                            android:text="@string/withdraw"
                             android:textColor="@color/white"
                             android:textSize="15sp" />
 
@@ -220,7 +220,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="No Data Found !"
+                        android:text="@string/no_data_found"
                         android:textColor="@color/black"
                         android:textSize="18dp" />
 

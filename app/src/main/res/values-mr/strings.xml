@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">सर्व्ही</string>
+    <string name="servivet_require_this_permission" translatable="false">सर्व्ही ला हा परवाना देणे आवश्यक आहे.</string>
+    <string name="google_map_key" translatable="false">AIzaSyDxvOzm-9yjdnd5L4iJrVDwk-_KbUkmN8A</string>
+    <string name="please_connect_to_the_internet" translatable="false">कृपया इंटरनेटशी कनेक्ट करा.\n</string>
+    <string name="hello_blank_fragment" translatable="false">नमस्कार, रिक्त तुकडा</string>
+    <string name="choose_your_preferred_language" translatable="false">तुमची आवडती भाषा निवडा</string>
+    <string name="english" translatable="false">इंग्रजी</string>
+    <string name="hi_i_am_john_doe" translatable="false">हाय, मी जॉन डो आहे.</string>
+    <string name="swahii" translatable="false">स्वाहिली</string>
+    <string name="habari_mimi_ni_john_doe" translatable="false">हाबारी, मी जॉन डो आहे.</string>
+    <string name="zulu" translatable="false">जुलू</string>
+    <string name="gps_enable_message" translatable="false">तुम्हाला GPS स्थान चालू करणे आवश्यक आहे</string>
+    <string name="sawubona_ngingu_john_doe" translatable="false">सावुबोना, मी जॉन डो आहे.</string>
+    <string name="continues" translatable="false">सतत</string>
+    <string name="skip" translatable="false">वगळा</string>
+    <string name="next" translatable="false">पुढे</string>
+    <string name="get_started" translatable="false">सुरू करा</string>
+    <string name="clientel" translatable="false">क्लायंटेले</string>
+    <string name="business" translatable="false">व्यापार</string>
+    <string name="mobile_number" translatable="false">मोबाइल नंबर</string>
+    <string name="we_will_send_you_a_confirmation_code" translatable="false">आम्ही तुम्हाला एक पुष्टीकरण कोड पाठवू</string>
+    <string name="_123_456_7890" translatable="false">123–456-7890</string>
+    <string name="i_agree_to_terms_and_conditions_and_data_privacy_policies" translatable="false">मी अटी आणि शर्ती व डेटा गोपनीयता धोरणे स्वीकारतो.</string>
+    <string name="verify" translatable="false">सत्यापित करा</string>
+    <string name="please_enter_the_otp_sent_your_mobile_number" translatable="false">कृपया तुमच्या मोबाइल नंबरवर पाठवलेला OTP प्रविष्ट करा.</string>
+    <string name="otp_verification" translatable="false">OTP सत्यापन</string>
+    <string name="resend_otp_in_30_seconds" translatable="false">30 सेकंदात OTP पुन्हा पाठवा</string>
+    <string name="title_activity_home" translatable="false">HomeActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label" translatable="false">पहिला तुकडा</string>
+    <string name="second_fragment_label" translatable="false">दुसरा तुकडा</string>
+    <string name="previous" translatable="false">मागील</string>
+    <string name="search_for_area_street_name_etc" translatable="false">क्षेत्र, रस्त्याचे नाव इत्यादी शोधा...</string>
+    <string name="home" translatable="false">मुख्यपृष्ठ</string>
+    <string name="chats" translatable="false">चॅट्स</string>
+    <string name="bookings" translatable="false">बुकिंग्स</string>
+    <string name="profile" translatable="false">प्रोफाइल</string>
+    <string name="noida" translatable="false">नोएडा</string>
+    <string name="sadarpur_sector_44_noida" translatable="false">सदारपूर, सेक्टर-44 नोएडा</string>
+    <string name="search_for_service_etc" translatable="false"><![CDATA[सेवा इत्यादीसाठी शोधा]]></string>
+    <string name="services" translatable="false">सेवा</string>
+    <string name="view_all" translatable="false">सर्व पहा\n</string>
+    <string name="provider_view_all" translatable="false">प्रोव्हायडरव्यूऑल</string>
+    <string name="user_view_all" translatable="false">वापरकर्ताव्यूऑल</string>
+    <string name="online_now" translatable="false">आता ऑनलाइन</string>
+    <string name="fitness" translatable="false">फिटनेस</string>
+    <string name="finance" translatable="false">आर्थिक\n</string>
+    <string name="_1_km_away" translatable="false">किमी. दूर</string>
+    <string name="dev_gupta" translatable="false">देव गुप्ता</string>
+    <string name="gym" translatable="false">जिम</string>
+    <string name="riepneapps_technology_noida" translatable="false">रियेपनेऍप्स तंत्रज्ञान नोएडा</string>
+    <string name="view_details" translatable="false">तपशील पहा</string>
+    <string name="individual" translatable="false">व्यक्तिगत</string>
+    <string name="individualcap" translatable="false">व्यक्तिगत</string>
+    <string name="institutional" translatable="false">संस्थात्मक</string>
+    <string name="institutionalcap" translatable="false">संस्थात्मक</string>
+    <string name="edit_profile" translatable="false">प्रोफाइल संपादित करा</string>
+    <string name="abhishek_mehra" translatable="false">अभिषेक मेहरा</string>
+    <string name="about" translatable="false">विषयी</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut_labore_et_dolore_magna_aliquyam_erat_sed_diam_voluptua_eos_et_accusam_et_justo_duo_dolores_et_ea_rebum_stet_clita_kasd_gubergren_no_sea_takimata_sanctus_est_lorem_ipsum_dolor_sit_amet_lorem_ipsum_dolor_sit_amet" translatable="false">लॉरेम इप्सम डोलर सिट अमेट, कन्सेटेटर सादिप्सिंग एलीट्र सेड डायम नोनुमी एइरमोड टेम्पोर इनविडंट युट लेबोरे एट डोलोरे मॅग्ना आलिक्व्यम एराट सेड डायम व्होलुप्तूआ इयोस एट अॅक्युसॅम एट जस्टो डुओ डोलोरेस एट ईआ रीबम स्टेट क्लिता कास्ड गुपेरग्रेन नो सीआ टाकिमाटा सॅन्क्टस एस्ट लॉरेम इप्सम डोलर सिट अमेट लॉरेम इप्सम डोलर सिट अमेट</string>
+    <string name="accept_the_term_and_condition" translatable="false">अटी आणि शर्ती स्वीकारा\n</string>
+    <string name="accept_the_privacy_policy" translatable="false">गोपनीयता धोरण स्वीकारा</string>
+    <string name="term_and_condition" translatable="false">अटी आणि शर्ती</string>
+    <string name="privacy_policy" translatable="false">डेटा गोपनीयता</string>
+    <string name="terms_conditions" translatable="false"><![CDATA[अटी व शर्ती]]></string>
+    <string name="last_updated_on_23_may_2023" translatable="false">अखेरची अद्यतने 23 मे 2023 रोजी</string>
+    <string name="reject" translatable="false">अस्वीकृती</string>
+    <string name="accept" translatable="false">स्वीकृती</string>
+    <string name="my_connections" translatable="false">माझ्या कनेक्शन</string>
+    <string name="name" translatable="false">नाव</string>
+    <string name="enter_name" translatable="false">नाव प्रविष्ट करा</string>
+    <string name="_91_1234567890" translatable="false">+91 1234567890</string>
+    <string name="email_address" translatable="false">ईमेल पत्ता</string>
+    <string name="_0_150" translatable="false">(0/150)</string>
+    <string name="_150_150" translatable="false">(150/150)\n</string>
+    <string name="write_here" translatable="false">इथे लिहा</string>
+    <string name="update" translatable="false">अद्यतनित करा</string>
+    <string name="change_cover" translatable="false">कव्हर बदलवा</string>
+    <string name="business_n_verification" translatable="false">व्यापार \nसत्यापन</string>
+    <string name="select_your_business_type" translatable="false">तुमच्या व्यवसायाचा प्रकार निवडा</string>
+    <string name="full_name" translatable="false">पूर्ण नाव</string>
+    <string name="enter_full_name" translatable="false">पूर्ण नाव प्रविष्ट करा</string>
+    <string name="using_gps" translatable="false">GPS वापरत आहे</string>
+    <string name="current_location" translatable="false">वर्तमान स्थान</string>
+    <string name="enter_location_manually" translatable="false">स्थान हाताने प्रविष्ट करा</string>
+    <string name="or" translatable="false">किंवा</string>
+    <string name="want_to_earn_money" translatable="false">पैसे कमवायचे आहे का?</string>
+    <string name="add_the_service_which_you_are_expert_in" translatable="false">तुम्ही ज्यात तज्ञ आहात ती सेवा जोडा</string>
+    <string name="add_service" translatable="false">+ सेवा जोडा</string>
+    <string name="near_by" translatable="false">आसपास</string>
+    <string name="add_service_" translatable="false">सेवा जोडा</string>
+    <string name="service_mode" translatable="false">सेवा मोड</string>
+    <string name="at_centre" translatable="false">केंद्रात</string>
+    <string name="at_home" translatable="false">घरात</string>
+    <string name="category" translatable="false">वर्ग</string>
+    <string name="sub_category" translatable="false">उपवर्ग</string>
+    <string name="yoga" translatable="false">योग</string>
+    <string name="about_service" translatable="false">सेवेबद्दल</string>
+    <string name="photos" translatable="false">फोटों</string>
+    <string name="add_image" translatable="false">+ प्रतिमा जोडा</string>
+    <string name="add" translatable="false">जोडा</string>
+    <string name="availability" translatable="false">उपलब्धता</string>
+    <string name="select_session" translatable="false">सत्र निवडा</string>
+    <string name="add_hours" translatable="false">+ तास जोडा</string>
+    <string name="start_time" translatable="false">सुरूवातीचा वेळ</string>
+    <string name="end_time" translatable="false">समाप्तीचा वेळ</string>
+    <string name="mon" translatable="false">सोम</string>
+    <string name="enter_price" translatable="false">किंमत प्रविष्ट करा</string>
+    <string name="price_at_centre" translatable="false">किंमत (केंद्रात)</string>
+    <string name="camera" translatable="false">कॅमेरा</string>
+    <string name="gallery" translatable="false">गॅलरी</string>
+    <string name="price" translatable="false">किंमत</string>
+    <string name="my_services" translatable="false">माझ्या सेवांचा</string>
+    <string name="business_name" translatable="false">व्यापाराचे नाव</string>
+    <string name="the_electronic_hub" translatable="false">इलेक्ट्रॉनिक हब</string>
+    <string name="edit" translatable="false">संपादित करा</string>
+    <string name="please_enter_a_valid_e_mail" translatable="false">कृपया वैध ई-मेल प्रविष्ट करा\n</string>
+    <string name="enter_email_address" translatable="false">ईमेल पत्ता प्रविष्ट करा</string>
+    <string name="address" translatable="false">पत्ता</string>
+    <string name="a_block_sector_63_noida" translatable="false">A ब्लॉक सेक्टर 63 नोएडा</string>
+    <string name="under_development" translatable="false">विकासाधीन</string>
+    <string name="resend_otp_in" translatable="false"> OTP पुन्हा पाठवा </string>
+    <string name="are_you_logout" translatable="false">तुम्हाला खरोखर बाहेर पडायचे आहे का?</string>
+    <string name="log_out" translatable="false">लॉग आउट</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_centre_mode" translatable="false">केंद्र मोडसाठी सुरूवातीचा वेळ समाप्तीच्या वेळेपेक्षा जास्त असू नये.</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_home_mode" translatable="false">घराच्या मोडसाठी सुरूवातीचा वेळ समाप्तीच्या वेळेपेक्षा जास्त असू नये.</string>
+    <string name="please_enter_the_price_for_the_centre_service_mode" translatable="false">केंद्र सेवा मोडसाठी कृपया किंमत प्रविष्ट करा.</string>
+    <string name="please_enter_the_price_for_the_home_service_mode" translatable="false">घर सेवा मोडसाठी कृपया किंमत प्रविष्ट करा.</string>
+    <string name="please_select_a_service_model" translatable="false">कृपया एक सेवा मॉडेल निवडा.</string>
+    <string name="please_select_the_category" translatable="false">कृपया वर्ग निवडा.</string>
+    <string name="please_select_at_one_image" translatable="false">कृपया किमान एक प्रतिमा निवडा.</string>
+    <string name="images_must_be_less_than_five" translatable="false">प्रतिमा पाच किंवा पाचपेक्षा कमी असाव्यात.</string>
+    <string name="please_select_sub_category" translatable="false">कृपया उपवर्ग निवडा.</string>
+    <string name="select_sub_category" translatable="false">उपवर्ग निवडा</string>
+    <string name="select_session_should_not_be_empty_for_the_center_service_mode" translatable="false">केंद्र सेवा मोडसाठी सत्र निवडणे रिक्त असू नये</string>
+    <string name="select_session_should_not_be_empty_for_the_home_service_mode" translatable="false">घर सेवा मोडसाठी सत्र निवडणे रिक्त असू नये</string>
+    <string name="details" translatable="false">तपशील</string>
+    <string name="_1_km" translatable="false">1 किमी.</string>
+    <string name="away" translatable="false">दूर</string>
+    <string name="prateek_mehta" translatable="false">प्रतीक मेहता</string>
+    <string name="media" translatable="false">मीडिया</string>
+    <string name="_1499_2999" translatable="false">1499 - 2999</string>
+    <string name="book_now" translatable="false">आता बुक करा</string>
+    <string name="my_booking" translatable="false">माझ्या बुकिंग्ज</string>
+    <string name="booking_id" translatable="false">बुकिंग आयडी</string>
+    <string name="booking_id_num" translatable="false">#262638</string>
+    <string name="by_prateek_mehta" translatable="false">प्रतीक मेहताद्वारे</string>
+    <string name="tuesday_21_oct_11_00_am" translatable="false">मंगळवार, 21 ऑक्टोबर, 11:00 AM</string>
+    <string name="complete_profile" translatable="false">प्रोफाइल पूर्ण करा</string>
+    <string name="enter_your_information_below" translatable="false">तुमची माहिती खाली प्रविष्ट करा</string>
+    <string name="edit_service" translatable="false">सेवा संपादित करा</string>
+    <string name="message" translatable="false">संदेश</string>
+    <string name="upcoming" translatable="false">आगामी</string>
+    <string name="completed" translatable="false">पूर्ण झाले</string>
+    <string name="cancelled" translatable="false">रद्द केले</string>
+    <string name="_1799" translatable="false">1799</string>
+    <string name="_1499" translatable="false">1499</string>
+    <string name="reschedule" translatable="false">पुनः शेड्यूल</string>
+    <string name="cancel" translatable="false">रद्द करा</string>
+    <string name="ok" translatable="false">ठीक आहे</string>
+    <string name="rate_us" translatable="false">आम्हाला रेट करा</string>
+    <string name="date_time" translatable="false"><![CDATA[तारीख & वेळ]]></string>
+    <string name="payment_info" translatable="false">भरणा माहिती</string>
+    <string name="subtotal" translatable="false">उपकुल</string>
+    <string name="gst_18" translatable="false">GST (18%)</string>
+    <string name="total" translatable="false">एकूण</string>
+    <string name="personal_document" translatable="false">वैयक्तिक दस्तऐवज</string>
+    <string name="business_document" translatable="false">व्यापार दस्तऐवज</string>
+    <string name="_25" translatable="false">25</string>
+    <string name="_1524" translatable="false">1524</string>
+    <string name="booking_details" translatable="false">बुकिंग तपशील</string>
+    <string name="location" translatable="false">स्थान</string>
+    <string name="a_199_sector_63_noida" translatable="false">A-199, सेक्टर-63, नोएडा</string>
+    <string name="mark_as_completed" translatable="false">पूर्ण झाले म्हणून चिन्हांकित करा</string>
+    <string name="ac_repair" translatable="false">AC दुरुस्ती</string>
+    <string name="review" translatable="false">समीक्षा</string>
+    <string name="give_a_feedback" translatable="false">फीडबॅक द्या...</string>
+    <string name="do_this_later" translatable="false">हे नंतर करा</string>
+    <string name="submit" translatable="false">सबमिट करा</string>
+    <string name="today" translatable="false">आज</string>
+    <string name="hello_abhishek_how_are_you" translatable="false">नमस्कार अभिषेक, तुम्ही कसे आहात?</string>
+    <string name="saad_rahman" translatable="false">साद रहमान</string>
+    <string name="no_chats_found" translatable="false">कोणतेही चॅट सापडले नाही!</string>
+    <string name="start_new_chat" translatable="false">नवीन चॅट सुरू करा</string>
+    <string name="amount_paid" translatable="false">देय रक्कम</string>
+    <string name="book_again" translatable="false">पुन्हा बुक करा</string>
+    <string name="_1420" translatable="false">1420</string>
+    <string name="payment_mode" translatable="false">भरणा पद्धत</string>
+    <string name="reason_for_cancellation" translatable="false">रद्द करण्याचे कारण</string>
+    <string name="provider_is_not_available_at_this_time" translatable="false">सद्य स्थितीत प्रदाता उपलब्ध नाही.</string>
+    <string name="credit_card" translatable="false">क्रेडिट कार्ड</string>
+    <string name="refund_status" translatable="false">परतावा स्थिती</string>
+    <string name="refund_initiated_you_will_receive_your_n_amount_in_48_hours" translatable="false">परतावा सुरू झाला आहे. तुम्हाला तुमची \n रक्कम 48 तासांत प्राप्त होईल.</string>
+    <string name="save" translatable="false">सहेज</string>
+    <string name="a_192_sector_44_noida" translatable="false">A-192, सेक्टर-44, नोएडा</string>
+    <string name="save_this_address_for_future_services" translatable="false">भविष्यातील सेवांसाठी हा पत्ता सहेज करा.</string>
+    <string name="booking_summary" translatable="false">बुकिंग सारांश</string>
+    <string name="change" translatable="false">बदल करा</string>
+    <string name="june_2023" translatable="false">जून 2023</string>
+    <string name="_4_5" translatable="false">4.5</string>
+    <string name="proceed" translatable="false">पुढे चला</string>
+    <string name="add_address" translatable="false">पत्ता जोडा</string>
+    <string name="days" translatable="false">दिवस</string>
+    <string name="_16" translatable="false">16</string>
+    <string name="time" translatable="false">वेळ</string>
+    <string name="alert" translatable="false">सतर्कता</string>
+    <string-array name="select_category">
+        <item>वर्ग निवडा</item>
+        <item>वित्त</item>
+        <item>इलेक्ट्रॉनिक्स</item>
+        <item>फिटनेस</item>
+    </string-array>
+
+    <string-array name="select_sub_category">
+        <item>उपवर्ग निवडा</item>
+        <item>आयटम 1</item>
+        <item>आयटम 2</item>
+        <item>आयटम 3</item>
+        <item>आयटम 4</item>
+    </string-array>
+    <!-- लॉगिन संबंधित स्ट्रिंग्ज -->
+    <string name="prompt_email" translatable="false">ईमेल</string>
+    <string name="prompt_password" translatable="false">पासवर्ड</string>
+    <string name="action_sign_in" translatable="false">साइन इन किंवा नोंदणी करा</string>
+    <string name="action_sign_in_short" translatable="false">साइन इन</string>
+    <string name="welcome" translatable="false">"स्वागत आहे!"</string>
+    <string name="invalid_username" translatable="false">वैध वापरकर्ता नाव नाही</string>
+    <string name="invalid_password" translatable="false">पासवर्ड >5 वर्णांचा असावा</string>
+    <string name="login_failed" translatable="false">"लॉगिन अयशस्वी"</string>
+    <string name="if_cancellation_done_after_24_hours_of_booking_date_you_will_get_refund" translatable="false">बुकिंग तारखेनंतर 24 तासांनी रद्द केल्यास, तुम्हाला परतावा मिळेल.</string>
+    <string name="service_provider_is_not_available_and_has_requested_to_cancel" translatable="false">सेवा प्रदाता उपलब्ध नाही आणि त्यांनी रद्द करण्याची विनंती केली आहे</string>
+    <string name="i_found_this_service_at_a_cheaper_price" translatable="false">माझ्या शोधानुसार, ही सेवा कमी किमतीत सापडली आहे</string>
+    <string name="i_don_t_need_this_service_now" translatable="false">मला आत्ताच या सेवेला आवश्यकता नाही</string>
+    <string name="i_am_unavailable_at_the_scheduled_time" translatable="false">मी ठरवलेल्या वेळेस उपलब्ध नाही</string>
+    <string name="_262638" translatable="false">#262638</string>
+    <string name="your_booking_has_been_cancelled" translatable="false">तुम्ही केलेली बुकिंग रद्द करण्यात आली आहे.</string>
+    <string name="please_track_status_of_refund_under_my_bookings_cancelled" translatable="false"><![CDATA[कृपया \'माझी बुकिंग्स->रद्द केलेली\' अंतर्गत परताव्याची स्थिती तपासा]]></string>
+    <string name="go_to_my_bookings" translatable="false">माझ्या बुकिंग्सकडे जा</string>
+    <string name="payment" translatable="false">भरणा</string>
+    <string name="service_details" translatable="false">सेवा तपशील</string>
+    <string name="_21_jun_2023_11_00am" translatable="false">21 जून 2023, 11:00AM</string>
+    <string name="abhishek_mehra_a_192_sector_44_noida" translatable="false">अभिषेक मेहरा | A-192, सेक्टर-44, नोएडा</string>
+    <string name="apply_coupon" translatable="false">कूपन लागू करा</string>
+    <string name="tax" translatable="false">कर</string>
+    <string name="payable_amount" translatable="false">भरणार्या रकमेची</string>
+    <string name="pay_now" translatable="false">आताच भरा</string>
+    <string name="code" translatable="false">कोड</string>
+    <string name="applied" translatable="false">लागू केले</string>
+    <string name="coupons" translatable="false">कूपन</string>
+    <string name="enter_promocode" translatable="false">प्रोमोकोड प्रविष्ट करा</string>
+    <string name="apply" translatable="false">लागू करा</string>
+    <string name="available_coupons" translatable="false">उपलब्ध कूपन</string>
+    <string name="sbi100" translatable="false">SBI100</string>
+    <string name="state_bank_of_india" translatable="false">स्टेट बँक ऑफ इंडिया</string>
+    <string name="cashback_up_to_usd_10_on_the_item_total_above_1100" translatable="false">आयटम एकूण 1100 पेक्षा जास्त असल्यास USD 10 पर्यंत कॅशबॅक</string>
+    <string name="saved_addresses" translatable="false">सुरक्षित पत्ते</string>
+    <string name="a_192_sector_44_noida_201301" translatable="false">A-192, सेक्टर-44, नोएडा, 201301</string>
+    <string name="_91_989_123_4567" translatable="false">+91 989 123 4567</string>
+    <string name="add_new_address" translatable="false">नवीन पत्ता जोडा</string>
+    <string name="chat_requests" translatable="false">चॅट विनंत्या</string>
+    <string name="no_chat_requests_found" translatable="false">कोणतीही चॅट विनंत्या सापडल्या नाहीत!</string>
+    <string name="see_your_chats" translatable="false">तुमचे चॅट्स पाहा</string>
+    <string name="decline" translatable="false">अस्वीकृती</string>
+    <string name="kuldeep_srivastava" translatable="false">कुलदीप श्रीवास्तव</string>
+    <string name="connect" translatable="false">कनेक्ट</string>
+    <string name="call" translatable="false">कॉल</string>
+    <string name="whatsapp" translatable="false">व्हॉट्सअ‍ॅप</string>
+    <string name="share" translatable="false">शेअर करा</string>
+    <string name="services_we_offer" translatable="false">आम्ही ऑफर करतोय सेवा</string>
+    <string name="settings" translatable="false">सेटिंग्ज</string>
+    <string name="switch_to_business" translatable="false">व्यापारात स्विच करा</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut" translatable="false">Lorem ipsum dolor sit amet,\nconsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</string>
+    <string name="push_notifications" translatable="false">पुश नोटिफिकेशन्स</string>
+    <string name="account_settings" translatable="false">खाते सेटिंग्ज</string>
+    <string name="my_wallet" translatable="false">माझे वॉलेट</string>
+    <string name="wallet" translatable="false">वॉलेट</string>
+    <string name="paymentGateway" translatable="false">पेमेंट गेटवे</string>
+    <string name="walletWithPg" translatable="false">वॉलेटसह Pg</string>
+    <string name="about_us" translatable="false">आमच्याबद्दल</string>
+    <string name="distance" translatable="false">अंतर</string>
+    <string name="change_language" translatable="false">भाषा बदला</string>
+    <string name="faq_s" translatable="false">वारंवार विचारले जाणारे प्रश्न</string>
+    <string name="contact_us" translatable="false">आमच्याशी संपर्क साधा</string>
+    <string name="data_privacy" translatable="false">डेटा गोपनीयता</string>
+    <string name="terms_and_conditions" translatable="false">अटी आणि शर्ती</string>
+    <string name="delete_account" translatable="false">खाते हटवा</string>
+    <string name="your_available_balance" translatable="false">तुमचा उपलब्ध शिल्लक</string>
+    <string name="deactivate" translatable="false">निष्क्रिय करा</string>
+    <string name="send_money" translatable="false">पैसे पाठवा</string>
+    <string name="transactions" translatable="false">लेखन</string>
+    <string name="_200" translatable="false">₹200</string>
+    <string name="_123456789" translatable="false">123456789</string>
+    <string name="please_allow_location_permission_to_move_ahead" translatable="false">पुढे जाण्यासाठी स्थान परवानगी द्या.</string>
+    <string name="connections_requests" translatable="false">कनेक्शन विनंत्या</string>
+    <string name="accept_or_decline_requests" translatable="false">विनंत्या स्वीकारा किंवा नाकारून टाका</string>
+    <string name="are_you_sure_you_want_to_logout" translatable="false">तुम्हाला लॉग आउट करायचे आहे का?</string>
+    <string name="no" translatable="false">नाही</string>
+    <string name="yes" translatable="false">होय</string>
+    <string name="log_out_successfully" translatable="false">सफलतेने लॉग आउट!</string>
+    <string name="remove" translatable="false">काढा</string>
+    <string name="surya_mouly" translatable="false">सूर्य मौली</string>
+    <string name="_100" translatable="false">100</string>
+    <string name="individual_business" translatable="false">वैयक्तिक व्यवसाय</string>
+    <string name="rating_raviews" translatable="false"><![CDATA[रेटिंग & पुनरावलोकन]]></string>
+    <string name="report" translatable="false">रिपोर्ट</string>
+    <string name="promocode_discount" translatable="false">प्रोमोकोड सवलत</string>
+    <string name="sorry_this_time_slot_is_not_available" translatable="false">खेद, हा वेळ स्लॉट उपलब्ध नाही</string>
+    <string name="_10_30_am" translatable="false">10:30 AM</string>
+    <string name="ravi_bishnoi_sent_you_a_connections_request" translatable="false">तुम्हाला कनेक्शन विनंती पाठवली आहे</string>
+    <string name="ravi_bishnoi" translatable="false">रवि बिश्नोई</string>
+    <string name="your_available_balance_insufficient_balance" translatable="false">तुमचा उपलब्ध शिल्लक</string>
+    <string name="insufficient_balance" translatable="false">(अपर्याप्त शिल्लक)</string>
+    <string name="add_money" translatable="false">पैसे जोडा</string>
+    <string name="pay_1548" translatable="false">₹ 1548 भरा</string>
+    <string name="are_you_sure_you_want_to_conform" translatable="false">तुम्हाला पुष्टी करायची आहे का?</string>
+    <string name="calendar" translatable="false">कॅलेंडर</string>
+    <string name="slot" translatable="false">स्लॉट</string>
+    <string name="at_center" translatable="false">केंद्रात</string>
+    <string name="aman" translatable="false">अमन</string>
+    <string name="set_location" translatable="false">स्थान सेट करा</string>
+    <string name="house_flat_office_no" translatable="false">घर/फ्लॅट/आयक ऑफिस क्रमांक*</string>
+    <string name="road_name_area_colony" translatable="false">रस्ता नाव/क्षेत्र/कॉलनी*</string>
+    <string name="pincode" translatable="false">पिनकोड*</string>
+    <string name="confirm_location" translatable="false">स्थान पुष्टी करा</string>
+    <string name="sold" translatable="false">विकले</string>
+    <string name="sold_small" translatable="false">विकले</string>
+    <string name="bought" translatable="false">खरेदी केले</string>
+    <string name="search_location" translatable="false">स्थान शोधा</string>
+    <string name="location_is_not_avialable" translatable="false">स्थान उपलब्ध नाही.</string>
+    <string name="request" translatable="false">विनंती</string>
+    <string name="atcenter" translatable="false">केंद्रात</string>
+    <string name="athome" translatable="false">घरच्या</string>
+    <string name="confirm" translatable="false">पुष्टी करा</string>
+    <string name="booking" translatable="false">बुकिंग</string>
+    <string name="pay" translatable="false">भरा ₹</string>
+    <string name="pending" translatable="false">प्रलंबित</string>
+    <string name="paymeturl" translatable="false">पेमेंट यूआरएल</string>
+    <string name="cancel_booking" translatable="false">बुकिंग रद्द करा</string>
+    <string name="bookinglist" translatable="false">बुकिंग सूची</string>
+    <string name="booked_by" translatable="false">बुक केलेले</string>
+    <string name="bought_small" translatable="false">खरेदी केले</string>
+    <string name="r" translatable="false"></string>
+    <string name="close_service" translatable="false">सेवा बंद करा</string>
+    <string name="start_date" translatable="false">सुरुवात तारीख</string>
+    <string name="end_date" translatable="false">समाप्ती तारीख</string>
+    <string name="close" translatable="false">बंद करा</string>
+    <string name="start_service" translatable="false">सेवा सुरू करा</string>
+    <string name="leave" translatable="false">सोडा</string>
+    <string name="not_cancelable" translatable="false">रद्द करता येत नाही</string>
+    <string name="back_to_original_payment_source" translatable="false">मूळ पेमेंट स्रोतावर परत</string>
+    <string name="refund_in_wallet" translatable="false">वॉलेटमध्ये परतावा</string>
+    <string name="promocode" translatable="false">प्रोमोकोड</string>
+    <string name="closeservice" translatable="false">सेवा बंद करा</string>
+    <string name="before_date_text" translatable="false">आपण सेवा बंद करायची आहे का? आपण सेवा बंद केल्यास, सर्व बुकिंग्स</string>
+    <string name="to" translatable="false">पर्यंत</string>
+    <string name="after_date_text" translatable="false">स्वतः रद्द केली जाईल</string>
+    <string name="image" translatable="false">छायाचित्र</string>
+    <string name="videos" translatable="false">व्हिडिओ</string>
+    <string name="servicedetails" translatable="false">सेवा तपशील</string>
+    <string name="openmedia" translatable="false">मीडिया उघडा</string>
+    <string name="back_press" translatable="false">पाठीमागे दाबा</string>
+    <string name="goBack" translatable="false">पाठीमागे जा</string>
+    <string name="goForeword" translatable="false">आगामी</string>
+    <string name="home_fr" translatable="false">होम_FR</string>
+    <string name="onlinefr" translatable="false">ऑनलाइनFR</string>
+    <string name="back" translatable="false">पाठीमागे</string>
+    <string name="provider_profile" translatable="false">सेवा प्रदाता प्रोफाइल</string>
+    <string name="profile_fr" translatable="false">प्रोफाइल_Fr</string>
+    <string name="add_video" translatable="false">+ व्हिडिओ जोडा</string>
+    <string name="logout" translatable="false">लॉगआउट</string>
+    <string name="join_call" translatable="false">कॉलमध्ये सामील व्हा</string>
+    <string name="leave_call" translatable="false">कॉल सोडा</string>
+    <string name="mute_call" translatable="false">कॉल म्यूट करा</string>
+    <string name="connected" translatable="false">कनेक्टेड</string>
+    <string name="callended" translatable="false">कॉल समाप्त</string>
+    <string name="pop_up" translatable="false">पॉपअप</string>
+    <string name="block" translatable="false">ब्लॉक</string>
+    <string name="delete_chat" translatable="false">चॅट हटवा</string>
+    <string name="unblock" translatable="false">अनब्लॉक</string>
+    <string name="container" translatable="false">कंटेनर</string>
+    <string name="chatfragment" translatable="false">चॅट फ्रॅगमेंट</string>
+    <string name="open_gallery" translatable="false">गॅलरी उघडा</string>
+    <string name="images" translatable="false">छायाचित्रे</string>
+    <string name="files" translatable="false">फायली</string>
+    <string name="media_size_check" translatable="false">मीडिया आकार 100 MB पेक्षा कमी असावा</string>
+
+    <string name="weeks" translatable="false">आठवडे</string>
+    <string name="months" translatable="false">महिने</string>
+    <string name="years" translatable="false">वर्षे</string>
+    <string name="min" translatable="false">मिनिट</string>
+    <string name="hour" translatable="false">तास</string>
+    <string name="minute" translatable="false">मिनिट</string>
+    <string name="pick_your_media_file" translatable="false">तुमचा मीडिया फाइल निवडा</string>
+    <string name="use_as_default" translatable="false">सामान्य म्हणून वापरा</string>
+    <string name="_default" translatable="false">सामान्य</string>
+
+    <string-array name="select_issue">
+        <item>समस्या निवडा</item>
+        <item>आयटम 1</item>
+        <item>आयटम 2</item>
+        <item>आयटम 3</item>
+        <item>आयटम 4</item>
+        <item>आयटम 5</item>
+    </string-array>
+
+    <!--bank module strings-->
+    <string name="add_your_bank_account" translatable="false">तुमचा बँक खाताही जोडा</string>
+    <string name="add_new_bank_account" translatable="false">नवीन बँक खाता जोडा</string>
+    <string name="choose_bank_with_your_account" translatable="false">तुमच्या खात्यासह बँक निवडा.</string>
+    <string name="select_bank" translatable="false">बँक निवडा</string>
+    <string name="current_account" translatable="false">सध्याचे खाते</string>
+    <string name="savings_account" translatable="false">साव्हिंग्स खाते</string>
+    <string name="select_account_type" translatable="false">खाते प्रकार निवडा</string>
+    <string name="enter_document_type" translatable="false">कागदपत्राचा प्रकार प्रविष्ट करा</string>
+    <string name="document_type" translatable="false">कागदपत्राचा प्रकार</string>
+    <string name="enter_document_number" translatable="false">कागदपत्राचा क्रमांक प्रविष्ट करा</string>
+    <string name="document_number" translatable="false">कागदपत्राचा क्रमांक</string>
+    <string name="enter_account_name" translatable="false">खात्याचे नाव प्रविष्ट करा</string>
+    <string name="account_name" translatable="false">खात्याचे नाव</string>
+    <string name="enter_account_number" translatable="false">खात्याचा क्रमांक प्रविष्ट करा</string>
+    <string name="account_number" translatable="false">खाते क्रमांक</string>
+    <string name="my_bank_account" translatable="false">माझे बँक खाते</string>
+    <string name="connecting" translatable="false">जोडणी करत आहे</string>
+    <string name="add_bank_account" translatable="false">बँक खाते जोडा</string>
+
+    <!--validation Texts-->
+    <string name="please_enter_account_number" translatable="false">कृपया खाते क्रमांक प्रविष्ट करा</string>
+    <string name="please_enter_account_name" translatable="false">कृपया खाते नाव प्रविष्ट करा</string>
+    <string name="invalid_account_number" translatable="false">खाते क्रमांक अवैध आहे</string>
+    <string name="please_enter_document_number" translatable="false">कृपया कागदपत्र क्रमांक प्रविष्ट करा</string>
+    <string name="please_enter_document_type" translatable="false">कृपया कागदपत्राचा प्रकार प्रविष्ट करा</string>
+
+    <!--String files for click events-->
+    <string name="cross" translatable="false">क्रॉस</string>
+    <string name="audio_call" translatable="false">ऑडिओ कॉल</string>
+    <string name="video_call" translatable="false">व्हिडिओ कॉल</string>
+    <string name="connect_with_the_user_as" translatable="false">वापरकर्त्यास जोडा म्हणून</string>
+    <string name="outgoing_video" translatable="false">आउटगोइंग व्हिडिओ</string>
+    <string name="outgoing_Audio" translatable="false">आउटगोइंग ऑडिओ</string>
+    <string name="user_name" translatable="false">वापरकर्ता नाव</string>
+    <string name="are_you_sure_want_to_delete_this_account" translatable="false">तुम्ही खातं हटवू इच्छिता का?</string>
+    <string name="filterdata" translatable="false">फिल्टर डेटा</string>
+    <string name="connection_remove_successfully" translatable="false">संपर्क यशस्वीरित्या हटवला</string>
+    <string name="whatsApp" translatable="false">व्हॉट्सअॅप</string>
+    <string name="description" translatable="false">वर्णन</string>
+    <string name="issue_type" translatable="false">समस्या प्रकार</string>
+    <string name="notification" translatable="false">सूचना</string>
+    <string name="addbank" translatable="false">बँक जोडा</string>
+    <string name="openbottomsheet" translatable="false">खालील पत्रक उघडा</string>
+    <string name="personal" translatable="false">वैयक्तिक</string>
+    <string name="dummy_string" translatable="false">डमी स्ट्रिंग</string>
+    <string name="service_we_offer" translatable="false">आम्ही ऑफर करणारी सेवा</string>
+    <string name="wellness" translatable="false">वेलनेस</string>
+    <string name="household" translatable="false">घरगुती</string>
+    <string name="electronic" translatable="false">इलेक्ट्रॉनिक</string>
+    <string name="videophoto" translatable="false">व्हिडिओफोटो</string>
+    <string name="showbiz" translatable="false">शोबिझ</string>
+    <string name="real_estate" translatable="false">रिअल इस्टेट</string>
+    <string name="spa_beauty" translatable="false">स्पा-सौंदर्य</string>
+    <string name="security" translatable="false">सुरक्षा</string>
+    <string name="software" translatable="false">सॉफ्टवेअर</string>
+    <string name="legal" translatable="false">कायदेशीर</string>
+    <string name="pet_service" translatable="false">पालक पशू सेवा</string>
+    <string name="travel" translatable="false">प्रवास</string>
+    <string name="other" translatable="false">इतर</string>
+    <string name="allow_gps_location" translatable="false">सेवा स्थान अनुमती द्या</string>
+    <string name="welcome_to_servivet_we_are_passionate_about_creating_meaningful_connections_and_facilitating_seamless_interactions_our_mission_is_to_provide_a_platform_that_fosters_community_encourages_collaboration_and_sparks_engaging_conversations_among_users">Servivet मध्ये तुमचं स्वागत आहे! आम्ही अर्थपूर्ण संबंध निर्माण करण्यात आणि सुरळीत संवाद साधण्यात अत्यंत उत्साही आहोत. आमचं ध्येय म्हणजे एक अशी व्यासपीठ प्रदान करणं आहे, जे समुदायाचा विकास करते, सहकार्य प्रोत्साहन देतं आणि वापरकर्त्यांमधील आकर्षक संवादांना उत्तेजन देते.</string>
+    <string name="title">शीर्षक</string>
+    <string name="enter_title">शीर्षक टाका</string>
+    <string name="your_feedback_or_suggestion_here">आपले अभिप्राय किंवा सुचनाएँ येथे द्या...</string>
+    <string name="_0_200">(0/200)</string>
+    <string name="email">ईमेल</string>
+    <string name="we_are_keen_to_know_how_we_can_make_e_yugam_better_for_you_send_your_feedback_or_suggestion">E-Yugam आपल्यासाठी कसे सुधारू शकतो हे जाणून घेण्यात आम्हाला रस आहे. आपला अभिप्राय किंवा सुचना आम्हाला पाठवा</string>
+    <string name="withdraw">माघार घ्या</string>
+    <string name="no_data_found">कोणताही डेटा सापडला नाही!</string>
+    <string name="delhi">दिल्ली</string>
+
+</resources>

@@ -93,7 +93,7 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding,EditProfileV
         if(Session.userProfile.description.isNotEmpty())
             binding.descriptionEditText.setText(Session.userProfile.description)
         else{
-            binding.descriptionEditText.setText("Welcome to Servivet! We are passionate about creating meaningful connections and facilitating seamless interactions.Our mission is to provide a platform that fosters community, encourages collaboration, and sparks engaging conversations among users.")
+            binding.descriptionEditText.setText(getString(R.string.welcome_to_servivet_we_are_passionate_about_creating_meaningful_connections_and_facilitating_seamless_interactions_our_mission_is_to_provide_a_platform_that_fosters_community_encourages_collaboration_and_sparks_engaging_conversations_among_users))
         }
 
         binding.wordCount.text = "(" +binding.descriptionEditText.text.toString().length.toString()+ "/150)";

@@ -449,7 +449,7 @@
     <string name="filterdata" translatable="false">फ़िल्टर डेटा</string>
     <string name="connection_remove_successfully" translatable="false">कनेक्शन सफलतापूर्वक हटा दिया गया</string>
 
-    <string name="whatsApp" translatable="false">WhatsApp</string>
+
     <string name="description" translatable="false">विवरण</string>
     <string name="issue_type" translatable="false">मुद्दे का प्रकार</string>
     <string name="notification" translatable="false">सूचना</string>
@@ -457,21 +457,31 @@
     <string name="openbottomsheet" translatable="false">नीचे की शीट खोलें</string>
     <string name="personal" translatable="false">व्यक्तिगत</string>
     <string name="dummy_string" translatable="false">मूर्ख स्ट्रिंग</string>
-    <string name="service_we_offer">Service we Offer</string>
-
-    <string name="wellness">Wellness</string>
-    <string name="household">HouseHold</string>
-    <string name="electronic">Electronic</string>
-    <string name="videophoto">"VideoPhoto "</string>
-    <string name="showbiz">Showbiz</string>
-    <string name="real_estate">Real Estate</string>
-    <string name="spa_beauty">Spa-Beauty</string>
-    <string name="security">Security</string>
-    <string name="software">Software</string>
-    <string name="legal">Legal</string>
-    <string name="pet_service">Pet Service</string>
-    <string name="travel">Travel</string>
-    <string name="other">Other</string>
-    <string name="allow_gps_location">allow servi location</string>
+    <string name="service_we_offer">हम जो सेवाएँ प्रदान करते हैं</string>
+    <string name="whatsApp">व्हाट्सएप</string>
+    <string name="wellness">स्वास्थ्य</string>
+    <string name="household">घरेलू</string>
+    <string name="electronic">इलेक्ट्रॉनिक</string>
+    <string name="videophoto">वीडियो और फ़ोटो</string>
+    <string name="showbiz">शोबिज़</string>
+    <string name="real_estate">रियल एस्टेट</string>
+    <string name="spa_beauty">स्पा और सौंदर्य</string>
+    <string name="security">सुरक्षा</string>
+    <string name="software">सॉफ़्टवेयर</string>
+    <string name="legal">कानूनी</string>
+    <string name="pet_service">पालतू जानवर सेवा</string>
+    <string name="travel">यात्रा</string>
+    <string name="other">अन्य</string>
+    <string name="allow_gps_location">सेवा स्थान अनुमति दें</string>
+    <string name="welcome_to_servivet_we_are_passionate_about_creating_meaningful_connections_and_facilitating_seamless_interactions_our_mission_is_to_provide_a_platform_that_fosters_community_encourages_collaboration_and_sparks_engaging_conversations_among_users">स्वागत है Servivet पर! हम महत्वपूर्ण कनेक्शन बनाने और सहज इंटरैक्शन की सुविधा प्रदान करने के प्रति उत्साही हैं। हमारा मिशन एक ऐसा मंच प्रदान करना है जो समुदाय को बढ़ावा दे, सहयोग को प्रोत्साहित करे और उपयोगकर्ताओं के बीच आकर्षक बातचीत को प्रेरित करे।</string>
+    <string name="title">शीर्षक</string>
+    <string name="enter_title">शीर्षक दर्ज करें</string>
+    <string name="your_feedback_or_suggestion_here">यहाँ अपनी प्रतिक्रिया या सुझाव दें...</string>
+    <string name="_0_200">(0/200)</string>
+    <string name="email">ईमेल</string>
+    <string name="we_are_keen_to_know_how_we_can_make_e_yugam_better_for_you_send_your_feedback_or_suggestion">हम जानना चाहते हैं कि हम E-Yugam को आपके लिए कैसे बेहतर बना सकते हैं। अपनी प्रतिक्रिया या सुझाव भेजें</string>
+    <string name="withdraw">वापस लें</string>
+    <string name="no_data_found">कोई डेटा नहीं मिला!</string>
+    <string name="delhi">दिल्ली</string>
 
 </resources>

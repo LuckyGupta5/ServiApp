@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Servi</string>
+    <string name="servivet_require_this_permission" translatable="false">Servi moet deze toestemming toestaan.</string>
+    <string name="google_map_key" translatable="false">AIzaSyDxvOzm-9yjdnd5L4iJrVDwk-_KbUkmN8A</string>
+    <string name="please_connect_to_the_internet" translatable="false">Verbind met het internet.\n</string>
+    <string name="hello_blank_fragment" translatable="false">Hallo lege fragment</string>
+    <string name="choose_your_preferred_language" translatable="false">Kies je\n Voorkeurs Taal</string>
+    <string name="english" translatable="false">Engels</string>
+    <string name="hi_i_am_john_doe" translatable="false">Hoi, ik ben John Doe.</string>
+    <string name="swahii" translatable="false">Swahili</string>
+    <string name="habari_mimi_ni_john_doe" translatable="false">Habari, mimi ni John Doe.</string>
+    <string name="zulu" translatable="false">Zulu</string>
+    <string name="gps_enable_message" translatable="false">Je moet GPS-locatie inschakelen</string>
+    <string name="sawubona_ngingu_john_doe" translatable="false">Sawubona, ngingu-John Doe.</string>
+    <string name="continues" translatable="false">Doorgaan</string>
+    <string name="skip" translatable="false">Overslaan</string>
+    <string name="next" translatable="false">Volgende</string>
+    <string name="get_started" translatable="false">Aan de slag</string>
+    <string name="clientel" translatable="false">Cliënteel</string>
+    <string name="business" translatable="false">Bedrijf</string>
+    <string name="mobile_number" translatable="false">Mobiel nummer</string>
+    <string name="we_will_send_you_a_confirmation_code" translatable="false">We sturen je een bevestigingscode</string>
+    <string name="_123_456_7890" translatable="false">123–456-7890</string>
+    <string name="i_agree_to_terms_and_conditions_and_data_privacy_policies" translatable="false">Ik ga akkoord met de Algemene Voorwaarden en het Privacybeleid.</string>
+    <string name="verify" translatable="false">Verifiëren</string>
+    <string name="please_enter_the_otp_sent_your_mobile_number" translatable="false">Voer de OTP in die naar je mobiele nummer is gestuurd.</string>
+    <string name="otp_verification" translatable="false">OTP-verificatie</string>
+    <string name="resend_otp_in_30_seconds" translatable="false">Stuur OTP opnieuw in 30 seconden</string>
+    <string name="title_activity_home" translatable="false">HomeActivity</string>
+    <string name="first_fragment_label" translatable="false">Eerste Fragment</string>
+    <string name="second_fragment_label" translatable="false">Tweede Fragment</string>
+    <string name="previous" translatable="false">Vorige</string>
+    <string name="search_for_area_street_name_etc" translatable="false">Zoeken naar gebied, straatnaam, enz.</string>
+    <string name="home" translatable="false">Thuis</string>
+    <string name="chats" translatable="false">Chats</string>
+    <string name="bookings" translatable="false">Boekingen</string>
+    <string name="profile" translatable="false">Profiel</string>
+    <string name="noida" translatable="false">Noida</string>
+    <string name="sadarpur_sector_44_noida" translatable="false">Sadarpur, Sector-44 Noida</string>
+    <string name="search_for_service_etc" translatable="false"><![CDATA[zoek naar service & enz]]></string>
+    <string name="services" translatable="false">Diensten</string>
+    <string name="view_all" translatable="false">Bekijk Alles\n</string>
+    <string name="provider_view_all" translatable="false">ProviderBekijkAlles</string>
+    <string name="user_view_all" translatable="false">GebruikerBekijkAlles</string>
+    <string name="online_now" translatable="false">Nu online</string>
+    <string name="fitness" translatable="false">Fitness</string>
+    <string name="finance" translatable="false">FINANCIËN\n</string>
+    <string name="_1_km_away" translatable="false">km. afstand</string>
+    <string name="dev_gupta" translatable="false">Dev Gupta</string>
+    <string name="gym" translatable="false">Gym</string>
+    <string name="riepneapps_technology_noida" translatable="false">riepneapps technologie noida</string>
+    <string name="view_details" translatable="false">Bekijk Details</string>
+    <string name="individual" translatable="false">Individu</string>
+    <string name="individualcap" translatable="false">INDIVIDU</string>
+    <string name="institutional" translatable="false">Instelling</string>
+    <string name="institutionalcap" translatable="false">INSTELLING</string>
+    <string name="edit_profile" translatable="false">Profiel Bewerken</string>
+    <string name="abhishek_mehra" translatable="false">Abhishek Mehra</string>
+    <string name="about" translatable="false">Over</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut_labore_et_dolore_magna_aliquyam_erat_sed_diam_voluptua_eos_et_accusam_et_justo_duo_dolores_et_ea_rebum_stet_clita_kasd_gubergren_no_sea_takimata_sanctus_est_lorem_ipsum_dolor_sit_amet_lorem_ipsum_dolor_sit_amet" translatable="false">Lorem ipsum dolor sit amet, consetetur tempor invidunt ut labore et est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet</string>
+    <string name="accept_the_term_and_condition" translatable="false">Accepteer de Algemene Voorwaarden\n</string>
+    <string name="accept_the_privacy_policy" translatable="false">Accepteer het Privacybeleid</string>
+    <string name="term_and_condition" translatable="false">Algemene Voorwaarden</string>
+    <string name="privacy_policy" translatable="false">Privacybeleid</string>
+    <string name="terms_conditions" translatable="false"><![CDATA[Algemene Voorwaarden]]></string>
+    <string name="last_updated_on_23_may_2023" translatable="false">Laatst bijgewerkt op 23 mei 2023</string>
+    <string name="reject" translatable="false">Weigeren</string>
+    <string name="accept" translatable="false">Accepteren</string>
+    <string name="my_connections" translatable="false">Mijn Verbindingen</string>
+    <string name="name" translatable="false">Naam</string>
+    <string name="enter_name" translatable="false">Voer naam in</string>
+    <string name="_91_1234567890" translatable="false">+91 1234567890</string>
+    <string name="email_address" translatable="false">E-mailadres</string>
+    <string name="_0_150" translatable="false">(0/150)</string>
+    <string name="_150_150" translatable="false">(150/150)\n</string>
+    <string name="write_here" translatable="false">Schrijf hier</string>
+    <string name="update" translatable="false">Bijwerken</string>
+    <string name="change_cover" translatable="false">Omslag wijzigen</string>
+    <string name="business_n_verification" translatable="false">Bedrijf \nVerificatie</string>
+    <string name="select_your_business_type" translatable="false">Selecteer je bedrijfssoort</string>
+    <string name="full_name" translatable="false">Volledige naam</string>
+    <string name="enter_full_name" translatable="false">Voer volledige naam in</string>
+    <string name="using_gps" translatable="false">GPS gebruiken</string>
+    <string name="current_location" translatable="false">Huidige locatie</string>
+    <string name="enter_location_manually" translatable="false">Voer locatie handmatig in</string>
+    <string name="or" translatable="false">of</string>
+    <string name="want_to_earn_money" translatable="false">Wil je geld verdienen?</string>
+    <string name="add_the_service_which_you_are_expert_in" translatable="false">Voeg de dienst toe waarin je deskundig bent</string>
+    <string name="add_service" translatable="false">+ Voeg Dienst Toe</string>
+    <string name="near_by" translatable="false">In de buurt</string>
+    <string name="add_service_" translatable="false">Voeg Dienst Toe</string>
+    <string name="service_mode" translatable="false">Dienstmodus</string>
+    <string name="at_centre" translatable="false">Bij Centrum</string>
+    <string name="at_home" translatable="false">Thuis</string>
+    <string name="category" translatable="false">Categorie</string>
+    <string name="sub_category" translatable="false">Subcategorie</string>
+    <string name="yoga" translatable="false">Yoga</string>
+    <string name="about_service" translatable="false">Over Dienst</string>
+    <string name="photos" translatable="false">Foto\'s</string>
+    <string name="add_image" translatable="false">+ Voeg Afbeelding Toe</string>
+    <string name="add" translatable="false">Toevoegen</string>
+    <string name="availability" translatable="false">Beschikbaarheid</string>
+    <string name="select_session" translatable="false">Selecteer Sessie</string>
+    <string name="add_hours" translatable="false">+ Uren Toevoegen</string>
+    <string name="start_time" translatable="false">Starttijd</string>
+    <string name="end_time" translatable="false">Eindtijd</string>
+    <string name="mon" translatable="false">Ma</string>
+    <string name="enter_price" translatable="false">Voer prijs in</string>
+    <string name="price_at_centre" translatable="false">Prijs (Bij Centrum)</string>
+    <string name="camera" translatable="false">Camera</string>
+    <string name="gallery" translatable="false">Galerij</string>
+    <string name="price" translatable="false">Prijs</string>
+    <string name="my_services" translatable="false">Mijn Diensten</string>
+    <string name="business_name" translatable="false">Bedrijfsnaam</string>
+    <string name="the_electronic_hub" translatable="false">De Elektronische Hub</string>
+    <string name="edit" translatable="false">Bewerken</string>
+    <string name="please_enter_a_valid_e_mail" translatable="false">Voer een geldig e-mailadres in\n</string>
+    <string name="enter_email_address" translatable="false">Voer E-mailadres in</string>
+    <string name="address" translatable="false">Adres</string>
+    <string name="a_block_sector_63_noida" translatable="false">Blok A, Sector 63 Noida</string>
+    <string name="under_development" translatable="false">In Ontwikkeling</string>
+    <string name="resend_otp_in" translatable="false"> Stuur OTP opnieuw in </string>
+    <string name="are_you_logout" translatable="false">Weet je zeker dat je wilt afsluiten?</string>
+    <string name="log_out" translatable="false">Uitloggen</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_centre_mode" translatable="false">De starttijd mag niet later zijn dan de eindtijd voor de centrummodus.</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_home_mode" translatable="false">De starttijd mag niet later zijn dan de eindtijd voor de thuismodus.</string>
+    <string name="please_enter_the_price_for_the_centre_service_mode" translatable="false">Voer de prijs in voor de centrumdienstmodus.</string>
+    <string name="please_enter_the_price_for_the_home_service_mode" translatable="false">Voer de prijs in voor de thuisdienstmodus.</string>
+    <string name="please_select_a_service_model" translatable="false">Selecteer een dienstmodel.</string>
+    <string name="please_select_the_category" translatable="false">Selecteer de categorie.</string>
+    <string name="please_select_at_one_image" translatable="false">Selecteer ten minste één afbeelding.</string>
+    <string name="images_must_be_less_than_five" translatable="false">Afbeeldingen moeten vijf of minder zijn.</string>
+    <string name="please_select_sub_category" translatable="false">Selecteer de subcategorie.</string>
+    <string name="select_sub_category" translatable="false">Selecteer subcategorie</string>
+    <string name="select_session_should_not_be_empty_for_the_center_service_mode" translatable="false">Selecteer Sessie mag niet leeg zijn voor de Centrum Dienstmodus</string>
+    <string name="select_session_should_not_be_empty_for_the_home_service_mode" translatable="false">Selecteer Sessie mag niet leeg zijn voor de Thuis Dienstmodus</string>
+    <string name="details" translatable="false">Details</string>
+    <string name="_1_km" translatable="false">1 km.</string>
+    <string name="away" translatable="false">afstand</string>
+    <string name="prateek_mehta" translatable="false">Prateek Mehta</string>
+    <string name="media" translatable="false">Media</string>
+    <string name="_1499_2999" translatable="false">1499 - 2999</string>
+    <string name="book_now" translatable="false">Boek Nu</string>
+    <string name="my_booking" translatable="false">Mijn Boekingen</string>
+    <string name="booking_id" translatable="false">Boekings-ID</string>
+    <string name="booking_id_num" translatable="false">#262638</string>
+    <string name="by_prateek_mehta" translatable="false">door Prateek Mehta</string>
+    <string name="tuesday_21_oct_11_00_am" translatable="false">Dinsdag, 21 okt, 11:00 AM</string>
+    <string name="complete_profile" translatable="false">Profiel Voltooien</string>
+    <string name="enter_your_information_below" translatable="false">Voer je informatie hieronder in</string>
+    <string name="edit_service" translatable="false">Dienst Bewerken</string>
+    <string name="message" translatable="false">Bericht</string>
+    <string name="upcoming" translatable="false">Aankomend</string>
+    <string name="completed" translatable="false">Voltooid</string>
+    <string name="cancelled" translatable="false">Geannuleerd</string>
+    <string name="_1799" translatable="false">1799</string>
+    <string name="_1499" translatable="false">1499</string>
+    <string name="reschedule" translatable="false">Herschikken</string>
+    <string name="cancel" translatable="false">Annuleren</string>
+    <string name="ok" translatable="false">Ok</string>
+    <string name="rate_us" translatable="false">Beoordeel ons</string>
+    <string name="date_time" translatable="false"><![CDATA[Datum & Tijd]]></string>
+    <string name="payment_info" translatable="false">Betalingsinformatie</string>
+    <string name="subtotal" translatable="false">Subtotaal</string>
+    <string name="gst_18" translatable="false">BTW (18%)</string>
+    <string name="total" translatable="false">Totaal</string>
+    <string name="personal_document" translatable="false">Persoonlijk Document</string>
+    <string name="business_document" translatable="false">Zakelijk Document</string>
+    <string name="_25" translatable="false">25</string>
+    <string name="_1524" translatable="false">1524</string>
+    <string name="booking_details" translatable="false">Boekingsdetails</string>
+    <string name="location" translatable="false">Locatie</string>
+    <string name="a_199_sector_63_noida" translatable="false">A-199, Sector-63, Noida</string>
+    <string name="mark_as_completed" translatable="false">Markeren als Voltooid</string>
+    <string name="ac_repair" translatable="false">Airconditioning Reparatie</string>
+    <string name="review" translatable="false">Beoordeling</string>
+    <string name="give_a_feedback" translatable="false">Geef een feedback...</string>
+    <string name="do_this_later" translatable="false">Later doen</string>
+    <string name="submit" translatable="false">Verzenden</string>
+    <string name="today" translatable="false">Vandaag</string>
+    <string name="hello_abhishek_how_are_you" translatable="false">Hallo Abhishek, hoe gaat het?</string>
+    <string name="saad_rahman" translatable="false">Saad Rahman</string>
+    <string name="no_chats_found" translatable="false">Geen chats gevonden!</string>
+    <string name="start_new_chat" translatable="false">Start nieuwe chat</string>
+    <string name="amount_paid" translatable="false">Betaald Bedrag</string>
+    <string name="book_again" translatable="false">Opnieuw Boeken</string>
+    <string name="_1420" translatable="false">1420</string>
+    <string name="payment_mode" translatable="false">Betaalmethode</string>
+    <string name="reason_for_cancellation" translatable="false">Reden voor annulering</string>
+    <string name="provider_is_not_available_at_this_time" translatable="false">De aanbieder is op dit moment niet beschikbaar.</string>
+    <string name="credit_card" translatable="false">Kredietkaart</string>
+    <string name="refund_status" translatable="false">Terugbetalingsstatus</string>
+    <string name="refund_initiated_you_will_receive_your_n_amount_in_48_hours" translatable="false">Terugbetaling gestart. Je ontvangt je \n bedrag binnen 48 uur.</string>
+    <string name="save" translatable="false">Opslaan</string>
+    <string name="a_192_sector_44_noida" translatable="false">A-192, Sector-44, Noida</string>
+    <string name="save_this_address_for_future_services" translatable="false">Bewaar dit adres voor toekomstige diensten.</string>
+    <string name="booking_summary" translatable="false">Boekingsoverzicht</string>
+    <string name="change" translatable="false">Wijzigen</string>
+    <string name="june_2023" translatable="false">Juni 2023</string>
+    <string name="_4_5" translatable="false">4.5</string>
+    <string name="proceed" translatable="false">Doorgaan</string>
+    <string name="add_address" translatable="false">Adres Toevoegen</string>
+    <string name="days" translatable="false">Dagen</string>
+    <string name="_16" translatable="false">16</string>
+    <string name="time" translatable="false">Tijd</string>
+    <string name="alert" translatable="false">Waarschuwing</string>
+    <string-array name="select_category">
+        <item>Selecteer Categorie</item>
+        <item>Financiën</item>
+        <item>Elektronica</item>
+        <item>Fitness</item>
+    </string-array>
+    <string-array name="select_sub_category">
+        <item>Selecteer Subcategorie</item>
+        <item>Item 1</item>
+        <item>Item 2</item>
+        <item>Item 3</item>
+        <item>Item 4</item>
+    </string-array>
+    <string name="prompt_email" translatable="false">E-mail</string>
+    <string name="prompt_password" translatable="false">Wachtwoord</string>
+    <string name="action_sign_in" translatable="false">Aanmelden of registreren</string>
+    <string name="action_sign_in_short" translatable="false">Aanmelden</string>
+    <string name="welcome" translatable="false">"Welkom!"</string>
+    <string name="invalid_username" translatable="false">Ongeldige gebruikersnaam</string>
+    <string name="invalid_password" translatable="false">Wachtwoord moet meer dan 5 tekens zijn</string>
+    <string name="login_failed" translatable="false">"Aanmelding mislukt"</string>
+    <string name="if_cancellation_done_after_24_hours_of_booking_date_you_will_get_refund" translatable="false">Als annulering plaatsvindt na 24 uur na de boekingsdatum, ontvang je een terugbetaling.</string>
+    <string name="service_provider_is_not_available_and_has_requested_to_cancel" translatable="false">De dienstverlener is niet beschikbaar en heeft verzocht om te annuleren</string>
+    <string name="i_found_this_service_at_a_cheaper_price" translatable="false">Ik heb deze dienst voor een goedkopere prijs gevonden</string>
+    <string name="i_don_t_need_this_service_now" translatable="false">Ik heb deze dienst nu niet nodig</string>
+    <string name="i_am_unavailable_at_the_scheduled_time" translatable="false">Ik ben niet beschikbaar op de geplande tijd</string>
+    <string name="_262638" translatable="false">#262638</string>
+    <string name="your_booking_has_been_cancelled" translatable="false">Je boeking is geannuleerd.</string>
+    <string name="please_track_status_of_refund_under_my_bookings_cancelled" translatable="false"><![CDATA[Volg de status van de terugbetaling onder \'Mijn Boekingen->Geannuleerd\']]></string>
+    <string name="go_to_my_bookings" translatable="false">Ga naar Mijn Boekingen</string>
+    <string name="payment" translatable="false">Betaling</string>
+    <string name="service_details" translatable="false">Dienstgegevens</string>
+    <string name="_21_jun_2023_11_00am" translatable="false">21 jun 2023, 11:00 AM</string>
+    <string name="abhishek_mehra_a_192_sector_44_noida" translatable="false">Abhishek Mehra | A-192, Sector-44, Noida</string>
+    <string name="apply_coupon" translatable="false">Toepassen kortingscode</string>
+    <string name="tax" translatable="false">Belasting</string>
+    <string name="payable_amount" translatable="false">Te betalen bedrag</string>
+    <string name="pay_now" translatable="false">Betaal nu</string>
+    <string name="code" translatable="false">Code</string>
+    <string name="applied" translatable="false">Toegepast</string>
+    <string name="coupons" translatable="false">Kortingsbonnen</string>
+    <string name="enter_promocode" translatable="false">Voer promotiecode in</string>
+    <string name="apply" translatable="false">Toepassen</string>
+    <string name="available_coupons" translatable="false">Beschikbare kortingsbonnen</string>
+    <string name="sbi100" translatable="false">SBI100</string>
+    <string name="state_bank_of_india" translatable="false">State Bank of India</string>
+    <string name="cashback_up_to_usd_10_on_the_item_total_above_1100" translatable="false">Cashback tot USD 10 bij een totaalbedrag boven \n1100</string>
+    <string name="saved_addresses" translatable="false">Opgeslagen Adressen</string>
+    <string name="a_192_sector_44_noida_201301" translatable="false">A-192, Sector-44, Noida, 201301</string>
+    <string name="_91_989_123_4567" translatable="false">+91 989 123 4567</string>
+    <string name="add_new_address" translatable="false">Voeg Nieuw Adres Toe</string>
+    <string name="chat_requests" translatable="false">Chatverzoeken</string>
+    <string name="no_chat_requests_found" translatable="false">Geen Chatverzoeken Gevonden!</string>
+    <string name="see_your_chats" translatable="false">Bekijk je chats</string>
+    <string name="decline" translatable="false">Weigeren</string>
+    <string name="kuldeep_srivastava" translatable="false">Kuldeep Srivastava</string>
+    <string name="connect" translatable="false">Verbinden</string>
+    <string name="call" translatable="false">Bellen</string>
+    <string name="whatsapp" translatable="false">WhatsApp</string>
+    <string name="share" translatable="false">Delen</string>
+    <string name="services_we_offer" translatable="false">Diensten die we aanbieden</string>
+    <string name="settings" translatable="false">Instellingen</string>
+    <string name="switch_to_business" translatable="false">Schakel over naar Bedrijf</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut" translatable="false">Lorem ipsum dolor sit amet,\nconsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</string>
+    <string name="push_notifications" translatable="false">Pushmeldingen</string>
+    <string name="account_settings" translatable="false">Accountinstellingen</string>
+    <string name="my_wallet" translatable="false">Mijn Portemonnee</string>
+    <string name="wallet" translatable="false">Portemonnee</string>
+    <string name="paymentGateway" translatable="false">Betaalpoort</string>
+    <string name="walletWithPg" translatable="false">Portemonnee met Betaalpoort</string>
+    <string name="about_us" translatable="false">Over ons</string>
+    <string name="distance" translatable="false">Afstand</string>
+    <string name="change_language" translatable="false">Taal wijzigen</string>
+    <string name="faq_s" translatable="false">FAQ’s</string>
+    <string name="contact_us" translatable="false">Neem contact op</string>
+    <string name="data_privacy" translatable="false">Gegevensprivacy</string>
+    <string name="terms_and_conditions" translatable="false">Voorwaarden</string>
+    <string name="delete_account" translatable="false">Account verwijderen</string>
+    <string name="your_available_balance" translatable="false">Je beschikbare saldo</string>
+    <string name="deactivate" translatable="false">Deactiveren</string>
+    <string name="send_money" translatable="false">Geld verzenden</string>
+    <string name="transactions" translatable="false">Transacties</string>
+    <string name="_200" translatable="false">₹200</string>
+    <string name="_123456789" translatable="false">123456789</string>
+    <string name="please_allow_location_permission_to_move_ahead" translatable="false">Sta locatiepermissie toe om verder te gaan.</string>
+    <string name="connections_requests" translatable="false">Verbindingverzoeken</string>
+    <string name="accept_or_decline_requests" translatable="false">Accepteer of Weiger Verzoeken</string>
+    <string name="are_you_sure_you_want_to_logout" translatable="false">Weet je zeker dat je wilt uitloggen?</string>
+    <string name="no" translatable="false">Nee</string>
+    <string name="yes" translatable="false">Ja</string>
+    <string name="log_out_successfully" translatable="false">Uitgelogd!</string>
+    <string name="remove" translatable="false">Verwijderen</string>
+    <string name="surya_mouly" translatable="false">Surya Mouly</string>
+    <string name="_100" translatable="false">100</string>
+    <string name="individual_business" translatable="false">Individuele Onderneming</string>
+    <string name="rating_raviews" translatable="false"><![CDATA[Beoordelingen & Recensies]]></string>
+    <string name="report" translatable="false">Rapporteren</string>
+    <string name="promocode_discount" translatable="false">Kortingscode Korting</string>
+    <string name="sorry_this_time_slot_is_not_available" translatable="false">Sorry, dit tijdslot is niet beschikbaar</string>
+    <string name="_10_30_am" translatable="false">10:30 AM</string>
+    <string name="ravi_bishnoi_sent_you_a_connections_request" translatable="false">heeft je een Verbindingsverzoek gestuurd</string>
+    <string name="ravi_bishnoi" translatable="false">Ravi Bishnoi</string>
+    <string name="your_available_balance_insufficient_balance" translatable="false">Je beschikbare saldo</string>
+    <string name="insufficient_balance" translatable="false">(Onvoldoende saldo)</string>
+    <string name="add_money" translatable="false">Geld toevoegen</string>
+    <string name="pay_1548" translatable="false">Betaal ₹ 1548</string>
+    <string name="are_you_sure_you_want_to_conform" translatable="false">Weet je zeker dat je wilt \nbevestigen?</string>
+    <string name="calendar" translatable="false">Kalender</string>
+    <string name="slot" translatable="false">Tijdslot</string>
+    <string name="at_center" translatable="false">Bij het Centrum</string>
+    <string name="aman" translatable="false">Aman</string>
+    <string name="set_location" translatable="false">Locatie instellen</string>
+    <string name="house_flat_office_no" translatable="false">Huis/Flat/Kantoor nr.*</string>
+    <string name="road_name_area_colony" translatable="false">Straatnaam/ Gebied / Colonie*</string>
+    <string name="pincode" translatable="false">Postcode*</string>
+    <string name="confirm_location" translatable="false">Bevestig Locatie</string>
+    <string name="sold" translatable="false">Verkocht</string>
+    <string name="sold_small" translatable="false">verkocht</string>
+    <string name="bought" translatable="false">Aangekocht</string>
+    <string name="search_location" translatable="false">Zoek Locatie</string>
+    <string name="location_is_not_avialable" translatable="false">Locatie is niet beschikbaar.</string>
+    <string name="request" translatable="false">Verzoek</string>
+    <string name="atcenter" translatable="false">bij Centrum</string>
+    <string name="athome" translatable="false">thuis</string>
+    <string name="confirm" translatable="false">bevestigen</string>
+    <string name="booking" translatable="false">Boeking</string>
+    <string name="pay" translatable="false">Betaal ₹</string>
+    <string name="pending" translatable="false">In Afwachting</string>
+    <string name="paymeturl" translatable="false">betaalUrl</string>
+    <string name="cancel_booking" translatable="false">Boeking Annuleren</string>
+    <string name="bookinglist" translatable="false">boekingslijst</string>
+    <string name="booked_by" translatable="false">Boekt door</string>
+    <string name="bought_small" translatable="false">aangekocht</string>
+    <string name="r" translatable="false"></string>
+    <string name="close_service" translatable="false">Dienst Sluiten</string>
+    <string name="start_date" translatable="false">Startdatum</string>
+    <string name="end_date" translatable="false">Einddatum</string>
+    <string name="close" translatable="false">Sluiten</string>
+    <string name="start_service" translatable="false">Dienst Starten</string>
+    <string name="leave" translatable="false">Verlaten</string>
+    <string name="not_cancelable" translatable="false">Niet Annuleerbaar</string>
+    <string name="back_to_original_payment_source" translatable="false">Terug naar oorspronkelijke betalingsbron</string>
+    <string name="refund_in_wallet" translatable="false">Terugbetaling in Portemonnee</string>
+    <string name="promocode" translatable="false">Promotiecode</string>
+    <string name="closeservice" translatable="false">SluitDienst</string>
+    <string name="before_date_text" translatable="false">Weet je zeker dat je de dienst wilt sluiten? Als je de dienst sluit, worden alle boekingen van</string>
+    <string name="to" translatable="false">tot</string>
+    <string name="after_date_text" translatable="false">automatisch geannuleerd</string>
+    <string name="image" translatable="false">Afbeelding</string>
+    <string name="videos" translatable="false">Video\'s</string>
+    <string name="servicedetails" translatable="false">DienstDetails</string>
+    <string name="openmedia" translatable="false">OpenMedia</string>
+    <string name="back_press" translatable="false">TerugDruk</string>
+    <string name="goBack" translatable="false">Terug</string>
+    <string name="goForeword" translatable="false">Vooruit</string>
+    <string name="home_fr" translatable="false">Thuis_FR</string>
+    <string name="onlinefr" translatable="false">OnlineFR</string>
+    <string name="back" translatable="false">Terug</string>
+    <string name="provider_profile" translatable="false">ProviderProfiel</string>
+    <string name="profile_fr" translatable="false">Profiel_Fr</string>
+    <string name="add_video" translatable="false">+ Voeg Video Toe</string>
+    <string name="logout" translatable="false">Uitloggen</string>
+    <string name="join_call" translatable="false">DeelnameAanOproep</string>
+    <string name="leave_call" translatable="false">VerlatenOproep</string>
+    <string name="mute_call" translatable="false">DempenOproep</string>
+    <string name="connected" translatable="false">Verbonden</string>
+    <string name="callended" translatable="false">OproepBeëindigd</string>
+    <string name="pop_up" translatable="false">Pop-up</string>
+    <string name="block" translatable="false">Blokkeren</string>
+    <string name="delete_chat" translatable="false">Verwijder Chat</string>
+    <string name="unblock" translatable="false">Deblokkeer</string>
+    <string name="container" translatable="false">Container</string>
+    <string name="chatfragment" translatable="false">ChatFragment</string>
+    <string name="open_gallery" translatable="false">OpenGalerij</string>
+    <string name="images" translatable="false">Afbeeldingen</string>
+    <string name="files" translatable="false">Bestanden</string>
+    <string name="media_size_check" translatable="false">Mediagrootte moet minder dan 100 MB zijn</string>
+
+    <string name="weeks" translatable="false">weken</string>
+    <string name="months" translatable="false">maanden</string>
+    <string name="years" translatable="false">jaren</string>
+    <string name="min" translatable="false">min</string>
+    <string name="hour" translatable="false">uur</string>
+    <string name="minute" translatable="false">minuut</string>
+    <string name="pick_your_media_file" translatable="false">Kies je media bestand</string>
+    <string name="use_as_default" translatable="false">Gebruik als Standaard</string>
+    <string name="_default" translatable="false"> Standaard</string>
+
+    <string-array name="select_issue">
+        <item>Selecteer Probleem</item>
+        <item>Item 1</item>
+        <item>Item 2</item>
+        <item>Item 3</item>
+        <item>Item 4</item>
+        <item>Item 5</item>
+    </string-array>
+
+    <!--bank module strings-->
+    <string name="add_your_bank_account" translatable="false">Voeg je Bankrekening Toe</string>
+    <string name="add_new_bank_account" translatable="false">Voeg Nieuwe Bankrekening Toe</string>
+    <string name="choose_bank_with_your_account" translatable="false">Kies bank met je rekening.</string>
+    <string name="select_bank" translatable="false">Kies Bank</string>
+    <string name="current_account" translatable="false">Huidige Rekening</string>
+    <string name="savings_account" translatable="false">Spaarrekening</string>
+    <string name="select_account_type" translatable="false">Selecteer Rekeningtype</string>
+    <string name="enter_document_type" translatable="false">Voer Documenttype In</string>
+    <string name="document_type" translatable="false">Documenttype</string>
+    <string name="enter_document_number" translatable="false">Voer documentnummer in</string>
+    <string name="document_number" translatable="false">Documentnummer</string>
+    <string name="enter_account_name" translatable="false">Voer rekeningnaam in</string>
+    <string name="account_name" translatable="false">Rekeningnaam</string>
+    <string name="enter_account_number" translatable="false">Voer rekeningnummer in</string>
+    <string name="account_number" translatable="false">Rekeningnummer</string>
+    <string name="my_bank_account" translatable="false">Mijn Bankrekening</string>
+    <string name="connecting" translatable="false">Verbinden</string>
+    <string name="add_bank_account" translatable="false">Voeg Bankrekening Toe</string>
+
+    <!--validation Texts-->
+    <string name="please_enter_account_number" translatable="false">Voer Rekeningnummer in</string>
+    <string name="please_enter_account_name" translatable="false">Voer Rekeningnaam in</string>
+    <string name="invalid_account_number" translatable="false">Rekeningnummer is Ongeldig</string>
+    <string name="please_enter_document_number" translatable="false">Voer Documentnummer in</string>
+    <string name="please_enter_document_type" translatable="false">Voer Documenttype in</string>
+
+    <!--String files for click events-->
+    <string name="cross" translatable="false">Kruis</string>
+    <string name="audio_call" translatable="false">Audio Oproep</string>
+    <string name="video_call" translatable="false">Video Oproep</string>
+    <string name="connect_with_the_user_as" translatable="false">Verbind met de gebruiker als</string>
+    <string name="outgoing_video" translatable="false">uitgaandeVideo</string>
+    <string name="outgoing_Audio" translatable="false">uitgaandeAudio</string>
+    <string name="user_name" translatable="false">gebruikersnaam</string>
+    <string name="are_you_sure_want_to_delete_this_account" translatable="false">Weet je zeker dat je deze rekening wilt verwijderen?</string>
+    <string name="filterdata" translatable="false">filterGegevens</string>
+    <string name="connection_remove_successfully" translatable="false">Verbinding Succesvol Verwijderd</string>
+    <string name="whatsApp" translatable="false">WhatsApp</string>
+    <string name="description" translatable="false">Beschrijving</string>
+    <string name="issue_type" translatable="false">Probleemtype</string>
+    <string name="notification" translatable="false">Melding</string>
+    <string name="addbank" translatable="false">voegBankToe</string>
+    <string name="openbottomsheet" translatable="false">openOnderkantBlad</string>
+    <string name="personal" translatable="false">persoonlijk</string>
+    <string name="dummy_string" translatable="false">Dummy String</string>
+    <string name="service_we_offer" translatable="false">Dienst die we Aanbieden</string>
+    <string name="wellness" translatable="false">Wellness</string>
+    <string name="household" translatable="false">Huishoudelijk</string>
+    <string name="electronic" translatable="false">Elektronisch</string>
+    <string name="videophoto" translatable="false">VideoFoto</string>
+    <string name="showbiz" translatable="false">Showbiz</string>
+    <string name="real_estate" translatable="false">Vastgoed</string>
+    <string name="spa_beauty" translatable="false">Spa-Beauty</string>
+    <string name="security" translatable="false">Beveiliging</string>
+    <string name="software" translatable="false">Software</string>
+    <string name="legal" translatable="false">Juridisch</string>
+    <string name="pet_service" translatable="false">Huisdier Service</string>
+    <string name="travel" translatable="false">Reis</string>
+    <string name="other" translatable="false">Overig</string>
+    <string name="allow_gps_location" translatable="false">Sta locatievoorziening toe</string>
+    <string name="welcome_to_servivet_we_are_passionate_about_creating_meaningful_connections_and_facilitating_seamless_interactions_our_mission_is_to_provide_a_platform_that_fosters_community_encourages_collaboration_and_sparks_engaging_conversations_among_users">Welkom bij Servivet! Wij zijn gepassioneerd over het creëren van betekenisvolle connecties en het faciliteren van naadloze interacties. Onze missie is om een platform te bieden dat de gemeenschap bevordert, samenwerking aanmoedigt en boeiende gesprekken tussen gebruikers op gang brengt.</string>
+    <string name="title">Titel</string>
+    <string name="enter_title">Voer titel in</string>
+    <string name="your_feedback_or_suggestion_here">Uw feedback of suggestie hier...</string>
+    <string name="_0_200">(0/200)</string>
+    <string name="email">E-mail</string>
+    <string name="we_are_keen_to_know_how_we_can_make_e_yugam_better_for_you_send_your_feedback_or_suggestion">We willen graag weten hoe we E-Yugam voor u kunnen verbeteren. Stuur ons uw feedback of suggestie</string>
+    <string name="withdraw">Terugtrekken</string>
+    <string name="no_data_found">Geen gegevens gevonden!</string>
+    <string name="delhi">Delhi</string>
+
+</resources>

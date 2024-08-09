@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Servi</string>
+    <string name="servivet_require_this_permission" translatable="false">Servi потребує дозволу на це.</string>
+    <string name="google_map_key" translatable="false">AIzaSyDxvOzm-9yjdnd5L4iJrVDwk-_KbUkmN8A</string>
+    <string name="please_connect_to_the_internet" translatable="false">Будь ласка, підключіться до Інтернету.\n</string>
+    <string name="hello_blank_fragment" translatable="false">Привіт, порожній фрагмент</string>
+    <string name="choose_your_preferred_language" translatable="false">Виберіть вашу\n Переважну мову</string>
+    <string name="english" translatable="false">Англійська</string>
+    <string name="hi_i_am_john_doe" translatable="false">Привіт, я Джон Доу.</string>
+    <string name="swahii" translatable="false">Суахілі</string>
+    <string name="habari_mimi_ni_john_doe" translatable="false">Habari, mimi ni John Doe.</string>
+    <string name="zulu" translatable="false">Зулу</string>
+    <string name="gps_enable_message" translatable="false">Вам потрібно увімкнути GPS-локацію</string>
+    <string name="sawubona_ngingu_john_doe" translatable="false">Sawubona, ngingu-John Doe.</string>
+    <string name="continues" translatable="false">Продовжити</string>
+    <string name="skip" translatable="false">Пропустити</string>
+    <string name="next" translatable="false">Далі</string>
+    <string name="get_started" translatable="false">Розпочати</string>
+    <string name="clientel" translatable="false">Клієнтура</string>
+    <string name="business" translatable="false">Бізнес</string>
+    <string name="mobile_number" translatable="false">Мобільний номер</string>
+    <string name="we_will_send_you_a_confirmation_code" translatable="false">Ми надішлемо вам код підтвердження</string>
+    <string name="_123_456_7890" translatable="false">123–456-7890</string>
+    <string name="i_agree_to_terms_and_conditions_and_data_privacy_policies" translatable="false">Я погоджуюсь з умовами та положеннями та політикою конфіденційності даних.</string>
+    <string name="verify" translatable="false">Підтвердити</string>
+    <string name="please_enter_the_otp_sent_your_mobile_number" translatable="false">Будь ласка, введіть OTP, надісланий на ваш мобільний номер.</string>
+    <string name="otp_verification" translatable="false">Перевірка OTP</string>
+    <string name="resend_otp_in_30_seconds" translatable="false">Повторно надіслати OTP через 30 секунд</string>
+    <string name="title_activity_home" translatable="false">HomeActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label" translatable="false">Перший фрагмент</string>
+    <string name="second_fragment_label" translatable="false">Другий фрагмент</string>
+    <string name="previous" translatable="false">Попередній</string>
+    <string name="search_for_area_street_name_etc" translatable="false">Шукати за районом, назвою вулиці тощо...</string>
+    <string name="home" translatable="false">Головна</string>
+    <string name="chats" translatable="false">Чати</string>
+    <string name="bookings" translatable="false">Бронювання</string>
+    <string name="profile" translatable="false">Профіль</string>
+    <string name="noida" translatable="false">Нойда</string>
+    <string name="sadarpur_sector_44_noida" translatable="false">Садарпур, Сектор-44 Нойда</string>
+    <string name="search_for_service_etc" translatable="false"><![CDATA[шукати послугу тощо]]></string>
+    <string name="services" translatable="false">Послуги</string>
+    <string name="view_all" translatable="false">Переглянути всі\n</string>
+    <string name="provider_view_all" translatable="false">ProviderViewAll</string>
+    <string name="user_view_all" translatable="false">UserViewAll</string>
+    <string name="online_now" translatable="false">Онлайн зараз</string>
+    <string name="fitness" translatable="false">Фітнес</string>
+    <string name="finance" translatable="false">ФІНАНСИ\n</string>
+    <string name="_1_km_away" translatable="false">км відстань</string>
+    <string name="dev_gupta" translatable="false">Дев Гупта</string>
+    <string name="gym" translatable="false">тренажерний зал</string>
+    <string name="riepneapps_technology_noida" translatable="false">Riepneapps Technology Noida</string>
+    <string name="view_details" translatable="false">Переглянути деталі</string>
+    <string name="individual" translatable="false">Індивідуальний</string>
+    <string name="individualcap" translatable="false">ІНДИВІДУАЛЬНИЙ</string>
+    <string name="institutional" translatable="false">Інституційний</string>
+    <string name="institutionalcap" translatable="false">ІНСТИТУЦІЙНИЙ</string>
+    <string name="edit_profile" translatable="false">Редагувати профіль</string>
+    <string name="abhishek_mehra" translatable="false">Абхішек Мехра</string>
+    <string name="about" translatable="false">Про нас</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut_labore_et_dolore_magna_aliquyam_erat_sed_diam_voluptua_eos_et_accusam_et_justo_duo_dolores_et_ea_rebum_stet_clita_kasd_gubergren_no_sea_takimata_sanctus_est_lorem_ipsum_dolor_sit_amet_lorem_ipsum_dolor_sit_amet" translatable="false">Lorem ipsum dolor sit amet, consetetur tempor invidunt ut labore et est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet</string>
+    <string name="accept_the_term_and_condition" translatable="false">Прийняти умови та положення\n</string>
+    <string name="accept_the_privacy_policy" translatable="false">Прийняти політику конфіденційності</string>
+    <string name="term_and_condition" translatable="false">Умови та положення</string>
+    <string name="privacy_policy" translatable="false">Політика конфіденційності</string>
+    <string name="terms_conditions" translatable="false"><![CDATA[Умови та положення]]></string>
+    <string name="last_updated_on_23_may_2023" translatable="false">Останнє оновлення 23 травня 2023 року</string>
+    <string name="reject" translatable="false">Відхилити</string>
+    <string name="accept" translatable="false">Прийняти</string>
+    <string name="my_connections" translatable="false">Мої контакти</string>
+    <string name="name" translatable="false">Ім\'я</string>
+    <string name="enter_name" translatable="false">Введіть ім\'я</string>
+    <string name="_91_1234567890" translatable="false">+91 1234567890</string>
+    <string name="email_address" translatable="false">Адреса електронної пошти</string>
+    <string name="_0_150" translatable="false">(0/150)</string>
+    <string name="_150_150" translatable="false">(150/150)\n</string>
+    <string name="write_here" translatable="false">напишіть тут</string>
+    <string name="update" translatable="false">Оновити</string>
+    <string name="change_cover" translatable="false">Змінити обкладинку</string>
+    <string name="business_n_verification" translatable="false">Бізнес \nПеревірка</string>
+    <string name="select_your_business_type" translatable="false">Виберіть тип вашого бізнесу</string>
+    <string name="full_name" translatable="false">Повне ім\'я</string>
+    <string name="enter_full_name" translatable="false">Введіть повне ім\'я</string>
+    <string name="using_gps" translatable="false">Використання GPS</string>
+    <string name="current_location" translatable="false">Поточне місцезнаходження</string>
+    <string name="enter_location_manually" translatable="false">Введіть місцезнаходження вручну</string>
+    <string name="or" translatable="false">або</string>
+    <string name="want_to_earn_money" translatable="false">Хочете заробляти гроші?</string>
+    <string name="add_the_service_which_you_are_expert_in" translatable="false">Додайте послугу, в якій ви є експертом</string>
+    <string name="add_service" translatable="false">+ Додати послугу</string>
+    <string name="near_by" translatable="false">Поруч</string>
+    <string name="add_service_" translatable="false">Додати послугу</string>
+    <string name="service_mode" translatable="false">Режим послуг</string>
+    <string name="at_centre" translatable="false">В центрі</string>
+    <string name="at_home" translatable="false">Вдома</string>
+    <string name="category" translatable="false">Категорія</string>
+    <string name="sub_category" translatable="false">Підкатегорія</string>
+    <string name="yoga" translatable="false">Йога</string>
+    <string name="about_service" translatable="false">Про послугу</string>
+    <string name="photos" translatable="false">Фотографії</string>
+    <string name="add_image" translatable="false">+ Додати зображення</string>
+    <string name="add" translatable="false">Додати</string>
+    <string name="availability" translatable="false">Доступність</string>
+    <string name="select_session" translatable="false">Вибрати сеанс</string>
+    <string name="add_hours" translatable="false">+ Додати години</string>
+    <string name="start_time" translatable="false">Час початку</string>
+    <string name="end_time" translatable="false">Час закінчення</string>
+    <string name="mon" translatable="false">Пн</string>
+    <string name="enter_price" translatable="false">Введіть ціну</string>
+    <string name="price_at_centre" translatable="false">Ціна (В центрі)</string>
+    <string name="camera" translatable="false">Камера</string>
+    <string name="gallery" translatable="false">Галерея</string>
+    <string name="price" translatable="false">Ціна</string>
+    <string name="my_services" translatable="false">Мої послуги</string>
+    <string name="business_name" translatable="false">Назва бізнесу</string>
+    <string name="the_electronic_hub" translatable="false">Електронний центр</string>
+    <string name="edit" translatable="false">Редагувати</string>
+    <string name="please_enter_a_valid_e_mail" translatable="false">Будь ласка, введіть дійсну електронну адресу\n</string>
+    <string name="enter_email_address" translatable="false">Введіть електронну адресу</string>
+    <string name="address" translatable="false">Адреса</string>
+    <string name="a_block_sector_63_noida" translatable="false">блок A, сектор 63, Нойда</string>
+    <string name="under_development" translatable="false">В процесі розробки</string>
+    <string name="resend_otp_in" translatable="false"> Повторно надіслати OTP через </string>
+    <string name="are_you_logout" translatable="false">Ви впевнені, що хочете вийти?</string>
+    <string name="log_out" translatable="false">Вийти</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_centre_mode" translatable="false">Час початку не повинен бути пізніший за час закінчення для режиму в центрі.</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_home_mode" translatable="false">Час початку не повинен бути пізніший за час закінчення для домашнього режиму.</string>
+    <string name="please_enter_the_price_for_the_centre_service_mode" translatable="false">Будь ласка, введіть ціну для режиму послуг у центрі.</string>
+    <string name="please_enter_the_price_for_the_home_service_mode" translatable="false">Будь ласка, введіть ціну для домашнього режиму послуг.</string>
+    <string name="please_select_a_service_model" translatable="false">Будь ласка, виберіть модель послуг.</string>
+    <string name="please_select_the_category" translatable="false">Будь ласка, виберіть категорію.</string>
+    <string name="please_select_at_one_image" translatable="false">Будь ласка, виберіть принаймні одне зображення.</string>
+    <string name="images_must_be_less_than_five" translatable="false">Зображення мають бути п\'яти або менше п\'яти.</string>
+    <string name="please_select_sub_category" translatable="false">Будь ласка, виберіть підкатегорію.</string>
+    <string name="select_sub_category" translatable="false">Вибрати підкатегорію</string>
+    <string name="select_session_should_not_be_empty_for_the_center_service_mode" translatable="false">Вибір сеансу не повинен бути порожнім для режиму послуг у центрі</string>
+    <string name="select_session_should_not_be_empty_for_the_home_service_mode" translatable="false">Вибір сеансу не повинен бути порожнім для домашнього режиму послуг</string>
+    <string name="details" translatable="false">Деталі</string>
+    <string name="_1_km" translatable="false">1 км.</string>
+    <string name="away" translatable="false">відстань</string>
+    <string name="prateek_mehta" translatable="false">Пратік Мехта</string>
+    <string name="media" translatable="false">Медіа</string>
+    <string name="_1499_2999" translatable="false">1499 - 2999</string>
+    <string name="book_now" translatable="false">Забронювати зараз</string>
+    <string name="my_booking" translatable="false">Мої бронювання</string>
+    <string name="booking_id" translatable="false">ID бронювання</string>
+    <string name="booking_id_num" translatable="false">#262638</string>
+    <string name="by_prateek_mehta" translatable="false">від Пратіка Мехти</string>
+    <string name="tuesday_21_oct_11_00_am" translatable="false">Вівторок, 21 жовтня, 11:00 AM</string>
+    <string name="complete_profile" translatable="false">Заповніть профіль</string>
+    <string name="enter_your_information_below" translatable="false">Введіть вашу інформацію нижче</string>
+    <string name="edit_service" translatable="false">Редагувати послугу</string>
+    <string name="message" translatable="false">Повідомлення</string>
+    <string name="upcoming" translatable="false">Найближчі</string>
+    <string name="completed" translatable="false">Завершені</string>
+    <string name="cancelled" translatable="false">Скасовані</string>
+    <string name="_1799" translatable="false">1799</string>
+    <string name="_1499" translatable="false">1499</string>
+    <string name="reschedule" translatable="false">Перенести</string>
+    <string name="cancel" translatable="false">Скасувати</string>
+    <string name="ok" translatable="false">Ок</string>
+    <string name="rate_us" translatable="false">Оцініть нас</string>
+    <string name="date_time" translatable="false"><![CDATA[Дата & Час]]></string>
+    <string name="payment_info" translatable="false">Інформація про оплату</string>
+    <string name="subtotal" translatable="false">Проміжний підсумок</string>
+    <string name="gst_18" translatable="false">GST (18%)</string>
+    <string name="total" translatable="false">Всього</string>
+    <string name="personal_document" translatable="false">Особистий документ</string>
+    <string name="business_document" translatable="false">Документ бізнесу</string>
+    <string name="_25" translatable="false">25</string>
+    <string name="_1524" translatable="false">1524</string>
+    <string name="booking_details" translatable="false">Деталі бронювання</string>
+    <string name="location" translatable="false">Локація</string>
+    <string name="a_199_sector_63_noida" translatable="false">A-199, Сектор-63, Нойда</string>
+    <string name="mark_as_completed" translatable="false">Позначити як завершене</string>
+    <string name="ac_repair" translatable="false">Ремонт кондиціонера</string>
+    <string name="review" translatable="false">Огляд</string>
+    <string name="give_a_feedback" translatable="false">Залиште відгук...</string>
+    <string name="do_this_later" translatable="false">Зробити це пізніше</string>
+    <string name="submit" translatable="false">Надіслати</string>
+    <string name="today" translatable="false">Сьогодні</string>
+    <string name="hello_abhishek_how_are_you" translatable="false">Привіт, Абхішек, як ти?</string>
+    <string name="saad_rahman" translatable="false">Саад Рахман</string>
+    <string name="no_chats_found" translatable="false">Чати не знайдено!</string>
+    <string name="start_new_chat" translatable="false">Почати новий чат</string>
+    <string name="amount_paid" translatable="false">Сума сплачена</string>
+    <string name="book_again" translatable="false">Забронювати знову</string>
+    <string name="_1420" translatable="false">1420</string>
+    <string name="payment_mode" translatable="false">Спосіб оплати</string>
+    <string name="reason_for_cancellation" translatable="false">Причина скасування</string>
+    <string name="provider_is_not_available_at_this_time" translatable="false">Постачальник зараз недоступний.</string>
+    <string name="credit_card" translatable="false">Кредитна картка</string>
+    <string name="refund_status" translatable="false">Статус повернення</string>
+    <string name="refund_initiated_you_will_receive_your_n_amount_in_48_hours" translatable="false">Повернення ініційовано. Ви отримаєте свою суму протягом 48 годин.</string>
+    <string name="save" translatable="false">Зберегти</string>
+    <string name="a_192_sector_44_noida" translatable="false">A-192, Сектор-44, Нойда</string>
+    <string name="save_this_address_for_future_services" translatable="false">Зберегти цю адресу для майбутніх послуг.</string>
+    <string name="booking_summary" translatable="false">Резюме бронювання</string>
+    <string name="change" translatable="false">Змінити</string>
+    <string name="june_2023" translatable="false">Червень 2023</string>
+    <string name="_4_5" translatable="false">4.5</string>
+    <string name="proceed" translatable="false">Продовжити</string>
+    <string name="add_address" translatable="false">Додати адресу</string>
+    <string name="days" translatable="false">Дні</string>
+    <string name="_16" translatable="false">16</string>
+    <string name="time" translatable="false">Час</string>
+    <string name="alert" translatable="false">Попередження</string>
+    <string-array name="select_category">
+        <item>Виберіть категорію</item>
+        <item>Фінанси</item>
+        <item>Електроніка</item>
+        <item>Фітнес</item>
+    </string-array>
+    <string-array name="select_sub_category">
+        <item>Виберіть підкатегорію</item>
+        <item>Елемент 1</item>
+        <item>Елемент 2</item>
+        <item>Елемент 3</item>
+        <item>Елемент 4</item>
+    </string-array>
+    <string name="prompt_email" translatable="false">Електронна адреса</string>
+    <string name="prompt_password" translatable="false">Пароль</string>
+    <string name="action_sign_in" translatable="false">Увійти або зареєструватися</string>
+    <string name="action_sign_in_short" translatable="false">Увійти</string>
+    <string name="welcome" translatable="false">"Ласкаво просимо!"</string>
+    <string name="invalid_username" translatable="false">Недійсне ім’я користувача</string>
+    <string name="invalid_password" translatable="false">Пароль має бути більше 5 символів</string>
+    <string name="login_failed" translatable="false">"Не вдалося увійти"</string>
+    <string name="if_cancellation_done_after_24_hours_of_booking_date_you_will_get_refund" translatable="false">Якщо скасування буде здійснене після 24 годин з моменту бронювання, ви отримаєте повернення коштів.</string>
+    <string name="service_provider_is_not_available_and_has_requested_to_cancel" translatable="false">Постачальник послуг не доступний і надіслав запит на скасування</string>
+    <string name="i_found_this_service_at_a_cheaper_price" translatable="false">Я знайшов цю послугу за дешевшою ціною</string>
+    <string name="i_don_t_need_this_service_now" translatable="false">Мені зараз не потрібна ця послуга</string>
+    <string name="i_am_unavailable_at_the_scheduled_time" translatable="false">Я недоступний у запланований час</string>
+    <string name="_262638" translatable="false">#262638</string>
+    <string name="your_booking_has_been_cancelled" translatable="false">Ваше бронювання було скасовано.</string>
+    <string name="please_track_status_of_refund_under_my_bookings_cancelled" translatable="false"><![CDATA[Будь ласка, відстежте статус повернення у розділі \'Мої бронювання->Скасовані\']]></string>
+    <string name="go_to_my_bookings" translatable="false">Перейти до моїх бронювань</string>
+    <string name="payment" translatable="false">Оплата</string>
+    <string name="service_details" translatable="false">Деталі послуги</string>
+    <string name="_21_jun_2023_11_00am" translatable="false">21 червня 2023, 11:00</string>
+    <string name="abhishek_mehra_a_192_sector_44_noida" translatable="false">Абхішек Мехра | A-192, Сектор-44, Нойда</string>
+    <string name="apply_coupon" translatable="false">Застосувати купон</string>
+    <string name="tax" translatable="false">Податок</string>
+    <string name="payable_amount" translatable="false">Сума до сплати</string>
+    <string name="pay_now" translatable="false">Оплатити зараз</string>
+    <string name="code" translatable="false">Код</string>
+    <string name="applied" translatable="false">Застосовано</string>
+    <string name="coupons" translatable="false">Купони</string>
+    <string name="enter_promocode" translatable="false">Введіть промокод</string>
+    <string name="apply" translatable="false">Застосувати</string>
+    <string name="available_coupons" translatable="false">Доступні купони</string>
+    <string name="sbi100" translatable="false">SBI100</string>
+    <string name="state_bank_of_india" translatable="false">Державний банк Індії</string>
+    <string name="cashback_up_to_usd_10_on_the_item_total_above_1100" translatable="false">Кешбек до 10 USD на загальну суму покупки понад 1100</string>
+    <string name="saved_addresses" translatable="false">Збережені адреси</string>
+    <string name="a_192_sector_44_noida_201301" translatable="false">A-192, Сектор-44, Нойда, 201301</string>
+    <string name="_91_989_123_4567" translatable="false">+91 989 123 4567</string>
+    <string name="add_new_address" translatable="false">Додати нову адресу</string>
+    <string name="chat_requests" translatable="false">Запити чату</string>
+    <string name="no_chat_requests_found" translatable="false">Запитів чату не знайдено!</string>
+    <string name="see_your_chats" translatable="false">Переглянути ваші чати</string>
+    <string name="decline" translatable="false">Відхилити</string>
+    <string name="kuldeep_srivastava" translatable="false">Кулдіп Срівастава</string>
+    <string name="connect" translatable="false">Зв\'язатися</string>
+    <string name="call" translatable="false">Зателефонувати</string>
+    <string name="whatsapp" translatable="false">WhatsApp</string>
+    <string name="share" translatable="false">Поділитися</string>
+    <string name="services_we_offer" translatable="false">Послуги, які ми пропонуємо</string>
+    <string name="settings" translatable="false">Налаштування</string>
+    <string name="switch_to_business" translatable="false">Перейти на бізнес</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut" translatable="false">Lorem ipsum dolor sit amet,\nconsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</string>
+    <string name="push_notifications" translatable="false">Push сповіщення</string>
+    <string name="account_settings" translatable="false">Налаштування акаунту</string>
+    <string name="my_wallet" translatable="false">Мій гаманець</string>
+    <string name="wallet" translatable="false">гаманець</string>
+    <string name="paymentGateway" translatable="false">платіжний шлюз</string>
+    <string name="walletWithPg" translatable="false">гаманець з платіжним шлюзом</string>
+    <string name="about_us" translatable="false">Про нас</string>
+    <string name="distance" translatable="false">Відстань</string>
+    <string name="change_language" translatable="false">Змінити мову</string>
+    <string name="faq_s" translatable="false">FAQ</string>
+    <string name="contact_us" translatable="false">Зв\'язатися з нами</string>
+    <string name="data_privacy" translatable="false">Конфіденційність даних</string>
+    <string name="terms_and_conditions" translatable="false">Умови та положення</string>
+    <string name="delete_account" translatable="false">Видалити акаунт</string>
+    <string name="your_available_balance" translatable="false">Ваш доступний баланс</string>
+    <string name="deactivate" translatable="false">Деактивувати</string>
+    <string name="send_money" translatable="false">Відправити гроші</string>
+    <string name="transactions" translatable="false">Транзакції</string>
+    <string name="_200" translatable="false">₹200</string>
+    <string name="_123456789" translatable="false">123456789</string>
+    <string name="please_allow_location_permission_to_move_ahead" translatable="false">Будь ласка, надайте дозвіл на доступ до місцезнаходження, щоб продовжити.</string>
+    <string name="connections_requests" translatable="false">Запити на зв\'язки</string>
+    <string name="accept_or_decline_requests" translatable="false">Прийняти або відхилити запити</string>
+    <string name="are_you_sure_you_want_to_logout" translatable="false">Ви впевнені, що хочете вийти?</string>
+    <string name="no" translatable="false">Ні</string>
+    <string name="yes" translatable="false">Так</string>
+    <string name="log_out_successfully" translatable="false">Вихід успішний!</string>
+    <string name="remove" translatable="false">Видалити</string>
+    <string name="surya_mouly" translatable="false">Сур’я Маулі</string>
+    <string name="_100" translatable="false">100</string>
+    <string name="individual_business" translatable="false">Індивідуальний бізнес</string>
+    <string name="rating_raviews" translatable="false"><![CDATA[Рейтинг та відгуки]]></string>
+    <string name="report" translatable="false">Звіт</string>
+    <string name="promocode_discount" translatable="false">Знижка за промокодом</string>
+    <string name="sorry_this_time_slot_is_not_available" translatable="false">Вибачте, цей часовий проміжок недоступний</string>
+    <string name="_10_30_am" translatable="false">10:30</string>
+    <string name="ravi_bishnoi_sent_you_a_connections_request" translatable="false">надіслав вам запит на зв\'язки</string>
+    <string name="ravi_bishnoi" translatable="false">Раві Бішной.</string>
+    <string name="your_available_balance_insufficient_balance" translatable="false">Ваш доступний баланс</string>
+    <string name="insufficient_balance" translatable="false">(Недостатньо коштів)</string>
+    <string name="add_money" translatable="false">Додати гроші</string>
+    <string name="pay_1548" translatable="false">Сплатити ₹ 1548</string>
+    <string name="are_you_sure_you_want_to_conform" translatable="false">Ви впевнені, що хочете підтвердити?</string>
+    <string name="calendar" translatable="false">календар</string>
+    <string name="slot" translatable="false">слот</string>
+    <string name="at_center" translatable="false">В центрі</string>
+    <string name="aman" translatable="false">Аман</string>
+    <string name="set_location" translatable="false">Встановити місцезнаходження</string>
+    <string name="house_flat_office_no" translatable="false">Будинок/Квартира/Офіс №*</string>
+    <string name="road_name_area_colony" translatable="false">Назва дороги/ Район / Колонія*</string>
+    <string name="pincode" translatable="false">Поштовий індекс*</string>
+    <string name="confirm_location" translatable="false">Підтвердити місцезнаходження</string>
+    <string name="sold" translatable="false">Продано</string>
+    <string name="sold_small" translatable="false">продано</string>
+    <string name="bought" translatable="false">Куплено</string>
+    <string name="search_location" translatable="false">Шукати місцезнаходження</string>
+    <string name="location_is_not_avialable" translatable="false">Місцезнаходження недоступне.</string>
+    <string name="request" translatable="false">Запит</string>
+    <string name="atcenter" translatable="false">в центрі</string>
+    <string name="athome" translatable="false">додому</string>
+    <string name="confirm" translatable="false">підтвердити</string>
+    <string name="booking" translatable="false">бронювання</string>
+    <string name="pay" translatable="false">Сплатити ₹</string>
+    <string name="pending" translatable="false">Очікує</string>
+    <string name="paymeturl" translatable="false">paymetUrl</string>
+    <string name="cancel_booking" translatable="false">Скасувати бронювання</string>
+    <string name="bookinglist" translatable="false">список бронювань</string>
+    <string name="booked_by" translatable="false">Заброньовано</string>
+    <string name="bought_small" translatable="false">куплено</string>
+    <string name="r" translatable="false"></string>
+    <string name="close_service" translatable="false">Закрити послугу</string>
+    <string name="start_date" translatable="false">Дата початку</string>
+    <string name="end_date" translatable="false">Дата закінчення</string>
+    <string name="close" translatable="false">Закрити</string>
+    <string name="start_service" translatable="false">Розпочати послугу</string>
+    <string name="leave" translatable="false">залишити</string>
+    <string name="not_cancelable" translatable="false">Не скасовується</string>
+    <string name="back_to_original_payment_source" translatable="false">Повернутися до початкового джерела оплати</string>
+    <string name="refund_in_wallet" translatable="false">Повернення коштів на гаманець</string>
+    <string name="promocode" translatable="false">Промокод</string>
+    <string name="closeservice" translatable="false">закрити послугу</string>
+    <string name="before_date_text" translatable="false">Ви впевнені, що хочете закрити послугу? Якщо ви закриєте послугу, всі бронювання з</string>
+    <string name="to" translatable="false">по</string>
+    <string name="after_date_text" translatable="false">будуть автоматично скасовані</string>
+    <string name="image" translatable="false">зображення</string>
+    <string name="videos" translatable="false">відео</string>
+    <string name="servicedetails" translatable="false">деталі послуги</string>
+    <string name="openmedia" translatable="false">відкрити медіа</string>
+    <string name="back_press" translatable="false">Натискання назад</string>
+    <string name="goBack" translatable="false">назад</string>
+    <string name="goForeword" translatable="false">вперед</string>
+    <string name="home_fr" translatable="false">Домашня сторінка_FR</string>
+    <string name="onlinefr" translatable="false">Онлайн_FR</string>
+    <string name="back" translatable="false">Назад</string>
+    <string name="provider_profile" translatable="false">профіль_постачальника</string>
+    <string name="profile_fr" translatable="false">профіль_FR</string>
+    <string name="add_video" translatable="false">+ Додати відео</string>
+    <string name="logout" translatable="false">вихід</string>
+    <string name="join_call" translatable="false">приєднатися до дзвінка</string>
+    <string name="leave_call" translatable="false">залишити дзвінок</string>
+    <string name="mute_call" translatable="false">вимкнути дзвінок</string>
+    <string name="connected" translatable="false">Підключено</string>
+    <string name="callended" translatable="false">дзвінок закінчено</string>
+    <string name="pop_up" translatable="false">спливаюче вікно</string>
+    <string name="block" translatable="false">Блокувати</string>
+    <string name="delete_chat" translatable="false">Видалити чат</string>
+    <string name="unblock" translatable="false">Розблокувати</string>
+    <string name="container" translatable="false">контейнер</string>
+    <string name="chatfragment" translatable="false">фрагмент чату</string>
+    <string name="open_gallery" translatable="false">відкрити галерею</string>
+    <string name="images" translatable="false">Зображення</string>
+    <string name="files" translatable="false">Файли</string>
+    <string name="media_size_check" translatable="false">Розмір медіа-файлу має бути менше 100 МБ</string>
+
+    <string name="weeks" translatable="false">тижнів</string>
+    <string name="months" translatable="false">місяців</string>
+    <string name="years" translatable="false">років</string>
+    <string name="min" translatable="false">хв</string>
+    <string name="hour" translatable="false">год</string>
+    <string name="minute" translatable="false">хвилина</string>
+    <string name="pick_your_media_file" translatable="false">Оберіть ваш медіа-файл</string>
+    <string name="use_as_default" translatable="false">Використовувати за замовчуванням</string>
+    <string name="_default" translatable="false"> За замовчуванням</string>
+
+    <string-array name="select_issue">
+        <item>Виберіть проблему</item>
+        <item>Елемент 1</item>
+        <item>Елемент 2</item>
+        <item>Елемент 3</item>
+        <item>Елемент 4</item>
+        <item>Елемент 5</item>
+    </string-array>
+    <string name="add_your_bank_account" translatable="false">Додати свій банківський рахунок</string>
+    <string name="add_new_bank_account" translatable="false">Додати новий банківський рахунок</string>
+    <string name="choose_bank_with_your_account" translatable="false">Виберіть банк для вашого рахунку.</string>
+    <string name="select_bank" translatable="false">Вибрати банк</string>
+    <string name="current_account" translatable="false">Поточний рахунок</string>
+    <string name="savings_account" translatable="false">Ощадний рахунок</string>
+    <string name="select_account_type" translatable="false">Виберіть тип рахунку</string>
+    <string name="enter_document_type" translatable="false">Введіть тип документа</string>
+    <string name="document_type" translatable="false">Тип документа</string>
+    <string name="enter_document_number" translatable="false">Введіть номер документа</string>
+    <string name="document_number" translatable="false">Номер документа</string>
+    <string name="enter_account_name" translatable="false">Введіть ім\'я рахунку</string>
+    <string name="account_name" translatable="false">Ім\'я рахунку</string>
+    <string name="enter_account_number" translatable="false">Введіть номер рахунку</string>
+    <string name="account_number" translatable="false">Номер рахунку</string>
+    <string name="my_bank_account" translatable="false">Мій банківський рахунок</string>
+    <string name="connecting" translatable="false">Підключення</string>
+    <string name="add_bank_account" translatable="false">Додати банківський рахунок</string>
+
+    <!--validation Texts-->
+    <string name="please_enter_account_number" translatable="false">Будь ласка, введіть номер рахунку</string>
+    <string name="please_enter_account_name" translatable="false">Будь ласка, введіть ім\'я рахунку</string>
+    <string name="invalid_account_number" translatable="false">Номер рахунку недійсний</string>
+    <string name="please_enter_document_number" translatable="false">Будь ласка, введіть номер документа</string>
+    <string name="please_enter_document_type" translatable="false">Будь ласка, введіть тип документа</string>
+
+    <!--String files for click events-->
+    <string name="cross" translatable="false">Закрити</string>
+    <string name="audio_call" translatable="false">Аудіодзвінок</string>
+    <string name="video_call" translatable="false">Відеодзвінок</string>
+    <string name="connect_with_the_user_as" translatable="false">Підключитися до користувача як</string>
+    <string name="outgoing_video" translatable="false">вихідне відео</string>
+    <string name="outgoing_Audio" translatable="false">вихідний аудіо</string>
+    <string name="user_name" translatable="false">ім\'я_користувача</string>
+    <string name="are_you_sure_want_to_delete_this_account" translatable="false">Ви впевнені, що хочете видалити цей рахунок?</string>
+    <string name="filterdata" translatable="false">фільтрувати дані</string>
+    <string name="connection_remove_successfully" translatable="false">З\'єднання успішно видалено</string>
+    <string name="whatsApp" translatable="false">WhatsApp</string>
+    <string name="description" translatable="false">Опис</string>
+    <string name="issue_type" translatable="false">Тип проблеми</string>
+    <string name="notification" translatable="false">Сповіщення</string>
+    <string name="addbank" translatable="false">додати банк</string>
+    <string name="openbottomsheet" translatable="false">відкрити нижній лист</string>
+    <string name="personal" translatable="false">особистий</string>
+    <string name="dummy_string" translatable="false">Тимчасовий рядок</string>
+    <string name="service_we_offer" translatable="false">Послуги, які ми пропонуємо</string>
+    <string name="wellness" translatable="false">Здоров\'я</string>
+    <string name="household" translatable="false">Домашні</string>
+    <string name="electronic" translatable="false">Електроніка</string>
+    <string name="videophoto" translatable="false">ВідеоФото</string>
+    <string name="showbiz" translatable="false">Шоу-бізнес</string>
+    <string name="real_estate" translatable="false">Нерухомість</string>
+    <string name="spa_beauty" translatable="false">СПА-Краса</string>
+    <string name="security" translatable="false">Безпека</string>
+    <string name="software" translatable="false">Програмне забезпечення</string>
+    <string name="legal" translatable="false">Юридичний</string>
+    <string name="pet_service" translatable="false">Послуги для домашніх тварин</string>
+    <string name="travel" translatable="false">Подорожі</string>
+    <string name="other" translatable="false">Інше</string>
+    <string name="allow_gps_location" translatable="false">дозволити розташування служб</string>
+    <string name="welcome_to_servivet_we_are_passionate_about_creating_meaningful_connections_and_facilitating_seamless_interactions_our_mission_is_to_provide_a_platform_that_fosters_community_encourages_collaboration_and_sparks_engaging_conversations_among_users">Ласкаво просимо до Servivet! Ми захоплені створенням значущих зв’язків і забезпеченням безперешкодних взаємодій. Наша місія – надати платформу, яка сприяє формуванню спільноти, заохочує співпрацю і викликає захоплюючі розмови серед користувачів.</string>
+    <string name="title">Заголовок</string>
+    <string name="enter_title">Введіть заголовок</string>
+    <string name="your_feedback_or_suggestion_here">Ваш відгук або пропозиція тут...</string>
+    <string name="_0_200">(0/200)</string>
+    <string name="email">Електронна пошта</string>
+    <string name="we_are_keen_to_know_how_we_can_make_e_yugam_better_for_you_send_your_feedback_or_suggestion">Нам цікаво дізнатися, як ми можемо покращити E-Yugam для вас. Надішліть нам ваш відгук або пропозицію</string>
+    <string name="withdraw">Відкликати</string>
+    <string name="no_data_found">Дані не знайдено!</string>
+    <string name="delhi">Делі</string>
+
+</resources>

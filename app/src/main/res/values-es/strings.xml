@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Servi</string>
+    <string name="servivet_require_this_permission" translatable="false">Servi necesita permitir este permiso.</string>
+    <string name="google_map_key" translatable="false">AIzaSyDxvOzm-9yjdnd5L4iJrVDwk-_KbUkmN8A</string>
+    <string name="please_connect_to_the_internet" translatable="false">Por favor, conéctate a Internet.\n</string>
+    <string name="hello_blank_fragment" translatable="false">Hola, fragmento en blanco</string>
+    <string name="choose_your_preferred_language" translatable="false">Elige tu\n Idioma Preferido</string>
+    <string name="english" translatable="false">Inglés</string>
+    <string name="hi_i_am_john_doe" translatable="false">Hola, soy John Doe.</string>
+    <string name="swahii" translatable="false">Suajili</string>
+    <string name="habari_mimi_ni_john_doe" translatable="false">Habari, mimi ni John Doe.</string>
+    <string name="zulu" translatable="false">Zulu</string>
+    <string name="gps_enable_message" translatable="false">Debes activar la Ubicación GPS</string>
+    <string name="sawubona_ngingu_john_doe" translatable="false">Sawubona, ngingu-John Doe.</string>
+    <string name="continues" translatable="false">Continuar</string>
+    <string name="skip" translatable="false">Omitir</string>
+    <string name="next" translatable="false">Siguiente</string>
+    <string name="get_started" translatable="false">Comenzar</string>
+    <string name="clientel" translatable="false">Clientelé</string>
+    <string name="business" translatable="false">Negocios</string>
+    <string name="mobile_number" translatable="false">Número de móvil</string>
+    <string name="we_will_send_you_a_confirmation_code" translatable="false">Te enviaremos un código de confirmación</string>
+    <string name="_123_456_7890" translatable="false">123–456-7890</string>
+    <string name="i_agree_to_terms_and_conditions_and_data_privacy_policies" translatable="false">Acepto los Términos y Condiciones y las políticas de Privacidad de Datos.</string>
+    <string name="verify" translatable="false">Verificar</string>
+    <string name="please_enter_the_otp_sent_your_mobile_number" translatable="false">Por favor, ingresa el OTP enviado a tu número móvil.</string>
+    <string name="otp_verification" translatable="false">Verificación OTP</string>
+    <string name="resend_otp_in_30_seconds" translatable="false">Reenviar OTP en 30 Segundos</string>
+    <string name="title_activity_home" translatable="false">HomeActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label" translatable="false">Primer Fragmento</string>
+    <string name="second_fragment_label" translatable="false">Segundo Fragmento</string>
+    <string name="previous" translatable="false">Anterior</string>
+    <string name="search_for_area_street_name_etc" translatable="false">Buscar área, nombre de calle, etc...</string>
+    <string name="home" translatable="false">Inicio</string>
+    <string name="chats" translatable="false">Chats</string>
+    <string name="bookings" translatable="false">Reservas</string>
+    <string name="profile" translatable="false">Perfil</string>
+    <string name="noida" translatable="false">Noida</string>
+    <string name="sadarpur_sector_44_noida" translatable="false">Sadarpur, Sector-44 Noida</string>
+    <string name="search_for_service_etc" translatable="false"><![CDATA[buscar servicio & etc]]></string>
+    <string name="services" translatable="false">Servicios</string>
+    <string name="view_all" translatable="false">Ver Todo\n</string>
+    <string name="provider_view_all" translatable="false">VerTodoProveedor</string>
+    <string name="user_view_all" translatable="false">VerTodoUsuario</string>
+    <string name="online_now" translatable="false">En línea ahora</string>
+    <string name="fitness" translatable="false">Fitness</string>
+    <string name="finance" translatable="false">FINANZAS\n</string>
+    <string name="_1_km_away" translatable="false">km. de distancia</string>
+    <string name="dev_gupta" translatable="false">Dev Gupta</string>
+    <string name="gym" translatable="false">gimnasio</string>
+    <string name="riepneapps_technology_noida" translatable="false">riepneapps tecnología noida</string>
+    <string name="view_details" translatable="false">Ver Detalles</string>
+    <string name="individual" translatable="false">Individual</string>
+    <string name="individualcap" translatable="false">INDIVIDUAL</string>
+    <string name="institutional" translatable="false">Institucional</string>
+    <string name="institutionalcap" translatable="false">INSTITUCIONAL</string>
+    <string name="edit_profile" translatable="false">Editar Perfil</string>
+    <string name="abhishek_mehra" translatable="false">Abhishek Mehra</string>
+    <string name="about" translatable="false">Acerca de</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut_labore_et_dolore_magna_aliquyam_erat_sed_diam_voluptua_eos_et_accusam_et_justo_duo_dolores_et_ea_rebum_stet_clita_kasd_gubergren_no_sea_takimata_sanctus_est_lorem_ipsum_dolor_sit_amet_lorem_ipsum_dolor_sit_amet" translatable="false">Lorem ipsum dolor sit amet, consetetur tempor invidunt ut labore et est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet</string>
+    <string name="accept_the_term_and_condition" translatable="false">Aceptar los Términos y Condiciones\n</string>
+    <string name="accept_the_privacy_policy" translatable="false">Aceptar la Política de Privacidad</string>
+    <string name="term_and_condition" translatable="false">Términos y Condiciones</string>
+    <string name="privacy_policy" translatable="false">Privacidad de Datos</string>
+    <string name="terms_conditions" translatable="false"><![CDATA[Términos y Condiciones]]></string>
+    <string name="last_updated_on_23_may_2023" translatable="false">Última actualización el 23 de mayo de 2023</string>
+    <string name="reject" translatable="false">Rechazar</string>
+    <string name="accept" translatable="false">Aceptar</string>
+    <string name="my_connections" translatable="false">Mis Conexiones</string>
+    <string name="name" translatable="false">Nombre</string>
+    <string name="enter_name" translatable="false">Ingresar nombre</string>
+    <string name="_91_1234567890" translatable="false">+91 1234567890</string>
+    <string name="email_address" translatable="false">Dirección de correo electrónico</string>
+    <string name="_0_150" translatable="false">(0/150)</string>
+    <string name="_150_150" translatable="false">(150/150)\n</string>
+    <string name="write_here" translatable="false">escribir aquí</string>
+    <string name="update" translatable="false">Actualizar</string>
+    <string name="change_cover" translatable="false">Cambiar portada</string>
+    <string name="business_n_verification" translatable="false">Negocios\nVerificación</string>
+    <string name="select_your_business_type" translatable="false">Selecciona tu tipo de negocio</string>
+    <string name="full_name" translatable="false">Nombre completo</string>
+    <string name="enter_full_name" translatable="false">Ingresar nombre completo</string>
+    <string name="using_gps" translatable="false">Usando GPS</string>
+    <string name="current_location" translatable="false">Ubicación Actual</string>
+    <string name="enter_location_manually" translatable="false">Ingresar Ubicación Manualmente</string>
+    <string name="or" translatable="false">o</string>
+    <string name="want_to_earn_money" translatable="false">¿Quieres ganar dinero?</string>
+    <string name="add_the_service_which_you_are_expert_in" translatable="false">Añade el servicio en el que eres experto</string>
+    <string name="add_service" translatable="false">+ Añadir Servicio</string>
+    <string name="near_by" translatable="false">Cerca de</string>
+    <string name="add_service_" translatable="false">Añadir Servicio</string>
+    <string name="service_mode" translatable="false">Modo de Servicio</string>
+    <string name="at_centre" translatable="false">En el Centro</string>
+    <string name="at_home" translatable="false">En casa</string>
+    <string name="category" translatable="false">Categoría</string>
+    <string name="sub_category" translatable="false">Subcategoría</string>
+    <string name="yoga" translatable="false">Yoga</string>
+    <string name="about_service" translatable="false">Sobre el Servicio</string>
+    <string name="photos" translatable="false">Fotos</string>
+    <string name="add_image" translatable="false">+ Añadir Imagen</string>
+    <string name="add" translatable="false">Añadir</string>
+    <string name="availability" translatable="false">Disponibilidad</string>
+    <string name="select_session" translatable="false">Seleccionar Sesión</string>
+    <string name="add_hours" translatable="false">+ Añadir horas</string>
+    <string name="start_time" translatable="false">Hora de inicio</string>
+    <string name="end_time" translatable="false">Hora de finalización</string>
+    <string name="mon" translatable="false">Lun</string>
+    <string name="enter_price" translatable="false">Ingresar precio</string>
+    <string name="price_at_centre" translatable="false">Precio (En el Centro)</string>
+    <string name="camera" translatable="false">Cámara</string>
+    <string name="gallery" translatable="false">Galería</string>
+    <string name="price" translatable="false">Precio</string>
+    <string name="my_services" translatable="false">Mis Servicios</string>
+    <string name="business_name" translatable="false">Nombre del negocio</string>
+    <string name="the_electronic_hub" translatable="false">El Centro Electrónico</string>
+    <string name="edit" translatable="false">Editar</string>
+    <string name="please_enter_a_valid_e_mail" translatable="false">Por favor, ingresa un correo electrónico válido\n</string>
+    <string name="enter_email_address" translatable="false">Ingresar Dirección de Correo Electrónico</string>
+    <string name="address" translatable="false">Dirección</string>
+    <string name="a_block_sector_63_noida" translatable="false">Bloque A, Sector 63 Noida</string>
+    <string name="under_development" translatable="false">En Desarrollo</string>
+    <string name="resend_otp_in" translatable="false"> Reenviar OTP en </string>
+    <string name="are_you_logout" translatable="false">¿Estás seguro de que quieres salir?</string>
+    <string name="log_out" translatable="false">Cerrar sesión</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_centre_mode" translatable="false">La hora de inicio no debe ser mayor que la hora de finalización para el modo centro.</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_home_mode" translatable="false">La hora de inicio no debe ser mayor que la hora de finalización para el modo en casa.</string>
+    <string name="please_enter_the_price_for_the_centre_service_mode" translatable="false">Por favor, ingresa el precio para el modo de servicio en el centro.</string>
+    <string name="please_enter_the_price_for_the_home_service_mode" translatable="false">Por favor, ingresa el precio para el modo de servicio en casa.</string>
+    <string name="please_select_a_service_model" translatable="false">Por favor, selecciona un modelo de servicio.</string>
+    <string name="please_select_the_category" translatable="false">Por favor, selecciona la Categoría.</string>
+    <string name="please_select_at_one_image" translatable="false">Por favor, selecciona al menos una imagen.</string>
+    <string name="images_must_be_less_than_five" translatable="false">Las imágenes deben ser cinco o menos de cinco.</string>
+    <string name="please_select_sub_category" translatable="false">Por favor, selecciona la subcategoría.</string>
+    <string name="select_sub_category" translatable="false">Seleccionar subcategoría</string>
+    <string name="select_session_should_not_be_empty_for_the_center_service_mode" translatable="false">La selección de la sesión no debe estar vacía para el Modo de Servicio en el Centro</string>
+    <string name="select_session_should_not_be_empty_for_the_home_service_mode" translatable="false">La selección de la sesión no debe estar vacía para el Modo de Servicio en Casa</string>
+    <string name="details" translatable="false">Detalles</string>
+    <string name="_1_km" translatable="false">1 km.</string>
+    <string name="away" translatable="false">de distancia</string>
+    <string name="prateek_mehta" translatable="false">Prateek Mehta</string>
+    <string name="media" translatable="false">Medios</string>
+    <string name="_1499_2999" translatable="false">1499 - 2999</string>
+    <string name="book_now" translatable="false">Reservar Ahora</string>
+    <string name="my_booking" translatable="false">Mis Reservas</string>
+    <string name="booking_id" translatable="false">ID de Reserva</string>
+    <string name="booking_id_num" translatable="false">#262638</string>
+    <string name="by_prateek_mehta" translatable="false">por Prateek Mehta</string>
+    <string name="tuesday_21_oct_11_00_am" translatable="false">Martes, 21 de Octubre, 11:00 AM</string>
+    <string name="complete_profile" translatable="false">Completar Perfil</string>
+    <string name="enter_your_information_below" translatable="false">Ingresa tu información a continuación</string>
+    <string name="edit_service" translatable="false">Editar Servicio</string>
+    <string name="message" translatable="false">Mensaje</string>
+    <string name="upcoming" translatable="false">Próximos</string>
+    <string name="completed" translatable="false">Completados</string>
+    <string name="cancelled" translatable="false">Cancelados</string>
+    <string name="_1799" translatable="false">1799</string>
+    <string name="_1499" translatable="false">1499</string>
+    <string name="reschedule" translatable="false">Reprogramar</string>
+    <string name="cancel" translatable="false">Cancelar</string>
+    <string name="ok" translatable="false">Ok</string>
+    <string name="rate_us" translatable="false">Califícanos</string>
+    <string name="date_time" translatable="false"><![CDATA[Fecha y Hora]]></string>
+    <string name="payment_info" translatable="false">Información de Pago</string>
+    <string name="subtotal" translatable="false">Subtotal</string>
+    <string name="gst_18" translatable="false">IVA (18%)</string>
+    <string name="total" translatable="false">Total</string>
+    <string name="personal_document" translatable="false">Documento Personal</string>
+    <string name="business_document" translatable="false">Documento de Negocio</string>
+    <string name="_25" translatable="false">25</string>
+    <string name="_1524" translatable="false">1524</string>
+    <string name="booking_details" translatable="false">Detalles de la Reserva</string>
+    <string name="location" translatable="false">Ubicación</string>
+    <string name="a_199_sector_63_noida" translatable="false">A-199, Sector-63, Noida</string>
+    <string name="mark_as_completed" translatable="false">Marcar como Completado</string>
+    <string name="ac_repair" translatable="false">Reparación de AC</string>
+    <string name="review" translatable="false">Reseña</string>
+    <string name="give_a_feedback" translatable="false">Deja un comentario...</string>
+    <string name="do_this_later" translatable="false">Haz esto más tarde</string>
+    <string name="submit" translatable="false">Enviar</string>
+    <string name="today" translatable="false">Hoy</string>
+    <string name="hello_abhishek_how_are_you" translatable="false">Hola Abhishek, ¿cómo estás?</string>
+    <string name="saad_rahman" translatable="false">Saad Rahman</string>
+    <string name="no_chats_found" translatable="false">¡No se encontraron chats!</string>
+    <string name="start_new_chat" translatable="false">Iniciar nuevo chat</string>
+    <string name="amount_paid" translatable="false">Monto Pagado</string>
+    <string name="book_again" translatable="false">Reservar de nuevo</string>
+    <string name="_1420" translatable="false">1420</string>
+    <string name="payment_mode" translatable="false">Modo de Pago</string>
+    <string name="reason_for_cancellation" translatable="false">Razón de la cancelación</string>
+    <string name="provider_is_not_available_at_this_time" translatable="false">El proveedor no está disponible en este momento.</string>
+    <string name="credit_card" translatable="false">Tarjeta de Crédito</string>
+    <string name="refund_status" translatable="false">Estado del Reembolso</string>
+    <string name="refund_initiated_you_will_receive_your_n_amount_in_48_hours" translatable="false">Reembolso iniciado. Recibirás tu \n monto en 48 horas.</string>
+    <string name="save" translatable="false">Guardar</string>
+    <string name="a_192_sector_44_noida" translatable="false">A-192, Sector-44, Noida</string>
+    <string name="save_this_address_for_future_services" translatable="false">Guardar esta dirección para futuros servicios.</string>
+    <string name="booking_summary" translatable="false">Resumen de la Reserva</string>
+    <string name="change" translatable="false">Cambiar</string>
+    <string name="june_2023" translatable="false">Junio 2023</string>
+    <string name="_4_5" translatable="false">4.5</string>
+    <string name="proceed" translatable="false">Proceder</string>
+    <string name="add_address" translatable="false">Añadir Dirección</string>
+    <string name="days" translatable="false">Días</string>
+    <string name="_16" translatable="false">16</string>
+    <string name="time" translatable="false">Hora</string>
+    <string name="alert" translatable="false">Alerta</string>
+    <string-array name="select_category">
+        <item>Seleccionar Categoría</item>
+        <item>Finanzas</item>
+        <item>Electrónica</item>
+        <item>Fitness</item>
+    </string-array>
+    <string-array name="select_sub_category">
+        <item>Seleccionar Subcategoría</item>
+        <item>Artículo 1</item>
+        <item>Artículo 2</item>
+        <item>Artículo 3</item>
+        <item>Artículo 4</item>
+    </string-array>
+    <!-- Strings related to login -->
+    <string name="prompt_email" translatable="false">Correo Electrónico</string>
+    <string name="prompt_password" translatable="false">Contraseña</string>
+    <string name="action_sign_in" translatable="false">Iniciar sesión o registrarse</string>
+    <string name="action_sign_in_short" translatable="false">Iniciar sesión</string>
+    <string name="welcome" translatable="false">¡Bienvenido!</string>
+    <string name="invalid_username" translatable="false">Nombre de usuario no válido</string>
+    <string name="invalid_password" translatable="false">La contraseña debe tener más de 5 caracteres</string>
+    <string name="login_failed" translatable="false">"Inicio de sesión fallido"</string>
+    <string name="if_cancellation_done_after_24_hours_of_booking_date_you_will_get_refund" translatable="false">Si la cancelación se realiza después de 24 horas de la fecha de reserva, recibirás un reembolso.</string>
+    <string name="service_provider_is_not_available_and_has_requested_to_cancel" translatable="false">El proveedor de servicios no está disponible y ha solicitado cancelar</string>
+    <string name="i_found_this_service_at_a_cheaper_price" translatable="false">Encontré este servicio a un precio más barato</string>
+    <string name="i_don_t_need_this_service_now" translatable="false">No necesito este servicio ahora</string>
+    <string name="i_am_unavailable_at_the_scheduled_time" translatable="false">No estoy disponible en el horario programado</string>
+    <string name="_262638" translatable="false">#262638</string>
+    <string name="your_booking_has_been_cancelled" translatable="false">Tu reserva ha sido cancelada.</string>
+    <string name="please_track_status_of_refund_under_my_bookings_cancelled" translatable="false"><![CDATA[Por favor, sigue el estado del reembolso en \'Mis Reservas->Canceladas\']]></string>
+    <string name="go_to_my_bookings" translatable="false">Ir a Mis Reservas</string>
+    <string name="payment" translatable="false">Pago</string>
+    <string name="service_details" translatable="false">Detalles del Servicio</string>
+    <string name="_21_jun_2023_11_00am" translatable="false">21 Jun 2023, 11:00AM</string>
+    <string name="abhishek_mehra_a_192_sector_44_noida" translatable="false">Abhishek Mehra | A-192, Sector-44, Noida</string>
+    <string name="apply_coupon" translatable="false">Aplicar Cupón</string>
+    <string name="tax" translatable="false">Impuesto</string>
+    <string name="payable_amount" translatable="false">Monto a Pagar</string>
+    <string name="pay_now" translatable="false">Pagar ahora</string>
+    <string name="code" translatable="false">Código</string>
+    <string name="applied" translatable="false">Aplicado</string>
+    <string name="coupons" translatable="false">Cupones</string>
+    <string name="enter_promocode" translatable="false">Ingresar código promocional</string>
+    <string name="apply" translatable="false">Aplicar</string>
+    <string name="available_coupons" translatable="false">Cupones Disponibles</string>
+    <string name="sbi100" translatable="false">SBI100</string>
+    <string name="state_bank_of_india" translatable="false">Banco Estatal de la India</string>
+    <string name="cashback_up_to_usd_10_on_the_item_total_above_1100" translatable="false">Reembolso de hasta USD 10 en el total del artículo superior a \n1100</string>
+    <string name="saved_addresses" translatable="false">Direcciones Guardadas</string>
+    <string name="a_192_sector_44_noida_201301" translatable="false">A-192, Sector-44, Noida, 201301</string>
+    <string name="_91_989_123_4567" translatable="false">+91 989 123 4567</string>
+    <string name="add_new_address" translatable="false">Añadir Nueva Dirección</string>
+    <string name="chat_requests" translatable="false">Solicitudes de Chat</string>
+    <string name="no_chat_requests_found" translatable="false">¡No se encontraron solicitudes de chat!</string>
+    <string name="see_your_chats" translatable="false">Ver tus chats</string>
+    <string name="decline" translatable="false">Rechazar</string>
+    <string name="kuldeep_srivastava" translatable="false">Kuldeep Srivastava</string>
+    <string name="connect" translatable="false">Conectar</string>
+    <string name="call" translatable="false">Llamar</string>
+    <string name="whatsapp" translatable="false">WhatsApp</string>
+    <string name="share" translatable="false">Compartir</string>
+    <string name="services_we_offer" translatable="false">Servicios que ofrecemos</string>
+    <string name="settings" translatable="false">Configuración</string>
+    <string name="switch_to_business" translatable="false">Cambiar a Negocio</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut" translatable="false">Lorem ipsum dolor sit amet,\nconsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</string>
+    <string name="push_notifications" translatable="false">Notificaciones Push</string>
+    <string name="account_settings" translatable="false">Configuración de la Cuenta</string>
+    <string name="my_wallet" translatable="false">Mi Billetera</string>
+    <string name="wallet" translatable="false">billetera</string>
+    <string name="paymentGateway" translatable="false">pasarelaDePago</string>
+    <string name="walletWithPg" translatable="false">billeteraConPg</string>
+    <string name="about_us" translatable="false">Sobre nosotros</string>
+    <string name="distance" translatable="false">Distancia</string>
+    <string name="change_language" translatable="false">Cambiar Idioma</string>
+    <string name="faq_s" translatable="false">Preguntas Frecuentes</string>
+    <string name="contact_us" translatable="false">Contáctanos</string>
+    <string name="data_privacy" translatable="false">Privacidad de Datos</string>
+    <string name="terms_and_conditions" translatable="false">Términos y Condiciones</string>
+    <string name="delete_account" translatable="false">Eliminar Cuenta</string>
+    <string name="your_available_balance" translatable="false">Tu Saldo Disponible</string>
+    <string name="deactivate" translatable="false">Desactivar</string>
+    <string name="send_money" translatable="false">Enviar Dinero</string>
+    <string name="transactions" translatable="false">Transacciones</string>
+    <string name="_200" translatable="false">₹200</string>
+    <string name="_123456789" translatable="false">123456789</string>
+    <string name="please_allow_location_permission_to_move_ahead" translatable="false">Por favor, permite el permiso de ubicación para continuar.</string>
+    <string name="connections_requests" translatable="false">Solicitudes de Conexión</string>
+    <string name="accept_or_decline_requests" translatable="false">Aceptar o Rechazar Solicitudes</string>
+    <string name="are_you_sure_you_want_to_logout" translatable="false">¿Estás seguro de que quieres cerrar sesión?</string>
+    <string name="no" translatable="false">No</string>
+    <string name="yes" translatable="false">Sí</string>
+    <string name="log_out_successfully" translatable="false">¡Cierre de sesión exitoso!</string>
+    <string name="remove" translatable="false">Eliminar</string>
+    <string name="surya_mouly" translatable="false">Surya Mouly</string>
+    <string name="_100" translatable="false">100</string>
+    <string name="individual_business" translatable="false">Negocio Individual</string>
+    <string name="rating_raviews" translatable="false"><![CDATA[Calificaciones y Reseñas]]></string>
+    <string name="report" translatable="false">Reporte</string>
+    <string name="promocode_discount" translatable="false">Descuento de Código Promocional</string>
+    <string name="sorry_this_time_slot_is_not_available" translatable="false">Lo siento, este horario no está disponible</string>
+    <string name="_10_30_am" translatable="false">10:30 AM</string>
+    <string name="ravi_bishnoi_sent_you_a_connections_request" translatable="false">te envió una solicitud de Conexión</string>
+    <string name="ravi_bishnoi" translatable="false">Ravi Bishnoi.</string>
+    <string name="your_available_balance_insufficient_balance" translatable="false">Tu Saldo Disponible</string>
+    <string name="insufficient_balance" translatable="false">(Saldo Insuficiente)</string>
+    <string name="add_money" translatable="false">Añadir Dinero</string>
+    <string name="pay_1548" translatable="false">Pagar ₹ 1548</string>
+    <string name="are_you_sure_you_want_to_conform" translatable="false">¿Estás seguro de que quieres \nconfirmar?</string>
+    <string name="calendar" translatable="false">calendario</string>
+    <string name="slot" translatable="false">espacio</string>
+    <string name="at_center" translatable="false">En el Centro</string>
+    <string name="aman" translatable="false">Aman</string>
+    <string name="set_location" translatable="false">Establecer Ubicación</string>
+    <string name="house_flat_office_no" translatable="false">Casa/Departamento/Oficina no.*</string>
+    <string name="road_name_area_colony" translatable="false">Nombre de la calle/ Área / Colonia*</string>
+    <string name="pincode" translatable="false">Código Postal*</string>
+    <string name="confirm_location" translatable="false">Confirmar Ubicación</string>
+    <string name="sold" translatable="false">Vendido</string>
+    <string name="sold_small" translatable="false">vendido</string>
+    <string name="bought" translatable="false">Comprado</string>
+    <string name="search_location" translatable="false">Buscar Ubicación</string>
+    <string name="location_is_not_avialable" translatable="false">La ubicación no está disponible.</string>
+    <string name="request" translatable="false">Solicitud</string>
+    <string name="atcenter" translatable="false">enCentro</string>
+    <string name="athome" translatable="false">enCasa</string>
+    <string name="confirm" translatable="false">confirmar</string>
+    <string name="booking" translatable="false">reserva</string>
+    <string name="pay" translatable="false">Pagar ₹</string>
+    <string name="pending" translatable="false">Pendiente</string>
+    <string name="paymeturl" translatable="false">urlDePago</string>
+    <string name="cancel_booking" translatable="false">Cancelar Reserva</string>
+    <string name="bookinglist" translatable="false">listaDeReservas</string>
+    <string name="booked_by" translatable="false">Reservado por</string>
+    <string name="bought_small" translatable="false">comprado</string>
+    <string name="r" translatable="false"></string>
+    <string name="close_service" translatable="false">Cerrar Servicio</string>
+    <string name="start_date" translatable="false">Fecha de Inicio</string>
+    <string name="end_date" translatable="false">Fecha de Fin</string>
+    <string name="close" translatable="false">Cerrar</string>
+    <string name="start_service" translatable="false">Iniciar Servicio</string>
+    <string name="leave" translatable="false">dejar</string>
+    <string name="not_cancelable" translatable="false">No Cancelable</string>
+    <string name="back_to_original_payment_source" translatable="false">Volver a la fuente de pago original</string>
+    <string name="refund_in_wallet" translatable="false">Reembolso en la Billetera</string>
+    <string name="promocode" translatable="false">Código Promocional</string>
+    <string name="closeservice" translatable="false">cerrarServicio</string>
+    <string name="before_date_text" translatable="false">¿Estás seguro de que quieres cerrar el servicio? Si cierras el servicio, todas las reservas de</string>
+    <string name="to" translatable="false">a</string>
+    <string name="after_date_text" translatable="false">se cancelarán automáticamente</string>
+    <string name="image" translatable="false">imagen</string>
+    <string name="videos" translatable="false">videos</string>
+    <string name="servicedetails" translatable="false">detallesDelServicio</string>
+    <string name="openmedia" translatable="false">abrirMedios</string>
+    <string name="back_press" translatable="false">PresionarAtrás</string>
+    <string name="goBack" translatable="false">volver</string>
+    <string name="goForeword" translatable="false">adelante</string>
+    <string name="home_fr" translatable="false">Inicio_FR</string>
+    <string name="onlinefr" translatable="false">EnLineaFR</string>
+    <string name="back" translatable="false">Atrás</string>
+    <string name="provider_profile" translatable="false">perfil_del_proveedor</string>
+    <string name="profile_fr" translatable="false">perfil_Fr</string>
+    <string name="add_video" translatable="false">+ Añadir Video</string>
+    <string name="logout" translatable="false">cerrarSesión</string>
+    <string name="join_call" translatable="false">unirseALlamada</string>
+    <string name="leave_call" translatable="false">salirDeLlamada</string>
+    <string name="mute_call" translatable="false">silenciarLlamada</string>
+    <string name="connected" translatable="false">Conectado</string>
+    <string name="callended" translatable="false">llamadaTerminada</string>
+    <string name="pop_up" translatable="false">ventanaEmergente</string>
+    <string name="block" translatable="false">Bloquear</string>
+    <string name="delete_chat" translatable="false">Eliminar Chat</string>
+    <string name="unblock" translatable="false">Desbloquear</string>
+    <string name="container" translatable="false">contenedor</string>
+    <string name="chatfragment" translatable="false">fragmentoDeChat</string>
+    <string name="open_gallery" translatable="false">abrirGalería</string>
+    <string name="images" translatable="false">Imágenes</string>
+    <string name="files" translatable="false">Archivos</string>
+    <string name="media_size_check" translatable="false">El tamaño del medio debe ser menor a 100 MB</string>
+
+    <string name="weeks" translatable="false">semanas</string>
+    <string name="months" translatable="false">meses</string>
+    <string name="years" translatable="false">años</string>
+    <string name="min" translatable="false">min</string>
+    <string name="hour" translatable="false">hora</string>
+    <string name="minute" translatable="false">minuto</string>
+    <string name="pick_your_media_file" translatable="false">Selecciona tu archivo multimedia</string>
+    <string name="use_as_default" translatable="false">Usar como Predeterminado</string>
+    <string name="_default" translatable="false"> Predeterminado</string>
+
+    <string-array name="select_issue">
+        <item>Seleccionar Problema</item>
+        <item>Artículo 1</item>
+        <item>Artículo 2</item>
+        <item>Artículo 3</item>
+        <item>Artículo 4</item>
+        <item>Artículo 5</item>
+    </string-array>
+
+    <!--bank module strings-->
+    <string name="add_your_bank_account" translatable="false">Añadir Tu Cuenta Bancaria</string>
+    <string name="add_new_bank_account" translatable="false">Añadir Nueva Cuenta Bancaria</string>
+    <string name="choose_bank_with_your_account" translatable="false">Elige el banco con tu cuenta.</string>
+    <string name="select_bank" translatable="false">Seleccionar Banco</string>
+    <string name="current_account" translatable="false">Cuenta Corriente</string>
+    <string name="savings_account" translatable="false">Cuenta de Ahorros</string>
+    <string name="select_account_type" translatable="false">Seleccionar Tipo de Cuenta</string>
+    <string name="enter_document_type" translatable="false">Ingresa el tipo de documento</string>
+    <string name="document_type" translatable="false">Tipo de Documento</string>
+    <string name="enter_document_number" translatable="false">Ingresa el número de documento</string>
+    <string name="document_number" translatable="false">Número de Documento</string>
+    <string name="enter_account_name" translatable="false">Ingresa el nombre de la cuenta</string>
+    <string name="account_name" translatable="false">Nombre de la Cuenta</string>
+    <string name="enter_account_number" translatable="false">Ingresa el número de cuenta</string>
+    <string name="account_number" translatable="false">Número de Cuenta</string>
+    <string name="my_bank_account" translatable="false">Mi Cuenta Bancaria</string>
+    <string name="connecting" translatable="false">Conectando</string>
+    <string name="add_bank_account" translatable="false">Agregar Cuenta Bancaria</string>
+
+    <!--validation Texts-->
+    <string name="please_enter_account_number" translatable="false">Por favor, ingresa el número de cuenta</string>
+    <string name="please_enter_account_name" translatable="false">Por favor, ingresa el nombre de la cuenta</string>
+    <string name="invalid_account_number" translatable="false">Número de cuenta inválido</string>
+    <string name="please_enter_document_number" translatable="false">Por favor, ingresa el número de documento</string>
+    <string name="please_enter_document_type" translatable="false">Por favor, ingresa el tipo de documento</string>
+
+    <!--String files for click events-->
+    <string name="cross" translatable="false">Cruzar</string>
+    <string name="audio_call" translatable="false">Llamada de Audio</string>
+    <string name="video_call" translatable="false">Llamada de Video</string>
+    <string name="connect_with_the_user_as" translatable="false">Conectar con el usuario como</string>
+    <string name="outgoing_video" translatable="false">videoSaliente</string>
+    <string name="outgoing_Audio" translatable="false">audioSaliente</string>
+    <string name="user_name" translatable="false">nombre_usuario</string>
+    <string name="are_you_sure_want_to_delete_this_account" translatable="false">¿Estás seguro de que quieres eliminar esta cuenta?</string>
+    <string name="filterdata" translatable="false">filtrarDatos</string>
+    <string name="connection_remove_successfully" translatable="false">Conexión eliminada con éxito</string>
+    <string name="whatsApp" translatable="false">whatsApp</string>
+    <string name="description" translatable="false">Descripción</string>
+    <string name="issue_type" translatable="false">Tipo de Problema</string>
+    <string name="notification" translatable="false">Notificación</string>
+    <string name="addbank" translatable="false">agregarBanco</string>
+    <string name="openbottomsheet" translatable="false">abrirHojaInferior</string>
+    <string name="personal" translatable="false">personal</string>
+    <string name="dummy_string" translatable="false">Cadena Dummy</string>
+    <string name="service_we_offer" translatable="false">Servicios que Ofrecemos</string>
+    <string name="wellness" translatable="false">Bienestar</string>
+    <string name="household" translatable="false">Hogar</string>
+    <string name="electronic" translatable="false">Electrónica</string>
+    <string name="videophoto" translatable="false">VideoFoto</string>
+    <string name="showbiz" translatable="false">Espectáculos</string>
+    <string name="real_estate" translatable="false">Bienes Raíces</string>
+    <string name="spa_beauty" translatable="false">Spa-Estética</string>
+    <string name="security" translatable="false">Seguridad</string>
+    <string name="software" translatable="false">Software</string>
+    <string name="legal" translatable="false">Legal</string>
+    <string name="pet_service" translatable="false">Servicios para Mascotas</string>
+    <string name="travel" translatable="false">Viajes</string>
+    <string name="other" translatable="false">Otro</string>
+    <string name="allow_gps_location" translatable="false">Permitir ubicación del servicio</string>
+    <string name="welcome_to_servivet_we_are_passionate_about_creating_meaningful_connections_and_facilitating_seamless_interactions_our_mission_is_to_provide_a_platform_that_fosters_community_encourages_collaboration_and_sparks_engaging_conversations_among_users">¡Bienvenido a Servivet! Nos apasiona crear conexiones significativas y facilitar interacciones fluidas. Nuestra misión es proporcionar una plataforma que fomente la comunidad, anime a la colaboración y despierte conversaciones atractivas entre los usuarios.</string>
+    <string name="title">Título</string>
+    <string name="enter_title">Introduce el título</string>
+    <string name="your_feedback_or_suggestion_here">Tu opinión o sugerencia aquí...</string>
+    <string name="_0_200">(0/200)</string>
+    <string name="email">Correo electrónico</string>
+    <string name="we_are_keen_to_know_how_we_can_make_e_yugam_better_for_you_send_your_feedback_or_suggestion">Estamos interesados en saber cómo podemos mejorar E-Yugam para ti. Envíanos tus comentarios o sugerencias</string>
+    <string name="withdraw">Retirar</string>
+    <string name="no_data_found">¡No se encontraron datos!</string>
+    <string name="delhi">Delhi</string>
+
+</resources>

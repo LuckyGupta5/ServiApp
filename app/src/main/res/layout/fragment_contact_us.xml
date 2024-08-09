@@ -109,7 +109,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginStart="10dp"
                             android:layout_toEndOf="@id/callIcon"
-                            android:text="Call"
+                            android:text="@string/call"
                             android:textColor="@color/black"
                             android:textSize="13dp" />
                     </RelativeLayout>
@@ -141,7 +141,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginStart="10dp"
                             android:layout_toEndOf="@id/emailIcon"
-                            android:text="Email"
+                            android:text="@string/email"
                             android:textColor="@color/black"
                             android:textSize="13dp" />
                     </RelativeLayout>
@@ -153,7 +153,7 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="We are keen to know how we can make E-Yugam better for you. Send your feedback or suggestion"
+                    android:text="@string/we_are_keen_to_know_how_we_can_make_e_yugam_better_for_you_send_your_feedback_or_suggestion"
                     android:textColor="@color/black"
                     android:textSize="17dp" />
 
@@ -164,7 +164,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="Title"
+                    android:text="@string/title"
                     android:textColor="#505050"
                     android:textSize="15dp" />
 
@@ -177,7 +177,7 @@
                     android:afterTextChanged="@{(text)->click.title(text)}"
                     android:background="@drawable/gray_corner_outline_drawable_12_dp"
                     android:fontFamily="@font/poppins_regular"
-                    android:hint="Enter title"
+                    android:hint="@string/enter_title"
 
                     android:inputType="textEmailAddress"
                     android:paddingHorizontal="20dp"
@@ -199,7 +199,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="Message"
+                        android:text="@string/message"
                         android:textColor="#505050"
                         android:textSize="15dp" />
 
@@ -216,7 +216,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:gravity="start"
 
-                    android:hint="Your feedback or suggestion here..."
+                    android:hint="@string/your_feedback_or_suggestion_here"
                     android:inputType="textMultiLine"
                     android:maxLength="200"
                     android:padding="17dp"
@@ -233,7 +233,7 @@
                     android:layout_marginEnd="20dp"
                     android:fontFamily="@font/poppins_italic"
                     android:gravity="end"
-                    android:text="(0/200)"
+                    android:text="@string/_0_200"
                     android:textColor="@color/gray_878787"
                     android:textSize="13dp" />
             </LinearLayout>

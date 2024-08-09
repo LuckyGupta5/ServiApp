@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Servi</string>
+    <string name="servivet_require_this_permission" translatable="false">Servi ต้องอนุญาตการอนุญาตนี้</string>
+    <string name="google_map_key" translatable="false">AIzaSyDxvOzm-9yjdnd5L4iJrVDwk-_KbUkmN8A</string>
+    <string name="please_connect_to_the_internet" translatable="false">โปรดเชื่อมต่อกับอินเทอร์เน็ต\n</string>
+    <string name="hello_blank_fragment" translatable="false">สวัสดีแฟร็กเมนต์เปล่า</string>
+    <string name="choose_your_preferred_language" translatable="false">เลือกภาษาที่คุณต้องการ\n</string>
+    <string name="english" translatable="false">อังกฤษ</string>
+    <string name="hi_i_am_john_doe" translatable="false">สวัสดี ฉันคือ John Doe.</string>
+    <string name="swahii" translatable="false">สวาฮีลี</string>
+    <string name="habari_mimi_ni_john_doe" translatable="false">Habari, mimi ni John Doe.</string>
+    <string name="zulu" translatable="false">ซูลู</string>
+    <string name="gps_enable_message" translatable="false">คุณต้องเปิดใช้งาน GPS</string>
+    <string name="sawubona_ngingu_john_doe" translatable="false">Sawubona, ngingu-John Doe.</string>
+    <string name="continues" translatable="false">ดำเนินการต่อ</string>
+    <string name="skip" translatable="false">ข้าม</string>
+    <string name="next" translatable="false">ถัดไป</string>
+    <string name="get_started" translatable="false">เริ่มต้น</string>
+    <string name="clientel" translatable="false">ลูกค้า</string>
+    <string name="business" translatable="false">ธุรกิจ</string>
+    <string name="mobile_number" translatable="false">หมายเลขโทรศัพท์มือถือ</string>
+    <string name="we_will_send_you_a_confirmation_code" translatable="false">เราจะส่งรหัสยืนยันให้คุณ</string>
+    <string name="_123_456_7890" translatable="false">123–456-7890</string>
+    <string name="i_agree_to_terms_and_conditions_and_data_privacy_policies" translatable="false">ฉันตกลงตามข้อกำหนดและเงื่อนไขและนโยบายความเป็นส่วนตัวของข้อมูล</string>
+    <string name="verify" translatable="false">ยืนยัน</string>
+    <string name="please_enter_the_otp_sent_your_mobile_number" translatable="false">กรุณาใส่ OTP ที่ส่งไปยังหมายเลขโทรศัพท์มือถือของคุณ</string>
+    <string name="otp_verification" translatable="false">การตรวจสอบ OTP</string>
+    <string name="resend_otp_in_30_seconds" translatable="false">ส่ง OTP อีกครั้งใน 30 วินาที</string>
+    <string name="title_activity_home" translatable="false">HomeActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label" translatable="false">แฟร็กเมนต์แรก</string>
+    <string name="second_fragment_label" translatable="false">แฟร็กเมนต์ที่สอง</string>
+    <string name="previous" translatable="false">ก่อนหน้า</string>
+    <string name="search_for_area_street_name_etc" translatable="false">ค้นหาพื้นที่ ชื่อถนน เป็นต้น...</string>
+    <string name="home" translatable="false">หน้าหลัก</string>
+    <string name="chats" translatable="false">แชท</string>
+    <string name="bookings" translatable="false">การจอง</string>
+    <string name="profile" translatable="false">โปรไฟล์</string>
+    <string name="noida" translatable="false">โนIDA</string>
+    <string name="sadarpur_sector_44_noida" translatable="false">ซาดาร์ปูร์, ภาค-44 โนIDA</string>
+    <string name="search_for_service_etc" translatable="false"><![CDATA[ค้นหาบริการ & เป็นต้น]]></string>
+    <string name="services" translatable="false">บริการ</string>
+    <string name="view_all" translatable="false">ดูทั้งหมด\n</string>
+    <string name="provider_view_all" translatable="false">ProviderViewAll</string>
+    <string name="user_view_all" translatable="false">UserViewAll</string>
+    <string name="online_now" translatable="false">ออนไลน์ตอนนี้</string>
+    <string name="fitness" translatable="false">ฟิตเนส</string>
+    <string name="finance" translatable="false">การเงิน\n</string>
+    <string name="_1_km_away" translatable="false">กม. ห่างออกไป</string>
+    <string name="dev_gupta" translatable="false">Dev Gupta</string>
+    <string name="gym" translatable="false">ยิม</string>
+    <string name="riepneapps_technology_noida" translatable="false">riepneapps เทคโนโลยี โนIDA</string>
+    <string name="view_details" translatable="false">ดูรายละเอียด</string>
+    <string name="individual" translatable="false">บุคคล</string>
+    <string name="individualcap" translatable="false">บุคคล</string>
+    <string name="institutional" translatable="false">สถาบัน</string>
+    <string name="institutionalcap" translatable="false">สถาบัน</string>
+    <string name="edit_profile" translatable="false">แก้ไขโปรไฟล์</string>
+    <string name="abhishek_mehra" translatable="false">Abhishek Mehra</string>
+    <string name="about" translatable="false">เกี่ยวกับ</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut_labore_et_dolore_magna_aliquyam_erat_sed_diam_voluptua_eos_et_accusam_et_justo_duo_dolores_et_ea_rebum_stet_clita_kasd_gubergren_no_sea_takimata_sanctus_est_lorem_ipsum_dolor_sit_amet_lorem_ipsum_dolor_sit_amet" translatable="false">Lorem ipsum dolor sit amet, consetetur tempor invidunt ut labore et est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet</string>
+    <string name="accept_the_term_and_condition" translatable="false">ยอมรับข้อกำหนดและเงื่อนไข\n</string>
+    <string name="accept_the_privacy_policy" translatable="false">ยอมรับนโยบายความเป็นส่วนตัว</string>
+    <string name="term_and_condition" translatable="false">ข้อกำหนดและเงื่อนไข</string>
+    <string name="privacy_policy" translatable="false">นโยบายความเป็นส่วนตัว</string>
+    <string name="terms_conditions" translatable="false"><![CDATA[ข้อกำหนดและเงื่อนไข]]></string>
+    <string name="last_updated_on_23_may_2023" translatable="false">อัปเดตล่าสุดเมื่อ 23 พฤษภาคม 2023</string>
+    <string name="reject" translatable="false">ปฏิเสธ</string>
+    <string name="accept" translatable="false">ยอมรับ</string>
+    <string name="my_connections" translatable="false">การเชื่อมต่อของฉัน</string>
+    <string name="name" translatable="false">ชื่อ</string>
+    <string name="enter_name" translatable="false">ใส่ชื่อ</string>
+    <string name="_91_1234567890" translatable="false">+91 1234567890</string>
+    <string name="email_address" translatable="false">ที่อยู่อีเมล</string>
+    <string name="_0_150" translatable="false">(0/150)</string>
+    <string name="_150_150" translatable="false">(150/150)\n</string>
+    <string name="write_here" translatable="false">เขียนที่นี่</string>
+    <string name="update" translatable="false">อัปเดต</string>
+    <string name="change_cover" translatable="false">เปลี่ยนปก</string>
+    <string name="business_n_verification" translatable="false">ธุรกิจ \nการตรวจสอบ</string>
+    <string name="select_your_business_type" translatable="false">เลือกประเภทธุรกิจของคุณ</string>
+    <string name="full_name" translatable="false">ชื่อเต็ม</string>
+    <string name="enter_full_name" translatable="false">ใส่ชื่อเต็ม</string>
+    <string name="using_gps" translatable="false">ใช้ GPS</string>
+    <string name="current_location" translatable="false">ตำแหน่งปัจจุบัน</string>
+    <string name="enter_location_manually" translatable="false">กรอกตำแหน่งด้วยตนเอง</string>
+    <string name="or" translatable="false">หรือ</string>
+    <string name="want_to_earn_money" translatable="false">ต้องการหารายได้ไหม?</string>
+    <string name="add_the_service_which_you_are_expert_in" translatable="false">เพิ่มบริการที่คุณเชี่ยวชาญ</string>
+    <string name="add_service" translatable="false">+ เพิ่มบริการ</string>
+    <string name="near_by" translatable="false">ใกล้เคียง</string>
+    <string name="add_service_" translatable="false">เพิ่มบริการ</string>
+    <string name="service_mode" translatable="false">โหมดบริการ</string>
+    <string name="at_centre" translatable="false">ที่ศูนย์</string>
+    <string name="at_home" translatable="false">ที่บ้าน</string>
+    <string name="category" translatable="false">หมวดหมู่</string>
+    <string name="sub_category" translatable="false">หมวดหมู่ย่อย</string>
+    <string name="yoga" translatable="false">โยคะ</string>
+    <string name="about_service" translatable="false">เกี่ยวกับบริการ</string>
+    <string name="photos" translatable="false">รูปภาพ</string>
+    <string name="add_image" translatable="false">+ เพิ่มรูปภาพ</string>
+    <string name="add" translatable="false">เพิ่ม</string>
+    <string name="availability" translatable="false">ความพร้อมใช้งาน</string>
+    <string name="select_session" translatable="false">เลือกเซสชัน</string>
+    <string name="add_hours" translatable="false">+ เพิ่มชั่วโมง</string>
+    <string name="start_time" translatable="false">เวลาเริ่มต้น</string>
+    <string name="end_time" translatable="false">เวลาสิ้นสุด</string>
+    <string name="mon" translatable="false">จ</string>
+    <string name="enter_price" translatable="false">กรอกราคา</string>
+    <string name="price_at_centre" translatable="false">ราคา (ที่ศูนย์)</string>
+    <string name="camera" translatable="false">กล้อง</string>
+    <string name="gallery" translatable="false">แกลเลอรี</string>
+    <string name="price" translatable="false">ราคา</string>
+    <string name="my_services" translatable="false">บริการของฉัน</string>
+    <string name="business_name" translatable="false">ชื่อธุรกิจ</string>
+    <string name="the_electronic_hub" translatable="false">ศูนย์อิเล็กทรอนิกส์</string>
+    <string name="edit" translatable="false">แก้ไข</string>
+    <string name="please_enter_a_valid_e_mail" translatable="false">กรุณากรอกอีเมลที่ถูกต้อง\n</string>
+    <string name="enter_email_address" translatable="false">กรอกที่อยู่อีเมล</string>
+    <string name="address" translatable="false">ที่อยู่</string>
+    <string name="a_block_sector_63_noida" translatable="false">บล็อก A เขต 63 โนIDA</string>
+    <string name="under_development" translatable="false">อยู่ระหว่างการพัฒนา</string>
+    <string name="resend_otp_in" translatable="false">ส่ง OTP อีกครั้งใน</string>
+    <string name="are_you_logout" translatable="false">คุณแน่ใจว่าต้องการออกจากระบบไหม?</string>
+    <string name="log_out" translatable="false">ออกจากระบบ</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_centre_mode" translatable="false">เวลาเริ่มต้นไม่ควรมากกว่าเวลาสิ้นสุดสำหรับโหมดศูนย์</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_home_mode" translatable="false">เวลาเริ่มต้นไม่ควรมากกว่าเวลาสิ้นสุดสำหรับโหมดบ้าน</string>
+    <string name="please_enter_the_price_for_the_centre_service_mode" translatable="false">กรุณากรอกราคาในโหมดบริการที่ศูนย์</string>
+    <string name="please_enter_the_price_for_the_home_service_mode" translatable="false">กรุณากรอกราคาในโหมดบริการที่บ้าน</string>
+    <string name="please_select_a_service_model" translatable="false">กรุณาเลือกโหมดบริการ</string>
+    <string name="please_select_the_category" translatable="false">กรุณาเลือกหมวดหมู่</string>
+    <string name="please_select_at_one_image" translatable="false">กรุณาเลือกอย่างน้อยหนึ่งรูปภาพ</string>
+    <string name="images_must_be_less_than_five" translatable="false">รูปภาพต้องไม่เกินห้า</string>
+    <string name="please_select_sub_category" translatable="false">กรุณาเลือกหมวดหมู่ย่อย</string>
+    <string name="select_sub_category" translatable="false">เลือกหมวดหมู่ย่อย</string>
+    <string name="select_session_should_not_be_empty_for_the_center_service_mode" translatable="false">เลือกเซสชันไม่ควรเป็นค่าว่างสำหรับโหมดบริการที่ศูนย์</string>
+    <string name="select_session_should_not_be_empty_for_the_home_service_mode" translatable="false">เลือกเซสชันไม่ควรเป็นค่าว่างสำหรับโหมดบริการที่บ้าน</string>
+    <string name="details" translatable="false">รายละเอียด</string>
+    <string name="_1_km" translatable="false">1 กม.</string>
+    <string name="away" translatable="false">ห่างออกไป</string>
+    <string name="prateek_mehta" translatable="false">Prateek Mehta</string>
+    <string name="media" translatable="false">สื่อ</string>
+    <string name="_1499_2999" translatable="false">1499 - 2999</string>
+    <string name="book_now" translatable="false">จองตอนนี้</string>
+    <string name="my_booking" translatable="false">การจองของฉัน</string>
+    <string name="booking_id" translatable="false">หมายเลขการจอง</string>
+    <string name="booking_id_num" translatable="false">#262638</string>
+    <string name="by_prateek_mehta" translatable="false">โดย Prateek Mehta</string>
+    <string name="tuesday_21_oct_11_00_am" translatable="false">อังคาร, 21 ต.ค., 11:00 น.</string>
+    <string name="complete_profile" translatable="false">กรอกโปรไฟล์ให้สมบูรณ์</string>
+    <string name="enter_your_information_below" translatable="false">กรอกข้อมูลของคุณด้านล่าง</string>
+    <string name="edit_service" translatable="false">แก้ไขบริการ</string>
+    <string name="message" translatable="false">ข้อความ</string>
+    <string name="upcoming" translatable="false">ที่กำลังจะมาถึง</string>
+    <string name="completed" translatable="false">เสร็จสิ้น</string>
+    <string name="cancelled" translatable="false">ยกเลิก</string>
+    <string name="_1799" translatable="false">1799</string>
+    <string name="_1499" translatable="false">1499</string>
+    <string name="reschedule" translatable="false">กำหนดเวลาใหม่</string>
+    <string name="cancel" translatable="false">ยกเลิก</string>
+    <string name="ok" translatable="false">ตกลง</string>
+    <string name="rate_us" translatable="false">ให้คะแนนเรา</string>
+    <string name="date_time" translatable="false"><![CDATA[วันที่ & เวลา]]></string>
+    <string name="payment_info" translatable="false">ข้อมูลการชำระเงิน</string>
+    <string name="subtotal" translatable="false">ยอดรวมก่อนภาษี</string>
+    <string name="gst_18" translatable="false">GST (18%)</string>
+    <string name="total" translatable="false">รวมทั้งหมด</string>
+    <string name="personal_document" translatable="false">เอกสารส่วนบุคคล</string>
+    <string name="business_document" translatable="false">เอกสารธุรกิจ</string>
+    <string name="_25" translatable="false">25</string>
+    <string name="_1524" translatable="false">1524</string>
+    <string name="booking_details" translatable="false">รายละเอียดการจอง</string>
+    <string name="location" translatable="false">ตำแหน่ง</string>
+    <string name="a_199_sector_63_noida" translatable="false">A-199, Sector-63, Noida</string>
+    <string name="mark_as_completed" translatable="false">ทำเครื่องหมายว่าเสร็จสิ้น</string>
+    <string name="ac_repair" translatable="false">ซ่อมแอร์</string>
+    <string name="review" translatable="false">รีวิว</string>
+    <string name="give_a_feedback" translatable="false">ให้ข้อเสนอแนะแบบ...</string>
+    <string name="do_this_later" translatable="false">ทำภายหลัง</string>
+    <string name="submit" translatable="false">ส่ง</string>
+    <string name="today" translatable="false">วันนี้</string>
+    <string name="hello_abhishek_how_are_you" translatable="false">สวัสดี Abhishek, สบายดีไหม?</string>
+    <string name="saad_rahman" translatable="false">Saad Rahman</string>
+    <string name="no_chats_found" translatable="false">ไม่พบการสนทนา!</string>
+    <string name="start_new_chat" translatable="false">เริ่มการสนทนาใหม่</string>
+    <string name="amount_paid" translatable="false">จำนวนเงินที่ชำระ</string>
+    <string name="book_again" translatable="false">จองอีกครั้ง</string>
+    <string name="_1420" translatable="false">1420</string>
+    <string name="payment_mode" translatable="false">วิธีการชำระเงิน</string>
+    <string name="reason_for_cancellation" translatable="false">เหตุผลในการยกเลิก</string>
+    <string name="provider_is_not_available_at_this_time" translatable="false">ผู้ให้บริการไม่ว่างในขณะนี้</string>
+    <string name="credit_card" translatable="false">บัตรเครดิต</string>
+    <string name="refund_status" translatable="false">สถานะการคืนเงิน</string>
+    <string name="refund_initiated_you_will_receive_your_n_amount_in_48_hours" translatable="false">เริ่มต้นการคืนเงินแล้ว คุณจะได้รับเงินคืนภายใน 48 ชั่วโมง</string>
+    <string name="save" translatable="false">บันทึก</string>
+    <string name="a_192_sector_44_noida" translatable="false">A-192, Sector-44, Noida</string>
+    <string name="save_this_address_for_future_services" translatable="false">บันทึกที่อยู่นี้เพื่อบริการในอนาคต</string>
+    <string name="booking_summary" translatable="false">สรุปการจอง</string>
+    <string name="change" translatable="false">เปลี่ยน</string>
+    <string name="june_2023" translatable="false">มิถุนายน 2023</string>
+    <string name="_4_5" translatable="false">4.5</string>
+    <string name="proceed" translatable="false">ดำเนินการต่อ</string>
+    <string name="add_address" translatable="false">เพิ่มที่อยู่</string>
+    <string name="days" translatable="false">วัน</string>
+    <string name="_16" translatable="false">16</string>
+    <string name="time" translatable="false">เวลา</string>
+    <string name="alert" translatable="false">การแจ้งเตือน</string>
+    <string-array name="select_category">
+        <item>เลือกหมวดหมู่</item>
+        <item>การเงิน</item>
+        <item>อิเล็กทรอนิกส์</item>
+        <item>ฟิตเนส</item>
+    </string-array>
+
+    <string-array name="select_sub_category">
+        <item>เลือกหมวดหมู่ย่อย</item>
+        <item>รายการ 1</item>
+        <item>รายการ 2</item>
+        <item>รายการ 3</item>
+        <item>รายการ 4</item>
+    </string-array>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email" translatable="false">อีเมล</string>
+    <string name="prompt_password" translatable="false">รหัสผ่าน</string>
+    <string name="action_sign_in" translatable="false">ลงชื่อเข้าใช้หรือสมัครสมาชิก</string>
+    <string name="action_sign_in_short" translatable="false">ลงชื่อเข้าใช้</string>
+    <string name="welcome" translatable="false">"ยินดีต้อนรับ!"</string>
+    <string name="invalid_username" translatable="false">ชื่อผู้ใช้ไม่ถูกต้อง</string>
+    <string name="invalid_password" translatable="false">รหัสผ่านต้องมีมากกว่า 5 ตัวอักษร</string>
+    <string name="login_failed" translatable="false">"การเข้าสู่ระบบล้มเหลว"</string>
+    <string name="if_cancellation_done_after_24_hours_of_booking_date_you_will_get_refund" translatable="false">หากการยกเลิกทำหลังจาก 24 ชั่วโมงของวันที่จอง คุณจะได้รับการคืนเงิน</string>
+    <string name="service_provider_is_not_available_and_has_requested_to_cancel" translatable="false">ผู้ให้บริการไม่พร้อมใช้งานและได้ขอยกเลิก</string>
+    <string name="i_found_this_service_at_a_cheaper_price" translatable="false">ฉันพบบริการนี้ในราคาที่ถูกกว่า</string>
+    <string name="i_don_t_need_this_service_now" translatable="false">ฉันไม่ต้องการบริการนี้ตอนนี้</string>
+    <string name="i_am_unavailable_at_the_scheduled_time" translatable="false">ฉันไม่ว่างในเวลาที่กำหนด</string>
+    <string name="_262638" translatable="false">#262638</string>
+    <string name="your_booking_has_been_cancelled" translatable="false">การจองของคุณถูกยกเลิกแล้ว</string>
+    <string name="please_track_status_of_refund_under_my_bookings_cancelled" translatable="false"><![CDATA[โปรดติดตามสถานะการคืนเงินภายใต้ \'การจองของฉัน->ยกเลิก\']]></string>
+    <string name="go_to_my_bookings" translatable="false">ไปที่การจองของฉัน</string>
+    <string name="payment" translatable="false">การชำระเงิน</string>
+    <string name="service_details" translatable="false">รายละเอียดบริการ</string>
+    <string name="_21_jun_2023_11_00am" translatable="false">21 มิ.ย. 2023, 11:00 น.</string>
+    <string name="abhishek_mehra_a_192_sector_44_noida" translatable="false">Abhishek Mehra | A-192, Sector-44, Noida</string>
+    <string name="apply_coupon" translatable="false">ใช้คูปอง</string>
+    <string name="tax" translatable="false">ภาษี</string>
+    <string name="payable_amount" translatable="false">จำนวนเงินที่ต้องชำระ</string>
+    <string name="pay_now" translatable="false">ชำระเงินตอนนี้</string>
+    <string name="code" translatable="false">รหัส</string>
+    <string name="applied" translatable="false">ใช้แล้ว</string>
+    <string name="coupons" translatable="false">คูปอง</string>
+    <string name="enter_promocode" translatable="false">กรอกรหัสโปรโมชั่น</string>
+    <string name="apply" translatable="false">ใช้</string>
+    <string name="available_coupons" translatable="false">คูปองที่มี</string>
+    <string name="sbi100" translatable="false">SBI100</string>
+    <string name="state_bank_of_india" translatable="false">ธนาคารแห่งประเทศอินเดีย</string>
+    <string name="cashback_up_to_usd_10_on_the_item_total_above_1100" translatable="false">คืนเงินสูงสุด USD 10 สำหรับยอดรวมของรายการที่เกิน 1100</string>
+    <string name="saved_addresses" translatable="false">ที่อยู่ที่บันทึกไว้</string>
+    <string name="a_192_sector_44_noida_201301" translatable="false">A-192, Sector-44, Noida, 201301</string>
+    <string name="_91_989_123_4567" translatable="false">+91 989 123 4567</string>
+    <string name="add_new_address" translatable="false">เพิ่มที่อยู่ใหม่</string>
+    <string name="chat_requests" translatable="false">คำขอการสนทนา</string>
+    <string name="no_chat_requests_found" translatable="false">ไม่พบคำขอการสนทนา!</string>
+    <string name="see_your_chats" translatable="false">ดูการสนทนาของคุณ</string>
+    <string name="decline" translatable="false">ปฏิเสธ</string>
+    <string name="kuldeep_srivastava" translatable="false">Kuldeep Srivastava</string>
+    <string name="connect" translatable="false">เชื่อมต่อ</string>
+    <string name="call" translatable="false">โทร</string>
+    <string name="whatsapp" translatable="false">WhatsApp</string>
+    <string name="share" translatable="false">แชร์</string>
+    <string name="services_we_offer" translatable="false">บริการที่เรานำเสนอ</string>
+    <string name="settings" translatable="false">การตั้งค่า</string>
+    <string name="switch_to_business" translatable="false">สลับไปยังธุรกิจ</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut" translatable="false">Lorem ipsum dolor sit amet,\nconsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</string>
+    <string name="push_notifications" translatable="false">การแจ้งเตือนแบบพุช</string>
+    <string name="account_settings" translatable="false">การตั้งค่าบัญชี</string>
+    <string name="my_wallet" translatable="false">กระเป๋าเงินของฉัน</string>
+    <string name="wallet" translatable="false">กระเป๋าเงิน</string>
+    <string name="paymentGateway" translatable="false">เกตเวย์การชำระเงิน</string>
+    <string name="walletWithPg" translatable="false">กระเป๋าเงินกับเกตเวย์การชำระเงิน</string>
+    <string name="about_us" translatable="false">เกี่ยวกับเรา</string>
+    <string name="distance" translatable="false">ระยะทาง</string>
+    <string name="change_language" translatable="false">เปลี่ยนภาษา</string>
+    <string name="faq_s" translatable="false">คำถามที่พบบ่อย</string>
+    <string name="contact_us" translatable="false">ติดต่อเรา</string>
+    <string name="data_privacy" translatable="false">ความเป็นส่วนตัวของข้อมูล</string>
+    <string name="terms_and_conditions" translatable="false">ข้อกำหนดและเงื่อนไข</string>
+    <string name="delete_account" translatable="false">ลบบัญชี</string>
+    <string name="your_available_balance" translatable="false">ยอดคงเหลือของคุณ</string>
+    <string name="deactivate" translatable="false">ปิดใช้งาน</string>
+    <string name="send_money" translatable="false">ส่งเงิน</string>
+    <string name="transactions" translatable="false">ธุรกรรม</string>
+    <string name="_200" translatable="false">₹200</string>
+    <string name="_123456789" translatable="false">123456789</string>
+    <string name="please_allow_location_permission_to_move_ahead" translatable="false">กรุณาอนุญาตให้เข้าถึงตำแหน่งเพื่อดำเนินการต่อ</string>
+    <string name="connections_requests" translatable="false">คำขอการเชื่อมต่อ</string>
+    <string name="accept_or_decline_requests" translatable="false">ยอมรับหรือปฏิเสธคำขอ</string>
+    <string name="are_you_sure_you_want_to_logout" translatable="false">คุณแน่ใจหรือไม่ว่าต้องการออกจากระบบ?</string>
+    <string name="no" translatable="false">ไม่</string>
+    <string name="yes" translatable="false">ใช่</string>
+    <string name="log_out_successfully" translatable="false">ออกจากระบบสำเร็จ!</string>
+    <string name="remove" translatable="false">ลบ</string>
+    <string name="surya_mouly" translatable="false">Surya Mouly</string>
+    <string name="_100" translatable="false">100</string>
+    <string name="individual_business" translatable="false">ธุรกิจส่วนตัว</string>
+    <string name="rating_raviews" translatable="false"><![CDATA[คะแนน & รีวิว]]></string>
+    <string name="report" translatable="false">รายงาน</string>
+    <string name="promocode_discount" translatable="false">ส่วนลดรหัสโปรโมชั่น</string>
+    <string name="sorry_this_time_slot_is_not_available" translatable="false">ขออภัย เวลานี้ไม่ว่าง</string>
+    <string name="_10_30_am" translatable="false">10:30 น.</string>
+    <string name="ravi_bishnoi_sent_you_a_connections_request" translatable="false">ส่งคำขอการเชื่อมต่อถึงคุณ</string>
+    <string name="ravi_bishnoi" translatable="false">Ravi Bishnoi</string>
+    <string name="your_available_balance_insufficient_balance" translatable="false">ยอดคงเหลือของคุณ</string>
+    <string name="insufficient_balance" translatable="false">(ยอดคงเหลือไม่เพียงพอ)</string>
+    <string name="add_money" translatable="false">เติมเงิน</string>
+    <string name="pay_1548" translatable="false">ชำระ ₹ 1548</string>
+    <string name="are_you_sure_you_want_to_conform" translatable="false">คุณแน่ใจหรือไม่ว่าต้องการยืนยัน?</string>
+    <string name="calendar" translatable="false">ปฏิทิน</string>
+    <string name="slot" translatable="false">ช่อง</string>
+    <string name="at_center" translatable="false">ที่ศูนย์</string>
+    <string name="aman" translatable="false">Aman</string>
+    <string name="set_location" translatable="false">ตั้งค่าตำแหน่ง</string>
+    <string name="house_flat_office_no" translatable="false">บ้าน/อพาร์ตเมนต์/สำนักงาน เลขที่*</string>
+    <string name="road_name_area_colony" translatable="false">ชื่อถนน/พื้นที่/โคโลนี*</string>
+    <string name="pincode" translatable="false">รหัสไปรษณีย์*</string>
+    <string name="confirm_location" translatable="false">ยืนยันตำแหน่ง</string>
+    <string name="sold" translatable="false">ขายแล้ว</string>
+    <string name="sold_small" translatable="false">ขายแล้ว</string>
+    <string name="bought" translatable="false">ซื้อแล้ว</string>
+    <string name="search_location" translatable="false">ค้นหาตำแหน่ง</string>
+    <string name="location_is_not_avialable" translatable="false">ตำแหน่งไม่พร้อมใช้งาน</string>
+    <string name="request" translatable="false">คำขอ</string>
+    <string name="atcenter" translatable="false">ที่ศูนย์</string>
+    <string name="athome" translatable="false">ที่บ้าน</string>
+    <string name="confirm" translatable="false">ยืนยัน</string>
+    <string name="booking" translatable="false">การจอง</string>
+    <string name="pay" translatable="false">ชำระ ₹</string>
+    <string name="pending" translatable="false">รอดำเนินการ</string>
+    <string name="paymeturl" translatable="false">paymetUrl</string>
+    <string name="cancel_booking" translatable="false">ยกเลิกการจอง</string>
+    <string name="bookinglist" translatable="false">รายการจอง</string>
+    <string name="booked_by" translatable="false">จองโดย</string>
+    <string name="bought_small" translatable="false">ซื้อแล้ว</string>
+    <string name="r" translatable="false"></string>
+    <string name="close_service" translatable="false">ปิดบริการ</string>
+    <string name="start_date" translatable="false">วันที่เริ่มต้น</string>
+    <string name="end_date" translatable="false">วันที่สิ้นสุด</string>
+    <string name="close" translatable="false">ปิด</string>
+    <string name="start_service" translatable="false">เริ่มบริการ</string>
+    <string name="leave" translatable="false">ออกจาก</string>
+    <string name="not_cancelable" translatable="false">ไม่สามารถยกเลิกได้</string>
+    <string name="back_to_original_payment_source" translatable="false">กลับไปยังแหล่งการชำระเงินเดิม</string>
+    <string name="refund_in_wallet" translatable="false">คืนเงินในกระเป๋าเงิน</string>
+    <string name="promocode" translatable="false">รหัสโปรโมชั่น</string>
+    <string name="closeservice" translatable="false">ปิดบริการ</string>
+    <string name="before_date_text" translatable="false">คุณแน่ใจหรือไม่ว่าต้องการปิดบริการ หากคุณปิดบริการ การจองทั้งหมดของ</string>
+    <string name="to" translatable="false">ถึง</string>
+    <string name="after_date_text" translatable="false">จะถูกยกเลิกโดยอัตโนมัติ</string>
+    <string name="image" translatable="false">ภาพ</string>
+    <string name="videos" translatable="false">วิดีโอ</string>
+    <string name="servicedetails" translatable="false">รายละเอียดบริการ</string>
+    <string name="openmedia" translatable="false">เปิดสื่อ</string>
+    <string name="back_press" translatable="false">กดย้อนกลับ</string>
+    <string name="goBack" translatable="false">กลับ</string>
+    <string name="goForeword" translatable="false">ไปข้างหน้า</string>
+    <string name="home_fr" translatable="false">หน้าแรก_FR</string>
+    <string name="onlinefr" translatable="false">ออนไลน์_FR</string>
+    <string name="back" translatable="false">กลับ</string>
+    <string name="provider_profile" translatable="false">โปรไฟล์ผู้ให้บริการ</string>
+    <string name="profile_fr" translatable="false">โปรไฟล์_Fr</string>
+    <string name="add_video" translatable="false">+ เพิ่มวิดีโอ</string>
+    <string name="logout" translatable="false">ออกจากระบบ</string>
+    <string name="join_call" translatable="false">เข้าร่วมการโทร</string>
+    <string name="leave_call" translatable="false">ออกจากการโทร</string>
+    <string name="mute_call" translatable="false">ปิดเสียงการโทร</string>
+    <string name="connected" translatable="false">เชื่อมต่อแล้ว</string>
+    <string name="callended" translatable="false">การโทรสิ้นสุดแล้ว</string>
+    <string name="pop_up" translatable="false">ป๊อปอัพ</string>
+    <string name="block" translatable="false">บล็อก</string>
+    <string name="delete_chat" translatable="false">ลบแชท</string>
+    <string name="unblock" translatable="false">ปลดบล็อก</string>
+    <string name="container" translatable="false">คอนเทนเนอร์</string>
+    <string name="chatfragment" translatable="false">ส่วนแชท</string>
+    <string name="open_gallery" translatable="false">เปิดแกลเลอรี</string>
+    <string name="images" translatable="false">ภาพ</string>
+    <string name="files" translatable="false">ไฟล์</string>
+    <string name="media_size_check" translatable="false">ขนาดสื่อจะต้องน้อยกว่า 100 MB</string>
+
+    <string name="weeks" translatable="false">สัปดาห์</string>
+    <string name="months" translatable="false">เดือน</string>
+    <string name="years" translatable="false">ปี</string>
+    <string name="min" translatable="false">นาที</string>
+    <string name="hour" translatable="false">ชั่วโมง</string>
+    <string name="minute" translatable="false">นาที</string>
+    <string name="pick_your_media_file" translatable="false">เลือกไฟล์สื่อของคุณ</string>
+    <string name="use_as_default" translatable="false">ใช้เป็นค่าเริ่มต้น</string>
+    <string name="_default" translatable="false"> ค่าเริ่มต้น</string>
+
+    <string-array name="select_issue">
+        <item>เลือกปัญหา</item>
+        <item>รายการ 1</item>
+        <item>รายการ 2</item>
+        <item>รายการ 3</item>
+        <item>รายการ 4</item>
+        <item>รายการ 5</item>
+    </string-array>
+
+    <!--bank module strings-->
+    <string name="add_your_bank_account" translatable="false">เพิ่มบัญชีธนาคารของคุณ</string>
+    <string name="add_new_bank_account" translatable="false">เพิ่มบัญชีธนาคารใหม่</string>
+    <string name="choose_bank_with_your_account" translatable="false">เลือกธนาคารที่มีบัญชีของคุณ</string>
+    <string name="select_bank" translatable="false">เลือกธนาคาร</string>
+    <string name="current_account" translatable="false">บัญชีออมทรัพย์</string>
+    <string name="savings_account" translatable="false">บัญชีออมทรัพย์</string>
+    <string name="select_account_type" translatable="false">เลือกประเภทบัญชี</string>
+    <string name="enter_document_type" translatable="false">กรอกประเภทเอกสาร</string>
+    <string name="document_type" translatable="false">ประเภทเอกสาร</string>
+    <string name="enter_document_number" translatable="false">กรอกหมายเลขเอกสาร</string>
+    <string name="document_number" translatable="false">หมายเลขเอกสาร</string>
+    <string name="enter_account_name" translatable="false">กรอกชื่อบัญชี</string>
+    <string name="account_name" translatable="false">ชื่อบัญชี</string>
+    <string name="enter_account_number" translatable="false">กรอกหมายเลขบัญชี</string>
+    <string name="account_number" translatable="false">หมายเลขบัญชี</string>
+    <string name="my_bank_account" translatable="false">บัญชีธนาคารของฉัน</string>
+    <string name="connecting" translatable="false">เชื่อมต่อ</string>
+    <string name="add_bank_account" translatable="false">เพิ่มบัญชีธนาคาร</string>
+
+    <!--validation Texts-->
+    <string name="please_enter_account_number" translatable="false">กรุณากรอกหมายเลขบัญชี</string>
+    <string name="please_enter_account_name" translatable="false">กรุณากรอกชื่อบัญชี</string>
+    <string name="invalid_account_number" translatable="false">หมายเลขบัญชีไม่ถูกต้อง</string>
+    <string name="please_enter_document_number" translatable="false">กรุณากรอกหมายเลขเอกสาร</string>
+    <string name="please_enter_document_type" translatable="false">กรุณากรอกประเภทเอกสาร</string>
+    <!--String files for click events-->
+    <string name="cross" translatable="false">ปิด</string>
+    <string name="audio_call" translatable="false">การโทรด้วยเสียง</string>
+    <string name="video_call" translatable="false">การโทรด้วยวิดีโอ</string>
+    <string name="connect_with_the_user_as" translatable="false">เชื่อมต่อกับผู้ใช้ในฐานะ</string>
+    <string name="outgoing_video" translatable="false">วิดีโอขาออก</string>
+    <string name="outgoing_Audio" translatable="false">เสียงขาออก</string>
+    <string name="user_name" translatable="false">ชื่อผู้ใช้</string>
+    <string name="are_you_sure_want_to_delete_this_account" translatable="false">คุณแน่ใจหรือไม่ว่าต้องการลบบัญชีนี้?</string>
+    <string name="filterdata" translatable="false">ข้อมูลการกรอง</string>
+    <string name="connection_remove_successfully" translatable="false">ลบการเชื่อมต่อเรียบร้อยแล้ว</string>
+    <string name="whatsApp" translatable="false">WhatsApp</string>
+    <string name="description" translatable="false">คำอธิบาย</string>
+    <string name="issue_type" translatable="false">ประเภทปัญหา</string>
+    <string name="notification" translatable="false">การแจ้งเตือน</string>
+    <string name="addbank" translatable="false">เพิ่มธนาคาร</string>
+    <string name="openbottomsheet" translatable="false">เปิดแผ่นล่าง</string>
+    <string name="personal" translatable="false">ส่วนตัว</string>
+    <string name="dummy_string" translatable="false">สตริงตัวอย่าง</string>
+    <string name="service_we_offer" translatable="false">บริการที่เรามี</string>
+    <string name="wellness" translatable="false">สุขภาพ</string>
+    <string name="household" translatable="false">งานบ้าน</string>
+    <string name="electronic" translatable="false">อิเล็กทรอนิกส์</string>
+    <string name="videophoto" translatable="false">วิดีโอและภาพถ่าย</string>
+    <string name="showbiz" translatable="false">บันเทิง</string>
+    <string name="real_estate" translatable="false">อสังหาริมทรัพย์</string>
+    <string name="spa_beauty" translatable="false">สปา-ความงาม</string>
+    <string name="security" translatable="false">ความปลอดภัย</string>
+    <string name="software" translatable="false">ซอฟต์แวร์</string>
+    <string name="legal" translatable="false">กฎหมาย</string>
+    <string name="pet_service" translatable="false">บริการสัตว์เลี้ยง</string>
+    <string name="travel" translatable="false">การเดินทาง</string>
+    <string name="other" translatable="false">อื่น ๆ</string>
+    <string name="allow_gps_location" translatable="false">อนุญาตให้ใช้ตำแหน่ง GPS</string>
+    <string name="welcome_to_servivet_we_are_passionate_about_creating_meaningful_connections_and_facilitating_seamless_interactions_our_mission_is_to_provide_a_platform_that_fosters_community_encourages_collaboration_and_sparks_engaging_conversations_among_users">ยินดีต้อนรับสู่ Servivet! เรามุ่งมั่นในการสร้างการเชื่อมต่อที่มีความหมายและการทำงานร่วมกันอย่างราบรื่น เป้าหมายของเราคือการให้แพลตฟอร์มที่ส่งเสริมชุมชน ส่งเสริมความร่วมมือ และกระตุ้นการสนทนาที่น่าสนใจระหว่างผู้ใช้</string>
+    <string name="title">หัวข้อ</string>
+    <string name="enter_title">กรุณากรอกหัวข้อ</string>
+    <string name="your_feedback_or_suggestion_here">ข้อเสนอแนะหรือความคิดเห็นของคุณที่นี่...</string>
+    <string name="_0_200">(0/200)</string>
+    <string name="email">อีเมล</string>
+    <string name="we_are_keen_to_know_how_we_can_make_e_yugam_better_for_you_send_your_feedback_or_suggestion">เราต้องการทราบว่าเราจะปรับปรุง E-Yugam ให้ดีขึ้นสำหรับคุณได้อย่างไร ส่งข้อเสนอแนะหรือความคิดเห็นของคุณมาให้เรา</string>
+    <string name="withdraw">ถอน</string>
+    <string name="no_data_found">ไม่พบข้อมูล!</string>
+    <string name="delhi">เดลี</string>
+
+</resources>

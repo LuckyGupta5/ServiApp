@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">సర్వి</string>
+    <string name="servivet_require_this_permission" translatable="false">సర్వి ఈ అనుమతిని అందించాలని అవసరం.</string>
+    <string name="google_map_key" translatable="false">AIzaSyDxvOzm-9yjdnd5L4iJrVDwk-_KbUkmN8A</string>
+    <string name="please_connect_to_the_internet" translatable="false">దయచేసి ఇంటర్నెట్‌కి కనెక్ట్ అవ్వండి.\n</string>
+    <string name="hello_blank_fragment" translatable="false">హలో బ్లాంక్ ఫ్రాగ్మెంట్</string>
+    <string name="choose_your_preferred_language" translatable="false">మీ ఇష్టమైన భాషను ఎంచుకోండి</string>
+    <string name="english" translatable="false">ఆంగ్లం</string>
+    <string name="hi_i_am_john_doe" translatable="false">హాయ్, నేను జాన్ డో.</string>
+    <string name="swahii" translatable="false">స్వాహిలి</string>
+    <string name="habari_mimi_ni_john_doe" translatable="false">హాబారి, నేను జాన్ డో.</string>
+    <string name="zulu" translatable="false">జులూ</string>
+    <string name="gps_enable_message" translatable="false">మీరు GPS స్థానం ఆన్ చేయాలి</string>
+    <string name="sawubona_ngingu_john_doe" translatable="false">సావుబోనా, నేను జాన్ డో.</string>
+    <string name="continues" translatable="false">కొనసాగించు</string>
+    <string name="skip" translatable="false">తనిఖీ చేయండి</string>
+    <string name="next" translatable="false">తదుపరి</string>
+    <string name="get_started" translatable="false">ప్రారంభించు</string>
+    <string name="clientel" translatable="false">క్లయింటెలే</string>
+    <string name="business" translatable="false">వ్యాపారం</string>
+    <string name="mobile_number" translatable="false">మొబైల్ నంబర్</string>
+    <string name="we_will_send_you_a_confirmation_code" translatable="false">మేము మీకు నిర్ధారణ కోడ్‌ను పంపిస్తాము</string>
+    <string name="_123_456_7890" translatable="false">123–456-7890</string>
+    <string name="i_agree_to_terms_and_conditions_and_data_privacy_policies" translatable="false">నేను నిబంధనలు మరియు నిబంధనలను మరియు డేటా గోప్యతా విధులను అంగీకరిస్తున్నాను.</string>
+    <string name="verify" translatable="false">తేదీ</string>
+    <string name="please_enter_the_otp_sent_your_mobile_number" translatable="false">దయచేసి మీ మొబైల్ నంబర్‌కు పంపిన OTPని నమోదు చేయండి.</string>
+    <string name="otp_verification" translatable="false">OTP ధృవీకరణ</string>
+    <string name="resend_otp_in_30_seconds" translatable="false">30 సెకన్లలో OTPను మళ్లీ పంపించు</string>
+    <string name="title_activity_home" translatable="false">హోమ్‌చర్య</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label" translatable="false">మొదటి ఫ్రాగ్మెంట్</string>
+    <string name="second_fragment_label" translatable="false">రెండవ ఫ్రాగ్మెంట్</string>
+    <string name="previous" translatable="false">మునుపటి</string>
+    <string name="search_for_area_street_name_etc" translatable="false">ప్రాంతం, వీధి పేరు మొదలైనవి కోసం శోధించండి...</string>
+    <string name="home" translatable="false">హోమ్</string>
+    <string name="chats" translatable="false">చాట్స్</string>
+    <string name="bookings" translatable="false">బుకింగ్స్</string>
+    <string name="profile" translatable="false">ప్రొఫైల్</string>
+    <string name="noida" translatable="false">నోయిడా</string>
+    <string name="sadarpur_sector_44_noida" translatable="false">సదర్పూర్, సెక్టార్-44 నోయిడా</string>
+    <string name="search_for_service_etc" translatable="false"><![CDATA[సేవ & మొదలైనవి కోసం శోధించండి]]></string>
+    <string name="services" translatable="false">సేవలు</string>
+    <string name="view_all" translatable="false">అన్ని చూడండి\n</string>
+    <string name="provider_view_all" translatable="false">ప్రొవైడర్‌ వీక్షించండి</string>
+    <string name="user_view_all" translatable="false">వినియోగదారుడు వీక్షించండి</string>
+    <string name="online_now" translatable="false">ప్రస్తుతం ఆన్</string>
+    <string name="fitness" translatable="false">ఫిట్‌నెస్</string>
+    <string name="finance" translatable="false">ఆర్థికం\n</string>
+    <string name="_1_km_away" translatable="false">కిమీ దూరం</string>
+    <string name="dev_gupta" translatable="false">దేవ్ గుప్తా</string>
+    <string name="gym" translatable="false">జిమ్</string>
+    <string name="riepneapps_technology_noida" translatable="false">రీప్నెఅప్స్ టెక్నాలజీ నోయిడా</string>
+    <string name="view_details" translatable="false">వివరాలు చూడండి</string>
+    <string name="individual" translatable="false">వ్యక్తిగత</string>
+    <string name="individualcap" translatable="false">వ్యక్తిగత</string>
+    <string name="institutional" translatable="false">సంస్థాగత</string>
+    <string name="institutionalcap" translatable="false">సంస్థాగత</string>
+    <string name="edit_profile" translatable="false">ప్రొఫైల్ ఎడిట్ చేయండి</string>
+    <string name="abhishek_mehra" translatable="false">అభిషేక్ మేఘ్రా</string>
+    <string name="about" translatable="false">మేము గురించి</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut_labore_et_dolore_magna_aliquyam_erat_sed_diam_voluptua_eos_et_accusam_et_justo_duo_dolores_et_ea_rebum_stet_clita_kasd_gubergren_no_sea_takimata_sanctus_est_lorem_ipsum_dolor_sit_amet_lorem_ipsum_dolor_sit_amet" translatable="false">లోరెమ్ ఇప్సమ్ డొలార్ సిట్ అమెట్, కాన్సెటేటూర్ టెంపోర్ ఇన్విడంట్ ఉత్త్ లబోరే మరియు డోలోర్ మాగ్నా ఆలిక్వియామ్. ఇప్సమ్ డొలార్ సిట్ అమెట్.</string>
+    <string name="accept_the_term_and_condition" translatable="false">నిబంధనలు మరియు నిబంధనలను అంగీకరించండి\n</string>
+    <string name="accept_the_privacy_policy" translatable="false">గోప్యతా విధానాన్ని అంగీకరించండి</string>
+    <string name="term_and_condition" translatable="false">నిబంధనలు మరియు నిబంధనల</string>
+    <string name="privacy_policy" translatable="false">డేటా గోప్యతా</string>
+    <string name="terms_conditions" translatable="false"><![CDATA[నిబంధనలు & నిబంధనలు]]></string>
+    <string name="last_updated_on_23_may_2023" translatable="false">23 మే 2023న చివరిగా అప్‌డేట్ చేయబడింది</string>
+    <string name="reject" translatable="false">అంగీకరించకు</string>
+    <string name="accept" translatable="false">అంగీకరించు</string>
+    <string name="my_connections" translatable="false">నా కనెక్షన్లు</string>
+    <string name="name" translatable="false">పేరు</string>
+    <string name="enter_name" translatable="false">పేరు నమోదు చేయండి</string>
+    <string name="_91_1234567890" translatable="false">+91 1234567890</string>
+    <string name="email_address" translatable="false">ఇమెయిల్ చిరునామా</string>
+    <string name="_0_150" translatable="false">(0/150)</string>
+    <string name="_150_150" translatable="false">(150/150)\n</string>
+    <string name="write_here" translatable="false">ఇక్కడ రాయండి</string>
+    <string name="update" translatable="false">అప్డేట్ చేయండి</string>
+    <string name="change_cover" translatable="false">కవర్ మార్చండి</string>
+    <string name="business_n_verification" translatable="false">వ్యాపారం \nసत्यాప్తి</string>
+    <string name="select_your_business_type" translatable="false">మీ వ్యాపార రకం ఎంచుకోండి</string>
+    <string name="full_name" translatable="false">పూర్తి పేరు</string>
+    <string name="enter_full_name" translatable="false">పూర్తి పేరు నమోదు చేయండి</string>
+    <string name="using_gps" translatable="false">GPS ఉపయోగించడం</string>
+    <string name="current_location" translatable="false">ప్రస్తుతం ఉన్న స్థానం</string>
+    <string name="enter_location_manually" translatable="false">స్థానాన్ని మానవీయంగా నమోదు చేయండి</string>
+    <string name="or" translatable="false">లేదా</string>
+    <string name="want_to_earn_money" translatable="false">ధనం సంపాదించాలని అనుకుంటున్నారా?</string>
+    <string name="add_the_service_which_you_are_expert_in" translatable="false">మీరు నిపుణులు ఉన్న సేవను జోడించండి</string>
+    <string name="add_service" translatable="false">+ సేవ జోడించండి</string>
+    <string name="near_by" translatable="false">చుట్టుపక్కల</string>
+x<string name="add_service_" translatable="false">సేవ జోడించు</string>
+    <string name="service_mode" translatable="false">సేవా మోడ్</string>
+    <string name="at_centre" translatable="false">కేంద్రంలో</string>
+    <string name="at_home" translatable="false">ఇంట్లో</string>
+    <string name="category" translatable="false">వర్గం</string>
+    <string name="sub_category" translatable="false">ఉపవర్గం</string>
+    <string name="yoga" translatable="false">యోగ</string>
+    <string name="about_service" translatable="false">సేవ గురించి</string>
+    <string name="photos" translatable="false">ఫోటోలు</string>
+    <string name="add_image" translatable="false">+ చిత్రం జోడించు</string>
+    <string name="add" translatable="false">జోడించు</string>
+    <string name="availability" translatable="false">లభ్యత</string>
+    <string name="select_session" translatable="false">సెషన్ ఎంచుకోండి</string>
+    <string name="add_hours" translatable="false">+ గంటలు జోడించు</string>
+    <string name="start_time" translatable="false">ప్రారంభ సమయం</string>
+    <string name="end_time" translatable="false">ముగింపు సమయం</string>
+    <string name="mon" translatable="false">సోమ</string>
+    <string name="enter_price" translatable="false">ధర నమోదు చేయండి</string>
+    <string name="price_at_centre" translatable="false">ధర (కేంద్రంలో)</string>
+    <string name="camera" translatable="false">కెమేరా</string>
+    <string name="gallery" translatable="false">గ్యాలరీ</string>
+    <string name="price" translatable="false">ధర</string>
+    <string name="my_services" translatable="false">నా సేవలు</string>
+    <string name="business_name" translatable="false">వ్యాపారం పేరు</string>
+    <string name="the_electronic_hub" translatable="false">ద ఎలక్ట్రానిక్ హబ్</string>
+    <string name="edit" translatable="false">ఎడిట్ చేయండి</string>
+    <string name="please_enter_a_valid_e_mail" translatable="false">దయచేసి సరైన ఇమెయిల్ నమోదు చేయండి\n</string>
+    <string name="enter_email_address" translatable="false">ఇమెయిల్ చిరునామా నమోదు చేయండి</string>
+    <string name="address" translatable="false">చిరునామా</string>
+    <string name="a_block_sector_63_noida" translatable="false">ఏ బ్లాక్ సెక్టార్ 63 నోయిడా</string>
+    <string name="under_development" translatable="false">వికాసంలో</string>
+    <string name="resend_otp_in" translatable="false"> OTPని మళ్లీ పంపించు </string>
+    <string name="are_you_logout" translatable="false">మీరు నిజంగా నిర్ధారితంగా ఉంటారా?</string>
+    <string name="log_out" translatable="false">లాగ్ అవుట్</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_centre_mode" translatable="false">కేంద్ర మోడ్ కోసం ప్రారంభ సమయం ముగింపు సమయాన్ని మించకూడదు.</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_home_mode" translatable="false">ఇంట్లో మోడ్ కోసం ప్రారంభ సమయం ముగింపు సమయాన్ని మించకూడదు.</string>
+    <string name="please_enter_the_price_for_the_centre_service_mode" translatable="false">కేంద్ర సేవా మోడ్ కోసం ధరను నమోదు చేయండి.</string>
+    <string name="please_enter_the_price_for_the_home_service_mode" translatable="false">ఇంట్లో సేవా మోడ్ కోసం ధరను నమోదు చేయండి.</string>
+    <string name="please_select_a_service_model" translatable="false">సేవా మోడల్‌ను ఎంచుకోండి.</string>
+    <string name="please_select_the_category" translatable="false">వర్గాన్ని ఎంచుకోండి.</string>
+    <string name="please_select_at_one_image" translatable="false">కనీసం ఒక చిత్రాన్ని ఎంచుకోండి.</string>
+    <string name="images_must_be_less_than_five" translatable="false">చిత్రాలు ఐదు లేదా ఐదుకంటే తక్కువ ఉండాలి.</string>
+    <string name="please_select_sub_category" translatable="false">ఉపవర్గాన్ని ఎంచుకోండి.</string>
+    <string name="select_sub_category" translatable="false">ఉపవర్గాన్ని ఎంచుకోండి</string>
+    <string name="select_session_should_not_be_empty_for_the_center_service_mode" translatable="false">కేంద్ర సేవా మోడ్ కోసం సెషన్ ఖాళీగా ఉండకూడదు</string>
+    <string name="select_session_should_not_be_empty_for_the_home_service_mode" translatable="false">ఇంట్లో సేవా మోడ్ కోసం సెషన్ ఖాళీగా ఉండకూడదు</string>
+    <string name="details" translatable="false">వివరాలు</string>
+    <string name="_1_km" translatable="false">1 కిమీ</string>
+    <string name="away" translatable="false">దూరం</string>
+    <string name="prateek_mehta" translatable="false">ప్రతీక్ మేఘ్రా</string>
+    <string name="media" translatable="false">మీడియా</string>
+    <string name="_1499_2999" translatable="false">1499 - 2999</string>
+    <string name="book_now" translatable="false">తక్షణం బుక్ చేయండి</string>
+    <string name="my_booking" translatable="false">నా బుకింగ్స్</string>
+    <string name="booking_id" translatable="false">బుకింగ్ ID</string>
+    <string name="booking_id_num" translatable="false">#262638</string>
+    <string name="by_prateek_mehta" translatable="false">ప్రతీక్ మేఘ్రా ద్వారా</string>
+    <string name="tuesday_21_oct_11_00_am" translatable="false">సోమవారం, 21 అక్టోబర్, 11:00 AM</string>
+    <string name="complete_profile" translatable="false">ప్రొఫైల్ పూర్తిచేయండి</string>
+    <string name="enter_your_information_below" translatable="false">కింద మీ సమాచారం నమోదు చేయండి</string>
+    <string name="edit_service" translatable="false">సేవను సవరించు</string>
+    <string name="message" translatable="false">సందేశం</string>
+    <string name="upcoming" translatable="false">రాబోయే</string>
+    <string name="completed" translatable="false">పూర్తయింది</string>
+    <string name="cancelled" translatable="false">రద్దు చేయబడింది</string>
+    <string name="_1799" translatable="false">1799</string>
+    <string name="_1499" translatable="false">1499</string>
+    <string name="reschedule" translatable="false">మళ్ళీ షెడ్యూల్ చేయండి</string>
+    <string name="cancel" translatable="false">రద్దు చేయండి</string>
+    <string name="ok" translatable="false">సరే</string>
+    <string name="rate_us" translatable="false">మమ్మల్ని రేట్ చేయండి</string>
+    <string name="date_time" translatable="false"><![CDATA[తేదీ & సమయం]]></string>
+    <string name="payment_info" translatable="false">చెల్లింపు సమాచారం</string>
+    <string name="subtotal" translatable="false">ఉపమొత్తం</string>
+    <string name="gst_18" translatable="false">GST (18%)</string>
+    <string name="total" translatable="false">మొత్తం</string>
+    <string name="personal_document" translatable="false">వ్యక్తిగత డాక్యుమెంట్</string>
+    <string name="business_document" translatable="false">వ్యాపార డాక్యుమెంట్</string>
+    <string name="_25" translatable="false">25</string>
+    <string name="_1524" translatable="false">1524</string>
+    <string name="booking_details" translatable="false">బుకింగ్ వివరాలు</string>
+    <string name="location" translatable="false">స్థానం</string>
+    <string name="a_199_sector_63_noida" translatable="false">A-199, సెక్టార్-63, నోయిడా</string>
+    <string name="mark_as_completed" translatable="false">పూర్తి అయినట్లు గుర్తించు</string>
+    <string name="ac_repair" translatable="false">AC మరమ్మత్తు</string>
+    <string name="review" translatable="false"> సమీక్ష </string>
+    <string name="give_a_feedback" translatable="false"> అభిప్రాయం ఇవ్వండి... </string>
+    <string name="do_this_later" translatable="false"> తరువాత చేయండి </string>
+    <string name="submit" translatable="false"> సమర్పించు </string>
+    <string name="today" translatable="false"> ఈ రోజు </string>
+    <string name="hello_abhishek_how_are_you" translatable="false"> హలో అభిషేక్, మీరు ఎలా ఉన్నారు? </string>
+    <string name="saad_rahman" translatable="false"> సాద్ రహ్మాన్ </string>
+    <string name="no_chats_found" translatable="false"> చాట్స్ కనుగొనబడలేదు! </string>
+    <string name="start_new_chat" translatable="false"> కొత్త చాట్ ప్రారంభించండి </string>
+    <string name="amount_paid" translatable="false"> చెల్లించిన మొత్తం </string>
+    <string name="book_again" translatable="false"> మళ్లీ బుక్ చేయండి </string>
+    <string name="_1420" translatable="false"> 1420 </string>
+    <string name="payment_mode" translatable="false"> చెల్లింపు మోడ్ </string>
+    <string name="reason_for_cancellation" translatable="false"> రద్దు కారణం </string>
+    <string name="provider_is_not_available_at_this_time" translatable="false"> ప్రొవైడర్ ప్రస్తుతం అందుబాటులో లేదు. </string>
+    <string name="credit_card" translatable="false"> క్రెడిట్ కార్డు </string>
+    <string name="refund_status" translatable="false"> రీఫండ్ స్థితి </string>
+    <string name="refund_initiated_you_will_receive_your_n_amount_in_48_hours" translatable="false"> రీఫండ్ ప్రారంభించబడింది. మీరు 48 గంటల్లో మీ మొత్తం పొందుతారు. </string>
+    <string name="save" translatable="false"> సేవ్ చేయండి </string>
+    <string name="a_192_sector_44_noida" translatable="false"> A-192, సెక్టార్-44, నోయిడా </string>
+    <string name="save_this_address_for_future_services" translatable="false"> భవిష్యత్తు సేవల కోసం ఈ చిరునామాను సేవ్ చేయండి. </string>
+    <string name="booking_summary" translatable="false"> బుకింగ్ సారాంశం </string>
+    <string name="change" translatable="false"> మార్చు </string>
+    <string name="june_2023" translatable="false"> జూన్ 2023 </string>
+    <string name="_4_5" translatable="false"> 4.5 </string>
+    <string name="proceed" translatable="false"> కొనసాగించు </string>
+    <string name="add_address" translatable="false"> చిరునామా జోడించండి </string>
+    <string name="days" translatable="false"> రోజులు </string>
+    <string name="_16" translatable="false"> 16 </string>
+    <string name="time" translatable="false"> సమయం </string>
+    <string name="alert" translatable="false"> అలర్ట్ </string>
+    <string-array name="select_category">
+        <item>వర్గం ఎంచుకోండి</item>
+        <item>ఆర్ధికం</item>
+        <item>ఎలక్ట్రానిక్స్</item>
+        <item>ఫిట్నెస్</item>
+    </string-array>
+
+    <string-array name="select_sub_category">
+        <item>ఉపవర్గం ఎంచుకోండి</item>
+        <item>పెట్టె 1</item>
+        <item>పెట్టె 2</item>
+        <item>పెట్టె 3</item>
+        <item>పెట్టె 4</item>
+    </string-array>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email" translatable="false">ఇమెయిల్</string>
+    <string name="prompt_password" translatable="false">పాస్వర్డ్</string>
+    <string name="action_sign_in" translatable="false">సైన్ ఇన్ లేదా నమోదు చేయండి</string>
+    <string name="action_sign_in_short" translatable="false">సైన్ ఇన్</string>
+    <string name="welcome" translatable="false"> "స్వాగతం!" </string>
+    <string name="invalid_username" translatable="false"> సరైన యూజర్‌నేమ్ కాదు </string>
+    <string name="invalid_password" translatable="false"> పాస్వర్డ్ >5 అక్షరాలు కావాలి </string>
+    <string name="login_failed" translatable="false"> "లాగిన్ విఫలమైంది" </string>
+    <string name="if_cancellation_done_after_24_hours_of_booking_date_you_will_get_refund" translatable="false"> బుకింగ్ తేదీని 24 గంటల తర్వాత రద్దు చేస్తే, మీకు రీఫండ్ అందుతుంది. </string>
+    <string name="service_provider_is_not_available_and_has_requested_to_cancel" translatable="false"> సర్వీస్ ప్రొవైడర్ అందుబాటులో లేదు మరియు రద్దు చేయమని అభ్యర్థించారు </string>
+    <string name="i_found_this_service_at_a_cheaper_price" translatable="false"> నేను ఈ సేవను తక్కువ ధరకు కనుగొనాను </string>
+    <string name="i_don_t_need_this_service_now" translatable="false"> నేను ప్రస్తుతం ఈ సేవను అవసరం లేదు </string>
+    <string name="i_am_unavailable_at_the_scheduled_time" translatable="false"> నేను షెడ్యూల్డ్ సమయానికి అందుబాటులో లేను </string>
+    <string name="_262638" translatable="false"> #262638 </string>
+    <string name="your_booking_has_been_cancelled" translatable="false"> మీ బుకింగ్ రద్దు చేయబడింది. </string>
+    <string name="please_track_status_of_refund_under_my_bookings_cancelled" translatable="false"><![CDATA[ \'నా బుకింగ్స్->రద్దు\' కింద రీఫండ్ స్థితిని ట్రాక్ చేయండి]]></string>
+    <string name="go_to_my_bookings" translatable="false"> నా బుకింగ్స్‌కి వెళ్లండి </string>
+    <string name="payment" translatable="false"> చెల్లింపు </string>
+    <string name="service_details" translatable="false"> సేవా వివరాలు </string>
+    <string name="_21_jun_2023_11_00am" translatable="false"> 21 జూన్ 2023, 11:00AM </string>
+    <string name="abhishek_mehra_a_192_sector_44_noida" translatable="false"> అభిషేక్ మేఘ్రా | A-192, సెక్టార్-44, నోయిడా </string>
+    <string name="apply_coupon" translatable="false"> కూపన్ వర్తించండి </string>
+    <string name="tax" translatable="false"> పన్ను </string>
+    <string name="payable_amount" translatable="false"> చెల్లించాల్సిన మొత్తం </string>
+    <string name="pay_now" translatable="false"> ఇప్పుడు చెల్లించండి </string>
+    <string name="code" translatable="false"> కోడ్ </string>
+    <string name="applied" translatable="false"> వర్తించబడింది </string>
+    <string name="coupons" translatable="false"> కూపన్లు </string>
+    <string name="enter_promocode" translatable="false"> ప్రమో కోడ్ నమోదు చేయండి </string>
+    <string name="apply" translatable="false"> వర్తించు </string>
+    <string name="available_coupons" translatable="false"> అందుబాటులో ఉన్న కూపన్లు </string>
+    <string name="sbi100" translatable="false"> SBI100 </string>
+    <string name="state_bank_of_india" translatable="false"> స్టేట్ బ్యాంక్ ఆఫ్ ఇండియా </string>
+    <string name="cashback_up_to_usd_10_on_the_item_total_above_1100" translatable="false"> 1100 పై ఉన్న ఐటమ్ మొత్తం పై USD 10 వరకు క్యాష్‌బ్యాక్ </string>
+    <string name="saved_addresses" translatable="false"> సేవ్ చేసిన చిరునామాలు </string>
+    <string name="a_192_sector_44_noida_201301" translatable="false"> A-192, సెక్టార్-44, నోయిడా, 201301 </string>
+    <string name="_91_989_123_4567" translatable="false"> +91 989 123 4567 </string>
+    <string name="add_new_address" translatable="false"> కొత్త చిరునామా జోడించండి </string>
+    <string name="chat_requests" translatable="false"> చాట్ అభ్యర్థనలు </string>
+    <string name="no_chat_requests_found" translatable="false"> చాట్ అభ్యర్థనలు కనుగొనబడలేదు! </string>
+    <string name="see_your_chats" translatable="false"> మీ చాట్లను చూడండి </string>
+    <string name="decline" translatable="false"> తిరస్కరించు </string>
+    <string name="kuldeep_srivastava" translatable="false"> కులదీప్ శ్రీవాస్తవ </string>
+    <string name="connect" translatable="false"> కనెక్ట్ </string>
+    <string name="call" translatable="false"> కాల్ </string>
+    <string name="whatsapp" translatable="false"> వాట్సాప్ </string>
+    <string name="share" translatable="false"> పంచుకోండి </string>
+    <string name="services_we_offer" translatable="false"> మేము అందించే సేవలు </string>
+    <string name="settings" translatable="false"> సేటింగ్స్ </string>
+    <string name="switch_to_business" translatable="false"> బిజినెస్‌కు మార్చండి </string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut" translatable="false">Lorem ipsum dolor sit amet,\nconsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</string>
+    <string name="push_notifications" translatable="false"> పుష్ నోటిఫికేషన్స్ </string>
+    <string name="account_settings" translatable="false"> ఖాతా సేటింగ్స్ </string>
+    <string name="my_wallet" translatable="false"> నా వాలెట్ </string>
+    <string name="wallet" translatable="false"> వాలెట్ </string>
+    <string name="paymentGateway" translatable="false"> చెల్లింపు గేట్వే </string>
+    <string name="walletWithPg" translatable="false"> వాలెట్‌తో Pg </string>
+    <string name="about_us" translatable="false"> మేము గురించి </string>
+    <string name="distance" translatable="false"> దూరం </string>
+    <string name="change_language" translatable="false"> భాష మార్చండి </string>
+    <string name="faq_s" translatable="false">FAQ\'లు </string>
+    <string name="contact_us" translatable="false"> మమ్మల్ని సంప్రదించండి </string>
+    <string name="data_privacy" translatable="false"> డేటా ప్రైవసీ </string>
+    <string name="terms_and_conditions" translatable="false"> నిబంధనలు మరియు షరతులు </string>
+    <string name="delete_account" translatable="false"> ఖాతాను తొలగించండి </string>
+    <string name="your_available_balance" translatable="false"> మీ అందుబాటులో ఉన్న బ్యాలెన్స్ </string>
+    <string name="deactivate" translatable="false"> డీ ఆప్ట్ </string>
+    <string name="send_money" translatable="false"> డబ్బు పంపండి </string>
+    <string name="transactions" translatable="false"> లావాదేవీలు </string>
+    <string name="_200" translatable="false"> ₹200 </string>
+    <string name="_123456789" translatable="false"> 123456789 </string>
+    <string name="please_allow_location_permission_to_move_ahead" translatable="false"> దయచేసి ముందుకు వెళ్లడానికి ప్రదేశం అనుమతి ఇవ్వండి. </string>
+    <string name="connections_requests" translatable="false"> కనెక్షన్స్ అభ్యర్థనలు </string>
+    <string name="accept_or_decline_requests" translatable="false"> అభ్యర్థనలను ఆమోదించండి లేదా తిరస్కరించండి </string>
+    <string name="are_you_sure_you_want_to_logout" translatable="false"> మీరు లాగ్ ఔట్ కావాలనుకుంటున్నారా? </string>
+    <string name="no" translatable="false">లేదు</string>
+    <string name="yes" translatable="false">అవును</string>
+    <string name="log_out_successfully" translatable="false"> విజయవంతంగా లాగ్ ఔట్ </string>
+    <string name="remove" translatable="false"> తొలగించు </string>
+    <string name="surya_mouly" translatable="false"> సూర్య మౌళి </string>
+    <string name="_100" translatable="false"> 100 </string>
+    <string name="individual_business" translatable="false"> వ్యక్తిగత వ్యాపారం </string>
+    <string name="rating_raviews" translatable="false"><![CDATA[ రేటింగ్ & సమీక్షలు ]]></string>
+    <string name="report" translatable="false"> రిపోర్ట్ </string>
+    <string name="promocode_discount" translatable="false"> ప్రమో కోడ్ డిస్కౌంట్ </string>
+    <string name="sorry_this_time_slot_is_not_available" translatable="false"> క్షమించండి, ఈ సమయ విభాగం అందుబాటులో లేదు </string>
+    <string name="_10_30_am" translatable="false"> 10:30 AM </string>
+    <string name="ravi_bishnoi_sent_you_a_connections_request" translatable="false"> మీకు కనెక్షన్స్ అభ్యర్థనను పంపించాడు </string>
+    <string name="ravi_bishnoi" translatable="false"> రవి బిష్ణోయి </string>
+    <string name="your_available_balance_insufficient_balance" translatable="false"> మీ అందుబాటులో ఉన్న బ్యాలెన్స్ </string>
+    <string name="insufficient_balance" translatable="false"> (అమౌంట్ తగినంత లేదు) </string>
+    <string name="add_money" translatable="false"> డబ్బు జోడించండి </string>
+    <string name="pay_1548" translatable="false"> ₹ 1548 చెల్లించండి </string>
+    <string name="are_you_sure_you_want_to_conform" translatable="false"> మీరు ధృవీకరించాలనుకుంటున్నారా? </string>
+    <string name="calendar" translatable="false"> క్యాలెండర్ </string>
+    <string name="slot" translatable="false"> స్లాట్ </string>
+    <string name="at_center" translatable="false"> కేంద్రంలో </string>
+    <string name="aman" translatable="false"> అమన్ </string>
+    <string name="set_location" translatable="false"> స్థానాన్ని సెట్ చేయండి </string>
+    <string name="house_flat_office_no" translatable="false"> ఇంటి/ఫ్లాట్/ఆఫీస్ నెం.* </string>
+    <string name="road_name_area_colony" translatable="false"> రోడ్డు పేరు/ఎరియా/కోలనీ* </string>
+    <string name="pincode" translatable="false"> పిన్ కోడ్* </string>
+    <string name="confirm_location" translatable="false"> స్థానం ధృవీకరించు </string>
+    <string name="sold" translatable="false"> విక్రయించబడింది </string>
+    <string name="sold_small" translatable="false"> విక్రయించబడింది </string>
+    <string name="bought" translatable="false"> కొనబడింది </string>
+    <string name="search_location" translatable="false"> స్థానాన్ని శోధించండి </string>
+    <string name="location_is_not_avialable" translatable="false"> స్థానము అందుబాటులో లేదు. </string>
+    <string name="request" translatable="false"> అభ్యర్థన </string>
+    <string name="atcenter" translatable="false"> కేంద్రంలో </string>
+    <string name="athome" translatable="false"> ఇంటి వద్ద </string>
+    <string name="confirm" translatable="false"> ధృవీకరించు </string>
+    <string name="booking" translatable="false"> బుకింగ్ </string>
+    <string name="pay" translatable="false"> చెల్లించండి ₹ </string>
+    <string name="pending" translatable="false"> పెండింగ్ </string>
+    <string name="paymeturl" translatable="false"> చెల్లింపు URL </string>
+    <string name="cancel_booking" translatable="false"> బుకింగ్ రద్దు చేయండి </string>
+    <string name="bookinglist" translatable="false"> బుకింగ్ జాబితా </string>
+    <string name="booked_by" translatable="false"> బుక్ చేసిన వారు </string>
+    <string name="bought_small" translatable="false"> కొనబడింది </string>
+    <string name="r" translatable="false"></string>
+    <string name="close_service" translatable="false"> సేవ ముగించు </string>
+    <string name="start_date" translatable="false"> ప్రారంభ తేదీ </string>
+    <string name="end_date" translatable="false"> ముగింపు తేదీ </string>
+    <string name="close" translatable="false"> మూసివేయి </string>
+    <string name="start_service" translatable="false"> సేవ ప్రారంభించు </string>
+    <string name="leave" translatable="false"> వదిలి పెట్టు </string>
+    <string name="not_cancelable" translatable="false"> రద్దు చేయలేని </string>
+    <string name="back_to_original_payment_source" translatable="false"> ఒరిజినల్ చెల్లింపు మూలానికి తిరిగి </string>
+    <string name="refund_in_wallet" translatable="false"> వాలెట్‌లో రీఫండ్ </string>
+    <string name="promocode" translatable="false"> ప్రమో కోడ్ </string>
+    <string name="closeservice" translatable="false"> సేవ ముగింపు </string>
+    <string name="before_date_text" translatable="false"> మీరు సేవను ముగించాలనుకుంటున్నారా? సేవను ముగించిన తర్వాత, అన్ని బుకింగ్స్ </string>
+    <string name="to" translatable="false">కు</string>
+    <string name="after_date_text" translatable="false"> స్వయంచాలకంగా రద్దు చేయబడతాయి </string>
+    <string name="image" translatable="false"> చిత్రం </string>
+    <string name="videos" translatable="false"> వీడియోలు </string>
+    <string name="servicedetails" translatable="false"> సేవా వివరాలు </string>
+    <string name="openmedia" translatable="false">మీడియా తెరవండి</string>
+    <string name="back_press" translatable="false">వెనుక ఒత్తు</string>
+    <string name="goBack" translatable="false">వెళ్ళు</string>
+    <string name="goForeword" translatable="false">ముందుకు వెళ్లండి</string>
+    <string name="home_fr" translatable="false">హోమ్_FR</string>
+    <string name="onlinefr" translatable="false">ఆన్‌లైన్_FR</string>
+    <string name="back" translatable="false">వెనుక</string>
+    <string name="provider_profile" translatable="false">ప్రొవైడర్ ప్రొఫైల్</string>
+    <string name="profile_fr" translatable="false">ప్రొఫైల్_Fr</string>
+    <string name="add_video" translatable="false">+ వీడియో జోడించు</string>
+    <string name="logout" translatable="false">లాగ్ అవుట్</string>
+    <string name="join_call" translatable="false">కాల్ చేరండి</string>
+    <string name="leave_call" translatable="false">కాల్ వదిలి పెట్టండి</string>
+    <string name="mute_call" translatable="false">కాల్ మ్యూట్</string>
+    <string name="connected" translatable="false">కనెక్ట్ అయింది</string>
+    <string name="callended" translatable="false">కాల్ ముగిసింది</string>
+    <string name="pop_up" translatable="false">పాప్-అప్</string>
+    <string name="block" translatable="false">అవరోధించు</string>
+    <string name="delete_chat" translatable="false">చాట్‌ను తొలగించు</string>
+    <string name="unblock" translatable="false">అవరోధం తొలగించు</string>
+    <string name="container" translatable="false">కంటైనర్</string>
+    <string name="chatfragment" translatable="false">చాట్ ఫ్రాగ్మెంట్</string>
+    <string name="open_gallery" translatable="false">గాలరీ తెరవండి</string>
+    <string name="images" translatable="false">చిత్రాలు</string>
+    <string name="files" translatable="false">ఫైళ్లు</string>
+    <string name="media_size_check" translatable="false">మీడియా పరిమాణం 100 MB కంటే తక్కువగా ఉండాలి</string>
+
+    <string name="weeks" translatable="false">సప్తాహాలు</string>
+    <string name="months" translatable="false">నెలలు</string>
+    <string name="years" translatable="false">సంవత్సరాలు</string>
+    <string name="min" translatable="false">నిమిషం</string>
+    <string name="hour" translatable="false">గంట</string>
+    <string name="minute" translatable="false">నిమిషం</string>
+    <string name="pick_your_media_file" translatable="false">మీ మీడియా ఫైల్‌ను ఎంచుకోండి</string>
+    <string name="use_as_default" translatable="false">డిఫాల్ట్‌గా ఉపయోగించు</string>
+    <string name="_default" translatable="false"> డిఫాల్ట్</string>
+
+    <string-array name="select_issue">
+        <item>సమస్యను ఎంచుకోండి</item>
+        <item>అంశం 1</item>
+        <item>అంశం 2</item>
+        <item>అంశం 3</item>
+        <item>అంశం 4</item>
+        <item>అంశం 5</item>
+    </string-array>
+
+    <!--bank module strings-->
+    <string name="add_your_bank_account" translatable="false">మీ బ్యాంక్ ఖాతాను జోడించండి</string>
+    <string name="add_new_bank_account" translatable="false">కొత్త బ్యాంక్ ఖాతాను జోడించండి</string>
+    <string name="choose_bank_with_your_account" translatable="false">మీ ఖాతాతో బ్యాంక్ ఎంచుకోండి.</string>
+    <string name="select_bank" translatable="false">బ్యాంక్ ఎంచుకోండి</string>
+    <string name="current_account" translatable="false">ప్రస్తుత ఖాతా</string>
+    <string name="savings_account" translatable="false">సేవింగ్ ఖాతా</string>
+    <string name="select_account_type" translatable="false">ఖాతా రకం ఎంచుకోండి</string>
+    <string name="enter_document_type" translatable="false">పత్రం రకం ఎంటర్ చేయండి</string>
+    <string name="document_type" translatable="false">పత్రం రకం</string>
+    <string name="enter_document_number" translatable="false">పత్రం సంఖ్య ఎంటర్ చేయండి</string>
+    <string name="document_number" translatable="false">పత్రం సంఖ్య</string>
+    <string name="enter_account_name" translatable="false">ఖాతా పేరు ఎంటర్ చేయండి</string>
+    <string name="account_name" translatable="false">ఖాతా పేరు</string>
+    <string name="enter_account_number" translatable="false">ఖాతా సంఖ్య ఎంటర్ చేయండి</string>
+    <string name="account_number" translatable="false">ఖాతా సంఖ్య</string>
+    <string name="my_bank_account" translatable="false">నా బ్యాంక్ ఖాతా</string>
+    <string name="connecting" translatable="false">కనెక్ట్ అవుతోంది</string>
+    <string name="add_bank_account" translatable="false">బ్యాంక్ ఖాతా జోడించండి</string>
+    <!--validation Texts-->
+    <string name="please_enter_account_number" translatable="false">ఖాతా సంఖ్య ఎంటర్ చేయండి</string>
+    <string name="please_enter_account_name" translatable="false">ఖాతా పేరు ఎంటర్ చేయండి</string>
+    <string name="invalid_account_number" translatable="false">ఖాతా సంఖ్య తప్పు</string>
+    <string name="please_enter_document_number" translatable="false">పత్రం సంఖ్య ఎంటర్ చేయండి</string>
+    <string name="please_enter_document_type" translatable="false">పత్రం రకం ఎంటర్ చేయండి</string>
+    <string name="cross" translatable="false">ఒప్పుకోండి</string>
+    <string name="audio_call" translatable="false">ఆడియో కాల్</string>
+    <string name="video_call" translatable="false">వీడియో కాల్</string>
+    <string name="connect_with_the_user_as" translatable="false">వాడుకరితో కనెక్ట్ అవ్వండి</string>
+    <string name="outgoing_video" translatable="false">వెళ్ళే వీడియో</string>
+    <string name="outgoing_Audio" translatable="false">వెళ్ళే ఆడియో</string>
+    <string name="user_name" translatable="false">వాడుకరి పేరు</string>
+    <string name="are_you_sure_want_to_delete_this_account" translatable="false">మీరు ఈ ఖాతాను తొలగించాలనుకుంటున్నారా?</string>
+    <string name="filterdata" translatable="false">ఫిల్టర్ డేటా</string>
+    <string name="connection_remove_successfully" translatable="false">కనెక్షన్ విజయవంతంగా తొలగించబడింది</string>
+
+    <string name="whatsApp" translatable="false">వాట్సాప్</string>
+    <string name="description" translatable="false">వివరణ</string>
+    <string name="issue_type" translatable="false">సమస్య రకం</string>
+    <string name="notification" translatable="false">నోటిఫికేషన్</string>
+    <string name="addbank" translatable="false">బ్యాంక్ జోడించు</string>
+    <string name="openbottomsheet" translatable="false">బాటమ్ షీట్ తెరవండి</string>
+    <string name="personal" translatable="false">వ్యక్తిగత</string>
+    <string name="dummy_string" translatable="false">డమ్మీ స్ట్రింగ్</string>
+    <string name="service_we_offer" translatable="false">మేము అందించే సేవలు</string>
+    <string name="wellness" translatable="false">వెల్‌నెస్</string>
+    <string name="household" translatable="false">ఇంటిపేరు</string>
+    <string name="electronic" translatable="false">ఇలెక్ట్రానిక్</string>
+    <string name="videophoto" translatable="false">వీడియో ఫోటో</string>
+    <string name="showbiz" translatable="false">షో బిజ్</string>
+    <string name="real_estate" translatable="false">రియల్ ఎస్టేట్</string>
+    <string name="spa_beauty" translatable="false">స్పా-బ్యూటీ</string>
+    <string name="security" translatable="false">భద్రత</string>
+    <string name="software" translatable="false">సాఫ్ట్‌వేర్</string>
+    <string name="legal" translatable="false">చట్టపరమైన</string>
+    <string name="pet_service" translatable="false">పెట్ సర్వీస్</string>
+    <string name="travel" translatable="false">ప్రయాణం</string>
+    <string name="other" translatable="false">ఇతర</string>
+    <string name="allow_gps_location" translatable="false">GPS స్థానాన్ని అనుమతించు</string>
+    <string name="welcome_to_servivet_we_are_passionate_about_creating_meaningful_connections_and_facilitating_seamless_interactions_our_mission_is_to_provide_a_platform_that_fosters_community_encourages_collaboration_and_sparks_engaging_conversations_among_users">సర్వివెట్‌కు స్వాగతం! అర్థవంతమైన సంబంధాలను సృష్టించడం మరియు సజావుగా పరస్పర చర్యలను సౌకర్యవంతం చేయడం గురించి మేము మక్కువతో ఉన్నాం. సమాజాన్ని ప్రోత్సహించు, సహకారాన్ని ప్రోత్సహించు మరియు వినియోగదారుల మధ్య ఆకర్షణీయమైన సంభాషణలను ఉత్పత్తి చేసే ప్లాట్‌ఫామ్‌ను అందించడమే మా లక్ష్యం.</string>
+    <string name="title">శీర్షిక</string>
+    <string name="enter_title">శీర్షికను నమోదు చేయండి</string>
+    <string name="your_feedback_or_suggestion_here">మీ అభిప్రాయం లేదా సూచన ఇక్కడ...</string>
+    <string name="_0_200">(0/200)</string>
+    <string name="email">ఇమెయిల్</string>
+    <string name="we_are_keen_to_know_how_we_can_make_e_yugam_better_for_you_send_your_feedback_or_suggestion">E-Yugam‌ను మీకు ఎలా మెరుగుపరచగలమో తెలుసుకోవడానికి మేము ఆసక్తి చెందుతున్నాము. మీ అభిప్రాయం లేదా సూచనను పంపించండి</string>
+    <string name="withdraw">ఎత్తివేయండి</string>
+    <string name="no_data_found">డేటా లభ్యం కాలేదు!</string>
+    <string name="delhi">ఢిల్లీ</string>
+
+</resources>

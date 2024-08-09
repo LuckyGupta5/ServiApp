@@ -634,14 +634,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                     val dialog = AlertDialog.Builder(activity)
                     dialog.setMessage(mContext.getString(R.string.are_you_logout))
                     dialog.setTitle(mContext.resources.getString(R.string.app_name))
-                    dialog.setPositiveButton("Ok") { dialog, which ->
+                    dialog.setPositiveButton(R.string.ok) { dialog, which ->
                         dialog.dismiss()
                         activity?.finishAffinity()
                     }
-                    dialog.setNegativeButton("Cancel") { dialog, which ->
+                    dialog.setNegativeButton(R.string.cancel) { dialog, which ->
                         dialog.dismiss()
                     }
-
                     dialog.show()
                 }
             }

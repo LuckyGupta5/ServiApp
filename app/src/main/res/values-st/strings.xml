@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Servi</string>
+    <string name="servivet_require_this_permission" translatable="false">Servi e hloka ho fa tumello ena.</string>
+    <string name="google_map_key" translatable="false">AIzaSyDxvOzm-9yjdnd5L4iJrVDwk-_KbUkmN8A</string>
+    <string name="please_connect_to_the_internet" translatable="false">Hlompha marang-rang.\n</string>
+    <string name="hello_blank_fragment" translatable="false">Lumela fragment e se nang letho</string>
+    <string name="choose_your_preferred_language" translatable="false">Khetha Puo ea Hao e Khethiloeng</string>
+    <string name="english" translatable="false">Senyesemane</string>
+    <string name="hi_i_am_john_doe" translatable="false">Lumela, ke John Doe.</string>
+    <string name="swahii" translatable="false">Swahili</string>
+    <string name="habari_mimi_ni_john_doe" translatable="false">Habari, mimi ni John Doe.</string>
+    <string name="zulu" translatable="false">Zulu</string>
+    <string name="gps_enable_message" translatable="false">O lokela ho sebelisa GPS Location</string>
+    <string name="sawubona_ngingu_john_doe" translatable="false">Sawubona, ngingu-John Doe.</string>
+    <string name="continues" translatable="false">Tsoela Pele</string>
+    <string name="skip" translatable="false">Hlakola</string>
+    <string name="next" translatable="false">E latelang</string>
+    <string name="get_started" translatable="false">Qala</string>
+    <string name="clientel" translatable="false">Clientelé</string>
+    <string name="business" translatable="false">Business</string>
+    <string name="mobile_number" translatable="false">Nomoro ea mobile</string>
+    <string name="we_will_send_you_a_confirmation_code" translatable="false">Re tla u romella khoutu ea netefatso</string>
+    <string name="_123_456_7890" translatable="false">123–456-7890</string>
+    <string name="i_agree_to_terms_and_conditions_and_data_privacy_policies" translatable="false">Ke lumela mekgwa le maemo le liphetho tsa boiketsetso ba data.</string>
+    <string name="verify" translatable="false">Netefatsa</string>
+    <string name="please_enter_the_otp_sent_your_mobile_number" translatable="false">Ka kopo kenya OTP e rometsoeng nomoro ea hau ea mobile.</string>
+    <string name="otp_verification" translatable="false">OTP Netefatso</string>
+    <string name="resend_otp_in_30_seconds" translatable="false">Romella OTP hape ka metsotso e 30</string>
+    <string name="title_activity_home" translatable="false">HomeActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label" translatable="false">Fragment ea Pele</string>
+    <string name="second_fragment_label" translatable="false">Fragment ea Bobeli</string>
+    <string name="previous" translatable="false">Pele</string>
+    <string name="search_for_area_street_name_etc" translatable="false">Batla sebaka, lebitso la setsi, joalo-joalo...</string>
+    <string name="home" translatable="false">Lehae</string>
+    <string name="chats" translatable="false">Bohalefelo</string>
+    <string name="bookings" translatable="false">Li-bookings</string>
+    <string name="profile" translatable="false">Profaila</string>
+    <string name="noida" translatable="false">Noida</string>
+    <string name="sadarpur_sector_44_noida" translatable="false">Sadarpur, Sector-44 Noida</string>
+    <string name="search_for_service_etc" translatable="false"><![CDATA[batla tšebeletso & joalo-joalo]]></string>
+    <string name="services" translatable="false">Tšebeletso</string>
+    <string name="view_all" translatable="false">Sheba Tsohle\n</string>
+    <string name="provider_view_all" translatable="false">ProviderViewAll</string>
+    <string name="user_view_all" translatable="false">UserViewAll</string>
+    <string name="online_now" translatable="false">Inthaneteng hona joale</string>
+    <string name="fitness" translatable="false">Fitness</string>
+    <string name="finance" translatable="false">FINANCE\n</string>
+    <string name="_1_km_away" translatable="false">km. hole</string>
+    <string name="dev_gupta" translatable="false">Dev Gupta</string>
+    <string name="gym" translatable="false">gym</string>
+    <string name="riepneapps_technology_noida" translatable="false">riepneapps technology noida</string>
+    <string name="view_details" translatable="false">Sheba Tsebo</string>
+    <string name="individual" translatable="false">Mokhoa</string>
+    <string name="individualcap" translatable="false">MOKHOA</string>
+    <string name="institutional" translatable="false">Khamphani</string>
+    <string name="institutionalcap" translatable="false">KHAMPANI</string>
+    <string name="edit_profile" translatable="false">Hlela Profaila</string>
+    <string name="abhishek_mehra" translatable="false">Abhishek Mehra</string>
+    <string name="about" translatable="false">Mabapi le eona</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut_labore_et_dolore_magna_aliquyam_erat_sed_diam_voluptua_eos_et_accusam_et_justo_duo_dolores_et_ea_rebum_stet_clita_kasd_gubergren_no_sea_takimata_sanctus_est_lorem_ipsum_dolor_sit_amet_lorem_ipsum_dolor_sit_amet" translatable="false">Lorem ipsum dolor sit amet, consetetur tempor invidunt ut labore et est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet</string>
+    <string name="accept_the_term_and_condition" translatable="false">Amohela Term and Condition\n</string>
+    <string name="accept_the_privacy_policy" translatable="false">Amohela Leano la Boiketsetso</string>
+    <string name="term_and_condition" translatable="false">Mekgwa le Maemo</string>
+    <string name="privacy_policy" translatable="false">Boiketsetso ba Data</string>
+    <string name="terms_conditions" translatable="false"><![CDATA[Mekgwa & Maemo]]></string>
+    <string name="last_updated_on_23_may_2023" translatable="false">Qalello ea ho qetela ka 23 Mots\'eanong 2023</string>
+    <string name="reject" translatable="false">Hlakola</string>
+    <string name="accept" translatable="false">Amohela</string>
+    <string name="my_connections" translatable="false">Khokahano ea ka</string>
+    <string name="name" translatable="false">Lebitso</string>
+    <string name="enter_name" translatable="false">Kenya lebitso</string>
+    <string name="_91_1234567890" translatable="false">+91 1234567890</string>
+    <string name="email_address" translatable="false">Aderese ea Imeile</string>
+    <string name="_0_150" translatable="false">(0/150)</string>
+    <string name="_150_150" translatable="false">(150/150)\n</string>
+    <string name="write_here" translatable="false">ngola mona</string>
+    <string name="update" translatable="false">Hlatsoa</string>
+    <string name="change_cover" translatable="false">Fetola borai</string>
+    <string name="business_n_verification" translatable="false">Business \nVerification</string>
+    <string name="select_your_business_type" translatable="false">Khetha Mofuta oa Khoebo ea Hao</string>
+    <string name="full_name" translatable="false">Lebitso le felletseng</string>
+    <string name="enter_full_name" translatable="false">Kenya lebitso le felletseng</string>
+    <string name="using_gps" translatable="false">Ho sebelisa GPS</string>
+    <string name="current_location" translatable="false">Sebaka sa Hona Joale</string>
+    <string name="enter_location_manually" translatable="false">Kenya Sebaka ka Manually</string>
+    <string name="or" translatable="false">kapa</string>
+    <string name="want_to_earn_money" translatable="false">O batla ho etsoa chelete?</string>
+    <string name="add_the_service_which_you_are_expert_in" translatable="false">Etsa tšebeletso eo u nang le boiphihlelo ho eona</string>
+    <string name="add_service" translatable="false">+ Etsa Tšebeletso</string>
+    <string name="near_by" translatable="false">Hohle</string>
+    <string name="add_service_" translatable="false">Etsa Tšebeletso</string>
+    <string name="service_mode" translatable="false">Moo ea Tšebeletso</string>
+    <string name="at_centre" translatable="false">Sebakeng</string>
+    <string name="at_home" translatable="false">Ka lapeng</string>
+    <string name="category" translatable="false">Karolo</string>
+    <string name="sub_category" translatable="false">Karolo ea Mofuta</string>
+    <string name="yoga" translatable="false">Yoga</string>
+    <string name="about_service" translatable="false">Mabapi le Tšebeletso</string>
+    <string name="photos" translatable="false">Mefuta ea Litšoantšo</string>
+    <string name="add_image" translatable="false">+ Eketsa Setšoantšo</string>
+    <string name="add" translatable="false">Eketsa</string>
+    <string name="availability" translatable="false">Ho fumaneha</string>
+    <string name="select_session" translatable="false">Khetha Sesho</string>
+    <string name="add_hours" translatable="false">+ Eketsa Lihora</string>
+    <string name="start_time" translatable="false">Nako ea Qala</string>
+    <string name="end_time" translatable="false">Nako ea Qetela</string>
+    <string name="mon" translatable="false">Mo</string>
+    <string name="enter_price" translatable="false">Kenya theko</string>
+    <string name="price_at_centre" translatable="false">Theko (Sebakeng)</string>
+    <string name="camera" translatable="false">Kamera</string>
+    <string name="gallery" translatable="false">Gallery</string>
+    <string name="price" translatable="false">Theko</string>
+    <string name="my_services" translatable="false">Tšebeletso ea ka</string>
+    <string name="business_name" translatable="false">Lebitso la Khoebo</string>
+    <string name="the_electronic_hub" translatable="false">Hobby ea Elektroniki</string>
+    <string name="edit" translatable="false">Hlela</string>
+    <string name="please_enter_a_valid_e_mail" translatable="false">Ka kopo kenya imeile e nepahetseng\n</string>
+    <string name="enter_email_address" translatable="false">Kenya Aderese ea Imeile</string>
+    <string name="address" translatable="false">Aderese</string>
+    <string name="a_block_sector_63_noida" translatable="false">A Block, Sector-63 Noida</string>
+    <string name="under_development" translatable="false">Ho Rutoa</string>
+    <string name="resend_otp_in" translatable="false"> Romella OTP hape ka </string>
+    <string name="are_you_logout" translatable="false">Na u netefatsa hore o batla ho tsoa?</string>
+    <string name="log_out" translatable="false">Fetola</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_centre_mode" translatable="false">Nako ea Qala e lokela ho ba e tlase ho feta Nako ea Qetela bakeng sa mokhoa oa sebaka.</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_home_mode" translatable="false">Nako ea Qala e lokela ho ba e tlase ho feta Nako ea Qetela bakeng sa mokhoa oa lapeng.</string>
+    <string name="please_enter_the_price_for_the_centre_service_mode" translatable="false">Ka kopo kenya theko bakeng sa mokhoa oa tšebeletso ea sebaka.</string>
+    <string name="please_enter_the_price_for_the_home_service_mode" translatable="false">Ka kopo kenya theko bakeng sa mokhoa oa tšebeletso ea lapeng.</string>
+    <string name="please_select_a_service_model" translatable="false">Ka kopo Khetha mokhoa oa tšebeletso.</string>
+    <string name="please_select_the_category" translatable="false">Ka kopo Khetha Karolo.</string>
+    <string name="please_select_at_one_image" translatable="false">Ka kopo Khetha setšoantšo se le seng bonyane.</string>
+    <string name="images_must_be_less_than_five" translatable="false">Mefuta ea litšoantšo e lokela ho ba e mekae ho feta mekae e mene.</string>
+    <string name="please_select_sub_category" translatable="false">Ka kopo Khetha Karolo ea Mofuta.</string>
+    <string name="select_sub_category" translatable="false">Khetha Karolo ea Mofuta</string>
+    <string name="select_session_should_not_be_empty_for_the_center_service_mode" translatable="false">Khetha Sesho ha e lokela ho ba e se nang letho bakeng sa mokhoa oa Tšebeletso ea Sebaka.</string>
+    <string name="select_session_should_not_be_empty_for_the_home_service_mode" translatable="false">Khetha Sesho ha e lokela ho ba e se nang letho bakeng sa mokhoa oa Tšebeletso ea Lapeng.</string>
+    <string name="details" translatable="false">Lintlha</string>
+    <string name="_1_km" translatable="false">1 km.</string>
+    <string name="away" translatable="false">hole</string>
+    <string name="prateek_mehta" translatable="false">Prateek Mehta</string>
+    <string name="media" translatable="false">Mecha ea litaba</string>
+    <string name="_1499_2999" translatable="false">1499 - 2999</string>
+    <string name="book_now" translatable="false">Boka Hona Joale</string>
+    <string name="my_booking" translatable="false">Li-bookings tsa ka</string>
+    <string name="booking_id" translatable="false">ID ea Booking</string>
+    <string name="booking_id_num" translatable="false">#262638</string>
+    <string name="by_prateek_mehta" translatable="false">ke Prateek Mehta</string>
+    <string name="tuesday_21_oct_11_00_am" translatable="false">Labobeli, 21 Oct, 11:00 AM</string>
+    <string name="complete_profile" translatable="false">Fetela Profaila</string>
+    <string name="enter_your_information_below" translatable="false">Kenya ts\'ebetsong ea hau ka tlase</string>
+    <string name="edit_service" translatable="false">Hlela Tšebeletso</string>
+    <string name="message" translatable="false">Mabapi</string>
+    <string name="upcoming" translatable="false">E tlang</string>
+    <string name="completed" translatable="false">E phethetsoe</string>
+    <string name="cancelled" translatable="false">E hlakolotsoe</string>
+    <string name="_1799" translatable="false">1799</string>
+    <string name="_1499" translatable="false">1499</string>
+    <string name="reschedule" translatable="false">Rera</string>
+    <string name="cancel" translatable="false">Hlakola</string>
+    <string name="ok" translatable="false">Ho Lokile</string>
+    <string name="rate_us" translatable="false">Re Rate</string>
+    <string name="date_time" translatable="false"><![CDATA[Letsatsi & Nako]]></string>
+    <string name="payment_info" translatable="false">Tlhahisoleseding ea Tefo</string>
+    <string name="subtotal" translatable="false">Khatello</string>
+    <string name="gst_18" translatable="false">GST (18%)</string>
+    <string name="total" translatable="false">Kakaretso</string>
+    <string name="personal_document" translatable="false">Dokumento ea Sechaba</string>
+    <string name="business_document" translatable="false">Dokumento ea Khoebo</string>
+    <string name="_25" translatable="false">25</string>
+    <string name="_1524" translatable="false">1524</string>
+    <string name="booking_details" translatable="false">Lintlha tsa Booking</string>
+    <string name="location" translatable="false">Sebaka</string>
+    <string name="a_199_sector_63_noida" translatable="false">A-199, Sector-63, Noida</string>
+    <string name="mark_as_completed" translatable="false">Hlalosa e le E phethetsoe</string>
+    <string name="ac_repair" translatable="false">Tlhokomelo ea AC</string>
+    <string name="review" translatable="false">Tlhahlobo</string>
+    <string name="give_a_feedback" translatable="false">Fana ka maikutlo...</string>
+    <string name="do_this_later" translatable="false">Etsa sena hamorao</string>
+    <string name="submit" translatable="false">Submit</string>
+    <string name="today" translatable="false">Kajeno</string>
+    <string name="hello_abhishek_how_are_you" translatable="false">Hello Abhishek, O kae?</string>
+    <string name="saad_rahman" translatable="false">Saad Rahman</string>
+    <string name="no_chats_found" translatable="false">Ha ho liphetho tse fumanoang!</string>
+    <string name="start_new_chat" translatable="false">Qala puisano e ncha</string>
+    <string name="amount_paid" translatable="false">Chelete e Lefelitsoeng</string>
+    <string name="book_again" translatable="false">Boka Hape</string>
+    <string name="_1420" translatable="false">1420</string>
+    <string name="payment_mode" translatable="false">Mokhoa oa Tefo</string>
+    <string name="reason_for_cancellation" translatable="false">Lebaka la ho hlakola</string>
+    <string name="provider_is_not_available_at_this_time" translatable="false">Mofani ha a fumanehe ka nako ena.</string>
+    <string name="credit_card" translatable="false">Karete ea Kirediti</string>
+    <string name="refund_status" translatable="false">Boemo ba Tlhomamiso</string>
+    <string name="refund_initiated_you_will_receive_your_n_amount_in_48_hours" translatable="false">Tlhomamiso e qalile. U tla amohela chelete ea hau ka hare ho liora tse 48.</string>
+    <string name="save" translatable="false">Boloka</string>
+    <string name="a_192_sector_44_noida" translatable="false">A-192, Sector-44, Noida</string>
+    <string name="save_this_address_for_future_services" translatable="false">Boloka aterese ena bakeng sa litlhahiso tse tlang.</string>
+    <string name="booking_summary" translatable="false">Kakaretso ea Booking</string>
+    <string name="change" translatable="false">Fetola</string>
+    <string name="june_2023" translatable="false">June 2023</string>
+    <string name="_4_5" translatable="false">4.5</string>
+    <string name="proceed" translatable="false">Tsoela Pele</string>
+    <string name="add_address" translatable="false">Eketsa Aterese</string>
+    <string name="days" translatable="false">Matsatsi</string>
+    <string name="_16" translatable="false">16</string>
+    <string name="time" translatable="false">Nako</string>
+    <string name="alert" translatable="false">Tlhokomeliso</string>
+    <string-array name="select_category">
+        <item>Khetha Karolo</item>
+        <item>Finance</item>
+        <item>Electronics</item>
+        <item>Fitness</item>
+    </string-array>
+
+    <string-array name="select_sub_category">
+        <item>Khetha Karolo ea Mofuta</item>
+        <item>Motsoako</item>
+        <item>Ho Tsamaisa</item>
+        <item>Matlotlo</item>
+        <item>Mehlala</item>
+    </string-array>
+
+
+    <!-- Strings related to login -->
+    <string name="prompt_email" translatable="false">Imeile</string>
+    <string name="prompt_password" translatable="false">Password</string>
+    <string name="action_sign_in" translatable="false">Inganya kapa ngwaga</string>
+    <string name="action_sign_in_short" translatable="false">Inganya</string>
+    <string name="welcome" translatable="false">"Rea u amohela!"</string>
+    <string name="invalid_username" translatable="false">Lebitso la mosebedisi le ha le nepahe</string>
+    <string name="invalid_password" translatable="false">Password e lokela ho ba >5 matshwao</string>
+    <string name="login_failed" translatable="false">"Ho inganya ho hlolehile"</string>
+    <string name="if_cancellation_done_after_24_hours_of_booking_date_you_will_get_refund" translatable="false">Ha ho hlakola ka mor\'a lihora tse 24 tsa letsatsi la booking, o tla fumana ho boa.</string>
+    <string name="service_provider_is_not_available_and_has_requested_to_cancel" translatable="false">Mofani oa Tšebeletso ha a fumanehe \'me o kopa ho hlakola</string>
+    <string name="i_found_this_service_at_a_cheaper_price" translatable="false">Ke fumane tšebeletso ena ka theko e theko e tlase</string>
+    <string name="i_don_t_need_this_service_now" translatable="false">Ke sitwa ho hloka tšebeletso ena hona joale</string>
+    <string name="i_am_unavailable_at_the_scheduled_time" translatable="false">Ke sitwa ho fumaneha nakong e etelletsoeng</string>
+    <string name="_262638" translatable="false">#262638</string>
+    <string name="your_booking_has_been_cancelled" translatable="false">Booking ea hau e sitwa ho hlakoloa.</string>
+    <string name="please_track_status_of_refund_under_my_bookings_cancelled" translatable="false"><![CDATA[Ka kopo latela boemo ba ho boa ka tlaase ho &lt;My Bookings-&gt;Cancelled]]></string>
+    <string name="go_to_my_bookings" translatable="false">Eya ho Li-bookings tsa ka</string>
+    <string name="payment" translatable="false">Tefo</string>
+    <string name="service_details" translatable="false">Lintlha tsa Tšebeletso</string>
+    <string name="_21_jun_2023_11_00am" translatable="false">21 Jun 2023, 11:00AM</string>
+    <string name="abhishek_mehra_a_192_sector_44_noida" translatable="false">Abhishek Mehra | A-192, Sector-44, Noida</string>
+    <string name="apply_coupon" translatable="false">Kopo ka Coupon</string>
+    <string name="tax" translatable="false">Lekhetho</string>
+    <string name="payable_amount" translatable="false">Chelete e Lefelitsoeng</string>
+    <string name="pay_now" translatable="false">Lefa hona joale</string>
+    <string name="code" translatable="false">Kode</string>
+    <string name="applied" translatable="false">E sebelisitsoe</string>
+    <string name="coupons" translatable="false">Li-Coupons</string>
+    <string name="enter_promocode" translatable="false">Kenya khoutu ea popi</string>
+    <string name="apply" translatable="false">Kama</string>
+    <string name="available_coupons" translatable="false">Makhoutu a fumanehang</string>
+    <string name="sbi100" translatable="false">SBI100</string>
+    <string name="state_bank_of_india" translatable="false">Banka ea Naha ea India</string>
+    <string name="cashback_up_to_usd_10_on_the_item_total_above_1100" translatable="false">Cashback e fihlang ho USD 10 ho kabo ea lintho e fetang 1100</string>
+    <string name="saved_addresses" translatable="false">Mehato e bolokiloeng</string>
+    <string name="a_192_sector_44_noida_201301" translatable="false">A-192, Sector-44, Noida, 201301</string>
+    <string name="_91_989_123_4567" translatable="false">+91 989 123 4567</string>
+    <string name="add_new_address" translatable="false">Kenya Aterese e Ncha</string>
+    <string name="chat_requests" translatable="false">Memandiso ea Liphetho</string>
+    <string name="no_chat_requests_found" translatable="false">Ha ho na Memandiso ea Liphetho e fumanoang!</string>
+    <string name="see_your_chats" translatable="false">Sheba memandiso ea hau</string>
+    <string name="decline" translatable="false">Epha</string>
+    <string name="kuldeep_srivastava" translatable="false">Kuldeep Srivastava</string>
+    <string name="connect" translatable="false">Khokahanya</string>
+    <string name="call" translatable="false">Mohala</string>
+    <string name="whatsapp" translatable="false">WhatsApp</string>
+    <string name="share" translatable="false">Amohela</string>
+    <string name="services_we_offer" translatable="false">Litšebeletso tseo re li fang</string>
+    <string name="settings" translatable="false">Mehato</string>
+    <string name="switch_to_business" translatable="false">Fetola ho Business</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut" translatable="false">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</string>
+    <string name="push_notifications" translatable="false">Tlhokomeliso ea Push</string>
+    <string name="account_settings" translatable="false">Mehato ea Akhaonto</string>
+    <string name="my_wallet" translatable="false">Mokitlane oa ka</string>
+    <string name="wallet" translatable="false">Mokitlane</string>
+    <string name="paymentGateway" translatable="false">Mekhoa ea Tefo</string>
+    <string name="walletWithPg" translatable="false">Mokitlane le Mekhoa ea Tefo</string>
+    <string name="about_us" translatable="false">Ka rona</string>
+    <string name="distance" translatable="false">Boemo</string>
+    <string name="change_language" translatable="false">Fetola Puo</string>
+    <string name="faq_s" translatable="false">Lipotso tse botsoang kamehla</string>
+    <string name="contact_us" translatable="false">Ikopanye le rona</string>
+    <string name="data_privacy" translatable="false">Bokhoni ba Lintlha</string>
+    <string name="terms_and_conditions" translatable="false">Melao le Melemo</string>
+    <string name="delete_account" translatable="false">Hlakola Akhaonto</string>
+    <string name="your_available_balance" translatable="false">Balance ea hau e fumanehang</string>
+    <string name="deactivate" translatable="false">Sela</string>
+    <string name="send_money" translatable="false">Romela Chelete</string>
+    <string name="transactions" translatable="false">Mea fella</string>
+    <string name="_200" translatable="false">₹200</string>
+    <string name="_123456789" translatable="false">123456789</string>
+    <string name="please_allow_location_permission_to_move_ahead" translatable="false">Ka kopo fa tumello ea boemo ho tsoela pele.</string>
+    <string name="connections_requests" translatable="false">Memandiso ea Khokahano</string>
+    <string name="accept_or_decline_requests" translatable="false">Amohela kapa Epha Memandiso</string>
+    <string name="are_you_sure_you_want_to_logout" translatable="false">Na u netefatsa hore u batla ho tsoa?</string>
+    <string name="no" translatable="false">Che</string>
+    <string name="yes" translatable="false">Ee</string>
+    <string name="log_out_successfully" translatable="false">U tsoa ka katleho!</string>
+    <string name="remove" translatable="false">Tsoa</string>
+    <string name="surya_mouly" translatable="false">Surya Mouly</string>
+    <string name="_100" translatable="false">₹100</string>
+    <string name="individual_business" translatable="false">Business ea motho ka mong</string>
+    <string name="rating_raviews" translatable="false"><![CDATA[Mehato le Mohlalosi]]></string>
+    <string name="report" translatable="false">Tlaleho</string>
+    <string name="promocode_discount" translatable="false">Popi ea Khoutu</string>
+    <string name="sorry_this_time_slot_is_not_available" translatable="false">Re kopa tšoarelo, nako ena ha e fumanehe</string>
+    <string name="_10_30_am" translatable="false">10:30 AM</string>
+    <string name="ravi_bishnoi_sent_you_a_connections_request" translatable="false">Ravi Bishnoi o rometse kopo ea Khokahano ho uena</string>
+    <string name="ravi_bishnoi" translatable="false">Ravi Bishnoi</string>
+    <string name="your_available_balance_insufficient_balance" translatable="false">Balance ea hau e fumanehang (Balance e fokolang)</string>
+    <string name="insufficient_balance" translatable="false">Balance e fokolang</string>
+    <string name="add_money" translatable="false">Kenya Chelete</string>
+    <string name="pay_1548" translatable="false">Pay ₹1548</string>
+    <string name="are_you_sure_you_want_to_conform" translatable="false">Na u netefatsa hore u batla ho netefatsa?</string>
+    <string name="calendar" translatable="false">Kalendara</string>
+    <string name="slot" translatable="false">Nako</string>
+    <string name="at_center" translatable="false">Boemong</string>
+    <string name="aman" translatable="false">Aman</string>
+    <string name="set_location" translatable="false">Beha Boemo</string>
+    <string name="house_flat_office_no" translatable="false">House/Flat/Ofisi no.*</string>
+    <string name="road_name_area_colony" translatable="false">Lebitso la tsela/ Sebaka / Koloni*</string>
+    <string name="pincode" translatable="false">Pincode*</string>
+    <string name="confirm_location" translatable="false">Netefatsa Boemo</string>
+    <string name="sold" translatable="false">E rekisitsoe</string>
+    <string name="sold_small" translatable="false">e rekisitsoe</string>
+    <string name="bought" translatable="false">E rekiloe</string>
+    <string name="search_location" translatable="false">Batla Boemo</string>
+    <string name="location_is_not_avialable" translatable="false">Boemo ha bo fumanehe.</string>
+    <string name="request" translatable="false">Kopo</string>
+    <string name="atcenter" translatable="false">boemong</string>
+    <string name="athome" translatable="false">lapeng</string>
+    <string name="confirm" translatable="false">netefatsa</string>
+    <string name="booking" translatable="false">bokhothaletso</string>
+    <string name="pay" translatable="false">Pay ₹</string>
+    <string name="pending" translatable="false">E emetse</string>
+    <string name="paymeturl" translatable="false">paymetUrl</string>
+    <string name="cancel_booking" translatable="false">Hlakola Bokhothaletso</string>
+    <string name="bookinglist" translatable="false">list ea bokhothaletso</string>
+    <string name="booked_by" translatable="false">E ngotsoe ke</string>
+    <string name="bought_small" translatable="false">e rekiloe</string>
+    <string name="r" translatable="false"></string>
+    <string name="close_service" translatable="false">Tloo Tšebeletso</string>
+    <string name="start_date" translatable="false">Letsatsi la Phetho</string>
+    <string name="end_date" translatable="false">Letsatsi la Qetello</string>
+    <string name="close" translatable="false">Tloo</string>
+    <string name="start_service" translatable="false">Qala Tšebeletso</string>
+    <string name="leave" translatable="false">tsamaea</string>
+    <string name="not_cancelable" translatable="false">Ha e khone ho hlakoloa</string>
+    <string name="back_to_original_payment_source" translatable="false">Bua ho sebaka sa tefo sa mantlha</string>
+    <string name="refund_in_wallet" translatable="false">Sekao ka Mokitlane</string>
+    <string name="promocode" translatable="false">Khoutu ea popi</string>
+    <string name="closeservice" translatable="false">tlooTšebeletso</string>
+    <string name="before_date_text" translatable="false">Na u netefatsa hore u batla ho tloo tšebeletso? Ha u tloo tšebeletso, li-booking tsohle tsa</string>
+    <string name="to" translatable="false">ho</string>
+    <string name="after_date_text" translatable="false">li tla tlameha ho hlakoloa ka boiketsetso</string>
+    <string name="image" translatable="false">setšoantšo</string>
+    <string name="videos" translatable="false">livideo</string>
+    <string name="servicedetails" translatable="false">ts\'ebetsong</string>
+    <string name="openmedia" translatable="false">buaMedia</string>
+    <string name="back_press" translatable="false">ToebaPress</string>
+    <string name="goBack" translatable="false">bua</string>
+    <string name="goForeword" translatable="false">pele</string>
+    <string name="home_fr" translatable="false">Home_FR</string>
+    <string name="onlinefr" translatable="false">OnlineFR</string>
+    <string name="back" translatable="false">Toeba</string>
+    <string name="provider_profile" translatable="false">profile ea mofani</string>
+    <string name="profile_fr" translatable="false">profile_Fr</string>
+    <string name="add_video" translatable="false">+ Eketsa Video</string>
+    <string name="logout" translatable="false">suma</string>
+    <string name="join_call" translatable="false">kenyaMoqoqo</string>
+    <string name="leave_call" translatable="false">tsamaeaMoqoqo</string>
+    <string name="mute_call" translatable="false">qhalolaMoqoqo</string>
+    <string name="connected" translatable="false">E hokahane</string>
+    <string name="callended" translatable="false">moqoqoO qetile</string>
+    <string name="pop_up" translatable="false">popup</string>
+    <string name="block" translatable="false">Thibela</string>
+    <string name="delete_chat" translatable="false">Hlakola Moqoqo</string>
+    <string name="unblock" translatable="false">Sososa</string>
+    <string name="container" translatable="false">sekhomaretsi</string>
+    <string name="chatfragment" translatable="false">chatFragment</string>
+    <string name="open_gallery" translatable="false">buaGallery</string>
+    <string name="images" translatable="false">Mefuta e fapaneng</string>
+    <string name="files" translatable="false">Fayile</string>
+    <string name="media_size_check" translatable="false">Boholo ba Media bo tlameha ho ba bonyane 100 MB</string>
+
+    <string-array name="select_issue">
+        <item>Khetha Bothata</item>
+        <item>Item 1</item>
+        <item>Item 2</item>
+        <item>Item 3</item>
+        <item>Item 4</item>
+        <item>Item 5</item>
+    </string-array>
+    <string name="add_your_bank_account" translatable="false">Kenya Ak\'haonto ea Hao ea Banka</string>
+    <string name="add_new_bank_account" translatable="false">Kenya Ak\'haonto e Mecha ea Banka</string>
+    <string name="choose_bank_with_your_account" translatable="false">Khetha banka e nang le ak\'haonto ea hau.</string>
+    <string name="select_bank" translatable="false">Khetha Banka</string>
+    <string name="current_account" translatable="false">Ak\'haonto ea Hona Joale</string>
+    <string name="savings_account" translatable="false">Ak\'haonto ea Phello</string>
+    <string name="select_account_type" translatable="false">Khetha Mofuta oa Ak\'haonto</string>
+    <string name="enter_document_type" translatable="false">Kenya Mofuta oa Dokumente</string>
+    <string name="document_type" translatable="false">Mofuta oa Dokumente</string>
+    <string name="enter_document_number" translatable="false">Kenya Nomoro ea Dokumente</string>
+    <string name="document_number" translatable="false">Nomoro ea Dokumente</string>
+    <string name="enter_account_name" translatable="false">Kenya Lebitso la Ak\'haonto</string>
+    <string name="account_name" translatable="false">Lebitso la Ak\'haonto</string>
+    <string name="enter_account_number" translatable="false">Kenya Nomoro ea Ak\'haonto</string>
+    <string name="account_number" translatable="false">Nomoro ea Ak\'haonto</string>
+    <string name="my_bank_account" translatable="false">Ak\'haonto ea Ka ea Banka</string>
+    <string name="connecting" translatable="false">Ho Kopanya</string>
+    <string name="add_bank_account" translatable="false">Kenya Ak\'haonto ea Banka</string>
+
+    <!-- Validation Texts -->
+    <string name="please_enter_account_number" translatable="false">Hobplease Kenya Nomoro ea Ak\'haonto</string>
+    <string name="please_enter_account_name" translatable="false">Hobplease Kenya Lebitso la Ak\'haonto</string>
+    <string name="invalid_account_number" translatable="false">Nomoro ea Ak\'haonto ha e amohelehe</string>
+    <string name="please_enter_document_number" translatable="false">Hobplease Kenya Nomoro ea Dokumente</string>
+    <string name="please_enter_document_type" translatable="false">Hobplease Kenya Mofuta oa Dokumente</string>
+
+    <!-- String files for click events -->
+    <string name="cross" translatable="false">Khatello</string>
+    <string name="audio_call" translatable="false">Mocha oa Audio</string>
+    <string name="video_call" translatable="false">Mocha oa Video</string>
+    <string name="connect_with_the_user_as" translatable="false">Kopanya le moetsi ka</string>
+    <string name="outgoing_video" translatable="false">Video e Phumang</string>
+    <string name="outgoing_Audio" translatable="false">Audio e Phumang</string>
+    <string name="user_name" translatable="false">Lebitso la Mohoebi</string>
+    <string name="are_you_sure_want_to_delete_this_account" translatable="false">Na u netefatsa hore u batla ho hlakola ak\'haonto ena?</string>
+    <string name="filterdata" translatable="false">FilterData</string>
+    <string name="connection_remove_successfully" translatable="false">Kopano e Hlakotsoe ka Katleho</string>
+    <string name="whatsApp" translatable="false">WhatsApp</string>
+    <string name="description" translatable="false">Tlhaloso</string>
+    <string name="issue_type" translatable="false">Mofuta oa Bothata</string>
+    <string name="notification" translatable="false">Tlhahisoleseding</string>
+    <string name="addbank" translatable="false">KenyaBank</string>
+    <string name="openbottomsheet" translatable="false">Vula BottomSheet</string>
+    <string name="personal" translatable="false">Bohloeki</string>
+    <string name="dummy_string" translatable="false">String ea Bohata</string>
+    <string name="service_we_offer">Mosebetsi Re Fanang ka Oona</string>
+    <string name="wellness">Bophelo bo Botle</string>
+    <string name="household">Lepheletso</string>
+    <string name="electronic">Elekronike</string>
+    <string name="videophoto">Video le Foto</string>
+    <string name="showbiz">Showbiz</string>
+    <string name="real_estate">Matlo a Sechaba</string>
+    <string name="spa_beauty">Spa-Beauty</string>
+    <string name="security">Ts\'ireletso</string>
+    <string name="software">Software</string>
+    <string name="legal">Melao</string>
+    <string name="pet_service">Tlhahiso ea Liphoofolo</string>
+    <string name="travel">Leeto</string>
+    <string name="other">Tseo Tse Ling</string>
+    <string name="allow_gps_location">Lumella Location ea Servi</string>
+    <string name="welcome_to_servivet_we_are_passionate_about_creating_meaningful_connections_and_facilitating_seamless_interactions_our_mission_is_to_provide_a_platform_that_fosters_community_encourages_collaboration_and_sparks_engaging_conversations_among_users">Amogela ho Servivet! Re na le cheseho ea ho theha likamano tse nang le moelelo le ho fa ts\'ebetso e se nang likhohlano. Borai ba rona ke ho fa platform e tšehetsang sechaba, e khothalletsang tšebelisano, le ho hlahisa lipuisano tse monate lipakeng tsa basebelisi.</string>
+    <string name="title">Sehlooho</string>
+    <string name="enter_title">Kenya sehlooho</string>
+    <string name="your_feedback_or_suggestion_here">Reka e ngata kapa tlhahiso mona...</string>
+    <string name="_0_200">(0/200)</string>
+    <string name="email">Imeile</string>
+    <string name="we_are_keen_to_know_how_we_can_make_e_yugam_better_for_you_send_your_feedback_or_suggestion">Re thahasella ho tseba kamoo re ka ntlafatsang E-Yugam bakeng sa wena. Romella maikutlo a hao kapa tlhahiso</string>
+    <string name="withdraw">Hotsosa</string>
+    <string name="no_data_found">Ha ho na data e fumanoeng!</string>
+    <string name="delhi">Delhi</string>
+</resources>

@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">سيرفي</string>
+    <string name="servivet_require_this_permission" translatable="false">سيرفي تحتاج إلى السماح بهذا الإذن.</string>
+    <string name="google_map_key" translatable="false">AIzaSyDxvOzm-9yjdnd5L4iJrVDwk-_KbUkmN8A</string>
+    <string name="please_connect_to_the_internet" translatable="false">يرجى الاتصال بالإنترنت.\n</string>
+    <string name="hello_blank_fragment" translatable="false">مرحباً، جزء فارغ</string>
+    <string name="choose_your_preferred_language" translatable="false">اختر لغتك المفضلة\n</string>
+    <string name="english" translatable="false">الإنجليزية</string>
+    <string name="hi_i_am_john_doe" translatable="false">مرحباً، أنا جون دو.</string>
+    <string name="swahii" translatable="false">سواحيلية</string>
+    <string name="habari_mimi_ni_john_doe" translatable="false">Habari، mimi ni John Doe.</string>
+    <string name="zulu" translatable="false">زولو</string>
+    <string name="gps_enable_message" translatable="false">يجب عليك تشغيل تحديد المواقع باستخدام GPS</string>
+    <string name="sawubona_ngingu_john_doe" translatable="false">Sawubona، ngingu-John Doe.</string>
+    <string name="continues" translatable="false">استمرار</string>
+    <string name="skip" translatable="false">تخطي</string>
+    <string name="next" translatable="false">التالي</string>
+    <string name="get_started" translatable="false">ابدأ</string>
+    <string name="clientel" translatable="false">العملاء</string>
+    <string name="business" translatable="false">الأعمال</string>
+    <string name="mobile_number" translatable="false">رقم الهاتف المحمول</string>
+    <string name="we_will_send_you_a_confirmation_code" translatable="false">سنرسل لك رمز تأكيد</string>
+    <string name="_123_456_7890" translatable="false">123–456-7890</string>
+    <string name="i_agree_to_terms_and_conditions_and_data_privacy_policies" translatable="false">أوافق على الشروط والأحكام وسياسات الخصوصية.</string>
+    <string name="verify" translatable="false">تحقق</string>
+    <string name="please_enter_the_otp_sent_your_mobile_number" translatable="false">يرجى إدخال OTP المرسل إلى رقم هاتفك المحمول.</string>
+    <string name="otp_verification" translatable="false">التحقق من OTP</string>
+    <string name="resend_otp_in_30_seconds" translatable="false">إعادة إرسال OTP خلال 30 ثانية</string>
+    <string name="title_activity_home" translatable="false">HomeActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label" translatable="false">الجزء الأول</string>
+    <string name="second_fragment_label" translatable="false">الجزء الثاني</string>
+    <string name="previous" translatable="false">السابق</string>
+    <string name="search_for_area_street_name_etc" translatable="false">ابحث عن المنطقة، اسم الشارع، إلخ...</string>
+    <string name="home" translatable="false">الرئيسية</string>
+    <string name="chats" translatable="false">الدردشات</string>
+    <string name="bookings" translatable="false">الحجوزات</string>
+    <string name="profile" translatable="false">الملف الشخصي</string>
+    <string name="noida" translatable="false">نوييدا</string>
+    <string name="sadarpur_sector_44_noida" translatable="false">سادار بور، القطاع-44 نوييدا</string>
+    <string name="search_for_service_etc" translatable="false"><![CDATA[ابحث عن الخدمة، إلخ]]></string>
+    <string name="services" translatable="false">الخدمات</string>
+    <string name="view_all" translatable="false">عرض الكل\n</string>
+    <string name="provider_view_all" translatable="false">عرض كل المزودين</string>
+    <string name="user_view_all" translatable="false">عرض كل المستخدمين</string>
+    <string name="online_now" translatable="false">متصل الآن</string>
+    <string name="fitness" translatable="false">اللياقة البدنية</string>
+    <string name="finance" translatable="false">المالية\n</string>
+    <string name="_1_km_away" translatable="false">كم بعيد</string>
+    <string name="dev_gupta" translatable="false">ديف غوبتا</string>
+    <string name="gym" translatable="false">صالة رياضية</string>
+    <string name="riepneapps_technology_noida" translatable="false">تكنولوجيا Riepneapps نوييدا</string>
+    <string name="view_details" translatable="false">عرض التفاصيل</string>
+    <string name="individual" translatable="false">فردي</string>
+    <string name="individualcap" translatable="false">فَرْدِيّ</string>
+    <string name="institutional" translatable="false">مؤسسي</string>
+    <string name="institutionalcap" translatable="false">مُؤَسَّسِيّ</string>
+    <string name="edit_profile" translatable="false">تعديل الملف الشخصي</string>
+    <string name="abhishek_mehra" translatable="false">أبهيشيك ميهرا</string>
+    <string name="about" translatable="false">حول</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut_labore_et_dolore_magna_aliquyam_erat_sed_diam_voluptua_eos_et_accusam_et_justo_duo_dolores_et_ea_rebum_stet_clita_kasd_gubergren_no_sea_takimata_sanctus_est_lorem_ipsum_dolor_sit_amet_lorem_ipsum_dolor_sit_amet" translatable="false">لوريم إيبسوم دولور سيت أميت، كونسيتيتور تيمبور إنفيدونت أوت لابور إت. إستلوريم إيبسوم دولور سيت أميت. لوريم إيبسوم دولور سيت أميت</string>
+    <string name="accept_the_term_and_condition" translatable="false">قبول الشروط والأحكام\n</string>
+    <string name="accept_the_privacy_policy" translatable="false">قبول سياسة الخصوصية</string>
+    <string name="term_and_condition" translatable="false">الشروط والأحكام</string>
+    <string name="privacy_policy" translatable="false">سياسة الخصوصية</string>
+    <string name="terms_conditions" translatable="false"><![CDATA[الشروط والأحكام]]></string>
+    <string name="last_updated_on_23_may_2023" translatable="false">آخر تحديث في 23 مايو 2023</string>
+    <string name="reject" translatable="false">رفض</string>
+    <string name="accept" translatable="false">قبول</string>
+    <string name="my_connections" translatable="false">اتصالاتي</string>
+    <string name="name" translatable="false">الاسم</string>
+    <string name="enter_name" translatable="false">أدخل الاسم</string>
+    <string name="_91_1234567890" translatable="false">+91 1234567890</string>
+    <string name="email_address" translatable="false">عنوان البريد الإلكتروني</string>
+    <string name="_0_150" translatable="false">(0/150)</string>
+    <string name="_150_150" translatable="false">(150/150)\n</string>
+    <string name="write_here" translatable="false">اكتب هنا</string>
+    <string name="update" translatable="false">تحديث</string>
+    <string name="change_cover" translatable="false">تغيير الغلاف</string>
+    <string name="business_n_verification" translatable="false">العمل \nالتحقق</string>
+    <string name="select_your_business_type" translatable="false">اختر نوع عملك</string>
+    <string name="full_name" translatable="false">الاسم الكامل</string>
+    <string name="enter_full_name" translatable="false">أدخل الاسم الكامل</string>
+    <string name="using_gps" translatable="false">استخدام GPS</string>
+    <string name="current_location" translatable="false">الموقع الحالي</string>
+    <string name="enter_location_manually" translatable="false">أدخل الموقع يدويًا</string>
+    <string name="or" translatable="false">أو</string>
+    <string name="want_to_earn_money" translatable="false">تريد كسب المال؟</string>
+    <string name="add_the_service_which_you_are_expert_in" translatable="false">أضف الخدمة التي أنت خبير فيها</string>
+    <string name="add_service" translatable="false">+ إضافة خدمة</string>
+    <string name="near_by" translatable="false">قريب</string>
+    <string name="add_service_" translatable="false">إضافة خدمة</string>
+    <string name="service_mode" translatable="false">وضع الخدمة</string>
+    <string name="at_centre" translatable="false">في المركز</string>
+    <string name="at_home" translatable="false">في المنزل</string>
+    <string name="category" translatable="false">الفئة</string>
+    <string name="sub_category" translatable="false">الفئة الفرعية</string>
+    <string name="yoga" translatable="false">يوغا</string>
+    <string name="about_service" translatable="false">حول الخدمة</string>
+    <string name="photos" translatable="false">الصور</string>
+    <string name="add_image" translatable="false">+ إضافة صورة</string>
+    <string name="add" translatable="false">إضافة</string>
+    <string name="availability" translatable="false">التوافر</string>
+    <string name="select_session" translatable="false">اختر الجلسة</string>
+    <string name="add_hours" translatable="false">+ إضافة ساعات</string>
+    <string name="start_time" translatable="false">وقت البدء</string>
+    <string name="end_time" translatable="false">وقت الانتهاء</string>
+    <string name="mon" translatable="false">الاثنين</string>
+    <string name="enter_price" translatable="false">أدخل السعر</string>
+    <string name="price_at_centre" translatable="false">السعر (في المركز)</string>
+    <string name="camera" translatable="false">الكاميرا</string>
+    <string name="gallery" translatable="false">المعرض</string>
+    <string name="price" translatable="false">السعر</string>
+    <string name="my_services" translatable="false">خدماتي</string>
+    <string name="business_name" translatable="false">اسم العمل</string>
+    <string name="the_electronic_hub" translatable="false">المركز الإلكتروني</string>
+    <string name="edit" translatable="false">تعديل</string>
+    <string name="please_enter_a_valid_e_mail" translatable="false">يرجى إدخال بريد إلكتروني صالح\n</string>
+    <string name="enter_email_address" translatable="false">أدخل عنوان البريد الإلكتروني</string>
+    <string name="address" translatable="false">العنوان</string>
+    <string name="a_block_sector_63_noida" translatable="false">القطاع A، بلوك 62، نوييدا</string>
+    <string name="under_development" translatable="false">تحت التطوير</string>
+    <string name="resend_otp_in" translatable="false">إعادة إرسال OTP خلال</string>
+    <string name="are_you_logout" translatable="false">هل أنت متأكد أنك تريد الخروج؟</string>
+    <string name="log_out" translatable="false">تسجيل الخروج</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_centre_mode" translatable="false">يجب أن يكون وقت البدء أقل من وقت الانتهاء لوضع المركز.</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_home_mode" translatable="false">يجب أن يكون وقت البدء أقل من وقت الانتهاء لوضع المنزل.</string>
+    <string name="please_enter_the_price_for_the_centre_service_mode" translatable="false">يرجى إدخال السعر لوضع الخدمة في المركز.</string>
+    <string name="please_enter_the_price_for_the_home_service_mode" translatable="false">يرجى إدخال السعر لوضع الخدمة في المنزل.</string>
+    <string name="please_select_a_service_model" translatable="false">يرجى اختيار نموذج خدمة.</string>
+    <string name="please_select_the_category" translatable="false">يرجى اختيار الفئة.</string>
+    <string name="please_select_at_one_image" translatable="false">يرجى اختيار صورة واحدة على الأقل.</string>
+    <string name="images_must_be_less_than_five" translatable="false">يجب أن تكون الصور خمسة أو أقل من خمسة.</string>
+    <string name="please_select_sub_category" translatable="false">يرجى اختيار الفئة الفرعية.</string>
+    <string name="select_sub_category" translatable="false">اختر الفئة الفرعية</string>
+    <string name="select_session_should_not_be_empty_for_the_center_service_mode" translatable="false">يجب ألا تكون الجلسة المحددة فارغة لوضع خدمة المركز</string>
+    <string name="select_session_should_not_be_empty_for_the_home_service_mode" translatable="false">يجب ألا تكون الجلسة المحددة فارغة لوضع خدمة المنزل</string>
+    <string name="details" translatable="false">التفاصيل</string>
+    <string name="_1_km" translatable="false">1 كم.</string>
+    <string name="away" translatable="false">بعيد</string>
+    <string name="prateek_mehta" translatable="false">براتيك ميهتا</string>
+    <string name="media" translatable="false">الوسائط</string>
+    <string name="_1499_2999" translatable="false">1499 - 2999</string>
+    <string name="book_now" translatable="false">احجز الآن</string>
+    <string name="my_booking" translatable="false">حجوزاتي</string>
+    <string name="booking_id" translatable="false">رقم الحجز</string>
+    <string name="booking_id_num" translatable="false">#262638</string>
+    <string name="by_prateek_mehta" translatable="false">بواسطة براتيك ميهتا</string>
+    <string name="tuesday_21_oct_11_00_am" translatable="false">الثلاثاء، 21 أكتوبر، 11:00 صباحًا</string>
+    <string name="complete_profile" translatable="false">أكمل الملف الشخصي</string>
+    <string name="enter_your_information_below" translatable="false">أدخل معلوماتك أدناه</string>
+    <string name="edit_service" translatable="false">تعديل الخدمة</string>
+    <string name="message" translatable="false">رسالة</string>
+    <string name="upcoming" translatable="false">قادم</string>
+    <string name="completed" translatable="false">مكتمل</string>
+    <string name="cancelled" translatable="false">ملغى</string>
+    <string name="_1799" translatable="false">1799</string>
+    <string name="_1499" translatable="false">1499</string>
+    <string name="reschedule" translatable="false">إعادة جدولة</string>
+    <string name="cancel" translatable="false">إلغاء</string>
+    <string name="ok" translatable="false">موافق</string>
+    <string name="rate_us" translatable="false">قيمنا</string>
+    <string name="date_time" translatable="false"><![CDATA[التاريخ والوقت]]></string>
+    <string name="payment_info" translatable="false">معلومات الدفع</string>
+    <string name="subtotal" translatable="false">المجموع الفرعي</string>
+    <string name="gst_18" translatable="false">ضريبة القيمة المضافة (18%)</string>
+    <string name="total" translatable="false">الإجمالي</string>
+    <string name="personal_document" translatable="false">وثيقة شخصية</string>
+    <string name="business_document" translatable="false">وثيقة تجارية</string>
+    <string name="_25" translatable="false">25</string>
+    <string name="_1524" translatable="false">1524</string>
+    <string name="booking_details" translatable="false">تفاصيل الحجز</string>
+    <string name="location" translatable="false">الموقع</string>
+    <string name="a_199_sector_63_noida" translatable="false">A-199، القطاع 63، نوييدا</string>
+    <string name="mark_as_completed" translatable="false">علامة كمكتمل</string>
+    <string name="ac_repair" translatable="false">تصليح مكيفات</string>
+    <string name="review" translatable="false">مراجعة</string>
+    <string name="give_a_feedback" translatable="false">أعطِ ملاحظات...</string>
+    <string name="do_this_later" translatable="false">قم بذلك لاحقًا</string>
+    <string name="submit" translatable="false">إرسال</string>
+    <string name="today" translatable="false">اليوم</string>
+    <string name="hello_abhishek_how_are_you" translatable="false">مرحبًا أبهيشيك، كيف حالك؟</string>
+    <string name="saad_rahman" translatable="false">سعد رحمان</string>
+    <string name="no_chats_found" translatable="false">لم يتم العثور على دردشات!</string>
+    <string name="start_new_chat" translatable="false">بدء دردشة جديدة</string>
+    <string name="amount_paid" translatable="false">المبلغ المدفوع</string>
+    <string name="book_again" translatable="false">احجز مرة أخرى</string>
+    <string name="_1420" translatable="false">1420</string>
+    <string name="payment_mode" translatable="false">طريقة الدفع</string>
+    <string name="reason_for_cancellation" translatable="false">سبب الإلغاء</string>
+    <string name="provider_is_not_available_at_this_time" translatable="false">المزود غير متاح في هذا الوقت.</string>
+    <string name="credit_card" translatable="false">بطاقة ائتمان</string>
+    <string name="refund_status" translatable="false">حالة الاسترداد</string>
+    <string name="refund_initiated_you_will_receive_your_n_amount_in_48_hours" translatable="false">تم بدء عملية الاسترداد. ستتلقى المبلغ الخاص بك خلال 48 ساعة.</string>
+    <string name="save" translatable="false">حفظ</string>
+    <string name="a_192_sector_44_noida" translatable="false">A-192، القطاع 44، نوييدا</string>
+    <string name="save_this_address_for_future_services" translatable="false">احفظ هذا العنوان للخدمات المستقبلية.</string>
+    <string name="booking_summary" translatable="false">ملخص الحجز</string>
+    <string name="change" translatable="false">تغيير</string>
+    <string name="june_2023" translatable="false">يونيو 2023</string>
+    <string name="_4_5" translatable="false">4.5</string>
+    <string name="proceed" translatable="false">تابع</string>
+    <string name="add_address" translatable="false">إضافة عنوان</string>
+    <string name="days" translatable="false">أيام</string>
+    <string name="_16" translatable="false">16</string>
+    <string name="time" translatable="false">الوقت</string>
+    <string name="alert" translatable="false">تنبيه</string>
+    <string-array name="select_category">
+        <item>اختر الفئة</item>
+        <item>المالية</item>
+        <item>الإلكترونيات</item>
+        <item>اللياقة البدنية</item>
+    </string-array>
+    <string-array name="select_sub_category">
+        <item>اختر الفئة الفرعية</item>
+        <item>العنصر 1</item>
+        <item>العنصر 2</item>
+        <item>العنصر 3</item>
+        <item>العنصر 4</item>
+    </string-array>
+    <string name="prompt_email" translatable="false">البريد الإلكتروني</string>
+    <string name="prompt_password" translatable="false">كلمة المرور</string>
+    <string name="action_sign_in" translatable="false">تسجيل الدخول أو التسجيل</string>
+    <string name="action_sign_in_short" translatable="false">تسجيل الدخول</string>
+    <string name="welcome" translatable="false">"أهلاً وسهلاً!"</string>
+    <string name="invalid_username" translatable="false">اسم المستخدم غير صالح</string>
+    <string name="invalid_password" translatable="false">يجب أن تكون كلمة المرور أكثر من 5 أحرف</string>
+    <string name="login_failed" translatable="false">"فشل تسجيل الدخول"</string>
+    <string name="if_cancellation_done_after_24_hours_of_booking_date_you_will_get_refund" translatable="false">إذا تم الإلغاء بعد 24 ساعة من تاريخ الحجز، ستتلقى استردادًا.</string>
+    <string name="service_provider_is_not_available_and_has_requested_to_cancel" translatable="false">مزود الخدمة غير متاح وقد طلب الإلغاء</string>
+    <string name="i_found_this_service_at_a_cheaper_price" translatable="false">وجدت هذه الخدمة بسعر أقل</string>
+    <string name="i_don_t_need_this_service_now" translatable="false">لا أحتاج هذه الخدمة الآن</string>
+    <string name="i_am_unavailable_at_the_scheduled_time" translatable="false">أنا غير متاح في الوقت المحدد</string>
+    <string name="_262638" translatable="false">#262638</string>
+    <string name="your_booking_has_been_cancelled" translatable="false">تم إلغاء حجزك.</string>
+    <string name="please_track_status_of_refund_under_my_bookings_cancelled" translatable="false"><![CDATA[يرجى تتبع حالة الاسترداد تحت \'حجوزاتي->ملغاة\']]></string>
+    <string name="go_to_my_bookings" translatable="false">انتقل إلى حجوزاتي</string>
+    <string name="payment" translatable="false">الدفع</string>
+    <string name="service_details" translatable="false">تفاصيل الخدمة</string>
+    <string name="_21_jun_2023_11_00am" translatable="false">21 يونيو 2023، 11:00 صباحًا</string>
+    <string name="abhishek_mehra_a_192_sector_44_noida" translatable="false">أبهيشيك مهرا | A-192، القطاع 44، نوييدا</string>
+    <string name="apply_coupon" translatable="false">تطبيق القسيمة</string>
+    <string name="tax" translatable="false">الضريبة</string>
+    <string name="payable_amount" translatable="false">المبلغ الواجب دفعه</string>
+    <string name="pay_now" translatable="false">ادفع الآن</string>
+    <string name="code" translatable="false">الرمز</string>
+    <string name="applied" translatable="false">مطبق</string>
+    <string name="coupons" translatable="false">القسائم</string>
+    <string name="enter_promocode" translatable="false">أدخل رمز الترويج</string>
+    <string name="apply" translatable="false">تطبيق</string>
+    <string name="available_coupons" translatable="false">القسائم المتاحة</string>
+    <string name="sbi100" translatable="false">SBI100</string>
+    <string name="state_bank_of_india" translatable="false">البنك الوطني للهند</string>
+    <string name="cashback_up_to_usd_10_on_the_item_total_above_1100" translatable="false">استرداد نقدي يصل إلى 10 دولارات أمريكية على إجمالي المبلغ فوق 1100</string>
+    <string name="saved_addresses" translatable="false">العناوين المحفوظة</string>
+    <string name="a_192_sector_44_noida_201301" translatable="false">A-192، القطاع 44، نوييدا، 201301</string>
+    <string name="_91_989_123_4567" translatable="false">+91 989 123 4567</string>
+    <string name="add_new_address" translatable="false">إضافة عنوان جديد</string>
+    <string name="chat_requests" translatable="false">طلبات الدردشة</string>
+    <string name="no_chat_requests_found" translatable="false">لم يتم العثور على طلبات دردشة!</string>
+    <string name="see_your_chats" translatable="false">عرض دردشاتك</string>
+    <string name="decline" translatable="false">رفض</string>
+    <string name="kuldeep_srivastava" translatable="false">كولديب شريفاستافا</string>
+    <string name="connect" translatable="false">اتصال</string>
+    <string name="call" translatable="false">اتصال</string>
+    <string name="whatsapp" translatable="false">واتساب</string>
+    <string name="share" translatable="false">مشاركة</string>
+    <string name="services_we_offer" translatable="false">الخدمات التي نقدمها</string>
+    <string name="settings" translatable="false">الإعدادات</string>
+    <string name="switch_to_business" translatable="false">التحويل إلى العمل</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut" translatable="false">لوريم إيبسوم دولور سيت أميت،\nكونستيتور سادبيسنج إيلتر، سيد ديام نونومي إيرمود تيمبور إنفيدونت يوت</string>
+    <string name="push_notifications" translatable="false">الإشعارات الفورية</string>
+    <string name="account_settings" translatable="false">إعدادات الحساب</string>
+    <string name="my_wallet" translatable="false">محفظتي</string>
+    <string name="wallet" translatable="false">محفظة</string>
+    <string name="paymentGateway" translatable="false">بوابة الدفع</string>
+    <string name="walletWithPg" translatable="false">محفظة مع بوابة الدفع</string>
+    <string name="about_us" translatable="false">معلومات عنا</string>
+    <string name="distance" translatable="false">المسافة</string>
+    <string name="change_language" translatable="false">تغيير اللغة</string>
+    <string name="faq_s" translatable="false">الأسئلة الشائعة</string>
+    <string name="contact_us" translatable="false">اتصل بنا</string>
+    <string name="data_privacy" translatable="false">خصوصية البيانات</string>
+    <string name="terms_and_conditions" translatable="false">الشروط والأحكام</string>
+    <string name="delete_account" translatable="false">حذف الحساب</string>
+    <string name="your_available_balance" translatable="false">رصيدك المتاح</string>
+    <string name="deactivate" translatable="false">تعطيل</string>
+    <string name="send_money" translatable="false">إرسال المال</string>
+    <string name="transactions" translatable="false">المعاملات</string>
+    <string name="_200" translatable="false">₹200</string>
+    <string name="_123456789" translatable="false">123456789</string>
+    <string name="please_allow_location_permission_to_move_ahead" translatable="false">يرجى السماح بإذن الموقع للمتابعة.</string>
+    <string name="connections_requests" translatable="false">طلبات الاتصال</string>
+    <string name="accept_or_decline_requests" translatable="false">قبول أو رفض الطلبات</string>
+    <string name="are_you_sure_you_want_to_logout" translatable="false">هل أنت متأكد أنك تريد تسجيل الخروج؟</string>
+    <string name="no" translatable="false">لا</string>
+    <string name="yes" translatable="false">نعم</string>
+    <string name="log_out_successfully" translatable="false">تم تسجيل الخروج بنجاح!</string>
+    <string name="remove" translatable="false">إزالة</string>
+    <string name="surya_mouly" translatable="false">سوريا مولي</string>
+    <string name="_100" translatable="false">100</string>
+    <string name="individual_business" translatable="false">عمل فردي</string>
+    <string name="rating_raviews" translatable="false"><![CDATA[التقييمات والمراجعات]]></string>
+    <string name="report" translatable="false">تقرير</string>
+    <string name="promocode_discount" translatable="false">خصم رمز الترويج</string>
+    <string name="sorry_this_time_slot_is_not_available" translatable="false">آسف، هذه الفترة الزمنية غير متاحة</string>
+    <string name="_10_30_am" translatable="false">10:30 صباحًا</string>
+    <string name="ravi_bishnoi_sent_you_a_connections_request" translatable="false">أرسل لك طلب اتصال</string>
+    <string name="ravi_bishnoi" translatable="false">رافي بيشnoi</string>
+    <string name="your_available_balance_insufficient_balance" translatable="false">رصيدك المتاح</string>
+    <string name="insufficient_balance" translatable="false">(رصيد غير كاف)</string>
+    <string name="add_money" translatable="false">إضافة أموال</string>
+    <string name="pay_1548" translatable="false">ادفع ₹ 1548</string>
+    <string name="are_you_sure_you_want_to_conform" translatable="false">هل أنت متأكد أنك تريد \nالتأكيد؟</string>
+    <string name="calendar" translatable="false">التقويم</string>
+    <string name="slot" translatable="false">الفترة</string>
+    <string name="at_center" translatable="false">في المركز</string>
+    <string name="aman" translatable="false">أمان</string>
+    <string name="set_location" translatable="false">تعيين الموقع</string>
+    <string name="house_flat_office_no" translatable="false">رقم المنزل/الشقة/المكتب*</string>
+    <string name="road_name_area_colony" translatable="false">اسم الشارع/المنطقة/الحي*</string>
+    <string name="pincode" translatable="false">الرمز البريدي*</string>
+    <string name="confirm_location" translatable="false">تأكيد الموقع</string>
+    <string name="sold" translatable="false">مباع</string>
+    <string name="sold_small" translatable="false">مباع</string>
+    <string name="bought" translatable="false">مشتراة</string>
+    <string name="search_location" translatable="false">البحث عن الموقع</string>
+    <string name="location_is_not_avialable" translatable="false">الموقع غير متاح.</string>
+    <string name="request" translatable="false">طلب</string>
+    <string name="atcenter" translatable="false">في المركز</string>
+    <string name="athome" translatable="false">في المنزل</string>
+    <string name="confirm" translatable="false">تأكيد</string>
+    <string name="booking" translatable="false">حجز</string>
+    <string name="pay" translatable="false">ادفع ₹</string>
+    <string name="pending" translatable="false">معلق</string>
+    <string name="paymeturl" translatable="false">رابط الدفع</string>
+    <string name="cancel_booking" translatable="false">إلغاء الحجز</string>
+    <string name="bookinglist" translatable="false">قائمة الحجوزات</string>
+    <string name="booked_by" translatable="false">تم حجزه بواسطة</string>
+    <string name="bought_small" translatable="false">مشتراة</string>
+    <string name="r" translatable="false"></string>
+    <string name="close_service" translatable="false">إغلاق الخدمة</string>
+    <string name="start_date" translatable="false">تاريخ البدء</string>
+    <string name="end_date" translatable="false">تاريخ الانتهاء</string>
+    <string name="close" translatable="false">إغلاق</string>
+    <string name="start_service" translatable="false">بدء الخدمة</string>
+    <string name="leave" translatable="false">مغادرة</string>
+    <string name="not_cancelable" translatable="false">غير قابل للإلغاء</string>
+    <string name="back_to_original_payment_source" translatable="false">العودة إلى مصدر الدفع الأصلي</string>
+    <string name="refund_in_wallet" translatable="false">استرداد في المحفظة</string>
+    <string name="promocode" translatable="false">رمز الترويج</string>
+    <string name="closeservice" translatable="false">إغلاق الخدمة</string>
+    <string name="before_date_text" translatable="false">هل أنت متأكد أنك تريد إغلاق الخدمة؟ إذا قمت بإغلاق الخدمة، سيتم إلغاء جميع الحجوزات لـ</string>
+    <string name="to" translatable="false">إلى</string>
+    <string name="after_date_text" translatable="false">سيتم إلغاؤها تلقائيًا</string>
+    <string name="image" translatable="false">صورة</string>
+    <string name="videos" translatable="false">فيديوهات</string>
+    <string name="servicedetails" translatable="false">تفاصيل الخدمة</string>
+    <string name="openmedia" translatable="false">فتح الوسائط</string>
+    <string name="back_press" translatable="false">الرجوع</string>
+    <string name="goBack" translatable="false">العودة</string>
+    <string name="goForeword" translatable="false">التقدم</string>
+    <string name="home_fr" translatable="false">الصفحة الرئيسية_FR</string>
+    <string name="onlinefr" translatable="false">أونلاين_FR</string>
+    <string name="back" translatable="false">عودة</string>
+    <string name="provider_profile" translatable="false">ملف تعريف المزود</string>
+    <string name="profile_fr" translatable="false">الملف الشخصي_Fr</string>
+    <string name="add_video" translatable="false">+ إضافة فيديو</string>
+    <string name="logout" translatable="false">تسجيل الخروج</string>
+    <string name="join_call" translatable="false">الانضمام إلى المكالمة</string>
+    <string name="leave_call" translatable="false">مغادرة المكالمة</string>
+    <string name="mute_call" translatable="false">كتم المكالمة</string>
+    <string name="connected" translatable="false">متصل</string>
+    <string name="callended" translatable="false">انتهت المكالمة</string>
+    <string name="pop_up" translatable="false">منبثق</string>
+    <string name="block" translatable="false">حظر</string>
+    <string name="delete_chat" translatable="false">حذف الدردشة</string>
+    <string name="unblock" translatable="false">فك الحظر</string>
+    <string name="container" translatable="false">حاوية</string>
+    <string name="chatfragment" translatable="false">شاشة الدردشة</string>
+    <string name="open_gallery" translatable="false">فتح المعرض</string>
+    <string name="images" translatable="false">الصور</string>
+    <string name="files" translatable="false">الملفات</string>
+    <string name="media_size_check" translatable="false">يجب أن يكون حجم الوسائط أقل من 100 ميغابايت</string>
+
+    <string name="weeks" translatable="false">أسابيع</string>
+    <string name="months" translatable="false">شهور</string>
+    <string name="years" translatable="false">سنوات</string>
+    <string name="min" translatable="false">دقيقة</string>
+    <string name="hour" translatable="false">ساعة</string>
+    <string name="minute" translatable="false">دقيقة</string>
+    <string name="pick_your_media_file" translatable="false">اختر ملف الوسائط الخاص بك</string>
+    <string name="use_as_default" translatable="false">استخدم كافتراضي</string>
+    <string name="_default" translatable="false"> افتراضي</string>
+
+    <string-array name="select_issue">
+        <item>اختر المشكلة</item>
+        <item>البند 1</item>
+        <item>البند 2</item>
+        <item>البند 3</item>
+        <item>البند 4</item>
+        <item>البند 5</item>
+    </string-array>
+
+    <!--bank module strings-->
+    <string name="add_your_bank_account" translatable="false">أضف حسابك البنكي</string>
+    <string name="add_new_bank_account" translatable="false">أضف حساب بنكي جديد</string>
+    <string name="choose_bank_with_your_account" translatable="false">اختر بنكًا مع حسابك.</string>
+    <string name="select_bank" translatable="false">اختر البنك</string>
+    <string name="current_account" translatable="false">حساب جاري</string>
+    <string name="savings_account" translatable="false">حساب توفير</string>
+    <string name="select_account_type" translatable="false">اختر نوع الحساب</string>
+    <string name="enter_document_type" translatable="false">أدخل نوع الوثيقة</string>
+    <string name="document_type" translatable="false">نوع الوثيقة</string>
+    <string name="enter_document_number" translatable="false">أدخل رقم الوثيقة</string>
+    <string name="document_number" translatable="false">رقم الوثيقة</string>
+    <string name="enter_account_name" translatable="false">أدخل اسم الحساب</string>
+    <string name="account_name" translatable="false">اسم الحساب</string>
+    <string name="enter_account_number" translatable="false">أدخل رقم الحساب</string>
+    <string name="account_number" translatable="false">رقم الحساب</string>
+    <string name="my_bank_account" translatable="false">حسابي البنكي</string>
+    <string name="connecting" translatable="false">جاري الاتصال</string>
+    <string name="add_bank_account" translatable="false">أضف حساب بنكي</string>
+
+    <!--validation Texts-->
+    <string name="please_enter_account_number" translatable="false">يرجى إدخال رقم الحساب</string>
+    <string name="please_enter_account_name" translatable="false">يرجى إدخال اسم الحساب</string>
+    <string name="invalid_account_number" translatable="false">رقم الحساب غير صالح</string>
+    <string name="please_enter_document_number" translatable="false">يرجى إدخال رقم الوثيقة</string>
+    <string name="please_enter_document_type" translatable="false">يرجى إدخال نوع الوثيقة</string>
+
+    <!--String files for click events-->
+    <string name="cross" translatable="false">إغلاق</string>
+    <string name="audio_call" translatable="false">مكالمة صوتية</string>
+    <string name="video_call" translatable="false">مكالمة فيديو</string>
+    <string name="connect_with_the_user_as" translatable="false">التواصل مع المستخدم كـ</string>
+    <string name="outgoing_video" translatable="false">فيديو صادر</string>
+    <string name="outgoing_Audio" translatable="false">صوت صادر</string>
+    <string name="user_name" translatable="false">اسم المستخدم</string>
+    <string name="are_you_sure_want_to_delete_this_account" translatable="false">هل أنت متأكد أنك تريد حذف هذا الحساب؟</string>
+    <string name="filterdata" translatable="false">تصفية البيانات</string>
+    <string name="connection_remove_successfully" translatable="false">تمت إزالة الاتصال بنجاح</string>
+    <string name="whatsApp" translatable="false">واتسآب</string>
+    <string name="description" translatable="false">الوصف</string>
+    <string name="issue_type" translatable="false">نوع المشكلة</string>
+    <string name="notification" translatable="false">إشعار</string>
+    <string name="addbank" translatable="false">إضافة بنك</string>
+    <string name="openbottomsheet" translatable="false">فتح ورقة الأسفل</string>
+    <string name="personal" translatable="false">شخصي</string>
+    <string name="dummy_string" translatable="false">سلسلة وهمية</string>
+    <string name="service_we_offer" translatable="false">الخدمات التي نقدمها</string>
+    <string name="wellness" translatable="false">العافية</string>
+    <string name="household" translatable="false">الأعمال المنزلية</string>
+    <string name="electronic" translatable="false">إلكترونيات</string>
+    <string name="videophoto" translatable="false">فيديو وصور</string>
+    <string name="showbiz" translatable="false">استعراض</string>
+    <string name="real_estate" translatable="false">عقارات</string>
+    <string name="spa_beauty" translatable="false">سبا وجمال</string>
+    <string name="security" translatable="false">أمن</string>
+    <string name="software" translatable="false">برمجيات</string>
+    <string name="legal" translatable="false">قانوني</string>
+    <string name="pet_service" translatable="false">خدمة الحيوانات الأليفة</string>
+    <string name="travel" translatable="false">سفر</string>
+    <string name="other" translatable="false">أخرى</string>
+    <string name="allow_gps_location" translatable="false">السماح بموقع الخدمة</string>
+    <string name="welcome_to_servivet_we_are_passionate_about_creating_meaningful_connections_and_facilitating_seamless_interactions_our_mission_is_to_provide_a_platform_that_fosters_community_encourages_collaboration_and_sparks_engaging_conversations_among_users" translatable="false">مرحبًا بك في Servivet! نحن متحمسون لإنشاء اتصالات ذات مغزى وتسهيل التفاعلات السلسة. مهمتنا هي توفير منصة تعزز المجتمع، تشجع التعاون، وتثير المحادثات المثيرة بين المستخدمين.</string>
+    <string name="title" translatable="false">العنوان</string>
+    <string name="enter_title" translatable="false">أدخل العنوان</string>
+    <string name="your_feedback_or_suggestion_here" translatable="false">أدخل ملاحظاتك أو اقتراحك هنا...</string>
+    <string name="_0_200" translatable="false">(0/200)</string>
+    <string name="email" translatable="false">البريد الإلكتروني</string>
+    <string name="we_are_keen_to_know_how_we_can_make_e_yugam_better_for_you_send_your_feedback_or_suggestion" translatable="false">نحن حريصون على معرفة كيفية تحسين E-Yugam لك. أرسل ملاحظاتك أو اقتراحك</string>
+    <string name="withdraw" translatable="false">سحب</string>
+    <string name="no_data_found" translatable="false">لم يتم العثور على بيانات!</string>
+    <string name="delhi" translatable="false">دلهي</string>
+</resources>

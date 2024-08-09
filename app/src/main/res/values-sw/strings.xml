@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Servi</string>
+    <string name="servivet_require_this_permission" translatable="false">Servi inahitaji ruhusa hii.</string>
+    <string name="google_map_key" translatable="false">AIzaSyDxvOzm-9yjdnd5L4iJrVDwk-_KbUkmN8A</string>
+    <string name="please_connect_to_the_internet" translatable="false">Tafadhali Unganisha na mtandao.\n</string>
+    <string name="hello_blank_fragment" translatable="false">Habari fragment tupu</string>
+    <string name="choose_your_preferred_language" translatable="false">Chagua Lugha yako\n Uipendayo</string>
+    <string name="english" translatable="false">Kiingereza</string>
+    <string name="hi_i_am_john_doe" translatable="false">Habari, mimi ni John Doe.</string>
+    <string name="swahii" translatable="false">Kiswahili</string>
+    <string name="habari_mimi_ni_john_doe" translatable="false">Habari, mimi ni John Doe.</string>
+    <string name="zulu" translatable="false">Kizulu</string>
+    <string name="gps_enable_message" translatable="false">Lazima uwashe GPS Location</string>
+    <string name="sawubona_ngingu_john_doe" translatable="false">Sawubona, ngingu-John Doe.</string>
+    <string name="continues" translatable="false">Endelea</string>
+    <string name="skip" translatable="false">Ruka</string>
+    <string name="next" translatable="false">Ifuatayo</string>
+    <string name="get_started" translatable="false">Anza</string>
+    <string name="clientel" translatable="false">Wateja</string>
+    <string name="business" translatable="false">Biashara</string>
+    <string name="mobile_number" translatable="false">Nambari ya simu</string>
+    <string name="we_will_send_you_a_confirmation_code" translatable="false">Tutakutumia msimbo wa uthibitisho</string>
+    <string name="_123_456_7890" translatable="false">123–456-7890</string>
+    <string name="i_agree_to_terms_and_conditions_and_data_privacy_policies" translatable="false">Nakubali Sheria na Masharti na Sera za Faragha ya Data.</string>
+    <string name="verify" translatable="false">Thibitisha</string>
+    <string name="please_enter_the_otp_sent_your_mobile_number" translatable="false">Tafadhali ingiza OTP iliyotumwa kwa nambari yako ya simu.</string>
+    <string name="otp_verification" translatable="false">Uthibitisho wa OTP</string>
+    <string name="resend_otp_in_30_seconds" translatable="false">Tuma tena OTP baada ya Sekunde 30</string>
+    <string name="title_activity_home" translatable="false">NyumbaniActivity</string>
+    <string name="first_fragment_label" translatable="false">Fragment ya Kwanza</string>
+    <string name="second_fragment_label" translatable="false">Fragment ya Pili</string>
+    <string name="previous" translatable="false">Iliyopita</string>
+    <string name="search_for_area_street_name_etc" translatable="false">Tafuta eneo, jina la mtaa, nk...</string>
+    <string name="home" translatable="false">Nyumbani</string>
+    <string name="chats" translatable="false">Mazungumzo</string>
+    <string name="bookings" translatable="false">Bookings</string>
+    <string name="profile" translatable="false">Profaili</string>
+    <string name="noida" translatable="false">Noida</string>
+    <string name="sadarpur_sector_44_noida" translatable="false">Sadarpur, Sector-44 Noida</string>
+    <string name="search_for_service_etc" translatable="false"><![CDATA[tafuta huduma & nk]]></string>
+    <string name="services" translatable="false">Huduma</string>
+    <string name="view_all" translatable="false">Tazama Zote\n</string>
+    <string name="provider_view_all" translatable="false">MtoaHudumaTazamaZote</string>
+    <string name="user_view_all" translatable="false">MtumiajiTazamaZote</string>
+    <string name="online_now" translatable="false">Mtandaoni sasa</string>
+    <string name="fitness" translatable="false">Mafunzo ya Mwili</string>
+    <string name="finance" translatable="false">FEDHA\n</string>
+    <string name="_1_km_away" translatable="false">km. mbali</string>
+    <string name="dev_gupta" translatable="false">Dev Gupta</string>
+    <string name="gym" translatable="false">gym</string>
+    <string name="riepneapps_technology_noida" translatable="false">riepneapps technology noida</string>
+    <string name="view_details" translatable="false">Tazama Maelezo</string>
+    <string name="individual" translatable="false">Mtu Binafsi</string>
+    <string name="individualcap" translatable="false">MTU BINAFSI</string>
+    <string name="institutional" translatable="false">Taasisi</string>
+    <string name="institutionalcap" translatable="false">TAASISI</string>
+    <string name="edit_profile" translatable="false">Hariri Profaili</string>
+    <string name="abhishek_mehra" translatable="false">Abhishek Mehra</string>
+    <string name="about" translatable="false">Kuhusu</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut_labore_et_dolore_magna_aliquyam_erat_sed_diam_voluptua_eos_et_accusam_et_justo_duo_dolores_et_ea_rebum_stet_clita_kasd_gubergren_no_sea_takimata_sanctus_est_lorem_ipsum_dolor_sit_amet_lorem_ipsum_dolor_sit_amet" translatable="false">Lorem ipsum dolor sit amet, consetetur tempor invidunt ut labore et est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet</string>
+    <string name="accept_the_term_and_condition" translatable="false">Kubali Sheria na Masharti\n</string>
+    <string name="accept_the_privacy_policy" translatable="false">Kubali Sera ya Faragha</string>
+    <string name="term_and_condition" translatable="false">Sheria na Masharti</string>
+    <string name="privacy_policy" translatable="false">Faragha ya Data</string>
+    <string name="terms_conditions" translatable="false"><![CDATA[Sheria & Masharti]]></string>
+    <string name="last_updated_on_23_may_2023" translatable="false">Imesasishwa mwisho tarehe 23 Mei 2023</string>
+    <string name="reject" translatable="false">Kataa</string>
+    <string name="accept" translatable="false">Kubali</string>
+    <string name="my_connections" translatable="false">Miunganisho Yangu</string>
+    <string name="name" translatable="false">Jina</string>
+    <string name="enter_name" translatable="false">Ingiza jina</string>
+    <string name="_91_1234567890" translatable="false">+91 1234567890</string>
+    <string name="email_address" translatable="false">Anuani ya Barua pepe</string>
+    <string name="_0_150" translatable="false">(0/150)</string>
+    <string name="_150_150" translatable="false">(150/150)\n</string>
+    <string name="write_here" translatable="false">andika hapa</string>
+    <string name="update" translatable="false">Sasisha</string>
+    <string name="change_cover" translatable="false">Badilisha jalada</string>
+    <string name="business_n_verification" translatable="false">Biashara \nUthibitishaji</string>
+    <string name="select_your_business_type" translatable="false">Chagua aina ya Biashara yako</string>
+    <string name="full_name" translatable="false">Jina kamili</string>
+    <string name="enter_full_name" translatable="false">Ingiza jina kamili</string>
+    <string name="using_gps" translatable="false">Kutumia GPS</string>
+    <string name="current_location" translatable="false">Mahali ulipo sasa</string>
+    <string name="enter_location_manually" translatable="false">Ingiza Mahali kwa Mkono</string>
+    <string name="or" translatable="false">au</string>
+    <string name="want_to_earn_money" translatable="false">Unataka Kupata Pesa?</string>
+    <string name="add_the_service_which_you_are_expert_in" translatable="false">Ongeza huduma ambayo wewe ni mtaalamu nayo</string>
+    <string name="add_service" translatable="false">+ Ongeza Huduma</string>
+    <string name="near_by" translatable="false">Karibu na</string>
+    <string name="add_service_" translatable="false">Ongeza Huduma</string>
+    <string name="service_mode" translatable="false">Hali ya Huduma</string>
+    <string name="at_centre" translatable="false">Kituoni</string>
+    <string name="at_home" translatable="false">Nyumbani</string>
+    <string name="category" translatable="false">Kategoria</string>
+    <string name="sub_category" translatable="false">Sub-kategoria</string>
+    <string name="yoga" translatable="false">Yoga</string>
+    <string name="about_service" translatable="false">Kuhusu Huduma</string>
+    <string name="photos" translatable="false">Picha</string>
+    <string name="add_image" translatable="false">+ Ongeza Picha</string>
+    <string name="add" translatable="false">Ongeza</string>
+    <string name="availability" translatable="false">Upatikanaji</string>
+    <string name="select_session" translatable="false">Chagua Kipindi</string>
+    <string name="add_hours" translatable="false">+ Ongeza Saa</string>
+    <string name="start_time" translatable="false">Wakati wa Kuanza</string>
+    <string name="end_time" translatable="false">Wakati wa Kumaliza</string>
+    <string name="mon" translatable="false">Jumatatu</string>
+    <string name="enter_price" translatable="false">Ingiza Bei</string>
+    <string name="price_at_centre" translatable="false">Bei (Kituoni)</string>
+    <string name="camera" translatable="false">Kamera</string>
+    <string name="gallery" translatable="false">Maktaba ya Picha</string>
+    <string name="price" translatable="false">Bei</string>
+    <string name="my_services" translatable="false">Huduma Zangu</string>
+    <string name="business_name" translatable="false">Jina la Biashara</string>
+    <string name="the_electronic_hub" translatable="false">The Electronic Hub</string>
+    <string name="edit" translatable="false">Hariri</string>
+    <string name="please_enter_a_valid_e_mail" translatable="false">Tafadhali ingiza barua pepe sahihi</string>
+    <string name="enter_email_address" translatable="false">Ingiza Anwani ya Barua Pepe</string>
+    <string name="address" translatable="false">Anwani</string>
+    <string name="a_block_sector_63_noida" translatable="false">A block, Sektari 63, Noida</string>
+    <string name="under_development" translatable="false">Chini ya Maendeleo</string>
+    <string name="resend_otp_in" translatable="false">Tuma tena OTP baada ya </string>
+    <string name="are_you_logout" translatable="false">Je, unataka kuondoka?</string>
+    <string name="log_out" translatable="false">Ondoka</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_centre_mode" translatable="false">Wakati wa kuanza haipaswi kuwa zaidi ya wakati wa kumaliza kwa hali ya kituoni.</string>
+    <string name="start_time_should_not_be_greater_than_end_time_for_home_mode" translatable="false">Wakati wa kuanza haipaswi kuwa zaidi ya wakati wa kumaliza kwa hali ya nyumbani.</string>
+    <string name="please_enter_the_price_for_the_centre_service_mode" translatable="false">Tafadhali ingiza bei kwa hali ya huduma ya kituoni.</string>
+    <string name="please_enter_the_price_for_the_home_service_mode" translatable="false">Tafadhali ingiza bei kwa hali ya huduma ya nyumbani.</string>
+    <string name="please_select_a_service_model" translatable="false">Tafadhali Chagua Mfano wa Huduma.</string>
+    <string name="please_select_the_category" translatable="false">Tafadhali Chagua Kategoria.</string>
+    <string name="please_select_at_one_image" translatable="false">Tafadhali Chagua angalau picha moja.</string>
+    <string name="images_must_be_less_than_five" translatable="false">Picha zinapaswa kuwa tano au chini ya tano.</string>
+    <string name="please_select_sub_category" translatable="false">Tafadhali chagua kategoria ndogo.</string>
+    <string name="select_sub_category" translatable="false">Chagua Kategoria Ndogo</string>
+    <string name="select_session_should_not_be_empty_for_the_center_service_mode" translatable="false">Kipindi hakipaswi kuwa tupu kwa hali ya huduma ya kituoni</string>
+    <string name="select_session_should_not_be_empty_for_the_home_service_mode" translatable="false">Kipindi hakipaswi kuwa tupu kwa hali ya huduma ya nyumbani</string>
+    <string name="details" translatable="false">Maelezo</string>
+    <string name="_1_km" translatable="false">1 km</string>
+    <string name="away" translatable="false">mbali</string>
+    <string name="prateek_mehta" translatable="false">Prateek Mehta</string>
+    <string name="media" translatable="false">Vyombo vya Habari</string>
+    <string name="_1499_2999" translatable="false">1499 - 2999</string>
+    <string name="book_now" translatable="false">Weka Booking Sasa</string>
+    <string name="my_booking" translatable="false">Booking Zangu</string>
+    <string name="booking_id" translatable="false">ID ya Booking</string>
+    <string name="booking_id_num" translatable="false">#262638</string>
+    <string name="by_prateek_mehta" translatable="false">na Prateek Mehta</string>
+    <string name="tuesday_21_oct_11_00_am" translatable="false">Jumanne, 21 Okt, 11:00 AM</string>
+    <string name="complete_profile" translatable="false">Kamilisha Profaili</string>
+    <string name="enter_your_information_below" translatable="false">Ingiza taarifa zako hapa chini</string>
+    <string name="edit_service" translatable="false">Hariri Huduma</string>
+    <string name="message" translatable="false">Ujumbe</string>
+    <string name="upcoming" translatable="false">Zijazo</string>
+    <string name="completed" translatable="false">Imekamilika</string>
+    <string name="cancelled" translatable="false">Imeghairiwa</string>
+    <string name="_1799" translatable="false">1799</string>
+    <string name="_1499" translatable="false">1499</string>
+    <string name="reschedule" translatable="false">Panga Upya</string>
+    <string name="cancel" translatable="false">Ghairi</string>
+    <string name="ok" translatable="false">Sawa</string>
+    <string name="rate_us" translatable="false">Tupa Kiwango</string>
+    <string name="date_time" translatable="false"><![CDATA[Tarehe & Saa]]></string>
+    <string name="payment_info" translatable="false">Taarifa za Malipo</string>
+    <string name="subtotal" translatable="false">Jumla Ndogo</string>
+    <string name="gst_18" translatable="false">GST (18%)</string>
+    <string name="total" translatable="false">Jumla</string>
+    <string name="personal_document" translatable="false">Hati Binafsi</string>
+    <string name="business_document" translatable="false">Hati ya Biashara</string>
+    <string name="_25" translatable="false">25</string>
+    <string name="_1524" translatable="false">1524</string>
+    <string name="booking_details" translatable="false">Maelezo ya Booking</string>
+    <string name="location" translatable="false">Mahali</string>
+    <string name="a_199_sector_63_noida" translatable="false">A-199, Sektari 63, Noida</string>
+    <string name="mark_as_completed" translatable="false">Onyesha kama Imekamilika</string>
+    <string name="ac_repair" translatable="false">Matengenezo ya AC</string>
+    <string name="review" translatable="false">Mapitio</string>
+    <string name="give_a_feedback" translatable="false">Toa maoni...</string>
+    <string name="do_this_later" translatable="false">Fanya Hili Baadaye</string>
+    <string name="submit" translatable="false">Wasilisha</string>
+    <string name="today" translatable="false">Leo</string>
+    <string name="hello_abhishek_how_are_you" translatable="false">Habari Abhishek, Uko vipi?</string>
+    <string name="saad_rahman" translatable="false">Saad Rahman</string>
+    <string name="no_chats_found" translatable="false">Hakuna Mazungumzo Yaliyopatikana!</string>
+    <string name="start_new_chat" translatable="false">Anza mazungumzo mapya</string>
+    <string name="amount_paid" translatable="false">Kiasi Kilicholipwa</string>
+    <string name="book_again" translatable="false">Weka Booking Tena</string>
+    <string name="_1420" translatable="false">1420</string>
+    <string name="payment_mode" translatable="false">Njia ya Malipo</string>
+    <string name="reason_for_cancellation" translatable="false">Sababu ya kughairi</string>
+    <string name="provider_is_not_available_at_this_time" translatable="false">Mtoa huduma hayupo wakati huu.</string>
+    <string name="credit_card" translatable="false">Kadi ya Mkopo</string>
+    <string name="refund_status" translatable="false">Hali ya Marejesho</string>
+    <string name="refund_initiated_you_will_receive_your_n_amount_in_48_hours" translatable="false">Marejesho yameanzishwa. Utapokea kiasi chako ndani ya saa 48.</string>
+    <string name="save" translatable="false">Hifadhi</string>
+    <string name="a_192_sector_44_noida" translatable="false">A-192, Sektari 44, Noida</string>
+    <string name="save_this_address_for_future_services" translatable="false">Hifadhi anwani hii kwa huduma za baadaye.</string>
+    <string name="booking_summary" translatable="false">Muhtasari wa Booking</string>
+    <string name="change" translatable="false">Badilisha</string>
+    <string name="june_2023" translatable="false">Juni 2023</string>
+    <string name="_4_5" translatable="false">4.5</string>
+    <string name="proceed" translatable="false">Endelea</string>
+    <string name="add_address" translatable="false">Ongeza Anwani</string>
+    <string name="days" translatable="false">Siku</string>
+    <string name="_16" translatable="false">16</string>
+    <string name="time" translatable="false">Wakati</string>
+    <string name="alert" translatable="false">Tahadhari</string>
+
+    <string-array name="select_category">
+        <item>Chagua Kategoria</item>
+        <item>Fedha</item>
+        <item>Elektroniki</item>
+        <item>Fiti</item>
+    </string-array>
+
+    <string-array name="select_sub_category">
+        <item>Chagua Kategoria Ndogo</item>
+        <item>Kipengee 1</item>
+        <item>Kipengee 2</item>
+        <item>Kipengee 3</item>
+        <item>Kipengee 4</item>
+    </string-array>
+
+    <string name="prompt_email" translatable="false">Barua Pepe</string>
+    <string name="prompt_password" translatable="false">Nywila</string>
+    <string name="action_sign_in" translatable="false">Ingia au jisajili</string>
+    <string name="action_sign_in_short" translatable="false">Ingia</string>
+    <string name="welcome" translatable="false">Karibu!</string>
+    <string name="invalid_username" translatable="false">Si jina la mtumiaji sahihi</string>
+    <string name="invalid_password" translatable="false">Nywila lazima iwe zaidi ya herufi 5</string>
+    <string name="login_failed" translatable="false">Kuingia umeshindikana</string>
+    <string name="if_cancellation_done_after_24_hours_of_booking_date_you_will_get_refund" translatable="false">Ikiwa kughairi kunafanywa baada ya saa 24 za tarehe ya booking, utapata marejesho.</string>
+    <string name="service_provider_is_not_available_and_has_requested_to_cancel" translatable="false">Mtoa huduma hayupo na ameomba kughairi</string>
+    <string name="i_found_this_service_at_a_cheaper_price" translatable="false">Nimepata huduma hii kwa bei nafuu zaidi</string>
+    <string name="i_don_t_need_this_service_now" translatable="false">Siihitaji huduma hii sasa</string>
+    <string name="i_am_unavailable_at_the_scheduled_time" translatable="false">Sipo wakati uliopangwa</string>
+    <string name="_262638" translatable="false">#262638</string>
+    <string name="your_booking_has_been_cancelled" translatable="false">Booking yako imeghairiwa.</string>
+    <string name="please_track_status_of_refund_under_my_bookings_cancelled" translatable="false">Tafadhali fuatilia hali ya marejesho chini ya \'Booking Zangu->Imeghairiwa</string>
+    <string name="go_to_my_bookings" translatable="false">Nenda kwenye Booking Zangu</string>
+    <string name="payment" translatable="false">Malipo</string>
+    <string name="service_details" translatable="false">Maelezo ya Huduma</string>
+    <string name="_21_jun_2023_11_00am" translatable="false">21 Juni 2023, 11:00 AM</string>
+    <string name="abhishek_mehra_a_192_sector_44_noida" translatable="false">Abhishek Mehra | A-192, Sektari-44, Noida</string>
+    <string name="apply_coupon" translatable="false">Tumia Kuponi</string>
+    <string name="tax" translatable="false">Kodi</string>
+    <string name="payable_amount" translatable="false">Kiasi Kinacholipwa</string>
+    <string name="pay_now" translatable="false">Lipa Sasa</string>
+    <string name="code" translatable="false">Msimbo</string>
+    <string name="applied" translatable="false">Imetumika</string>
+    <string name="coupons" translatable="false">Kuponi</string>
+    <string name="enter_promocode" translatable="false">Ingiza msimbo wa punguzo</string>
+    <string name="apply" translatable="false">Tumia</string>
+    <string name="available_coupons" translatable="false">Kuponi Zilizopo</string>
+    <string name="sbi100" translatable="false">SBI100</string>
+    <string name="state_bank_of_india" translatable="false">Benki ya Taifa ya India</string>
+    <string name="cashback_up_to_usd_10_on_the_item_total_above_1100" translatable="false">Pata Pesa Taslimu hadi Dola 10 kwa jumla ya bidhaa zaidi ya 1100</string>
+    <string name="saved_addresses" translatable="false">Anwani Zilizo Hifadhiwa</string>
+    <string name="a_192_sector_44_noida_201301" translatable="false">A-192, Sektari-44, Noida, 201301</string>
+    <string name="_91_989_123_4567" translatable="false">+91 989 123 4567</string>
+    <string name="add_new_address" translatable="false">Ongeza Anwani Mpya</string>
+    <string name="chat_requests" translatable="false">Maombi ya Mazungumzo</string>
+    <string name="no_chat_requests_found" translatable="false">Hakuna Maombi ya Mazungumzo Yaliyopatikana!</string>
+    <string name="see_your_chats" translatable="false">Tazama mazungumzo yako</string>
+    <string name="decline" translatable="false">Kataa</string>
+    <string name="kuldeep_srivastava" translatable="false">Kuldeep Srivastava</string>
+    <string name="connect" translatable="false">Unganisha</string>
+    <string name="call" translatable="false">Piga Simu</string>
+    <string name="whatsapp" translatable="false">WhatsApp</string>
+    <string name="share" translatable="false">Shiriki</string>
+    <string name="services_we_offer" translatable="false">Huduma Tunazotoa</string>
+    <string name="settings" translatable="false">Mipangilio</string>
+    <string name="switch_to_business" translatable="false">Badilisha hadi Biashara</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut" translatable="false">Lorem ipsum dolor sit amet,\nconsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</string>
+    <string name="push_notifications" translatable="false">Arifa za Kusukuma</string>
+    <string name="account_settings" translatable="false">Mipangilio ya Akaunti</string>
+    <string name="my_wallet" translatable="false">Pochi Yangu</string>
+    <string name="wallet" translatable="false">Pochi</string>
+    <string name="paymentGateway" translatable="false">Njia ya Malipo</string>
+    <string name="walletWithPg" translatable="false">Pochi na Njia ya Malipo</string>
+    <string name="about_us" translatable="false">Kuhusu Sisi</string>
+    <string name="distance" translatable="false">Umbali</string>
+    <string name="change_language" translatable="false">Badilisha Lugha</string>
+    <string name="faq_s" translatable="false">Maswali Yanayoulizwa Mara kwa Mara</string>
+    <string name="contact_us" translatable="false">Wasiliana Nasi</string>
+    <string name="data_privacy" translatable="false">Faragha ya Data</string>
+    <string name="terms_and_conditions" translatable="false">Sheria na Masharti</string>
+    <string name="delete_account" translatable="false">Futa Akaunti</string>
+    <string name="your_available_balance" translatable="false">Kiasi Kinachopatikana</string>
+    <string name="deactivate" translatable="false">Zima</string>
+    <string name="send_money" translatable="false">Tuma Pesa</string>
+    <string name="transactions" translatable="false">Miamala</string>
+    <string name="_200" translatable="false">₹200</string>
+    <string name="_123456789" translatable="false">123456789</string>
+    <string name="please_allow_location_permission_to_move_ahead" translatable="false">Tafadhali ruhusu ruhusa ya eneo ili kuendelea mbele.</string>
+    <string name="connections_requests" translatable="false">Maombi ya Muunganisho</string>
+    <string name="accept_or_decline_requests" translatable="false">Kubali au Kataa Maombi</string>
+    <string name="are_you_sure_you_want_to_logout" translatable="false">Je, una uhakika unataka kuondoka?</string>
+    <string name="no" translatable="false">Hapana</string>
+    <string name="yes" translatable="false">Ndiyo</string>
+    <string name="log_out_successfully" translatable="false">Umetoka kwa mafanikio!</string>
+    <string name="remove" translatable="false">Ondoa</string>
+    <string name="surya_mouly" translatable="false">Surya Mouly</string>
+    <string name="_100" translatable="false">100</string>
+    <string name="individual_business" translatable="false">Biashara ya Kibinafsi</string>
+    <string name="rating_raviews" translatable="false"><![CDATA[Ukadiriaji na Maoni]]></string>
+    <string name="report" translatable="false">Ripoti</string>
+    <string name="promocode_discount" translatable="false">Punguzo la Msimbo wa Punguzo</string>
+    <string name="sorry_this_time_slot_is_not_available" translatable="false">Samahani, nafasi hii ya muda haipatikani</string>
+    <string name="_10_30_am" translatable="false">10:30 AM</string>
+    <string name="ravi_bishnoi_sent_you_a_connections_request" translatable="false">amekutumia ombi la Muunganisho</string>
+    <string name="ravi_bishnoi" translatable="false">Ravi Bishnoi.</string>
+    <string name="your_available_balance_insufficient_balance" translatable="false">Salio lako linalopatikana</string>
+    <string name="insufficient_balance" translatable="false">(Salio Halitoshi)</string>
+    <string name="add_money" translatable="false">Ongeza Pesa</string>
+    <string name="pay_1548" translatable="false">Lipa ₹ 1548</string>
+    <string name="are_you_sure_you_want_to_conform" translatable="false">Je, una uhakika unataka \nkuhakikisha?</string>
+    <string name="calendar" translatable="false">Kalenda</string>
+    <string name="slot" translatable="false">Nafasi</string>
+    <string name="at_center" translatable="false">Kituoni</string>
+    <string name="aman" translatable="false">Aman</string>
+    <string name="set_location" translatable="false">Weka Eneo</string>
+    <string name="house_flat_office_no" translatable="false">Namba ya Nyumba/Ghorofa/Ofisi.*</string>
+    <string name="road_name_area_colony" translatable="false">Jina la Barabara/ Eneo / Mtaa*</string>
+    <string name="pincode" translatable="false">Msimbo wa Posta*</string>
+    <string name="confirm_location" translatable="false">Thibitisha Eneo</string>
+    <string name="sold" translatable="false">Imeuzwa</string>
+    <string name="sold_small" translatable="false">imeuzwa</string>
+    <string name="bought" translatable="false">Imenunuliwa</string>
+    <string name="search_location" translatable="false">Tafuta Eneo</string>
+    <string name="location_is_not_avialable" translatable="false">Eneo halipatikani.</string>
+    <string name="request" translatable="false">Ombi</string>
+    <string name="atcenter" translatable="false">kituoni</string>
+    <string name="athome" translatable="false">nyumbani</string>
+    <string name="confirm" translatable="false">Thibitisha</string>
+    <string name="booking" translatable="false">Booking</string>
+    <string name="pay" translatable="false">Lipa ₹</string>
+    <string name="pending" translatable="false">Inasubiri</string>
+    <string name="paymeturl" translatable="false">paymetUrl</string>
+    <string name="cancel_booking" translatable="false">Ghairi Booking</string>
+    <string name="bookinglist" translatable="false">Orodha ya Booking</string>
+    <string name="booked_by" translatable="false">Imekodiwa na</string>
+    <string name="bought_small" translatable="false">imenunuliwa</string>
+    <string name="r" translatable="false"></string>
+    <string name="close_service" translatable="false">Funga Huduma</string>
+    <string name="start_date" translatable="false">Tarehe ya Kuanza</string>
+    <string name="end_date" translatable="false">Tarehe ya Kumaliza</string>
+    <string name="close" translatable="false">Funga</string>
+    <string name="start_service" translatable="false">Anza Huduma</string>
+    <string name="leave" translatable="false">Ondoka</string>
+    <string name="not_cancelable" translatable="false">Haiwezi Kughairiwa</string>
+    <string name="back_to_original_payment_source" translatable="false">Rudisha kwa chanzo cha malipo cha awali</string>
+    <string name="refund_in_wallet" translatable="false">Rejesho katika Pochi</string>
+    <string name="promocode" translatable="false">Msimbo wa Punguzo</string>
+    <string name="closeservice" translatable="false">fungaHuduma</string>
+    <string name="before_date_text" translatable="false">Je, una uhakika unataka kufunga huduma? Ukifunga huduma, booking zote za</string>
+    <string name="to" translatable="false">hadi</string>
+    <string name="after_date_text" translatable="false">zitaghairiwa kiotomatiki</string>
+    <string name="image" translatable="false">Picha</string>
+    <string name="videos" translatable="false">Video</string>
+    <string name="servicedetails" translatable="false">Maelezo ya Huduma</string>
+    <string name="openmedia" translatable="false">funguaMedia</string>
+    <string name="back_press" translatable="false">RudiUkibonyeza</string>
+    <string name="goBack" translatable="false">rudi</string>
+    <string name="goForeword" translatable="false">endelea</string>
+    <string name="home_fr" translatable="false">Nyumbani_FR</string>
+    <string name="onlinefr" translatable="false">MtandaoniFR</string>
+    <string name="back" translatable="false">Rudi</string>
+    <string name="provider_profile" translatable="false">wasifu_wa_mtoa_huduma</string>
+    <string name="profile_fr" translatable="false">wasifu_Fr</string>
+    <string name="add_video" translatable="false">+ Ongeza Video</string>
+    <string name="logout" translatable="false">Ondoka</string>
+    <string name="join_call" translatable="false">jiungeSimu</string>
+    <string name="leave_call" translatable="false">ondokaSimu</string>
+    <string name="mute_call" translatable="false">nyamazishaSimu</string>
+    <string name="connected" translatable="false">Imeunganishwa</string>
+    <string name="callended" translatable="false">SimuImemalizika</string>
+    <string name="pop_up" translatable="false">kiboksi</string>
+    <string name="block" translatable="false">Zuia</string>
+    <string name="delete_chat" translatable="false">Futa Mazungumzo</string>
+    <string name="unblock" translatable="false">Ondoa Kizuizi</string>
+    <string name="container" translatable="false">kontena</string>
+    <string name="chatfragment" translatable="false">kipande_cha_mazungumzo</string>
+    <string name="open_gallery" translatable="false">funguaMaktaba</string>
+    <string name="images" translatable="false">Picha</string>
+    <string name="files" translatable="false">Faili</string>
+    <string name="media_size_check" translatable="false">Ukubwa wa Media Lazima Uwe Chini ya 100 MB</string>
+    <string name="weeks" translatable="false">wiki</string>
+    <string name="months" translatable="false">mwezi</string>
+    <string name="years" translatable="false">miaka</string>
+    <string name="min" translatable="false">dakika</string>
+    <string name="hour" translatable="false">saa</string>
+    <string name="minute" translatable="false">dakika</string>
+    <string name="pick_your_media_file" translatable="false">Chagua Faili Yako ya Media</string>
+    <string name="use_as_default" translatable="false">Tumia Kama Chaguo la Kawaida</string>
+    <string name="_default" translatable="false"> Chaguo la Kawaida</string>
+
+    <string-array name="select_issue">
+        <item>Chagua Tatizo</item>
+        <item>Kipengee 1</item>
+        <item>Kipengee 2</item>
+        <item>Kipengee 3</item>
+        <item>Kipengee 4</item>
+        <item>Kipengee 5</item>
+    </string-array>
+    <string name="add_your_bank_account" translatable="false">Ongeza Akaunti Yako ya Benki</string>
+    <string name="add_new_bank_account" translatable="false">Ongeza Akaunti Mpya ya Benki</string>
+    <string name="choose_bank_with_your_account" translatable="false">Chagua benki na akaunti yako.</string>
+    <string name="select_bank" translatable="false">Chagua Benki</string>
+    <string name="current_account" translatable="false">Akaunti ya sasa</string>
+    <string name="savings_account" translatable="false">Akaunti ya Akiba</string>
+    <string name="select_account_type" translatable="false">Chagua Aina ya Akaunti</string>
+    <string name="enter_document_type" translatable="false">Weka aina ya hati</string>
+    <string name="document_type" translatable="false">Aina ya Hati</string>
+    <string name="enter_document_number" translatable="false">Weka nambari ya hati</string>
+    <string name="document_number" translatable="false">Nambari ya Hati</string>
+    <string name="enter_account_name" translatable="false">Weka jina la akaunti</string>
+    <string name="account_name" translatable="false">Jina la Akaunti</string>
+    <string name="enter_account_number" translatable="false">Weka nambari ya akaunti</string>
+    <string name="account_number" translatable="false">Nambari ya Akaunti</string>
+    <string name="my_bank_account" translatable="false">Akaunti Yangu ya Benki</string>
+    <string name="connecting" translatable="false">Inaunganisha</string>
+    <string name="add_bank_account" translatable="false">Ongeza Akaunti ya Benki</string>
+    <string name="please_enter_account_number" translatable="false">Tafadhali Weka Nambari ya Akaunti</string>
+    <string name="please_enter_account_name" translatable="false">Tafadhali Weka Jina la Akaunti</string>
+    <string name="invalid_account_number" translatable="false">Nambari ya Akaunti Si Sahihi</string>
+    <string name="please_enter_document_number" translatable="false">Tafadhali Weka Nambari ya Hati</string>
+    <string name="please_enter_document_type" translatable="false">Tafadhali Weka Aina ya Hati</string>
+    <string name="cross" translatable="false">Piga Msalaba</string>
+    <string name="audio_call" translatable="false">Simu ya Sauti</string>
+    <string name="video_call" translatable="false">Simu ya Video</string>
+    <string name="connect_with_the_user_as" translatable="false">Unganisha na mtumiaji kama</string>
+    <string name="outgoing_video" translatable="false">Video Inayotoka</string>
+    <string name="outgoing_Audio" translatable="false">Sauti Inayotoka</string>
+    <string name="user_name" translatable="false">Jina la Mtumiaji</string>
+    <string name="are_you_sure_want_to_delete_this_account" translatable="false">Je, una uhakika unataka kufuta akaunti hii?</string>
+    <string name="filterdata" translatable="false">chujadata</string>
+    <string name="connection_remove_successfully" translatable="false">Muunganisho Umeondolewa kwa Mafanikio</string>
+    <string name="whatsApp" translatable="false">WhatsApp</string>
+    <string name="description" translatable="false">Maelezo</string>
+    <string name="issue_type" translatable="false">Aina ya Tatizo</string>
+    <string name="notification" translatable="false">Arifa</string>
+    <string name="addbank" translatable="false">ongezaBenki</string>
+    <string name="openbottomsheet" translatable="false">funguaKaratasiChini</string>
+    <string name="personal" translatable="false">binafsi</string>
+    <string name="dummy_string" translatable="false">Kamba Bandia</string>
+    <string name="service_we_offer">Huduma Tunazotoa</string>
+    <string name="wellness">Afya</string>
+    <string name="household">Kaya</string>
+    <string name="electronic">Kielektroniki</string>
+    <string name="videophoto">VideoPicha</string>
+    <string name="showbiz">Burudani</string>
+    <string name="real_estate">Mali Isiyohamishika</string>
+    <string name="spa_beauty">Spa-Urembo</string>
+    <string name="security">Usalama</string>
+    <string name="software">Programu</string>
+    <string name="legal">Kisheria</string>
+    <string name="pet_service">Huduma ya Wanyama</string>
+    <string name="travel">Safari</string>
+    <string name="other">Nyingine</string>
+    <string name="allow_gps_location">rukhusu eneo la huduma</string>
+    <string name="welcome_to_servivet_we_are_passionate_about_creating_meaningful_connections_and_facilitating_seamless_interactions_our_mission_is_to_provide_a_platform_that_fosters_community_encourages_collaboration_and_sparks_engaging_conversations_among_users">Karibu Servivet! Tunapenda kuunda mahusiano yenye maana na kuwezesha mwingiliano usio na mapungufu. Dhamira yetu ni kutoa jukwaa linalokuza jamii, kuhamasisha ushirikiano, na kuanzisha mazungumzo ya kuvutia kati ya watumiaji.</string>
+    <string name="title">Kichwa</string>
+    <string name="enter_title">Ingiza kichwa</string>
+    <string name="your_feedback_or_suggestion_here">Maoni au pendekezo lako hapa...</string>
+    <string name="_0_200">(0/200)</string>
+    <string name="email">Barua pepe</string>
+    <string name="we_are_keen_to_know_how_we_can_make_e_yugam_better_for_you_send_your_feedback_or_suggestion">Tuna hamu ya kujua jinsi tunavyoweza kuboresha E-Yugam kwako. Tuma maoni au pendekezo lako</string>
+    <string name="withdraw">Ondoa</string>
+    <string name="no_data_found">Hakuna data iliyopatikana!</string>
+    <string name="delhi">Delhi</string>
+
+</resources>

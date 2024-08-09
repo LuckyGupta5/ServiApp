@@ -54,7 +54,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/poppins_bold"
                     android:gravity="center_horizontal"
-                    android:text="Saved Addresses"
+                    android:text="@string/saved_addresses"
                     android:textColor="@color/black"
                     android:textSize="21dp" />
             </RelativeLayout>
@@ -85,7 +85,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:background="@drawable/no_data_icon" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -93,13 +92,10 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="No Data Found !"
+                android:text="@string/no_data_found"
                 android:textColor="@color/black"
                 android:textSize="18dp" />
-
         </RelativeLayout>
-
-
         <RelativeLayout
             android:id="@+id/bottomLayout"
             android:layout_width="match_parent"

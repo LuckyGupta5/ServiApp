@@ -37,8 +37,6 @@
     <string name="second_fragment_label" translatable="false">Ucezu Lwesibili</string>
     <string name="previous" translatable="false">Ngaphambilini</string>
     <string name="search_for_area_street_name_etc" translatable="false">Search for area, street name, etc...</string>
-
-
     <string name="lorem_ipsum" translatable="false">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
@@ -520,6 +518,16 @@
     <string name="travel">Ukuhamba</string>
     <string name="other">Okunye</string>
     <string name="allow_gps_location">Allow location Access</string>
+    <string name="welcome_to_servivet_we_are_passionate_about_creating_meaningful_connections_and_facilitating_seamless_interactions_our_mission_is_to_provide_a_platform_that_fosters_community_encourages_collaboration_and_sparks_engaging_conversations_among_users">Siyakwamukela e-Servivet! Sihlomula ngokudala izixhumanisi ezinemibandela nezokuxhumana eziqhubekayo. Umsebenzi wethu ukuhlinzeka ngenkundla ekhuthaza umphakathi, ekhuthaza ukubambisana, futhi iqhakambisa izingxoxo ezithakazelisayo phakathi kwezisebenzi.</string>
+    <string name="title">Isihloko</string>
+    <string name="enter_title">Faka isihloko</string>
+    <string name="your_feedback_or_suggestion_here">Impendulo yakho noma isiphakamiso lapha...</string>
+    <string name="_0_200">(0/200)</string>
+    <string name="email">I-imeyili</string>
+    <string name="we_are_keen_to_know_how_we_can_make_e_yugam_better_for_you_send_your_feedback_or_suggestion">Sithanda ukwazi ukuthi singayithuthukisa kanjani i-E-Yugam ukuze ibe ngcono kuwe. Thumela impendulo noma isiphakamiso sakho</string>
+    <string name="withdraw">Kukhanselwe</string>
+    <string name="no_data_found">Akukho data etholakele!</string>
+    <string name="delhi">Delhi</string>
 
    <!-- servi needs access to your location turn on location Services in your device Setting
 -->

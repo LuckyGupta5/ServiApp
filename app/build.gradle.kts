@@ -20,6 +20,12 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters.add("arm64-v8a")
+            abiFilters.add("x86")
+            abiFilters.add("armeabi")
+
+        }
     }
     buildFeatures {
         dataBinding = true
@@ -28,6 +34,14 @@ android {
 
     buildTypes {
         release {
+            isShrinkResources=true
+            isCrunchPngs=true
+            isMinifyEnabled = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+        debug {
+            isShrinkResources=true
+            isCrunchPngs=true
             isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -35,6 +49,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17

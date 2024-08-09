@@ -152,7 +152,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/no_dataIcon"
                     android:layout_centerHorizontal="true"
-                    android:text="No Data Found !"
+                    android:text="@string/no_data_found"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/poppins_medium"
                     android:textColor="@color/black"

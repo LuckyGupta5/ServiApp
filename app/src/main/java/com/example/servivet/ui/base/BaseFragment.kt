@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
@@ -20,15 +22,23 @@ abstract class BaseFragment<Binding : ViewBinding, ViewModel : BaseViewModel>(la
     Fragment(layoutID) {
     protected abstract val binding: Binding
     protected abstract val mViewModel: ViewModel
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //observeConnectionLiveData()
         CoroutineScope(Dispatchers.Main).launch {
                if (isAdded)
                 setupViews()
                setupViewModel()
-               setupObservers()
         }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        setupObservers()
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     open fun hasPermission(str: String?): Boolean {
@@ -48,18 +58,13 @@ abstract class BaseFragment<Binding : ViewBinding, ViewModel : BaseViewModel>(la
                     isNetworkAvailable(true)
                     LogUtil.e("Network", "Network Connection Established")
                 }
-
                 NetworkStatus.Unavailable -> {
                     LogUtil.e("Network", "No Internet")
                     isNetworkAvailable(false)
-
                 }
             }
         }
-
-
     }
-
     abstract fun isNetworkAvailable(boolean: Boolean)
     abstract fun setupViewModel()
     abstract fun setupViews()

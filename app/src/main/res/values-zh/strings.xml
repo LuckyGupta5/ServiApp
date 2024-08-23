@@ -475,5 +475,7 @@
     <string name="withdraw">撤回</string>
     <string name="no_data_found">未找到数据！</string>
     <string name="delhi">德里</string>
+    <string name="see_my_connection">查看我的连接</string>
+    <string name="no_connections_found">未找到任何连接！</string>
 
 </resources>

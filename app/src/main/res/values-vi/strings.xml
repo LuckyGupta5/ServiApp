@@ -475,5 +475,7 @@
     <string name="withdraw">Rút lại</string>
     <string name="no_data_found">Không tìm thấy dữ liệu!</string>
     <string name="delhi">Delhi</string>
+    <string name="see_my_connection">Xem kết nối của tôi</string>
+    <string name="no_connections_found">Không tìm thấy kết nối!</string>
 
 </resources>

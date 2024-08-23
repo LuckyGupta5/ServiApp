@@ -473,5 +473,7 @@
     <string name="withdraw">Annulla</string>
     <string name="no_data_found">Nessun dato trovato!</string>
     <string name="delhi">Delhi</string>
+    <string name="see_my_connection">Visualizza la mia connessione</string>
+    <string name="no_connections_found">Nessuna connessione trovata!</string>
 
 </resources>

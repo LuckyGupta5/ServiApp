@@ -63,7 +63,7 @@
                 android:onClick="@{()->clickEvents.invoke(0)}"
                 android:paddingHorizontal="45dp"
                 android:paddingVertical="10dp"
-                android:text="Add Bank Account"
+                android:text="@string/add_bank_account"
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 app:cornerRadius="12dp" />

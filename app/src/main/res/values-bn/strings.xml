@@ -478,5 +478,6 @@
     <string name="withdraw">পশ্চাদপসরণ</string>
     <string name="no_data_found">কোনও ডেটা পাওয়া যায়নি!</string>
     <string name="delhi">দিল্লী</string>
-
+    <string name="see_my_connection">আমার সংযোগ দেখুন</string>
+    <string name="no_connections_found">কোনো সংযোগ পাওয়া যায়নি!</string>
 </resources>

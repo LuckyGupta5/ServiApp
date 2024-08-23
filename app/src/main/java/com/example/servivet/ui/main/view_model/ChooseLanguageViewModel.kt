@@ -9,10 +9,8 @@ import androidx.navigation.findNavController
 import com.example.servivet.R
 import com.example.servivet.data.model.language_model.LanguageModel
 import com.example.servivet.ui.base.BaseViewModel
-import com.example.servivet.ui.main.activity.MainActivity
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.setLocal
-import io.agora.base.internal.video.EglBase10.Context
 
 class ChooseLanguageViewModel:BaseViewModel()
 {
@@ -23,10 +21,6 @@ class ChooseLanguageViewModel:BaseViewModel()
     var zulu=MutableLiveData(false)
     inner class ClickAction(var context:android.content.Context,var activity: Activity)
     {
-
-
-
-
         fun continueBtn(view: View){
             Log.d("TAG", "continueBtn:${saveLanguage.tag} ")
             if(saveLanguage.tag.isNotEmpty()||Session.language=="language"){
@@ -44,10 +38,6 @@ class ChooseLanguageViewModel:BaseViewModel()
                 view.findNavController().navigate(R.id.action_choosePreferredLanguageFragment_to_onboardingFragment)
             }
         }
-
-
-       
-
     }
 
 }

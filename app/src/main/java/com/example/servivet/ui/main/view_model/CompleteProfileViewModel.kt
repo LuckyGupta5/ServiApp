@@ -1,8 +1,10 @@
 package com.example.servivet.ui.main.view_model
 
 import android.content.Context
+import android.os.Build
 import android.util.Log
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -25,7 +27,7 @@ import okhttp3.RequestBody
 import retrofit2.HttpException
 import java.io.File
 import java.io.IOException
-
+@RequiresApi(Build.VERSION_CODES.O)
 class CompleteProfileViewModel:BaseViewModel() {
     var mobilenumber = ""
     var countrycode = ""
@@ -51,28 +53,22 @@ class CompleteProfileViewModel:BaseViewModel() {
             name.value = text.isNotEmpty()
             editProfileRequest.name = text.toString().trim().replace("\\s+".toRegex(), " ")
         }
-
         fun onEmailChange(text: CharSequence) {
             enailET.value = text.isNotEmpty()
             email = text.toString().trim()
             editProfileRequest.email = email
         }
-
-
         fun updateBtn(view: View) {
             if (validation(context)) {
                 hitEditProfileApi(context,requireActivity,finishing)
             }
         }
-
-
         private fun validation(context: Context): Boolean {
             return if (email!=null && !CommonUtils.emailValidator(email)) {
                 errorMessage.setValue(context.getString(R.string.please_enter_a_valid_e_mail))
                 false
             } else
                 true
-
         }
         fun onAboutTextChanged(text: CharSequence) {
             binding.wordCount.text = "(" + text.toString().length.toString() + "/150)"
@@ -80,10 +76,6 @@ class CompleteProfileViewModel:BaseViewModel() {
             abouttext=text.toString().trim()
             editProfileRequest.aboutus = text.toString().trim().replace("\\s+".toRegex(), " ")
         }
-
-
-
-
     }
     fun hitEditProfileApi(context: Context, requireActivity: FragmentActivity, finishing: Boolean) {
 

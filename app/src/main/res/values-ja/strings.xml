@@ -473,5 +473,7 @@
     <string name="withdraw">取り消す</string>
     <string name="no_data_found">データが見つかりませんでした！</string>
     <string name="delhi">デリー</string>
+    <string name="see_my_connection">自分の接続を表示</string>
+    <string name="no_connections_found">接続が見つかりませんでした！</string>
 
 </resources>

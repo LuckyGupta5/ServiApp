@@ -17,7 +17,7 @@ import java.text.DecimalFormat
 import kotlin.math.max
 import kotlin.math.min
 
-class MyServiceAdapter(
+class  MyServiceAdapter(
     var context: Context,
     var tabPosition: Int,
     var list: ArrayList<ServiceList>,
@@ -26,15 +26,12 @@ class MyServiceAdapter(
 {
     override val layoutId: Int = R.layout.my_service_recycler
     private var filteredList: List<ServiceList> = list.toList()
-
-
     override fun bind(binding: MyServiceRecyclerBinding, item: ServiceList?, position: Int) {
         binding.apply {
          //   binding.data=item
             binding.data=filteredList[position]
             binding.click=ClickAction(position)
         }
-
         if (tabPosition == 0) {
             binding.squareImage.visibility = View.GONE
             binding.circularImage.visibility=View.VISIBLE
@@ -42,7 +39,6 @@ class MyServiceAdapter(
             binding.squareImage.visibility = View.VISIBLE
             binding.circularImage.visibility=View.GONE
         }
-
         if(isBook){
             binding.idBookNow.isVisible = true
         }else{
@@ -57,38 +53,27 @@ class MyServiceAdapter(
         val formatter = DecimalFormat("#,###,###")
         return formatter.format(number)
     }
-
-
     fun roundTheNumber(numInDouble: Double): String {
         return "%2f.".format(numInDouble)
     }
-
-
     override fun getItemCount(): Int {
         return filteredList.size
     }
-
-
     fun updateList(list: ArrayList<ServiceList>) {
         val start = if (this.list.size > 0) this.list.size else 0
         this.list.addAll(list)
         notifyItemRangeInserted(start, this.list.size)
     }
-
     @SuppressLint("NotifyDataSetChanged")
     fun filter(text: String) {
         filteredList = if (text.isEmpty()) {
             list
         } else {
             list.filter { it.serviceName?.contains(text, ignoreCase = true)!!}
-
         }
-
        // onItemClick(context.getString(R.string.filterdata), filteredList.size.toString())
         notifyDataSetChanged()
     }
-
-
     inner class ClickAction(var position: Int) {
         fun viewProfile(view: View){
              var bundle= Bundle()

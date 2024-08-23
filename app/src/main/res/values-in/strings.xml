@@ -475,5 +475,7 @@
     <string name="withdraw">Tarik</string>
     <string name="no_data_found">Data Tidak Ditemukan!</string>
     <string name="delhi">Delhi</string>
+    <string name="see_my_connection">Lihat Koneksi Saya</string>
+    <string name="no_connections_found">Tidak Ada Koneksi Ditemukan!</string>
 
 </resources>

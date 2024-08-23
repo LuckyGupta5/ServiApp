@@ -528,6 +528,8 @@
     <string name="withdraw">Kukhanselwe</string>
     <string name="no_data_found">Akukho data etholakele!</string>
     <string name="delhi">Delhi</string>
+    <string name="see_my_connection">Buka Xhumana Kwami</string>
+    <string name="no_connections_found">Awekho Xhumana Atholakale!</string>
 
    <!-- servi needs access to your location turn on location Services in your device Setting
 -->

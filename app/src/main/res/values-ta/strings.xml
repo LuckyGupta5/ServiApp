@@ -474,5 +474,7 @@
     <string name="withdraw">தீர்வுசெய்</string>
     <string name="no_data_found">தரவுகள் எதுவும் கிடைக்கவில்லை!</string>
     <string name="delhi">டெல்லி</string>
+    <string name="see_my_connection">என் இணைப்புகளைப் பார்க்கவும்</string>
+    <string name="no_connections_found">இணைப்புகள் எதுவும் காணப்படவில்லை!</string>
 
 </resources>

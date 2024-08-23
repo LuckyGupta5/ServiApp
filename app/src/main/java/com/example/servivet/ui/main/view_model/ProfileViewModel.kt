@@ -6,18 +6,11 @@ import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
 import android.util.Log
-import android.view.Gravity
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
-import androidx.core.app.ActivityCompat.startActivityForResult
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import com.example.servivet.R
@@ -37,7 +30,7 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 
-
+@RequiresApi(Build.VERSION_CODES.O)
 class ProfileViewModel : BaseViewModel() {
     var errorMessage = SingleLiveEvent<String>()
     var dialog: Dialog? = null
@@ -47,15 +40,22 @@ class ProfileViewModel : BaseViewModel() {
     inner class ClickAction(var requireActivity: Activity, var context: Context) {
         fun goEditProfile(view: View) {
             if (Session.type == "1")
-                view.findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment2)
+                view.findNavController()
+                    .navigate(R.id.action_profileFragment_to_editProfileFragment2)
             else {
-                view.findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToMyServiceFragment(context.getString(R.string.profile_fr),""))
+                view.findNavController().navigate(
+                    ProfileFragmentDirections.actionProfileFragmentToMyServiceFragment(
+                        context.getString(
+                            R.string.profile_fr
+                        ),
+                        ""
+                    )
+                )
             }
         }
 
         fun goEditProfile2(view: View) {
             view.findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment2)
-
         }
 
         fun goMyConnection(view: View) {
@@ -67,7 +67,11 @@ class ProfileViewModel : BaseViewModel() {
         }
 
         fun logOut(view: View) {
-            CommonUtils.alert(context, context.getString(R.string.are_you_sure_you_want_to_logout), requireActivity)
+            CommonUtils.alert(
+                context,
+                context.getString(R.string.are_you_sure_you_want_to_logout),
+                requireActivity
+            )
 //            logoutAlert(context,requireActivity)
         }
     }
@@ -84,7 +88,6 @@ class ProfileViewModel : BaseViewModel() {
         ) { dialog, _ ->
             alert.dismiss()
         }
-
         alert.setButton(
             DialogInterface.BUTTON_POSITIVE,
             context.getString(R.string.yes)
@@ -98,15 +101,19 @@ class ProfileViewModel : BaseViewModel() {
                 context.getString(R.string.log_out_successfully), Toast.LENGTH_SHORT
             ).show()
         }
-
         alert.show()
     }
 
-
-    fun hitUserProfileApi(userId: String, isMyProfile: Int, requireContext: Context, requireActivity: Activity, finishing: Boolean) {
+    fun hitUserProfileApi(
+        userId: String,
+        isMyProfile: Int,
+        requireContext: Context,
+        requireActivity: Activity,
+        finishing: Boolean
+    ) {
         userProfileRequest["userId"] = userId
         userProfileRequest["isMyProfile"] = isMyProfile.toString()
-        Log.e("TAG", "hitUserProfileApi:${Gson().toJson(userProfileRequest)}", )
+        Log.e("TAG", "hitUserProfileApi:${Gson().toJson(userProfileRequest)}")
         val mainRepository = MainRepository(RetrofitBuilder.apiService)
         viewModelScope.launch {
             userProfileResponse.postValue(Resource.loading(null))

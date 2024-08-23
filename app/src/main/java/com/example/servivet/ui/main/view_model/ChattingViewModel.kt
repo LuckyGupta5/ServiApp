@@ -21,14 +21,10 @@ import java.io.IOException
 class ChattingViewModel : BaseViewModel() {
 
     val messageText = MutableLiveData("")
-
     private val uploadDocumentLiveData = SingleLiveEvent<Resource<ChatMediaResponse>>()
-
-
     fun getDocumentData(): LiveData<Resource<ChatMediaResponse>> {
         return uploadDocumentLiveData
     }
-
     fun getRequest(file: String) {
         val builder = MultipartBody.Builder()
         builder.setType(MultipartBody.FORM)
@@ -36,9 +32,7 @@ class ChattingViewModel : BaseViewModel() {
         builder.addFormDataPart("chatImage", path.name, path.asRequestBody("multipart/form-data".toMediaTypeOrNull()))
         val requestBody = builder.build()
         hitUploadDocumentApi(requestBody)
-
     }
-
     private fun hitUploadDocumentApi(requestBody: MultipartBody) {
         val mainRepository = MainRepository(RetrofitBuilder.apiService)
         viewModelScope.launch {
@@ -66,6 +60,4 @@ class ChattingViewModel : BaseViewModel() {
             }
         }
     }
-
-
 }

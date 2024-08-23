@@ -473,5 +473,7 @@
     <string name="withdraw">Terugtrekken</string>
     <string name="no_data_found">Geen gegevens gevonden!</string>
     <string name="delhi">Delhi</string>
+    <string name="see_my_connection">Bekijk mijn verbinding</string>
+    <string name="no_connections_found">Geen verbindingen gevonden!</string>
 
 </resources>

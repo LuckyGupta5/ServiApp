@@ -476,5 +476,7 @@
     <string name="withdraw">माघार घ्या</string>
     <string name="no_data_found">कोणताही डेटा सापडला नाही!</string>
     <string name="delhi">दिल्ली</string>
+    <string name="see_my_connection">माझा कनेक्शन पाहा</string>
+    <string name="no_connections_found">कोणतेही कनेक्शन सापडले नाही!</string>
 
 </resources>

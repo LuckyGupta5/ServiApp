@@ -1,6 +1,8 @@
 package com.example.servivet.ui.main.adapter.bank_module
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -21,39 +23,30 @@ import com.example.servivet.utils.StatusCode
 import com.example.servivet.utils.addCreditCardNumberFormattingTextWatcher
 import com.google.gson.Gson
 
-
+@RequiresApi(Build.VERSION_CODES.O)
 class AddBankAccountFragment :
     BaseFragment<FragmentAddBankAccountBinding, BankListViewModel>(R.layout.fragment_add_bank_account) {
     override val binding: FragmentAddBankAccountBinding by viewBinding(FragmentAddBankAccountBinding::bind)
     override val mViewModel: BankListViewModel by viewModels()
     private var bankList = ArrayList<Bank>()
-
     override fun isNetworkAvailable(boolean: Boolean) {
     }
-
     override fun setupViewModel() {
         binding.apply {
             binding.lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
             clickEvents = ::onClick
-
         }
     }
-
-
     override fun setupViews() {
         initToolbar()
         getBottomSheetCallBack()
-
     }
-
     private fun initToolbar() {
         binding.idToolbar.idBack.setOnClickListener { findNavController().popBackStack() }
         binding.idToolbar.idTitle.text = getString(R.string.add_bank_account)
         binding.idToolbar.idSearch.isVisible = false
     }
-
-
     private fun onClick(type: Int) {
         when (type) {
             0 -> {
@@ -111,7 +104,6 @@ class AddBankAccountFragment :
                 }
             }
         }
-
         /*validation observer */
         mViewModel.errorMessage.observe(viewLifecycleOwner) {
             when (getString(it)) {
@@ -130,8 +122,6 @@ class AddBankAccountFragment :
                 }
             }
         }
-
-
         /*createBank Observer*/
 
         mViewModel.getLiveData().observe(viewLifecycleOwner) {
@@ -155,11 +145,9 @@ class AddBankAccountFragment :
 
                     }
                 }
-
                 Status.LOADING -> {
                     ProcessDialog.startDialog(requireContext())
                 }
-
                 Status.ERROR -> {
                     ProcessDialog.dismissDialog()
 
@@ -179,10 +167,7 @@ class AddBankAccountFragment :
                 }
             }
         }
-
-
     }
-
     private fun getBottomSheetCallBack() {
         findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>("list")
             ?.observe(viewLifecycleOwner) {
@@ -192,8 +177,6 @@ class AddBankAccountFragment :
                     binding.viewModel = mViewModel
                 }
             }
-
-
         findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>("acc_number")
             ?.observe(viewLifecycleOwner) {
                 binding.idSaveBtn.isEnabled = true
@@ -206,6 +189,4 @@ class AddBankAccountFragment :
                 }
             }
     }
-
-
 }

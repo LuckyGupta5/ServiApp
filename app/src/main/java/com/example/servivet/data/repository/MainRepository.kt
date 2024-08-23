@@ -34,20 +34,16 @@ class MainRepository(private val apiService: ApiService) {
 
     suspend fun homeApi() = apiService.home()
     suspend fun currentApi() = apiService.current()
-
     suspend fun addServicesApi(addServicesRequest: MultipartBody) =
         apiService.addServices(addServicesRequest)
-
     suspend fun uploadChatFileApi(request: MultipartBody) = apiService.uploadChatFileApi(request)
-
     suspend fun editServicesApi(addServicesRequest: MultipartBody) =
         apiService.editServices(addServicesRequest)
-
-    suspend fun userProfile(request: HashMap<String, String>) =
-        apiService.userProfile(request)
+    suspend fun userProfile(request: HashMap<String, String>) = apiService.userProfile(request)
 
     suspend fun editProfile(editProfileRequest: MultipartBody) =
         apiService.editProfile(editProfileRequest)
+
 
     suspend fun serviceListApi(serviceListRequest: ServiceListRequest) =
         apiService.serviceList(serviceListRequest)
@@ -127,10 +123,12 @@ class MainRepository(private val apiService: ApiService) {
     suspend fun faqTypeListApi() = apiService.faqTypeList()
     suspend fun deleteAccountApi() = apiService.deleteAccount()
     suspend fun changeRoleApi(request: ChangeRoleRequest) = apiService.changeRoleApi(request)
-    suspend fun notificationListing(request: HashMap<String, String>) = apiService.notificationListing(request)
+    suspend fun notificationListing(request: HashMap<String, String>) =
+        apiService.notificationListing(request)
 
     suspend fun bankListApi(request: HashMap<String, String>) = apiService.bankListApi(request)
     suspend fun createBankListApi() = apiService.createBankListApi()
     suspend fun createBankApi(request: CommonRequest) = apiService.createBankApi(request)
-    suspend fun removeBankAccount(request: RemoveBankAccountRequest) = apiService.removeBankAccount(request)
+    suspend fun removeBankAccount(request: RemoveBankAccountRequest) =
+        apiService.removeBankAccount(request)
 }

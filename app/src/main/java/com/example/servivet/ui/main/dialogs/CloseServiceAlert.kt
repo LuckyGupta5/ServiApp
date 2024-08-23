@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,41 +26,44 @@ import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
 import com.google.gson.Gson
+
 class CloseServiceAlert : DialogFragment() {
-    private var saveLanguage: String=""
     private lateinit var binding: FragmentCloseServiceAlertBinding
     val mViewModel: CloseServiceViewModel by viewModels()
-    val logoutModel: SettingsViewModel by viewModels()
+    private val logoutModel: SettingsViewModel by viewModels()
     private val closingDates: CloseServiceAlertArgs by navArgs()
     private lateinit var sendDate: SendDate
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentCloseServiceAlertBinding.inflate(inflater, container, false)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        //  initCloseServiceModel()
         getDates()
         initLogoutModel()
         binding.clickEvent = ::onClick
         return binding.root
     }
+
     private fun getDates() {
         when (closingDates.from) {
             "closeService" /*getString(R.string.closeservice)*/ -> {
-                Log.d("TAG", "getDates:  ${closingDates.from}   and ${closingDates.data} and closeService is $ ")
+                Log.d(
+                    "TAG",
+                    "getDates:  ${closingDates.from}   and ${closingDates.data} and closeService is $ "
+                )
                 sendDate = Gson().fromJson(closingDates.data, SendDate::class.java)
                 binding.dates = sendDate
             }
-           "logOut" /*getString(R.string.logout)*/ -> {
+
+            "logOut" /*getString(R.string.logout)*/ -> {
                 binding.from = closingDates.from
             }
         }
-
     }
 
-    private fun onClick(type: String)
-    {
+    private fun onClick(type: String) {
         Log.d("TAG", "onClick:1 $type")
         when (type) {
             getString(R.string.cancel) -> {
@@ -70,8 +72,7 @@ class CloseServiceAlert : DialogFragment() {
             }
 
             getString(R.string.close_service) -> {
-                when (closingDates.from)
-                {
+                when (closingDates.from) {
                     getString(R.string.closeservice) -> {
                         findNavController().previousBackStackEntry?.savedStateHandle?.set(
                             getString(R.string.close_service),
@@ -79,7 +80,8 @@ class CloseServiceAlert : DialogFragment() {
                         )
                         dismiss()
                     }
-                  "logOut" /* getString(R.string.logout)*/ -> {
+
+                    "logOut" /* getString(R.string.logout)*/ -> {
                         logoutModel.hitLogoutApi()
                     }
                 }
@@ -120,7 +122,6 @@ class CloseServiceAlert : DialogFragment() {
 
                     it.message?.let {
                         showSnackBar(it)
-
                     }
                 }
 
@@ -145,12 +146,12 @@ class CloseServiceAlert : DialogFragment() {
                     ProcessDialog.dismissDialog()
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                           // saveLanguage=Session.language
+                            // saveLanguage=Session.language
                             Session.logout()
                             SplashViewModel.isLogout = false
                             Session.isLogin = false
                             Session.saveIsLogin(false)
-                           // Session.saveIsLanguage(saveLanguage)
+                            // Session.saveIsLanguage(saveLanguage)
                             Log.d("TAG", "initLogoutModel: ${Session.language} ")
                             var intent = Intent(context, MainActivity::class.java)
                             requireActivity().startActivity(intent)

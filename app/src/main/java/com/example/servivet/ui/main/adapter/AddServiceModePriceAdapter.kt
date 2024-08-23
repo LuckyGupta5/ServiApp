@@ -87,7 +87,6 @@ class AddServiceModePriceAdapter(var context: Context, var list: ArrayList<Custo
             }
         }
     }
-
     private fun setDaysAdapter(serviceModePriceLayoutBinding: ServiceModePriceLayoutBinding, item: CustomeServiceModeData?, position: Int, showDayList: ArrayList<String>) {
         serviceModePriceLayoutBinding.daysRecycler.adapter =
             DaysAdapter(item?.daysList, context, this,showDayList) {
@@ -98,7 +97,6 @@ class AddServiceModePriceAdapter(var context: Context, var list: ArrayList<Custo
                 setSessionAdapter(serviceModePriceLayoutBinding, it.slotList, item)
             }
     }
-
     private fun setRequestParameter(data: CustomeServiceModeData?, newDayslist: ArrayList<AddServiceFragment.Days>) {
         when (data?.type) {
             Constants.AT_HOME -> {

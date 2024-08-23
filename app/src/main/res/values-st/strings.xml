@@ -466,4 +466,7 @@
     <string name="withdraw">Hotsosa</string>
     <string name="no_data_found">Ha ho na data e fumanoeng!</string>
     <string name="delhi">Delhi</string>
+    <string name="see_my_connection">Sheba Konektšene ea Ka</string>
+    <string name="no_connections_found">Ha ho na likonektšene tse fumanoang!</string>
+
 </resources>

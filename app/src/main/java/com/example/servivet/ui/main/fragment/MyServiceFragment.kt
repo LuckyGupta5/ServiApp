@@ -3,12 +3,14 @@ package com.example.servivet.ui.main.fragment
 import PaginationScrollListener
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -32,8 +34,7 @@ import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
-
-
+@RequiresApi(Build.VERSION_CODES.O)
 @Suppress("DEPRECATION")
 class MyServiceFragment :
     BaseFragment<FragmentMyServiceBinding, MyServiceViewModel>(R.layout.fragment_my_service),
@@ -216,6 +217,8 @@ class MyServiceFragment :
             binding.noDataLayout.visibility = View.VISIBLE
         }
     }
+
+
 
 
     override fun setupObservers() {

@@ -465,5 +465,7 @@
     <string name="withdraw">Retirar</string>
     <string name="no_data_found">Nenhum dado encontrado!</string>
     <string name="delhi">Delhi</string>
+    <string name="see_my_connection">Ver minha conexão</string>
+    <string name="no_connections_found">Nenhuma conexão encontrada!</string>
 
 </resources>

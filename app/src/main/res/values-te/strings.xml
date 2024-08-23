@@ -475,5 +475,7 @@ x<string name="add_service_" translatable="false">సేవ జోడించ�
     <string name="withdraw">ఎత్తివేయండి</string>
     <string name="no_data_found">డేటా లభ్యం కాలేదు!</string>
     <string name="delhi">ఢిల్లీ</string>
+    <string name="see_my_connection">నా కనెక్షన్ చూడండి</string>
+    <string name="no_connections_found">ఏ కనెక్షన్లు కనుగొనబడలేదు!</string>
 
 </resources>

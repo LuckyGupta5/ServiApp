@@ -476,5 +476,7 @@
     <string name="withdraw">واپس لیں</string>
     <string name="no_data_found">کوئی ڈیٹا دستیاب نہیں!</string>
     <string name="delhi">دہلی</string>
+    <string name="see_my_connection">میری کنکشن دیکھیں</string>
+    <string name="no_connections_found">کوئی کنکشن نہیں ملا!</string>
 
 </resources>

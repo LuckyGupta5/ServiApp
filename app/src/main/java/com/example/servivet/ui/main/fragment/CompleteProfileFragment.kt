@@ -20,6 +20,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -41,7 +42,7 @@ import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
-
+@RequiresApi(Build.VERSION_CODES.O)
 class CompleteProfileFragment :
     BaseFragment<FragmentCompleteProfileBinding, CompleteProfileViewModel>(R.layout.fragment_complete_profile) {
     private var imagerequestcode: Int = 0
@@ -112,6 +113,7 @@ class CompleteProfileFragment :
         }
 
     }
+
 
 
     private fun selectImage() {

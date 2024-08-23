@@ -469,5 +469,7 @@
     <string name="withdraw">Ondoa</string>
     <string name="no_data_found">Hakuna data iliyopatikana!</string>
     <string name="delhi">Delhi</string>
+    <string name="see_my_connection">Angalia Muunganisho Wangu</string>
+    <string name="no_connections_found">Hakuna Muunganisho Uliopatikana!</string>
 
 </resources>

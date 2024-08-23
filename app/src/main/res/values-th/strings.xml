@@ -476,5 +476,7 @@
     <string name="withdraw">ถอน</string>
     <string name="no_data_found">ไม่พบข้อมูล!</string>
     <string name="delhi">เดลี</string>
+    <string name="see_my_connection">ดูการเชื่อมต่อของฉัน</string>
+    <string name="no_connections_found">ไม่พบการเชื่อมต่อ!</string>
 
 </resources>

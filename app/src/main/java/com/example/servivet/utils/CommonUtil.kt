@@ -14,6 +14,7 @@ import android.bluetooth.BluetoothProfile
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.res.Configuration
 import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.Typeface
@@ -74,7 +75,7 @@ import java.util.concurrent.TimeUnit
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-
+@RequiresApi(Build.VERSION_CODES.O)
 object CommonUtils {
 
     private lateinit var pickerForm: DatePickerDialog
@@ -177,7 +178,7 @@ object CommonUtils {
         dialog.show()
     }
 
-    fun     getPostalCodeByCoordinates(
+    fun getPostalCodeByCoordinates(
         placeSelectionListener: PlaceSelectionListener, lat: Double, lon: Double, context: Context
     ): String {
         val geocoder = Geocoder(context, Locale.getDefault())
@@ -247,9 +248,7 @@ object CommonUtils {
             daysInMonth.add(dateFormat.format(calender.time))
             calender.add(Calendar.DAY_OF_MONTH, 1)
         }
-
         return daysInMonth
-
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -258,22 +257,15 @@ object CommonUtils {
         var currentDate1: LocalDate = LocalDate.now()
         val dayOfMonth = currentDate1.dayOfMonth - 1
         var monthDaysCount = getDaysInCurrentMonth(monthCount)
-        var count = monthDaysCount
-
-
         if (monthCount > 0) {
-            // currentDate = LocalDate.now().minusDays(dayOfMonth.toLong())
             currentDate =
                 LocalDate.now().plusMonths(monthCount.toLong()).minusDays(dayOfMonth.toLong())
-
-            //  currentDate = LocalDate.now()
         } else {
             currentDate = LocalDate.now()
-            monthDaysCount = monthDaysCount - dayOfMonth
+            monthDaysCount -= dayOfMonth
         }
 
         val dates = arrayOfNulls<String>(monthDaysCount)
-
         for (i in 0..<monthDaysCount) {
             val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("EEE, yyyy-MM-dd")
             dates[i] = currentDate.format(formatter)
@@ -328,19 +320,20 @@ object CommonUtils {
 
     fun dayFromDate(input: String?): String? {
 //        Log.i("TAG", "dayFromDate: "+ input);
-        val inFormat = SimpleDateFormat("EEE, yyyy-MM-dd", Locale.ENGLISH)
+        val inFormat = SimpleDateFormat("EEE, yyyy-MM-dd", Locale.getDefault())
         var date: Date? = null
         try {
             date = inFormat.parse(input)
+            val dayFormat = SimpleDateFormat("EEE")
+            return dayFormat.format(date)
         } catch (e: ParseException) {
-            e.printStackTrace()
+            Log.d("TAG", "dayFromDate: ${e.message}")
+            return ""
         }
-        val dayFormat = SimpleDateFormat("EEE")
-        return dayFormat.format(date)
     }
 
     fun dateFromDate(input: String?): String? {
-        val inFormat = SimpleDateFormat("EEE, yyyy-MM-dd", Locale.ENGLISH)
+        val inFormat = SimpleDateFormat("EEE, yyyy-MM-dd", Locale.getDefault())
         var date: Date? = null
         try {
             date = inFormat.parse(input)
@@ -364,12 +357,12 @@ object CommonUtils {
     @RequiresApi(Build.VERSION_CODES.O)
     fun fullDayName(date: String?): String {
         val dateString = date
-        val formatter = DateTimeFormatter.ofPattern("EEE, yyyy-MM-dd", Locale.ENGLISH)
+        val formatter = DateTimeFormatter.ofPattern("EEE, yyyy-MM-dd", Locale.getDefault())
         val date = LocalDate.parse(dateString, formatter)
 
         val dayOfWeek = date.dayOfWeek.toString()
         val fullDayName =
-            dayOfWeek.substring(0, 1).toUpperCase() + dayOfWeek.substring(1).toLowerCase()
+            dayOfWeek.substring(0, 1).uppercase() + dayOfWeek.substring(1).lowercase()
 
         return fullDayName
     }
@@ -1053,6 +1046,7 @@ fun getCurrentTimeInFormat(): String {
     return dateFormat.format(Date())
 }
 
+
 fun convertDateTimeFormat(inputDateTime: String): String {
     // Define input and output date-time formatters
     val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a")
@@ -1227,7 +1221,7 @@ fun setSpannable(data1: String?, data2: String): Spannable {
 }
 
 
-fun checkMediaPermission(requireActivity: FragmentActivity):Boolean {
+fun checkMediaPermission(requireActivity: FragmentActivity): Boolean {
     val permission: Array<String?> =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             arrayOf(Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.CAMERA)
@@ -1250,6 +1244,7 @@ fun <A : Activity> Context.launchActivityWithBundle(activity: Class<A>, bundle: 
         startActivity(it)
     }
 }
+
 fun downloadFile(
     context: Context,
     URL: String?,
@@ -1269,8 +1264,6 @@ fun downloadFile(
         .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileNameExtension)
     downloadmanager.enqueue(request)
     //  Snackbar.make(requireContext, "Downloading File...", Snackbar.LENGTH_SHORT).show()
-
-
 
 
     //openPdfBottom(childFragmentManager,URL)
@@ -1342,18 +1335,31 @@ fun showDialog(context: Context, msg: String?, intent: Intent?) {
 }
 
 fun Activity.setLocal(languageName: String, types: Int) {
-//    Preferences.setStringPreference(this, LOCAL_LANGUAGE, languageName)
-//    UserPreference.datingPreferenceData
     val local = Locale(languageName)
-    val configration = resources.configuration
+    val configuration = resources.configuration
     val displayMatrix = resources.displayMetrics
-    configration.setLocale(local)
-    resources.updateConfiguration(configration, displayMatrix)
-   /* if (types == 2) {
-        startActivity(Intent(this, MainActivity::class.java))
-        finishAffinity()
-    }*/
+    configuration.setLocale(local)
+    resources.updateConfiguration(configuration, displayMatrix)
 }
+
+fun changeLanguageAndRestartActivity(context: Context, lang: String) {
+    val updatedContext = updateLocale(context, lang)
+    val intent = Intent(updatedContext, context::class.java)
+    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+    context.startActivity(intent)
+    (context as Activity).finish()
+}
+fun updateLocale(context: Context, lang: String): Context {
+    val locale = Locale(lang)
+    Locale.setDefault(locale)
+
+    val config = Configuration(context.resources.configuration)
+    config.setLocale(locale)
+    config.setLayoutDirection(locale)
+
+    return context.createConfigurationContext(config)
+}
+
 
 
 

@@ -1,8 +1,8 @@
 package com.example.servivet.ui.main.fragment.bank_module
 
-import android.util.Log
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
-import androidx.core.view.marginStart
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -43,7 +43,7 @@ class MyBankAccountFragment :
     private fun initToolbar() {
         binding.idToolbar.idBack.setOnClickListener { findNavController().popBackStack() }
         binding.idToolbar.idSearch.isVisible = false
-        binding.idToolbar.idTitle.textSize = 30.0f
+        binding.idToolbar.idTitle.textSize = 25.0f
         binding.idToolbar.idTitle.text= getString(R.string.my_bank_account)
     }
 
@@ -57,6 +57,7 @@ class MyBankAccountFragment :
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun setupObservers() {
         mViewModel.getBankListRequest()
 
@@ -140,19 +141,10 @@ class MyBankAccountFragment :
                 }
             }
         }
-
-
-
-
-
-
-
     }
-
     private fun initAdapter() {
          binding.adapter = AddedBankAccountAdapter(mViewModel.bankList, requireContext(),onItemClick)
     }
-
     private val onItemClick: (String, Int) -> Unit = { data, position ->
 
         when(position){
@@ -162,9 +154,7 @@ class MyBankAccountFragment :
                     mViewModel.getRemoveBankRequest(data)
                 }else{
                     mViewModel.getRemoveBankRequest(data)
-
                 }
-
             }
         }
     }

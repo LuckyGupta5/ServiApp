@@ -472,5 +472,6 @@
     <string name="withdraw">Відкликати</string>
     <string name="no_data_found">Дані не знайдено!</string>
     <string name="delhi">Делі</string>
-
+    <string name="see_my_connection">Переглянути моє з\'єднання</string>
+    <string name="no_connections_found">З\'єднання не знайдено!</string>
 </resources>

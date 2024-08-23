@@ -476,5 +476,7 @@
     <string name="withdraw">Отозвать</string>
     <string name="no_data_found">Данные не найдены!</string>
     <string name="delhi">Дели</string>
+    <string name="see_my_connection">Посмотреть моё соединение</string>
+    <string name="no_connections_found">Соединений не найдено!</string>
 
 </resources>

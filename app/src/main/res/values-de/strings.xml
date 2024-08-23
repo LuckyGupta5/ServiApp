@@ -481,5 +481,7 @@
     <string name="withdraw">Zurückziehen</string>
     <string name="no_data_found">Keine Daten gefunden!</string>
     <string name="delhi">Delhi</string>
+    <string name="see_my_connection">Meine Verbindung ansehen</string>
+    <string name="no_connections_found">Keine Verbindungen gefunden!</string>
 
 </resources>

@@ -4,8 +4,6 @@ package com.example.servivet.utils
 import com.example.servivet.data.model.current_api.response.CurrentUser
 import com.example.servivet.data.model.current_api.response.MasterData
 import com.example.servivet.data.model.home.response.HomeServiceCategory
-import com.example.servivet.data.model.language_model.LanguageModel
-import com.example.servivet.data.model.language_model.Savelanguage
 import com.example.servivet.data.model.location.LocationInfo
 import com.example.servivet.data.model.save_address.request.SaveAddressRequest
 import com.example.servivet.data.model.user_profile.response.UserProfile
@@ -45,12 +43,13 @@ object Session {
     var fcmToken = Hawk.get<String>(DEVICE_TOKEN, null)
     var notificationData = Hawk.get<String>(NOTIFICATION_DATA, null)
     var saveLocationInfo = Hawk.get<LocationInfo>(LOCATION_ADDRESS_INFO, null)
-    var language=Hawk.get<String>(LANGUAGE,null)
-    var position=Hawk.get<Int>(POSITION,-1)
-fun savePosition(position:Int){
-       Hawk.put(POSITION,position)
-       Session.position= position
-   }
+    var language = Hawk.get<String>(LANGUAGE, null)
+    var position = Hawk.get<Int>(POSITION, -1)
+    fun savePosition(position: Int) {
+        Hawk.put(POSITION, position)
+        Session.position = position
+    }
+
     fun saveToken(token: String) {
         Hawk.put(TOKEN, token)
         Session.token = token
@@ -77,17 +76,16 @@ fun savePosition(position:Int){
     }
 
 
-
-    fun saveIsLanguage(language: String){
-        Hawk.put(LANGUAGE,language)
-        this.language=language
+    fun saveIsLanguage(language: String) {
+        Hawk.put(LANGUAGE, language)
+        this.language = language
     }
 
-/*
-    fun saveLocationInfo(locationInfo: LocationInfo) {
-        Hawk.put(LOCATION_ADDRESS_INFO, locationInfo)
-        saveLocationInfo = locationInfo
-    }*/
+    /*
+        fun saveLocationInfo(locationInfo: LocationInfo) {
+            Hawk.put(LOCATION_ADDRESS_INFO, locationInfo)
+            saveLocationInfo = locationInfo
+        }*/
 
 
     fun saveIsLogin(isLogin: Boolean) {
@@ -104,7 +102,6 @@ fun savePosition(position:Int){
         Hawk.put(LOCATION_ADDRESS_INFO, locationInfo)
         saveLocationInfo = locationInfo
     }
-
 
 
     fun saveVerifyUserData(userData: VerifyOTPResult) {
@@ -148,14 +145,14 @@ fun savePosition(position:Int){
         userDetails = null
         notificationStatus = null
         val deviceToken = fcmToken
-        val languageKey= language
+        val languageKey = language
         Hawk.deleteAll()
         saveDeviceToken(deviceToken)
         saveIsLanguage(languageKey)
 
     }
 
-    fun deleteNotificationData(){
+    fun deleteNotificationData() {
 
         notificationData = null
         Hawk.delete(NOTIFICATION_DATA)

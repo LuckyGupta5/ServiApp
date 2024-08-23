@@ -483,5 +483,7 @@
     <string name="withdraw">वापस लें</string>
     <string name="no_data_found">कोई डेटा नहीं मिला!</string>
     <string name="delhi">दिल्ली</string>
+    <string name="see_my_connection">मेरे कनेक्शन देखें</string>
+    <string name="no_connections_found">कोई कनेक्शन नहीं मिला!</string>
 
 </resources>

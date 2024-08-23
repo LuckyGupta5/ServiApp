@@ -473,5 +473,7 @@
     <string name="withdraw">Retrageți</string>
     <string name="no_data_found">Niciun dată găsită!</string>
     <string name="delhi">Delhi</string>
+    <string name="see_my_connection">Vezi conexiunea mea</string>
+    <string name="no_connections_found">Nicio conexiune găsită!</string>
 
 </resources>

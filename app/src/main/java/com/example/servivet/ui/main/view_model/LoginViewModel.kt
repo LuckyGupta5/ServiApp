@@ -2,7 +2,9 @@ package com.example.servivet.ui.main.view_model
 
 import android.app.Activity
 import android.content.Context
+import android.os.Build
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.servivet.data.api.RetrofitBuilder
@@ -19,7 +21,7 @@ import com.example.servivet.utils.StatusCode
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
-
+@RequiresApi(Build.VERSION_CODES.O)
 class LoginViewModel:BaseViewModel() {
     var errorMessage = SingleLiveEvent<String>()
     var customer=MutableLiveData(true)
@@ -84,6 +86,7 @@ class LoginViewModel:BaseViewModel() {
         } else
             true
     }
+
 
     fun hitSendOtpApi(context: Context, requireActivity: Activity, finishing: Boolean) {
         val mainRepository = MainRepository(RetrofitBuilder.apiService)

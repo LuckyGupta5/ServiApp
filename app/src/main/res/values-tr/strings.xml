@@ -475,5 +475,7 @@
     <string name="withdraw">Geri çek</string>
     <string name="no_data_found">Veri bulunamadı!</string>
     <string name="delhi">Delhi</string>
+    <string name="see_my_connection">Bağlantılarımı Gör</string>
+    <string name="no_connections_found">Bağlantı Bulunamadı!</string>
 
 </resources>

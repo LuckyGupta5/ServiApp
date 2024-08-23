@@ -20,7 +20,8 @@ import com.example.servivet.utils.isMiUi
 import com.example.servivet.utils.setLocal
 
 
-class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>(R.layout.fragment_splash) {
+class SplashFragment :
+    BaseFragment<FragmentSplashBinding, SplashViewModel>(R.layout.fragment_splash) {
     override val binding: FragmentSplashBinding by viewBinding(FragmentSplashBinding::bind)
     override val mViewModel: SplashViewModel by viewModels()
     override fun isNetworkAvailable(boolean: Boolean) {
@@ -34,7 +35,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>(R.la
             binding.apply {
                 if (isAdded)
                     lifecycleOwner = viewLifecycleOwner
-                    viewModel = mViewModel
+                viewModel = mViewModel
             }
     }
 
@@ -42,65 +43,78 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashViewModel>(R.la
         super.onStart()
         if (isMiUi() && !Settings.canDrawOverlays(requireContext())) {
             val intent = Intent("miui.intent.action.APP_PERM_EDITOR")
-            intent.setClassName("com.miui.securitycenter", "com.miui.permcenter.permissions.PermissionsEditorActivity")
+            intent.setClassName(
+                "com.miui.securitycenter",
+                "com.miui.permcenter.permissions.PermissionsEditorActivity"
+            )
             intent.putExtra("extra_pkgname", "com.example.servivet")
-            startActivityForResult(intent,101)
-        } else if (!isMiUi() && !Settings.canDrawOverlays(requireContext())){
-            requireActivity().intent=  Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:${"com.example.servivet"}"))
-            startActivityForResult(requireActivity().intent,103)
+            startActivityForResult(intent, 101)
+        } else if (!isMiUi() && !Settings.canDrawOverlays(requireContext())) {
+            requireActivity().intent = Intent(
+                Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                Uri.parse("package:${"com.example.servivet"}")
+            )
+            startActivityForResult(requireActivity().intent, 103)
             return
-        } else if (ContextCompat.checkSelfPermission(requireContext(),android.Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED)
+        } else if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                android.Manifest.permission.CAMERA
+            ) != PackageManager.PERMISSION_GRANTED
+        )
             requestPermissionForCall()
         else
-          //  versionAPI()
+        //  versionAPI()
 //            goFurtherInApp()
             initObserver()
-         //   Log.e("TAG", "onStart: ", )Dhairya
-
+        //   Log.e("TAG", "onStart: ", )Dhairya
 
 
     }
 
     private fun requestPermissionForCall() {
-        val permission = arrayOf(android.Manifest.permission.RECORD_AUDIO, android.Manifest.permission.ACCESS_WIFI_STATE, android.Manifest.permission.ACCESS_NETWORK_STATE, android.Manifest.permission.BLUETOOTH, android.Manifest.permission.MODIFY_AUDIO_SETTINGS, android.Manifest.permission.CAMERA)
-        ActivityCompat.requestPermissions(requireActivity(),permission,100)
+        val permission = arrayOf(
+            android.Manifest.permission.RECORD_AUDIO,
+            android.Manifest.permission.ACCESS_WIFI_STATE,
+            android.Manifest.permission.ACCESS_NETWORK_STATE,
+            android.Manifest.permission.BLUETOOTH,
+            android.Manifest.permission.MODIFY_AUDIO_SETTINGS,
+            android.Manifest.permission.CAMERA
+        )
+        ActivityCompat.requestPermissions(requireActivity(), permission, 100)
         initObserver()
-
-//        toast(getString(R.string.conveyr_requires_permission))
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (grantResults.isNotEmpty())
             initObserver()
-           // versionAPI()
-
     }
 
     override fun setupObservers() {
-       // initObserver()
+        // initObserver()
 
     }
 
     private fun initObserver() {
-        mViewModel.getLiveData().observe(viewLifecycleOwner)
-        {
-            Log.i("TAG", "initObserver12345: "+Session.language)
-            if (!Session.language.isNullOrEmpty() /*|| Session.language=="language"*/ ){
-                context.let {requireActivity().setLocal(Session.language,2)}
-            }else{
+        mViewModel.getLiveData().observe(viewLifecycleOwner) {
+            Log.i("TAG", "initObserver12345: " + Session.language)
+            if (!Session.language.isNullOrEmpty() /*|| Session.language=="language"*/) {
+                context.let { requireActivity().setLocal(Session.language, 2) }
+            } else {
                 Session.saveIsLanguage("en")
-                context.let { requireActivity().setLocal("en",2)}
+                context.let { requireActivity().setLocal("en", 2) }
             }
 
             if (Session.isLogin) {
                 startActivity(Intent(requireActivity(), HomeActivity::class.java))
                 requireActivity().finish()
-            } else{
+            } else {
                 findNavController().navigate(R.id.action_splashFragment_to_choosePreferredLanguageFragment)
             }
-
-
         }
     }
 }

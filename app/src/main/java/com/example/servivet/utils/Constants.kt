@@ -41,6 +41,8 @@ object Constants {
     var MOBNUMBER = "mob_number"
     var C_Code = "c_code"
 
+    const val COME_FROM = "comeFrom"
+
    // var  SELECTED_LANGUAGE_POSITION = 0
 
 

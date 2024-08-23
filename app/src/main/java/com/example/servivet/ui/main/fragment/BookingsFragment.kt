@@ -104,7 +104,6 @@ class BookingsFragment :
                     } else if (Session.type == "2") {
                         if (Constants.TYPEOFUSERS == "bought") {
                             mViewModel.hitBookingListAPI(mViewModel.bookingStatus, 1, 10)
-
                         } else {
                             mViewModel.hitSoldBookingListAPI(mViewModel.bookingStatus, 1, 10)
                         }
@@ -112,7 +111,6 @@ class BookingsFragment :
                     }
 //                    mViewModel.hitBookingListAPI(1,1,10)
 //                    setPagination()
-
                 } else if (binding.tabLayout.selectedTabPosition == 1) {
                     type = 1
                     typeReschdule = 1

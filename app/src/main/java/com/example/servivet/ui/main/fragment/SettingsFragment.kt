@@ -66,8 +66,7 @@ class SettingsFragment :
             }
     }
 
-    override fun setupViewModel() {
-    }
+    override fun setupViewModel() {}
 
     override fun setupViews() {
         binding.apply {
@@ -79,7 +78,7 @@ class SettingsFragment :
         setBack()
         checkSwitchProfileVisiblity()
         initObserver()
-        bottomsheetCallBack()
+        bottomSheetCallBack()
 
         if (Session.notificationStatus != null) {
             if (Session.notificationStatus == true) {
@@ -155,16 +154,16 @@ class SettingsFragment :
     }
 
     var isFragmentAdded: Boolean = false
-    fun bottomsheetCallBack() {
+
+    private fun bottomSheetCallBack() {
         findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>("comeFrom")
             ?.observe(viewLifecycleOwner) {
                 Log.d("TAG", "bottomsheetCallBack: $it")
                 changeLocale(requireContext(), Session.language)
-//                findNavController().navigate(R.id.action_settingsFragment_to_changeLanguageBottomSheet)
             }
     }
 
-    fun changeLocale(context: Context, lang: String?): Map<Int, String?> {
+    private fun changeLocale(context: Context, lang: String?): Map<Int, String?> {
         Session.language
         // viewModel.preference.retrieveLanguage(languageKey)
         val locale = Locale(lang)

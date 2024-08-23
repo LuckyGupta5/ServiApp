@@ -34,7 +34,7 @@
     <string name="previous" translatable="false">Anterior</string>
     <string name="search_for_area_street_name_etc" translatable="false">Buscar área, nombre de calle, etc...</string>
     <string name="home" translatable="false">Inicio</string>
-    <string name="chats" translatable="false">Chats</string>
+    <string name="chats" translatable="false">Charlas</string>
     <string name="bookings" translatable="false">Reservas</string>
     <string name="profile" translatable="false">Perfil</string>
     <string name="noida" translatable="false">Noida</string>
@@ -475,5 +475,6 @@
     <string name="withdraw">Retirar</string>
     <string name="no_data_found">¡No se encontraron datos!</string>
     <string name="delhi">Delhi</string>
-
+    <string name="see_my_connection">Ver Mi Conexión</string>
+    <string name="no_connections_found">¡No Se Encontraron Conexiones!</string>
 </resources>

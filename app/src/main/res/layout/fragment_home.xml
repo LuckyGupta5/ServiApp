@@ -210,6 +210,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:textAlignment="viewStart"
                             android:fontFamily="@font/poppins_semi_bold"
                             android:text="@string/near_by"
                             android:textColor="@color/black"
@@ -220,6 +221,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:textAlignment="viewEnd"
                             android:fontFamily="@font/poppins_medium"
                             android:gravity="end"
                             android:onClick="@{()->clickEvents.invoke(@string/provider_view_all)}"
@@ -336,6 +338,7 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/poppins_semi_bold"
                             android:text="@string/services"
+                            android:textAlignment="viewStart"
                             android:textColor="@color/black"
                             android:textSize="20dp" />
 
@@ -346,6 +349,7 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/poppins_medium"
                             android:gravity="end"
+                            android:textAlignment="viewEnd"
                             android:text="@string/view_all"
                             android:textColor="@color/app_theme"
                             android:textSize="15dp" />

@@ -1,7 +1,9 @@
 package com.example.servivet.ui.main.fragment
 
+import android.os.Build
 import android.util.Log
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -23,7 +25,7 @@ import com.google.gson.Gson
 import java.text.DecimalFormat
 import kotlin.math.max
 import kotlin.math.min
-
+@RequiresApi(Build.VERSION_CODES.O)
 class MyServiceDetailFragment : BaseFragment<FragmentMyServiceDetailBinding, MyServiceDetailViewModel>(R.layout.fragment_my_service_detail) {
     override val binding: FragmentMyServiceDetailBinding by viewBinding(FragmentMyServiceDetailBinding::bind)
     override val mViewModel: MyServiceDetailViewModel by viewModels()
@@ -32,7 +34,6 @@ class MyServiceDetailFragment : BaseFragment<FragmentMyServiceDetailBinding, MyS
     private lateinit var serviceDetails: ServiceDetail
     override fun isNetworkAvailable(boolean: Boolean) {
     }
-
     override fun setupViewModel() {
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
@@ -47,10 +48,8 @@ class MyServiceDetailFragment : BaseFragment<FragmentMyServiceDetailBinding, MyS
             requireActivity().isFinishing
         )
     }
-
     override fun setupViews() {
     }
-
     override fun setupObservers() {
         mViewModel.serviceCategoryDetailsResponse.observe(viewLifecycleOwner) {
             when (it.status) {
@@ -133,6 +132,4 @@ class MyServiceDetailFragment : BaseFragment<FragmentMyServiceDetailBinding, MyS
             MyServiceDetailFragmentDirections.actionMyServiceDetailFragmentToImageVideoViewFragment(Gson().toJson(mediaList), getString(R.string.servicedetails),position)
         )
     }
-
-
 }

@@ -121,7 +121,7 @@
     <string name="a_block_sector_63_noida" translatable="false">a block sectore 62 noida</string>
     <string name="under_development" translatable="false">Under Development</string>
     <string name="resend_otp_in" translatable="false"> Resend OTP in </string>
-    <string name="are_you_logout" translatable="false">Are you sure want to exit?</string>
+    <string name="are_you_logout" translatable="false">Are you sure want to logout?</string>
     <string name="log_out" translatable="false">Log out</string>
     <string name="start_time_should_not_be_greater_than_end_time_for_centre_mode" translatable="false">Start time should begreater than the end time for the centre mode.</string>
     <string name="start_time_should_not_be_greater_than_end_time_for_home_mode" translatable="false">Start time should begreater than the end time for the home mode.</string>
@@ -486,4 +486,6 @@
     <string name="delhi">Delhi</string>
     <string name="see_my_connection">See My Connection</string>
     <string name="no_connections_found">No Connections Found !</string>
+    <string name="resend_otp">Resend OTP</string>
+    <string name="seconds">" Seconds"</string>
 </resources>

@@ -28,7 +28,7 @@ import com.example.servivet.utils.PreferenceEntity.VERIFY_DATA
 import com.orhanobut.hawk.Hawk
 
 object Session {
-    var token = Hawk.get<String>(TOKEN, null)
+    var token = Hawk.get<String>(TOKEN, "")
     var isLogin = Hawk.get<Boolean>(IS_LOGIN, false)
     var notificationStatus = Hawk.get<Boolean>(NOTIFY_STATUS, null)
     var location = Hawk.get<String>(LOCATION, null)
@@ -137,7 +137,7 @@ object Session {
 
     fun logout() {
         verifiedData = null
-        token = null
+        token = ""
         isLogin = false
         type = null
         userProfile = null

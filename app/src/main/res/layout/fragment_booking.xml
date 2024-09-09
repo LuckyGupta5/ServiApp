@@ -106,20 +106,18 @@
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_below="@+id/myBookingLayout"
                 android:layout_gravity="center_horizontal"
                 android:background="@null"
                 android:clipToPadding="false"
-                app:tabIndicatorFullWidth="false"
                 app:tabGravity="center"
-                app:tabMode="scrollable"
-                app:tabSelectedTextAppearance="@style/text_active"
-                app:tabTextAppearance="@style/text_inactive"
-                app:tabIndicatorHeight="5dp"
+                android:layout_below="@id/myBookingLayout"
                 app:tabIndicator="@drawable/top_round_corner_app_theme_24dp"
                 app:tabIndicatorAnimationDuration="4"
-                />
+                app:tabIndicatorFullWidth="false"
+                app:tabIndicatorHeight="5dp"
+                app:tabMode="scrollable"
+                app:tabSelectedTextAppearance="@style/text_active"
+                app:tabTextAppearance="@style/text_inactive" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/idBookingRecycle"
@@ -135,11 +133,11 @@
 
             <RelativeLayout
                 android:id="@+id/noDataLayout"
-                android:visibility="@{bookingAdapter.bookingList==null?View.GONE:bookingAdapter.bookingList.size()>0?View.GONE:View.VISIBLE}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_below="@id/tabLayout"
                 android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:visibility="@{bookingAdapter.bookingList==null?View.GONE:bookingAdapter.bookingList.size()>0?View.GONE:View.VISIBLE}">
 
                 <ImageView
                     android:id="@+id/no_dataIcon"
@@ -147,16 +145,17 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:background="@drawable/no_data_icon" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/no_dataIcon"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/no_data_found"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/poppins_medium"
+                    android:text="@string/no_data_found"
                     android:textColor="@color/black"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp" />
 
             </RelativeLayout>
         </RelativeLayout>

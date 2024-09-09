@@ -3,11 +3,9 @@ package com.example.servivet.ui.main.view_model
 import android.content.Context
 import android.util.Log
 import android.view.View
-import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.findNavController
 import com.example.servivet.R
 import com.example.servivet.data.api.RetrofitBuilder
 import com.example.servivet.data.model.business_verification_api.request.BusinessVerificationRequest
@@ -34,6 +32,7 @@ class BusinessVerificationViewModel : BaseViewModel() {
     var isPhotoSelected: Boolean = false
     var errorMessage = SingleLiveEvent<String>()
     val enailET = MutableLiveData(false)
+    val addressET = MutableLiveData(false)
     val nameuser = MutableLiveData(false)
     var indivisualRole = MutableLiveData(true)
     var instituaionLRole = MutableLiveData(false)
@@ -71,21 +70,20 @@ class BusinessVerificationViewModel : BaseViewModel() {
                     changeRoleRequest.businessType = businessType
                     changeRoleRequest.roleType = 2
                     hitChangeRoleAPi(context, requireActivity, finishing)
-                }else {
+                } else {
                     hitBusinessVerificationAPI(context, requireActivity, finishing)
                 }
             }
         }
 
         fun backPress(view: View) {
-      //      view.findNavController().popBackStack()
+            //      view.findNavController().popBackStack()
             requireActivity.onBackPressed()
         }
 
         fun onNameChange(text: CharSequence) {
             nameuser.value = text.isNotEmpty()
             businessVerificationRequest.name = text.toString()
-
         }
 
         fun onEmailChange(text: CharSequence) {
@@ -111,7 +109,10 @@ class BusinessVerificationViewModel : BaseViewModel() {
     ) {
         val mainRepository = MainRepository(RetrofitBuilder.apiService)
         viewModelScope.launch {
-            Log.e("TAG", "hitBusinessVerificationAPI: ${Gson().toJson(businessVerificationRequest)}", )
+            Log.e(
+                "TAG",
+                "hitBusinessVerificationAPI: ${Gson().toJson(businessVerificationRequest)}",
+            )
             businessVerificationResponse.postValue(Resource.loading(null))
             try {
                 businessVerificationResponse.postValue(
@@ -146,14 +147,14 @@ class BusinessVerificationViewModel : BaseViewModel() {
                             null
                         )
                     )
-
-
             }
-
-
         }
     }
 
+    fun onAddressChange(text: String) {
+        addressET.value = text.isNotEmpty()
+        businessVerificationRequest.address = text
+    }
 
     fun hitChangeRoleAPi(
         context: Context,
@@ -162,7 +163,7 @@ class BusinessVerificationViewModel : BaseViewModel() {
     ) {
         val mainRepository = MainRepository(RetrofitBuilder.apiService)
         viewModelScope.launch {
-            Log.e("TAG", "hitBusinessVerificssasasationAPI: ${Gson().toJson(changeRoleRequest)}", )
+            Log.e("TAG", "hitBusinessVerificssasasationAPI: ${Gson().toJson(changeRoleRequest)}")
 
             changeRoleApiResponse.postValue(Resource.loading(null))
             try {

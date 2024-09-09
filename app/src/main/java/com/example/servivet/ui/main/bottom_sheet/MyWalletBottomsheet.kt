@@ -84,6 +84,7 @@ class MyWalletBottomsheet :
                     createOderViewModel.orderRequest.isWalletAmountInclude = false
 
                 }
+                Constants.SECURE_HEADER="secure"
                 initOrderCreateViewModel()
             }
 

@@ -56,8 +56,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-
         <LinearLayout
             android:id="@+id/idSearchLayout"
             android:layout_width="match_parent"
@@ -77,6 +75,8 @@
                 android:background="@null"
                 android:drawableStart="@drawable/search"
                 android:drawablePadding="5dp"
+                android:inputType="text"
+                android:imeOptions="actionSearch"
                 android:hint="Search here..."
                 android:paddingStart="10dp" />
 

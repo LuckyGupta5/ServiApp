@@ -65,7 +65,6 @@ class ConnectionsRequestFragment :
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 binding.requestAdapter?.filter(s.toString())
             }
-
             override fun afterTextChanged(s: Editable?) {}
         })
     }

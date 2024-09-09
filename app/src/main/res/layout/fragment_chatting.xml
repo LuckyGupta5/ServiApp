@@ -192,7 +192,7 @@
             android:layout_height="200dp"
             android:layout_marginHorizontal="50dp"
             android:layout_marginBottom="5dp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:cardCornerRadius="30dp"
             app:layout_constraintBottom_toTopOf="@id/idChatBoxContainer"
             app:layout_constraintEnd_toEndOf="parent"
@@ -216,6 +216,7 @@
                 android:imageViewUrl="@{uploadFileData.uploadImage.get(0)}"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/banner_image"
+
                 app:layout_constraintBottom_toTopOf="@id/idChatBoxContainer"
                 app:layout_constraintStart_toEndOf="parent" />
         </androidx.cardview.widget.CardView>

@@ -128,7 +128,7 @@ interface ApiService {
     suspend fun paymentAmountApi(@Body request: CommonRequest): String
 
     @POST("booking/slot/availability")
-    suspend fun bookingSlotAvailabilityApi(@Body request: CouponAvalabilityRequest): CommonResponse
+    suspend fun bookingSlotAvailabilityApi(@Body request: CommonRequest): String
 
     @POST("saveAddress")
     suspend fun saveAddress(@Body saveAddressRequest: SaveAddressRequest): SaveAddressResponse
@@ -170,7 +170,7 @@ interface ApiService {
     suspend fun logoutUser(): CommonResponse
 
     @GET("my/connection")
-    suspend fun connectionListApi(@QueryMap request: HashMap<String, Int>): ConnectionListResponse
+    suspend fun connectionListApi(@QueryMap request: HashMap<String, String>): ConnectionListResponse
 
     @GET("connection/request/list")
     suspend fun connectionRequestListApi(@QueryMap request: HashMap<String, Int>): ConnectionListResponse

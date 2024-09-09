@@ -493,14 +493,23 @@ object CommonUtils {
     @SuppressLint("SimpleDateFormat")
     fun getDateTimeStampConvert(timestamp: String): String? {
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
-        inputFormat.timeZone = TimeZone.getTimeZone("UTC")
-
+       // inputFormat.timeZone = TimeZone.getTimeZone("UTC")
         val outputFormat = SimpleDateFormat("dd MMM HH:mm", Locale.getDefault())
         outputFormat.timeZone = TimeZone.getDefault()
 
         val date = inputFormat.parse(timestamp)
         return outputFormat.format(date)
     }
+
+    fun getDateTimeStampConvertConectionPage(timestamp: String): String? {
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+         inputFormat.timeZone = TimeZone.getTimeZone("UTC")
+        val outputFormat = SimpleDateFormat("dd MMM HH:mm", Locale.getDefault())
+        outputFormat.timeZone = TimeZone.getDefault()
+        val date = inputFormat.parse(timestamp)
+        return outputFormat.format(date)
+    }
+
 
     @SuppressLint("SimpleDateFormat")
     fun getDateFromTimeStamp(date: String?): String? {

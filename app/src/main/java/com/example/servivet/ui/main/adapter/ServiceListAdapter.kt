@@ -1,5 +1,6 @@
 package com.example.servivet.ui.main.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.View
@@ -81,6 +82,11 @@ class ServiceListAdapter(
         return list.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun clearData() {
+        this.list.clear()
+        notifyDataSetChanged()
+    }
 
     fun updateList(list: ArrayList<ServiceList>) {
         val start = if (this.list.size > 0) this.list.size else 0

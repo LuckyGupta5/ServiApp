@@ -37,10 +37,7 @@ class ChatsFragment : BaseFragment<FragmentChatsBinding, ChatViewModel>(R.layout
     }
 
     override fun setupViewModel() {
-
     }
-
-
     override fun setupViews() {
         ProcessDialog.dismissDialog()
         binding.apply {
@@ -64,8 +61,6 @@ class ChatsFragment : BaseFragment<FragmentChatsBinding, ChatViewModel>(R.layout
             override fun afterTextChanged(s: Editable?) {}
         })
     }
-
-
     override fun setupObservers() {
     }
 

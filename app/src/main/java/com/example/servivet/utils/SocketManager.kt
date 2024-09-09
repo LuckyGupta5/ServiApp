@@ -2,19 +2,19 @@ package com.example.servivet.utils
 
 import android.util.Log
 import io.socket.client.IO
-import io.socket.client.Manager
 import io.socket.client.Socket
-import io.socket.emitter.Emitter
-import io.socket.engineio.client.EngineIOException
 import java.net.URISyntaxException
 
 object SocketManager {
-
     private var socket: Socket? = null
 
-    init {
-        val socketUrl = "http://13.235.137.221:3476"
-        val token = Session.token
+    fun initializeSocket(token: String) {
+        val socketUrl = "http://13.235.137.221:3476"// development new url
+        //val socketUrl = "https://99fb-122-176-117-180.ngrok-free.app/"//  local url
+//        val socketUrl = "http://13.126.60.236:4242"// staging
+
+        Log.e("TAG", "initializeSocketToken: ${token}", )
+
         try {
             val options = IO.Options().apply {
                 auth = mapOf("token" to token)
@@ -24,6 +24,7 @@ object SocketManager {
             e.printStackTrace()
         }
     }
+
     fun connect() {
         socket?.connect()
     }
@@ -36,5 +37,16 @@ object SocketManager {
         socket?.disconnect()
     }
 
+
+    fun isConnected(): Boolean {
+        return socket != null && socket!!.connected()
+    }
+
+
+    fun reset() {
+        disconnect()
+        socket = null
+        Session.token = null
+    }
 
 }

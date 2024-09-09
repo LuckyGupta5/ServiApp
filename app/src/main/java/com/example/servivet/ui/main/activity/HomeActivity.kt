@@ -16,6 +16,7 @@ import com.example.servivet.ui.main.fragment.MyServiceFragment
 import com.example.servivet.utils.Constants.COME_FROM
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
+import com.example.servivet.utils.SocketManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : BaseActivity(), MyServiceFragment.CallBack1 {
@@ -31,7 +32,7 @@ class HomeActivity : BaseActivity(), MyServiceFragment.CallBack1 {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-
+SocketManager.initializeSocket(Session.token)
         navigationBar = findViewById(R.id.navigation_bar)
         view1 = findViewById(R.id.view1)
         view2 = findViewById(R.id.view2)

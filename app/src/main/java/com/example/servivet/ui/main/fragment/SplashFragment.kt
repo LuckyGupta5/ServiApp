@@ -16,6 +16,7 @@ import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.activity.HomeActivity
 import com.example.servivet.ui.main.view_model.SplashViewModel
 import com.example.servivet.utils.Session
+import com.example.servivet.utils.SocketManager
 import com.example.servivet.utils.isMiUi
 import com.example.servivet.utils.setLocal
 
@@ -31,6 +32,7 @@ class SplashFragment :
     }
 
     override fun setupViews() {
+        SocketManager.initializeSocket(Session.token)
         if (isAdded)
             binding.apply {
                 if (isAdded)

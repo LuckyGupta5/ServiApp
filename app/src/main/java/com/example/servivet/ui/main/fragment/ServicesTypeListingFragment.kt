@@ -3,6 +3,7 @@ package com.example.servivet.ui.main.fragment
 import PaginationScrollListener
 import android.util.Log
 import android.view.View
+import android.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -27,30 +28,44 @@ import com.google.gson.Gson
 
 
 @Suppress("DEPRECATION")
-class ServicesTypeListingFragment : BaseFragment<FragmentServicesTypeListingBinding, ServicesTypeViewModel>(
-    R.layout.fragment_services_type_listing),
+class ServicesTypeListingFragment :
+    BaseFragment<FragmentServicesTypeListingBinding, ServicesTypeViewModel>(
+        R.layout.fragment_services_type_listing
+    ),
     ServiceSubCatAdapter.SubCategoryAdapterInterFace {
     private var tabPosition: Int = 0
-    var isFirst=true
-    var subCatList=ArrayList<HomeSubCategory>()
-    override val binding: FragmentServicesTypeListingBinding by viewBinding(FragmentServicesTypeListingBinding::bind)
+    var isFirst = true
+    var subCatList = ArrayList<HomeSubCategory>()
+    override val binding: FragmentServicesTypeListingBinding by viewBinding(
+        FragmentServicesTypeListingBinding::bind
+    )
     override val mViewModel: ServicesTypeViewModel by viewModels()
     lateinit var adapter: ServiceListAdapter
     private var list = ArrayList<ServiceList>()
     var currentPage = 1
     var isLastPage: Boolean = false
     var isLoading: Boolean = false
-    var data :HomeServiceCategory?=null
+    var data: HomeServiceCategory? = null
     override fun isNetworkAvailable(boolean: Boolean) {
     }
+
 
     override fun setupViewModel() {
     }
 
-    override fun setupViews()
-    {
+    override fun setupViews() {
         binding.apply {
-            click = mViewModel.ClickAction(requireContext(),binding)
+            searchView.setOnSearchClickListener {
+                catName.visibility = View.GONE
+            }
+            initSearch()
+            searchView.setOnCloseListener {
+                catName.visibility = View.VISIBLE
+                searchView.setQuery("", true)
+                false
+            }
+
+            click = mViewModel.ClickAction(requireContext(), binding)
             lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
         }
@@ -64,34 +79,66 @@ class ServicesTypeListingFragment : BaseFragment<FragmentServicesTypeListingBind
         mViewModel.serviceListRequest.page = currentPage
         binding.catName.text = data!!.name
         tabPosition = 0
-      /*  if (data!!.subCategory != null && data!!.subCategory!!.isNotEmpty()) {
-            mViewModel.serviceListRequest.subCategory = data!!.subCategory!![0].id*/
-        mViewModel.hitServiceListAPI(requireContext(),requireActivity(),requireActivity().isFinishing)
+        /*  if (data!!.subCategory != null && data!!.subCategory!!.isNotEmpty()) {
+              mViewModel.serviceListRequest.subCategory = data!!.subCategory!![0].id*/
+        mViewModel.hitServiceListAPI(
+            requireContext(),
+            requireActivity(),
+            requireActivity().isFinishing
+        )
 
         tabSelect()
-        for(i in data!!.subCategory!!.indices){
-            if(data!!.subCategory!![i].status==1){
+        for (i in data!!.subCategory!!.indices) {
+            if (data!!.subCategory!![i].status == 1) {
                 subCatList.clear()
 
                 subCatList.addAll(data!!.subCategory!!)
             }
         }
-        Log.e("TAG", "setupViews: "+Gson().toJson(subCatList) )
-
+        Log.e("TAG", "setupViews: " + Gson().toJson(subCatList))
         setSubCatAdapter(subCatList)
     }
 
+    private fun initSearch() {
+        binding.searchView.setOnQueryTextListener(object :
+            SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextSubmit(query: String): Boolean {
+                handleSearchApiCall(query)
+                return false
+            }
+        })
+    }
+
+    private fun handleSearchApiCall(query: String) {
+        binding.searchView.clearFocus()
+        mViewModel.serviceListRequest.search = query.trim()
+        mViewModel.hitServiceListAPI(
+            requireContext(),
+            requireActivity(),
+            requireActivity().isFinishing
+        )
+        adapter.clearData()
+    }
+
     private fun setSubCatAdapter(list: ArrayList<HomeSubCategory>) {
-            list.add(0, HomeSubCategory("", "", "", "", "All", 0))
+        list.add(0, HomeSubCategory("", "", "", "", "All", 0))
         if (list.isNotEmpty())
-            binding.serviceSubCatRecycler.adapter = ServiceSubCatAdapter(requireContext(), list, this)
+            binding.serviceSubCatRecycler.adapter =
+                ServiceSubCatAdapter(requireContext(), list, this)
     }
 
 
     private fun tabSelect() {
         setAdapter(0)
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.individual)))
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.institutional)))
+        binding.tabLayout.addTab(
+            binding.tabLayout.newTab().setText(getString(R.string.institutional))
+        )
         binding.tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 tabPosition = tab.position
@@ -106,6 +153,7 @@ class ServicesTypeListingFragment : BaseFragment<FragmentServicesTypeListingBind
                             requireActivity().isFinishing
                         )
                     }
+
                     1 -> {
                         setAdapter(1)
                         mViewModel.serviceListRequest.bussinessType = 4
@@ -118,6 +166,7 @@ class ServicesTypeListingFragment : BaseFragment<FragmentServicesTypeListingBind
                     }
                 }
             }
+
             override fun onTabUnselected(tab: TabLayout.Tab) {}
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
@@ -132,7 +181,8 @@ class ServicesTypeListingFragment : BaseFragment<FragmentServicesTypeListingBind
             binding.serviceRecycler.adapter = adapter
             binding.serviceRecycler.visibility = View.VISIBLE
             binding.noDataLayout.visibility = View.GONE
-            binding.serviceRecycler.addOnScrollListener(object : PaginationScrollListener(layoutManager) {
+            binding.serviceRecycler.addOnScrollListener(object :
+                PaginationScrollListener(layoutManager) {
                 override fun isLastPage(): Boolean {
                     return isLastPage
                 }
@@ -183,13 +233,17 @@ class ServicesTypeListingFragment : BaseFragment<FragmentServicesTypeListingBind
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             if (it.data.result.service.isNotEmpty()) {
-                                Log.e("TAG", "setupObservers1234321: ${Gson().toJson(it.data.result.service)}", )
+                                Log.e(
+                                    "TAG",
+                                    "setupObservers1234321: ${Gson().toJson(it.data.result.service)}",
+                                )
                                 isLoading = true
                                 if (currentPage == 1)
                                     list = ArrayList()
                                 list = it.data.result.service
                                 if (currentPage == 1 && list.size > 0) {
-                                    adapter = ServiceListAdapter(requireContext(), tabPosition, list)
+                                    adapter =
+                                        ServiceListAdapter(requireContext(), tabPosition, list)
                                     binding.serviceRecycler.adapter = adapter
                                 } else {
                                     adapter.updateList(list)
@@ -197,20 +251,23 @@ class ServicesTypeListingFragment : BaseFragment<FragmentServicesTypeListingBind
                                 binding.serviceRecycler.visibility = View.VISIBLE
                                 binding.noDataLayout.visibility = View.GONE
 
-                            }else{
+                            } else {
                                 binding.serviceRecycler.visibility = View.GONE
                                 binding.noDataLayout.visibility = View.VISIBLE
                             }
                         }
+
                         StatusCode.STATUS_CODE_FAIL -> {
                             showSnackBar(it.data.message)
                         }
 
                     }
                 }
+
                 Status.LOADING -> {
                     ProcessDialog.startDialog(requireContext())
                 }
+
                 Status.ERROR -> {
                     ProcessDialog.dismissDialog()
 
@@ -219,6 +276,7 @@ class ServicesTypeListingFragment : BaseFragment<FragmentServicesTypeListingBind
 
                     }
                 }
+
                 Status.UNAUTHORIZED -> {
                     CommonUtils.logoutAlert(
                         requireContext(),
@@ -230,10 +288,11 @@ class ServicesTypeListingFragment : BaseFragment<FragmentServicesTypeListingBind
             }
         }
     }
+
     override fun onSubCatSelected(id: String) {
-       mViewModel.serviceListRequest.subCategory = id
+        mViewModel.serviceListRequest.subCategory = id
         mViewModel.serviceListRequest.page = 1
-        mViewModel.serviceListRequest.providerId= ""
+        mViewModel.serviceListRequest.providerId = ""
         setAdapter(tabPosition)
         mViewModel.hitServiceListAPI(
             requireContext(),

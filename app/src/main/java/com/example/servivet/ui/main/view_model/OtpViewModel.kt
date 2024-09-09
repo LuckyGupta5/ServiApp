@@ -7,6 +7,7 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
+import com.example.servivet.R
 import com.example.servivet.data.api.RetrofitBuilder
 import com.example.servivet.data.model.send_otp.request.SendOtpRequest
 import com.example.servivet.data.model.send_otp.response.SendOtpResponse
@@ -160,8 +161,10 @@ class OtpViewModel : BaseViewModel() {
             var otpTextTimer = 0
             override fun onTick(l: Long) {
                 context.runOnUiThread {
-                    timer.value = "Resend OTP in " + l / 1000 + " Seconds"
-                    binding.resendOtp.setText("Resend OTP in " + l / 1000 + " Seconds")
+                    timer.value = context.getString(R.string.resend_otp)+ " " + l / 1000 + context.getString(
+                        R.string.seconds
+                    )
+                    binding.resendOtp.setText(context.getString(R.string.resend_otp) +" " + l / 1000 + context.getString(R.string.seconds))
                     otpTextTimer = l.toString().toInt()
                     binding.resendOtp.setEnabled(false)
 
@@ -171,7 +174,7 @@ class OtpViewModel : BaseViewModel() {
             override fun onFinished() {
                 context.runOnUiThread {
                     onTick(0) // when the timer finishes onTick isn't called
-                    timer.value = "Resend OTP"
+                    timer.value = context.getString(R.string.resend_otp)
                     binding.resendOtp.isEnabled = true
                 }
             }

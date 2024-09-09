@@ -11,6 +11,9 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
+            android:id="@+id/action_homeFragment_to_notificationFragment"
+            app:destination="@id/notificationListFragment" />
+        <action
             android:id="@+id/action_homeFragment_to_servicesFragment"
             app:destination="@id/servicesFragment" />
         <action
@@ -285,7 +288,7 @@
         <action
             android:id="@+id/action_bookingPaymentFragment_to_couponsFragment"
             app:destination="@id/couponsFragment" />
-        =
+
 
         <argument
             android:name="data"
@@ -345,6 +348,7 @@
         android:label="OnlineNowFragment"
         tools:layout="@layout/fragment_online_now">
 
+
         <argument
             android:name="data"
             app:argType="string" />
@@ -365,6 +369,11 @@
         android:label="ConnectionProfileFragment"
         tools:layout="@layout/fragment_connection_profile" />
     <fragment
+        android:id="@+id/notificationListFragment"
+        android:name="com.example.servivet.ui.main.fragment.NotificationListFragment"
+        android:label="NotificationListFragment"
+        tools:layout="@layout/fragment_notification_list" />
+    <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.servivet.ui.main.fragment.SettingsFragment"
         android:label="SettingsFragment"
@@ -384,6 +393,10 @@
         <action
             android:id="@+id/action_settingsFragment_to_faqFragment"
             app:destination="@id/faqFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_onlineNowFragment"
+            app:destination="@id/onlineNowFragment" />
+
         <action
             android:id="@+id/action_settingsFragment_to_business_Verification_Fragment2"
             app:destination="@id/business_Verification_Fragment2" />
@@ -744,29 +757,29 @@
         android:id="@+id/bankListBottomSheet"
         android:name="com.example.servivet.ui.main.bottom_sheet.bank_module.BankListBottomSheet"
         android:label="BankListBottomSheet"
-        tools:layout="@layout/fragment_bank_list_bottom_sheet" >
+        tools:layout="@layout/fragment_bank_list_bottom_sheet">
 
         <argument
             android:name="data"
-            app:argType="string"/>
+            app:argType="string" />
 
         <argument
             android:name="from"
-            app:argType="string"/>
+            app:argType="string" />
 
     </dialog>
     <dialog
         android:id="@+id/confirmBankAccountBottomSheet"
         android:name="com.example.servivet.ui.main.bottom_sheet.bank_module.ConfirmBankAccountBottomSheet"
         android:label="fragment_confirm_bank_account_bottom_sheet"
-        tools:layout="@layout/fragment_confirm_bank_account_bottom_sheet" >
+        tools:layout="@layout/fragment_confirm_bank_account_bottom_sheet">
 
         <argument
             android:name="data"
-            app:argType="string"/>
+            app:argType="string" />
         <argument
             android:name="from"
-            app:argType="string"/>
+            app:argType="string" />
     </dialog>
 
 

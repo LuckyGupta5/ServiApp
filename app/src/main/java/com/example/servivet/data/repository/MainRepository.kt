@@ -66,7 +66,7 @@ class MainRepository(private val apiService: ApiService) {
     suspend fun bookingCouponApi(request: HashMap<String, String>) =
         apiService.bookingCouponApi(request)
 
-    suspend fun bookingSlotAvailabilityApi(request: CouponAvalabilityRequest) =
+    suspend fun bookingSlotAvailabilityApi(request: CommonRequest) =
         apiService.bookingSlotAvailabilityApi(request)
 
     suspend fun paymentAmountApi(request: CommonRequest) = apiService.paymentAmountApi(request)
@@ -101,7 +101,7 @@ class MainRepository(private val apiService: ApiService) {
         apiService.providerLeaveApi(request)
 
     suspend fun logoutUser() = apiService.logoutUser()
-    suspend fun connectionListApi(request: HashMap<String, Int>) =
+    suspend fun connectionListApi(request: HashMap<String, String>) =
         apiService.connectionListApi(request)
 
     suspend fun connectionRequestListApi(request: HashMap<String, Int>) =

@@ -18,7 +18,7 @@ import java.io.IOException
 
 class MyConnectionModelView : BaseViewModel() {
 
-    private val request = HashMap<String, Int>()
+    val request = HashMap<String, String>()
 
     private val connectionListData = SingleLiveEvent<Resource<ConnectionListResponse>>()
 
@@ -40,12 +40,12 @@ class MyConnectionModelView : BaseViewModel() {
     }
 
     fun getConnectionListRequest() {
-        request["page"] = 1
-        request["limit"] = 10
+        request["page"] = 1.toString()
+        request["limit"] = 10.toString()
         hitConnectionListApi()
     }
 
-    private fun hitConnectionListApi() {
+     fun hitConnectionListApi() {
         val repository = MainRepository(RetrofitBuilder.apiService)
         connectionListData.postValue(Resource.loading(null))
         viewModelScope.launch {

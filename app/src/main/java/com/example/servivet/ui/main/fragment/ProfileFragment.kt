@@ -3,6 +3,7 @@ package com.example.servivet.ui.main.fragment
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
+import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
@@ -39,7 +40,6 @@ class ProfileFragment :
 
     override fun isNetworkAvailable(boolean: Boolean) {
     }
-
     override fun setupViewModel() {
         if (isAdded)
             binding.apply {
@@ -62,6 +62,7 @@ class ProfileFragment :
             arguments = null
         }
     }
+
 
     private fun setServiceAdapter(type: String, myContact: List<Any>) {
         if (myContact != null && myContact.isNotEmpty()) {
@@ -123,14 +124,12 @@ class ProfileFragment :
                             binding.data = it.data.result.profile
                             Session.saveUserProfile(it.data.result.profile)
                             Log.e("TAG", "setupObservers: ${it.data.result.profile}")
-
-                            if (Session.userDetails.businessType != null) {
+                            if (Session.userDetails?.businessType != null) {
                                 if (Session.userDetails.businessType == "3")
                                     binding.businessType.setText(R.string.individual)
                                 else if (Session.userDetails.businessType == "4")
                                     binding.businessType.setText(R.string.institutional)
                             }
-
                             if (it.data.result.profile.role == 2) {
                                 binding.editProfile.text = getString(R.string.my_services)
                                 binding.institutionalLayoutInfo.visibility = View.VISIBLE
@@ -140,7 +139,6 @@ class ProfileFragment :
                                 binding.editProfile.text = getString(R.string.edit_profile)
                                 binding.institutionalLayoutInfo.visibility = View.GONE
                                 binding.businessType.visibility = View.GONE
-
                             }
                             if (it.data.result.profile.description.isEmpty()) {
                                 binding.description.text =
@@ -149,15 +147,10 @@ class ProfileFragment :
                                 binding.description.text = it.data.result.profile.description
                             }
                             setServiceAdapter("3", it.data.result.profile.myContact)
-
                         }
-
-
                         StatusCode.STATUS_CODE_FAIL -> {
                             showSnackBar(it.data.message)
                         }
-
-
                     }
                 }
 
@@ -249,6 +242,7 @@ class ProfileFragment :
     private val onItemClick: (Int, String) -> Unit = { identifire, data ->
         when (identifire) {
             0 -> {
+
             }
         }
     }

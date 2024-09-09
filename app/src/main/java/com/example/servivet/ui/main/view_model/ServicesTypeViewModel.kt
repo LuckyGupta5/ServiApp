@@ -26,14 +26,12 @@ class ServicesTypeViewModel :BaseViewModel(){
     var serviceListRequest= ServiceListRequest()
     inner class ClickAction(var context: Context,var binding: FragmentServicesTypeListingBinding)
     {
-
         fun backBtnhai(view: View){
             view.findNavController().navigateUp()
-
         }
-
-
     }
+
+
     fun hitServiceListAPI(requireContext: Context, requireActivity: Activity, finishing: Boolean) {
         val mainRepository = MainRepository(RetrofitBuilder.apiService)
         viewModelScope.launch {

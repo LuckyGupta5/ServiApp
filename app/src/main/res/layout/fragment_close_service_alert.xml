@@ -34,56 +34,75 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/poppins_bold"
-            android:text="@{from.equals(@string/logout)?@string/app_name:@string/alert}"
+            android:text="@{from.equals(@string/logout) ? @string/app_name : @string/alert}"
             android:textColor="@color/black"
             android:textSize="20sp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/logout" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/idLogoutImg"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logout_icon" />
 
         <TextView
             android:id="@+id/idDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/poppins_medium"
-            android:text='@{from.equals(@string/logout)?@string/are_you_logout:@string/before_date_text+" "+dates.startTime+" "+ @string/to+" "+dates.endTime+" "+@string/after_date_text}'
+            android:text='@{from.equals(@string/logout) ? @string/are_you_logout:@string/before_date_text+" "+dates.startTime+" "+ @string/to+" "+dates.endTime+" "+@string/after_date_text}'
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/idAlertText" />
+            app:layout_constraintTop_toBottomOf="@+id/idLogoutImg"
+            tools:text="@string/are_you_logout" />
 
         <View
             android:id="@+id/idView"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/grey7"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/gray"
             app:layout_constraintTop_toBottomOf="@id/idDescription" />
 
         <TextView
             android:id="@+id/idCancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/round_corner_app_theme_8dp"
+            android:backgroundTint="@color/gray"
             android:onClick="@{()->clickEvent.invoke(@string/cancel)}"
-            android:text="@{from.equals(@string/logout)?@string/ok:@string/cancel}"
+            android:paddingVertical="12dp"
+            android:text="@{from.equals(@string/logout) ? @string/no : @string/cancel}"
             android:textAlignment="center"
-            android:textColor="@color/app_theme"
+            android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/idView2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/idView" />
+            app:layout_constraintTop_toBottomOf="@id/idView"
+            tools:text="@string/no" />
 
         <View
             android:id="@+id/idView2"
             android:layout_width="1dp"
             android:layout_height="0dp"
+            android:visibility="invisible"
             android:background="@color/grey7"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/idCloseService"
@@ -94,15 +113,20 @@
             android:id="@+id/idCloseService"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/round_corner_app_theme_8dp"
             android:onClick="@{()->clickEvent.invoke(@string/close_service)}"
-            android:text="@{from.equals(@string/logout)?@string/yes:@string/close_service}"
+            android:paddingVertical="12dp"
+            android:text="@{from.equals(@string/logout) ? @string/yes : @string/close_service}"
             android:textAlignment="center"
-            android:textColor="@color/carnation"
+            android:textColor="@color/white"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/idCancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/idView2"
-            app:layout_constraintTop_toBottomOf="@id/idView" />
+            app:layout_constraintTop_toTopOf="@+id/idCancel"
+            tools:text="@string/yes" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

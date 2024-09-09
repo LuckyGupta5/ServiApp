@@ -38,10 +38,7 @@ class Business_Verification_Fragment :
             lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
             click = mViewModel.ClickAction(
-                requireContext(),
-                binding,
-                requireActivity(),
-                requireActivity().isFinishing
+                requireContext(), binding, requireActivity(), requireActivity().isFinishing
             )
         }
 
@@ -53,12 +50,15 @@ class Business_Verification_Fragment :
     }
 
     private fun setLocationText() {
-        if (Session.saveAddress != null) {
-            binding.idAddress.text = Session.saveAddress.fullAddress
-        } else {
-
-        }
-
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>("savedAddress")
+            ?.observe(viewLifecycleOwner) { address ->
+                if (!address.isNullOrEmpty()) {
+                    binding.idAddress.text = Session.saveAddress.fullAddress
+                    mViewModel.onAddressChange(address)
+                } else {
+                    Session.saveAddress.fullAddress?.let { mViewModel.onAddressChange(it) }
+                }
+            }
     }
 
     private fun initClickEvent() {
@@ -66,8 +66,7 @@ class Business_Verification_Fragment :
             number = Constants.C_Code + "" + Constants.MOBNUMBER
             findNavController().navigate(
                 Business_Verification_FragmentDirections.actionBusinessVerificationFragmentToAddLocationFragment2(
-                    number,
-                    ""
+                    number, ""
                 )
             )
         }
@@ -109,10 +108,7 @@ class Business_Verification_Fragment :
 
                 Status.UNAUTHORIZED -> {
                     CommonUtils.logoutAlert(
-                        requireContext(),
-                        "Session Expired",
-                        "Unauthorized User",
-                        requireActivity()
+                        requireContext(), "Session Expired", "Unauthorized User", requireActivity()
                     )
                 }
             }
@@ -132,9 +128,7 @@ class Business_Verification_Fragment :
                             mViewModel.businessVerificationRequest.userType = Session.type.toInt()
 
                             mViewModel.hitBusinessVerificationAPI(
-                                requireContext(),
-                                requireActivity(),
-                                requireActivity().isFinishing
+                                requireContext(), requireActivity(), requireActivity().isFinishing
                             )
                         }
 
@@ -158,10 +152,7 @@ class Business_Verification_Fragment :
 
                 Status.UNAUTHORIZED -> {
                     CommonUtils.logoutAlert(
-                        requireContext(),
-                        "Session Expired",
-                        "Unauthorized User",
-                        requireActivity()
+                        requireContext(), "Session Expired", "Unauthorized User", requireActivity()
                     )
                 }
             }

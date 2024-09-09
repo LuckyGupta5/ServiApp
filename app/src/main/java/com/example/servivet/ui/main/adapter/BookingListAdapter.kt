@@ -31,7 +31,7 @@ class BookingListAdapter(
             data = item
             type = types
             typeOfUser = typesOfUser
-        }
+        } 
         Log.e("TAG", " checkbind: $typesOfUser,$types")
         Log.e("TAG", "bind432343: ${bookingList[position].startTime}", )
         binding.dateAndTimeText.text = bookingList[position].day + "," + CommonUtils.getDateTimeStampConvert(bookingList[position].startTime)

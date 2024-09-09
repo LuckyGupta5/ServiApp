@@ -395,21 +395,21 @@
                         android:textColor="@color/app_theme"
                         android:textSize="13dp" />
 
-                    <TextView
-                        android:id="@+id/addVideo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginHorizontal="20dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/white_round_corner_12_dp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:gravity="center_horizontal"
-                        android:paddingVertical="15dp"
-                        android:text="@string/add_video"
-                        android:textColor="@color/app_theme"
-                        android:textSize="13dp" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/addVideo"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:layout_marginHorizontal="20dp"-->
+<!--                        android:layout_marginTop="15dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:background="@drawable/white_round_corner_12_dp"-->
+<!--                        android:fontFamily="@font/poppins_medium"-->
+<!--                        android:gravity="center_horizontal"-->
+<!--                        android:paddingVertical="15dp"-->
+<!--                        android:text="@string/add_video"-->
+<!--                        android:textColor="@color/app_theme"-->
+<!--                        android:textSize="13dp" />-->
                 </LinearLayout>
 
 

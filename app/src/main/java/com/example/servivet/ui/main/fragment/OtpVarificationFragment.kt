@@ -23,6 +23,7 @@ import com.example.servivet.utils.CommonUtils.showSnackBar
 import com.example.servivet.utils.Constants
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
+import com.example.servivet.utils.SocketManager
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
 
@@ -153,6 +154,7 @@ class OtpVarificationFragment :
                             showSnackBar(it.data.message)
                             Session.saveToken(it.data.result.token)
                             Session.saveVerifyUserData(it.data.result)
+                            SocketManager.initializeSocket(Session.token)
                             if (Session.type.equals("1")) {
                                 if (it.data.result.isProfileVerify) {
                                     Session.saveIsLogin(true)

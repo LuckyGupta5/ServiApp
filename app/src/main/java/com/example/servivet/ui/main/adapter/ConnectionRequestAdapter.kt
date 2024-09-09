@@ -1,13 +1,16 @@
 package com.example.servivet.ui.main.adapter
 
 import android.content.Context
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 
 import com.example.servivet.R
 import com.example.servivet.data.model.chat_models.request_list.response.Chatlist
 import com.example.servivet.data.model.connection.connection_list.responnse.MyConnection
 import com.example.servivet.databinding.ConnectionRequestDesignRecyclerviewBinding
 import com.example.servivet.ui.base.BaseAdapter
+import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.setSpannable
 import com.google.gson.Gson
 
@@ -22,15 +25,15 @@ class ConnectionRequestAdapter(
     private var filteredList: List<MyConnection> = requestList.toList()
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun bind(
         binding: ConnectionRequestDesignRecyclerviewBinding,
         item: MyConnection?,
         position: Int,
     ) {
         binding.apply {
-
             listData = filteredList[position]
-
+            binding.idTime.text = CommonUtils.getDateTimeStampConvertConectionPage(filteredList[position].createdAt)
             idAccept.setOnClickListener { onItemClick(1, item?._id ?: "") }
             idDeclineBtn.setOnClickListener { onItemClick(2, item?._id ?: "") }
             if (filteredList != null && filteredList.isNotEmpty())

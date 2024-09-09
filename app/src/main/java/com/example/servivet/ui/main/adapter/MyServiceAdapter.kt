@@ -11,6 +11,7 @@ import com.example.servivet.R
 import com.example.servivet.data.model.chat_models.request_list.response.Chatlist
 import com.example.servivet.data.model.service_list.response.ServiceList
 import com.example.servivet.databinding.MyServiceRecyclerBinding
+import com.example.servivet.databinding.ServiceCategoryInfoRecyclerBinding
 import com.example.servivet.ui.base.BaseAdapter
 import com.example.servivet.utils.Constants
 import java.text.DecimalFormat
@@ -24,6 +25,8 @@ class  MyServiceAdapter(
     val isBook: Boolean
 ) : BaseAdapter<MyServiceRecyclerBinding, ServiceList>(list)
 {
+    var smallest = ""
+    var largest = ""
     override val layoutId: Int = R.layout.my_service_recycler
     private var filteredList: List<ServiceList> = list.toList()
     override fun bind(binding: MyServiceRecyclerBinding, item: ServiceList?, position: Int) {
@@ -44,11 +47,20 @@ class  MyServiceAdapter(
         }else{
             binding.idViewDetails.isVisible = true
         }
-        val smallest: String = min(item!!.atCenterPrice!!, item!!.atHomePrice!!).toString()
-        val largest: String = max(item!!.atCenterPrice!!,item!!.atHomePrice!!).toString()
+         smallest  = min(item!!.atCenterPrice!!, item!!.atHomePrice!!).toString()
+        largest= max(item!!.atCenterPrice!!,item!!.atHomePrice!!).toString()
+        checkVisibility(binding)
         binding.smallest.text=commaSaparator(smallest.toDouble()).toString()
         binding.largest.text=commaSaparator(largest.toDouble()).toString()
     }
+    private fun checkVisibility(binding: MyServiceRecyclerBinding) {
+        // Show the smallest value only if it's greater than 0.0
+        binding.smallest.isVisible =  smallest!= "0.0" && smallest != largest
+        binding.idView.isVisible = binding.smallest.isVisible // Divider visibility based on smallest
+        // Always show the largest value
+        binding.largest.isVisible = largest != "0.0"
+    }
+
     fun commaSaparator(number: Double?): String? {
         val formatter = DecimalFormat("#,###,###")
         return formatter.format(number)

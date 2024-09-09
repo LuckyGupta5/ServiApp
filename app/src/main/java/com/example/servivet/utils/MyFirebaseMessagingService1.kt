@@ -57,7 +57,7 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onMessageReceived(rMessage: RemoteMessage) {
         super.onMessageReceived(rMessage)
-        rMessage.notification?.let { Log.e("TAG", "onMessageReceived: ${Gson().toJson(it)}") }
+        rMessage.notification?.let { Log.e("TAG", "onMessageReceived: Z ${Gson().toJson(it)}") }
         val callBody = Gson().fromJson(rMessage.data["customData"], CallBody::class.java)
         Log.e("TAG", "checkCallBody111: ${Gson().toJson(callBody)}")
 

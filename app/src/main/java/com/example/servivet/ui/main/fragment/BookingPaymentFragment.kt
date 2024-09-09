@@ -142,7 +142,7 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, Booki
                             paymentAmountData = data.result
                             mViewModel.payAmountResult = paymentAmountData
                             binding.paymentData = paymentAmountData
-                            SECURE_HEADER = " "
+                            SECURE_HEADER = "secure"
                             initSlotModel()
                         }
                      //   297807.44
@@ -192,8 +192,14 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, Booki
             when (it.status) {
                 Status.SUCCESS -> {
                     ProcessDialog.dismissDialog()
-                    when (it.data?.code) {
+                    val data = Gson().fromJson(
+                        AESHelper.decrypt(SECURITY_KEY, it.data), PaymentResponseMain::class.java
+                    )
+                    Log.e("TAG", "setupObserversasdfghjklkjhgfdsdfghj: ${data}")
+                    when (data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
+
+                          //  SECURE_HEADER=" "
                             binding.slotNotAvailable.isVisible = false
                             binding.paynow.isVisible = true
                         }
@@ -240,6 +246,7 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, Booki
     private fun bottomSheetCallBack() {
         findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(getString(R.string.confirm))
             ?.observe(viewLifecycleOwner) {
+                SECURE_HEADER="secure"
                 initSlotModel()
                 mViewModel.isConfirm = true
             }

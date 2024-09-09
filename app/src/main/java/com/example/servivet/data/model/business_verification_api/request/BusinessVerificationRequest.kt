@@ -7,5 +7,6 @@ data class BusinessVerificationRequest(
     var email: String?=null,
     var name: String?=null,
     val nameOnDocument: String?= null,
-    var userType: Int?=null
+    var userType: Int?=null,
+    var address:String?=null
 )

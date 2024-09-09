@@ -1,6 +1,10 @@
 package com.example.servivet.ui.main.fragment
 
+import android.os.Build
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -20,6 +24,7 @@ import com.example.servivet.utils.StatusCode
 
 class FragmentMyConnection :
     BaseFragment<FragmentMyConnectionBinding, MyConnectionModelView>(R.layout.fragment_my_connection) {
+
     override val binding: FragmentMyConnectionBinding by viewBinding(FragmentMyConnectionBinding::bind)
     override val mViewModel: MyConnectionModelView by viewModels()
     private val connectionList = ArrayList<MyConnection>()
@@ -41,6 +46,31 @@ class FragmentMyConnection :
         backbtn()
         setadapter()
         initAcceptRejectModel()
+        initEditText()
+        binding.idTopLayout.idSearch.setOnClickListener {
+            binding.idTopLayout.idSearchLayout.visibility = View.VISIBLE
+            binding.idTopLayout.idSearch.visibility = View.GONE
+        }
+
+        binding.idTopLayout.idCloseSearch.setOnClickListener {
+            binding.idTopLayout.idSearchLayout.visibility = View.GONE
+            binding.idTopLayout.idSearch.visibility = View.VISIBLE
+        }
+    }
+
+    private fun initEditText() {
+        binding.idTopLayout.idSearchText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                mViewModel.request["search"] = s.toString()
+                mViewModel.getConnectionListRequest()
+            }
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+        })
+
 
     }
 
@@ -50,6 +80,11 @@ class FragmentMyConnection :
 
     private fun backbtn() {
         binding.idTopLayout.idBack.setOnClickListener(View.OnClickListener {
+            requireActivity().onBackPressed()
+
+
+        })
+        binding.idTopLayout.idSearchLayout.setOnClickListener(View.OnClickListener {
             requireActivity().onBackPressed()
         })
     }
@@ -104,6 +139,7 @@ class FragmentMyConnection :
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun initAcceptRejectModel() {
         acceptRejectModel.getAcceptRejectData().observe(viewLifecycleOwner) {
             when (it.status) {
@@ -123,7 +159,7 @@ class FragmentMyConnection :
                 }
 
                 Status.LOADING -> {
-                    ProcessDialog.startDialog(requireContext())
+                    ProcessDialog.dismissDialog()
                 }
 
                 Status.ERROR -> {

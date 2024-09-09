@@ -59,6 +59,14 @@ class PaymentFragment :
     private fun getData() {
         val data = Gson().fromJson(paymentData.payUrl, CreateOrderResult::class.java)
         binding.idWebView.settings.javaScriptEnabled = true
+        binding.idWebView.settings.apply {
+            javaScriptEnabled = true
+            domStorageEnabled = true // Enable DOM storage API for the webview
+            useWideViewPort = true // Enable viewport meta tag handling
+            loadWithOverviewMode = true
+            allowFileAccess = true
+            allowContentAccess = true
+        }
         // Set a WebViewClient to handle redirection and links within the WebView
         binding.idWebView.webViewClient = MyWebViewClient()
         binding.idWebView.loadUrl(data.authorization_url)

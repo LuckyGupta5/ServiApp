@@ -26,9 +26,11 @@ abstract class BaseFragment<Binding : ViewBinding, ViewModel : BaseViewModel>(la
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         CoroutineScope(Dispatchers.Main).launch {
-               if (isAdded)
+            if (isAdded) {
                 setupViews()
-               setupViewModel()
+                setupViewModel()
+                setupObservers()
+            }
         }
     }
 
@@ -37,7 +39,6 @@ abstract class BaseFragment<Binding : ViewBinding, ViewModel : BaseViewModel>(la
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        setupObservers()
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
@@ -58,6 +59,7 @@ abstract class BaseFragment<Binding : ViewBinding, ViewModel : BaseViewModel>(la
                     isNetworkAvailable(true)
                     LogUtil.e("Network", "Network Connection Established")
                 }
+
                 NetworkStatus.Unavailable -> {
                     LogUtil.e("Network", "No Internet")
                     isNetworkAvailable(false)
@@ -65,6 +67,7 @@ abstract class BaseFragment<Binding : ViewBinding, ViewModel : BaseViewModel>(la
             }
         }
     }
+
     abstract fun isNetworkAvailable(boolean: Boolean)
     abstract fun setupViewModel()
     abstract fun setupViews()

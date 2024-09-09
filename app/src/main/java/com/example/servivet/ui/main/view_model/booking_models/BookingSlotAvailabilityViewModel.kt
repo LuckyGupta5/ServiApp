@@ -6,10 +6,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.servivet.data.api.RetrofitBuilder
 import com.example.servivet.data.model.booking_module.booking_summary.response.ServiceDetail
 import com.example.servivet.data.model.booking_module.coupon.request.CouponAvalabilityRequest
+import com.example.servivet.data.model.common.request.CommonRequest
 import com.example.servivet.data.model.common.response.CommonResponse
 import com.example.servivet.data.repository.MainRepository
 import com.example.servivet.ui.base.BaseViewModel
+import com.example.servivet.utils.AESHelper
 import com.example.servivet.utils.Constants
+import com.example.servivet.utils.Constants.SECURE_HEADER
+import com.example.servivet.utils.Constants.SECURITY_KEY
 import com.example.servivet.utils.Resource
 import com.example.servivet.utils.SingleLiveEvent
 import com.example.servivet.utils.StatusCode
@@ -20,10 +24,11 @@ import java.io.IOException
 
 class BookingSlotAvailabilityViewModel: BaseViewModel(){
     val request = CouponAvalabilityRequest()
+    private var newRequest = CommonRequest()
 
-    private val couponAvailabilityMData = SingleLiveEvent<Resource<CommonResponse>>()
+    private val couponAvailabilityMData =SingleLiveEvent<Resource<String>>()
 
-    fun getCouponAvailabilityData(): LiveData<Resource<CommonResponse>> {
+    fun getCouponAvailabilityData(): LiveData<Resource<String>> {
         return couponAvailabilityMData
     }
 
@@ -34,19 +39,21 @@ class BookingSlotAvailabilityViewModel: BaseViewModel(){
             serviceMode =serviceData.serviceModeLocal
             slotId = serviceData.slotId
             bookingDate =serviceData.date
+            SECURE_HEADER = "secure"
+
         }
+        SECURE_HEADER = "secure"
+        newRequest.servivet_user_req = AESHelper.encrypt(SECURITY_KEY, Gson().toJson(request))
       Log.e("TAG", "getCouponAvailabilityRequest: ${Gson().toJson(request)}",)
         hitCouponAvailabilityApi()
 
     }
     private fun hitCouponAvailabilityApi(){
         val repository = MainRepository(RetrofitBuilder.apiService)
-        Constants.SECURE_HEADER = ""
-
         couponAvailabilityMData.postValue(Resource.loading(null))
         viewModelScope.launch {
             try {
-                couponAvailabilityMData.postValue(Resource.success(repository.bookingSlotAvailabilityApi(request)))
+                couponAvailabilityMData.postValue(Resource.success(repository.bookingSlotAvailabilityApi(newRequest)))
             }catch (ex: IOException) {
                 ex.printStackTrace()
                 couponAvailabilityMData.postValue(Resource.error(StatusCode.STATUS_CODE_INTERNET_VALIDATION, null))

@@ -197,10 +197,10 @@ class AddServiceFragment :
             type = getString(R.string.image)
             selectImage()
         }
-        binding.addVideo.setOnClickListener {
-            type = getString(R.string.videos)
-            selectImage()
-        }
+//        binding.addVideo.setOnClickListener {
+//            type = getString(R.string.videos)
+//            selectImage()
+//        }
 
         binding.atHome.setOnClickListener {
             mViewModel.isHomeClick = if (!mViewModel.isHomeClick) {

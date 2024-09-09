@@ -89,7 +89,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
     }
 
     override fun isNetworkAvailable(boolean: Boolean) {}
@@ -371,6 +370,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
     }
 
     private fun setClick() {
+        binding.notification.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_notificationFragment)
+        }
         binding.viewAll.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_servicesFragment)
         }

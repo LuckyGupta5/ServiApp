@@ -283,6 +283,7 @@ class SettingsFragment :
                     ProcessDialog.dismissDialog()
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
+
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {

@@ -79,7 +79,6 @@ class ConnectionsRequestFragment :
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             requestList.clear()
-
                             requestList.addAll(it.data.result.connectionRequestList)
                             initRequestAdapter()
 

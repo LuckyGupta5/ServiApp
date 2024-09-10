@@ -1,6 +1,7 @@
 package com.example.servivet.ui.main.fragment.settings_module
 
 import android.text.Html
+import android.text.SpannableString
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
@@ -43,20 +44,27 @@ class AboutUsFragment :
                     ProcessDialog.dismissDialog()
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            if(type=="1"){
+                            if (type == "1") {
                                 binding.idHeading.setText(getString(R.string.about_us))
-                            }else if(type=="2"){
+                            } else if (type == "2") {
                                 binding.idHeading.setText(getString(R.string.term_and_condition))
-                            }else if(type=="3"){
+                            } else if (type == "3") {
                                 binding.idHeading.setText(getString(R.string.privacy_policy))
                             }
-                            binding.idText.text=Html.fromHtml(it.data.result.desc)
+
+                            // Check if the desc field is null before passing it to Html.fromHtml
+                            val description = it.data.result?.desc
+                            binding.idText.text = if (description != null) {
+                                Html.fromHtml(description)
+                            } else {
+                                // Handle null case, either show a default message or empty string
+                                SpannableString("Lorem")
+                            }
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showToast(it.data.message)
+                            showToast(it.data?.message ?: "An error occurred")
                         }
-
                     }
                 }
 
@@ -66,21 +74,17 @@ class AboutUsFragment :
 
                 Status.ERROR -> {
                     ProcessDialog.dismissDialog()
-                    it.message?.let {
-                        showSnackBar(it)
-                    }
+                    it.message?.let { showSnackBar(it) }
                 }
 
                 Status.UNAUTHORIZED -> {
                     ProcessDialog.dismissDialog()
-                    it.message?.let {
-                        showSnackBar(it)
-                    }
+                    it.message?.let { showSnackBar(it) }
                 }
             }
         }
-
     }
+
 
 
 }

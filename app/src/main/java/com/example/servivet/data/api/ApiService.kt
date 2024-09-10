@@ -207,7 +207,7 @@ interface ApiService {
     suspend fun changeRoleApi(@Body request: ChangeRoleRequest): CommonResponse
 
     @GET("notification/notificationListing")
-    suspend fun notificationListing(@QueryMap request: HashMap<String, String>): NotificationListResponse
+    suspend fun notificationListing(@QueryMap request: HashMap<String, Int>): NotificationListResponse
 
     @GET("provider/bank/list")
     suspend fun bankListApi(@QueryMap request: HashMap<String, String>): BankListResposne

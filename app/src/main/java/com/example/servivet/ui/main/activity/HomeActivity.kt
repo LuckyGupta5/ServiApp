@@ -32,7 +32,7 @@ class HomeActivity : BaseActivity(), MyServiceFragment.CallBack1 {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-SocketManager.initializeSocket(Session.token)
+        SocketManager.initializeSocket(Session.token)
         navigationBar = findViewById(R.id.navigation_bar)
         view1 = findViewById(R.id.view1)
         view2 = findViewById(R.id.view2)

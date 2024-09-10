@@ -92,9 +92,8 @@ class PaymentFragment :
 
 
             if (reponse.equals("Success", ignoreCase = true)) {
-                findNavController().navigate(R.id.action_paymentFragment_to_homeFragment)
+                findNavController().navigate(R.id.action_paymentFragment_to_bookingsFragment)
                 Constants.APPLIED_COUPON = ""
-
 
             } else if (url.toString() == "https://standard.paystack.co/close") {
                 // finish()

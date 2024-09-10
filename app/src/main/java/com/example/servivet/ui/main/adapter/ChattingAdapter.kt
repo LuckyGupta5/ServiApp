@@ -63,7 +63,6 @@ class ChattingAdapter(
             } else {
                 binding.idMedia.isVisible = true
                 binding.idReceiverMessage.isVisible = false
-
             }
         } else {
             binding.idReceiverLayout.isVisible = false

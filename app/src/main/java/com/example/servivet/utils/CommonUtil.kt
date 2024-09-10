@@ -493,7 +493,7 @@ object CommonUtils {
     @SuppressLint("SimpleDateFormat")
     fun getDateTimeStampConvert(timestamp: String): String? {
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
-       // inputFormat.timeZone = TimeZone.getTimeZone("UTC")
+        // inputFormat.timeZone = TimeZone.getTimeZone("UTC")
         val outputFormat = SimpleDateFormat("dd MMM HH:mm", Locale.getDefault())
         outputFormat.timeZone = TimeZone.getDefault()
 
@@ -503,7 +503,7 @@ object CommonUtils {
 
     fun getDateTimeStampConvertConectionPage(timestamp: String): String? {
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
-         inputFormat.timeZone = TimeZone.getTimeZone("UTC")
+        inputFormat.timeZone = TimeZone.getTimeZone("UTC")
         val outputFormat = SimpleDateFormat("dd MMM HH:mm", Locale.getDefault())
         outputFormat.timeZone = TimeZone.getDefault()
         val date = inputFormat.parse(timestamp)
@@ -612,8 +612,60 @@ object CommonUtils {
     fun Fragment.showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
+    fun formatDate(inputDate: String?): String {
+        if (inputDate.isNullOrEmpty()) return ""
+        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+        val date = sdf.parse(inputDate) ?: return ""
 
+        val calendar = Calendar.getInstance()
+        calendar.time = date
 
+        val today = Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, 0)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
+
+        val yesterday = Calendar.getInstance().apply {
+            add(Calendar.DAY_OF_YEAR, -1)
+            set(Calendar.HOUR_OF_DAY, 0)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
+
+        return when {
+            calendar.get(Calendar.YEAR) == today.get(Calendar.YEAR) && calendar.get(Calendar.DAY_OF_YEAR) == today.get(
+                Calendar.DAY_OF_YEAR
+            ) -> "Recent"
+
+            calendar.get(Calendar.YEAR) == yesterday.get(Calendar.YEAR) && calendar.get(Calendar.DAY_OF_YEAR) == yesterday.get(
+                Calendar.DAY_OF_YEAR
+            ) -> "Yesterday"
+
+            else -> SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(date)
+        }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun sendMessageTime(date: String?): String? {
+        if (date.isNullOrEmpty()) return ""
+
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+        inputFormat.timeZone = TimeZone.getTimeZone("UTC")
+
+        val outputFormat = SimpleDateFormat("hh:mm a")
+        outputFormat.timeZone = TimeZone.getDefault()
+
+        return try {
+            val dateTimeStamp = inputFormat.parse(date)
+            outputFormat.format(dateTimeStamp!!)
+        } catch (e: ParseException) {
+            e.printStackTrace()
+            null
+        }
+    }
     fun emailValidator(email: String?): Boolean {
         val pattern: Pattern
         val EMAIL_PATTERN =
@@ -1358,6 +1410,7 @@ fun changeLanguageAndRestartActivity(context: Context, lang: String) {
     context.startActivity(intent)
     (context as Activity).finish()
 }
+
 fun updateLocale(context: Context, lang: String): Context {
     val locale = Locale(lang)
     Locale.setDefault(locale)

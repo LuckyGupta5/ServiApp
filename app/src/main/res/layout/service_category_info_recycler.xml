@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -71,10 +72,10 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="10dp"
                             android:layout_toStartOf="@id/rating"
+                            android:ellipsize="end"
                             android:fontFamily="@font/poppins_semi_bold"
                             android:maxLines="1"
                             android:singleLine="true"
-                            android:ellipsize="end"
                             android:text="@{data.createdBy.name}"
                             android:textColor="@color/black_2"
                             android:textSize="18dp" />
@@ -92,7 +93,7 @@
                             android:gravity="end"
                             android:paddingHorizontal="6dp"
                             android:paddingVertical="4dp"
-                            android:text="4.5"
+                            android:text="@{data.avgRating}"
                             android:textColor="@color/white"
                             android:textSize="13dp" />
 
@@ -109,18 +110,18 @@
                             android:id="@+id/serviceName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:maxLines="1"
                             android:fontFamily="@font/poppins_regular"
+                            android:maxLines="1"
                             android:textColor="@color/grey6"
                             android:textSize="13dp" />
 
 
                         <LinearLayout
                             android:id="@+id/kmAwayText"
-                            android:layout_marginStart="5dp"
-                            android:layout_toEndOf="@id/serviceName"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_toEndOf="@id/serviceName">
 
                             <com.google.android.material.card.MaterialCardView
                                 android:layout_width="8dp"
@@ -131,18 +132,22 @@
                                 app:cardCornerRadius="8dp" />
 
                             <TextView
+                                android:id="@+id/kilometers"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
                                 android:fontFamily="@font/poppins_regular"
-                                android:text="@string/_1_km_away"
                                 android:maxLines="1"
+                                android:text="@{data.aboutService}"
                                 android:textColor="@color/grey4"
-                                android:textSize="15dp" />
+                                android:textSize="15dp"
+                                tools:text="@string/_1_km_away" />
+
                         </LinearLayout>
                     </RelativeLayout>
 
                     <TextView
+                        android:id="@+id/address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -150,9 +155,10 @@
                         android:drawablePadding="10dp"
                         android:fontFamily="@font/poppins_regular"
                         android:maxLines="1"
-                        android:text="@string/riepneapps_technology_noida"
+                        android:text="@{data.address}"
                         android:textColor="@color/grey4"
-                        android:textSize="15dp" />
+                        android:textSize="15dp"
+                        tools:text="@string/riepneapps_technology_noida" />
                 </LinearLayout>
 
 
@@ -185,18 +191,18 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/poppins_semi_bold"
                         android:text="@string/r"
-                        android:textSize="20sp"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/poppins_semi_bold"/>
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/smallest"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="5dp"
                         android:drawablePadding="3dp"
-                        android:layout_gravity="center_vertical"
                         android:fontFamily="@font/poppins_semi_bold"
                         android:text="14999"
                         android:textColor="@color/black_2"
@@ -214,9 +220,9 @@
                         android:id="@+id/largest"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="5dp"
                         android:drawablePadding="3dp"
-                        android:layout_gravity="center_vertical"
                         android:fontFamily="@font/poppins_semi_bold"
                         android:text="14999"
                         android:textColor="@color/black_2"

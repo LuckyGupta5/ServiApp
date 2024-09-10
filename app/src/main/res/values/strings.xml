@@ -488,4 +488,9 @@
     <string name="no_connections_found">No Connections Found !</string>
     <string name="resend_otp">Resend OTP</string>
     <string name="seconds">" Seconds"</string>
+    <string name="are_you_sure_want_to_delete">Are you sure want to delete?</string>
+    <string name="yes_delete">Yes, Delete</string>
+    <string name="are_you_sure_want_to_block">Are you sure want to Block?</string>
+    <string name="are_you_sure_want_to_unBlock">Are you sure want to UnBlock?</string>
+    <string name="block_chat">Block Chat</string>
 </resources>

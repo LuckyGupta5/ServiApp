@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/apptheme_outline_with_solid_white_corner_12"
+        android:backgroundTint="@color/white"
+        tools:context=".ui.main.dialogs.ChatDeleteDialog">
+
+        <TextView
+            android:id="@+id/idLogoutImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:textColor="@color/black"
+            android:text="@string/delete_chat"
+            android:textSize="20sp"
+            android:fontFamily="@font/poppins_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/idDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/are_you_sure_want_to_delete"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idLogoutImg"
+            tools:text="@string/are_you_logout" />
+
+        <View
+            android:id="@+id/idView"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/gray"
+            app:layout_constraintTop_toBottomOf="@id/idDescription" />
+
+        <TextView
+            android:id="@+id/idNegative"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/round_corner_app_theme_8dp"
+            android:backgroundTint="@color/gray"
+            android:paddingVertical="12dp"
+            android:text=" @string/cancel"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/idView2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/idView"
+            tools:text="@string/no" />
+
+        <View
+            android:id="@+id/idView2"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="@color/grey7"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/idPositive"
+            app:layout_constraintStart_toEndOf="@id/idNegative"
+            app:layout_constraintTop_toBottomOf="@id/idView" />
+
+        <TextView
+            android:id="@+id/idPositive"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/round_corner_app_theme_8dp"
+            android:paddingVertical="12dp"
+            android:text="@string/yes_delete"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/idNegative"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/idView2"
+            app:layout_constraintTop_toTopOf="@+id/idNegative"
+            tools:text="@string/yes" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

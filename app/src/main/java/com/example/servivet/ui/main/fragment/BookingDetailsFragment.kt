@@ -70,7 +70,7 @@ class BookingDetailsFragment :
        // Session.deleteNotificationData()
 
 
-        Log.e("TAG", "printNotificationData: ${Session.notificationData} ", )
+
 
         getBookingData()
 
@@ -83,6 +83,7 @@ class BookingDetailsFragment :
             userType = "provider"
             binding.checkUserType = Constants.TYPEOFUSERS
         }
+        Log.e("TAG", "userType: ${binding.checkUserType} ", )
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
@@ -91,6 +92,7 @@ class BookingDetailsFragment :
             clickEvent = ::onClick
         }
 
+        Log.e("TAG", "setupViews: "+binding.loginAs )
         gotobottomsheet()
         gotocancelBottomsheet()
         initBookingViewModel()
@@ -156,8 +158,6 @@ class BookingDetailsFragment :
                     BookingDetailsFragmentDirections.actionBookingDetailsFragmentToBookingSummaryFragment(
                         Gson().toJson(bookingDetail),
                         getString(R.string.booking_details)
-
-
 
                     )
                 )
@@ -306,12 +306,7 @@ class BookingDetailsFragment :
 
             1 -> {
 
-                if (isTimeGapGreaterThan24Hours(
-                        getCurrentTimeInFormat(),
-                        bookingDetail.startTime,
-                        24
-                    ) && Constants.TYPEOFUSERS == getString(R.string.bought_small)
-                ) {
+                if (isTimeGapGreaterThan24Hours(getCurrentTimeInFormat(), bookingDetail.startTime, 24) && Constants.TYPEOFUSERS == getString(R.string.bought_small)) {
                     if (bookingDetail.isReschedule) {
                         binding.reSchedule.isEnabled = false
                         binding.reSchedule.alpha = 0.3f
@@ -332,7 +327,7 @@ class BookingDetailsFragment :
                         }
                     } else {
                         binding.markAsCompleted.isVisible = false
-                        binding.reScheduleLayout.isVisible = true
+                        binding.reScheduleLayout.visibility=View.VISIBLE
                     }
                 } else {
                     if (Session.type == "2" && Constants.TYPEOFUSERS == getString(R.string.sold_small)) {

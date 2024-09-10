@@ -61,8 +61,8 @@ class ServiceListAdapter(
         smallest = min(item!!.atCenterPrice ?: 0.0, item.atHomePrice ?: 0.0).toString()
         largest = max(item.atCenterPrice ?: 0.0, item.atHomePrice ?: 0.0).toString()
         checkVisibility(binding)
-        binding.smallest.text = commaSaparator(smallest.toDouble()).toString()
-        binding.largest.text = commaSaparator(largest.toDouble()).toString()
+        binding.smallest.text = "₹ "+commaSaparator(smallest.toDouble()).toString()
+        binding.largest.text ="₹ "+ commaSaparator(largest.toDouble()).toString()
 
     }
 

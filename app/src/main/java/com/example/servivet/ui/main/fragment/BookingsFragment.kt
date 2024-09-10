@@ -2,7 +2,6 @@ package com.example.servivet.ui.main.fragment
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -34,7 +33,6 @@ class BookingsFragment :
     override val binding: FragmentBookingBinding by viewBinding(FragmentBookingBinding::bind)
     override val mViewModel: BookingViewModel by viewModels()
     var type: Int = 0
-    lateinit var adapter: BookingAdapter
     private var list = ArrayList<MyBooking>()
     private var bookingList = ArrayList<MyBooking>()
     var currentPage = 1
@@ -203,24 +201,6 @@ class BookingsFragment :
             }
         })
         //  setBookingAdapter()
-    }
-
-    fun setBookingAdapter() {
-        if (list != null && list.isNotEmpty()) {
-            // adapter = BookingAdapter(requireContext(), type, typeReschdule, ArrayList(), , mViewModel.typeOfUser)
-            //  val layoutManager = LinearLayoutManager(requireContext())
-            // binding.idBookingRecycle.layoutManager = layoutManager
-            binding.idBookingRecycle.itemAnimator = null
-            binding.idBookingRecycle.adapter = adapter
-            binding.idBookingRecycle.visibility = View.VISIBLE
-            binding.noDataLayout.visibility = View.GONE
-
-
-        } else {
-            binding.idBookingRecycle.visibility = View.GONE
-            binding.noDataLayout.visibility = View.VISIBLE
-        }
-
     }
 
 

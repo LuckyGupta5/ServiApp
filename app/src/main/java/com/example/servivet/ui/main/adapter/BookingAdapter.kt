@@ -36,7 +36,7 @@ class BookingAdapter(
     @RequiresApi(Build.VERSION_CODES.O)
     override fun bind(binding: BookingListDesignBinding, item: MyBooking?, position: Int) {
         binding.apply {
-            binding.click = ClickAction(position)
+//            binding.click = ClickAction(position)
             binding.data = list[position]
 
             if (type == 0) {
@@ -166,8 +166,7 @@ class BookingAdapter(
             val bundle = Bundle()
             bundle.putString("type", type.toString())
             bundle.putString("bookingId", list[position]._id)
-            view.findNavController()
-                .navigate(R.id.action_bookingsFragment_to_bookingDetailsFragment, bundle)
+            view.findNavController().navigate(R.id.action_bookingsFragment_to_bookingDetailsFragment, bundle)
         }
 
         fun gotoRateUs(view: View) {

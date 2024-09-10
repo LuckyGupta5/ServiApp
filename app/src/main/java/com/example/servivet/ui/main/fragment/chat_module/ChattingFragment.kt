@@ -3,16 +3,15 @@ package com.example.servivet.ui.main.fragment.chat_module
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.pdf.PdfRenderer
-import android.os.ParcelFileDescriptor
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -27,12 +26,14 @@ import com.example.servivet.data.model.chat_models.initiate_chat.InitiateChatRes
 import com.example.servivet.data.model.chat_models.manual_chating_objest.ManualUserDataClass
 import com.example.servivet.data.model.chat_models.request_list.response.Chatlist
 import com.example.servivet.data.model.user_profile.response.UserProfile
+import com.example.servivet.databinding.FragmentChatDeleteDialogBinding
 import com.example.servivet.databinding.FragmentChattingBinding
 import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.adapter.ChattingAdapter
 import com.example.servivet.ui.main.view_model.ChattingViewModel
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.CommonUtils.showSnackBar
+import com.example.servivet.utils.CommonUtils.showToast
 import com.example.servivet.utils.FileMaker
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
@@ -43,16 +44,17 @@ import com.example.servivet.utils.checkMediaPermission
 import com.example.servivet.utils.checkVideoFileSize
 import com.example.servivet.utils.downloadFile
 import com.example.servivet.utils.getVideoPathFromUri
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
 import io.socket.client.Socket
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import kotlin.math.log
 
 class ChattingFragment :
     BaseFragment<FragmentChattingBinding, ChattingViewModel>(R.layout.fragment_chatting) {
@@ -111,7 +113,8 @@ class ChattingFragment :
                 senderId = profileData.senderId
                 binding.idUserName.text = profileData.name
                 binding.nameTextView.text = profileData.name
-                Glide.with(requireContext()).load(profileData.image).placeholder(R.drawable.userprofile).into(binding.profileImageView)
+                Glide.with(requireContext()).load(profileData.image)
+                    .placeholder(R.drawable.userprofile).into(binding.profileImageView)
                 manualUserDataClass.image = profileData.image
                 manualUserDataClass.userName = profileData.name
                 if (profileData.roomId.isNotEmpty()) {
@@ -238,9 +241,9 @@ class ChattingFragment :
             getString(R.string.open_gallery) -> {
                 //   findNavController().navigate(R.id.action_chattingFragment_to_selectMediaBottomSheet)
                 binding.idMediaView.isEnabled = false
-                findNavController().navigate(ChattingFragmentDirections.actionChattingFragmentToSelectMediaBottomSheet(
-                        "",
-                        getString(R.string.gallery)
+                findNavController().navigate(
+                    ChattingFragmentDirections.actionChattingFragmentToSelectMediaBottomSheet(
+                        "", getString(R.string.gallery)
                     )
                 )
             }
@@ -285,6 +288,7 @@ class ChattingFragment :
         val menuItem = popupMenu.menu.findItem(R.id.idBlockUser)
         menuItem.title = if (isBlocked) {
             getString(R.string.unblock)
+
         } else {
             getString(R.string.block)
         }
@@ -296,27 +300,82 @@ class ChattingFragment :
 //            menuItem.title = getString(R.string.block)
 //            binding.idChatBoxContainer.isVisible = true
 //        }
-        // Set item click listener
-        popupMenu.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.idBlockUser -> {
+
+        var deleteUserBottomSheetDialog: BottomSheetDialog? = null
+
+        fun openBottomSheetForDelete(type: String) {
+            // Make sure the context is available before creating the dialog
+            val safeContext = context ?: return
+            // Create the dialog with the proper theme
+            deleteUserBottomSheetDialog =
+                BottomSheetDialog(safeContext, R.style.AppBottomSheetDialogTheme)
+
+            // Inflate the layout for the BottomSheetDialog
+            val bottomSheetBinding: FragmentChatDeleteDialogBinding? = DataBindingUtil.inflate(
+                LayoutInflater.from(safeContext),
+                R.layout.fragment_chat_delete_dialog,
+                null,
+                false
+            )
+            // Set the content view for the dialog
+            bottomSheetBinding?.root?.let { deleteUserBottomSheetDialog?.setContentView(it) }
+            with(bottomSheetBinding) {
+                if (type == "block") {
+                    if (isBlocked) {
+                        // If user is blocked, show unblock text
+                        this?.idLogoutImg?.text = getString(R.string.unblock)
+                        this?.idDescription?.text = getString(R.string.are_you_sure_want_to_unBlock)
+                        this?.idPositive?.text = getString(R.string.yes)
+                    } else {
+                        // If user is not blocked, show block text
+                        this?.idLogoutImg?.text = getString(R.string.block_chat)
+                        this?.idDescription?.text = getString(R.string.are_you_sure_want_to_block)
+                        this?.idPositive?.text = getString(R.string.yes)
+                    }
+                }
+            }
+
+
+            // Set onClick listeners for the buttons
+            bottomSheetBinding?.idNegative?.setOnClickListener {
+                // Dismiss the dialog safely
+                deleteUserBottomSheetDialog?.dismiss()
+
+            }
+            bottomSheetBinding?.idPositive?.setOnClickListener {
+                // Handle the account deletion logic here (e.g., make API call)
+
+                if (type == "block") {
                     isBlocked = !isBlocked
                     if (isBlocked) {
                         menuItem.title = getString(R.string.unblock)
                         binding.idChatBoxContainer.isVisible = false
                         initBlockUnblockUser()
-
                     } else {
                         menuItem.title = getString(R.string.block)
                         binding.idChatBoxContainer.isVisible = true
                         initUnblockUser()
                     }
-                    true
-
+                } else {
+                    initDeleteChatEvent()
                 }
 
+                deleteUserBottomSheetDialog?.dismiss()
+            }
+            // Show the BottomSheetDialog
+            deleteUserBottomSheetDialog?.show()
+
+        }
+
+        // Set item click listener
+        popupMenu.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.idBlockUser -> {
+                   openBottomSheetForDelete("block")
+                    true
+                }
                 R.id.idDeleteChat -> {
-                    initDeleteChatEvent()
+                    openBottomSheetForDelete("delete")
                     true
                 }
 
@@ -325,7 +384,8 @@ class ChattingFragment :
                         showSnackBar("You are unable to call this user. ")
                     } else {
                         findNavController().navigate(
-                            ChattingFragmentDirections.actionChattingFragmentToSelectMediaBottomSheet("", getString(R.string.call)
+                            ChattingFragmentDirections.actionChattingFragmentToSelectMediaBottomSheet(
+                                "", getString(R.string.call)
                             )
                         )
                     }
@@ -342,6 +402,7 @@ class ChattingFragment :
 
     private fun initDeleteChatEvent() {
         try {
+            SocketManager.connect()
             socket = SocketManager.getSocket()
             val data = JSONObject()
             data.put("roomId", roomId)
@@ -467,6 +528,7 @@ class ChattingFragment :
 
     private fun initChatListSocket() {
         try {
+            SocketManager.connect()
             socket = SocketManager.getSocket()
             val data = JSONObject()
             data.put("roomId", roomId)
@@ -535,7 +597,10 @@ class ChattingFragment :
                     ProcessDialog.dismissDialog()
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            Log.e("TAG", "xsetupObserveradjads: ${Gson().toJson(it.data.result.uploadImage)}")
+                            Log.e(
+                                "TAG",
+                                "xsetupObserveradjads: ${Gson().toJson(it.data.result.uploadImage)}"
+                            )
                             mediaList.clear()
                             mediaList.addAll(it.data.result.uploadImage)
                             binding.uploadFileData = it.data.result
@@ -568,10 +633,7 @@ class ChattingFragment :
 
                 Status.UNAUTHORIZED -> {
                     CommonUtils.logoutAlert(
-                        requireContext(),
-                        "Session Expired",
-                        "Unauthorized User",
-                        requireActivity()
+                        requireContext(), "Session Expired", "Unauthorized User", requireActivity()
                     )
                 }
             }
@@ -762,17 +824,12 @@ class ChattingFragment :
 
                 if (list[0].endsWith(".pdf")) {
                     downloadFile(
-                        requireContext(),
-                        list[0],
-                        "Notes",
-                        "pdf"
+                        requireContext(), list[0], "Notes", "pdf"
                     )
                 } else {
                     findNavController().navigate(
                         ChattingFragmentDirections.actionChattingFragmentToImageVideoViewFragment(
-                            data,
-                            getString(R.string.chatfragment),
-                            position
+                            data, getString(R.string.chatfragment), position
                         )
                     )
                 }
@@ -827,9 +884,6 @@ class ChattingFragment :
 
         }
     }
-
-
-
 
 
 }

@@ -148,7 +148,6 @@ class SettingsFragment :
         bottomSheetBinding.noBtn.setOnClickListener { deleteUserBottomSheetDialog!!.dismiss() }
         bottomSheetBinding.yesBtn.setOnClickListener {
             mViewModel.hitDeleteAccountApi()
-
         }
         deleteUserBottomSheetDialog!!.show()
     }

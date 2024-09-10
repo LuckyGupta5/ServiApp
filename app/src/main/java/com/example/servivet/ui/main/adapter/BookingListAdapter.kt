@@ -1,10 +1,13 @@
 package com.example.servivet.ui.main.adapter
 
 import android.content.Context
+import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.servivet.R
 import com.example.servivet.data.model.booking_list.response.MyBooking
@@ -31,6 +34,7 @@ class BookingListAdapter(
             data = item
             type = types
             typeOfUser = typesOfUser
+           click = ClickAction(position)
         } 
         Log.e("TAG", " checkbind: $typesOfUser,$types")
         Log.e("TAG", "bind432343: ${bookingList[position].startTime}", )
@@ -53,6 +57,9 @@ class BookingListAdapter(
             }
         }
 
+
+
+
 //        for (i in Session.category.indices) {
 //            for (j in Session.category[i].subCategory!!.indices) {
 //                if (bookingList[position].serviceDetail.subCategory == Session.category[i].subCategory!![j].id) {
@@ -63,6 +70,26 @@ class BookingListAdapter(
 //                }
 //            }
 //        }
+    }
+
+    inner class ClickAction(var position: Int) {
+        fun gotoBookingDetails(view: View) {
+            findNavController.navigate(BookingsFragmentDirections.actionBookingsFragmentToBookingDetailsFragment(Gson().toJson(bookingList[position]), types,typesOfUser, requireContext.getString(R.string.bookinglist)))
+        }
+
+        fun gotoRateUs(view: View) {
+           // callback.onCallback("1")
+        }
+
+        fun clickreschdulegotoBookingdetail(view: View) {
+//            val bundle=Bundle()
+//            bundle.putString("istype","1")
+//            bundle.putString("type",type.toString())
+//            bundle.putString("bookingId",list[position]._id)
+//            view.findNavController().navigate(R.id.action_bookingsFragment_to_bookingDetailsFragment,bundle)
+
+        }
+
     }
 
     fun updateList(list: ArrayList<MyBooking>) {

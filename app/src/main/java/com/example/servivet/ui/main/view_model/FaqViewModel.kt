@@ -25,7 +25,6 @@ class FaqViewModel:BaseViewModel() {
 
     fun hitFaqTypeListApi() {
         val repository = MainRepository(RetrofitBuilder.apiService)
-
         faqTypeResponse.postValue(Resource.loading(null))
         viewModelScope.launch {
             try {

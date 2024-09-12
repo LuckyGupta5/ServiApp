@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.example.servivet.utils.Session" />
 
         <variable
             name="click"
@@ -194,6 +197,7 @@
                     android:paddingVertical="20dp"
                     android:text="@string/my_wallet"
                     android:textColor="@color/black"
+
                     android:textSize="17sp" />
 
                 <View
@@ -203,6 +207,7 @@
                     android:background="@color/grey_707070_opicity_6" />
 
                 <TextView
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
@@ -215,7 +220,8 @@
                     android:paddingVertical="20dp"
                     android:text="@string/my_bank_account"
                     android:textColor="@color/black"
-                    android:textSize="17sp" />
+                    android:textSize="17sp"
+                    android:visibility='@{Session.INSTANCE.type.equals("1") ?View.GONE:View.VISIBLE}' />
 
                 <View
                     android:layout_width="match_parent"

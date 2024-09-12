@@ -363,7 +363,6 @@ class IncomingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
                 )
             )
         }
-
         mChronometer.base = SystemClock.elapsedRealtime() - stoppedMilliseconds
         mChronometer.start()
 

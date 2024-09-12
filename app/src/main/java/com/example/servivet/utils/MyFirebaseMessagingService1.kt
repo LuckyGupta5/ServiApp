@@ -13,12 +13,10 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.servivet.R
 import com.example.servivet.data.model.call_module.notification_call.CallBody
-import com.example.servivet.data.model.notification_data.NotificationData
 import com.example.servivet.ui.main.activity.HomeActivity
 import com.example.servivet.ui.main.agora.audio.IncomingAudioCallActivity
 import com.example.servivet.ui.main.agora.video.IncomingVideoCallActivity
@@ -43,9 +41,7 @@ import java.util.Random
 open class MyFirebaseMessagingService : FirebaseMessagingService() {
     private var message = ""
     private var title = ""
-    private lateinit var image: String
     private var count = 0
-    private lateinit var notification: NotificationData
 
     private var notificationData = ""
 
@@ -58,10 +54,8 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(rMessage: RemoteMessage) {
         super.onMessageReceived(rMessage)
         rMessage.notification?.let { Log.e("TAG", "onMessageReceived: Z ${Gson().toJson(it)}") }
-        val callBody = Gson().fromJson(rMessage.data["customData"], CallBody::class.java)
+        val callBody: CallBody? = Gson().fromJson(rMessage.data["customData"], CallBody::class.java)
         Log.e("TAG", "checkCallBody111: ${Gson().toJson(callBody)}")
-
-
         if (rMessage.notification?.title != null && rMessage.notification?.title.toString() != "") {
             title = rMessage.notification?.title.toString()
             message = rMessage.notification?.body.toString()
@@ -70,19 +64,13 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
             message = rMessage.data["message"].toString()
         }
 
-
         val intentData = Intent(NOTIFICATION)
         intentData.putExtra(NOTIFICATION, rMessage.notification?.body)
         sendBroadcast(intentData)
-
-
-
         Log.e("TAG", "checkCallBody: ${Gson().toJson(rMessage)}")
-
-
         Log.e("TAG", "onMessageReceived: $message")
 
-        if (callBody.messageType == 0) {
+        if (callBody?.messageType == 0) {
             //  Log.e("tag2","ruby")
             //  if (callBody.isDm) sendDm()
 //            if (callBody.msgType != null)
@@ -107,9 +95,8 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
                 }
             }
         } else {
-            sendNotification(message, title, count, callBody)
             //   Log.e("tag1", callBody.callType.toString())
-            when (callBody.messageType) {
+            when (callBody?.messageType) {
                 6 -> {
                     inviteForAudioCall(callBody)
                 }
@@ -117,17 +104,18 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
                 7 -> {
                     inviteForVideoCall(callBody)
                 }
+
+                else -> {
+                    sendNotification1(message, title)
+                }
             }
         }
-
-
     }
 
-
-    private fun sendNotification(message: String, title: String, count: Int, callBody: CallBody) {
+    private fun sendNotification(message: String, title: String, count: Int, callBody: CallBody?) {
         val pendingIntent: PendingIntent?
         val channelId = "channel-05434377729111997"
-        val channelName = "ConveyrCall"
+        val channelName = "servivetCall"
         val importance = NotificationManager.IMPORTANCE_HIGH
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
@@ -163,17 +151,17 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
         notificationBuilder.setCategory(NotificationCompat.CATEGORY_CALL)
         //  Log.d("ConveyerData  firebase--->", Gson().toJson(callBody.callType))
         startBackgroundMusicService(applicationContext)
-        val intent: Intent = when (callBody.messageType) {
+        val intent: Intent = when (callBody?.messageType) {
             6 -> Intent(baseContext, IncomingAudioCallActivity::class.java)
             7 -> Intent(baseContext, IncomingVideoCallActivity::class.java)
             else -> Intent()
         }.also {
             val bundle = Bundle()
-            bundle.putString(AGORA_TOKEN, callBody.callToken)
-            bundle.putString(CHANNEL_NAME, callBody.channelName)
-            bundle.putString(CALL_USER_IMAGE, callBody.senderId.image)
-            bundle.putString(CALL_USER_NAME, callBody.senderId.name)
-            bundle.putString(MSG_ID, callBody.chatMessageId)
+            bundle.putString(AGORA_TOKEN, callBody?.callToken)
+            bundle.putString(CHANNEL_NAME, callBody?.channelName)
+            bundle.putString(CALL_USER_IMAGE, callBody?.senderId?.image)
+            bundle.putString(CALL_USER_NAME, callBody?.senderId?.name)
+            bundle.putString(MSG_ID, callBody?.chatMessageId)
 
             it.putExtra("bundle", bundle)
             it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
@@ -196,7 +184,7 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
             pendingIntent = PendingIntent.getActivity(
                 this,
                 0, intent,
-                PendingIntent.FLAG_ONE_SHOT
+                PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
             );
         }
         //  val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
@@ -319,7 +307,7 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
         pendingIntent = PendingIntent.getActivity(
             this,
             0,
-             intent,
+            intent,
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
 
@@ -412,30 +400,30 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
     }
 
 
-    private fun inviteForVideoCall(callBody: CallBody) {
+    private fun inviteForVideoCall(callBody: CallBody?) {
         val bundle = Bundle()
-        bundle.putString(AGORA_TOKEN, callBody.callToken)
-        bundle.putString(CHANNEL_NAME, callBody.channelName)
-        bundle.putString(CALL_USER_IMAGE, callBody.senderId.image)
-        bundle.putString(CALL_USER_NAME, callBody.senderId.name)
-        bundle.putString(MSG_ID, callBody.chatMessageId)
-        bundle.putString(ROOM_ID, callBody.roomId)
-        bundle.putString(RECEIVER_ID, callBody.receiverId)
-        bundle.putString(SENDER_ID, callBody.senderId.id)
+        bundle.putString(AGORA_TOKEN, callBody?.callToken)
+        bundle.putString(CHANNEL_NAME, callBody?.channelName)
+        bundle.putString(CALL_USER_IMAGE, callBody?.senderId?.image)
+        bundle.putString(CALL_USER_NAME, callBody?.senderId?.name)
+        bundle.putString(MSG_ID, callBody?.chatMessageId)
+        bundle.putString(ROOM_ID, callBody?.roomId)
+        bundle.putString(RECEIVER_ID, callBody?.receiverId)
+        bundle.putString(SENDER_ID, callBody?.senderId?.id)
         launchActivityWithBundle(IncomingVideoCallActivity::class.java, bundle)
     }
 
-    private fun inviteForAudioCall(callBody: CallBody) {
+    private fun inviteForAudioCall(callBody: CallBody?) {
         val bundle = Bundle()
         Log.e("TAG", "inviteForAudioCalssssl: ${Gson().toJson(callBody)}")
-        bundle.putString(AGORA_TOKEN, callBody.callToken)
-        bundle.putString(CHANNEL_NAME, callBody.channelName)
-        bundle.putString(CALL_USER_IMAGE, callBody.senderId.image)
-        bundle.putString(CALL_USER_NAME, callBody.senderId.name)
-        bundle.putString(MSG_ID, callBody.chatMessageId)
-        bundle.putString(ROOM_ID, callBody.roomId)
-        bundle.putString(RECEIVER_ID, callBody.receiverId)
-        bundle.putString(SENDER_ID, callBody.senderId.id)
+        bundle.putString(AGORA_TOKEN, callBody?.callToken)
+        bundle.putString(CHANNEL_NAME, callBody?.channelName)
+        bundle.putString(CALL_USER_IMAGE, callBody?.senderId?.image)
+        bundle.putString(CALL_USER_NAME, callBody?.senderId?.name)
+        bundle.putString(MSG_ID, callBody?.chatMessageId)
+        bundle.putString(ROOM_ID, callBody?.roomId)
+        bundle.putString(RECEIVER_ID, callBody?.receiverId)
+        bundle.putString(SENDER_ID, callBody?.senderId?.id)
 
         launchActivityWithBundle(IncomingAudioCallActivity::class.java, bundle)
     }

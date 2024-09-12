@@ -567,6 +567,7 @@
                         android:textSize="17sp" />
 
                     <TextView
+                        android:id="@+id/reasonCancel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
@@ -574,10 +575,13 @@
                         android:drawableStart="@drawable/reason_for_cancel_icon"
                         android:drawablePadding="5dp"
                         android:ellipsize="end"
+                        android:text="@{data.refundStatus.cancelReason}"
+                        tools:text="@string/cancel"
                         android:fontFamily="@font/poppins_regular"
                         android:maxLines="2"
                         android:textColor="@color/grey7"
-                        android:textSize="15dp" />
+                        android:textSize="15sp" />
+
 
                     <View
                         android:layout_width="match_parent"
@@ -605,7 +609,8 @@
                         android:ellipsize="end"
                         android:fontFamily="@font/poppins_regular"
                         android:maxLines="2"
-                        android:text="@string/refund_initiated_you_will_receive_your_n_amount_in_48_hours"
+                        android:text="@{data.refundStatus.refundStatus}"
+                        tools:text="@string/refund_initiated_you_will_receive_your_n_amount_in_48_hours"
                         android:textColor="@color/grey7"
                         android:textSize="15dp" />
                 </LinearLayout>

@@ -63,6 +63,7 @@ class ProfileViewModel : BaseViewModel() {
         }
 
         fun goMyWallet(view: View) {
+
             view.findNavController().navigate(R.id.action_profileFragment_to_settingsFragment)
         }
 
@@ -104,6 +105,7 @@ class ProfileViewModel : BaseViewModel() {
         alert.show()
     }
 
+
     fun hitUserProfileApi(
         userId: String,
         isMyProfile: Int,
@@ -117,6 +119,7 @@ class ProfileViewModel : BaseViewModel() {
         val mainRepository = MainRepository(RetrofitBuilder.apiService)
         viewModelScope.launch {
             userProfileResponse.postValue(Resource.loading(null))
+
             try {
                 userProfileResponse.postValue(
                     Resource.success(

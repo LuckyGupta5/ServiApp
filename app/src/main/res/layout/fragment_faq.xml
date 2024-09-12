@@ -22,19 +22,18 @@
         tools:context=".ui.main.fragment.settings_module.FaqFragment">
 
         <LinearLayout
-            android:id="@+id/topLayout"
-            android:orientation="vertical"
+            android:id="@id/topLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:elevation="6dp">
+            android:elevation="4dp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="55dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginTop="56dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -45,29 +44,41 @@
                     android:src="@drawable/servishback_btn" />
 
                 <TextView
-                    android:id="@+id/idHeading"
+                    android:id="@+id/catName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center"
-                    android:layout_marginStart="-15dp"
+                    android:layout_weight="1"
                     android:fontFamily="@font/poppins_semi_bold"
                     android:gravity="center_horizontal"
-                    android:text="FAQ's"
-                    android:textColor="@color/black"
-                    android:textSize="21dp" />
+                    android:text="@string/faq_s"
+                    android:textColor="@color/black_2"
+                    android:textSize="23dp" />
 
+                <SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:src="@drawable/search_circle_icon" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:src="@drawable/filter_icon" />
             </LinearLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/faqTypeRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/topLayout"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:paddingVertical="5dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/faq_type_recycler" />
-
+                tools:listitem="@layout/sub_category_services_recycler" />
         </LinearLayout>
 
 

@@ -421,7 +421,7 @@ class ChattingFragment :
             val data = JSONObject()
             data.put("receiverId", profileData._id)
             data.put("messageType", typeOfMessage)
-            data.put("message", mViewModel.messageText.value)
+            data.put("message", mViewModel.messageText.value?.trim())
             data.put("file", Gson().toJson(mediaList))
             socket.emit("initiateChat", data)
             socket.on("getRoomId", fun(args: Array<Any?>) {
@@ -509,7 +509,7 @@ class ChattingFragment :
                 data.put("receiverId", recieverId)
                 data.put("roomId", roomId)
                 data.put("messageType", typeOfMessage)
-                data.put("message", mViewModel.messageText.value)
+                data.put("message", mViewModel.messageText.value?.trim())
                 data.put("file", Gson().toJson(mediaList))
                 socket.emit("sendMessage", data)
                 // binding.idMessage.setText("")
@@ -545,6 +545,7 @@ class ChattingFragment :
                             )
                             chattingList = chatListResponse.result.message
                             initChattingAdapter()
+
                             binding.idChatRecycle.scrollToPosition(chattingList.size - 1)
                             socket.off("receiveMessages")
 
@@ -664,9 +665,7 @@ class ChattingFragment :
                         } else {
                             showSnackBar("Permission not Granted")
                         }
-
                     }
-
                     getString(R.string.videos) -> {
                         if (checkMediaPermission(requireActivity())) {
                             openGallery()
@@ -684,11 +683,8 @@ class ChattingFragment :
                     }
 
                 }
-
-
             }
     }
-
     private fun generateAgoraToken() {
         socket = SocketManager.getSocket()
         val data = JSONObject()
@@ -724,7 +720,6 @@ class ChattingFragment :
                                         )
                                     }
                                 }
-
                                 7 -> {
                                     CoroutineScope(Dispatchers.Main).launch {
                                         delay(500)
@@ -739,7 +734,6 @@ class ChattingFragment :
                                 }
                             }
                             socket.off("agoraToken")
-
 
                         } catch (ex: JSONException) {
                             ex.printStackTrace()

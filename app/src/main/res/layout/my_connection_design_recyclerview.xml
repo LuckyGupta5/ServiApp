@@ -53,14 +53,12 @@
             android:fontFamily="@font/poppins_regular"
             android:includeFontPadding="false"
             android:maxLines="1"
-            android:text="@string/individual_business"
+            android:text="@{listData.businessType == 3 ? @string/individual : (listData.businessType == 4 ? @string/institutional : @string/consumer)}"
             android:textColor="@color/grey7"
-            android:textSize="13dp"
+            android:textSize="13sp"
             app:layout_constraintEnd_toStartOf="@id/idRemove"
             app:layout_constraintStart_toEndOf="@id/profile_image"
             app:layout_constraintTop_toBottomOf="@id/idName" />
-
-        <!--android:text="@{listData.userDetail.businessType==3?@string/individual:@string/institutional}"-->
 
 
         <TextView

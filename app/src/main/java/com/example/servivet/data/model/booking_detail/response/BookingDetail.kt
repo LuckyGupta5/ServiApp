@@ -1,5 +1,8 @@
 package com.example.servivet.data.model.booking_detail.response
 
+import com.example.servivet.data.model.cancel_booking.response.CancelBookingResponse
+import com.example.servivet.data.model.cancel_booking.response.CancelBookingResult
+
 data class BookingDetail(
     val __v: Int,
     val _id: String,
@@ -30,5 +33,10 @@ data class BookingDetail(
     val isReschedule: Boolean,
     val userDetail: BookingDetailUserDetail,
     val bookingCompleted: BookingCompleted?=null,
+    val refundStatus: RefundStatus?=null
+)
 
+data class RefundStatus(
+    val cancelReason:String,
+    val refundStatus:String
 )

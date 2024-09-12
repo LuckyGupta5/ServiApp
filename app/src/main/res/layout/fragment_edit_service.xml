@@ -393,22 +393,22 @@
                         android:textColor="@color/app_theme"
                         android:textSize="13dp" />
 
-                    <TextView
-                        android:id="@+id/idAddVideoBtnn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginHorizontal="20dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_weight="1"
-                        android:layout_marginBottom="15dp"
-                        android:background="@drawable/white_round_corner_12_dp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:gravity="center_horizontal"
-                        android:paddingVertical="15dp"
-                        android:text="+ Add Video"
-                        android:textColor="@color/app_theme"
-                        android:textSize="13dp" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/idAddVideoBtnn"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:layout_marginHorizontal="20dp"-->
+<!--                        android:layout_marginTop="15dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:layout_marginBottom="15dp"-->
+<!--                        android:background="@drawable/white_round_corner_12_dp"-->
+<!--                        android:fontFamily="@font/poppins_medium"-->
+<!--                        android:gravity="center_horizontal"-->
+<!--                        android:paddingVertical="15dp"-->
+<!--                        android:text="+ Add Video"-->
+<!--                        android:textColor="@color/app_theme"-->
+<!--                        android:textSize="13dp" />-->
 
                 </LinearLayout>
 

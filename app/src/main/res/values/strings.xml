@@ -55,6 +55,9 @@
     <string name="individualcap" translatable="false">INDIVIDUAL</string>
     <string name="institutional" translatable="false">Institutional</string>
     <string name="institutionalcap" translatable="false">INSTITUTIONAL</string>
+    <string name="consumer" translatable="false">consumer</string>
+
+
     <string name="edit_profile" translatable="false">Edit Profile</string>
     <string name="abhishek_mehra" translatable="false">Abhishek Mehra</string>
     <string name="about" translatable="false">About</string>
@@ -480,7 +483,10 @@
     <string name="your_feedback_or_suggestion_here">Your feedback or suggestion here...</string>
     <string name="_0_200">(0/200)</string>
     <string name="email">Email</string>
-    <string name="we_are_keen_to_know_how_we_can_make_e_yugam_better_for_you_send_your_feedback_or_suggestion">We are keen to know how we can make E-Yugam better for you. Send your feedback or suggestion</string>
+    <string name="we_are_keen_to_know_how_we_can_make_e_yugam_better_for_you_send_your_feedback_or_suggestion">
+We’d love to hear from you!
+\n
+Your feedback and suggestions are invaluable in helping us improve Survi. Please share your thoughts with us and let us know how we can make your experience even better.</string>
     <string name="withdraw">Withdraw</string>
     <string name="no_data_found">No Data Found !</string>
     <string name="delhi">Delhi</string>

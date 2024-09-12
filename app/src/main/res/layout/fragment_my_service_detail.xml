@@ -55,17 +55,18 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="15dp"
                         android:onClick="@{click::editBtn}"
-                        android:layout_toLeftOf="@id/three_icon"
+                        android:layout_alignParentEnd="true"
                         android:background="@mipmap/edit_icon_2"/>
 
 
 
-                    <ImageView
-                        android:id="@+id/three_icon"
-                        android:layout_width="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_height="wrap_content"
-                        android:background="@mipmap/three_dot"/>
+<!--                    <ImageView-->
+<!--                        android:id="@+id/three_icon"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_alignParentEnd="true"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:visibility="invisible"-->
+<!--                        android:background="@mipmap/three_dot"/>-->
 
                 </RelativeLayout>
             </RelativeLayout>

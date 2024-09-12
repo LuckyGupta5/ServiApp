@@ -310,10 +310,10 @@ class EditServiceFragment :
             type = getString(R.string.image)
             selectImage()
         }
-        binding.idAddVideoBtnn.setOnClickListener {
-            type = getString(R.string.videos)
-            selectImage()
-        }
+//        binding.idAddVideoBtnn.setOnClickListener {
+//            type = getString(R.string.videos)
+//            selectImage()
+//        }
 
         binding.atHome.setOnClickListener {
             mViewModel.isHomeClick = if (!mViewModel.isHomeClick) {

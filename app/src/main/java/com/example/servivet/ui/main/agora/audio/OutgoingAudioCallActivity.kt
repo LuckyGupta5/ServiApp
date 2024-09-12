@@ -115,11 +115,8 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
                 msgId = data.result.chatMessageId
                 roomId = data.result.roomId
                 receiverId = data.result.receiverId
-
                 mBinding.userImage = userData.image
                 mBinding.userName = userData.userName
-
-
             }
         }
     }
@@ -156,7 +153,6 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
             override fun onTick(millisUntilFinished: Long) {
 
             }
-
             override fun onFinish() {
                 noAnswerCall()
             }

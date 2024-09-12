@@ -52,6 +52,7 @@ class SettingsViewModel : BaseViewModel() {
         }
 
         fun gotoMyWallet(view: View) {
+
             view.findNavController().navigate(R.id.action_settingsFragment_to_myWalletFragment)
         }
 
@@ -103,6 +104,7 @@ class SettingsViewModel : BaseViewModel() {
         }
 
         fun gotoBankAccount(view: View) {
+
             view.findNavController().navigate(R.id.action_settingsFragment_to_myBankAccountFragment)
         }
 

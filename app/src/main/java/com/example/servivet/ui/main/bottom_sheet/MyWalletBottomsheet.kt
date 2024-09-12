@@ -75,8 +75,6 @@ class MyWalletBottomsheet :
                         walletAmount = paymentAmountData.payableAmount!!
                         payWith = "wallet"
                         createOderViewModel.orderRequest.isWalletAmountInclude = true
-
-
                     }
                 } else {
                     walletAmount = paymentAmountData.payableAmount!!
@@ -136,7 +134,6 @@ class MyWalletBottomsheet :
 
                     }
                 }
-
                 Status.LOADING -> {
                     Constants.SECURE_HEADER = " "
                     ProcessDialog.startDialog(requireContext())
@@ -148,7 +145,6 @@ class MyWalletBottomsheet :
                     it.message?.let {
                         showSnackBar(it)
                         Log.e("TAG", "initOrderCreateViewModel: ${it}")
-
                         Constants.SECURE_HEADER = " "
 
                     }

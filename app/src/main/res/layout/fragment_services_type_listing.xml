@@ -29,7 +29,6 @@
             android:elevation="4dp"
             android:orientation="vertical">
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -63,15 +62,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
                     android:src="@drawable/search_circle_icon" />
-
-
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
                     android:src="@drawable/filter_icon" />
             </LinearLayout>
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/serviceSubCatRecycler"
                 android:layout_width="match_parent"

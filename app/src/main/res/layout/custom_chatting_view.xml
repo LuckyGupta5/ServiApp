@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="100dp"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <RelativeLayout
                 android:id="@+id/idReceiverMediaContainer"
@@ -47,14 +47,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="20dp"
+                    android:minWidth="100dp"
                     android:layout_toEndOf="@+id/idImageView"
                     android:background="@drawable/reciever_drawable"
                     android:fontFamily="@font/poppins_medium"
-                    android:paddingHorizontal="30dp"
+                    android:paddingHorizontal="20dp"
                     android:paddingVertical="15dp"
                     android:textColor="@color/black"
-                    android:visibility="gone"
-                    android:textSize="13dp" />
+                    android:visibility="visible"
+                    android:textSize="13sp" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/idMedia"
@@ -73,17 +74,13 @@
                         android:layout_gravity="center"
                         android:elevation="1dp"
                         android:src="@android:drawable/ic_media_play" />
-
                     <ImageView
                         android:id="@+id/idReceiverImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop" />
                 </androidx.cardview.widget.CardView>
-
-
             </RelativeLayout>
-
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/idReceiverTime"
                 android:layout_width="wrap_content"
@@ -99,8 +96,6 @@
                 android:textColor="@color/black"
                 android:textSize="11sp" />
         </RelativeLayout>
-
-
         <RelativeLayout
             android:id="@+id/idSenderLayout"
             android:layout_width="wrap_content"
@@ -109,26 +104,23 @@
             android:layout_alignParentEnd="true"
             android:layout_marginStart="100dp"
             android:visibility="gone">
-
             <RelativeLayout
                 android:id="@+id/idTextChatSenderContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/idSenderMessage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
+                    android:minWidth="80dp"
                     android:layout_marginRight="15dp"
                     android:background="@drawable/sender_drawable"
                     android:fontFamily="@font/poppins_medium"
-                    android:paddingHorizontal="30dp"
+                    android:paddingHorizontal="20dp"
                     android:paddingVertical="15dp"
                     android:textColor="@color/white"
-                    android:textSize="13dp" />
-
-
+                    android:textSize="13sp" />
                 <androidx.cardview.widget.CardView
                     android:id="@+id/idSenderMedia"
                     android:layout_width="196dp"
@@ -136,7 +128,6 @@
                     android:layout_margin="10dp"
                     android:visibility="gone"
                     app:cardCornerRadius="10dp">
-
                     <ImageView
                         android:id="@+id/idButton"
                         android:layout_width="wrap_content"
@@ -160,7 +151,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/idTextChatSenderContainer"
                 android:layout_alignEnd="@id/idTextChatSenderContainer"
-                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"

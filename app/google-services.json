@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "474344817705",
-    "project_id": "servivetandroid",
-    "storage_bucket": "servivetandroid.appspot.com"
+    "project_number": "163814859832",
+    "project_id": "servivet-4ce98",
+    "storage_bucket": "servivet-4ce98.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:474344817705:android:e5c229c4cb3b82a7c10838",
+        "mobilesdk_app_id": "1:163814859832:android:461c5b2b7532925b8e72cd",
         "android_client_info": {
           "package_name": "com.example.servivet"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCTh1xawDdbmoEN_Hz2cfGZU0LYMBfmJ_k"
+          "current_key": "AIzaSyDS4osRV1-PzsZibQWZCP0PUBc3ENO9N8M"
         }
       ],
       "services": {

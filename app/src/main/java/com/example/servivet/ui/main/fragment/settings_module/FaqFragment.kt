@@ -1,6 +1,7 @@
 package com.example.servivet.ui.main.fragment.settings_module
 
 import android.text.Html
+import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
@@ -34,6 +35,15 @@ class FaqFragment :
             lifecycleOwner=viewLifecycleOwner
             viewModel=mViewModel
             click=mViewModel.ClickAction()
+
+            searchView.setOnSearchClickListener {
+                catName.visibility = View.GONE
+            }
+            searchView.setOnCloseListener {
+                catName.visibility = View.VISIBLE
+                searchView.setQuery("", true)
+                false
+            }
         }
         mViewModel.hitFaqTypeListApi()
 
@@ -49,7 +59,7 @@ class FaqFragment :
                     ProcessDialog.dismissDialog()
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                           setFaqTypeAdapter(it.data.result)
+                            setFaqTypeAdapter(it.data.result)
                             mViewModel.hitFaqTypeListApi("")
                         }
 
@@ -120,9 +130,10 @@ class FaqFragment :
     }
 
     private fun setFaqListAdapter(list: ArrayList<FaqListResult>) {
-        binding.faqTypeRecycler.adapter=FaqAdapter(requireContext(),list)
+        binding.faqRecycler.adapter=FaqAdapter(requireContext(),list)
 
     }
+
 
     private fun setFaqTypeAdapter(list: ArrayList<FaqTypeListResult>) {
         list.add(0, FaqTypeListResult("",  "All"))

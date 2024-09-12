@@ -75,7 +75,6 @@ class MyServiceFragment :
 
                 }else{
                     binding.idCloseService.isEnabled = true
-
                 }
 
 
@@ -159,10 +158,11 @@ class MyServiceFragment :
 
     private fun onBackCall() {
         binding.backBtn.setOnClickListener {
-            requireActivity().finish()
-            var intent = Intent(context, HomeActivity::class.java)
-            requireActivity().startActivity(intent)
-            listN.callBack()
+            findNavController().popBackStack()
+//            requireActivity().finish()
+//            val intent = Intent(context, HomeActivity::class.java)
+//            requireActivity().startActivity(intent)
+//            listN.callBack()
         }
 
         val callback: OnBackPressedCallback =
@@ -170,13 +170,13 @@ class MyServiceFragment :
                 @SuppressLint("SetTextI18n")
                 override fun handleOnBackPressed() {
                     requireActivity().finish()
-                    var intent = Intent(context, HomeActivity::class.java)
+                    val intent = Intent(context, HomeActivity::class.java)
                     requireActivity().startActivity(intent)
                     listN.callBack()
 
                 }
             }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+//        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 
     interface CallBack1 {
@@ -247,10 +247,9 @@ class MyServiceFragment :
                             } else {
                                 binding.serviceRecycler.visibility = View.GONE
                                 binding.noDataLayout.visibility = View.VISIBLE
-                                binding.idServiceLayout.isVisible = false
+                                binding.idServiceLayout.isVisible = true
                             }
                         }
-
                         StatusCode.STATUS_CODE_FAIL -> {
                             showSnackBar(it.data.message)
                         }

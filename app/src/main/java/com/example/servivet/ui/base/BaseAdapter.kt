@@ -1,6 +1,5 @@
 package com.example.servivet.ui.base
 
-import android.text.TextPaint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes

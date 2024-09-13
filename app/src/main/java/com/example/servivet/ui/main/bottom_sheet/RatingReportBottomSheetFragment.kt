@@ -112,16 +112,16 @@ class RatingReportBottomSheetFragment :
                     ProcessDialog.dismissDialog()
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            showToast(it.data.message)
+                            showToast(it.data.message ?: "Something went wrong")
                             dismiss()
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showToast(it.data.message)
+                            showToast(it.data.message ?: "Something went wrong")
                         }
 
                         else -> {
-                            showToast(it.data!!.message)
+                            showToast(it.data?.message ?: "Something went wrong")
                         }
                     }
                 }

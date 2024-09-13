@@ -602,16 +602,14 @@ object CommonUtils {
 
     }
 
-
     fun Fragment.showSnackBar(message: String) {
-
         Snackbar.make(requireView(), message, Snackbar.LENGTH_LONG).show()
-
     }
 
     fun Fragment.showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
+
     fun formatDate(inputDate: String?): String {
         if (inputDate.isNullOrEmpty()) return ""
         val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
@@ -666,6 +664,7 @@ object CommonUtils {
             null
         }
     }
+
     fun emailValidator(email: String?): Boolean {
         val pattern: Pattern
         val EMAIL_PATTERN =

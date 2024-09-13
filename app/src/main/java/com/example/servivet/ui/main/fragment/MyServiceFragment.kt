@@ -88,6 +88,13 @@ class MyServiceFragment :
             lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
             clickEvent = ::onClick
+
+            binding.closeSearch.setOnClickListener {
+                binding.idSearchLayout.isVisible = false
+                binding.idTopLayout.isVisible = true
+                mViewModel.hitServiceListAPI(requireContext(), requireActivity(), requireActivity().isFinishing)
+           }
+
         }
         data = Session.category
 
@@ -123,7 +130,7 @@ class MyServiceFragment :
         setSubCatAdapter(data!!)
         onBackCall()
         bottomSheetCallBack()
-
+        mViewModel.hitServiceListAPI(requireContext(), requireActivity(), requireActivity().isFinishing)
         checkServiceAvaliable()
     }
 
@@ -133,7 +140,6 @@ class MyServiceFragment :
             binding.idCloseService.text = getString(R.string.close_service)
         } else {
             binding.idCloseService.text = getString(R.string.start_service)
-
         }
     }
 
@@ -143,7 +149,6 @@ class MyServiceFragment :
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 adapter.filter(s.toString())
-
             }
 
             override fun afterTextChanged(s: Editable?) {}
@@ -152,8 +157,7 @@ class MyServiceFragment :
 
     private fun setSubCatAdapter(list: ArrayList<HomeServiceCategory>) {
         if (list.isNotEmpty())
-            binding.serviceSubCatRecycler.adapter =
-                MyServiceCatAdapter(requireContext(), list, this)
+            binding.serviceSubCatRecycler.adapter = MyServiceCatAdapter(requireContext(), list, this)
     }
 
     private fun onBackCall() {

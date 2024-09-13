@@ -15,6 +15,7 @@ class MyConnectionAdapter(
     override val layoutId: Int = R.layout.my_connection_design_recyclerview
     private var filteredList: List<MyConnection> = connectionList.toList()
 
+
     override fun bind(
         binding: MyConnectionDesignRecyclerviewBinding,
         item: MyConnection?,

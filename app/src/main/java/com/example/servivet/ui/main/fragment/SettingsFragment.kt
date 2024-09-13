@@ -246,11 +246,11 @@ class SettingsFragment :
                     ProcessDialog.dismissDialog()
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            showToast(it.data.message)
+                            showToast(it.data.message ?: "Something went wrong")
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showToast(it.data.message)
+                            showToast(it.data.message ?: "Something went wrong")
                         }
 
                     }
@@ -286,7 +286,7 @@ class SettingsFragment :
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showToast(it.data.message)
+                            showToast(it.data.message ?: "Something went wrong")
                         }
 
                     }
@@ -320,11 +320,11 @@ class SettingsFragment :
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             deleteUserBottomSheetDialog!!.dismiss()
-                            showToast(it.data.message)
+                            showToast(it.data.message ?: "Something went wrong")
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showToast(it.data.message)
+                            showToast(it.data.message ?: "Something went wrong")
                         }
 
                     }

@@ -1,9 +1,12 @@
 package com.example.servivet.ui.main.fragment
 
 import PaginationScrollListener
+import android.annotation.SuppressLint
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -55,21 +58,26 @@ class ServicesTypeListingFragment :
 
     override fun setupViews() {
         binding.apply {
-            searchView.setOnSearchClickListener {
-                catName.visibility = View.GONE
+            binding.searchTab.setOnClickListener {
+                binding.idSearchLayout.isVisible = true
+                binding.idTopLayout.isVisible = false
             }
-            initSearch()
-            searchView.setOnCloseListener {
-                catName.visibility = View.VISIBLE
-                searchView.setQuery("", true)
-                false
-            }
+            binding.closeSearch.setOnClickListener {
+                binding.idSearchLayout.isVisible = false
+                binding.idTopLayout.isVisible = true
+                mViewModel.hitServiceListAPI(
+                    requireContext(),
+                    requireActivity(),
+                    requireActivity().isFinishing
+                )
 
+            }
             click = mViewModel.ClickAction(requireContext(), binding)
             lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
         }
         data = arguments?.getSerializable(Constants.DATA) as HomeServiceCategory
+
         mViewModel.serviceListRequest.category = data!!.id
         mViewModel.serviceListRequest.isMyService = 0
         mViewModel.serviceListRequest.providerId = ""
@@ -81,6 +89,7 @@ class ServicesTypeListingFragment :
         tabPosition = 0
         /*  if (data!!.subCategory != null && data!!.subCategory!!.isNotEmpty()) {
               mViewModel.serviceListRequest.subCategory = data!!.subCategory!![0].id*/
+        initEditText()
         mViewModel.hitServiceListAPI(
             requireContext(),
             requireActivity(),
@@ -99,31 +108,32 @@ class ServicesTypeListingFragment :
         setSubCatAdapter(subCatList)
     }
 
-    private fun initSearch() {
-        binding.searchView.setOnQueryTextListener(object :
-            SearchView.OnQueryTextListener,
-            androidx.appcompat.widget.SearchView.OnQueryTextListener {
-            override fun onQueryTextChange(newText: String): Boolean {
-                return false
+    private fun initEditText() {
+        binding.idSearchText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+
             }
 
-            override fun onQueryTextSubmit(query: String): Boolean {
-                handleSearchApiCall(query)
-                return false
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (::adapter.isInitialized) {
+                    if (adapter.filter(s.toString()).isNotEmpty()) {
+                        binding.noDataLayout.visibility = View.GONE
+                        binding.serviceRecycler.visibility = View.VISIBLE
+                        adapter.notifyDataSetChanged()
+                    } else {
+                        //show no data found
+                        binding.serviceRecycler.visibility = View.GONE
+                        binding.noDataLayout.visibility = View.VISIBLE
+                    }
+                }
             }
+
+            override fun afterTextChanged(s: Editable?) {}
         })
     }
 
-    private fun handleSearchApiCall(query: String) {
-        binding.searchView.clearFocus()
-        mViewModel.serviceListRequest.search = query.trim()
-        mViewModel.hitServiceListAPI(
-            requireContext(),
-            requireActivity(),
-            requireActivity().isFinishing
-        )
-        adapter.clearData()
-    }
 
     private fun setSubCatAdapter(list: ArrayList<HomeSubCategory>) {
         list.add(0, HomeSubCategory("", "", "", "", "All", 0))

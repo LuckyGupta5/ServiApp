@@ -26,7 +26,6 @@ class AddedBankAccountAdapter(
             }
         }
 
-
     }
 
     override fun getItemCount(): Int {

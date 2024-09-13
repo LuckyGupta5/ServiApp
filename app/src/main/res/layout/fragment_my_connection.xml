@@ -10,11 +10,9 @@
         <variable
             name="click"
             type="com.example.servivet.ui.main.view_model.MyConnectionModelView.ClickAction" />
-
         <variable
             name="viewModel"
             type="com.example.servivet.ui.main.view_model.MyConnectionModelView" />
-
         <variable
             name="listAdapter"
             type="com.example.servivet.ui.main.adapter.MyConnectionAdapter" />

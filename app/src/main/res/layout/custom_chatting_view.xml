@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -23,14 +24,16 @@
 
         <RelativeLayout
             android:id="@+id/idReceiverLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="start"
             android:layout_height="wrap_content"
             android:layout_marginEnd="100dp"
             android:visibility="visible">
 
             <RelativeLayout
                 android:id="@+id/idReceiverMediaContainer"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:gravity="start"
                 android:layout_height="wrap_content">
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -47,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="20dp"
-                    android:minWidth="100dp"
+                    android:minWidth="80dp"
                     android:layout_toEndOf="@+id/idImageView"
                     android:background="@drawable/reciever_drawable"
                     android:fontFamily="@font/poppins_medium"
@@ -83,7 +86,8 @@
             </RelativeLayout>
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/idReceiverTime"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:gravity="start"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/idReceiverMediaContainer"
                 android:layout_alignEnd="@id/idReceiverMediaContainer"
@@ -98,16 +102,20 @@
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/idSenderLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="end"
             android:layout_height="wrap_content"
             android:layout_below="@id/idReceiverLayout"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="100dp"
-            android:visibility="gone">
+            android:visibility="visible">
+
             <RelativeLayout
                 android:id="@+id/idTextChatSenderContainer"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:gravity="end"
                 android:layout_height="wrap_content">
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/idSenderMessage"
                     android:layout_width="wrap_content"
@@ -121,6 +129,7 @@
                     android:paddingVertical="15dp"
                     android:textColor="@color/white"
                     android:textSize="13sp" />
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/idSenderMedia"
                     android:layout_width="196dp"
@@ -147,8 +156,11 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/idSenderTime"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="end"
+                android:minWidth="80dp"
+                tools:text="sent by lucky at 12:00 PM"
                 android:layout_below="@id/idTextChatSenderContainer"
                 android:layout_alignEnd="@id/idTextChatSenderContainer"
                 android:layout_marginTop="10dp"

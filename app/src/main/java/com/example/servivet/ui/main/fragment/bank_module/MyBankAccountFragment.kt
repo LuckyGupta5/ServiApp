@@ -1,8 +1,12 @@
 package com.example.servivet.ui.main.fragment.bank_module
 
 import android.os.Build
+import android.view.Gravity
+import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
+import androidx.core.view.marginRight
+import androidx.core.view.marginStart
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -43,8 +47,10 @@ class MyBankAccountFragment :
     private fun initToolbar() {
         binding.idToolbar.idBack.setOnClickListener { findNavController().popBackStack() }
         binding.idToolbar.idSearch.isVisible = false
-        binding.idToolbar.idTitle.textSize = 25.0f
-        binding.idToolbar.idTitle.text= getString(R.string.my_bank_account)
+        binding.idToolbar.idTitle.textSize = 20.0f
+        binding.idToolbar.idTitle.gravity=Gravity.CENTER
+
+        binding.idToolbar.idTitle.text = getString(R.string.my_bank_account)
     }
 
 
@@ -74,6 +80,7 @@ class MyBankAccountFragment :
                             }
                             initAdapter()
                         }
+
                         StatusCode.STATUS_CODE_FAIL -> {
                             showSnackBar(it.data.message)
                         }
@@ -108,14 +115,15 @@ class MyBankAccountFragment :
         mViewModel.getRemoveBankData().observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
+
                     ProcessDialog.dismissDialog()
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                           // showSnackBar(it.data.message)
-
+                            // showSnackBar(it.data.message)
                         }
+
                         StatusCode.STATUS_CODE_FAIL -> {
-                           // showSnackBar(it.data.message)
+                            // showSnackBar(it.data.message)
                         }
                     }
                 }
@@ -142,17 +150,20 @@ class MyBankAccountFragment :
             }
         }
     }
+
     private fun initAdapter() {
-         binding.adapter = AddedBankAccountAdapter(mViewModel.bankList, requireContext(),onItemClick)
+        binding.adapter =
+            AddedBankAccountAdapter(mViewModel.bankList, requireContext(), onItemClick)
     }
+
     private val onItemClick: (String, Int) -> Unit = { data, position ->
 
-        when(position){
-            1->{
-                if(mViewModel.bankList.size<=1){
+        when (position) {
+            1 -> {
+                if (mViewModel.bankList.size <= 1) {
                     initAdapter()
                     mViewModel.getRemoveBankRequest(data)
-                }else{
+                } else {
                     mViewModel.getRemoveBankRequest(data)
                 }
             }

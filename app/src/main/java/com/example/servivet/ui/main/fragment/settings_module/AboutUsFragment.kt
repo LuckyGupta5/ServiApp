@@ -1,7 +1,10 @@
 package com.example.servivet.ui.main.fragment.settings_module
 
+import android.os.Build
 import android.text.Html
 import android.text.SpannableString
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
@@ -37,6 +40,7 @@ class AboutUsFragment :
     override fun setupViews() {
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun setupObservers() {
         mViewModel.cmsResponse.observe(viewLifecycleOwner) {
             when (it.status) {
@@ -58,7 +62,7 @@ class AboutUsFragment :
                                 Html.fromHtml(description)
                             } else {
                                 // Handle null case, either show a default message or empty string
-                                SpannableString("Lorem")
+                              SpannableString("no data found")
                             }
                         }
 

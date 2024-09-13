@@ -12,6 +12,7 @@ import com.example.servivet.ui.main.activity.HomeActivity
 import com.example.servivet.ui.main.view_model.BusinessVerificationViewModel
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.CommonUtils.showSnackBar
+import com.example.servivet.utils.CommonUtils.showToast
 import com.example.servivet.utils.Constants
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
@@ -123,7 +124,7 @@ class Business_Verification_Fragment :
                     ProcessDialog.dismissDialog()
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            showSnackBar(it.data.message)
+                            showToast(it.data.message?:"Something went wrong")
                             Session.saveType("2")
                             mViewModel.businessVerificationRequest.userType = Session.type.toInt()
 
@@ -133,7 +134,7 @@ class Business_Verification_Fragment :
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showSnackBar(it.data.message)
+                            showToast(it.data.message?:"Something went wrong")
                         }
 
                     }

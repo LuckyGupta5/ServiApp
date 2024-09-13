@@ -139,7 +139,6 @@ class IncomingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
         super.onCreate(savedInstanceState)
         handler = Handler(Looper.getMainLooper())
         //Preference.setPreference(this@IncomingVideoCallActivity, PrefEntity.serviceFrom, "video_i")
-
         callEndBroadcast = CallEndBroadcast(this)
         stopBackgroundMusicService(this)
         /* startRinging()*/
@@ -346,37 +345,32 @@ class IncomingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
 
         }
     }
-
     private fun startRinging() = SoundPoolManager.getInstance(this).playRinging()
-
     private fun stopRinging() = SoundPoolManager.getInstance(this).stopRinging()
-
     private fun disconnectRinging() = SoundPoolManager.getInstance(this).playDisconnect()
-
     @SuppressLint("UseCompatLoadingForDrawables")
     open inner class ClickAction {
         open fun muteUnMuteVideo(view: View) {
             if (isVideoMute) {
                 isVideoMute = false
                 mBinding.video.setImageDrawable(getDrawable(R.drawable.mute_video_icon))
-                mRtcEngine!!.disableVideo()
+                mRtcEngine!!.enableLocalVideo(false)
             } else {
                 isVideoMute = true
                 mBinding.video.setImageDrawable(getDrawable(R.drawable.video_icon))
-                mRtcEngine!!.enableVideo()
+                mRtcEngine!!.enableLocalVideo(true)
             }
         }
-
         open fun muteUnMuteAudio(view: View) {
             if (isAudioMute) {
                 isAudioMute = false
                 mBinding.audio.setImageDrawable(getDrawable(R.drawable.mute_mic_icon))
-                mRtcEngine!!.disableAudio()
+//                mRtcEngine!!.disableAudio()
                 mRtcEngine!!.muteLocalAudioStream(true)
             } else {
                 isAudioMute = true
                 mBinding.audio.setImageDrawable(getDrawable(R.drawable.mic_icon))
-                mRtcEngine!!.enableAudio()
+//                mRtcEngine!!.enableAudio()
                 mRtcEngine!!.muteLocalAudioStream(false)
             }
         }
@@ -390,25 +384,29 @@ class IncomingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
     }
 
     private fun startChronometer(mChronometer: Chronometer) {
-        val stoppedMilliseconds: Int
-        mChronometer.base = SystemClock.elapsedRealtime()
+        // Make sure we are on the UI thread when updating the Chronometer
+        runOnUiThread {
+            val stoppedMilliseconds: Int
+            mChronometer.base = SystemClock.elapsedRealtime()
 
-        val chronoText = mChronometer.text.toString()
-        val array = chronoText.split(":".toRegex()).toTypedArray()
+            val chronoText = mChronometer.text.toString()
+            val array = chronoText.split(":".toRegex()).toTypedArray()
 
-        stoppedMilliseconds = if (array.size == 2) {
-            Integer.parseInt((array[0].toInt() * 60 * 1000).toString()) + Integer.parseInt((array[1].toInt() * 1000).toString())
-        } else {
-            Integer.parseInt((array[0].toInt() * 60 * 60 * 1000).toString()) + Integer.parseInt(
-                (array[1].toInt() * 60 * 1000).toString() + Integer.parseInt(
-                    (array[2].toInt() * 1000).toString()
-                )
-            )
+            stoppedMilliseconds = if (array.size == 2) {
+                // Format is MM:SS
+                (array[0].toInt() * 60 * 1000) + (array[1].toInt() * 1000)
+            } else {
+                // Format is HH:MM:SS
+                (array[0].toInt() * 60 * 60 * 1000) +
+                        (array[1].toInt() * 60 * 1000) +
+                        (array[2].toInt() * 1000)
+            }
+
+            mChronometer.base = SystemClock.elapsedRealtime() - stoppedMilliseconds
+            mChronometer.start()
         }
-
-        mChronometer.base = SystemClock.elapsedRealtime() - stoppedMilliseconds
-        mChronometer.start()
     }
+
 
     override fun onDestroy() {
         stopBackgroundMusicService(this)

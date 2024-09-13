@@ -55,7 +55,7 @@ class NotificationListFragment :
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showToast(it.data.message)
+                            showToast(it.data.message?:"Something went wrong")
                         }
                     }
                 }

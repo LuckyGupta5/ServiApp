@@ -140,7 +140,7 @@ class AddBankAccountFragment :
                             // mViewModel.bankListResult = it.data.result
                         }
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showSnackBar(data.message)
+                            showSnackBar(data.message?:"")
                         }
 
                     }

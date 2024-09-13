@@ -62,12 +62,12 @@ class ContactUsFragment : BaseFragment<FragmentContactUsBinding, ContactUsViewMo
                     ProcessDialog.dismissDialog()
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            showToast(it.data.message)
+                            showToast(it.data.message?:"Something went wrong")
                             findNavController().popBackStack()
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showToast(it.data.message)
+                            showToast(it.data.message?:"Something went wrong")
                         }
 
                     }

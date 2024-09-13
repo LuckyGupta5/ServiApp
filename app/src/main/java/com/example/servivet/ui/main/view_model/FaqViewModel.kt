@@ -14,11 +14,13 @@ import com.example.servivet.utils.StatusCode
 import kotlinx.coroutines.launch
 import java.io.IOException
 
-class FaqViewModel:BaseViewModel() {
+class FaqViewModel : BaseViewModel() {
     var faqTypeResponse = SingleLiveEvent<Resource<FaqTypeListResponse>>()
     var faqListResponse = SingleLiveEvent<Resource<FaqListResponse>>()
-    inner class ClickAction{
-        fun backBtn(view:View){
+
+
+    inner class ClickAction {
+        fun backBtn(view: View) {
             view.findNavController().popBackStack()
         }
     }
@@ -29,27 +31,37 @@ class FaqViewModel:BaseViewModel() {
         viewModelScope.launch {
             try {
                 faqTypeResponse.postValue(Resource.success(repository.faqTypeListApi()))
-            }catch (ex: IOException) {
+            } catch (ex: IOException) {
                 ex.printStackTrace()
-                faqTypeResponse.postValue(Resource.error(StatusCode.STATUS_CODE_INTERNET_VALIDATION, null))
-            }catch (exception: Exception) {
+                faqTypeResponse.postValue(
+                    Resource.error(
+                        StatusCode.STATUS_CODE_INTERNET_VALIDATION,
+                        null
+                    )
+                )
+            } catch (exception: Exception) {
                 exception.printStackTrace()
                 faqTypeResponse.postValue(Resource.error(StatusCode.SERVER_ERROR_MESSAGE, null))
             }
         }
     }
 
-    fun hitFaqTypeListApi(faqTypeId:String) {
+    fun hitFaqTypeListApi(faqTypeId: String) {
         val repository = MainRepository(RetrofitBuilder.apiService)
 
         faqListResponse.postValue(Resource.loading(null))
         viewModelScope.launch {
             try {
                 faqListResponse.postValue(Resource.success(repository.faqListApi(faqTypeId)))
-            }catch (ex: IOException) {
+            } catch (ex: IOException) {
                 ex.printStackTrace()
-                faqListResponse.postValue(Resource.error(StatusCode.STATUS_CODE_INTERNET_VALIDATION, null))
-            }catch (exception: Exception) {
+                faqListResponse.postValue(
+                    Resource.error(
+                        StatusCode.STATUS_CODE_INTERNET_VALIDATION,
+                        null
+                    )
+                )
+            } catch (exception: Exception) {
                 exception.printStackTrace()
                 faqListResponse.postValue(Resource.error(StatusCode.SERVER_ERROR_MESSAGE, null))
             }

@@ -82,7 +82,7 @@
                 android:paddingHorizontal="15dp"
                 android:paddingVertical="13dp"
                 android:maxLength="13"
-                android:inputType="numberDecimal"
+                android:inputType="number"
                 android:text="@={viewModel.accountNumber}"
                 android:textColor="@color/black"
                 android:textSize="15sp" />

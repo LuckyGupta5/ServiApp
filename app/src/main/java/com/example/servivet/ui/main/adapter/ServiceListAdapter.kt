@@ -18,12 +18,14 @@ import kotlin.math.min
 
 class ServiceListAdapter(
     var context: Context,
-    var tabPosition: Int,
+    private var tabPosition: Int,
     var list: ArrayList<ServiceList>
 ) : BaseAdapter<ServiceCategoryInfoRecyclerBinding, ServiceList>(list) {
-    var characterLimit = 15
+
+    private var characterLimit = 15
     var smallest = ""
     var largest = ""
+    private var filteredList: List<ServiceList> = list.toList()
 
     override val layoutId: Int = R.layout.service_category_info_recycler
 
@@ -45,8 +47,6 @@ class ServiceListAdapter(
             binding.circularImage.visibility = View.GONE
         }
 
-
-
         if (list[position].serviceName!!.length > characterLimit) {
             // Truncate the text and add a dot
             val truncatedText: String =
@@ -61,22 +61,29 @@ class ServiceListAdapter(
         smallest = min(item!!.atCenterPrice ?: 0.0, item.atHomePrice ?: 0.0).toString()
         largest = max(item.atCenterPrice ?: 0.0, item.atHomePrice ?: 0.0).toString()
         checkVisibility(binding)
-        binding.smallest.text = "₹ "+commaSaparator(smallest.toDouble()).toString()
-        binding.largest.text ="₹ "+ commaSaparator(largest.toDouble()).toString()
+        binding.smallest.text = "₹ " + commaSaparator(smallest.toDouble()).toString()
+        binding.largest.text = "₹ " + commaSaparator(largest.toDouble()).toString()
 
     }
 
     private fun checkVisibility(binding: ServiceCategoryInfoRecyclerBinding) {
         binding.smallest.isVisible = smallest != "0.0"
-        binding.idView.isVisible = smallest!="0.0"
-        binding.largest.isVisible = largest!="0.0"
+        binding.idView.isVisible = smallest != "0.0"
+        binding.largest.isVisible = largest != "0.0"
     }
 
+    fun filter(text: String): List<ServiceList> {
+        filteredList = if (text.isEmpty()) {
+            list
+        } else {
+            list.filter { it.createdBy?.name?.contains(text, ignoreCase = true)!! }
+        }
+        return filteredList
+    }
 
     fun roundTheNumber(numInDouble: Double): String {
         return "%2f.".format(numInDouble)
     }
-
 
     override fun getItemCount(): Int {
         return list.size

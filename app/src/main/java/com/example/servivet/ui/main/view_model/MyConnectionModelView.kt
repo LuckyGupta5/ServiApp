@@ -20,7 +20,7 @@ class MyConnectionModelView : BaseViewModel() {
 
     val request = HashMap<String, String>()
 
-    private val connectionListData = SingleLiveEvent<Resource<ConnectionListResponse>>()
+    val connectionListData = SingleLiveEvent<Resource<ConnectionListResponse>>()
 
     fun getConnectionData(): LiveData<Resource<ConnectionListResponse>> {
         return connectionListData

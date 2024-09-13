@@ -39,11 +39,6 @@ class MyServiceViewModel : BaseViewModel() {
             binding.idTopLayout.isVisible = false
         }
 
-        fun closeSearch(view: View) {
-            binding.idSearchLayout.isVisible = false
-            binding.idTopLayout.isVisible = true
-        }
-
 
     }
 

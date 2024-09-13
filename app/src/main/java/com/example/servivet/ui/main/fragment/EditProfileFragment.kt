@@ -266,7 +266,7 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding,EditProfileV
                     ProcessDialog.dismissDialog()
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            showToast(it.data.message)
+                            showToast(it.data.message?:"Something went wrong")
                             findNavController().popBackStack()
                             EditProfileVewModel.isPhotoSelected = false
                             EditProfileVewModel.isPhotoSelectedCoverImage = false

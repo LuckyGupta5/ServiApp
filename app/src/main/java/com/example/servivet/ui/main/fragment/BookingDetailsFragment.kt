@@ -24,6 +24,7 @@ import com.example.servivet.ui.main.view_model.BookingViewModel
 import com.example.servivet.ui.main.view_model.booking_models.MarkAsCompleteViewModel
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.CommonUtils.showSnackBar
+import com.example.servivet.utils.CommonUtils.showToast
 import com.example.servivet.utils.Constants
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
@@ -425,14 +426,14 @@ class BookingDetailsFragment :
 
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            showSnackBar(it.data.message)
+                            showToast(it.data.message?:"Something went wrong")
                             findNavController().popBackStack()
                             Log.e("TAG", "initMarkAsCompleteModel1:${it.data.message} ")
 
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showSnackBar(it.data.message)
+                            showToast(it.data.message?:"Something went wrong")
                             Log.e("TAG", "initMarkAsCompleteModel2:${it.data.message} ")
 
                         }

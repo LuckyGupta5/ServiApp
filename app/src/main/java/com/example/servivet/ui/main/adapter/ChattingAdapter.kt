@@ -49,7 +49,6 @@ class ChattingAdapter(
             if (chattingList[position].file != null && chattingList[position].file.isNotEmpty()) {
                 Glide.with(requireContext).load(chattingList[position].file[0])
                     .placeholder(R.drawable.profileunselectedicon).into(binding.idReceiverImage)
-
                 binding.idReceiverPlay.isVisible = item?.file?.get(0)?.endsWith(".mp4")!!
             }
 

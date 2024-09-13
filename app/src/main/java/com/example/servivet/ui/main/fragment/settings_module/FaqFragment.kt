@@ -1,11 +1,11 @@
 package com.example.servivet.ui.main.fragment.settings_module
 
-import android.text.Html
-import android.view.View
+import android.text.Editable
+import android.text.TextWatcher
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
-import com.example.servivet.data.model.home.response.HomeSubCategory
 import com.example.servivet.data.model.setting.faq_list.response.FaqListResult
 import com.example.servivet.data.model.setting.faq_type_list.response.FaqTypeListResult
 import com.example.servivet.databinding.FragmentFaqBinding
@@ -19,37 +19,38 @@ import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
 
-
 class FaqFragment :
     BaseFragment<FragmentFaqBinding, FaqViewModel>(R.layout.fragment_faq),
     FaqTypeAdapter.FaqTypeInterFace {
     override val binding: FragmentFaqBinding by viewBinding(FragmentFaqBinding::bind)
     override val mViewModel: FaqViewModel by viewModels()
-    var faqTypeList=ArrayList<FaqTypeListResult>()
+    lateinit var adapter: FaqAdapter
 
     override fun isNetworkAvailable(boolean: Boolean) {
     }
 
     override fun setupViewModel() {
+        initEditText()
         binding.apply {
-            lifecycleOwner=viewLifecycleOwner
-            viewModel=mViewModel
-            click=mViewModel.ClickAction()
+            lifecycleOwner = viewLifecycleOwner
+            viewModel = mViewModel
+            click = mViewModel.ClickAction()
 
-            searchView.setOnSearchClickListener {
-                catName.visibility = View.GONE
+            binding.searchTab.setOnClickListener {
+                binding.idSearchLayout.isVisible = true
+                binding.idTopLayout.isVisible = false
             }
-            searchView.setOnCloseListener {
-                catName.visibility = View.VISIBLE
-                searchView.setQuery("", true)
-                false
+            binding.closeSearch.setOnClickListener {
+                binding.idSearchLayout.isVisible = false
+                binding.idTopLayout.isVisible = true
+                mViewModel.hitFaqTypeListApi()
             }
         }
         mViewModel.hitFaqTypeListApi()
-
     }
 
     override fun setupViews() {
+
     }
 
     override fun setupObservers() {
@@ -64,7 +65,7 @@ class FaqFragment :
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showToast(it.data.message)
+                            showToast(it.data.message?:"Something went wrong")
                         }
 
                     }
@@ -90,7 +91,6 @@ class FaqFragment :
             }
         }
 
-
         mViewModel.faqListResponse.observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
@@ -101,7 +101,7 @@ class FaqFragment :
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showToast(it.data.message)
+                            showToast(it.data.message?:"Something went wrong")
                         }
 
                     }
@@ -126,23 +126,43 @@ class FaqFragment :
                 }
             }
         }
-
     }
 
     private fun setFaqListAdapter(list: ArrayList<FaqListResult>) {
-        binding.faqRecycler.adapter=FaqAdapter(requireContext(),list)
+        adapter = FaqAdapter(requireContext(), list)
+        binding.faqRecycler.adapter = adapter
 
     }
 
-
     private fun setFaqTypeAdapter(list: ArrayList<FaqTypeListResult>) {
-        list.add(0, FaqTypeListResult("",  "All"))
-        binding.faqTypeRecycler.adapter=FaqTypeAdapter(requireContext(),list,this)
+        list.add(0, FaqTypeListResult("", "All"))
+        binding.faqTypeRecycler.adapter = FaqTypeAdapter(requireContext(), list, this)
     }
 
     override fun onSubCatSelected(id: String) {
         mViewModel.hitFaqTypeListApi(id)
     }
 
+    private fun initEditText() {
+        binding.idSearchText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (::adapter.isInitialized) {
+                    filter(s.toString())
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+    }
+
+
+    fun filter(text: String) {
+        val listOfFaq = mViewModel.faqListResponse.value?.data?.result ?: emptyList()
+        val filteredList =
+            listOfFaq.filter { it.title.trim().lowercase().contains(text.trim().lowercase()) }
+        adapter.updateData(filteredList)
+    }
 }
+

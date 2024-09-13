@@ -367,12 +367,12 @@ class OutgoingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
             if (isMute) {
                 isMute = false
                 mBinding.audio.setImageDrawable(getDrawable(R.drawable.mute_mic_icon))
-                mRtcEngine!!.disableAudio()
+//                mRtcEngine!!.disableAudio()
                 mRtcEngine!!.muteLocalAudioStream(true)
             } else {
                 isMute = true
                 mBinding.audio.setImageDrawable(getDrawable(R.drawable.mic_icon))
-                mRtcEngine!!.enableAudio()
+//                mRtcEngine!!.enableAudio()
                 mRtcEngine!!.muteLocalAudioStream(false)
 
             }

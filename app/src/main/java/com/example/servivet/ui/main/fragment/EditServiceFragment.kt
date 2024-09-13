@@ -670,7 +670,7 @@ class EditServiceFragment :
                     ProcessDialog.dismissDialog()
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            showToast(it.data.message)
+                            showToast(it.data.message?:"Something went wrong")
                             findNavController().popBackStack()
                         }
 

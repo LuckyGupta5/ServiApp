@@ -13,6 +13,7 @@ import com.example.servivet.R
 import com.example.servivet.data.model.connection.connection_list.responnse.MyConnection
 import com.example.servivet.databinding.FragmentMyConnectionBinding
 import com.example.servivet.ui.base.BaseFragment
+import com.example.servivet.ui.main.adapter.FaqAdapter
 import com.example.servivet.ui.main.adapter.MyConnectionAdapter
 import com.example.servivet.ui.main.view_model.AcceptRejectViewModel
 import com.example.servivet.ui.main.view_model.MyConnectionModelView
@@ -29,6 +30,7 @@ class FragmentMyConnection :
     override val mViewModel: MyConnectionModelView by viewModels()
     private val connectionList = ArrayList<MyConnection>()
     private val acceptRejectModel: AcceptRejectViewModel by viewModels()
+    lateinit var adapter: MyConnectionAdapter
 
     override fun isNetworkAvailable(boolean: Boolean) {
     }
@@ -36,11 +38,13 @@ class FragmentMyConnection :
     override fun setupViewModel() {
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun setupViews() {
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
             click = mViewModel.ClickAction()
+            initEditText()
 
         }
         backbtn()
@@ -55,24 +59,25 @@ class FragmentMyConnection :
         binding.idTopLayout.idCloseSearch.setOnClickListener {
             binding.idTopLayout.idSearchLayout.visibility = View.GONE
             binding.idTopLayout.idSearch.visibility = View.VISIBLE
+            mViewModel.hitConnectionListApi()
         }
     }
 
-    private fun initEditText() {
-        binding.idTopLayout.idSearchText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                mViewModel.request["search"] = s.toString()
-                mViewModel.getConnectionListRequest()
-            }
-            override fun afterTextChanged(s: Editable?) {
-
-            }
-        })
-
-
-    }
+//    private fun initEditText() {
+//        binding.idTopLayout.idSearchText.addTextChangedListener(object : TextWatcher {
+//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+//
+//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//                mViewModel.request["search"] = s.toString()
+//                mViewModel.getConnectionListRequest()
+//            }
+//            override fun afterTextChanged(s: Editable?) {
+//
+//            }
+//        })
+//
+//
+//    }
 
     private fun setadapter() {
 
@@ -186,7 +191,9 @@ class FragmentMyConnection :
 
     private fun initConnectionAdapter() {
         binding.idNoDataFound.root.isVisible = connectionList.size <= 0
-        binding.listAdapter = MyConnectionAdapter(requireContext(), connectionList, onItemClick)
+        adapter = MyConnectionAdapter(requireContext(), connectionList, onItemClick)
+        binding.listAdapter = adapter
+
     }
 
 
@@ -200,5 +207,30 @@ class FragmentMyConnection :
 
 
     }
+
+
+    private fun initEditText() {
+        binding.idTopLayout.idSearchText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // If adapter.filter returns true when data is found, show the list
+                if (::adapter.isInitialized) {
+                    adapter.filter(s.toString())
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
+
+    }
+//    fun filter(text: String) {
+//        val listOfConnections = mViewModel.connectionListData.value?.data?.result?.myConnectionList ?: emptyList()
+//        val filteredList = listOfConnections.filter {
+//            it.userDetail.name.trim().lowercase().contains(text.trim().lowercase())  // Assuming `title` exists in MyConnection
+//        }
+//        adapter.updateData(filteredList)
+//    }
 
 }

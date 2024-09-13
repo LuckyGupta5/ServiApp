@@ -17,15 +17,16 @@ import kotlin.math.min
 
 class MyServiceAdapter(
     var context: Context,
-    var tabPosition: Int,
+    private var tabPosition: Int,
     var list: ArrayList<ServiceList>,
-    val isBook: Boolean
+    private val isBook: Boolean
 ) : BaseAdapter<MyServiceRecyclerBinding, ServiceList>(list) {
 
     var smallest = ""
     var largest = ""
     override val layoutId: Int = R.layout.my_service_recycler
     private var filteredList: List<ServiceList> = list.toList()
+
     override fun bind(binding: MyServiceRecyclerBinding, item: ServiceList?, position: Int) {
         binding.apply {
             //   binding.data=item

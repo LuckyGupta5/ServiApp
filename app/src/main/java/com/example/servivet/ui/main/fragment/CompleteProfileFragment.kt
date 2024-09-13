@@ -274,7 +274,7 @@ class CompleteProfileFragment :
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             Session.saveIsLogin(true)
-                            showToast(it.data.message)
+                            showToast(it.data.message?:"Something went wrong")
                             var intent = Intent(context, HomeActivity::class.java)
                             startActivity(intent)
                             (context as Activity).finish()

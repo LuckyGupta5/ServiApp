@@ -27,6 +27,5 @@ class ChatViewModel:BaseViewModel() {
             binding.toplayout.isVisible = true
         }
 
-
     }
 }

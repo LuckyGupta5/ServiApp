@@ -116,7 +116,7 @@ class CloseServiceBottomFragment :
             }
 
             getString(R.string.end_date) -> {
-                CommonUtils.selectFromDate(requireContext(), binding.idStartDate.text.toString()) {
+                CommonUtils.selectFromDate(requireContext(), binding.idStartDate.text.toString() ) {
                     binding.idEndDate.text = it
                 }
 

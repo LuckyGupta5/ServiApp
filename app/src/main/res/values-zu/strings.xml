@@ -317,7 +317,7 @@
     <string name="switch_to_business" translatable="false">Cindezela kuMdayisi</string>
     <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr_sed_diam_nonumy_eirmod_tempor_invidunt_ut" translatable="false">Lorem ipsum dolor sit amet,\nconsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut</string>
     <string name="push_notifications" translatable="false">Vumela ukuThola iZaziso</string>
-    <string name="account_settings" translatable="false">ukuLawulwa kweNqolobaneBuchwepheshe</string>
+    <string name="account_settings" translatable="false">Amasethingi we-akhawunti</string>
     <string name="my_wallet" translatable="false">iNkohlomba YeNkece Yami</string>
     <string name="wallet" translatable="false">ikhwalithi</string>
     <string name="paymentGateway" translatable="false">inkokheloGateway</string>

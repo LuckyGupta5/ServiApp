@@ -98,8 +98,6 @@ object CommonUtils {
             selectedDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(date)
             calendar.time = selectedDate
         }
-
-
         pickerForm = DatePickerDialog(
             context, { datePicker: DatePicker?, years: Int, monthOfYear: Int, dayOfMonth: Int ->
 
@@ -115,17 +113,10 @@ object CommonUtils {
                 listener(fromDateValue)
             }, fromYear, fromMonth, fromDay
         )
-
         //   calendar.add(Calendar.YEAR, -10)
-
-
         pickerForm.datePicker.minDate = calendar.timeInMillis
-
-
         pickerForm.show()
     }
-
-
     @JvmStatic
     @BindingAdapter("android:circularImage")
     fun loadCircularImage(view: View?, image_url: String?) {
@@ -162,7 +153,6 @@ object CommonUtils {
 
         return isAllPermissionGranted[0]
     }
-
     private fun showRationaleDialog(activity: Activity, token: PermissionToken) {
         val dialog = AlertDialog.Builder(activity)
         dialog.setMessage("Allow Servivet to access the photos and media on your device")
@@ -177,7 +167,6 @@ object CommonUtils {
         }
         dialog.show()
     }
-
     fun getPostalCodeByCoordinates(
         placeSelectionListener: PlaceSelectionListener, lat: Double, lon: Double, context: Context
     ): String {
@@ -202,7 +191,6 @@ object CommonUtils {
         }
         return null.toString()
     }
-
     private fun showSettingsDialog(activity: Activity, PERMISSION_REQUEST_CODE: Int) {
         val dialog = AlertDialog.Builder(activity)
         dialog.setMessage(activity.getString(R.string.servivet_require_this_permission))
@@ -216,14 +204,12 @@ object CommonUtils {
         }
         dialog.show()
     }
-
     private fun openSettings(activity: Activity, PERMISSION_REQUEST_CODE: Int) {
         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
         val uri = Uri.fromParts("package", activity.packageName, null)
         intent.data = uri
         activity.startActivityForResult(intent, PERMISSION_REQUEST_CODE)
     }
-
     fun isCurrentDate(date: String): Boolean {
         val sdfInput = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val dateToCheck = sdfInput.parse(date)

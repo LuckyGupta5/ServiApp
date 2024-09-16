@@ -106,7 +106,6 @@ class MainRepository(private val apiService: ApiService) {
 
     suspend fun connectionRequestListApi(request: HashMap<String, Int>) =
         apiService.connectionRequestListApi(request)
-
     suspend fun acceptRejectApi(request: AcceptRejectRequest) = apiService.acceptRejectApi(request)
     suspend fun connectionRequest(request: ConnectionRequest) =
         apiService.connectionRequest(request)

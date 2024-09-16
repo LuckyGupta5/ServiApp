@@ -258,16 +258,16 @@
                         android:textColor="@color/black"
                         android:textSize="17dp" />
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/viewAll"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/poppins_medium"
-                        android:gravity="end"
-                        android:text="@string/view_all"
-                        android:textColor="@color/app_theme"
-                        android:textSize="15dp" />
+<!--                    <com.google.android.material.textview.MaterialTextView-->
+<!--                        android:id="@+id/viewAll"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:fontFamily="@font/poppins_medium"-->
+<!--                        android:gravity="end"-->
+<!--                        android:text="@string/view_all"-->
+<!--                        android:textColor="@color/app_theme"-->
+<!--                        android:textSize="15dp" />-->
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView

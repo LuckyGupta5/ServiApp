@@ -26,8 +26,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/apptheme_outline_with_solid_white_corner_12"
         android:backgroundTint="@color/white"
+        android:layout_marginHorizontal="15dp"
         tools:context=".ui.main.dialogs.CloseServiceAlert">
-
         <TextView
             android:id="@+id/idAlertText"
             android:layout_width="wrap_content"

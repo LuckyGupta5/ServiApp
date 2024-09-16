@@ -68,7 +68,7 @@
                     android:layout_marginTop="5dp"
                     android:hint="2024-01-18"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/grey_606060"
+                    android:textColorHint="@color/gray_B2B2B2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/idFromDateText" />
 
@@ -115,15 +115,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="5dp"
-                    android:hint="2023-01-23"
+                    android:hint="2025-01-25"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/grey_606060"
+                    android:textColorHint="@color/gray_B2B2B2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/idStartTimerText" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
                     android:layout_marginEnd="11dp"
                     android:src="@drawable/calender_img"
                     app:layout_constraintBottom_toBottomOf="parent"

@@ -82,11 +82,7 @@ class MyServiceViewModel : BaseViewModel() {
                             null
                         )
                     )
-
-
             }
-
-
         }
 
     }

@@ -575,12 +575,12 @@
                         android:drawableStart="@drawable/reason_for_cancel_icon"
                         android:drawablePadding="5dp"
                         android:ellipsize="end"
-                        android:text="@{data.refundStatus.cancelReason}"
-                        tools:text="@string/cancel"
                         android:fontFamily="@font/poppins_regular"
                         android:maxLines="2"
+                        android:text="@{data.refundStatus.cancelReason}"
                         android:textColor="@color/grey7"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        tools:text="@string/cancel" />
 
 
                     <View
@@ -610,9 +610,9 @@
                         android:fontFamily="@font/poppins_regular"
                         android:maxLines="2"
                         android:text="@{data.refundStatus.refundStatus}"
-                        tools:text="@string/refund_initiated_you_will_receive_your_n_amount_in_48_hours"
                         android:textColor="@color/grey7"
-                        android:textSize="15dp" />
+                        android:textSize="15dp"
+                        tools:text="@string/refund_initiated_you_will_receive_your_n_amount_in_48_hours" />
                 </LinearLayout>
 
                 <View

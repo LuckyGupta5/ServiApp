@@ -116,8 +116,6 @@
             app:layout_constraintEnd_toStartOf="@id/idRange"
             app:layout_constraintStart_toEndOf="@id/idBusinessType"
             app:layout_constraintTop_toTopOf="@id/idBusinessType" />
-
-
         <TextView
             android:id="@+id/idRange"
             android:layout_width="wrap_content"
@@ -128,8 +126,6 @@
             android:text='@{data.distance+" "+@string/_1_km_away}'
             app:layout_constraintStart_toEndOf="@id/pinLocation"
             app:layout_constraintTop_toBottomOf="@id/idName" />
-
-
         <View
             android:id="@+id/idView"
             android:layout_width="0dp"

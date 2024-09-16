@@ -30,8 +30,6 @@ class ConnectionRequestListViewModel : BaseViewModel() {
             view.findNavController().popBackStack()
         }
     }
-
-
     fun getConnectionListRequest() {
         request["page"] = 1
         request["limit"] = 10
@@ -76,7 +74,6 @@ class ConnectionRequestListViewModel : BaseViewModel() {
                             null
                         )
                     )
-
 
             }
         }

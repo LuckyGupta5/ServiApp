@@ -84,10 +84,12 @@
                     android:layout_below="@id/profileBackImageLayout"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="-20dp"
-                    android:fontFamily="@font/poppins_semi_bold"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="@string/profile"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
+                    android:background="@drawable/app_theme_color_button_12dp"
                     android:textSize="23sp"
+                    android:paddingHorizontal="8dp"
                     android:visibility="visible"
                     tools:text="@string/profile" />
                 <ImageView

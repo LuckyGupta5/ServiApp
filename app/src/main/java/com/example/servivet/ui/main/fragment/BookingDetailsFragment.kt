@@ -18,7 +18,6 @@ import com.example.servivet.data.model.booking_list.response.MyBooking
 import com.example.servivet.data.model.notification_data.NotificationData
 import com.example.servivet.databinding.FragmentBookingDetailsBinding
 import com.example.servivet.ui.base.BaseFragment
-import com.example.servivet.ui.main.bottom_sheet.ReasonForCancelBottomsheet
 import com.example.servivet.ui.main.view_model.BookingDetailsViewModel
 import com.example.servivet.ui.main.view_model.BookingViewModel
 import com.example.servivet.ui.main.view_model.booking_models.MarkAsCompleteViewModel
@@ -32,19 +31,11 @@ import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
 import com.example.servivet.utils.getCurrentTimeInFormat
 import com.example.servivet.utils.isTimeGapGreaterThan24Hours
-import com.example.servivet.utils.updateButtonState
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.time.temporal.ChronoUnit
-import java.util.Date
-import java.util.Locale
-import java.util.TimeZone
 
 class BookingDetailsFragment :
     BaseFragment<FragmentBookingDetailsBinding, BookingDetailsViewModel>(R.layout.fragment_booking_details) {
@@ -68,9 +59,7 @@ class BookingDetailsFragment :
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun setupViews() {
-       // Session.deleteNotificationData()
-
-
+        // Session.deleteNotificationData()
 
 
         getBookingData()
@@ -84,7 +73,7 @@ class BookingDetailsFragment :
             userType = "provider"
             binding.checkUserType = Constants.TYPEOFUSERS
         }
-        Log.e("TAG", "userType: ${binding.checkUserType} ", )
+        Log.e("TAG", "userType: ${binding.checkUserType} ")
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
@@ -93,15 +82,13 @@ class BookingDetailsFragment :
             clickEvent = ::onClick
         }
 
-        Log.e("TAG", "setupViews: "+binding.loginAs )
+        Log.e("TAG", "setupViews: " + binding.loginAs)
         gotobottomsheet()
         gotocancelBottomsheet()
         initBookingViewModel()
         initMarkAsCompleteModel()
         getBottomSheetCallBack()
     }
-
-
 
 
     private fun getBookingData() {
@@ -116,10 +103,10 @@ class BookingDetailsFragment :
             getString(R.string.home) -> {
                 notificationData = Gson().fromJson(argumentData.data, NotificationData::class.java)
                 notificationUser = notificationData.userType!!
-                bookingId = notificationData.bookingId?:""
+                bookingId = notificationData.bookingId ?: ""
 
                 Session.deleteNotificationData()
-  //686565668866
+                //686565668866
             }
 
         }
@@ -192,16 +179,19 @@ class BookingDetailsFragment :
     fun gotocancelBottomsheet() {
 
         binding.idCancelBooking.setOnClickListener(View.OnClickListener {
-            findNavController().navigate(BookingDetailsFragmentDirections.actionBookingDetailsFragmentToReasonForCancelBottomsheet(
+            findNavController().navigate(
+                BookingDetailsFragmentDirections.actionBookingDetailsFragmentToReasonForCancelBottomsheet(
                     bookingId,
-                    getString(R.string.booking_details),notificationUser
+                    getString(R.string.booking_details), notificationUser
                 )
             )
         })
         binding.cancelButton.setOnClickListener(View.OnClickListener {
 //            val fragment=ReasonForCancelBottomsheet()
 //            fragment.show(childFragmentManager,"CancelBottomSheetFragment")
-            findNavController().navigate(BookingDetailsFragmentDirections.actionBookingDetailsFragmentToReasonForCancelBottomsheet(bookingId, getString(R.string.booking_details),notificationUser
+            findNavController().navigate(
+                BookingDetailsFragmentDirections.actionBookingDetailsFragmentToReasonForCancelBottomsheet(
+                    bookingId, getString(R.string.booking_details), notificationUser
                 )
             )
         })
@@ -248,7 +238,7 @@ class BookingDetailsFragment :
                                     it.data.result.bookingDetail.startTime
                                 )
 
-                            Session.notificationData=null
+                            Session.notificationData = null
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
@@ -279,7 +269,12 @@ class BookingDetailsFragment :
             0 -> {
                 if (Session.type == "2") {
                     if (Constants.TYPEOFUSERS == getString(R.string.bought_small)) {
-                        if (isTimeGapGreaterThan24Hours(getCurrentTimeInFormat(), bookingDetail.startTime, 24)) {
+                        if (isTimeGapGreaterThan24Hours(
+                                getCurrentTimeInFormat(),
+                                bookingDetail.startTime,
+                                24
+                            )
+                        ) {
                             binding.idCancelBooking.isVisible = true
                         } else {
                             binding.idNotCancellable.isVisible = true
@@ -287,16 +282,21 @@ class BookingDetailsFragment :
 
                     } else {
 
-                        if(this::notificationData.isInitialized && notificationData.userType =="user"){
+                        if (this::notificationData.isInitialized && notificationData.userType == "user") {
                             binding.acceptRejectLayout.isVisible = false
                             binding.idCancelBooking.isVisible = true
-                        }else {
+                        } else {
                             binding.acceptRejectLayout.isVisible = true
                         }
                     }
 
                 } else {
-                    if (isTimeGapGreaterThan24Hours(getCurrentTimeInFormat(), bookingDetail.startTime, 24)) {
+                    if (isTimeGapGreaterThan24Hours(
+                            getCurrentTimeInFormat(),
+                            bookingDetail.startTime,
+                            24
+                        )
+                    ) {
                         binding.idCancelBooking.isVisible = true
                     } else {
                         binding.idNotCancellable.isVisible = true
@@ -307,7 +307,12 @@ class BookingDetailsFragment :
 
             1 -> {
 
-                if (isTimeGapGreaterThan24Hours(getCurrentTimeInFormat(), bookingDetail.startTime, 24) && Constants.TYPEOFUSERS == getString(R.string.bought_small)) {
+                if (isTimeGapGreaterThan24Hours(//2024-09-16T14:53:00.000Z
+                        getCurrentTimeInFormat(),
+                        bookingDetail.startTime,
+                        24
+                    ) && Constants.TYPEOFUSERS == getString(R.string.bought_small)
+                ) {
                     if (bookingDetail.isReschedule) {
                         binding.reSchedule.isEnabled = false
                         binding.reSchedule.alpha = 0.3f
@@ -328,7 +333,7 @@ class BookingDetailsFragment :
                         }
                     } else {
                         binding.markAsCompleted.isVisible = false
-                        binding.reScheduleLayout.visibility=View.VISIBLE
+                        binding.reScheduleLayout.visibility = View.VISIBLE
                     }
                 } else {
                     if (Session.type == "2" && Constants.TYPEOFUSERS == getString(R.string.sold_small)) {
@@ -359,11 +364,24 @@ class BookingDetailsFragment :
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             showSnackBar(it.data.message)
                             findNavController().popBackStack()
-
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showSnackBar(it.data.message)
+                            Toast.makeText(
+                                requireContext(),
+                                it.message ?: "Something went wrong,Please try again later!!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            findNavController().popBackStack()
+                        }
+
+                        else -> {
+                            Toast.makeText(
+                                requireContext(),
+                                it.message ?: "Something went wrong,Please try again later!!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            findNavController().popBackStack()
                         }
                     }
                 }
@@ -426,14 +444,14 @@ class BookingDetailsFragment :
 
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            showToast(it.data.message?:"Something went wrong")
+                            showToast(it.data.message ?: "Something went wrong")
                             findNavController().popBackStack()
                             Log.e("TAG", "initMarkAsCompleteModel1:${it.data.message} ")
 
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showToast(it.data.message?:"Something went wrong")
+                            showToast(it.data.message ?: "Something went wrong")
                             Log.e("TAG", "initMarkAsCompleteModel2:${it.data.message} ")
 
                         }
@@ -459,13 +477,14 @@ class BookingDetailsFragment :
     }
 
     private fun getBottomSheetCallBack() {
-        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>("")?.observe(viewLifecycleOwner){
-            CoroutineScope(Dispatchers.Main).launch {
-                delay(500)
-                findNavController().popBackStack()
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>("")
+            ?.observe(viewLifecycleOwner) {
+                CoroutineScope(Dispatchers.Main).launch {
+                    delay(500)
+                    findNavController().popBackStack()
 
+                }
             }
-        }
     }
 
 

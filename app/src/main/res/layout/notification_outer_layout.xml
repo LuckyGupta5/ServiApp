@@ -50,7 +50,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_toEndOf="@id/notificationIcon"
                 android:lineSpacingExtra="3sp"
-                android:text="@{notificationList.title}"
+                android:text="@{notificationList.subject}"
                 android:textAlignment="viewStart"
                 android:textColor="@color/black"
                 android:textSize="15sp"

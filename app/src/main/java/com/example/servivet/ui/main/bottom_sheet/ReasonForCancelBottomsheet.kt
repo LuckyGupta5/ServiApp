@@ -3,6 +3,7 @@ package com.example.servivet.ui.main.bottom_sheet
 import android.util.Log
 import android.view.View
 import android.widget.RadioButton
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -54,7 +55,7 @@ class ReasonForCancelBottomsheet() :
     }
 
     private fun getCancelReason() {
-        reasonList = listOf<String>(
+        reasonList = listOf(
             "Changed plans",
             "Found a better option",
             "Financial reasons",
@@ -162,15 +163,15 @@ class ReasonForCancelBottomsheet() :
                             Log.e("TAG", "hitCancelBookingApi: ${it.data.message}", )
                             findNavController().previousBackStackEntry?.savedStateHandle?.set("","")
                             dialog?.dismiss()
-
-
                         }
-
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showSnackBar(it.data.message)
+                            Toast.makeText(
+                                requireContext(),
+                                it.data.message,
+                                Toast.LENGTH_SHORT
+                            ).show()
                             findNavController().previousBackStackEntry?.savedStateHandle?.set("","")
                             dialog?.dismiss()
-
                             Log.e("TAG", "hitCancelBookingApi: ${it.data.message}", )
 
                         }

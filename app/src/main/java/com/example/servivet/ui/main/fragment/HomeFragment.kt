@@ -78,15 +78,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
     val intent: Intent? = null // Replace null with your intent
     val requestCode = 1 // Replace with your request code
     val type1 = 1 // Replace with your type
-
-
     private lateinit var locationManager: LocationManager
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }

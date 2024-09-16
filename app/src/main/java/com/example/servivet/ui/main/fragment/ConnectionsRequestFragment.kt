@@ -58,6 +58,7 @@ class ConnectionsRequestFragment :
         }
         binding.idTopLayout.idCloseSearch.setOnClickListener {
             binding.idTopLayout.idSearchLayout.isVisible = false
+            setupObservers()
         }
         binding.idTopLayout.idSearchText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -90,7 +91,6 @@ class ConnectionsRequestFragment :
 
                     }
                 }
-
                 Status.LOADING -> {
                     ProcessDialog.startDialog(requireContext())
                 }

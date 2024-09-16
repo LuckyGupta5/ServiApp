@@ -248,7 +248,6 @@ class IncomingAudioCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
     }
 
     fun acceptCall() {
-
         try {
             val data = JSONObject()
             data.put("chatMessageId", msgId)

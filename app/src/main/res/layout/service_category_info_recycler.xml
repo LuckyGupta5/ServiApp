@@ -138,7 +138,7 @@
                                 android:layout_marginStart="10dp"
                                 android:fontFamily="@font/poppins_regular"
                                 android:maxLines="1"
-                                android:text="@{data.aboutService}"
+                                android:text='@{data.distance+" "+@string/_1_km_away}'
                                 android:textColor="@color/grey4"
                                 android:textSize="15dp"
                                 tools:text="@string/_1_km_away" />

@@ -56,9 +56,7 @@ import org.json.JSONException
 import org.json.JSONObject
 
 class IncomingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallback {
-
     //Do not move the code structure
-
     private lateinit var serviceIntent: Intent
     private lateinit var mBinding: ActivityIncomingVideoCallBinding
     private lateinit var agoraToken: String
@@ -86,7 +84,6 @@ class IncomingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
             finish()
         }
     }
-
     private val mRtcEventHandler: IRtcEngineEventHandler = object : IRtcEngineEventHandler() {
 
         override fun onError(err: Int) {
@@ -277,13 +274,10 @@ class IncomingVideoCallActivity : BaseActivity(), CallEndBroadcast.CallEndCallba
                     try {
                         Log.e("TAG", "CallEnd:${CallEnd} ")
                         joinChannel()
-
-
                     } catch (ex: JSONException) {
                         ex.printStackTrace()
                     }
                 }
-
             })
 
         } catch (ex: Exception) {

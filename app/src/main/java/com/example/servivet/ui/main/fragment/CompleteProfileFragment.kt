@@ -82,7 +82,6 @@ class CompleteProfileFragment :
 
     private fun setClickEvents() {
         binding.idAddress.setOnClickListener {
-
            // findNavController().navigate(CompleteProfileFragmentDirections.actionCompleteProfileFragmentToAddLocationFragment2(number,""))
         }
     }

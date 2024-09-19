@@ -136,7 +136,6 @@ class SettingsViewModel : BaseViewModel() {
 
     fun hitNotificationStatusApi() {
         val repository = MainRepository(RetrofitBuilder.apiService)
-
         notificationResponse.postValue(Resource.loading(null))
         viewModelScope.launch {
             try {
@@ -169,7 +168,6 @@ class SettingsViewModel : BaseViewModel() {
 
     fun hitDeleteAccountApi() {
         val repository = MainRepository(RetrofitBuilder.apiService)
-
         deleteResponse.postValue(Resource.loading(null))
         viewModelScope.launch {
             try {

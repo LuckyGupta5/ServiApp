@@ -48,7 +48,8 @@ class ProfileViewModel : BaseViewModel() {
                         context.getString(
                             R.string.profile_fr
                         ),
-                        ""
+                        bussinessType = userProfileResponse.value?.data?.result?.profile?.businessType.toString(),
+                        from = ""
                     )
                 )
             }
@@ -119,6 +120,7 @@ class ProfileViewModel : BaseViewModel() {
         val mainRepository = MainRepository(RetrofitBuilder.apiService)
         viewModelScope.launch {
             userProfileResponse.postValue(Resource.loading(null))
+
 
             try {
                 userProfileResponse.postValue(

@@ -130,9 +130,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/riepneapps_technology_noida"
+                        tools:text="@string/riepneapps_technology_noida"
                         android:textSize="13dp"
                         android:layout_marginStart="8dp"
+                        android:text="@{data.address}"
+                        android:maxLength="20"
+                        android:ellipsize="end"
                         android:fontFamily="@font/poppins_regular"
                         android:textColor="@color/grey6"/>
                     <com.google.android.material.card.MaterialCardView
@@ -148,7 +151,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="1 day ago"
+                        tools:text="1 day ago"
+                        android:text="@{data.AgoTime()}"
                         android:textColor="@color/grey6"
                         android:textSize="13dp" />
 
@@ -180,8 +184,8 @@
                         android:text="14999"
                         android:textColor="@color/black_2"
                         android:textSize="16dp" />
-
                     <View
+                        android:id="@+id/idView"
                         android:layout_width="6dp"
                         android:layout_height="2dp"
                         android:layout_gravity="center_vertical"

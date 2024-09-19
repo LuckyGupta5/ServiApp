@@ -15,9 +15,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitBuilder {
-   private const val DEVELOPMENT_BASE_URL = "http://13.235.137.221:3476/mobileApi/"
-  //  private const val DEVELOPMENT_BASE_URL="https://3618-122-176-117-180.ngrok-free.app/mobileApi/"
-
+  private const val DEVELOPMENT_BASE_URL = "http://13.235.137.221:3476/mobileApi/"
+//    private const val DEVELOPMENT_BASE_URL="https://a95d-59-144-166-73.ngrok-free.app/mobileApi/"
     private fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(DEVELOPMENT_BASE_URL)

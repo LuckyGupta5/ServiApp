@@ -10,9 +10,8 @@ object SocketManager {
 
     fun initializeSocket(token: String) {
         val socketUrl = "http://13.235.137.221:3476"// development new url
-        //val socketUrl = "https://99fb-122-176-117-180.ngrok-free.app/"//  local url
+//        val socketUrl = "https://a95d-59-144-166-73.ngrok-free.app/"//  local url
 //        val socketUrl = "http://13.126.60.236:4242"// staging
-
         Log.e("TAG", "initializeSocketToken: ${token}", )
 
         try {

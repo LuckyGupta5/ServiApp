@@ -26,14 +26,12 @@
             android:id="@+id/idToolbar"
             layout="@layout/connection_top_layout" />
 
-        <!--Start Add Bank Account Layout-->
         <LinearLayout
             android:id="@+id/idAddAccountContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="@{adapter.list== null?View.VISIBLE:adapter.list.size()>0?View.GONE:View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,6 +45,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/add_your_bank_account"
@@ -56,6 +55,7 @@
             <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/poppins_medium"
                 android:insetTop="0dp"
@@ -69,16 +69,23 @@
                 app:cornerRadius="12dp" />
 
         </LinearLayout>
-        <!--End Add Bank Account Layout-->
 
-        <!--Start Add new Bank Account Layout when already created any-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/idRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:adapter="@{adapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idAlreadyCreatedBankAccountContainer"
+            tools:itemCount="3"
+            tools:listitem="@layout/custom_add_bank_layout" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/idAlreadyCreatedBankAccountContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="@{()->clickEvents.invoke(0)}"
-            android:visibility="@{adapter.list== null?View.GONE:adapter.list.size()>0?View.VISIBLE:View.GONE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/idToolbar">
 
@@ -131,17 +138,6 @@
                 app:layout_constraintTop_toTopOf="@id/idBankIcon" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:adapter="@{adapter}"
-            android:visibility="@{adapter.list== null?View.GONE:adapter.list.size()>0?View.VISIBLE:View.GONE}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/idAlreadyCreatedBankAccountContainer"
-            tools:itemCount="3"
-            tools:listitem="@layout/custom_add_bank_layout" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

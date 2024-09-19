@@ -5,8 +5,6 @@ import android.view.Gravity
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
-import androidx.core.view.marginRight
-import androidx.core.view.marginStart
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -48,7 +46,7 @@ class MyBankAccountFragment :
         binding.idToolbar.idBack.setOnClickListener { findNavController().popBackStack() }
         binding.idToolbar.idSearch.isVisible = false
         binding.idToolbar.idTitle.textSize = 20.0f
-        binding.idToolbar.idTitle.gravity=Gravity.CENTER
+        binding.idToolbar.idTitle.gravity = Gravity.CENTER
 
         binding.idToolbar.idTitle.text = getString(R.string.my_bank_account)
     }
@@ -75,7 +73,7 @@ class MyBankAccountFragment :
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             mViewModel.createBankResult = it.data.result
                             mViewModel.bankList.clear()
-                            mViewModel?.createBankResult?.userBankList?.let { it1 ->
+                            mViewModel.createBankResult?.userBankList?.let { it1 ->
                                 mViewModel.bankList.addAll(it1)
                             }
                             initAdapter()
@@ -115,11 +113,19 @@ class MyBankAccountFragment :
         mViewModel.getRemoveBankData().observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
-
                     ProcessDialog.dismissDialog()
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            // showSnackBar(it.data.message)
+                            if (mViewModel.bankList.size == 0) {
+                                binding.idAlreadyCreatedBankAccountContainer.visibility = View.GONE
+                                binding.idRecycler.visibility = View.GONE
+                                binding.idAddAccountContainer.visibility = View.VISIBLE
+                            } else {
+                                binding.idAlreadyCreatedBankAccountContainer.visibility =
+                                    View.VISIBLE
+                                binding.idRecycler.visibility = View.VISIBLE
+                                binding.idAddAccountContainer.visibility = View.GONE
+                            }
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
@@ -152,20 +158,23 @@ class MyBankAccountFragment :
     }
 
     private fun initAdapter() {
+        if (mViewModel.bankList.isEmpty()) {
+            binding.idRecycler.visibility = View.GONE
+            binding.idAddAccountContainer.visibility = View.VISIBLE
+            binding.idAlreadyCreatedBankAccountContainer.visibility = View.GONE
+        } else {
+            binding.idRecycler.visibility = View.VISIBLE
+            binding.idAddAccountContainer.visibility = View.GONE
+            binding.idAlreadyCreatedBankAccountContainer.visibility = View.VISIBLE
+        }
         binding.adapter =
             AddedBankAccountAdapter(mViewModel.bankList, requireContext(), onItemClick)
     }
 
     private val onItemClick: (String, Int) -> Unit = { data, position ->
-
         when (position) {
             1 -> {
-                if (mViewModel.bankList.size <= 1) {
-                    initAdapter()
-                    mViewModel.getRemoveBankRequest(data)
-                } else {
-                    mViewModel.getRemoveBankRequest(data)
-                }
+                mViewModel.getRemoveBankRequest(data)
             }
         }
     }

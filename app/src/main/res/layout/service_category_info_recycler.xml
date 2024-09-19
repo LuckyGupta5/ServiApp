@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="data"
             type="com.example.servivet.data.model.service_list.response.ServiceList" />
@@ -113,19 +115,18 @@
                             android:fontFamily="@font/poppins_regular"
                             android:maxLines="1"
                             android:textColor="@color/grey6"
-                            android:textSize="13dp" />
-
-
+                            android:textSize="13dp"
+                            tools:text="service name " />
                         <LinearLayout
                             android:id="@+id/kmAwayText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
-                            android:layout_toEndOf="@id/serviceName">
-
+                            android:layout_toEndOf="@id/serviceName"
+                            android:visibility="@{data.distance == null ? View.GONE : View.VISIBLE}">
                             <com.google.android.material.card.MaterialCardView
-                                android:layout_width="8dp"
-                                android:layout_height="8dp"
+                                android:layout_width="10dp"
+                                android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="10dp"
                                 app:cardBackgroundColor="@color/grey4"
@@ -138,11 +139,10 @@
                                 android:layout_marginStart="10dp"
                                 android:fontFamily="@font/poppins_regular"
                                 android:maxLines="1"
-                                android:text='@{data.distance+" "+@string/_1_km_away}'
+                                android:text='@{data.distance + " " + @string/away}'
                                 android:textColor="@color/grey4"
                                 android:textSize="15dp"
                                 tools:text="@string/_1_km_away" />
-
                         </LinearLayout>
                     </RelativeLayout>
 
@@ -155,7 +155,7 @@
                         android:drawablePadding="10dp"
                         android:fontFamily="@font/poppins_regular"
                         android:maxLines="1"
-                        android:text="@{data.address}"
+                        android:text='@{(data.address != null &amp; !data.address.isEmpty()) ? data.address : "Home" }'
                         android:textColor="@color/grey4"
                         android:textSize="15dp"
                         tools:text="@string/riepneapps_technology_noida" />

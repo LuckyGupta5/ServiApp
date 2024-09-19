@@ -74,11 +74,9 @@ class MyBankViewModel : BaseViewModel() {
     }
 
     fun getRemoveBankRequest(bankId: String) {
-
         request.apply {
             userBankId = bankId
         }
-
         hitRemoveBankApi()
     }
 

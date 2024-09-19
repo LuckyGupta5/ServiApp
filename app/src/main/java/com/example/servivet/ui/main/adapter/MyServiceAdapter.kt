@@ -3,7 +3,9 @@ package com.example.servivet.ui.main.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import com.example.servivet.R
@@ -100,11 +102,16 @@ class MyServiceAdapter(
         }
 
         fun bookNow(view: View) {
-            val bundle = Bundle()
-            bundle.putSerializable(Constants.DATA, list[position])
-            view.findNavController()
-                .navigate(R.id.action_myServiceFragment_to_subCategoryDetailsFragment, bundle)
+            val service = list[position]
+            if (service != null) {
+                view.findNavController().navigate(
+                    R.id.action_myServiceFragment_to_subCategoryDetailsFragment,
+                    bundleOf("serviceId" to service._id)
+                )
+            } else {
+                // Handle the case where the service is null, maybe log an error or show a message
+                Log.e("MyServiceAdapter", "Service at position $position is null.")
+            }
         }
     }
-
 }

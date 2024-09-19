@@ -1,11 +1,10 @@
 package com.example.servivet.ui.main.fragment
 
 import android.os.Build
-import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
@@ -32,6 +31,8 @@ class MyServiceDetailFragment : BaseFragment<FragmentMyServiceDetailBinding, MyS
     var data: ServiceList? = null
     private var mediaList = ArrayList<String>()
     private lateinit var serviceDetails: ServiceDetail
+    var smallest = ""
+    var largest = ""
     override fun isNetworkAvailable(boolean: Boolean) {
     }
     override fun setupViewModel() {
@@ -39,7 +40,9 @@ class MyServiceDetailFragment : BaseFragment<FragmentMyServiceDetailBinding, MyS
             lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
             click = mViewModel.ClickAction(requireActivity(), binding, requireActivity())
+
         }
+
         data = arguments?.getSerializable(Constants.DATA) as ServiceList?
         mViewModel.serviceCategoryDetailsRequest.serviceId = data!!._id
         mViewModel.hitServiceDetailsAPI(
@@ -47,6 +50,14 @@ class MyServiceDetailFragment : BaseFragment<FragmentMyServiceDetailBinding, MyS
             requireActivity(),
             requireActivity().isFinishing
         )
+    }
+    private fun checkVisibility(binding: FragmentMyServiceDetailBinding) {
+        // Show the smallest value only if it's greater than 0.0
+        binding.smallest.isVisible = smallest != "0.0" && smallest != largest
+        binding.idView.isVisible =
+            binding.smallest.isVisible // Divider visibility based on smallest
+        // Always show the largest value
+        binding.largest.isVisible = largest != "0.0"
     }
     override fun setupViews() {
     }
@@ -72,8 +83,15 @@ class MyServiceDetailFragment : BaseFragment<FragmentMyServiceDetailBinding, MyS
                                 it.data.result.serviceDetail.atCenterPrice,
                                 it.data.result.serviceDetail.atHomePrice!!
                             ).toString()
-                            binding.smallest.text = commaSaparator(smallest.toDouble()).toString()
-                            binding.largest.text = commaSaparator(largest.toDouble()).toString()
+                            this.smallest = min(serviceDetails.atCenterPrice ?: 0.0, serviceDetails.atHomePrice ?: 0.0).toString()
+                            this.largest = max(serviceDetails.atCenterPrice ?: 0.0, serviceDetails.atHomePrice ?: 0.0).toString()
+
+                            // Update UI with prices
+                            binding.smallest.text = commaSaparator(smallest.toDouble())
+                            binding.largest.text = commaSaparator(largest.toDouble())
+
+                            // Handle visibility
+                            checkVisibility(binding)
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
@@ -109,6 +127,7 @@ class MyServiceDetailFragment : BaseFragment<FragmentMyServiceDetailBinding, MyS
 
 
     }
+
 
 
     private fun setImageAdapter(list: ArrayList<String>) {

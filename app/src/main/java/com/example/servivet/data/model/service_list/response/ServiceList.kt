@@ -4,6 +4,7 @@ import com.example.servivet.data.model.add_service.request.AtCenterAvailability
 import com.example.servivet.data.model.add_service.request.AtHomeAvailability
 import com.example.servivet.data.model.service_category_details.response.SubCategoryDeatils
 import com.example.servivet.utils.interfaces.ListAdapterItem
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class ServiceList(
@@ -15,7 +16,8 @@ data class ServiceList(
     val atHomeAvailability: List<AtHomeAvailability>? = null,
     val atHomePrice: Double? = null,
     val avgRating: String? = null,
-    val bussinessType: Int? = null,
+    @SerializedName("bussinessType")
+    val businessType: Int? = null,
     val distance: String? = null,
     val category: String? = null,
     val createdBy: ServiceListCreatedBy? = null,

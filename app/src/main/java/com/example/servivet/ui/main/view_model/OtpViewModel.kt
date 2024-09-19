@@ -45,7 +45,7 @@ class OtpViewModel : BaseViewModel() {
         var binding: FragmentOtpVarificationBinding,
         var type: String,
         var requireActivity: Activity,
-       var  finishing: Boolean,
+        var finishing: Boolean,
     ) {
         fun editBtn(view: View) {
             view.findNavController().popBackStack()
@@ -58,45 +58,50 @@ class OtpViewModel : BaseViewModel() {
         fun onResendClick(view: View) {
             types = 1
             counterDownTimmer(context as Activity, binding)
-            hitSendOtpApi(context,requireActivity)
+            hitSendOtpApi(context, requireActivity)
         }
 
         fun onOTPChange(text: CharSequence) {
             otppin.value = text.length == 4
             otpText = otppin.toString()
-           verifyOtpRequest.otp=text.toString()
+            verifyOtpRequest.otp = text.toString()
         }
 
         fun gotoHomeActivity(view: View) {
-            hitVerifyOtpApi(context,requireActivity,finishing)
+            hitVerifyOtpApi(context, requireActivity, finishing)
         }
-
-
     }
 
     fun hitVerifyOtpApi(context: Context, requireActivity: Activity, finishing: Boolean) {
         val mainRepository = MainRepository(RetrofitBuilder.apiService)
-        Log.e("TAG", "hitVerifyOtpApi: ${Gson().toJson(verifyOtpRequest)}", )
+        Log.e("TAG", "hitVerifyOtpApi: ${Gson().toJson(verifyOtpRequest)}")
         viewModelScope.launch {
             verifyOtpResponse.postValue(Resource.loading(null))
             try {
                 verifyOtpResponse.postValue(
-                    Resource.success(mainRepository.verifyOtpAPi(verifyOtpRequest)))
+                    Resource.success(mainRepository.verifyOtpAPi(verifyOtpRequest))
+                )
             } catch (ex: IOException) {
                 ex.printStackTrace()
                 verifyOtpResponse.postValue(
                     Resource.error(
-                        StatusCode.STATUS_CODE_INTERNET_VALIDATION,
-                        null
+                        StatusCode.STATUS_CODE_INTERNET_VALIDATION, null
                     )
                 )
             } catch (exception: Exception) {
                 exception.printStackTrace()
                 if (exception is HttpException && exception.code() == 401) {
-                    if(!finishing)
-                        CommonUtils.logoutAlert(context, "Session Expired", "Your account has been blocked by Admin . Please contact to the Admin", requireActivity)
-                }else
-                    verifyOtpResponse.postValue(Resource.error(StatusCode.SERVER_ERROR_MESSAGE, null))
+                    if (!finishing) CommonUtils.logoutAlert(
+                        context,
+                        "Session Expired",
+                        "Your account has been blocked by Admin . Please contact to the Admin",
+                        requireActivity
+                    )
+                } else verifyOtpResponse.postValue(
+                    Resource.error(
+                        StatusCode.SERVER_ERROR_MESSAGE, null
+                    )
+                )
 
 
             }
@@ -114,11 +119,10 @@ class OtpViewModel : BaseViewModel() {
                 ex.printStackTrace()
                 sendOtpResponse.postValue(
                     Resource.error(
-                        StatusCode.STATUS_CODE_INTERNET_VALIDATION,
-                        null
+                        StatusCode.STATUS_CODE_INTERNET_VALIDATION, null
                     )
                 )
-            }  catch (exception: Exception) {
+            } catch (exception: Exception) {
                 exception.printStackTrace()
                 if (exception is HttpException && exception.code() == 401) {
                     CommonUtils.logoutAlert(
@@ -127,8 +131,12 @@ class OtpViewModel : BaseViewModel() {
                         "Your account has been blocked by Admin . Please contact to the Admin",
                         requireActivity
                     )
-                }else
-                    sendOtpResponse.postValue(Resource.error(StatusCode.SERVER_ERROR_MESSAGE, null))
+                } else sendOtpResponse.postValue(
+                    Resource.error(
+                        StatusCode.SERVER_ERROR_MESSAGE,
+                        null
+                    )
+                )
 
 
             }
@@ -138,8 +146,7 @@ class OtpViewModel : BaseViewModel() {
     }
 
 
-    fun counterDownTimmer(context: Activity, binding: FragmentOtpVarificationBinding) {
-        /*var otpTimer = 0
+    fun counterDownTimmer(context: Activity, binding: FragmentOtpVarificationBinding) {/*var otpTimer = 0
         object : CountDownTimer(30000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 timer.value = "Resend OTP in " + millisUntilFinished / 1000 + " Seconds"
@@ -161,10 +168,15 @@ class OtpViewModel : BaseViewModel() {
             var otpTextTimer = 0
             override fun onTick(l: Long) {
                 context.runOnUiThread {
-                    timer.value = context.getString(R.string.resend_otp)+ " " + l / 1000 + context.getString(
-                        R.string.seconds
+                    timer.value =
+                        context.getString(R.string.resend_otp) + " " + l / 1000 + context.getString(
+                            R.string.seconds
+                        )
+                    binding.resendOtp.setText(
+                        context.getString(R.string.resend_otp) + " " + l / 1000 + context.getString(
+                            R.string.seconds
+                        )
                     )
-                    binding.resendOtp.setText(context.getString(R.string.resend_otp) +" " + l / 1000 + context.getString(R.string.seconds))
                     otpTextTimer = l.toString().toInt()
                     binding.resendOtp.setEnabled(false)
 
@@ -186,7 +198,7 @@ class OtpViewModel : BaseViewModel() {
     }
 
     fun stopCountDown() {
-        timer.value=""
+        timer.value = ""
         countDown.cancel()
         countDown.restart()
     }

@@ -1,7 +1,6 @@
-package com.example.servivet.ui.main.fragment
+package com.example.servivet.ui.main.activity
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -15,6 +14,7 @@ import android.location.LocationManager
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.Gravity
@@ -23,23 +23,16 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.Nullable
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import by.kirich1409.viewbindingdelegate.viewBinding
+import androidx.databinding.DataBindingUtil
 import com.example.servivet.R
-import com.example.servivet.databinding.FragmentAddLocationBinding
-import com.example.servivet.ui.base.BaseFragment
-import com.example.servivet.ui.main.activity.HomeActivity
-import com.example.servivet.ui.main.view_model.AddLocationViewModel
+import com.example.servivet.data.model.save_address.request.SaveAddressRequest
+import com.example.servivet.databinding.ActivityAddLocationForServicesBinding
 import com.example.servivet.utils.CommonUtils
-import com.example.servivet.utils.CommonUtils.showSnackBar
 import com.example.servivet.utils.GPSTracker
-import com.example.servivet.utils.ProcessDialog
-import com.example.servivet.utils.Session
-import com.example.servivet.utils.StatusCode
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -56,153 +49,111 @@ import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
+import com.google.gson.Gson
 import java.io.IOException
 
-class AddLocationFragment :
-    BaseFragment<FragmentAddLocationBinding, AddLocationViewModel>(R.layout.fragment_add_location),
-    OnMapReadyCallback {
-    private var permissions_denied: Boolean = false
+@RequiresApi(Build.VERSION_CODES.O)
+class AddLocationForServices : AppCompatActivity(), OnMapReadyCallback {
+
     private val LOCATION_PERMISSION_REQUEST_CODE: Int = 101
-    private var isLocationSerach = false
-    private var isFirstTime: Boolean = false
-    private var fullAddress: String? = ""
+    private var isFirstTime: Boolean = true
     private var lastKnownLocation: Location? = null
-    private var manager: LocationManager? = null
     private var dialog: Dialog? = null
     private var isDialogShow: Boolean = false
     private var longitude: Double = 0.0
-    private var lattitude: Double = 0.0
-    override val binding: FragmentAddLocationBinding by viewBinding(FragmentAddLocationBinding::bind)
-    override val mViewModel: AddLocationViewModel by viewModels()
-    private lateinit var mMap: GoogleMap
-    private val argumentData: AddLocationFragmentArgs by navArgs()
+    private var latitude: Double = 0.0
+    private var isLocationSerach = false
+    private var permissions_denied: Boolean = false
+    var saveAddressRequest = SaveAddressRequest()
+    private lateinit var binding: ActivityAddLocationForServicesBinding
+    private var mMap: GoogleMap? = null
     private var fusedLocationProviderClient: FusedLocationProviderClient? = null
     private lateinit var autoCompleteSupportFragment: AutocompleteSupportFragment
-    private lateinit var locationManager: LocationManager
-    override fun isNetworkAvailable(boolean: Boolean) {
-    }
 
-    override fun setupViewModel() {
-
-    }
 
     private fun setClick() {
-
         binding.apply {
+            saveBtn.setOnClickListener {
+                setResultAndFinish()
+                finish()
+            }
             backBtn.setOnClickListener {
-                findNavController().popBackStack()
+                finish()
             }
         }
     }
 
-
-    @SuppressLint("SetTextI18n")
-    override fun setupViews() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_add_location_for_services)
         binding.apply {
-            lifecycleOwner = viewLifecycleOwner
-            viewModel = mViewModel
-            click = mViewModel.ClickAction()
+            lifecycleOwner = this@AddLocationForServices
         }
         mapInitialization()
         setClick()
-        if (Session.userDetails != null) {
-            if (Session.userDetails.name != null && Session.userDetails.name.isNotEmpty()) {
-                binding.fullName.setText(Session.userDetails.name)
-                mViewModel.name.value = true
-                mViewModel.saveAddressRequest.name = Session.userDetails.name
-            }
-
-            if (Session.userDetails.mobile != null && Session.userDetails.mobile.isNotEmpty()) {
-                binding.mobileNumberText.setText(Session.userDetails.mobile)
-                mViewModel.number.value = true
-                mViewModel.saveAddressRequest.mobileNumber = Session.userDetails.mobile
-            }
-        } else {
-            binding.mobileNumberText.setText("+" + "" + argumentData?.number ?: "")
-        }
     }
 
-
     private fun mapInitialization() {
-        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
         if (!Places.isInitialized()) {
-            Places.initialize(requireContext(), getString(R.string.google_map_key))
+            Places.initialize(this, getString(R.string.google_map_key))
         }
-        fusedLocationProviderClient =
-            LocationServices.getFusedLocationProviderClient(requireActivity())
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         searchLocation()
         isPermissionCheck()
     }
 
     private fun isPermissionCheck() {
         if (checkLocationPermission()) {
-//            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 100)
-
             getDeviceCurrentLocation()
         }
     }
 
     private fun getDeviceCurrentLocation() {
-
-        /*
-        * Get the best and most recent location of the device, which may be null in rare
-        * cases when a location is not available.
-        */
         try {
             val locationResult = fusedLocationProviderClient!!.lastLocation
-            locationResult.addOnCompleteListener(requireActivity()) { task: Task<Location> ->
+            locationResult.addOnCompleteListener(this) { task: Task<Location> ->
                 if (task.isSuccessful) {
                     // Set the map's camera position to the current location of the device.
                     lastKnownLocation = task.result
-                    mMap.clear()
+                    mMap?.clear()
                     if (task.result != null) {
-
                         Log.d("latitude: ", "" + lastKnownLocation?.latitude)
                         Log.d("longitude: ", "" + lastKnownLocation?.longitude)
 
                         val latLng = LatLng(task.result.latitude, task.result.longitude)
 
-                        this.mMap.isMyLocationEnabled = false
+                        this.mMap?.isMyLocationEnabled = false
 
 
                         //move camera to current location.
 
-
                         // calculate address.
                         if (task.result?.latitude != null) {
                             val address = CommonUtils.getAddressFromLatLng(
-                                requireContext(),
-                                task.result?.latitude!!,
-                                task.result?.longitude!!
+                                this, task.result?.latitude!!, task.result?.longitude!!
                             )
                             autoCompleteSupportFragment.setText(address!!.getAddressLine(0))
-                            binding.address.text = address!!.getAddressLine(0)
-                            mViewModel.saveAddressRequest.addressActionType = "add"
-                            mViewModel.saveAddressRequest.addressId = ""
-                            mViewModel.saveAddressRequest.city = address.locality
-                            mViewModel.saveAddressRequest.country = address.countryName
-                            mViewModel.saveAddressRequest.fullAddress = address.getAddressLine(0)
-                            mViewModel.saveAddressRequest.latitute = task.result.latitude.toString()
-                            mViewModel.saveAddressRequest.longitute =
-                                task.result.longitude.toString()
-                            mViewModel.saveAddressRequest.postalCode = address.postalCode
+                            saveAddressRequest.addressActionType = "add"
+                            saveAddressRequest.addressId = ""
+                            saveAddressRequest.city = address.locality
+                            saveAddressRequest.country = address.countryName
+                            saveAddressRequest.fullAddress = address.getAddressLine(0)
+                            saveAddressRequest.latitute = task.result.latitude.toString()
+                            saveAddressRequest.longitute = task.result.longitude.toString()
+                            saveAddressRequest.postalCode = address.postalCode
 
                             Log.e("TAG", "getDeviceCurrentLocation: " + address.postalCode)
 
                         }
-                        this.mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20f))
+                        this.mMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20f))
 
-                        mMap.addMarker(
+                        mMap?.addMarker(
                             MarkerOptions().position(latLng).icon(
-                                bitmapDescriptorFromVector(
-                                    requireContext(),
-                                    R.drawable.currentlocationicon
-                                )
+                                bitmapDescriptorFromVector(this, R.drawable.currentlocationicon)
                             ).anchor(0.8f, 0.5f)
                         )
-
-
                     }
 
                 }
@@ -211,18 +162,15 @@ class AddLocationFragment :
         } catch (e: SecurityException) {
             Log.e("Exception: %s", e.message.toString())
             Toast.makeText(
-                requireContext(), resources.getString(
-                    R.string.location_is_not_avialable
-                ), Toast.LENGTH_SHORT
+                this, resources.getString(R.string.location_is_not_avialable), Toast.LENGTH_SHORT
             ).show()
         }
     }
 
-    fun checkConnectivity() {
+    private fun checkConnectivity() {
         isFirstTime = false
         if (!isNetworkAvailable()) {
-            Toast.makeText(context, R.string.please_connect_to_the_internet, Toast.LENGTH_LONG)
-                .show()
+            Toast.makeText(this, R.string.please_connect_to_the_internet, Toast.LENGTH_LONG).show()
         } else {
             if (!isLocationSerach) {
                 getDeviceCurrentLocation()
@@ -232,46 +180,38 @@ class AddLocationFragment :
 
     private fun isNetworkAvailable(): Boolean {
         var connectivityManager: ConnectivityManager? = null
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            connectivityManager =
-                requireActivity().getSystemService(HomeActivity.CONNECTIVITY_SERVICE) as ConnectivityManager
-        }
-        val activeNetworkInfo = connectivityManager!!.activeNetworkInfo
+        connectivityManager =
+            getSystemService(HomeActivity.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
         return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
 
     private fun requestLocationPermission() {
         requestPermissions(
             arrayOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
+                Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION
             ), LOCATION_PERMISSION_REQUEST_CODE
         )
     }
 
     override fun onStart() {
         super.onStart()
-        if (!checkLocationPermission())
-            requestLocationPermission()
+        if (!checkLocationPermission()) requestLocationPermission()
     }
 
     // Check if the user has granted location permission
     private fun checkLocationPermission(): Boolean {
         val finePermissionState = ActivityCompat.checkSelfPermission(
-            requireContext(),
-            Manifest.permission.ACCESS_FINE_LOCATION
+            this, Manifest.permission.ACCESS_FINE_LOCATION
         )
         val coarsePermissionState = ActivityCompat.checkSelfPermission(
-            requireContext(),
-            Manifest.permission.ACCESS_COARSE_LOCATION
+            this, Manifest.permission.ACCESS_COARSE_LOCATION
         )
         return finePermissionState == PackageManager.PERMISSION_GRANTED && coarsePermissionState == PackageManager.PERMISSION_GRANTED
     }
 
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
+        requestCode: Int, permissions: Array<String>, grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
@@ -295,7 +235,7 @@ class AddLocationFragment :
                 getDeviceCurrentLocation()
             } else {
                 Toast.makeText(
-                    requireContext(),
+                    this,
                     R.string.please_allow_location_permission_to_move_ahead,
                     Toast.LENGTH_SHORT
                 ).show()
@@ -308,15 +248,10 @@ class AddLocationFragment :
     private fun bitmapDescriptorFromVector(context: Context, vectorResId: Int): BitmapDescriptor {
         val vectorDrawable = ContextCompat.getDrawable(context, vectorResId)
         vectorDrawable!!.setBounds(
-            0,
-            0,
-            vectorDrawable.intrinsicWidth,
-            vectorDrawable.intrinsicHeight
+            0, 0, vectorDrawable.intrinsicWidth, vectorDrawable.intrinsicHeight
         )
         val bitmap = Bitmap.createBitmap(
-            vectorDrawable.intrinsicWidth,
-            vectorDrawable.intrinsicHeight,
-            Bitmap.Config.ARGB_8888
+            vectorDrawable.intrinsicWidth, vectorDrawable.intrinsicHeight, Bitmap.Config.ARGB_8888
         )
         val canvas = Canvas(bitmap)
         vectorDrawable.draw(canvas)
@@ -324,8 +259,10 @@ class AddLocationFragment :
     }
 
     private fun checkLocationEnable() {
-        manager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        if (!manager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+        if (!(getSystemService(Context.LOCATION_SERVICE) as LocationManager).isProviderEnabled(
+                LocationManager.GPS_PROVIDER
+            )
+        ) {
             if (!isDialogShow) {
                 showDialog(
                     R.string.gps_enable_message,
@@ -335,8 +272,8 @@ class AddLocationFragment :
                 )
             }
         } else {
-            val gpsTracker = GPSTracker(requireActivity())
-            lattitude = gpsTracker.latitude.toDouble()
+            val gpsTracker = GPSTracker(this)
+            latitude = gpsTracker.latitude.toDouble()
             longitude = gpsTracker.longitude.toDouble()
         }
     }
@@ -345,8 +282,8 @@ class AddLocationFragment :
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 101) {
             checkLocationEnable()
-            val gpsTracker = GPSTracker(requireActivity())
-            lattitude = gpsTracker.latitude.toDouble()
+            val gpsTracker = GPSTracker(this)
+            latitude = gpsTracker.latitude.toDouble()
             longitude = gpsTracker.longitude.toDouble()
             getDeviceCurrentLocation()
             mapInitialization()
@@ -356,64 +293,12 @@ class AddLocationFragment :
 
     override fun onResume() {
         super.onResume()
-        if (isFirstTime)
-            checkConnectivity()
+//        if (isFirstTime) checkConnectivity()
     }
 
-    override fun setupObservers() {
-        mViewModel.saveAddressResponse.observe(viewLifecycleOwner) {
-            when (it.status) {
-                com.example.servivet.utils.Status.SUCCESS -> {
-                    ProcessDialog.dismissDialog()
-                    when (it.data?.code) {
-                        StatusCode.STATUS_CODE_SUCCESS -> {
-                            showSnackBar(it.data.message)
-                            Session.saveAddress(mViewModel.saveAddressRequest)
-                            findNavController().previousBackStackEntry?.savedStateHandle?.set(
-                                "savedAddress",
-                                mViewModel.saveAddressRequest.fullAddress
-                            )
-                            findNavController().popBackStack()
-                        }
-
-                        StatusCode.STATUS_CODE_FAIL -> {
-                            showSnackBar(it.data.message)
-                        }
-
-                        else -> {
-                            showSnackBar(it.data!!.message)
-                        }
-                    }
-                }
-
-                com.example.servivet.utils.Status.LOADING -> {
-                    ProcessDialog.startDialog(requireContext())
-                }
-
-                com.example.servivet.utils.Status.ERROR -> {
-                    ProcessDialog.dismissDialog()
-
-                    it.message?.let {
-                        showSnackBar(it)
-                    }
-                }
-
-                com.example.servivet.utils.Status.UNAUTHORIZED -> {
-                    CommonUtils.logoutAlert(
-                        requireContext(),
-                        "Session Expired",
-                        "Unauthorized User",
-                        requireActivity()
-                    )
-                }
-            }
-        }
-
-    }
-
-    fun showDialog(msg: Int, intent: Intent?, requestCode: Int, type: Int) {
+    private fun showDialog(msg: Int, intent: Intent?, requestCode: Int, type: Int) {
         isDialogShow = true
-        dialog = Dialog(requireContext())
+        dialog = Dialog(this)
         dialog!!.setCancelable(false)
         dialog!!.setCanceledOnTouchOutside(false)
         dialog!!.setContentView(R.layout.alert_dialog)
@@ -431,10 +316,8 @@ class AddLocationFragment :
             isDialogShow = false
             dialog!!.dismiss()
             if (type == 1) {
-                val intent1 =
-                    Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                val uri =
-                    Uri.fromParts("package", "com.app.csc_mobile", null)
+                val intent1 = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                val uri = Uri.fromParts("package", "com.app.csc_mobile", null)
                 intent1.data = uri
                 startActivity(intent1)
             } else {
@@ -447,10 +330,10 @@ class AddLocationFragment :
     private fun searchLocation() {
 
         if (!Places.isInitialized()) {
-            Places.initialize(requireActivity(), getString(R.string.google_map_key))
+            Places.initialize(this, getString(R.string.google_map_key))
         }
         autoCompleteSupportFragment =
-            childFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
+            supportFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
 
         autoCompleteSupportFragment.view?.findViewById<View>(com.google.android.libraries.places.R.id.places_autocomplete_search_button)?.visibility =
             View.GONE
@@ -459,20 +342,15 @@ class AddLocationFragment :
             15f
 
         (autoCompleteSupportFragment.view?.findViewById<View>(com.google.android.libraries.places.R.id.places_autocomplete_search_input) as EditText).setTextColor(
-            ContextCompat.getColor(requireContext(), R.color.black)
+            ContextCompat.getColor(this, R.color.black)
         )
 
         (autoCompleteSupportFragment.view?.findViewById<View>(com.google.android.libraries.places.R.id.places_autocomplete_search_input) as EditText).hint =
-            requireActivity().getString(
-                R.string.search_location
-            )
+            getString(R.string.search_location)
 
         autoCompleteSupportFragment.setPlaceFields(
             listOf(
-                Place.Field.ID,
-                Place.Field.NAME,
-                Place.Field.ADDRESS,
-                Place.Field.LAT_LNG
+                Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS, Place.Field.LAT_LNG
             )
         )
 
@@ -483,8 +361,8 @@ class AddLocationFragment :
             }
 
             override fun onPlaceSelected(place: Place) {
-                mMap.clear()
-                val geocoder = Geocoder(requireContext())
+                mMap?.clear()
+                val geocoder = Geocoder(this@AddLocationForServices)
                 var addressList: List<Address> = ArrayList()
                 try {
                     addressList = geocoder.getFromLocationName(place.toString(), 2)!!
@@ -498,33 +376,28 @@ class AddLocationFragment :
                     //set source data in singleton
 
                     autoCompleteSupportFragment.setText(address.getAddressLine(0))
-                    binding.address.text = address!!.getAddressLine(0)
-                    mViewModel.saveAddressRequest.addressActionType = "add"
-                    mViewModel.saveAddressRequest.addressId = ""
-                    mViewModel.saveAddressRequest.city = address.locality
-                    mViewModel.saveAddressRequest.country = address.countryName
-                    mViewModel.saveAddressRequest.fullAddress = address.getAddressLine(0)
-                    mViewModel.saveAddressRequest.latitute = address.latitude.toString()
-                    mViewModel.saveAddressRequest.longitute = address.longitude.toString()
-                    mViewModel.saveAddressRequest.postalCode = address.postalCode
+                    saveAddressRequest.addressActionType = "add"
+                    saveAddressRequest.addressId = ""
+                    saveAddressRequest.city = address.locality
+                    saveAddressRequest.country = address.countryName
+                    saveAddressRequest.fullAddress = address.getAddressLine(0)
+                    saveAddressRequest.latitute = address.latitude.toString()
+                    saveAddressRequest.longitute = address.longitude.toString()
+                    saveAddressRequest.postalCode = address.postalCode
 
                     Log.e(
                         "TAG",
                         "getDeviceCurrentLocation: " + CommonUtils.getPostalCodeByCoordinates(
-                            this,
-                            address.latitude,
-                            address.longitude,
-                            requireContext()
+                            this, address.latitude, address.longitude, this@AddLocationForServices
                         )
                     )
 
                     val latLng = LatLng(address.latitude, address.longitude)
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20f))
-                    mMap.addMarker(
+                    mMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20f))
+                    mMap?.addMarker(
                         MarkerOptions().position(latLng).icon(
                             bitmapDescriptorFromVector(
-                                requireContext(),
-                                R.drawable.currentlocationicon
+                                this@AddLocationForServices, R.drawable.currentlocationicon
                             )
                         )
                     )
@@ -535,6 +408,12 @@ class AddLocationFragment :
         })
     }
 
+    private fun setResultAndFinish() {
+        val resultIntent = Intent()
+        resultIntent.putExtra("LocationResult", Gson().toJson(saveAddressRequest))
+        setResult(RESULT_OK, resultIntent)
+        finish()
+    }
 
     override fun onMapReady(mMap: GoogleMap) {
         this.mMap = mMap

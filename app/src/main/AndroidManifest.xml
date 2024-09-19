@@ -16,11 +16,8 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-
-
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -34,12 +31,11 @@
             <action android:name="android.media.action.IMAGE_CAPTURE" />
         </intent>
     </queries>
-
     <queries>
         <intent>
             <action android:name="android.intent.action.PICK" />
-            <data android:scheme="content" />
 
+            <data android:scheme="content" />
         </intent>
     </queries>
 
@@ -53,29 +49,35 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/new_app_icon_circle"
         android:supportsRtl="true"
-        tools:replace="android:allowBackup"
         android:theme="@style/Theme.ServiVet."
         android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup"
         tools:targetApi="31">
         <activity
+            android:name=".ui.main.activity.AddLocationForServices"
+            android:exported="false" />
+        <activity
             android:name=".ui.main.activity.HomeActivity"
+            android:configChanges="orientation|screenSize"
             android:exported="true"
             android:label="@string/title_activity_home"
             android:launchMode="singleTop"
-            android:configChanges="orientation|screenSize"
             android:theme="@style/Theme.ServiVet."
             android:windowSoftInputMode="adjustResize|stateAlwaysVisible">
-            <!--   <intent-filter>
+
+            <!--
+               <intent-filter>
                    <action android:name="android.intent.action.MAIN" />
 
                    <category android:name="android.intent.category.LAUNCHER" />
                </intent-filter>
-           --></activity>
+            -->
+        </activity>
         <activity
             android:name=".ui.main.activity.MainActivity"
+            android:configChanges="orientation|screenSize"
             android:exported="true"
             android:theme="@style/Theme.ServiVet."
-            android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -83,14 +85,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.main.agora.video.OutgoingVideoCallActivity"
             android:exported="true"
             android:launchMode="singleTask"
             android:theme="@style/Theme.ServiVet."
             android:windowSoftInputMode="adjustResize" />
-
         <activity
             android:name=".ui.main.agora.video.IncomingVideoCallActivity"
             android:excludeFromRecents="true"
@@ -107,7 +107,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ServiVet."
             android:windowSoftInputMode="adjustResize" />
-
         <activity
             android:name=".ui.main.agora.audio.OutgoingAudioCallActivity"
             android:excludeFromRecents="true"
@@ -125,8 +124,6 @@
             android:name=".utils.soundservices.SoundService"
             android:enabled="true"
             android:stopWithTask="true" />
-
-
         <service
             android:name=".utils.MyFirebaseMessagingService"
             android:enabled="true"

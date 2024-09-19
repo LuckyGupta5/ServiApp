@@ -9,17 +9,14 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.InsetDrawable
-import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
-import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
@@ -32,10 +29,12 @@ import com.example.servivet.data.model.CustomeServiceModeData
 import com.example.servivet.data.model.SimpleImageModel
 import com.example.servivet.data.model.add_service.request.ServiceListSlot
 import com.example.servivet.data.model.home.response.HomeServiceCategory
+import com.example.servivet.data.model.save_address.request.SaveAddressRequest
 import com.example.servivet.data.model.service_category_details.response.ServiceDetail
 import com.example.servivet.databinding.FragmentEditServiceBinding
 import com.example.servivet.databinding.ImagePickerLayoutBinding
 import com.example.servivet.ui.base.BaseFragment
+import com.example.servivet.ui.main.activity.AddLocationForServices
 import com.example.servivet.ui.main.adapter.EditServiceImageAdapter
 import com.example.servivet.ui.main.adapter.EditServiceModePriceAdapter
 import com.example.servivet.ui.main.view_model.EditServiceViewModel
@@ -61,6 +60,7 @@ class EditServiceFragment :
     private var imagePath: String = ""
     private var latitude: String = ""
     private var longitude: String = ""
+    private var fullAddress: String = ""
     var addServiceModePriceAdapter: EditServiceModePriceAdapter? = null
     private var dialog: Dialog? = null
     private lateinit var type: String
@@ -95,34 +95,40 @@ class EditServiceFragment :
         }
         data = arguments?.getSerializable(Constants.DATA) as ServiceDetail?
         setEditData(data)
-
-
     }
 
 
     override fun setupViews() {
+        initClickEvent()
     }
 
     private fun setEditData(data: ServiceDetail?) {
         category = Session.category
         setCategorySpinner(category)
+        Log.d("TAG", "setEditDataResponse: ${Gson().toJson(data)}")
+        longitude = data?.location?.coordinates?.get(1).toString()
+        latitude = data?.location?.coordinates?.get(0).toString()
+        fullAddress = data?.address.toString()
 
         //pre selected data
-        mViewModel.addServicesRequest.category = data!!.category
-        mViewModel.addServicesRequest.subCategory = data.subCategory
-        mViewModel.addServicesRequest.aboutService = data.aboutService
-        mViewModel.addServicesRequest.serviceName = data.serviceName
-        mViewModel.addServicesRequest.atCenter = data.serviceMode?.atCenter
-        mViewModel.addServicesRequest.atHome = data.serviceMode?.atHome
-        mViewModel.addServicesRequest.atCenterAvailability = data.atCenterAvailability
-        mViewModel.addServicesRequest.atHomeAvailability = data.atHomeAvailability
-        mViewModel.addServicesRequest.atCenterPrice = data.atCenterPrice.toString()
-        mViewModel.addServicesRequest.atHomePrice = data.atHomePrice.toString()
-        mViewModel.addServicesRequest.serviceId = data._id
-        binding.descriptionEditText.setText(data.aboutService)
-        binding.serviceModeEdit.setText(data.serviceName)
-
-        for (i in data.images!!.indices)
+        mViewModel.addServicesRequest.category = data?.category ?: ""
+        mViewModel.addServicesRequest.subCategory = data?.subCategory ?: ""
+        mViewModel.addServicesRequest.aboutService = data?.aboutService
+        mViewModel.addServicesRequest.serviceName = data?.serviceName
+        mViewModel.addServicesRequest.atCenter = data?.serviceMode?.atCenter
+        mViewModel.addServicesRequest.atHome = data?.serviceMode?.atHome
+        mViewModel.addServicesRequest.atCenterAvailability = data?.atCenterAvailability
+        mViewModel.addServicesRequest.address = fullAddress
+        mViewModel.addServicesRequest.latitute = latitude
+        mViewModel.addServicesRequest.longitute = longitude
+        mViewModel.addServicesRequest.atHomeAvailability = data?.atHomeAvailability
+        mViewModel.addServicesRequest.atCenterPrice = data?.atCenterPrice.toString()
+        mViewModel.addServicesRequest.atHomePrice = data?.atHomePrice.toString()
+        mViewModel.addServicesRequest.serviceId = data?._id
+        binding.descriptionEditText.setText(data?.aboutService)
+        binding.serviceModeEdit.setText(data?.serviceName)
+        binding.idAddress.text = data?.address
+        for (i in data?.images!!.indices)
             mViewModel.imageListing.add(SimpleImageModel("1", "1", data.images[i]))
         setImageAdapter(mViewModel.imageListing)
 
@@ -134,9 +140,9 @@ class EditServiceFragment :
                 CustomeServiceModeData(Constants.AT_CENTER, true, /*list,*/ daysList)
             setAdapter(showDayList, data, data.atCenterPrice, data.atHomePrice, "center")
             binding.centreCheckBox.setBackgroundResource(R.drawable.selected_checkbox)
-            mViewModel.addServicesRequest.address = binding.addressEt.text.toString()
-            mViewModel.addServicesRequest.latitute =  "28.612673"
-            mViewModel.addServicesRequest.longitute = "77.377400"
+//            mViewModel.addServicesRequest.address = binding.idAddress.text.toString()
+//            mViewModel.addServicesRequest.latitute = latitude
+//            mViewModel.addServicesRequest.longitute = longitude
             mViewModel.addServicesRequest.atCenter = true
             mViewModel.isCentreClick = true
             binding.address.visibility = View.VISIBLE
@@ -172,6 +178,44 @@ class EditServiceFragment :
             }
         }
         setClick()
+    }
+
+    private var addLocationLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data = result.data
+            Log.d("TAG", "$: ${Gson().toJson(data)}")
+            val jsonResult = data?.getStringExtra("LocationResult")
+            val saveAddressRequest = Gson().fromJson(jsonResult, SaveAddressRequest::class.java)
+            Log.d("TAG", " saveAddressRequest $saveAddressRequest: ")
+            binding.idAddress.text = saveAddressRequest.fullAddress
+            latitude = saveAddressRequest.latitute.toString()
+            longitude = saveAddressRequest.longitute.toString()
+            fullAddress = saveAddressRequest.fullAddress.toString()
+            mViewModel.addServicesRequest.latitute = saveAddressRequest.latitute.toString()
+            mViewModel.addServicesRequest.longitute = saveAddressRequest.longitute.toString()
+            mViewModel.addServicesRequest.address = saveAddressRequest.fullAddress.toString()
+            // Handle the result here
+            Log.d("TAG", " saveAddressRequest ${saveAddressRequest.fullAddress}: ")
+        }
+    }
+
+    private fun initClickEvent() {
+        binding.idAddress.setOnClickListener {
+            val intent = Intent(requireContext(), AddLocationForServices::class.java)
+            addLocationLauncher.launch(intent)
+//            findNavController().navigate(
+//                AddServiceFragmentDirections.actionAddServiceFragmentToAddLocationFragment()
+//            )
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == 1001) {
+
+        }
     }
 
     private fun setDaysArray() {
@@ -340,9 +384,9 @@ class EditServiceFragment :
                     CustomeServiceModeData(Constants.AT_CENTER, true, /*list,*/ daysList)
                 setAdapter(showDayList, data!!, data!!.atCenterPrice, data!!.atHomePrice)
                 binding.centreCheckBox.setBackgroundResource(R.drawable.selected_checkbox)
-                mViewModel.addServicesRequest.address = binding.addressEt.text.toString()
-                mViewModel.addServicesRequest.latitute ="28.612673"
-                mViewModel.addServicesRequest.longitute ="77.377400"
+                mViewModel.addServicesRequest.address = binding.idAddress.text.toString()
+                mViewModel.addServicesRequest.latitute = "28.612673"
+                mViewModel.addServicesRequest.longitute = "77.377400"
                 mViewModel.addServicesRequest.atCenter = true
                 true
             } else {
@@ -513,9 +557,9 @@ class EditServiceFragment :
 
     private fun selectImage() {
         val permission: Array<String?> = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
-                arrayOf(Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.CAMERA)
-            else
-                arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
+            arrayOf(Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.CAMERA)
+        else
+            arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
         if (CommonUtils.requestPermissions(requireActivity(), 100, permission)) {
             imagerequestcode = 1
             openImagePicker()
@@ -580,7 +624,7 @@ class EditServiceFragment :
                         imagePath =
                             CommonUtils.getRealPathFromURI(requireActivity(), fileUri).toString()
 
-                        Log.e("TAG", "imagePath:${imagePath} ", )
+                        Log.e("TAG", "imagePath:${imagePath} ")
                         mViewModel.isPhotoSelected = true
                         mViewModel.imageListing.add(SimpleImageModel("0", "0", imagePath))
                         mViewModel.addServicesRequest.image.add(imagePath)
@@ -670,7 +714,7 @@ class EditServiceFragment :
                     ProcessDialog.dismissDialog()
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            showToast(it.data.message?:"Something went wrong")
+                            showToast(it.data.message ?: "Something went wrong")
                             findNavController().popBackStack()
                         }
 

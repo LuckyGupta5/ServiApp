@@ -54,12 +54,9 @@ class MyWalletBottomsheet :
             viewModel = mViewModel
             click = mViewModel.ClickAction(requireContext())
             binding.clickEvent = ::onClick
-
         }
         getBookingData()
         dismissbottomsheet()
-
-
     }
 
     private fun onClick(value: Int) {

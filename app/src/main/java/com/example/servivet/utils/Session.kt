@@ -45,6 +45,7 @@ object Session {
     var saveLocationInfo = Hawk.get<LocationInfo>(LOCATION_ADDRESS_INFO, null)
     var language = Hawk.get<String>(LANGUAGE, null)
     var position = Hawk.get<Int>(POSITION, -1)
+
     fun savePosition(position: Int) {
         Hawk.put(POSITION, position)
         Session.position = position
@@ -102,7 +103,6 @@ object Session {
         Hawk.put(LOCATION_ADDRESS_INFO, locationInfo)
         saveLocationInfo = locationInfo
     }
-
 
     fun saveVerifyUserData(userData: VerifyOTPResult) {
         Hawk.put(VERIFY_DATA, userData)

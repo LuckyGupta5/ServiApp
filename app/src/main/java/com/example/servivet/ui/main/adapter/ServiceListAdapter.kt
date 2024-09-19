@@ -2,16 +2,14 @@ package com.example.servivet.ui.main.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.navigation.findNavController
-
 import com.example.servivet.R
 import com.example.servivet.data.model.service_list.response.ServiceList
 import com.example.servivet.databinding.ServiceCategoryInfoRecyclerBinding
 import com.example.servivet.ui.base.BaseAdapter
-import com.example.servivet.utils.Constants
 import com.example.servivet.utils.commaSaparator
 import kotlin.math.max
 import kotlin.math.min
@@ -37,6 +35,12 @@ class ServiceListAdapter(
         binding.apply {
             binding.data = item
             binding.click = ClickAction(position)
+
+            if (data?.address.isNullOrEmpty() == true) {
+                binding.kmAwayText.visibility = View.GONE
+            } else {
+                binding.kilometers.visibility = View.VISIBLE
+            }
         }
 
         if (tabPosition == 0) {
@@ -101,14 +105,11 @@ class ServiceListAdapter(
         notifyItemRangeInserted(start, this.list.size)
     }
 
-
     inner class ClickAction(var position: Int) {
         fun viewProfile(view: View) {
-            var bundle = Bundle()
-            bundle.putSerializable(Constants.DATA, list[position])
             view.findNavController().navigate(
                 R.id.action_servicesTypeListingFragment_to_subCategoryDetailsFragment,
-                bundle
+                bundleOf("serviceId" to list[position]._id)
             )
         }
     }

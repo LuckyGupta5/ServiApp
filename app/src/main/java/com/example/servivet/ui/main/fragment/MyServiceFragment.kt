@@ -94,11 +94,8 @@ class MyServiceFragment :
                 binding.idTopLayout.isVisible = true
                 mViewModel.hitServiceListAPI(requireContext(), requireActivity(), requireActivity().isFinishing)
            }
-
         }
         data = Session.category
-
-
         if (argumentData.from == getString(R.string.provider_profile)) {
             binding.catName.text = "Services"
             mViewModel.serviceListRequest.category = data!![0].id
@@ -112,8 +109,7 @@ class MyServiceFragment :
             binding.idServiceLayout.isVisible = true
             isBook = false
         }
-
-        mViewModel.serviceListRequest.bussinessType = 3
+        mViewModel.serviceListRequest.bussinessType = argumentData.bussinessType.toInt()
         mViewModel.serviceListRequest.limit = 10
         mViewModel.serviceListRequest.search = ""
         mViewModel.serviceListRequest.page = currentPage
@@ -233,8 +229,7 @@ class MyServiceFragment :
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             if (it.data.result.service.isNotEmpty()) {
-
-                           //     binding.idServiceLayout.isVisible = true
+                                //binding.idServiceLayout.isVisible = true
                                 isLoading = true
                                 if (currentPage == 1)
                                     list = ArrayList()
@@ -251,7 +246,7 @@ class MyServiceFragment :
                             } else {
                                 binding.serviceRecycler.visibility = View.GONE
                                 binding.noDataLayout.visibility = View.VISIBLE
-                                binding.idServiceLayout.isVisible = true
+//                                binding.idServiceLayout.isVisible = true
                             }
                         }
                         StatusCode.STATUS_CODE_FAIL -> {

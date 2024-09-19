@@ -50,7 +50,7 @@ class MyServiceViewModel : BaseViewModel() {
             serviceListResponse.postValue(Resource.loading(null))
             try {
                 serviceListResponse.postValue(
-                    Resource.success(
+                    Resource.success(//66e2a073b6a8ca293d9e5de4
                         mainRepository.serviceListApi(
                             serviceListRequest
                         )

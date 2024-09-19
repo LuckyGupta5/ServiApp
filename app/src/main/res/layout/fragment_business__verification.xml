@@ -88,7 +88,6 @@
                                 android:background="@drawable/business_verify_img" />
                         </LinearLayout>
 
-
                     </LinearLayout>
 
 
@@ -134,8 +133,8 @@
                                 android:gravity="center"
                                 android:orientation="horizontal">
 
-
                                 <LinearLayout
+                                    android:id="@+id/idIndividual"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -164,6 +163,7 @@
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:id="@+id/idInstitution"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -425,7 +425,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginBottom="15sp"
                 android:background="@drawable/button_selector"
-                android:enabled="@{(viewModel.nameuser == true  &amp;&amp; viewModel.enailET == true &amp;&amp; viewModel.addressET == true ) ? true : false}"
+                android:enabled="@{(viewModel.nameuser==true  &amp; viewModel.enailET==true &amp; viewModel.addressET==true )?true:false}"
                 android:fontFamily="@font/poppins_medium"
                 android:onClick="@{click::homePage}"
                 android:paddingVertical="8dp"

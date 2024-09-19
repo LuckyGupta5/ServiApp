@@ -3,13 +3,9 @@ package com.example.servivet.ui.main.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
-import android.view.View
-import androidx.lifecycle.MutableLiveData
-
 import com.example.servivet.R
 import com.example.servivet.data.model.add_service.request.ServiceListSlot
 import com.example.servivet.databinding.EditTimerLayoutBinding
-import com.example.servivet.databinding.TimerLayoutBinding
 import com.example.servivet.ui.base.BaseAdapter
 import com.example.servivet.ui.main.view_model.EditServiceViewModel
 import com.example.servivet.utils.CommonUtils
@@ -29,17 +25,17 @@ class EditSelectSessionAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     override fun bind(binding: EditTimerLayoutBinding, item: ServiceListSlot?, position: Int) {
-        Log.e("TAG", "bindasdfghjkl;: "+item )
+        Log.e("TAG", "bindasdfghjkl;: " + item)
         binding.apply {
             data = item
-            click=ClickAction(item,position)
+            click = ClickAction(item, position)
         }
 
         binding.startTime.setOnClickListener {
             //TimerDialog(it,binding)
-            CommonUtils.selectTime(context,binding.startTime) {
+            CommonUtils.selectTime(context, binding.startTime) {
                 item?.startTime = it
-                binding.startTime.text=item!!.startTime
+                binding.startTime.text = item!!.startTime
                 list[position] = item!!
                 listener(list)
             }
@@ -47,31 +43,29 @@ class EditSelectSessionAdapter(
 
         }
         binding.endTime.setOnClickListener {
-            CommonUtils.selectTime(context,binding.endTime) {
+            CommonUtils.selectTime(context, binding.endTime) {
                 item?.endTime = it
-                binding.endTime.text=item!!.endTime
+                binding.endTime.text = item!!.endTime
                 list[position] = item!!
                 listener(list)
             }
-
-
         }
 
         binding.crossIcon.setOnClickListener {
+            if (list.size == 1) return@setOnClickListener
             if (list.size > 1)
                 list.removeAt(position)
 
-            editSelectSessionInterface.onCrossBtn(list,position)
-            Log.e("TAG", "bind:EditSelectSessionAdapter "+Gson().toJson(list))
-            notifyDataSetChanged()
+            editSelectSessionInterface.onCrossBtn(list, position)
+            Log.e("TAG", "bind:EditSelectSessionAdapter " + Gson().toJson(list))
+            notifyItemChanged(position)
         }
     }
 
-    inner class ClickAction(var item: ServiceListSlot?,var  position: Int) {
-    }
+    inner class ClickAction(var item: ServiceListSlot?, var position: Int)
 
-    interface EditSelectSessionInterface{
-        fun onCrossBtn(list: ArrayList<ServiceListSlot>,position: Int)
+    interface EditSelectSessionInterface {
+        fun onCrossBtn(list: ArrayList<ServiceListSlot>, position: Int)
     }
 
 }

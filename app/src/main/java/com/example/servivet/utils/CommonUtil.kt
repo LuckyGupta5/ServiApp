@@ -117,6 +117,7 @@ object CommonUtils {
         pickerForm.datePicker.minDate = calendar.timeInMillis
         pickerForm.show()
     }
+
     @JvmStatic
     @BindingAdapter("android:circularImage")
     fun loadCircularImage(view: View?, image_url: String?) {
@@ -153,6 +154,7 @@ object CommonUtils {
 
         return isAllPermissionGranted[0]
     }
+
     private fun showRationaleDialog(activity: Activity, token: PermissionToken) {
         val dialog = AlertDialog.Builder(activity)
         dialog.setMessage("Allow Servivet to access the photos and media on your device")
@@ -167,6 +169,7 @@ object CommonUtils {
         }
         dialog.show()
     }
+
     fun getPostalCodeByCoordinates(
         placeSelectionListener: PlaceSelectionListener, lat: Double, lon: Double, context: Context
     ): String {
@@ -191,6 +194,7 @@ object CommonUtils {
         }
         return null.toString()
     }
+
     private fun showSettingsDialog(activity: Activity, PERMISSION_REQUEST_CODE: Int) {
         val dialog = AlertDialog.Builder(activity)
         dialog.setMessage(activity.getString(R.string.servivet_require_this_permission))
@@ -204,12 +208,14 @@ object CommonUtils {
         }
         dialog.show()
     }
+
     private fun openSettings(activity: Activity, PERMISSION_REQUEST_CODE: Int) {
         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
         val uri = Uri.fromParts("package", activity.packageName, null)
         intent.data = uri
         activity.startActivityForResult(intent, PERMISSION_REQUEST_CODE)
     }
+
     fun isCurrentDate(date: String): Boolean {
         val sdfInput = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val dateToCheck = sdfInput.parse(date)
@@ -347,8 +353,7 @@ object CommonUtils {
         val date = LocalDate.parse(dateString, formatter)
 
         val dayOfWeek = date.dayOfWeek.toString()
-        val fullDayName =
-            dayOfWeek.substring(0, 1).uppercase() + dayOfWeek.substring(1).lowercase()
+        val fullDayName = dayOfWeek.substring(0, 1).uppercase() + dayOfWeek.substring(1).lowercase()
 
         return fullDayName
     }
@@ -1109,8 +1114,7 @@ fun getVideoPathFromUri(context: Context, videoUri: Uri): String? {
     var path: String? = null
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && DocumentsContract.isDocumentUri(
-            context,
-            videoUri
+            context, videoUri
         )
     ) {
         // Document URI (e.g., content://com.android.providers.media.documents/document/video:12345)
@@ -1252,10 +1256,7 @@ fun setSpannable(data1: String?, data2: String): Spannable {
     val fullText = "$data1 $data2"
     val spannable = SpannableString(fullText)
     spannable.setSpan(
-        StyleSpan(Typeface.BOLD),
-        0,
-        data1!!.length,
-        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        StyleSpan(Typeface.BOLD), 0, data1!!.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
     )
     spannable.setSpan(
         StyleSpan(Typeface.NORMAL),
@@ -1268,12 +1269,11 @@ fun setSpannable(data1: String?, data2: String): Spannable {
 
 
 fun checkMediaPermission(requireActivity: FragmentActivity): Boolean {
-    val permission: Array<String?> =
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            arrayOf(Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.CAMERA)
-        } else {
-            arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
-        }
+    val permission: Array<String?> = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        arrayOf(Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.CAMERA)
+    } else {
+        arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
+    }
     return CommonUtils.requestPermissions(requireActivity, 100, permission)
 }
 
@@ -1317,13 +1317,10 @@ fun downloadFile(
 
 
 fun requestMultiplePermissions(
-    context: Context,
-    permissions: Array<String>,
-    msg: String
+    context: Context, permissions: Array<String>, msg: String
 ): Boolean {
     var isAllowed: Boolean = false
-    Dexter.withContext(context as Activity)
-        .withPermissions(*permissions)
+    Dexter.withContext(context as Activity).withPermissions(*permissions)
         .withListener(object : MultiplePermissionsListener {
             override fun onPermissionsChecked(report: MultiplePermissionsReport) {
                 isAllowed = true
@@ -1344,8 +1341,7 @@ fun requestMultiplePermissions(
             }
 
             override fun onPermissionRationaleShouldBeShown(
-                permissions: List<PermissionRequest?>?,
-                token: PermissionToken
+                permissions: List<PermissionRequest?>?, token: PermissionToken
             ) {
                 token.continuePermissionRequest()
             }

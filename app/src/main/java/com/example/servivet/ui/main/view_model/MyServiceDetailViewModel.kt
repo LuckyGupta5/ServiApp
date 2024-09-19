@@ -29,7 +29,6 @@ class MyServiceDetailViewModel:BaseViewModel() {
     val serviceCategoryDetailsResponse = SingleLiveEvent<Resource<ServiceCategoryDetailsResponse>>()
     var serviceCategoryDetailsRequest= ServiceCategoryDetailsRequest()
     var data:ServiceDetail?=null
-
     inner class ClickAction(
         requireActivity: FragmentActivity,
         binding: FragmentMyServiceDetailBinding,
@@ -44,6 +43,7 @@ class MyServiceDetailViewModel:BaseViewModel() {
             bundle.putSerializable(Constants.DATA,data)
             view.findNavController().navigate(R.id.action_myServiceDetailFragment_to_editServiceFragment,bundle)
         }
+
 
     }
     fun hitServiceDetailsAPI(requireContext: Context, requireActivity: Activity, finishing: Boolean) {

@@ -1,6 +1,7 @@
 package com.example.servivet.ui.main.fragment
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.Typeface
 import android.os.Build
 import android.os.Bundle
@@ -10,7 +11,6 @@ import android.text.Spanned
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.activity.OnBackPressedCallback
@@ -41,6 +41,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(R.layou
     private var bottomSheetDialog: BottomSheetDialog? = null
     override val binding: FragmentLoginBinding by viewBinding(FragmentLoginBinding::bind)
     override val mViewModel: LoginViewModel by viewModels()
+    private lateinit var mContext: Context
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mContext = context
+    }
 
 
     override fun isNetworkAvailable(boolean: Boolean) {
@@ -55,11 +61,16 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(R.layou
             binding.apply {
                 lifecycleOwner = viewLifecycleOwner
                 viewModel = mViewModel
-                click = mViewModel.ClickAction(requireContext(), binding,requireActivity(),requireActivity().isFinishing)
+                click = mViewModel.ClickAction(
+                    mContext,
+                    binding,
+                    requireActivity(),
+                    requireActivity().isFinishing
+                )
             }
 
 
-        if(isAdded)
+        if (isAdded)
             requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         isTerm = false
         isPolicy = false
@@ -73,9 +84,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(R.layou
                 binding.countryCode.selectedCountryCode.toString()
 
         }
-        if(Session.type!=null && Session.type!=""){
+        if (Session.type != null && Session.type != "") {
             Session.saveType(Session.type)
-        }else{
+        } else {
             Session.saveType("1")
         }
         setTermConditionPrivacy()
@@ -101,7 +112,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(R.layou
     }
 
 
-
     private fun setClick() {
         binding.termConditionPolicyLayout.setOnClickListener {
             if (!isTerm) {
@@ -122,7 +132,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(R.layou
     }
 
     private fun setTermConditionPrivacy() {
-        val ss = SpannableString(getString(R.string.i_agree_to_terms_and_conditions_and_data_privacy_policies))
+        val ss =
+            SpannableString(getString(R.string.i_agree_to_terms_and_conditions_and_data_privacy_policies))
         val value = getString(R.string.i_agree_to_terms_and_conditions_and_data_privacy_policies)
         val firstString = getString(R.string.term_and_condition)
         val secondString = getString(R.string.privacy_policy)
@@ -130,8 +141,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(R.layou
         val firstIndex = value.indexOf(firstString)
         val secondIndex = value.indexOf(secondString)
 
-        if (firstIndex != -1 && secondIndex != -1)
-        {
+        if (firstIndex != -1 && secondIndex != -1) {
             val firstLastCharIndex = firstIndex + firstString.length
             val secondLastIndex = secondIndex + secondString.length
 
@@ -164,18 +174,27 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(R.layou
                     ds.typeface = Typeface.create("bold", Typeface.BOLD)
                 }
             }
-            ss.setSpan(clickableSpan1, firstIndex, firstLastCharIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-            ss.setSpan(clickableSpan2, secondIndex, secondLastIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            ss.setSpan(
+                clickableSpan1,
+                firstIndex,
+                firstLastCharIndex,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            ss.setSpan(
+                clickableSpan2,
+                secondIndex,
+                secondLastIndex,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
             binding.termConditionPolicy.text = ss
             binding.termConditionPolicy.movementMethod = LinkMovementMethod.getInstance()
-        }
-        else{
+        } else {
 
         }
     }
 
     private fun openBottomSheet(type: String) {
-        bottomSheetDialog = BottomSheetDialog(requireContext(), R.style.AppBottomSheetDialogTheme)
+        bottomSheetDialog = BottomSheetDialog(mContext, R.style.AppBottomSheetDialogTheme)
         val bottomSheetBinding: TermConditionPolicyLayoutBinding = DataBindingUtil.inflate(
             layoutInflater,
             R.layout.term_condition_policy_layout,
@@ -217,8 +236,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(R.layou
                             var bundle = Bundle()
                             bundle.putString(Constants.MOBILE_NUMBER, mViewModel.mobileNumber)
                             bundle.putString(Constants.COUNTRY_CODE, mViewModel.countryCode)
-                            bundle.putString(Constants.OTP_NUMBER,it.data.result.otpOrderNumber)
-                            findNavController().navigate(R.id.action_loginFragment_to_otpVarificationFragment2, bundle)
+                            bundle.putString(Constants.OTP_NUMBER, it.data.result.otpOrderNumber)
+                            findNavController().navigate(
+                                R.id.action_loginFragment_to_otpVarificationFragment2,
+                                bundle
+                            )
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
@@ -232,12 +254,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(R.layou
                 }
 
                 Status.LOADING -> {
-                    ProcessDialog.startDialog(requireContext())
+                    ProcessDialog.startDialog(mContext)
                 }
 
                 Status.ERROR -> {
                     ProcessDialog.dismissDialog()
-
                     it.message?.let {
                         showSnackBar(it)
                     }
@@ -245,7 +266,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(R.layou
 
                 Status.UNAUTHORIZED -> {
                     CommonUtils.logoutAlert(
-                        requireContext(),
+                        mContext,
                         "Session Expired",
                         "Unauthorized User",
                         requireActivity()

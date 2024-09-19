@@ -84,6 +84,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         super.onAttach(context)
         mContext = context
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
@@ -105,10 +106,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                 showDialog(msg, intent, requestCode, type1)
             }
         }
-
-
     }
-
     // Check if the user has granted location permission
 
     override fun onRequestPermissionsResult(
@@ -281,13 +279,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
             ), LOCATION_PERMISSION_REQUEST_CODE
         )
     }
-
     private fun isLocationEnabled(): Boolean {
         boolean = true
         val locationManager = mContext.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
-
     private fun checkLocationPermission(): Boolean {
         val finePermissionState = ActivityCompat.checkSelfPermission(
             requireContext(),
@@ -346,10 +342,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         }
     }
 
-
     private fun onClick(type: String) {
         when (type) {
             getString(R.string.provider_view_all) -> {
+                if (!this::nearByProviderResponse.isInitialized) {
+                    nearByProviderResponse = NearByProviderResponse(null, null, null)
+                }
                 findNavController().navigate(
                     HomeFragmentDirections.actionHomeFragmentToOnlineNowFragment(
                         Gson().toJson(nearByProviderResponse),
@@ -360,7 +358,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 
         }
     }
-
 
     private fun setOnlineAdapter(type: String) {
         //  binding.idNearByUser.adapter = HomeOnlineNowAdapter(type, requireContext(), ArrayList())
@@ -381,13 +378,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         }
     }
 
-
     private fun setServiceAdapter(type: String, list: List<HomeServiceCategory>) {
         binding.homeServiceAdapter = HomeServiceAdapter(requireContext(), type, list)
         // binding.serviceRecycler.adapter = HomeServiceAdapter(requireContext(), type, list)
 
     }
-
     private fun setViewPagerAdapter(banner: List<HomeBanner>) {
         binding.viewPager.adapter = HomePagerAdapter(requireContext(), banner)
         binding.viewPager.pageMargin = 20
@@ -447,7 +442,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showToast(it.data.message?:"Something went wrong")
+                            showToast(it.data.message ?: "Something went wrong")
                         }
 
                     }
@@ -549,11 +544,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
             initSocketEvents()
             val data = JSONObject()
             data.put("userId", Session.userDetails._id)
-            data.put("latitude", Session?.saveLocationInfo?.latitude?.toDouble() ?: "")
-            data.put("longitude", Session?.saveLocationInfo?.longitude?.toDouble() ?: "")
+            data.put("latitude", Session.saveLocationInfo?.latitude?.toDouble() ?: "")
+            data.put("longitude", Session.saveLocationInfo?.longitude?.toDouble() ?: "")
             data.put("page", 1)
-            data.put("limit", 50)
-
+            data.put("limit", 5)
             socket.emit("nearByProvider", data)
             socket.on("nearByProvider", fun(args: Array<Any?>) {
                 if (isAdded) {
@@ -569,7 +563,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                                 "nearByProviderResponse:${Gson().toJson(nearByProviderResponse)} ",
                             )
                             providerList.clear()
-                            nearByProviderResponse.result.providerList?.let {
+                            nearByProviderResponse.result?.providerList?.let {
                                 if (isAdded) {
                                     providerList.addAll(it)
                                     initProviderAdapter()
@@ -644,8 +638,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
             binding.adapter =
                 NearByProviderAdapter(requireContext(), providerList, onItemClick, type)
     }
-
-
     private fun setVisibility(role: Int) {
         if (role == 1) {
             binding.onlinenowLayout.visibility = View.VISIBLE

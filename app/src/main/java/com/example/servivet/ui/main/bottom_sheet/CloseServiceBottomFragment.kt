@@ -119,9 +119,7 @@ class CloseServiceBottomFragment :
                 CommonUtils.selectFromDate(requireContext(), binding.idStartDate.text.toString() ) {
                     binding.idEndDate.text = it
                 }
-
             }
-
             getString(R.string.close) -> {
                 if (binding.idStartDate.text.toString()
                         .isEmpty() || binding.idEndDate.text.toString().isEmpty()
@@ -134,7 +132,6 @@ class CloseServiceBottomFragment :
                         .show()
 
                 } else {
-
                     sendDate.startTime = binding.idStartDate.text.toString()
                     sendDate.endTime = binding.idEndDate.text.toString()
 

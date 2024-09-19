@@ -46,13 +46,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/gray_17_corner_outline_drawable_12_dp"
-                    android:gravity="center"
                     android:fontFamily="@font/poppins_medium"
-                    android:textSize="15dp"
-                    android:paddingVertical="15dp"
+                    android:gravity="center"
                     android:hint="00:00 AM"
+                    android:paddingVertical="15dp"
                     android:text='@{data.startTime!=""?data.startTime:"00:00 AM"}'
-                    />
+                    android:textSize="15dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -77,28 +76,26 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/gray_17_corner_outline_drawable_12_dp"
-                    android:gravity="center"
                     android:fontFamily="@font/poppins_medium"
-                    android:textSize="15dp"
-                    android:paddingVertical="15dp"
+                    android:gravity="center"
                     android:hint="00:00 AM"
+                    android:paddingVertical="15dp"
                     android:text='@{data.endTime!=""?data.endTime:"00:00 AM"}'
+                    android:textSize="15dp"
 
                     />
             </LinearLayout>
 
             <ImageView
                 android:id="@+id/crossIcon"
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/cancel_slot" />
 
         </LinearLayout>
 
 
-
-
-         </LinearLayout>
+    </LinearLayout>
 </layout>

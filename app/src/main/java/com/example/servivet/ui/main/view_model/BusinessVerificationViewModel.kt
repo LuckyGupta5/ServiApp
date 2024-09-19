@@ -17,6 +17,7 @@ import com.example.servivet.databinding.FragmentBusinessVerificationBinding
 import com.example.servivet.ui.base.BaseViewModel
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.Constants
+import com.example.servivet.utils.Constants.SWITCH_ACC
 import com.example.servivet.utils.Resource
 import com.example.servivet.utils.SingleLiveEvent
 import com.example.servivet.utils.StatusCode
@@ -53,7 +54,6 @@ class BusinessVerificationViewModel : BaseViewModel() {
             businessVerificationRequest.businessType = businessType.toString()   // 3-> individual
             indivisualRole.postValue(true)
             instituaionLRole.postValue(false)
-
         }
 
         fun institution(view: View) {
@@ -66,10 +66,15 @@ class BusinessVerificationViewModel : BaseViewModel() {
 
         fun homePage(view: View) {
             if (validation(context, finishing)) {
+//                if(SWITCH_ACC){
+//                    hitBusinessVerificationAPI(context, requireActivity, finishing)
+//                }else
+
                 if (!Constants.CHECK_BCK) {
                     changeRoleRequest.businessType = businessType
                     changeRoleRequest.roleType = 2
                     hitChangeRoleAPi(context, requireActivity, finishing)
+                    SWITCH_ACC = false
                 } else {
                     hitBusinessVerificationAPI(context, requireActivity, finishing)
                 }
@@ -97,15 +102,12 @@ class BusinessVerificationViewModel : BaseViewModel() {
             return if (email != "" && !CommonUtils.emailValidator(email)) {
                 errorMessage.setValue(context.getString(R.string.please_enter_a_valid_e_mail))
                 false
-            } else
-                true
+            } else true
         }
     }
 
     fun hitBusinessVerificationAPI(
-        context: Context,
-        requireActivity: FragmentActivity,
-        finishing: Boolean
+        context: Context, requireActivity: FragmentActivity, finishing: Boolean
     ) {
         val mainRepository = MainRepository(RetrofitBuilder.apiService)
         viewModelScope.launch {
@@ -126,27 +128,23 @@ class BusinessVerificationViewModel : BaseViewModel() {
                 ex.printStackTrace()
                 businessVerificationResponse.postValue(
                     Resource.error(
-                        StatusCode.STATUS_CODE_INTERNET_VALIDATION,
-                        null
+                        StatusCode.STATUS_CODE_INTERNET_VALIDATION, null
                     )
                 )
             } catch (exception: Exception) {
                 exception.printStackTrace()
                 if (exception is HttpException && exception.code() == 401) {
-                    if (!finishing)
-                        CommonUtils.logoutAlert(
-                            context,
-                            "Session Expired",
-                            "Your account has been blocked by Admin . Please contact to the Admin",
-                            requireActivity
-                        )
-                } else
-                    businessVerificationResponse.postValue(
-                        Resource.error(
-                            StatusCode.SERVER_ERROR_MESSAGE,
-                            null
-                        )
+                    if (!finishing) CommonUtils.logoutAlert(
+                        context,
+                        "Session Expired",
+                        "Your account has been blocked by Admin . Please contact to the Admin",
+                        requireActivity
                     )
+                } else businessVerificationResponse.postValue(
+                    Resource.error(
+                        StatusCode.SERVER_ERROR_MESSAGE, null
+                    )
+                )
             }
         }
     }
@@ -157,14 +155,11 @@ class BusinessVerificationViewModel : BaseViewModel() {
     }
 
     fun hitChangeRoleAPi(
-        context: Context,
-        requireActivity: FragmentActivity,
-        finishing: Boolean
+        context: Context, requireActivity: FragmentActivity, finishing: Boolean
     ) {
         val mainRepository = MainRepository(RetrofitBuilder.apiService)
         viewModelScope.launch {
             Log.e("TAG", "hitBusinessVerificssasasationAPI: ${Gson().toJson(changeRoleRequest)}")
-
             changeRoleApiResponse.postValue(Resource.loading(null))
             try {
                 changeRoleApiResponse.postValue(
@@ -178,34 +173,26 @@ class BusinessVerificationViewModel : BaseViewModel() {
                 ex.printStackTrace()
                 changeRoleApiResponse.postValue(
                     Resource.error(
-                        StatusCode.STATUS_CODE_INTERNET_VALIDATION,
-                        null
+                        StatusCode.STATUS_CODE_INTERNET_VALIDATION, null
                     )
                 )
             } catch (exception: Exception) {
                 exception.printStackTrace()
                 if (exception is HttpException && exception.code() == 401) {
-                    if (!finishing)
-                        CommonUtils.logoutAlert(
-                            context,
-                            "Session Expired",
-                            "Your account has been blocked by Admin . Please contact to the Admin",
-                            requireActivity
-                        )
-                } else
-                    changeRoleApiResponse.postValue(
-                        Resource.error(
-                            StatusCode.SERVER_ERROR_MESSAGE,
-                            null
-                        )
+                    if (!finishing) CommonUtils.logoutAlert(
+                        context,
+                        "Session Expired",
+                        "Your account has been blocked by Admin . Please contact to the Admin",
+                        requireActivity
                     )
+                } else changeRoleApiResponse.postValue(
+                    Resource.error(
+                        StatusCode.SERVER_ERROR_MESSAGE, null
+                    )
+                )
 
 
             }
-
-
         }
     }
-
-
 }

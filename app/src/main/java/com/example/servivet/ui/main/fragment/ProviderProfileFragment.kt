@@ -1,10 +1,10 @@
 package com.example.servivet.ui.main.fragment
 
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.util.Log
-import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -16,7 +16,6 @@ import com.example.servivet.data.model.chat_models.manual_chating_objest.ManualU
 import com.example.servivet.data.model.user_profile.response.UserProfile
 import com.example.servivet.databinding.FragmentProviderProfileBinding
 import com.example.servivet.ui.base.BaseFragment
-import com.example.servivet.ui.main.fragment.chat_module.ChattingFragmentDirections
 import com.example.servivet.ui.main.view_model.ConnectionRequestViewModel
 import com.example.servivet.ui.main.view_model.ProfileViewModel
 import com.example.servivet.utils.CommonUtils
@@ -27,10 +26,6 @@ import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
 import com.google.gson.Gson
 import io.socket.client.Socket
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -45,6 +40,7 @@ class ProviderProfileFragment :
     private val requestViewModel: ConnectionRequestViewModel by viewModels()
     private val argumentData: ProviderProfileFragmentArgs by navArgs()
     private lateinit var profileData: UserProfile
+    private var bussinessType: Int? = null
     private var callType = 7
     private lateinit var socket: Socket
     private lateinit var initateChatResponse: InitiateChatResponse
@@ -87,8 +83,8 @@ class ProviderProfileFragment :
                 //  findNavController().navigate(R.id.action_providerProfileFragment_to_myServiceFragment)
                 findNavController().navigate(
                     ProviderProfileFragmentDirections.actionProviderProfileFragmentToMyServiceFragment(
-                        profileData._id,
-                        getString(
+                        profileData._id, bussinessType = bussinessType.toString(),
+                        from = getString(
                             R.string.provider_profile
                         )
                     )
@@ -238,6 +234,7 @@ class ProviderProfileFragment :
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun setupObservers() {
         userProfileApi()
 
@@ -250,6 +247,7 @@ class ProviderProfileFragment :
                             profileData = it.data.result.profile
                             binding.detailData = profileData
                             roomId = profileData.roomId
+                            bussinessType = it.data.result.profile.businessType
                             Log.e("TAG", "setupObservers: ${Gson().toJson(profileData)}")
                         }
 

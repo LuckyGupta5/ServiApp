@@ -111,10 +111,10 @@ public class BaseActivity extends AppCompatActivity {
 
 
     @SuppressLint("HardwareIds")
-    public String getDeviceId()
-    {
+    public String getDeviceIde() {
         return Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
     }
+
     public GlobalSettings getGlobalSettings() {
         if (globalSettings == null) {
             globalSettings = new GlobalSettings();

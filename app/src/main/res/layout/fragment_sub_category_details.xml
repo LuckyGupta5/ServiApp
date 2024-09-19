@@ -5,9 +5,14 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <import type="com.example.servivet.utils.Session" />
+
         <variable
             name="ratingAdapter"
             type="com.example.servivet.ui.main.adapter.RatingAdapter" />
+
 
         <variable
             name="reviewAdapter"
@@ -24,6 +29,7 @@
         <variable
             name="data"
             type="com.example.servivet.data.model.service_category_details.response.ServiceDetail" />
+
         <variable
             name="clickEvents"
             type="kotlin.jvm.functions.Function1" />
@@ -148,24 +154,25 @@
                                     android:drawableStart="@drawable/location_path_icon"
                                     android:drawablePadding="10dp"
                                     android:fontFamily="@font/poppins_regular"
-                                    android:text="@string/a_block_sector_63_noida"
+                                    android:text='@{(data.address != null &amp; !data.address.isEmpty()) ? data.address : "Home" }'
                                     android:textColor="#7A7A7A"
                                     android:textSize="15dp" />
 
-                                <LinearLayout
+                                <RelativeLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal">
 
-
                                     <TextView
+                                        android:id="@+id/kilometers"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="1"
                                         android:fontFamily="@font/poppins_regular"
-                                        android:text="1 km. away"
+                                        android:text='@{data.distance != null ? data.distance + " " + @string/away : ""}'
                                         android:textColor="#7A7A7A"
-                                        android:textSize="15dp" />
+                                        android:textSize="15sp"
+                                        android:visibility='@{data.distance != null ? View.VISIBLE : View.GONE}'
+                                        tools:text="@string/_1_km_away" />
 
                                     <TextView
                                         android:id="@+id/rating"
@@ -182,10 +189,10 @@
                                         android:paddingVertical="1dp"
                                         android:text="@{data.avgRating}"
                                         android:textColor="@color/white"
-                                        android:textSize="13dp" />
+                                        android:textSize="13sp" />
 
 
-                                </LinearLayout>
+                                </RelativeLayout>
 
 
                             </LinearLayout>
@@ -213,8 +220,8 @@
                             android:id="@+id/idProviderProfile"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingHorizontal="15dp"
                             android:onClick="@{()->clickEvents.invoke(0)}"
+                            android:paddingHorizontal="15dp"
                             android:paddingBottom="12dp">
 
                             <de.hdodenhof.circleimageview.CircleImageView
@@ -446,8 +453,6 @@
             android:paddingHorizontal="20dp"
             android:paddingTop="10dp"
             android:paddingBottom="15dp">
-
-
             <LinearLayout
                 android:id="@+id/costLayout"
                 android:layout_width="match_parent"

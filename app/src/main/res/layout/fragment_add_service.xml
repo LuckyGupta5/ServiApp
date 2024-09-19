@@ -159,8 +159,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="gone">
-                    ">
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
 
                     <TextView
                         android:layout_width="match_parent"
@@ -173,20 +174,21 @@
                         android:textSize="15dp" />
 
                     <TextView
-                        android:id="@+id/addressEt"
+                        android:id="@+id/idAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="15dp"
                         android:layout_marginTop="15dp"
                         android:background="@drawable/white_round_corner_12_dp"
-                        android:drawableEnd="@drawable/location_path_icon"
-                        android:enabled="false"
+                        android:enabled="true"
                         android:fontFamily="@font/poppins_medium"
                         android:hint="@string/address"
                         android:paddingVertical="15dp"
                         android:paddingLeft="15dp"
                         android:paddingEnd="15dp"
-                        android:text="@string/a_block_sector_63_noida"
+                        android:inputType="textPersonName"
+                        android:maxLength="50"
+                        android:maxLines="1"
                         android:textColor="@color/black_2"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -210,7 +212,7 @@
                     android:background="@drawable/white_round_corner_12_dp"
                     android:orientation="horizontal">
 
-                    <Spinner
+                    <androidx.appcompat.widget.AppCompatSpinner
                         android:id="@+id/categorySpinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -244,7 +246,7 @@
                         android:fontFamily="@font/poppins_medium"
                         android:text="@string/sub_category"
                         android:textColor="@color/black"
-                        android:textSize="15dp" />
+                        android:textSize="15sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -395,21 +397,21 @@
                         android:textColor="@color/app_theme"
                         android:textSize="13dp" />
 
-<!--                    <TextView-->
-<!--                        android:id="@+id/addVideo"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center_horizontal"-->
-<!--                        android:layout_marginHorizontal="20dp"-->
-<!--                        android:layout_marginTop="15dp"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:background="@drawable/white_round_corner_12_dp"-->
-<!--                        android:fontFamily="@font/poppins_medium"-->
-<!--                        android:gravity="center_horizontal"-->
-<!--                        android:paddingVertical="15dp"-->
-<!--                        android:text="@string/add_video"-->
-<!--                        android:textColor="@color/app_theme"-->
-<!--                        android:textSize="13dp" />-->
+                    <!--                    <TextView-->
+                    <!--                        android:id="@+id/addVideo"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_gravity="center_horizontal"-->
+                    <!--                        android:layout_marginHorizontal="20dp"-->
+                    <!--                        android:layout_marginTop="15dp"-->
+                    <!--                        android:layout_weight="1"-->
+                    <!--                        android:background="@drawable/white_round_corner_12_dp"-->
+                    <!--                        android:fontFamily="@font/poppins_medium"-->
+                    <!--                        android:gravity="center_horizontal"-->
+                    <!--                        android:paddingVertical="15dp"-->
+                    <!--                        android:text="@string/add_video"-->
+                    <!--                        android:textColor="@color/app_theme"-->
+                    <!--                        android:textSize="13dp" />-->
                 </LinearLayout>
 
 

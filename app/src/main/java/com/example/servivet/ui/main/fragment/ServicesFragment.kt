@@ -14,19 +14,15 @@ import com.example.servivet.utils.Session
 class ServicesFragment : BaseFragment<FragmentServishBinding, ServicesViewModel>(R.layout.fragment_servish){
     override val binding: FragmentServishBinding by viewBinding(FragmentServishBinding::bind)
     override val mViewModel: ServicesViewModel by viewModels()
-
     override fun isNetworkAvailable(boolean: Boolean) {
     }
-
     override fun setupViewModel() {
         binding.apply {
             lifecycleOwner=viewLifecycleOwner
             viewModel=mViewModel
             click=mViewModel.ClickAction()
         }
-
         setAdapter("2",Session.category)
-
     }
 
     private fun setAdapter(type: String, category: ArrayList<HomeServiceCategory>,) {

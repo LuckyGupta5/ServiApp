@@ -17,7 +17,6 @@ class ChatViewModel:BaseViewModel() {
         fun gotochatrequest(view: View){
             view.findNavController().navigate(R.id.action_chatFragment_to_chatRequestFragment)
         }
-
         fun clickSearch(view: View){
             binding.idSearchLayout.isVisible = true
             binding.toplayout.isVisible = false
@@ -27,5 +26,5 @@ class ChatViewModel:BaseViewModel() {
             binding.toplayout.isVisible = true
         }
 
+        }
     }
-}

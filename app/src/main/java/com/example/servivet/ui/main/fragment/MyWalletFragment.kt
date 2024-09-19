@@ -51,7 +51,6 @@ class MyWalletFragment :
 
         }
         initTabLayout()
-
         Constants.SECURE_HEADER = "secure"
         mViewModel.hitWalletApi()
 
@@ -64,6 +63,7 @@ class MyWalletFragment :
         binding.idTabLayout.addTab(binding.idTabLayout.newTab().setText("Bought"))
         if(Session.type =="2") {
             binding.idTabLayout.addTab(binding.idTabLayout.newTab().setText("Sold"))
+            binding.wallet.visibility=View.VISIBLE
         }
 
 
@@ -79,8 +79,6 @@ class MyWalletFragment :
                     1 -> {
                         isBought = false
                         initHistoryViewModel()
-
-
                     }
                 }
             }
@@ -197,6 +195,7 @@ class MyWalletFragment :
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             if (data.result.walletTransaction != null && data.result.walletTransaction.isNotEmpty()) {
                                 binding.transitionRecycler.isVisible = true
+
 
                                 isLoading = true
                                 if (currentPage == 1)

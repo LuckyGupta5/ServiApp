@@ -26,6 +26,7 @@ import com.example.servivet.utils.Session
 import com.example.servivet.utils.SocketManager
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
+import com.google.gson.Gson
 
 
 class OtpVarificationFragment :
@@ -46,13 +47,19 @@ class OtpVarificationFragment :
     override fun setupViews() {
         if (isAdded)
             binding.apply {
-            lifecycleOwner = viewLifecycleOwner
-            viewModel = mViewModel
-            click = mViewModel.ClickAction(requireContext(), binding, type,requireActivity(),requireActivity().isFinishing)
+                lifecycleOwner = viewLifecycleOwner
+                viewModel = mViewModel
+                click = mViewModel.ClickAction(
+                    requireContext(),
+                    binding,
+                    type,
+                    requireActivity(),
+                    requireActivity().isFinishing
+                )
 
 
-        }
-            mViewModel.counterDownTimmer(requireActivity(), binding)
+            }
+        mViewModel.counterDownTimmer(requireActivity(), binding)
 
         showSoftKeyboard(requireContext(), binding.otpPin)
         mViewModel.mobilenumber = arguments?.getString(Constants.MOBILE_NUMBER) ?: ""
@@ -75,14 +82,16 @@ class OtpVarificationFragment :
 
     private fun setRequest() {
         mViewModel.verifyOtpRequest.otpOrderNumber = mViewModel.otpNumber
-        mViewModel.verifyOtpRequest.deviceId = "sdhsbnsdahjksjhkjsdhfsjgfjsdhjfhskfhkjds-53"//change when the firebase is implement
+        mViewModel.verifyOtpRequest.deviceId =
+            "sdhsbnsdahjksjhkjsdhfsjgfjsdhjfhskfhkjds-53"//change when the firebase is implement
         mViewModel.verifyOtpRequest.deviceModelNo = "mozila"//change when the firebase is implement
         mViewModel.verifyOtpRequest.deviceVersion = "14"//change when the firebase is implement
         mViewModel.verifyOtpRequest.deviceType = "website"//change when the firebase is implement
-        mViewModel.verifyOtpRequest.deviceToken = Session.fcmToken//change when the firebase is implement
+        mViewModel.verifyOtpRequest.deviceToken =
+            Session.fcmToken//change when the firebase is implement
         mViewModel.verifyOtpRequest.userType = Session.type.toInt()   // 1-> consumer, 2-> Business
 
-        Log.e("TAG", "setRequest1234: ${Session.fcmToken}", )
+        Log.e("TAG", "setRequest1234: ${Session.fcmToken}")
     }
 
     fun showSoftKeyboard(context: Context, editText: EditText) {
@@ -111,7 +120,8 @@ class OtpVarificationFragment :
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             showSnackBar(it.data.message)
-                            mViewModel.verifyOtpRequest.otpOrderNumber = it.data.result.otpOrderNumber
+                            mViewModel.verifyOtpRequest.otpOrderNumber =
+                                it.data.result.otpOrderNumber
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
@@ -135,6 +145,7 @@ class OtpVarificationFragment :
                         showSnackBar(it)
                     }
                 }
+
                 Status.UNAUTHORIZED -> {
                     CommonUtils.logoutAlert(
                         requireContext(),
@@ -154,6 +165,7 @@ class OtpVarificationFragment :
                             showSnackBar(it.data.message)
                             Session.saveToken(it.data.result.token)
                             Session.saveVerifyUserData(it.data.result)
+                            Log.d("TAG", "setupObservers: ${Gson().toJson(it.data.result)}")
                             SocketManager.initializeSocket(Session.token)
                             if (Session.type.equals("1")) {
                                 if (it.data.result.isProfileVerify) {
@@ -162,22 +174,35 @@ class OtpVarificationFragment :
                                     (context as Activity).finish()
                                     binding.otpPin.setText("")
                                 } else {
-                                    var bundle = Bundle()
+                                    val bundle = Bundle()
                                     Constants.MOBNUMBER = mViewModel.mobilenumber
                                     Constants.C_Code = mViewModel.countrycode
-                                    bundle.putString(Constants.MOBILE_NUMBER, mViewModel.mobilenumber)
+                                    bundle.putString(
+                                        Constants.MOBILE_NUMBER,
+                                        mViewModel.mobilenumber
+                                    )
                                     bundle.putString(Constants.COUNTRY_CODE, mViewModel.countrycode)
-                                    findNavController().navigate(R.id.action_otpVarificationFragment_to_completeProfileFragment, bundle)
+                                    findNavController().navigate(
+                                        R.id.action_otpVarificationFragment_to_completeProfileFragment,
+                                        bundle
+                                    )
                                 }
                             } else if (Session.type.equals("2"))
-                                if (it.data.result.isBusinessVerify==0) {
+                                if (it.data.result.isBusinessVerify == "0") {
                                     Constants.MOBNUMBER = mViewModel.mobilenumber
                                     Constants.C_Code = mViewModel.countrycode
-                                    var bundle = Bundle()
-                                    bundle.putString(Constants.MOBILE_NUMBER, mViewModel.mobilenumber)
+                                    val bundle = Bundle()
+                                    bundle.putString(
+                                        Constants.MOBILE_NUMBER,
+                                        mViewModel.mobilenumber
+                                    )
+                                    bundle.putString("from", "otp")
                                     bundle.putString(Constants.COUNTRY_CODE, mViewModel.countrycode)
-                                    findNavController().navigate(R.id.action_otpVarificationFragment_to_business_Verification_Fragment,bundle)
-                                } else{
+                                    findNavController().navigate(
+                                        R.id.action_otpVarificationFragment_to_business_Verification_Fragment,
+                                        bundle
+                                    )
+                                } else {
                                     val intent = Intent(requireContext(), HomeActivity::class.java)
                                     startActivity(intent)
                                     Session.saveIsLogin(true)
@@ -207,6 +232,7 @@ class OtpVarificationFragment :
                         showSnackBar(it)
                     }
                 }
+
                 Status.UNAUTHORIZED -> {
                     CommonUtils.logoutAlert(
                         requireContext(),

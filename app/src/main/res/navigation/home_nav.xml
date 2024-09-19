@@ -133,6 +133,9 @@
         android:label="AddServiceFragment"
         tools:layout="@layout/fragment_add_service">
         <action
+            android:id="@+id/action_addServiceFragment_to_addLocationFragment"
+            app:destination="@+id/addLocationFragment" />
+        <action
             android:id="@+id/action_addServiceFragment_to_myServiceFragment"
             app:destination="@id/myServiceFragment" />
     </fragment>
@@ -158,6 +161,7 @@
         android:id="@+id/myServiceFragment"
         android:name="com.example.servivet.ui.main.fragment.MyServiceFragment"
         android:label="MyServiceFragment"
+
         tools:layout="@layout/fragment_my_service">
         <action
             android:id="@+id/action_myServiceFragment_to_myServiceDetailFragment"
@@ -180,6 +184,10 @@
 
         <argument
             android:name="data"
+            app:argType="string" />
+
+        <argument
+            android:name="bussinessType"
             app:argType="string" />
 
         <argument
@@ -706,17 +714,15 @@
         tools:layout="@layout/fragment_faq" />
     <fragment
         android:id="@+id/business_Verification_Fragment2"
-        android:name="com.example.servivet.ui.main.fragment.Business_Verification_Fragment"
+        android:name="com.example.servivet.ui.main.fragment.BusinessVerificationFragment"
         android:label="Business_Verification_Fragment"
         tools:layout="@layout/fragment_business__verification">
-
         <argument
             android:name="data"
             app:argType="string" />
         <argument
             android:name="from"
             app:argType="string" />
-
     </fragment>
     <dialog
         android:id="@+id/changeLanguageBottomSheet"

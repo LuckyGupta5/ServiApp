@@ -30,8 +30,6 @@ class ServicesTypeViewModel :BaseViewModel(){
             view.findNavController().navigateUp()
         }
     }
-
-
     fun hitServiceListAPI(requireContext: Context, requireActivity: Activity, finishing: Boolean) {
         val mainRepository = MainRepository(RetrofitBuilder.apiService)
         viewModelScope.launch {
@@ -54,7 +52,6 @@ class ServicesTypeViewModel :BaseViewModel(){
                     )
                 }else
                     serviceListResponse.postValue(Resource.error(StatusCode.SERVER_ERROR_MESSAGE, null))
-
 
             }
 

@@ -222,11 +222,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:textAlignment="viewEnd"
                             android:fontFamily="@font/poppins_medium"
                             android:gravity="end"
                             android:onClick="@{()->clickEvents.invoke(@string/provider_view_all)}"
                             android:text="@string/view_all"
+                            android:textAlignment="viewEnd"
                             android:textColor="@color/app_theme"
                             android:textSize="15dp" />
                     </LinearLayout>

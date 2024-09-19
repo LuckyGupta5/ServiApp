@@ -72,9 +72,7 @@ class AddServiceModePriceAdapter(var context: Context, var list: ArrayList<Custo
 
         serviceModePriceLayoutBinding.timeRv.adapter = slotList?.let {
             SelectSessionAdapter(context,it)
-
             {
-
                 var newDayslist = ArrayList<AddServiceFragment.Days>()
                 for (i in item?.daysList!!.indices) {
                     if (item.daysList!![i].slotList?.get(0)?.startTime != null && item.daysList!![i].slotList?.get(0)?.startTime != ""  ) {

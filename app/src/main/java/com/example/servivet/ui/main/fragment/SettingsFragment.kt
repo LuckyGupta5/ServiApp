@@ -135,7 +135,7 @@ class SettingsFragment :
   */
 
     private fun checkSwitchProfileVisiblity() {
-        binding.idSwitchBusiness.isVisible = Session.userDetails.businessType != "4"
+        binding.idSwitchBusiness.isVisible = Session.userDetails?.businessType != "4"
     }
 
     private fun openBottomSheetForDelete() {
@@ -148,6 +148,7 @@ class SettingsFragment :
         bottomSheetBinding.noBtn.setOnClickListener { deleteUserBottomSheetDialog!!.dismiss() }
         bottomSheetBinding.yesBtn.setOnClickListener {
             mViewModel.hitDeleteAccountApi()
+            deleteUserBottomSheetDialog!!.dismiss()
         }
         deleteUserBottomSheetDialog!!.show()
     }

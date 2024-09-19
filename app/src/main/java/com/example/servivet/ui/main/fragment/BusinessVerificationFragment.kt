@@ -2,6 +2,7 @@ package com.example.servivet.ui.main.fragment
 
 import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -20,7 +21,7 @@ import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
 
 
-class Business_Verification_Fragment :
+class BusinessVerificationFragment :
     BaseFragment<FragmentBusinessVerificationBinding, BusinessVerificationViewModel>(R.layout.fragment_business__verification) {
     override val binding: FragmentBusinessVerificationBinding by viewBinding(
         FragmentBusinessVerificationBinding::bind
@@ -42,8 +43,24 @@ class Business_Verification_Fragment :
                 requireContext(), binding, requireActivity(), requireActivity().isFinishing
             )
         }
-
-
+        Log.d("TAG", "setupViews: ${Session.verifiedData}")
+        val userData = Session.verifiedData
+//        with(binding) {
+//            if (userData != null && userData.role == 1) {
+//                if (userData.businessType == "3")
+//                    idIndividual.performClick()
+//                else
+//                    institutional.performClick()
+//                name.setText(userData.name)
+//                fullAddressname.setText(userData.email)
+//                idAddress.text = userData.defaultAddress?.fullAddress
+//                mViewModel.businessVerificationRequest.name = userData.name
+//                mViewModel.businessVerificationRequest.businessType = userData.businessType ?: "3"
+//                mViewModel.businessVerificationRequest.email = userData.email
+//                mViewModel.businessVerificationRequest.address =
+//                    userData.defaultAddress?.fullAddress
+//            }
+//        }
         mViewModel.businessVerificationRequest.userType = Session.type.toInt()
         mViewModel.businessVerificationRequest.businessType = mViewModel.businessType.toString()
         initClickEvent()
@@ -54,6 +71,7 @@ class Business_Verification_Fragment :
         findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>("savedAddress")
             ?.observe(viewLifecycleOwner) { address ->
                 if (!address.isNullOrEmpty()) {
+                    mViewModel.businessVerificationRequest.address = address
                     binding.idAddress.text = Session.saveAddress.fullAddress
                     mViewModel.onAddressChange(address)
                 } else {
@@ -66,13 +84,12 @@ class Business_Verification_Fragment :
         binding.idAddress.setOnClickListener {
             number = Constants.C_Code + "" + Constants.MOBNUMBER
             findNavController().navigate(
-                Business_Verification_FragmentDirections.actionBusinessVerificationFragmentToAddLocationFragment2(
+                BusinessVerificationFragmentDirections.actionBusinessVerificationFragmentToAddLocationFragment2(
                     number, ""
                 )
             )
         }
     }
-
 
     override fun setupObservers() {
         mViewModel.errorMessage.observe(viewLifecycleOwner) { showSnackBar(it) }
@@ -84,7 +101,7 @@ class Business_Verification_Fragment :
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             showSnackBar(it.data.message)
                             Session.saveIsLogin(true)
-                            var intent = Intent(context, HomeActivity::class.java)
+                            val intent = Intent(context, HomeActivity::class.java)
                             startActivity(intent)
                             (context as Activity).finish()
                         }
@@ -92,7 +109,6 @@ class Business_Verification_Fragment :
                         StatusCode.STATUS_CODE_FAIL -> {
                             showSnackBar(it.data.message)
                         }
-
                     }
                 }
 
@@ -124,7 +140,7 @@ class Business_Verification_Fragment :
                     ProcessDialog.dismissDialog()
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            showToast(it.data.message?:"Something went wrong")
+                            showToast(it.data.message ?: "Something went wrong")
                             Session.saveType("2")
                             mViewModel.businessVerificationRequest.userType = Session.type.toInt()
 
@@ -134,7 +150,7 @@ class Business_Verification_Fragment :
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showToast(it.data.message?:"Something went wrong")
+                            showToast(it.data.message ?: "Something went wrong")
                         }
 
                     }

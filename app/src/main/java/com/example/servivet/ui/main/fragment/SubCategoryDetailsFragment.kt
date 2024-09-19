@@ -1,8 +1,10 @@
 package com.example.servivet.ui.main.fragment
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -23,7 +25,6 @@ import com.example.servivet.ui.main.view_model.sub_category_models.RatingReviewV
 import com.example.servivet.ui.main.view_model.sub_category_models.SubCategoryDetailsViewModel
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.CommonUtils.showSnackBar
-import com.example.servivet.utils.Constants
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
@@ -32,6 +33,7 @@ import java.text.DecimalFormat
 import kotlin.math.max
 import kotlin.math.min
 
+@RequiresApi(Build.VERSION_CODES.O)
 class SubCategoryDetailsFragment :
     BaseFragment<FragmentSubCategoryDetailsBinding, SubCategoryDetailsViewModel>(R.layout.fragment_sub_category_details) {
     override val binding: FragmentSubCategoryDetailsBinding by viewBinding(
@@ -47,25 +49,24 @@ class SubCategoryDetailsFragment :
     var serviceData: ServiceList? = null
     private lateinit var serviceDetails: ServiceDetail
     private var mediaList = ArrayList<String>()
+    private var serviceId: String? = null
     override fun isNetworkAvailable(boolean: Boolean) {
     }
 
     override fun setupViewModel() {}
     private fun initRatingAdapter() {
         binding.ratingAdapter = RatingAdapter(requireContext(), ArrayList(), onItemClick, reviews)
-
     }
 
     override fun setupViews() {
-
-        serviceData = arguments?.getSerializable(Constants.DATA) as ServiceList?
-        mViewModel.serviceCategoryDetailsRequest.serviceId = serviceData!!._id
-        Log.e("TAG", "setupViews11: ${serviceData!!._id}")
+        serviceId = arguments?.getString("serviceId") ?: ""
+        mViewModel.serviceCategoryDetailsRequest.serviceId = serviceId
+        Log.e("TAG", "setupViews11: $serviceId")
 
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
-            click = mViewModel.ClickAction(requireActivity(), binding, serviceData!!._id!!)
+            click = mViewModel.ClickAction(requireActivity(), binding, serviceId = serviceId ?: "")
             clickEvents = ::onClick
         }
 
@@ -84,7 +85,7 @@ class SubCategoryDetailsFragment :
             0 -> {
                 findNavController().navigate(
                     SubCategoryDetailsFragmentDirections.actionSubCategoryDetailsFragmentToProviderProfileFragment(
-                        serviceDetails.createdBy?._id?:"", ""
+                        serviceDetails.createdBy?._id ?: "", ""
                     )
                 )
             }
@@ -100,7 +101,7 @@ class SubCategoryDetailsFragment :
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             serviceDetails = it.data.result!!.serviceDetail!!
-                            binding.data =serviceDetails
+                            binding.data = serviceDetails
                             reviews = it.data.result.serviceDetail?.ratingReview!!
                             mediaList.clear()
                             mediaList.addAll(it.data.result.serviceDetail.images!!)
@@ -166,7 +167,7 @@ class SubCategoryDetailsFragment :
     }
 
     private fun initReviewViewModel() {
-        serviceData!!._id?.let { reviewViewModel.getReviewRequest(it) }
+        serviceId?.let { reviewViewModel.getReviewRequest(it) }
         reviewViewModel.getReviewData().observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
@@ -263,7 +264,8 @@ class SubCategoryDetailsFragment :
     private fun setImageAdapter(list: ArrayList<String>) {
         if (list != null && list.isNotEmpty()) {
             binding.imageRecycler.visibility = View.VISIBLE
-            binding.imageRecycler.adapter = ServiceDetailsImgAdapter(requireContext(), list, onItemClick)
+            binding.imageRecycler.adapter =
+                ServiceDetailsImgAdapter(requireContext(), list, onItemClick)
         } else {
             binding.imageRecycler.visibility = View.GONE
         }

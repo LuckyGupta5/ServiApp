@@ -29,8 +29,7 @@ class EditServiceModePriceAdapter(
     var atCenterPrice: String,
     var atHomePrice: String,
     var listener: (data: CallBackData) -> Unit
-) :
-    BaseAdapter<EditServiceModePriceLayoutBinding, CustomeServiceModeData>(list),
+) : BaseAdapter<EditServiceModePriceLayoutBinding, CustomeServiceModeData>(list),
     EditServiceDaysAdapter.DaysAdapterInterface,
     EditSelectSessionAdapter.EditSelectSessionInterface {
     var daysPosition: Int? = null
@@ -44,9 +43,7 @@ class EditServiceModePriceAdapter(
     }
 
     override fun bind(
-        binding: EditServiceModePriceLayoutBinding,
-        item: CustomeServiceModeData?,
-        position: Int
+        binding: EditServiceModePriceLayoutBinding, item: CustomeServiceModeData?, position: Int
     ) {
         binding.apply {
             binding.serviceModeTv.text = item?.type.toString()
@@ -56,7 +53,7 @@ class EditServiceModePriceAdapter(
         updateData = item!!
 
 
-        when (item!!.type) {
+        when (item.type) {
             Constants.AT_HOME -> {
                 if (atHomePrice != null && atHomePrice != "0" && atHomePrice != "") {
                     binding.priceEditText.setText(atHomePrice)
@@ -71,24 +68,28 @@ class EditServiceModePriceAdapter(
         }
 
         binding.addHour.setOnClickListener {
-            if (item?.daysList!![daysPosition!!].slotList?.get(item?.daysList!![daysPosition!!].slotList?.size!! - 1)!!.startTime == "") {
+            if (item.daysList!![daysPosition ?: 0].slotList?.get(
+                    item.daysList!![daysPosition ?: 0].slotList?.size!! - 1
+                )!!.startTime == ""
+            ) {
                 Toast.makeText(context, "Choose the start time", Toast.LENGTH_SHORT).show()
-            } else if (item?.daysList!![daysPosition!!].slotList?.get(item?.daysList!![daysPosition!!].slotList?.size!! - 1)!!.endTime == "") {
+            } else if (item.daysList!![daysPosition ?: 0].slotList?.get(
+                    item.daysList!![daysPosition ?: 0].slotList?.size!! - 1
+                )!!.endTime == ""
+            ) {
                 Toast.makeText(context, "Choose the end time", Toast.LENGTH_SHORT).show()
             } else if (!CommonUtils.checkDates(
-                    item?.daysList!![daysPosition!!].slotList?.get(item?.daysList!![daysPosition!!].slotList?.size!! - 1)!!.startTime!!,
-                    item?.daysList!![daysPosition!!].slotList?.get(item?.daysList!![daysPosition!!].slotList?.size!! - 1)!!.endTime!!
+                    item.daysList!![daysPosition!!].slotList?.get(item.daysList!![daysPosition!!].slotList?.size!! - 1)!!.startTime!!,
+                    item.daysList!![daysPosition!!].slotList?.get(item.daysList!![daysPosition!!].slotList?.size!! - 1)!!.endTime!!
                 )
             ) {
                 Toast.makeText(
-                    context,
-                    "Start time should not be greater than end time",
-                    Toast.LENGTH_SHORT
+                    context, "Start time should not be greater than end time", Toast.LENGTH_SHORT
                 ).show()
-            } else if (item?.daysList!![daysPosition!!].slotList?.size!! < 4) {
+            } else if (item.daysList!![daysPosition!!].slotList?.size!! < 4) {
 
                 item.daysList!![daysPosition!!].slotList?.add(ServiceListSlot("", "10", ""))
-                listener(CallBackData(item!!, position))
+                listener(CallBackData(item, position))
             }
         }
 
@@ -118,15 +119,11 @@ class EditServiceModePriceAdapter(
     ) {
 
         serviceModePriceLayoutBinding.timeRv.adapter = slotList?.let {
-            EditSelectSessionAdapter(context, it, mviewModel, this)
-
-            {
-
+            EditSelectSessionAdapter(context, it, mviewModel, this) {
                 var newDayslist = ArrayList<AddServiceFragment.Days>()
                 for (i in item?.daysList!!.indices) {
                     if (item.daysList!![i].slotList?.get(0)?.startTime != "") {
                         newDayslist.add(item.daysList!![i])
-
                     }
                 }
                 Log.e("TAG", "setSessionAdapter: " + Gson().toJson(newDayslist))
@@ -152,8 +149,7 @@ class EditServiceModePriceAdapter(
     }
 
     private fun setRequestParameter(
-        data: CustomeServiceModeData?,
-        newDayslist: ArrayList<AddServiceFragment.Days>
+        data: CustomeServiceModeData?, newDayslist: ArrayList<AddServiceFragment.Days>
     ) {
         when (data?.type) {
             Constants.AT_HOME -> {
@@ -213,12 +209,16 @@ class EditServiceModePriceAdapter(
         daysPosition = position
     }
 
-    override fun onCrossBtn(list: ArrayList<ServiceListSlot>,position: Int) {
-        if (updateData.type == Constants.AT_CENTER) {
-            mviewModel.addServicesRequest.atCenterAvailability?.getOrNull(daysPosition!!)?.slot?.removeAt(position)
-        } else {
-            mviewModel.addServicesRequest.atCenterAvailability?.getOrNull(daysPosition!!)?.slot?.removeAt(position)
-        }
+    override fun onCrossBtn(list: ArrayList<ServiceListSlot>, position: Int) {
+//        if (updateData.type == Constants.AT_CENTER) {
+//            mviewModel.addServicesRequest.atCenterAvailability?.getOrNull(
+//                daysPosition ?: 0
+//            )?.slot?.removeAt(position)
+//        } else {
+//            mviewModel.addServicesRequest.atCenterAvailability?.getOrNull(
+//                daysPosition ?: 0
+//            )?.slot?.removeAt(position)
+//        }
     }
 }
 

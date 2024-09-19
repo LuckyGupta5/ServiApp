@@ -12,11 +12,9 @@ import com.example.servivet.R
 import com.example.servivet.data.api.RetrofitBuilder
 import com.example.servivet.data.model.add_service.request.AddServiceRequest
 import com.example.servivet.data.model.add_service.request.AtHomeAvailability
-import com.example.servivet.data.model.add_service.request.ServiceListSlot
 import com.example.servivet.data.model.add_service.response.AddServiceResponse
 import com.example.servivet.data.repository.MainRepository
 import com.example.servivet.databinding.FragmentAddServiceBinding
-
 import com.example.servivet.ui.base.BaseViewModel
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.Resource
@@ -40,11 +38,13 @@ class AddServiceViewModel() : BaseViewModel() {
     var isHomeClick = false
     var isCentreClick = false
     var isOnlineClick = false
+    var latitude: Double = 0.0
+    val addressET = MutableLiveData(false)
+    var longitude: Double = 0.0
     val name = MutableLiveData(false)
     val aboutService = MutableLiveData(false)
     var addServicesRequest = AddServiceRequest()
     var addServiceResponse = SingleLiveEvent<Resource<AddServiceResponse>>()
-
 
     inner class ClickAction(
         var context: Context,
@@ -57,8 +57,9 @@ class AddServiceViewModel() : BaseViewModel() {
         }
 
         fun addService(view: View) {
-            if (validation(context, requireActivity, finishing))
-                hitAddServiceAPI(context, requireActivity, finishing)
+            if (validation(context, requireActivity, finishing)) hitAddServiceAPI(
+                context, requireActivity, finishing
+            )
         }
 
         fun onNameChange(text: CharSequence) {
@@ -74,10 +75,13 @@ class AddServiceViewModel() : BaseViewModel() {
         }
     }
 
+    fun onAddressChange(text: String) {
+        addressET.value = text.isNotEmpty()
+        addServicesRequest.address = text
+    }
+
     private fun validation(
-        context: Context,
-        requireActivity: FragmentActivity,
-        finishing: Boolean
+        context: Context, requireActivity: FragmentActivity, finishing: Boolean
     ): Boolean {
         return if (!isHomeClick && !isCentreClick) {
             errorMessage.setValue(context.getString(R.string.please_select_a_service_model))
@@ -140,8 +144,7 @@ class AddServiceViewModel() : BaseViewModel() {
             } else if (addServicesRequest.image != null && addServicesRequest.image?.size!! > 5) {
                 errorMessage.setValue(context.getString(R.string.images_must_be_less_than_five))
 
-            } else if (!isErrorFound)
-                hitAddServiceAPI(context, requireActivity, finishing)
+            } else if (!isErrorFound) hitAddServiceAPI(context, requireActivity, finishing)
             false
         } /*else if (isCentreClick && addServicesRequest.atCenterPrice == "0") {
             errorMessage.setValue(context.getString(R.string.please_enter_the_price_for_the_centre_service_mode))
@@ -158,8 +161,7 @@ class AddServiceViewModel() : BaseViewModel() {
                 false
             } else
                 true
-        } */ else
-            true
+        } */ else true
     }
 
 
@@ -171,14 +173,15 @@ class AddServiceViewModel() : BaseViewModel() {
 
 
         try {
-            if (addServicesRequest.atCenter != null)
-                builder.addFormDataPart("atCenter", addServicesRequest.atCenter.toString())
-            else
-                builder.addFormDataPart("atCenter", false.toString())
+            if (addServicesRequest.atCenter != null) builder.addFormDataPart(
+                "atCenter", addServicesRequest.atCenter.toString()
+            )
+            else builder.addFormDataPart("atCenter", false.toString())
 
-            if (addServicesRequest.atHome != null)
+            if (addServicesRequest.atHome != null) {
                 builder.addFormDataPart("atHome", addServicesRequest.atHome.toString())
-            else {
+
+            } else {
                 addServicesRequest.atHome = false
                 builder.addFormDataPart("atHome", addServicesRequest.atHome.toString())
             }
@@ -187,15 +190,14 @@ class AddServiceViewModel() : BaseViewModel() {
             builder.addFormDataPart("serviceName", addServicesRequest.serviceName!!)
             builder.addFormDataPart("subCategory", addServicesRequest.subCategory!!)
             builder.addFormDataPart("aboutService", addServicesRequest.aboutService!!)
-            if (addServicesRequest.atCenterPrice != null)
-                builder.addFormDataPart("atCenterPrice", addServicesRequest.atCenterPrice!!)
-            else
-                builder.addFormDataPart("atCenterPrice", "0")
-
-            if (addServicesRequest.atHomePrice != null)
-                builder.addFormDataPart("atHomePrice", addServicesRequest.atHomePrice!!)
-            else
-                builder.addFormDataPart("atHomePrice", "0")
+            if (addServicesRequest.atCenterPrice != null) builder.addFormDataPart(
+                "atCenterPrice", addServicesRequest.atCenterPrice!!
+            )
+            else builder.addFormDataPart("atCenterPrice", "0")
+            if (addServicesRequest.atHomePrice != null) builder.addFormDataPart(
+                "atHomePrice", addServicesRequest.atHomePrice!!
+            )
+            else builder.addFormDataPart("atHomePrice", "0")
 
 
 //            if (addServicesRequest.onlinePrice != null)
@@ -204,28 +206,22 @@ class AddServiceViewModel() : BaseViewModel() {
 //                builder.addFormDataPart("onlinePrice", "0")
 
             if (isCentreClick) {
-                builder.addFormDataPart("address", addServicesRequest.address!!)
-                builder.addFormDataPart("latitute", addServicesRequest.latitute!!)
-                builder.addFormDataPart("longitute", addServicesRequest.longitute!!)
+                builder.addFormDataPart("address", addServicesRequest.address ?: "")
+                builder.addFormDataPart("latitute", addServicesRequest.latitute ?: "")
+                builder.addFormDataPart("longitute", addServicesRequest.longitute ?: "")
             }
-
-
             if (addServicesRequest.atCenterAvailability != null && addServicesRequest.atCenterAvailability!!.isNotEmpty()) {
                 builder.addFormDataPart(
                     "atCenterAvailability",
                     Gson().toJson(addServicesRequest.atCenterAvailability).replace("\\", "")
                 )
             }
-
-
-
             if (addServicesRequest.atHomeAvailability != null && addServicesRequest.atHomeAvailability!!.isNotEmpty()) {
 
                 builder.addFormDataPart(
                     "atHomeAvailability",
                     Gson().toJson(addServicesRequest.atHomeAvailability).replace("\\", "")
                 )
-
             } else {
                 val atHomeAvailabilityList: List<AtHomeAvailability> =
                     addServicesRequest.atHomeAvailability ?: emptyList()
@@ -233,14 +229,13 @@ class AddServiceViewModel() : BaseViewModel() {
                 builder.addFormDataPart("atHomeAvailability", Gson().toJson(atHomeAvailabilityList))
             }
 
-
-
-
-
             if (isPhotoSelected) {
                 for (i in addServicesRequest.image!!.indices) {
                     val file = File(addServicesRequest.image!![i])
-                    builder.addFormDataPart("image", file.name, RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
+                    builder.addFormDataPart(
+                        "image",
+                        file.name,
+                        RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
                     )
                 }
 
@@ -256,27 +251,23 @@ class AddServiceViewModel() : BaseViewModel() {
                     Log.d("exception", "" + ex)
                     addServiceResponse.postValue(
                         Resource.error(
-                            StatusCode.STATUS_CODE_INTERNET_VALIDATION,
-                            null
+                            StatusCode.STATUS_CODE_INTERNET_VALIDATION, null
                         )
                     )
                 } catch (exception: Exception) {
                     exception.printStackTrace()
                     if (exception is HttpException && exception.code() == 401) {
-                        if (!finishing)
-                            CommonUtils.logoutAlert(
-                                context,
-                                "Session Expired",
-                                "Your account has been blocked by Admin . Please contact to the Admin",
-                                requireActivity
-                            )
-                    } else
-                        addServiceResponse.postValue(
-                            Resource.error(
-                                StatusCode.SERVER_ERROR_MESSAGE,
-                                null
-                            )
+                        if (!finishing) CommonUtils.logoutAlert(
+                            context,
+                            "Session Expired",
+                            "Your account has been blocked by Admin . Please contact to the Admin",
+                            requireActivity
                         )
+                    } else addServiceResponse.postValue(
+                        Resource.error(
+                            StatusCode.SERVER_ERROR_MESSAGE, null
+                        )
+                    )
 
 
                 }

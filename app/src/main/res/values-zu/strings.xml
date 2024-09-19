@@ -163,7 +163,7 @@
     <string name="under_development" translatable="false">Ngaphansi Kwentuthuko</string>
     <string name="resend_otp_in" translatable="false">Thumela kabusha i-OTP ngaphakathi</string>
     <string name="are_you_logout" translatable="false">Uqinisekile ukuthi ufuna ukuphuma?</string>
-    <string name="log_out" translatable="false">Phuma eNkundleni yobuChwepheshe</string>
+    <string name="log_out" translatable="false">Phuma</string>
     <string name="start_time_should_not_be_greater_than_end_time_for_centre_mode" translatable="false">Isikhathi sokuqala kufanele sibe sikhulu kunesikhathi sokugcina semodi emaphakathi.</string>
     <string name="start_time_should_not_be_greater_than_end_time_for_home_mode" translatable="false">Isikhathi sokuqala kufanele sibe sikhulu kunesikhathi sokugcina semodi yasekhaya.</string>
     <string name="please_enter_the_price_for_the_centre_service_mode" translatable="false">Sicela ufake inani lemodi yesevisi yesikhungo..</string>

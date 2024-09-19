@@ -15,14 +15,12 @@ import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
-import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
@@ -33,12 +31,14 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.annotation.GlideModule
 import com.example.servivet.R
 import com.example.servivet.data.model.CustomeServiceModeData
-import com.example.servivet.data.model.SimpleImageModel
+import com.example.servivet.data.model.add_service.request.AddServiceRequest
 import com.example.servivet.data.model.add_service.request.ServiceListSlot
 import com.example.servivet.data.model.home.response.HomeServiceCategory
+import com.example.servivet.data.model.save_address.request.SaveAddressRequest
 import com.example.servivet.databinding.FragmentAddServiceBinding
 import com.example.servivet.databinding.ImagePickerLayoutBinding
 import com.example.servivet.ui.base.BaseFragment
+import com.example.servivet.ui.main.activity.AddLocationForServices
 import com.example.servivet.ui.main.adapter.AddServiceImageAdapter
 import com.example.servivet.ui.main.adapter.AddServiceModePriceAdapter
 import com.example.servivet.ui.main.view_model.AddServiceViewModel
@@ -52,6 +52,7 @@ import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
 import com.example.servivet.utils.checkVideoFileSize
 import com.example.servivet.utils.interfaces.ListAdapterItem
+import com.google.gson.Gson
 
 @GlideModule
 class AddServiceFragment :
@@ -68,10 +69,13 @@ class AddServiceFragment :
     var hashMap = HashMap<String, CustomeServiceModeData>()
     var daysList: ArrayList<Days>? = null
     private lateinit var type: String
+    var addServicesRequest = AddServiceRequest()
+    var latitude: String? = null
+    var longitude: String? = null
+    var fulladress: String? = null
     var addServiceModePriceAdapter: AddServiceModePriceAdapter? = null
     override val binding: FragmentAddServiceBinding by viewBinding(FragmentAddServiceBinding::bind)
     override val mViewModel: AddServiceViewModel by viewModels()
-
     override fun isNetworkAvailable(boolean: Boolean) {
     }
 
@@ -89,9 +93,45 @@ class AddServiceFragment :
         category = Session.category
         setCategorySpinner()
         setClick()
-
+        initClickEvent()
         binding.addressLl.setOnClickListener {}
 
+    }
+
+    private var addLocationLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data = result.data
+            Log.d("TAG", "$: ${Gson().toJson(data)}")
+            val jsonResult = data?.getStringExtra("LocationResult")
+            val saveAddressRequest = Gson().fromJson(jsonResult, SaveAddressRequest::class.java)
+            Log.d("TAG", " saveAddressRequest $saveAddressRequest: ")
+            binding.idAddress.text = saveAddressRequest.fullAddress
+            mViewModel.addServicesRequest.latitute = saveAddressRequest.latitute
+            mViewModel.addServicesRequest.longitute = saveAddressRequest.longitute
+            mViewModel.addServicesRequest.address = saveAddressRequest.fullAddress
+
+            // Handle the result here
+            Log.d("TAG", " saveAddressRequest ${saveAddressRequest.fullAddress}: ")
+        }
+    }
+
+    private fun initClickEvent() {
+        binding.idAddress.setOnClickListener {
+            val intent = Intent(requireContext(), AddLocationForServices::class.java)
+            addLocationLauncher.launch(intent)
+//            findNavController().navigate(
+//                AddServiceFragmentDirections.actionAddServiceFragmentToAddLocationFragment()
+//            )
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == 1001) {
+
+        }
     }
 
     private fun setDaysArray() {
@@ -227,9 +267,6 @@ class AddServiceFragment :
                     CustomeServiceModeData(Constants.AT_CENTER, true, /*list,*/ daysList)
                 setAdapter(showDayList)
                 binding.centreCheckBox.setBackgroundResource(R.drawable.selected_checkbox)
-                mViewModel.addServicesRequest.address = binding.addressEt.text.toString()
-                mViewModel.addServicesRequest.latitute = "28.612673"
-                mViewModel.addServicesRequest.longitute = "77.377400"
                 mViewModel.addServicesRequest.atCenter = true
                 true
             } else {
@@ -241,8 +278,6 @@ class AddServiceFragment :
             }
             binding.address.isVisible = mViewModel.isCentreClick
         }
-
-
     }
 
     private fun setAdapter(showDayList: ArrayList<String>) {
@@ -264,8 +299,7 @@ class AddServiceFragment :
     private fun selectImage() {
         val permission: Array<String?> =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) arrayOf(
-                Manifest.permission.READ_MEDIA_IMAGES,
-                Manifest.permission.CAMERA
+                Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.CAMERA
             )
             else arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
 
@@ -324,8 +358,7 @@ class AddServiceFragment :
         dialog!!.setContentView(imagePickerLayoutBinding.getRoot())
         val window = dialog!!.window
         window!!.setLayout(
-            WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.WRAP_CONTENT
+            WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT
         )
         val back = ColorDrawable(Color.TRANSPARENT)
         val inset = InsetDrawable(back, 50)
@@ -359,14 +392,17 @@ class AddServiceFragment :
                 if (data!!.clipData != null) {
                     for (i in 0 until data.clipData!!.itemCount) {
                         val imageUri = data.clipData!!.getItemAt(i).uri
-                        imagePath = com.example.servivet.utils.getVideoPathFromUri(requireActivity(), imageUri).toString()
+                        imagePath = com.example.servivet.utils.getVideoPathFromUri(
+                            requireActivity(), imageUri
+                        ).toString()
                         val fileSize = checkVideoFileSize(imagePath)
 
                         if (fileSize < 100) {
                             stringList.add(imagePath)
                             mViewModel.addServicesRequest.image = stringList
                             mViewModel.isPhotoSelected = true
-                        } else { }
+                        } else {
+                        }
 
                     }
                 } else {
@@ -396,7 +432,7 @@ class AddServiceFragment :
                     ProcessDialog.dismissDialog()
                     when (it.data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                            showToast(it.data.message?:"Something went wrong")
+                            showToast(it.data.message ?: "Something went wrong")
                             findNavController().popBackStack()
                             // findNavController().navigate(R.id.action_addServiceFragment_to_myServiceFragment)
                         }
@@ -404,7 +440,6 @@ class AddServiceFragment :
                         StatusCode.STATUS_CODE_FAIL -> {
                             showSnackBar(it.data.message)
                         }
-
                     }
                 }
 

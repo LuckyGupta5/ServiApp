@@ -83,15 +83,42 @@ class MyServiceDetailFragment : BaseFragment<FragmentMyServiceDetailBinding, MyS
                                 it.data.result.serviceDetail.atCenterPrice,
                                 it.data.result.serviceDetail.atHomePrice!!
                             ).toString()
+
+                            serviceDetails.serviceMode?.let { serviceMode ->
+                                when {
+                                    serviceMode.atHome == true && serviceMode.atCenter == true -> {
+                                        // Both atHome and atCenter are true, show both
+                                        binding.smallest.visibility = View.VISIBLE
+                                        binding.idView.visibility = View.VISIBLE
+                                        binding.largest.visibility = View.VISIBLE
+                                    }
+                                    serviceMode.atHome == true -> {
+                                        // Only atHome is true
+                                        binding.smallest.visibility = View.GONE
+                                        binding.idView.visibility = View.GONE
+                                        binding.largest.visibility = View.VISIBLE
+                                    }
+                                    serviceMode.atCenter == true -> {
+                                        // Only atCenter is true
+                                        binding.smallest.visibility = View.VISIBLE
+                                        binding.idView.visibility = View.GONE
+                                        binding.largest.visibility = View.GONE
+                                    }
+                                    else -> {
+                                        // Neither atHome nor atCenter is true, show default
+                                        binding.smallest.visibility = View.VISIBLE
+                                        binding.idView.visibility = View.VISIBLE
+                                        binding.largest.visibility = View.VISIBLE
+                                    }
+                                }
+                            }
                             this.smallest = min(serviceDetails.atCenterPrice ?: 0.0, serviceDetails.atHomePrice ?: 0.0).toString()
                             this.largest = max(serviceDetails.atCenterPrice ?: 0.0, serviceDetails.atHomePrice ?: 0.0).toString()
-
                             // Update UI with prices
-                            binding.smallest.text = commaSaparator(smallest.toDouble())
-                            binding.largest.text = commaSaparator(largest.toDouble())
-
+                            binding.smallest.text = "ZAR "+ commaSaparator(smallest.toDouble())
+                            binding.largest.text = "ZAR "+ commaSaparator(largest.toDouble())
                             // Handle visibility
-                            checkVisibility(binding)
+//                            checkVisibility(binding)
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {

@@ -156,7 +156,6 @@ class BookingSummaryFragment :
             null,
             false
         )
-
         if (Session.saveAddress != null) {
             bottomSheetBinding.name.text = Session.saveAddress.name
             bottomSheetBinding.address.text = Session.saveAddress.fullAddress
@@ -165,7 +164,6 @@ class BookingSummaryFragment :
         bottomSheetBinding.useSameAddress.setOnClickListener {
             bottomSheetDialog!!.dismiss()
         }
-
 
         bottomSheetBinding.addNewAddress.setOnClickListener {
             findNavController().navigate(R.id.action_bookingSummaryFragment_to_addLocationFragment)
@@ -342,20 +340,19 @@ class BookingSummaryFragment :
             Log.e("TAG", "setupObserver123: ${it}")
             if (it) {
                 atHome = true
-                binding.amount.text = getString(R.string.r) + " " + serviceDetail.atHomePrice
+                binding.amount.text = "ZAR" + " " + serviceDetail.atHomePrice
                 mViewModel.result.serviceDetail?.serviceModeLocal = getString(R.string.athome)
                 binding.addAddressLayout.isVisible = Session.saveAddress == null
                 if (Session.saveAddress != null)
                     serviceDetail.addressLocal = Session.saveAddress.fullAddress
                 binding.changeAddressLayout.isVisible = Session.saveAddress != null
                 initSlotModel()
-
             }
         }
         mViewModel.atCenter.observe(viewLifecycleOwner) {
             if (it) {
                 atHome = false
-                binding.amount.text = getString(R.string.r) + " " + serviceDetail.atCenterPrice
+                binding.amount.text =  "ZAR"+ " " + serviceDetail.atCenterPrice
                 mViewModel.result.serviceDetail?.serviceModeLocal = getString(R.string.atcenter)
                 binding.addAddressLayout.isVisible = false
                 serviceDetail.addressLocal = ""
@@ -364,8 +361,6 @@ class BookingSummaryFragment :
             }
         }
     }
-
-
     data class DataA(val id: Int, val count: Int, val name: String)
     data class DataB(val id: Int, val count: Int, val value: String)
 

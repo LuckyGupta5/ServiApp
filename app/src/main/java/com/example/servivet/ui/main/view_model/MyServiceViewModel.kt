@@ -64,7 +64,6 @@ class MyServiceViewModel : BaseViewModel() {
                     )
                 )
                 Log.e("TAG", "hitAddAgencyAPI: " + ex.message)
-
             } catch (exception: Exception) {
                 exception.printStackTrace()
                 if (exception is HttpException && exception.code() == 401) {
@@ -84,7 +83,6 @@ class MyServiceViewModel : BaseViewModel() {
                     )
             }
         }
-
     }
 
 }

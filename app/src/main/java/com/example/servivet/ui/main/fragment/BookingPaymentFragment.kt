@@ -74,8 +74,8 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, Booki
             binding.promoDiscountLayout.isVisible = true
             binding.appliedCoupon.isVisible = true
             binding.applyCouponName.text = getString(R.string.code) + " " + mViewModel.bookingData.couponCode + " " + getString(
-                    R.string.applied
-                )
+                R.string.applied
+            )
             binding.applyCoupon.isVisible = false
             binding.applyCouponName.isClickable = false
         } else {
@@ -97,10 +97,10 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, Booki
 
     private fun getCouponCode() {
         sharedViewModel.getData().observe(viewLifecycleOwner) { couponCode ->
-           // serviceData.couponCode = couponCode
+            // serviceData.couponCode = couponCode
             mViewModel.bookingData.couponCode = couponCode
             Log.e("TAG", "getCouponCode: $couponCode", )
-         //   Log.e("TAG", "getCouponCode: ${serviceData.couponCode }")
+            //   Log.e("TAG", "getCouponCode: ${serviceData.couponCode }")
             setupObservers()
         }
     }
@@ -108,12 +108,12 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, Booki
     private fun getTimeSlot() {
         when (getString(timeSlotData.from)) {
             getString(R.string.booking_summary) -> {
-              //  serviceData = Gson().fromJson(timeSlotData.data, ServiceDetail::class.java)
+                //  serviceData = Gson().fromJson(timeSlotData.data, ServiceDetail::class.java)
                 mViewModel.bookingData = Gson().fromJson(timeSlotData.data, ServiceDetail::class.java)
-               // mViewModel.bookingData = serviceData
-               // binding.slotData = serviceData
+                // mViewModel.bookingData = serviceData
+                // binding.slotData = serviceData
                 binding.slotData = mViewModel.bookingData
-               // Log.e("TAG", "getTimeSlot: ${Gson().toJson(serviceData)}")
+                // Log.e("TAG", "getTimeSlot: ${Gson().toJson(serviceData)}")
             }
         }
     }
@@ -127,7 +127,7 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, Booki
     }
 
     override fun setupObservers() {
-       // mViewModel.getPaymentAmountRequest(serviceData)
+        // mViewModel.getPaymentAmountRequest(serviceData)
         mViewModel.getPaymentAmountRequest(mViewModel.bookingData)
         mViewModel.getPaymentAmountData().observe(viewLifecycleOwner) {
             when (it.status) {
@@ -145,7 +145,7 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, Booki
                             SECURE_HEADER = "secure"
                             initSlotModel()
                         }
-                     //   297807.44
+                        //   297807.44
                         StatusCode.STATUS_CODE_FAIL -> {
                             showSnackBar(data.message)
                             SECURE_HEADER = " "
@@ -186,7 +186,7 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, Booki
     }
 
     private fun initSlotModel() {
-       // slotViewModel.getCouponAvailabilityRequest(serviceData)
+        // slotViewModel.getCouponAvailabilityRequest(serviceData)
         slotViewModel.getCouponAvailabilityRequest(mViewModel.bookingData)
         slotViewModel.getCouponAvailabilityData().observe(viewLifecycleOwner) {
             when (it.status) {
@@ -195,11 +195,11 @@ class BookingPaymentFragment : BaseFragment<FragmentBookingPaymentBinding, Booki
                     val data = Gson().fromJson(
                         AESHelper.decrypt(SECURITY_KEY, it.data), PaymentResponseMain::class.java
                     )
-                    Log.e("TAG", "setupObserversasdfghjklkjhgfdsdfghj: ${data}")
+                    Log.e("TAG", "setupObservers: ${data}")
                     when (data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
 
-                          //  SECURE_HEADER=" "
+                            //  SECURE_HEADER=" "
                             binding.slotNotAvailable.isVisible = false
                             binding.paynow.isVisible = true
                         }

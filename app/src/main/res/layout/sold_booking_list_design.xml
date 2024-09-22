@@ -200,7 +200,6 @@
                                 android:layout_height="86dp"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginTop="10dp"
-                                android:scaleType="centerCrop"
                                 android:visibility="gone" />
 
 

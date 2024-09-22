@@ -52,7 +52,6 @@ class ServicesTypeListingFragment :
     override fun isNetworkAvailable(boolean: Boolean) {
     }
 
-
     override fun setupViewModel() {
     }
 

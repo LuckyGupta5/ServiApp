@@ -109,7 +109,14 @@ class MyServiceFragment :
             binding.idServiceLayout.isVisible = true
             isBook = false
         }
-        mViewModel.serviceListRequest.bussinessType = argumentData.bussinessType.toInt()
+        val businessTypeString = argumentData.bussinessType
+
+        mViewModel.serviceListRequest.bussinessType = if (!businessTypeString.isNullOrEmpty() && businessTypeString != "null") {
+            businessTypeString.toIntOrNull() ?: 0
+        } else {
+            0 // Default value when the string is "null" or empty
+        }
+
         mViewModel.serviceListRequest.limit = 10
         mViewModel.serviceListRequest.search = ""
         mViewModel.serviceListRequest.page = currentPage

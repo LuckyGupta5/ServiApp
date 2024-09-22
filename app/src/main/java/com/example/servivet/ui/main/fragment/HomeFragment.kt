@@ -497,11 +497,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
                             }
 
                             Session.saveCategory(it.data.result.serviceCategory)
-
                         }
-
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showSnackBar(it.data.message)
+                            //showSnackBar(it.data.message)
                         }
 
                     }

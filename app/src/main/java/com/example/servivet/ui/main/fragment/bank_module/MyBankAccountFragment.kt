@@ -9,15 +9,20 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
+import com.example.servivet.data.model.common.response.RemoveAccountResponse
 import com.example.servivet.databinding.FragmentMyBankAccountBinding
 import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.adapter.bank_module.AddedBankAccountAdapter
 import com.example.servivet.ui.main.view_model.bank_module.MyBankViewModel
+import com.example.servivet.utils.AESHelper
 import com.example.servivet.utils.CommonUtils
 import com.example.servivet.utils.CommonUtils.showSnackBar
+import com.example.servivet.utils.CommonUtils.showToast
+import com.example.servivet.utils.Constants
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
+import com.google.gson.Gson
 
 
 class MyBankAccountFragment :
@@ -114,7 +119,11 @@ class MyBankAccountFragment :
             when (it.status) {
                 Status.SUCCESS -> {
                     ProcessDialog.dismissDialog()
-                    when (it.data!!.code) {
+                    val data = Gson().fromJson(
+                        AESHelper.decrypt(Constants.SECURITY_KEY, it.data),
+                        RemoveAccountResponse::class.java
+                    )
+                    when (data?.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             if (mViewModel.bankList.size == 0) {
                                 binding.idAlreadyCreatedBankAccountContainer.visibility = View.GONE
@@ -126,10 +135,14 @@ class MyBankAccountFragment :
                                 binding.idRecycler.visibility = View.VISIBLE
                                 binding.idAddAccountContainer.visibility = View.GONE
                             }
+                            showToast(data.message ?: "Account removed successfully")
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            // showSnackBar(it.data.message)
+                            showSnackBar(
+                                data.message
+                                    ?: getString(R.string.something_went_wrong_please_try_again_later)
+                            )
                         }
                     }
                 }

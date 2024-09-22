@@ -72,6 +72,9 @@
             android:paddingStart="10dp"
             android:text="@{data.account_number}"
             android:textColor="@color/black"
+            android:inputType="number"
+            android:maxLength="20"
+
             android:textColorHint="@color/hint_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

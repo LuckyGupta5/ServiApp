@@ -516,7 +516,7 @@
                                         android:fontFamily="@font/poppins_regular"
                                         android:gravity="end"
                                         android:maxLength="10"
-                                        android:text='@{@string/r+" "+paymentData.serviceAmount.toString()}'
+                                        android:text='@{"ZAR"+" "+paymentData.serviceAmount.toString()}'
                                         android:textColor="@color/black_242424"
                                         android:textSize="15sp"/>
 
@@ -549,7 +549,7 @@
                                         android:gravity="end"
                                         android:maxLength="10"
                                         android:maxLines="1"
-                                        android:text='@{@string/r+" "+paymentData.taxAmount.toString()}'
+                                        android:text='@{"ZAR"+" "+paymentData.taxAmount.toString()}'
                                         android:textColor="@color/black_242424"
                                         android:textSize="15sp" />
                                 </LinearLayout>
@@ -582,7 +582,7 @@
                                         android:gravity="end"
                                         android:maxLength="10"
                                         android:maxLines="1"
-                                        android:text='@{@string/r+" "+paymentData.couponDiscount.toString()}'
+                                        android:text='@{"ZAR"+" "+paymentData.couponDiscount.toString()}'
                                         android:textColor="@color/black_242424"
                                         android:textSize="15sp" />
                                 </LinearLayout>
@@ -617,7 +617,7 @@
                                         android:fontFamily="@font/poppins_medium"
                                         android:gravity="end"
                                         android:maxLength="15"
-                                        android:text='@{@string/r+" "+paymentData.payableAmount.toString()}'
+                                        android:text='@{"ZAR"+" "+paymentData.payableAmount.toString()}'
                                         android:textColor="@color/black_242424"
                                         android:textSize="15sp" />
                                 </LinearLayout>
@@ -684,7 +684,7 @@
                     android:fontFamily="@font/poppins_semi_bold"
                     android:maxLength="15"
                     android:stateListAnimator="@null"
-                    android:text='@{@string/r+" "+paymentData.payableAmount.toString()}'
+                    android:text='@{"ZAR"+" "+paymentData.payableAmount.toString()}'
                     android:textAllCaps="false"
                     android:textColor="@color/black_242424"
                     android:textSize="21sp"

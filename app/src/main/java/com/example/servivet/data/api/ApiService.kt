@@ -13,30 +13,26 @@ import com.example.servivet.data.model.booking_module.booking_model.request.Rati
 import com.example.servivet.data.model.booking_module.booking_model.respnse.RatingResponseMain
 import com.example.servivet.data.model.booking_module.booking_slot.BookingSlotResponseMain
 import com.example.servivet.data.model.booking_module.booking_summary.response.BookingSummaryResponse
-import com.example.servivet.data.model.booking_module.coupon.request.CouponAvalabilityRequest
 import com.example.servivet.data.model.booking_module.coupon.response.CouponResponseMain
 import com.example.servivet.data.model.booking_module.mark_as_complete.MarkAsCompleteRequest
 import com.example.servivet.data.model.booking_module.provider_leave.ProviderLeaveRequest
 import com.example.servivet.data.model.booking_module.reschedule_booking.request.RescheduleBookingRequest
 import com.example.servivet.data.model.business_verification_api.request.BusinessVerificationRequest
 import com.example.servivet.data.model.business_verification_api.response.BusinessVerificationResponse
-
 import com.example.servivet.data.model.cancel_booking.request.CancelBookingRequest
 import com.example.servivet.data.model.cancel_booking.response.CancelBookingResponse
 import com.example.servivet.data.model.chat_models.chat_media.ChatMediaResponse
-
 import com.example.servivet.data.model.common.request.CommonRequest
-import com.example.servivet.data.model.current_api.response.CurrentResponse
-
-import com.example.servivet.data.model.edit_profile.response.EditProfileResponse
-import com.example.servivet.data.model.home.response.HomeResponse
-import com.example.servivet.data.model.report_rating.request.ReportRatingRequest
 import com.example.servivet.data.model.common.response.CommonResponse
 import com.example.servivet.data.model.connection.accept_reject.request.AcceptRejectRequest
 import com.example.servivet.data.model.connection.connection_list.responnse.ConnectionListResponse
 import com.example.servivet.data.model.connection.connection_request.request.ConnectionRequest
 import com.example.servivet.data.model.connection.connection_request.response.ConnnectionResponse
+import com.example.servivet.data.model.current_api.response.CurrentResponse
+import com.example.servivet.data.model.edit_profile.response.EditProfileResponse
+import com.example.servivet.data.model.home.response.HomeResponse
 import com.example.servivet.data.model.notification_list.response.NotificationListResponse
+import com.example.servivet.data.model.report_rating.request.ReportRatingRequest
 import com.example.servivet.data.model.review_ratinng.ReviewRatingResponse
 import com.example.servivet.data.model.save_address.request.SaveAddressRequest
 import com.example.servivet.data.model.save_address.response.SaveAddressResponse
@@ -219,7 +215,5 @@ interface ApiService {
     suspend fun createBankApi(@Body request: CommonRequest): String
 
     @POST("provider/bank/remove")
-    suspend fun removeBankAccount(@Body request: RemoveBankAccountRequest): CommonResponse
-
-
+    suspend fun removeBankAccount(@Body request: RemoveBankAccountRequest): String
 }

@@ -62,7 +62,6 @@ class MyWalletBottomsheet :
     private fun onClick(value: Int) {
         when (value) {
             0 -> {
-
                 if (binding.idCheckBox.isChecked) {
                     if (paymentAmountData.payableAmount!! > walletData.amount) {
                         walletAmount = walletData.amount
@@ -79,7 +78,7 @@ class MyWalletBottomsheet :
                     createOderViewModel.orderRequest.isWalletAmountInclude = false
 
                 }
-                Constants.SECURE_HEADER="secure"
+                Constants.SECURE_HEADER = "secure"
                 initOrderCreateViewModel()
             }
 
@@ -107,14 +106,19 @@ class MyWalletBottomsheet :
                     when (data.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             Constants.SECURE_HEADER = " "
-                            Log.e("TAG", "initOrderCreateViewModel: ${Gson().toJson(data.result)}", )
-                            if(data.result.authorization_url.isNullOrBlank()){
+                            Log.e("TAG", "initOrderCreateViewModel: ${Gson().toJson(data.result)}")
+                            if (data.result.authorization_url.isNullOrBlank()) {
                                 findNavController().navigate(R.id.action_myWalletBottomsheet_to_homeFragment)
                                 dialog?.dismiss()
-                            }else{
+                            } else {
                                 paymentUrl = data.result
                                 //findNavController().navigate(R.id.action_myWalletBottomsheet_to_bookingsFragment)
-                                findNavController().navigate(MyWalletBottomsheetDirections.actionMyWalletBottomsheetToPaymentFragment(Gson().toJson(paymentUrl), getString(R.string.paymeturl)))
+                                findNavController().navigate(
+                                    MyWalletBottomsheetDirections.actionMyWalletBottomsheetToPaymentFragment(
+                                        Gson().toJson(paymentUrl),
+                                        getString(R.string.paymeturl)
+                                    )
+                                )
 
                                 // findNavController().previousBackStackEntry?.savedStateHandle?.set(getString(R.string.paymeturl), Gson().toJson(paymentUrl))
                                 dialog?.dismiss()
@@ -131,6 +135,7 @@ class MyWalletBottomsheet :
 
                     }
                 }
+
                 Status.LOADING -> {
                     Constants.SECURE_HEADER = " "
                     ProcessDialog.startDialog(requireContext())
@@ -247,9 +252,8 @@ class MyWalletBottomsheet :
             if (isChecked) {
                 checkPayData()
             } else {
-                binding.idPayButton.text = getString(R.string.pay) + (paymentAmountData.payableAmount?.toFloat())
-
-
+                binding.idPayButton.text =
+                    getString(R.string.pay) + (paymentAmountData.payableAmount?.toFloat())
             }
 
         }

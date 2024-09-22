@@ -30,7 +30,6 @@ data class ServiceDetail(
     val updatedAt: String? = null,
     val ratingReview: RatingReviews? = null,
     var localImage: String? = null,
-
     ) : Serializable {
     fun AgoTime(): String? {
         return timeAgo(updatedAt.toString())

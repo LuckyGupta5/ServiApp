@@ -1,8 +1,15 @@
 package com.example.servivet.data.model.common.response
 
 data class CommonResponse(
-    val code: Int?=null,
-    val message: String?=null,
-    val welcome: String?=null,
+    val code: Int? = null,
+    val message: String? = null,
+    val welcome: String? = null,
+    val result: Result? = null
+)
+
+data class RemoveAccountResponse(
+    val code: Int? = null,
+    val message: String? = null,
+    val welcome: String? = null,
     val result: Result? = null
 )

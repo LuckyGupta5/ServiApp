@@ -54,11 +54,9 @@ class ProfileViewModel : BaseViewModel() {
                 )
             }
         }
-
         fun goEditProfile2(view: View) {
             view.findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment2)
         }
-
         fun goMyConnection(view: View) {
             view.findNavController().navigate(R.id.action_profileFragment_to_fragmentMyConnection)
         }
@@ -156,12 +154,7 @@ class ProfileViewModel : BaseViewModel() {
                             null
                         )
                     )
-
-
             }
-
-
         }
-
     }
 }

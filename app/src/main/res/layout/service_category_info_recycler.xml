@@ -122,8 +122,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
-                            android:layout_toEndOf="@id/serviceName"
-                            android:visibility="@{data.distance == null ? View.GONE : View.VISIBLE}">
+                            android:visibility='@{data.distance != null ? View.VISIBLE : View.GONE}'
+                            android:layout_toEndOf="@id/serviceName">
                             <com.google.android.material.card.MaterialCardView
                                 android:layout_width="10dp"
                                 android:layout_height="wrap_content"
@@ -131,7 +131,6 @@
                                 android:layout_marginStart="10dp"
                                 app:cardBackgroundColor="@color/grey4"
                                 app:cardCornerRadius="8dp" />
-
                             <TextView
                                 android:id="@+id/kilometers"
                                 android:layout_width="wrap_content"

@@ -255,13 +255,9 @@ class BookingsFragment :
 ////
 ////                            }
                         }
-
-
                         StatusCode.STATUS_CODE_FAIL -> {
                             showSnackBar(it.data.message)
                         }
-
-
                     }
                 }
 

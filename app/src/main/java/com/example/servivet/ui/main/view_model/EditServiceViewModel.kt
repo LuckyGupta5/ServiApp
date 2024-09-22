@@ -164,17 +164,19 @@ class EditServiceViewModel() : BaseViewModel() {
         builder.setType(MultipartBody.FORM)
         val repo = MainRepository(RetrofitBuilder.apiService)
 
-
         try {
-            if (addServicesRequest.atCenter != null) builder.addFormDataPart(
-                "atCenter", addServicesRequest.atCenter.toString()
-            )
-            else builder.addFormDataPart("atCenter", false.toString())
+            builder.addFormDataPart("atCenter", addServicesRequest.atCenter.toString())
+            builder.addFormDataPart("atHome", addServicesRequest.atHome.toString())
 
-            if (addServicesRequest.atHome != null) builder.addFormDataPart(
-                "atHome", addServicesRequest.atHome.toString()
-            )
-            else builder.addFormDataPart("atHome", false.toString())
+//            if (addServicesRequest.atCenter == true) builder.addFormDataPart(
+//                "atCenter", addServicesRequest.atCenter.toString()
+//            )
+//            else builder.addFormDataPart("atCenter", false.toString())
+
+//            if (addServicesRequest.atHome == true) builder.addFormDataPart(
+//                "atHome", addServicesRequest.atHome.toString()
+//            )
+//            else builder.addFormDataPart("atHome", false.toString())
 
             builder.addFormDataPart("category", addServicesRequest.category!!)
             builder.addFormDataPart("serviceId", addServicesRequest.serviceId!!)
@@ -182,51 +184,59 @@ class EditServiceViewModel() : BaseViewModel() {
             builder.addFormDataPart("subCategory", addServicesRequest.subCategory!!)
             builder.addFormDataPart("aboutService", addServicesRequest.aboutService!!)
 
-            if (addServicesRequest.atCenterPrice != null) builder.addFormDataPart(
-                "atCenterPrice", addServicesRequest.atCenterPrice!!
-            )
-            else builder.addFormDataPart("atCenterPrice", "0")
-
-            if (addServicesRequest.atHomePrice != null) builder.addFormDataPart(
-                "atHomePrice", addServicesRequest.atHomePrice!!
-            )
-            else builder.addFormDataPart("atHomePrice", "0")
-
-
             if (addServicesRequest.onlinePrice != null) builder.addFormDataPart(
                 "onlinePrice", addServicesRequest.onlinePrice!!
             )
             else builder.addFormDataPart("onlinePrice", "0")
 
-            if (isCentreClick) {
+            //if center is selected
+            if (addServicesRequest.atCenter == true) {
                 builder.addFormDataPart("address", addServicesRequest.address!!)
                 builder.addFormDataPart("latitute", addServicesRequest.latitute!!)
                 builder.addFormDataPart("longitute", addServicesRequest.longitute!!)
+
+                if (addServicesRequest.atCenterAvailability != null && addServicesRequest.atCenterAvailability!!.isNotEmpty()) {
+                    builder.addFormDataPart(
+                        "atCenterAvailability",
+                        Gson().toJson(addServicesRequest.atCenterAvailability).replace("\\", "")
+                    )
+                }
+                builder.addFormDataPart("atCenterPrice", addServicesRequest.atCenterPrice ?: "0")
+
+//                if (addServicesRequest.atCenterPrice != null) builder.addFormDataPart(
+//                    "atCenterPrice", addServicesRequest.atCenterPrice!!
+//                )
+//                else builder.addFormDataPart("atCenterPrice", "0")
+            } else {
+                addServicesRequest.atCenterAvailability = null
+                addServicesRequest.atCenterPrice = null
+                addServicesRequest.address = null
+                addServicesRequest.latitute = null
+                addServicesRequest.longitute = null
+            }
+
+            //if home is selected
+            if (addServicesRequest.atHome == true) {
+                if (addServicesRequest.atHomeAvailability != null && addServicesRequest.atHomeAvailability!!.isNotEmpty()) {
+                    builder.addFormDataPart(
+                        "atHomeAvailability",
+                        Gson().toJson(addServicesRequest.atHomeAvailability).replace("\\", "")
+                    )
+                }
+
+                builder.addFormDataPart("atHomePrice", addServicesRequest.atHomePrice ?: "0")
+
+//                if (addServicesRequest.atHomePrice != null) builder.addFormDataPart(
+//                    "atHomePrice", addServicesRequest.atHomePrice ?: "0")
+//                )
+//                else builder.addFormDataPart("atHomePrice", "0")
+            } else {
+                addServicesRequest.atHomePrice = null
+                addServicesRequest.atHomeAvailability = null
             }
 
 
-            if (addServicesRequest.atCenterAvailability != null && addServicesRequest.atCenterAvailability!!.isNotEmpty()) {
-                builder.addFormDataPart(
-                    "atCenterAvailability",
-                    Gson().toJson(addServicesRequest.atCenterAvailability).replace("\\", "")
-                )
-
-
-            }
-
-
-
-            if (addServicesRequest.atHomeAvailability != null && addServicesRequest.atHomeAvailability!!.isNotEmpty()) {
-                builder.addFormDataPart(
-                    "atHomeAvailability",
-                    Gson().toJson(addServicesRequest.atHomeAvailability).replace("\\", "")
-                )
-
-            }
-
-
-
-            if (addServicesRequest.deleteImage != null && !addServicesRequest.deleteImage!!.isEmpty()) {
+            if (addServicesRequest.deleteImage != null && addServicesRequest.deleteImage?.isNotEmpty() == true) {
                 builder.addFormDataPart(
                     "deleteImage", Gson().toJson(addServicesRequest.deleteImage!!)
                 );

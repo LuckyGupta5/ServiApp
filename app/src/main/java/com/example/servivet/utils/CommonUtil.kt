@@ -893,8 +893,6 @@ object CommonUtils {
              } else*/ if (day.toDouble() == 1.0) {
                 return "Yesterday"
             }
-
-
         } catch (e: Exception) {
             e.printStackTrace()
             Log.e("ConvTimeE", e.message!!)

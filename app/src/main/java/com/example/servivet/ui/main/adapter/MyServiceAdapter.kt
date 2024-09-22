@@ -28,7 +28,6 @@ class MyServiceAdapter(
     var largest = ""
     override val layoutId: Int = R.layout.my_service_recycler
     private var filteredList: List<ServiceList> = list.toList()
-
     override fun bind(binding: MyServiceRecyclerBinding, item: ServiceList?, position: Int) {
         binding.apply {
             //   binding.data=item
@@ -47,11 +46,39 @@ class MyServiceAdapter(
         } else {
             binding.idViewDetails.isVisible = true
         }
+        item?.serviceMode?.let { serviceMode ->
+            when {
+                serviceMode.atHome == true && serviceMode.atCenter == true -> {
+                    // Both atHome and atCenter are true, show both
+                    binding.smallest.visibility = View.VISIBLE
+                    binding.idView.visibility = View.VISIBLE
+                    binding.largest.visibility = View.VISIBLE
+                }
+                serviceMode.atHome == true -> {
+                    // Only atHome is true
+                    binding.smallest.visibility = View.GONE
+                    binding.idView.visibility = View.GONE
+                    binding.largest.visibility = View.VISIBLE
+                }
+                serviceMode.atCenter == true -> {
+                    // Only atCenter is true
+                    binding.smallest.visibility = View.VISIBLE
+                    binding.idView.visibility = View.GONE
+                    binding.largest.visibility = View.GONE
+                }
+                else -> {
+                    // Neither atHome nor atCenter is true, show default
+                    binding.smallest.visibility = View.VISIBLE
+                    binding.idView.visibility = View.VISIBLE
+                    binding.largest.visibility = View.VISIBLE
+                }
+            }
+        }
         smallest = min(item!!.atCenterPrice!!, item!!.atHomePrice!!).toString()
         largest = max(item!!.atCenterPrice!!, item!!.atHomePrice!!).toString()
-        checkVisibility(binding)
-        binding.smallest.text = commaSaparator(smallest.toDouble()).toString()
-        binding.largest.text = commaSaparator(largest.toDouble()).toString()
+//        checkVisibility(binding)
+        binding.smallest.text ="ZAR "+ commaSaparator(smallest.toDouble()).toString()
+        binding.largest.text = "ZAR "+ commaSaparator(largest.toDouble()).toString()
     }
 
     private fun checkVisibility(binding: MyServiceRecyclerBinding) {

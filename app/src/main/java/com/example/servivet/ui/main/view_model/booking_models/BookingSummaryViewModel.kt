@@ -41,14 +41,10 @@ class BookingSummaryViewModel : BaseViewModel() {
     fun getSummaryData(): LiveData<Resource<BookingSummaryResponse>> {
         return summaryMData
     }
-
-
     fun getReportRatingRequest(id: String) {
         request["serviceId"] = id  //"657fea25b55d7af39650d84e"
         hitSummaryApi()
-
     }
-
     inner class ClickAction(var context: Context, var binding: FragmentBookingSummaryBinding) {
         fun backbtn(view: View) {
             view.findNavController().popBackStack()
@@ -58,15 +54,12 @@ class BookingSummaryViewModel : BaseViewModel() {
             atCenter.postValue(true)
             atHome.postValue(false)
             binding.addAddressLayout.isVisible = false
-
         }
 
         fun atHome(view: View) {
             atHome.postValue(true)
             atCenter.postValue(false)
         }
-
-
         fun gotopayment(view: View) {
             Log.e("TAG", "gotopayment: ${Gson().toJson(result.serviceDetail)}")
             if ((atHome.value!! && Session.saveAddress != null) || atCenter.value!!) {
@@ -80,12 +73,9 @@ class BookingSummaryViewModel : BaseViewModel() {
                 Toast.makeText(view.context, "Address Required", Toast.LENGTH_SHORT).show()
             }
         }
-
         fun gotoaddlocation(view: View) {
             view.findNavController().navigate(R.id.action_bookingSummaryFragment_to_addLocationFragment)
         }
-
-
     }
 
     private fun hitSummaryApi() {

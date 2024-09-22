@@ -19,7 +19,6 @@ class ServiceListAdapter(
     private var tabPosition: Int,
     var list: ArrayList<ServiceList>
 ) : BaseAdapter<ServiceCategoryInfoRecyclerBinding, ServiceList>(list) {
-
     private var characterLimit = 15
     var smallest = ""
     var largest = ""
@@ -35,12 +34,14 @@ class ServiceListAdapter(
         binding.apply {
             binding.data = item
             binding.click = ClickAction(position)
-
-            if (data?.address.isNullOrEmpty() == true) {
-                binding.kmAwayText.visibility = View.GONE
-            } else {
-                binding.kilometers.visibility = View.VISIBLE
-            }
+//            if (data?.address.isNullOrEmpty()) {
+//                binding.kmAwayText.visibility = View.GONE
+//                binding.kilometers.visibility = View.GONE
+//            } else {
+//                binding.kmAwayText.visibility = View.VISIBLE
+//                binding.kilometers.visibility = View.VISIBLE
+//            }
+//        }
         }
 
         if (tabPosition == 0) {
@@ -50,7 +51,34 @@ class ServiceListAdapter(
             binding.squareImage.visibility = View.VISIBLE
             binding.circularImage.visibility = View.GONE
         }
-
+        item?.serviceMode?.let { serviceMode ->
+            when {
+                serviceMode.atHome == true && serviceMode.atCenter == true -> {
+                    // Both atHome and atCenter are true, show both
+                    binding.smallest.visibility = View.VISIBLE
+                    binding.idView.visibility = View.VISIBLE
+                    binding.largest.visibility = View.VISIBLE
+                }
+                serviceMode.atHome == true -> {
+                    // Only atHome is true
+                    binding.smallest.visibility = View.GONE
+                    binding.idView.visibility = View.GONE
+                    binding.largest.visibility = View.VISIBLE
+                }
+                serviceMode.atCenter == true -> {
+                    // Only atCenter is true
+                    binding.smallest.visibility = View.VISIBLE
+                    binding.idView.visibility = View.GONE
+                    binding.largest.visibility = View.GONE
+                }
+                else -> {
+                    // Neither atHome nor atCenter is true, show default
+                    binding.smallest.visibility = View.VISIBLE
+                    binding.idView.visibility = View.VISIBLE
+                    binding.largest.visibility = View.VISIBLE
+                }
+            }
+        }
         if (list[position].serviceName!!.length > characterLimit) {
             // Truncate the text and add a dot
             val truncatedText: String =
@@ -64,10 +92,9 @@ class ServiceListAdapter(
         }
         smallest = min(item!!.atCenterPrice ?: 0.0, item.atHomePrice ?: 0.0).toString()
         largest = max(item.atCenterPrice ?: 0.0, item.atHomePrice ?: 0.0).toString()
-        checkVisibility(binding)
-        binding.smallest.text = "₹ " + commaSaparator(smallest.toDouble()).toString()
-        binding.largest.text = "₹ " + commaSaparator(largest.toDouble()).toString()
-
+//        checkVisibility(binding)
+        binding.smallest.text = "ZAR " + commaSaparator(smallest.toDouble()).toString()
+        binding.largest.text = "ZAR "  + commaSaparator(largest.toDouble()).toString()
     }
 
     private fun checkVisibility(binding: ServiceCategoryInfoRecyclerBinding) {

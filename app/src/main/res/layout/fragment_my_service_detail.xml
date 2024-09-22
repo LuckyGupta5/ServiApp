@@ -5,6 +5,7 @@
 
     <data>
 
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
             type="com.example.servivet.ui.main.view_model.MyServiceDetailViewModel" />
@@ -128,16 +129,18 @@
                         android:layout_gravity="center_vertical"
                         android:background="@drawable/location_pin"/>
                     <TextView
+                        android:id="@+id/address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="@string/riepneapps_technology_noida"
-                        android:textSize="13dp"
                         android:layout_marginStart="8dp"
-                        android:text="@{data.address}"
-                        android:maxLength="20"
                         android:ellipsize="end"
                         android:fontFamily="@font/poppins_regular"
-                        android:textColor="@color/grey6"/>
+                        android:maxLength="20"
+                        android:text='@{data.address != null &amp; !data.address.isEmpty() ? data.address : "Home"}'
+                        android:visibility='@{data.address != null &amp; !data.address.isEmpty() ? View.VISIBLE : View.VISIBLE}'
+                        android:textColor="@color/grey6"
+                        android:textSize="13sp"
+                        tools:text="@string/riepneapps_technology_noida" />
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="8dp"
                         android:layout_height="8dp"
@@ -166,14 +169,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:background="@drawable/rupree_icon"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
-                        android:layout_gravity="center_vertical" />
-
                     <TextView
                         android:id="@+id/smallest"
                         android:layout_width="wrap_content"

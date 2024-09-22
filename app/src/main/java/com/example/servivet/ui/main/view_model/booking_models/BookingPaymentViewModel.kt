@@ -46,17 +46,27 @@ class BookingPaymentViewModel : BaseViewModel() {
 
         fun gotoCoupon(view: View) {
             if (Constants.APPLIED_COUPON != "APPLIED_COUPON")
-
-                view.findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToCouponsFragment(Gson().toJson(bookingData), payAmountResult.payableAmount.toString(),R.string.payment))
+                view.findNavController().navigate(
+                    BookingPaymentFragmentDirections.actionBookingPaymentFragmentToCouponsFragment(
+                        Gson().toJson(bookingData),
+                        payAmountResult.payableAmount.toString(),
+                        R.string.payment
+                    )
+                )
         }
 
         fun goToWallerBottom(view: View) {
-
             if (isConfirm) {
-                view.findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToMyWalletBottomsheet2(Gson().toJson(payAmountResult), Gson().toJson(bookingData), R.string.booking))
-
+                view.findNavController().navigate(
+                    BookingPaymentFragmentDirections.actionBookingPaymentFragmentToMyWalletBottomsheet2(
+                        Gson().toJson(payAmountResult),
+                        Gson().toJson(bookingData),
+                        R.string.booking
+                    )
+                )
             } else {
-                view.findNavController().navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToSuretoConfirmBottomSheet())
+                view.findNavController()
+                    .navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToSuretoConfirmBottomSheet())
             }
 
         }
@@ -69,19 +79,14 @@ class BookingPaymentViewModel : BaseViewModel() {
                 binding.promoDiscountLayout.isVisible = false
                 bookingData.couponCode = ""
                 getPaymentAmountRequest(bookingData)
-
-
             } else {
                 binding.applyCoupon.isVisible = false
                 binding.appliedCoupon.isVisible = true
                 binding.applyCouponName.text = bookingData.couponCode
                 binding.promoDiscountLayout.isVisible = true
             }
-
             Constants.APPLIED_COUPON = ""
-
         }
-
     }
 
     fun getPaymentAmountData(): LiveData<Resource<String>> {

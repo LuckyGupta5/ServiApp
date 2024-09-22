@@ -67,9 +67,9 @@ class MyBankViewModel : BaseViewModel() {
     val request = RemoveBankAccountRequest()
 
 
-    private val removeBankListData = SingleLiveEvent<Resource<CommonResponse>>()
+    private val removeBankListData = SingleLiveEvent<Resource<String>>()
 
-    fun getRemoveBankData(): LiveData<Resource<CommonResponse>> {
+    fun getRemoveBankData(): LiveData<Resource<String>> {
         return removeBankListData
     }
 

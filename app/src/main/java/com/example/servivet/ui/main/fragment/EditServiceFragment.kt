@@ -109,7 +109,6 @@ class EditServiceFragment :
         longitude = data?.location?.coordinates?.get(1).toString()
         latitude = data?.location?.coordinates?.get(0).toString()
         fullAddress = data?.address.toString()
-
         //pre selected data
         mViewModel.addServicesRequest.category = data?.category ?: ""
         mViewModel.addServicesRequest.subCategory = data?.subCategory ?: ""
@@ -384,9 +383,6 @@ class EditServiceFragment :
                     CustomeServiceModeData(Constants.AT_CENTER, true, /*list,*/ daysList)
                 setAdapter(showDayList, data!!, data!!.atCenterPrice, data!!.atHomePrice)
                 binding.centreCheckBox.setBackgroundResource(R.drawable.selected_checkbox)
-                mViewModel.addServicesRequest.address = binding.idAddress.text.toString()
-                mViewModel.addServicesRequest.latitute = "28.612673"
-                mViewModel.addServicesRequest.longitute = "77.377400"
                 mViewModel.addServicesRequest.atCenter = true
                 true
             } else {
@@ -398,8 +394,6 @@ class EditServiceFragment :
             }
             binding.address.isVisible = mViewModel.isCentreClick
         }
-
-
     }
 
     private fun setAdapter(

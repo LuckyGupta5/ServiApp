@@ -107,7 +107,8 @@
                 android:hint="@string/enter_account_name"
                 android:paddingHorizontal="15dp"
                 android:paddingVertical="13dp"
-                android:inputType="textPersonName"
+                android:digits='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&amp;*()-_=+[]{};:\",.?/\\|`~'
+            android:inputType="textPersonName"
                 android:text="@={viewModel.accountName}"
                 android:textColor="@color/black"
                 android:textSize="15sp" />

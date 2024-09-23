@@ -632,11 +632,9 @@ object CommonUtils {
             calendar.get(Calendar.YEAR) == yesterday.get(Calendar.YEAR) && calendar.get(Calendar.DAY_OF_YEAR) == yesterday.get(
                 Calendar.DAY_OF_YEAR
             ) -> "Yesterday"
-
             else -> SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(date)
         }
     }
-
     @SuppressLint("SimpleDateFormat")
     fun sendMessageTime(date: String?): String? {
         if (date.isNullOrEmpty()) return ""

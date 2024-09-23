@@ -100,11 +100,7 @@ class BookingSummaryFragment :
             clickEvents = ::onClick
         }
         //   setadapter()
-
-
         initRescheduleModel()
-
-
         binding.changelocation.setOnClickListener { findNavController().navigate(R.id.action_bookingSummaryFragment_to_savedAddressesBottomsheet) }
     }
 
@@ -116,7 +112,6 @@ class BookingSummaryFragment :
                     mViewModel.result.serviceDetail,
                     bookingDetails
                 )
-
             }
         }
     }
@@ -132,8 +127,6 @@ class BookingSummaryFragment :
                 binding.idSaveBtn.isVisible = true
                 binding.idLayoutTopContainer.isVisible = false
                 serviceId = bookingDetails.serviceId
-
-
             }
 
             getString(R.string.booking_details) -> {
@@ -143,7 +136,6 @@ class BookingSummaryFragment :
 
             getString(R.string.sub_category) -> {
                 serviceId = argumetData.data
-
             }
         }
     }
@@ -164,7 +156,6 @@ class BookingSummaryFragment :
         bottomSheetBinding.useSameAddress.setOnClickListener {
             bottomSheetDialog!!.dismiss()
         }
-
         bottomSheetBinding.addNewAddress.setOnClickListener {
             findNavController().navigate(R.id.action_bookingSummaryFragment_to_addLocationFragment)
             bottomSheetDialog!!.dismiss()
@@ -270,25 +261,18 @@ class BookingSummaryFragment :
                                 providerLeave =
                                     (it.data.result.providerLeaveList ?: "") as ProviderLeave
                             }
-
                             it.data.result.serviceDetail?.atHomeAvailability?.let { homeList ->
                                 atHomeList.addAll(homeList)
                                 mViewModel.result.serviceDetail?.date = setCurrentDate()
                                 this.homePosition =
                                     findListIndex(atHomeList.indexOfFirst { it.day == getDayOfWeek() })
                             }
-
                             it.data.result.serviceDetail?.atCenterAvailability?.let { centerList ->
                                 atCenterList.addAll(centerList)
                                 mViewModel.result.serviceDetail?.date = setCurrentDate()
                                 this.centerPosition =
                                     findListIndex(atCenterList.indexOfFirst { it.day == getDayOfWeek() })
-
                             }
-
-
-
-
                             binding.summaryData = serviceDetail
                             checkMode()
                             initYearAdapter()
@@ -297,14 +281,11 @@ class BookingSummaryFragment :
                             initSlotModel()
                             Log.e("TAG", "setupObservers: ${Gson().toJson(it.data.result ?: "")}")
                         }
-
                         StatusCode.STATUS_CODE_FAIL -> {
                             showSnackBar(it.data.message!!)
                         }
-
                     }
                 }
-
                 Status.LOADING -> {
                     ProcessDialog.startDialog(requireContext())
                 }
@@ -331,11 +312,9 @@ class BookingSummaryFragment :
 
 
     }
-
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     private fun setPriceValue() {
-
         mViewModel.atHome.observe(viewLifecycleOwner) {
             Log.e("TAG", "setupObserver123: ${it}")
             if (it) {
@@ -363,8 +342,6 @@ class BookingSummaryFragment :
     }
     data class DataA(val id: Int, val count: Int, val name: String)
     data class DataB(val id: Int, val count: Int, val value: String)
-
-
     @RequiresApi(Build.VERSION_CODES.O)
     private fun initSlotModel() {
         slotViewModel.getSlotRequest(
@@ -383,7 +360,6 @@ class BookingSummaryFragment :
                             bookedSlot.addAll(it.data.result.bookedSlot)
                             if (!atHome) {
                                 if (this.centerPosition != -1) {
-
                                     binding.checkVisibility = true
                                     binding.idNoDataFound.root.isVisible = false
                                     mViewModel.result.serviceDetail?.day =
@@ -418,7 +394,7 @@ class BookingSummaryFragment :
                                         atHomeList[homePosition].day
                                     binding.sloatAdaper = BookingTimeAdapter(
                                         requireContext(),
-                                        atHomeList[homePosition].slot!!,
+                                        atHomeList[homePosition].slot,
                                         bookedSlot,
                                         onItemClick,
                                         date
@@ -455,7 +431,7 @@ class BookingSummaryFragment :
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showSnackBar(it.data.message!!)
+                            showSnackBar(it.data.message)
                         }
 
                     }
@@ -597,7 +573,6 @@ class BookingSummaryFragment :
 
         }
     }
-
     private fun checkMode() {
         if (serviceDetail.serviceMode?.atHome!!) {
             if (Session.saveAddress != null) {

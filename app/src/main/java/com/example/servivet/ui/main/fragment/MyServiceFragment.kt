@@ -23,8 +23,8 @@ import com.example.servivet.data.model.service_list.response.ServiceList
 import com.example.servivet.databinding.FragmentMyServiceBinding
 import com.example.servivet.ui.base.BaseFragment
 import com.example.servivet.ui.main.activity.HomeActivity
-import com.example.servivet.ui.main.adapter.MyServiceCatAdapter
 import com.example.servivet.ui.main.adapter.MyServiceAdapter
+import com.example.servivet.ui.main.adapter.MyServiceCatAdapter
 import com.example.servivet.ui.main.adapter.ServiceSubCatAdapter
 import com.example.servivet.ui.main.view_model.MyServiceViewModel
 import com.example.servivet.ui.main.view_model.booking_models.CloseServiceViewModel
@@ -34,6 +34,7 @@ import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Session
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
+
 @RequiresApi(Build.VERSION_CODES.O)
 @Suppress("DEPRECATION")
 class MyServiceFragment :
@@ -66,19 +67,22 @@ class MyServiceFragment :
     }
 
     private fun bottomSheetCallBack() {
-        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Boolean>(getString(R.string.leave))
-            ?.observe(viewLifecycleOwner) {
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Boolean>(
+            getString(
+                R.string.leave
+            )
+        )?.observe(viewLifecycleOwner) {
 
-                if(!it){
-                    binding.idCloseService.text = getString(R.string.start_service)
-                    binding.idCloseService.isEnabled = true
+            if (!it) {
+                binding.idCloseService.text = getString(R.string.start_service)
+                binding.idCloseService.isEnabled = true
 
-                }else{
-                    binding.idCloseService.isEnabled = true
-                }
-
-
+            } else {
+                binding.idCloseService.isEnabled = true
             }
+
+
+        }
     }
 
     override fun setupViews() {
@@ -92,8 +96,10 @@ class MyServiceFragment :
             binding.closeSearch.setOnClickListener {
                 binding.idSearchLayout.isVisible = false
                 binding.idTopLayout.isVisible = true
-                mViewModel.hitServiceListAPI(requireContext(), requireActivity(), requireActivity().isFinishing)
-           }
+                mViewModel.hitServiceListAPI(
+                    requireContext(), requireActivity(), requireActivity().isFinishing
+                )
+            }
         }
         data = Session.category
         if (argumentData.from == getString(R.string.provider_profile)) {
@@ -111,11 +117,12 @@ class MyServiceFragment :
         }
         val businessTypeString = argumentData.bussinessType
 
-        mViewModel.serviceListRequest.bussinessType = if (!businessTypeString.isNullOrEmpty() && businessTypeString != "null") {
-            businessTypeString.toIntOrNull() ?: 0
-        } else {
-            0 // Default value when the string is "null" or empty
-        }
+        mViewModel.serviceListRequest.bussinessType =
+            if (!businessTypeString.isNullOrEmpty() && businessTypeString != "null") {
+                businessTypeString.toIntOrNull() ?: 0
+            } else {
+                0 // Default value when the string is "null" or empty
+            }
 
         mViewModel.serviceListRequest.limit = 10
         mViewModel.serviceListRequest.search = ""
@@ -123,9 +130,7 @@ class MyServiceFragment :
         tabPosition = 0
         if (data != null && data!!.isNotEmpty()) {
             mViewModel.hitServiceListAPI(
-                requireContext(),
-                requireActivity(),
-                requireActivity().isFinishing
+                requireContext(), requireActivity(), requireActivity().isFinishing
             )
         }
         initEditText()
@@ -133,7 +138,9 @@ class MyServiceFragment :
         setSubCatAdapter(data!!)
         onBackCall()
         bottomSheetCallBack()
-        mViewModel.hitServiceListAPI(requireContext(), requireActivity(), requireActivity().isFinishing)
+        mViewModel.hitServiceListAPI(
+            requireContext(), requireActivity(), requireActivity().isFinishing
+        )
         checkServiceAvaliable()
     }
 
@@ -159,8 +166,8 @@ class MyServiceFragment :
     }
 
     private fun setSubCatAdapter(list: ArrayList<HomeServiceCategory>) {
-        if (list.isNotEmpty())
-            binding.serviceSubCatRecycler.adapter = MyServiceCatAdapter(requireContext(), list, this)
+        if (list.isNotEmpty()) binding.serviceSubCatRecycler.adapter =
+            MyServiceCatAdapter(requireContext(), list, this)
     }
 
     private fun onBackCall() {
@@ -172,17 +179,16 @@ class MyServiceFragment :
 //            listN.callBack()
         }
 
-        val callback: OnBackPressedCallback =
-            object : OnBackPressedCallback(true) {
-                @SuppressLint("SetTextI18n")
-                override fun handleOnBackPressed() {
-                    requireActivity().finish()
-                    val intent = Intent(context, HomeActivity::class.java)
-                    requireActivity().startActivity(intent)
-                    listN.callBack()
+        val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
+            @SuppressLint("SetTextI18n")
+            override fun handleOnBackPressed() {
+                requireActivity().finish()
+                val intent = Intent(context, HomeActivity::class.java)
+                requireActivity().startActivity(intent)
+                listN.callBack()
 
-                }
             }
+        }
 //        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 
@@ -213,9 +219,7 @@ class MyServiceFragment :
                     isLoading = true
                     currentPage++
                     mViewModel.hitServiceListAPI(
-                        requireContext(),
-                        requireActivity(),
-                        requireActivity().isFinishing
+                        requireContext(), requireActivity(), requireActivity().isFinishing
                     )
                 }
             })
@@ -224,8 +228,6 @@ class MyServiceFragment :
             binding.noDataLayout.visibility = View.VISIBLE
         }
     }
-
-
 
 
     override fun setupObservers() {
@@ -238,11 +240,12 @@ class MyServiceFragment :
                             if (it.data.result.service.isNotEmpty()) {
                                 //binding.idServiceLayout.isVisible = true
                                 isLoading = true
-                                if (currentPage == 1)
-                                    list = ArrayList()
+                                if (currentPage == 1) list = ArrayList()
                                 list = it.data.result.service
                                 if (currentPage == 1 && list.size > 0) {
-                                    adapter = MyServiceAdapter(requireContext(), tabPosition, list,isBook)
+                                    adapter = MyServiceAdapter(
+                                        requireContext(), tabPosition, list, isBook
+                                    )
                                     binding.serviceRecycler.adapter = adapter
                                 } else {
                                     adapter.updateList(list)
@@ -256,6 +259,7 @@ class MyServiceFragment :
 //                                binding.idServiceLayout.isVisible = true
                             }
                         }
+
                         StatusCode.STATUS_CODE_FAIL -> {
                             showSnackBar(it.data.message)
                         }
@@ -278,10 +282,7 @@ class MyServiceFragment :
 
                 Status.UNAUTHORIZED -> {
                     CommonUtils.logoutAlert(
-                        requireContext(),
-                        "Session Expired",
-                        "Unauthorized User",
-                        requireActivity()
+                        requireContext(), "Session Expired", "Unauthorized User", requireActivity()
                     )
                 }
             }
@@ -322,10 +323,7 @@ class MyServiceFragment :
 
                 Status.UNAUTHORIZED -> {
                     CommonUtils.logoutAlert(
-                        requireContext(),
-                        "Session Expired",
-                        "Unauthorized User",
-                        requireActivity()
+                        requireContext(), "Session Expired", "Unauthorized User", requireActivity()
                     )
                 }
             }
@@ -336,7 +334,9 @@ class MyServiceFragment :
         mViewModel.serviceListRequest.category = id
         mViewModel.serviceListRequest.page = 1
         setAdapter(tabPosition)
-        mViewModel.hitServiceListAPI(requireContext(), requireActivity(), requireActivity().isFinishing)
+        mViewModel.hitServiceListAPI(
+            requireContext(), requireActivity(), requireActivity().isFinishing
+        )
     }
 
     private fun onClick(type: String) {

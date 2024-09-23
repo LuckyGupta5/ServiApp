@@ -106,8 +106,8 @@ class EditServiceFragment :
         category = Session.category
         setCategorySpinner(category)
         Log.d("TAG", "setEditDataResponse: ${Gson().toJson(data)}")
-        longitude = data?.location?.coordinates?.get(1).toString()
         latitude = data?.location?.coordinates?.get(0).toString()
+        longitude = data?.location?.coordinates?.get(1).toString()
         fullAddress = data?.address.toString()
         //pre selected data
         mViewModel.addServicesRequest.category = data?.category ?: ""

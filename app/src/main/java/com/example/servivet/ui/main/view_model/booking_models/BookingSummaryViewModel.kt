@@ -37,7 +37,6 @@ class BookingSummaryViewModel : BaseViewModel() {
     val request = HashMap<String, String>()
     var result = Result()
     private val summaryMData = SingleLiveEvent<Resource<BookingSummaryResponse>>()
-
     fun getSummaryData(): LiveData<Resource<BookingSummaryResponse>> {
         return summaryMData
     }
@@ -49,13 +48,11 @@ class BookingSummaryViewModel : BaseViewModel() {
         fun backbtn(view: View) {
             view.findNavController().popBackStack()
         }
-
         fun atCenter(view: View) {
             atCenter.postValue(true)
             atHome.postValue(false)
             binding.addAddressLayout.isVisible = false
         }
-
         fun atHome(view: View) {
             atHome.postValue(true)
             atCenter.postValue(false)

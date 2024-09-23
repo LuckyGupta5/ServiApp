@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="data"
             type="com.example.servivet.data.model.service_list.response.ServiceList" />
@@ -102,6 +104,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -121,9 +124,10 @@
                         android:drawablePadding="10dp"
                         android:fontFamily="@font/poppins_regular"
                         android:maxLines="1"
-                        android:text="@{data.address}"
+                        android:text='@{data.address != null &amp; !data.address.isEmpty() ? data.address : "Home"}'
                         android:textColor="@color/grey4"
-                        android:textSize="15dp" />
+                        android:textSize="15dp"
+                        android:visibility='@{data.address != null &amp; !data.address.isEmpty() ? View.VISIBLE : View.VISIBLE}' />
                 </LinearLayout>
 
 

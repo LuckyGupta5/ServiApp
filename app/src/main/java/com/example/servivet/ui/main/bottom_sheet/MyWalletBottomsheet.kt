@@ -119,7 +119,6 @@ class MyWalletBottomsheet :
                                         getString(R.string.paymeturl)
                                     )
                                 )
-
                                 // findNavController().previousBackStackEntry?.savedStateHandle?.set(getString(R.string.paymeturl), Gson().toJson(paymentUrl))
                                 dialog?.dismiss()
                             }
@@ -148,7 +147,6 @@ class MyWalletBottomsheet :
                         showSnackBar(it)
                         Log.e("TAG", "initOrderCreateViewModel: ${it}")
                         Constants.SECURE_HEADER = " "
-
                     }
                 }
 

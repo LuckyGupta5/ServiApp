@@ -90,11 +90,19 @@ class ServiceListAdapter(
             // If the text is shorter than the limit, just set the original text
             binding.serviceName.setText(list[position].serviceName!!)
         }
-        smallest = min(item!!.atCenterPrice ?: 0.0, item.atHomePrice ?: 0.0).toString()
-        largest = max(item.atCenterPrice ?: 0.0, item.atHomePrice ?: 0.0).toString()
-//        checkVisibility(binding)
-        binding.smallest.text = "ZAR " + commaSaparator(smallest.toDouble()).toString()
-        binding.largest.text = "ZAR "  + commaSaparator(largest.toDouble()).toString()
+        if (item?.atHomePrice != 0.0 && item?.atCenterPrice != 0.0) {
+            smallest = min(item?.atHomePrice ?: 0.0, item?.atCenterPrice ?: 0.0).toString()
+            largest = max(item?.atHomePrice ?: 0.0, item?.atCenterPrice ?: 0.0).toString()
+        }
+        if (item?.serviceMode?.atHome == true && item.serviceMode.atCenter == false) {
+            binding.largest.text = "ZAR " + item.atHomePrice
+        } else if (item?.serviceMode?.atCenter == true && item.serviceMode.atHome == false) {
+            binding.smallest.text = "ZAR " + item.atCenterPrice
+        } else {
+            // Update UI with prices
+            binding.smallest.text = "ZAR " + smallest.toDouble()
+            binding.largest.text = "ZAR " +largest.toDouble()
+        }
     }
 
     private fun checkVisibility(binding: ServiceCategoryInfoRecyclerBinding) {

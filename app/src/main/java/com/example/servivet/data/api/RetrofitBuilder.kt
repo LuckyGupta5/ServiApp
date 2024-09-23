@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitBuilder {
  private const val DEVELOPMENT_BASE_URL = "http://13.235.137.221:3476/mobileApi/"
-  //private const val DEVELOPMENT_BASE_URL="https://235f-59-144-166-73.ngrok-free.app/mobileApi/"
+ // private const val DEVELOPMENT_BASE_URL="https://795e-59-144-166-73.ngrok-free.app/mobileApi/"
     private fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(DEVELOPMENT_BASE_URL)
@@ -24,7 +24,6 @@ object RetrofitBuilder {
             .addConverterFactory(GsonConverterFactory.create())
             .build() //Doesn't require the adapter
     }
-
     private val httpClient: OkHttpClient =
         OkHttpClient.Builder().connectTimeout(10, TimeUnit.SECONDS)
             .readTimeout(20, TimeUnit.SECONDS)

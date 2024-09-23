@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.example.servivet.ui.main.view_model.MyServiceDetailViewModel" />
+
         <variable
             name="click"
             type="com.example.servivet.ui.main.view_model.MyServiceDetailViewModel.ClickAction" />
@@ -23,73 +25,80 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
         android:background="#F8F8F8"
+        android:fillViewport="true"
         tools:context=".ui.main.fragment.MyServiceDetailFragment">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="255dp"
-                    android:scaleType="centerCrop"
-                    android:imageViewUrl="@{data.localImage}"/>
+                    android:imageViewUrl="@{data.localImage}"
+                    android:scaleType="centerCrop" />
+
                 <RelativeLayout
-                    android:layout_marginTop="50dp"
-                    android:layout_marginHorizontal="20dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="50dp">
+
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:onClick="@{click::backbtn}"
                         android:layout_height="wrap_content"
-                        android:background="@mipmap/back_button"/>
+                        android:background="@mipmap/back_button"
+                        android:onClick="@{click::backbtn}" />
 
 
                     <ImageView
                         android:id="@+id/edit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="15dp"
-                        android:onClick="@{click::editBtn}"
                         android:layout_alignParentEnd="true"
-                        android:background="@mipmap/edit_icon_2"/>
+                        android:layout_marginEnd="15dp"
+                        android:background="@mipmap/edit_icon_2"
+                        android:onClick="@{click::editBtn}" />
 
 
-
-<!--                    <ImageView-->
-<!--                        android:id="@+id/three_icon"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_alignParentEnd="true"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:visibility="invisible"-->
-<!--                        android:background="@mipmap/three_dot"/>-->
+                    <!--                    <ImageView-->
+                    <!--                        android:id="@+id/three_icon"-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_alignParentEnd="true"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:visibility="invisible"-->
+                    <!--                        android:background="@mipmap/three_dot"/>-->
 
                 </RelativeLayout>
             </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="vertical"
+                android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_marginTop="15dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
-                    android:layout_height="wrap_content">
+                    android:layout_marginTop="15dp">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{data.serviceName}"
                         android:layout_weight="1"
-                        android:textSize="23dp"
                         android:fontFamily="@font/poppins_semi_bold"
-                        android:textColor="@color/black_2"/>
+                        android:text="@{data.serviceName}"
+                        android:textColor="@color/black_2"
+                        android:textSize="23dp" />
+
                     <TextView
                         android:id="@+id/rating"
                         android:layout_width="wrap_content"
@@ -112,22 +121,24 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text='@{"by "+data.createdBy.name}'
-                    android:textSize="13dp"
                     android:layout_marginStart="20dp"
                     android:fontFamily="@font/poppins_regular"
-                    android:textColor="@color/grey6"/>
+                    android:text='@{"by "+data.createdBy.name}'
+                    android:textColor="@color/grey6"
+                    android:textSize="13dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_height="wrap_content">
+                    android:layout_marginTop="6dp">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:background="@drawable/location_pin"/>
+                        android:background="@drawable/location_pin" />
+
                     <TextView
                         android:id="@+id/address"
                         android:layout_width="wrap_content"
@@ -137,10 +148,11 @@
                         android:fontFamily="@font/poppins_regular"
                         android:maxLength="20"
                         android:text='@{data.address != null &amp; !data.address.isEmpty() ? data.address : "Home"}'
-                        android:visibility='@{data.address != null &amp; !data.address.isEmpty() ? View.VISIBLE : View.VISIBLE}'
                         android:textColor="@color/grey6"
                         android:textSize="13sp"
+                        android:visibility='@{data.address != null &amp; !data.address.isEmpty() ? View.VISIBLE : View.VISIBLE}'
                         tools:text="@string/riepneapps_technology_noida" />
+
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="8dp"
                         android:layout_height="8dp"
@@ -154,21 +166,22 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/poppins_regular"
-                        tools:text="1 day ago"
                         android:text="@{data.AgoTime()}"
                         android:textColor="@color/grey6"
-                        android:textSize="13dp" />
-
+                        android:textSize="13dp"
+                        tools:text="1 day ago" />
 
 
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
+
                     <TextView
                         android:id="@+id/smallest"
                         android:layout_width="wrap_content"
@@ -179,6 +192,7 @@
                         android:text="14999"
                         android:textColor="@color/black_2"
                         android:textSize="16dp" />
+
                     <View
                         android:id="@+id/idView"
                         android:layout_width="6dp"
@@ -203,11 +217,11 @@
             <LinearLayout
                 android:id="@+id/about_Servicelayout"
                 android:layout_width="match_parent"
-                android:background="@color/white"
-                android:paddingBottom="10dp"
-                android:layout_marginTop="15dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginTop="15dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingBottom="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -223,30 +237,32 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="17dp"
                     android:fontFamily="@font/poppins_regular"
                     android:maxLines="3"
-                    android:layout_marginEnd="15dp"
                     android:text="@{data.aboutService}"
-                    android:layout_marginBottom="17dp"
                     android:textColor="@color/grey_6E6E6E"
                     android:textSize="13dp" />
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:orientation="vertical"
                 android:layout_marginBottom="15dp"
                 android:background="@color/white"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
+
                 <LinearLayout
-                    android:background="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
                     android:paddingHorizontal="20dp"
-                    android:paddingTop="15dp"
-                    android:orientation="horizontal">
+                    android:paddingTop="15dp">
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
@@ -257,29 +273,29 @@
                         android:textColor="@color/black"
                         android:textSize="17dp" />
 
-<!--                    <com.google.android.material.textview.MaterialTextView-->
-<!--                        android:id="@+id/viewAll"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:fontFamily="@font/poppins_medium"-->
-<!--                        android:gravity="end"-->
-<!--                        android:text="@string/view_all"-->
-<!--                        android:textColor="@color/app_theme"-->
-<!--                        android:textSize="15dp" />-->
+                    <!--                    <com.google.android.material.textview.MaterialTextView-->
+                    <!--                        android:id="@+id/viewAll"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_weight="1"-->
+                    <!--                        android:fontFamily="@font/poppins_medium"-->
+                    <!--                        android:gravity="end"-->
+                    <!--                        android:text="@string/view_all"-->
+                    <!--                        android:textColor="@color/app_theme"-->
+                    <!--                        android:textSize="15dp" />-->
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/imageRecycler"
-                    android:paddingHorizontal="20dp"
-                    android:paddingBottom="15dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:listitem="@layout/service_datails_img_design"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/white"
                     android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                    android:paddingHorizontal="20dp"
+                    android:paddingBottom="15dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/service_datails_img_design" />
 
             </LinearLayout>
         </LinearLayout>

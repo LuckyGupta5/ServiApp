@@ -700,7 +700,6 @@
                 android:background="@drawable/app_theme_10dp"
                 android:backgroundTint="@null"
                 android:fontFamily="@font/poppins_medium"
-                android:onClick="@{click::goToWallerBottom}"
                 android:stateListAnimator="@null"
                 android:text="@string/pay_now"
                 android:textAllCaps="false"

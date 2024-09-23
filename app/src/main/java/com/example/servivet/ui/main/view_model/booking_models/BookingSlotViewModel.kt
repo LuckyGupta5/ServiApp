@@ -27,7 +27,6 @@ class BookingSlotViewModel : BaseViewModel() {
         request["serviceId"] = id //"65798f89b55d7af39650a617"
         request["bookingDate"] = date!!
         request["serviceMode"] = serviceMode!!
-
         hitSlotApi()
 
     }

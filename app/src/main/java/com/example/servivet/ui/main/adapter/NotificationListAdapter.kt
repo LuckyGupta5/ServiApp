@@ -32,7 +32,6 @@ class NotificationListAdapter() :
         arrNotification.addAll(itemList)
         notifyItemRangeChanged(itemList.size - itemList.size, itemList.size)
     }
-
     inner class ViewHolder(private val notificationBinding: NotificationOuterLayoutBinding) :
         RecyclerView.ViewHolder(notificationBinding.root) {
         fun bind(data: NotificationList) {

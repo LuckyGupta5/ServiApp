@@ -16,6 +16,7 @@ import com.example.servivet.data.model.payment.payment_amount.response.PayAmount
 import com.example.servivet.data.repository.MainRepository
 import com.example.servivet.databinding.FragmentBookingPaymentBinding
 import com.example.servivet.ui.base.BaseViewModel
+import com.example.servivet.ui.main.bottom_sheet.SuretoConfirmBottomSheet
 import com.example.servivet.ui.main.fragment.BookingPaymentFragmentDirections
 import com.example.servivet.utils.AESHelper
 import com.example.servivet.utils.Constants
@@ -56,21 +57,21 @@ class BookingPaymentViewModel : BaseViewModel() {
         }
 
         fun goToWallerBottom(view: View) {
-            if (isConfirm) {
-                view.findNavController().navigate(
-                    BookingPaymentFragmentDirections.actionBookingPaymentFragmentToMyWalletBottomsheet2(
-                        Gson().toJson(payAmountResult),
-                        Gson().toJson(bookingData),
-                        R.string.booking
-                    )
-                )
-            } else {
-                view.findNavController()
-                    .navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToSuretoConfirmBottomSheet())
-            }
 
+//            val dialog = SuretoConfirmBottomSheet()
+//            if (isConfirm) {
+//                view.findNavController().navigate(
+//                    BookingPaymentFragmentDirections.actionBookingPaymentFragmentToMyWalletBottomsheet2(
+//                        Gson().toJson(payAmountResult),
+//                        Gson().toJson(bookingData),
+//                        R.string.booking
+//                    )
+//                )
+//            } else {
+//                view.findNavController()
+//                    .navigate(BookingPaymentFragmentDirections.actionBookingPaymentFragmentToSuretoConfirmBottomSheet())
+//            }
         }
-
         fun cancelCoupon(view: View) {
             if (Constants.APPLIED_COUPON == "APPLIED_COUPON") {
                 binding.applyCoupon.isVisible = true

@@ -53,6 +53,7 @@
     <string name="riepneapps_technology_noida" translatable="false">تكنولوجيا Riepneapps نوييدا</string>
     <string name="view_details" translatable="false">عرض التفاصيل</string>
     <string name="individual" translatable="false">فردي</string>
+    <string name="see_my_connection">شاهد اتصالي</string>
     <string name="individualcap" translatable="false">فَرْدِيّ</string>
     <string name="institutional" translatable="false">مؤسسي</string>
     <string name="institutionalcap" translatable="false">مُؤَسَّسِيّ</string>

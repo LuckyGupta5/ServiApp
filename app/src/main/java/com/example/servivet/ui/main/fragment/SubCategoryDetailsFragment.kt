@@ -134,10 +134,19 @@ class SubCategoryDetailsFragment :
                                     }
                                 }
                             }
-                            smallest = min(it.data.result.serviceDetail.atCenterPrice ?: 0.0, it.data.result.serviceDetail.atHomePrice ?: 0.0).toString()
-                            largest = max(it.data.result.serviceDetail.atCenterPrice ?: 0.0, it.data.result.serviceDetail.atHomePrice ?: 0.0).toString()
-                            binding.smallest.text = "ZAR "+ commaSaparator(smallest.toDouble()).toString()
-                            binding.largest.text =  "ZAR "+ commaSaparator(largest.toDouble()).toString()
+                            if (serviceDetails.atHomePrice != 0.0 && serviceDetails.atCenterPrice != 0.0) {
+                                smallest = min(serviceDetails.atHomePrice ?: 0.0, serviceDetails.atCenterPrice ?: 0.0).toString()
+                                largest = max(serviceDetails.atHomePrice ?: 0.0, serviceDetails.atCenterPrice ?: 0.0).toString()
+                            }
+                            if (serviceDetails.serviceMode?.atHome == true && serviceDetails.serviceMode?.atCenter == false) {
+                                binding.largest.text = "ZAR " + serviceDetails.atHomePrice
+                            } else if (serviceDetails?.serviceMode?.atCenter == true && serviceDetails.serviceMode?.atHome == false) {
+                                binding.smallest.text = "ZAR " + serviceDetails.atCenterPrice
+                            } else {
+                                // Update UI with prices
+                                binding.smallest.text = "ZAR " +"("+smallest.toDouble()
+                                binding.largest.text = largest.toDouble().toString()+")"
+                            }
 //                            checkVisibility()
                             mediaList?.let {
                                 Glide.with(requireContext())

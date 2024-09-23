@@ -24,9 +24,13 @@ import com.google.gson.Gson
 import java.text.DecimalFormat
 import kotlin.math.max
 import kotlin.math.min
+
 @RequiresApi(Build.VERSION_CODES.O)
-class MyServiceDetailFragment : BaseFragment<FragmentMyServiceDetailBinding, MyServiceDetailViewModel>(R.layout.fragment_my_service_detail) {
-    override val binding: FragmentMyServiceDetailBinding by viewBinding(FragmentMyServiceDetailBinding::bind)
+class MyServiceDetailFragment :
+    BaseFragment<FragmentMyServiceDetailBinding, MyServiceDetailViewModel>(R.layout.fragment_my_service_detail) {
+    override val binding: FragmentMyServiceDetailBinding by viewBinding(
+        FragmentMyServiceDetailBinding::bind
+    )
     override val mViewModel: MyServiceDetailViewModel by viewModels()
     var data: ServiceList? = null
     private var mediaList = ArrayList<String>()
@@ -35,6 +39,7 @@ class MyServiceDetailFragment : BaseFragment<FragmentMyServiceDetailBinding, MyS
     var largest = ""
     override fun isNetworkAvailable(boolean: Boolean) {
     }
+
     override fun setupViewModel() {
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
@@ -51,6 +56,7 @@ class MyServiceDetailFragment : BaseFragment<FragmentMyServiceDetailBinding, MyS
             requireActivity().isFinishing
         )
     }
+
     private fun checkVisibility(binding: FragmentMyServiceDetailBinding) {
         // Show the smallest value only if it's greater than 0.0
         binding.smallest.isVisible = smallest != "0.0" && smallest != largest
@@ -59,8 +65,10 @@ class MyServiceDetailFragment : BaseFragment<FragmentMyServiceDetailBinding, MyS
         // Always show the largest value
         binding.largest.isVisible = largest != "0.0"
     }
+
     override fun setupViews() {
     }
+
     override fun setupObservers() {
         mViewModel.serviceCategoryDetailsResponse.observe(viewLifecycleOwner) {
             when (it.status) {
@@ -69,20 +77,12 @@ class MyServiceDetailFragment : BaseFragment<FragmentMyServiceDetailBinding, MyS
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
                             serviceDetails = it.data.result!!.serviceDetail!!
-                            serviceDetails.localImage = serviceDetails.images?.get(0)?:""
+                            serviceDetails.localImage = serviceDetails.images?.get(0) ?: ""
                             binding.data = serviceDetails
                             mViewModel.data = it.data.result.serviceDetail
                             mediaList.clear()
                             mediaList.addAll(it.data.result.serviceDetail!!.images!!)
                             setImageAdapter(mediaList)
-                            val smallest: String = min(
-                                it.data.result.serviceDetail.atCenterPrice!!,
-                                it.data.result.serviceDetail.atHomePrice!!
-                            ).toString()
-                            val largest: String = max(
-                                it.data.result.serviceDetail.atCenterPrice,
-                                it.data.result.serviceDetail.atHomePrice!!
-                            ).toString()
 
                             serviceDetails.serviceMode?.let { serviceMode ->
                                 when {
@@ -92,18 +92,21 @@ class MyServiceDetailFragment : BaseFragment<FragmentMyServiceDetailBinding, MyS
                                         binding.idView.visibility = View.VISIBLE
                                         binding.largest.visibility = View.VISIBLE
                                     }
+
                                     serviceMode.atHome == true -> {
                                         // Only atHome is true
                                         binding.smallest.visibility = View.GONE
                                         binding.idView.visibility = View.GONE
                                         binding.largest.visibility = View.VISIBLE
                                     }
+
                                     serviceMode.atCenter == true -> {
                                         // Only atCenter is true
                                         binding.smallest.visibility = View.VISIBLE
                                         binding.idView.visibility = View.GONE
                                         binding.largest.visibility = View.GONE
                                     }
+
                                     else -> {
                                         // Neither atHome nor atCenter is true, show default
                                         binding.smallest.visibility = View.VISIBLE
@@ -112,11 +115,19 @@ class MyServiceDetailFragment : BaseFragment<FragmentMyServiceDetailBinding, MyS
                                     }
                                 }
                             }
-                            this.smallest = min(serviceDetails.atCenterPrice ?: 0.0, serviceDetails.atHomePrice ?: 0.0).toString()
-                            this.largest = max(serviceDetails.atCenterPrice ?: 0.0, serviceDetails.atHomePrice ?: 0.0).toString()
-                            // Update UI with prices
-                            binding.smallest.text = "ZAR "+ commaSaparator(smallest.toDouble())
-                            binding.largest.text = "ZAR "+ commaSaparator(largest.toDouble())
+                            if (serviceDetails.atHomePrice != 0.0 && serviceDetails.atCenterPrice != 0.0) {
+                                smallest = min(serviceDetails.atHomePrice ?: 0.0, serviceDetails.atCenterPrice ?: 0.0).toString()
+                                largest = max(serviceDetails.atHomePrice ?: 0.0, serviceDetails.atCenterPrice ?: 0.0).toString()
+                            }
+                            if (serviceDetails.serviceMode?.atHome == true && serviceDetails.serviceMode?.atCenter == false) {
+                                binding.largest.text = "ZAR " + serviceDetails.atHomePrice
+                            } else if (serviceDetails?.serviceMode?.atCenter == true && serviceDetails.serviceMode?.atHome == false) {
+                                binding.smallest.text = "ZAR " + serviceDetails.atCenterPrice
+                            } else {
+                                // Update UI with prices
+                                binding.smallest.text = "ZAR " +smallest.toDouble()
+                                binding.largest.text = "ZAR " + largest.toDouble()
+                            }
                             // Handle visibility
 //                            checkVisibility(binding)
                         }
@@ -156,11 +167,11 @@ class MyServiceDetailFragment : BaseFragment<FragmentMyServiceDetailBinding, MyS
     }
 
 
-
     private fun setImageAdapter(list: ArrayList<String>) {
         if (list != null && list.isNotEmpty()) {
             binding.imageRecycler.visibility = View.VISIBLE
-            binding.imageRecycler.adapter = ServiceDetailsImgAdapter(requireContext(), list, onItemClick)
+            binding.imageRecycler.adapter =
+                ServiceDetailsImgAdapter(requireContext(), list, onItemClick)
 
 
         } else {
@@ -173,9 +184,13 @@ class MyServiceDetailFragment : BaseFragment<FragmentMyServiceDetailBinding, MyS
         return formatter.format(number)
     }
 
-    private val onItemClick: (String, String,Int) -> Unit = { identifier, data, position->
+    private val onItemClick: (String, String, Int) -> Unit = { identifier, data, position ->
         findNavController().navigate(
-            MyServiceDetailFragmentDirections.actionMyServiceDetailFragmentToImageVideoViewFragment(Gson().toJson(mediaList), getString(R.string.servicedetails),position)
+            MyServiceDetailFragmentDirections.actionMyServiceDetailFragmentToImageVideoViewFragment(
+                Gson().toJson(mediaList),
+                getString(R.string.servicedetails),
+                position
+            )
         )
     }
 }

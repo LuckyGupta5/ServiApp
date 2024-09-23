@@ -55,7 +55,6 @@ class CreateOrderViewModel() : ViewModel() {
             paymentMode = payWith
             saveApplyCouponId = paymentAmountData.saveApplyCouponId
             addressId = ""
-
         }
 
         Log.e("TAG", "getPaymentAmountRequest: ${Gson().toJson(orderRequest)}", )

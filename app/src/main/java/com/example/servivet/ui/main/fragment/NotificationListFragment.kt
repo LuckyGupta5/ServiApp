@@ -53,7 +53,6 @@ class NotificationListFragment :
                                 showToast("No data found")
                             }
                         }
-
                         StatusCode.STATUS_CODE_FAIL -> {
                             showToast(it.data.message?:"Something went wrong")
                         }

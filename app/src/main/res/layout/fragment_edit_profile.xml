@@ -159,6 +159,8 @@
                                 android:layout_marginStart="20dp"
                                 android:fontFamily="@font/poppins_semi_bold"
                                 android:text="@string/name"
+                                android:gravity="start"
+                                android:textAlignment="viewStart"
                                 android:layout_marginTop="50dp"
                                 android:textColor="@color/black_262626"
                                 android:textSize="17dp" />
@@ -173,8 +175,10 @@
                                 android:background="@drawable/white_round_corner_12_dp"
                                 android:fontFamily="@font/poppins_regular"
                                 android:hint="@string/enter_name"
+                                android:gravity="start"
                                 android:maxLength="30"
                                 android:inputType="textPersonName"
+                                android:textAlignment="viewStart"
                                 android:maxLines="1"
                                 android:text="@{userProfile.INSTANCE.userProfile.name}"
                                 android:paddingHorizontal="20dp"
@@ -189,6 +193,7 @@
                                 android:layout_marginStart="20dp"
                                 android:layout_marginTop="20dp"
                                 android:fontFamily="@font/poppins_semi_bold"
+                                android:textAlignment="viewStart"
                                 android:text="@string/mobile_number"
                                 android:textColor="@color/black_262626"
                                 android:textSize="17dp" />
@@ -204,7 +209,9 @@
                                 android:fontFamily="@font/poppins_medium"
                                 android:hint="@string/_123_456_7890"
                                 android:inputType="number"
+                                android:gravity="start"
                                 android:paddingHorizontal="20dp"
+                                android:textAlignment="viewStart"
                                 android:paddingVertical="17dp"
                                 android:textColor="@color/black"
                                 android:textColorHint="@color/grey_848484"
@@ -217,6 +224,8 @@
                                 android:layout_marginTop="20dp"
                                 android:fontFamily="@font/poppins_semi_bold"
                                 android:text="@string/email_address"
+                                android:textAlignment="viewStart"
+                                android:gravity="start"
                                 android:textColor="@color/black_262626"
                                 android:textSize="17dp" />
 
@@ -226,6 +235,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginHorizontal="20dp"
                                 android:layout_marginTop="11dp"
+                                android:gravity="start"
+                                android:textAlignment="viewStart"
                                 android:background="@drawable/white_round_corner_12_dp"
                                 android:fontFamily="@font/poppins_regular"
                                 android:hint="@string/email_address"
@@ -242,6 +253,7 @@
                                 android:id="@+id/aboutLayout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:gravity="start"
                                 android:layout_marginHorizontal="20dp"
                                 android:layout_marginTop="20dp"
                                 android:layout_marginBottom="11dp"
@@ -253,6 +265,8 @@
                                     android:layout_weight="1"
                                     android:fontFamily="@font/poppins_semi_bold"
                                     android:text="@string/about"
+                                    android:gravity="start"
+                                    android:textAlignment="viewStart"
                                     android:textColor="@color/black_2"
                                     android:textSize="17dp" />
 

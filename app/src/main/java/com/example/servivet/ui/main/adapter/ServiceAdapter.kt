@@ -19,8 +19,6 @@ class ServiceAdapter(
 ) :
     BaseAdapter<ServiceRecyclerBinding, HomeServiceCategory>(list) {
     override val layoutId: Int = R.layout.service_recycler
-
-
     override fun getItemCount(): Int {
         if (type == "1") {
             if (list.size < 5)
@@ -31,7 +29,6 @@ class ServiceAdapter(
             return list.size
         }
     }
-
     override fun bind(
         binding: ServiceRecyclerBinding,
         item: HomeServiceCategory?,
@@ -41,13 +38,11 @@ class ServiceAdapter(
             binding.click = ClickAction(position,item)
 
         }
-
         binding.serviceName.text = list[position].name
         Glide.with(context).load(list[position].imageUrl)//.error(R.drawable.flower_img)
      //   Glide.with(context).load(list[position].imageUrl).error(R.drawable.flower_img)
             .into(binding.serviceImage)
     }
-
     inner class ClickAction(var position: Int,var  item: HomeServiceCategory?) {
         var bundle = Bundle()
         fun goToServiceList(view: View) {
@@ -71,6 +66,4 @@ class ServiceAdapter(
             }
         }
     }
-
-
 }

@@ -23,11 +23,12 @@ class MyServiceAdapter(
     var list: ArrayList<ServiceList>,
     private val isBook: Boolean
 ) : BaseAdapter<MyServiceRecyclerBinding, ServiceList>(list) {
-
     var smallest = ""
     var largest = ""
     override val layoutId: Int = R.layout.my_service_recycler
     private var filteredList: List<ServiceList> = list.toList()
+
+    @SuppressLint("SetTextI18n")
     override fun bind(binding: MyServiceRecyclerBinding, item: ServiceList?, position: Int) {
         binding.apply {
             //   binding.data=item
@@ -54,18 +55,21 @@ class MyServiceAdapter(
                     binding.idView.visibility = View.VISIBLE
                     binding.largest.visibility = View.VISIBLE
                 }
+
                 serviceMode.atHome == true -> {
                     // Only atHome is true
                     binding.smallest.visibility = View.GONE
                     binding.idView.visibility = View.GONE
                     binding.largest.visibility = View.VISIBLE
                 }
+
                 serviceMode.atCenter == true -> {
                     // Only atCenter is true
                     binding.smallest.visibility = View.VISIBLE
                     binding.idView.visibility = View.GONE
                     binding.largest.visibility = View.GONE
                 }
+
                 else -> {
                     // Neither atHome nor atCenter is true, show default
                     binding.smallest.visibility = View.VISIBLE
@@ -74,11 +78,19 @@ class MyServiceAdapter(
                 }
             }
         }
-        smallest = min(item!!.atCenterPrice!!, item!!.atHomePrice!!).toString()
-        largest = max(item!!.atCenterPrice!!, item!!.atHomePrice!!).toString()
-//        checkVisibility(binding)
-        binding.smallest.text ="ZAR "+ commaSaparator(smallest.toDouble()).toString()
-        binding.largest.text = "ZAR "+ commaSaparator(largest.toDouble()).toString()
+        if (item?.atHomePrice != 0.0 && item?.atCenterPrice != 0.0) {
+            smallest = min(item?.atHomePrice ?: 0.0, item?.atCenterPrice ?: 0.0).toString()
+            largest = max(item?.atHomePrice ?: 0.0, item?.atCenterPrice ?: 0.0).toString()
+        }
+        if (item?.serviceMode?.atHome == true && item.serviceMode.atCenter == false) {
+            binding.largest.text = "ZAR " + item.atHomePrice
+        } else if (item?.serviceMode?.atCenter == true && item.serviceMode.atHome == false) {
+            binding.smallest.text = "ZAR " + item.atCenterPrice
+        } else {
+            // Update UI with prices
+            binding.smallest.text = "ZAR " + smallest.toDouble()
+            binding.largest.text = "ZAR " +largest.toDouble()
+        }
     }
 
     private fun checkVisibility(binding: MyServiceRecyclerBinding) {

@@ -3,7 +3,6 @@ package com.example.servivet.ui.main.fragment
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
-import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
@@ -16,7 +15,6 @@ import com.example.servivet.R
 import com.example.servivet.data.model.connection.connection_list.responnse.MyConnection
 import com.example.servivet.databinding.FragmentProfileBinding
 import com.example.servivet.ui.base.BaseFragment
-import com.example.servivet.ui.main.activity.HomeActivity
 import com.example.servivet.ui.main.adapter.ProfileConnectionAdapter
 import com.example.servivet.ui.main.view_model.MyConnectionModelView
 import com.example.servivet.ui.main.view_model.ProfileViewModel
@@ -40,6 +38,7 @@ class ProfileFragment :
 
     override fun isNetworkAvailable(boolean: Boolean) {
     }
+
     override fun setupViewModel() {
         if (isAdded)
             binding.apply {
@@ -148,6 +147,7 @@ class ProfileFragment :
                             }
                             setServiceAdapter("3", it.data.result.profile.myContact)
                         }
+
                         StatusCode.STATUS_CODE_FAIL -> {
                             showSnackBar(it.data.message)
                         }

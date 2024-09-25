@@ -54,9 +54,6 @@
                         android:scaleType="fitXY" />
 
 
-
-
-
                     <!-- <TextView
                                             android:id="@+id/logout"
                                             android:layout_alignParentEnd="true"
@@ -84,15 +81,16 @@
                     android:layout_below="@id/profileBackImageLayout"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="-20dp"
+                    android:background="@drawable/app_theme_color_button_12dp"
                     android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:paddingHorizontal="8dp"
                     android:text="@string/profile"
                     android:textColor="@color/white"
-                    android:background="@drawable/app_theme_color_button_12dp"
                     android:textSize="20sp"
-                    android:paddingHorizontal="8dp"
-                    android:gravity="center"
                     android:visibility="visible"
                     tools:text="@string/profile" />
+
                 <ImageView
                     android:id="@+id/idSettings"
                     android:layout_width="wrap_content"

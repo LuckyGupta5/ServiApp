@@ -29,7 +29,6 @@ class AcceptRejectViewModel : BaseViewModel() {
         hitAcceptRejectApi()
     }
 
-
     private fun hitAcceptRejectApi() {
         val repository = MainRepository(RetrofitBuilder.apiService)
         acceptRejectListData.postValue(Resource.loading(null))

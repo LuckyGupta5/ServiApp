@@ -53,7 +53,6 @@ class BookingDetailsFragment :
     private var notificationUser = ""
     private val markAsCompleteModel: MarkAsCompleteViewModel by viewModels()
 
-
     override fun isNetworkAvailable(boolean: Boolean) {
     }
 

@@ -435,6 +435,9 @@
         android:label="FragmentMyConnection"
         tools:layout="@layout/fragment_my_connection">
         <action
+            android:id="@+id/fragmentMyConnection_to_providerProfile_fragment"
+            app:destination="@id/providerProfileFragment" />
+        <action
             android:id="@+id/action_fragmentMyConnection_to_connectionsRequestFragment"
             app:destination="@id/connectionsRequestFragment" />
     </fragment>

@@ -7,13 +7,11 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.servivet.R
 import com.example.servivet.data.model.connection.connection_list.responnse.MyConnection
 import com.example.servivet.databinding.FragmentMyConnectionBinding
 import com.example.servivet.ui.base.BaseFragment
-import com.example.servivet.ui.main.adapter.FaqAdapter
 import com.example.servivet.ui.main.adapter.MyConnectionAdapter
 import com.example.servivet.ui.main.view_model.AcceptRejectViewModel
 import com.example.servivet.ui.main.view_model.MyConnectionModelView
@@ -22,16 +20,13 @@ import com.example.servivet.utils.CommonUtils.showSnackBar
 import com.example.servivet.utils.ProcessDialog
 import com.example.servivet.utils.Status
 import com.example.servivet.utils.StatusCode
-
 class FragmentMyConnection :
     BaseFragment<FragmentMyConnectionBinding, MyConnectionModelView>(R.layout.fragment_my_connection) {
-
     override val binding: FragmentMyConnectionBinding by viewBinding(FragmentMyConnectionBinding::bind)
     override val mViewModel: MyConnectionModelView by viewModels()
     private val connectionList = ArrayList<MyConnection>()
     private val acceptRejectModel: AcceptRejectViewModel by viewModels()
     lateinit var adapter: MyConnectionAdapter
-
     override fun isNetworkAvailable(boolean: Boolean) {
     }
 
@@ -47,9 +42,7 @@ class FragmentMyConnection :
             initEditText()
 
         }
-        backbtn()
-        setadapter()
-        initAcceptRejectModel()
+        backBtn()
         initEditText()
         binding.idTopLayout.idSearch.setOnClickListener {
             binding.idTopLayout.idSearchLayout.visibility = View.VISIBLE
@@ -63,35 +56,14 @@ class FragmentMyConnection :
         }
     }
 
-//    private fun initEditText() {
-//        binding.idTopLayout.idSearchText.addTextChangedListener(object : TextWatcher {
-//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-//
-//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//                mViewModel.request["search"] = s.toString()
-//                mViewModel.getConnectionListRequest()
-//            }
-//            override fun afterTextChanged(s: Editable?) {
-//
-//            }
-//        })
-//
-//
-//    }
+    private fun backBtn() {
+        binding.idTopLayout.idBack.setOnClickListener {
+            activity?.onBackPressedDispatcher?.onBackPressed()
+        }
 
-    private fun setadapter() {
-
-    }
-
-    private fun backbtn() {
-        binding.idTopLayout.idBack.setOnClickListener(View.OnClickListener {
+        binding.idTopLayout.idSearchLayout.setOnClickListener {
             requireActivity().onBackPressed()
-
-
-        })
-        binding.idTopLayout.idSearchLayout.setOnClickListener(View.OnClickListener {
-            requireActivity().onBackPressed()
-        })
+        }
     }
 
 
@@ -108,13 +80,11 @@ class FragmentMyConnection :
                             connectionList.clear()
                             connectionList.addAll(it.data.result.myConnectionList)
                             initConnectionAdapter()
-
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
-                            showSnackBar(it.data.message!!)
+                            showSnackBar(it.data.message)
                         }
-
                     }
                 }
 
@@ -141,19 +111,22 @@ class FragmentMyConnection :
                 }
             }
         }
-
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun initAcceptRejectModel() {
+    private fun initAcceptRejectModel(data: String) {
         acceptRejectModel.getAcceptRejectData().observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     ProcessDialog.dismissDialog()
                     when (it.data!!.code) {
                         StatusCode.STATUS_CODE_SUCCESS -> {
-                          showSnackBar(getString(R.string.connection_remove_successfully))
-                            findNavController().popBackStack()
+                            val position = adapter.connectionList.indexOfFirst { it._id == data }
+                            if (position != -1) {
+                                adapter.filteredList.removeAt(position)
+                                adapter.notifyItemRemoved(position)
+                            }
+                            showSnackBar(getString(R.string.connection_remove_successfully))
                         }
 
                         StatusCode.STATUS_CODE_FAIL -> {
@@ -198,14 +171,21 @@ class FragmentMyConnection :
 
 
     private val onItemClick: (Int, String) -> Unit = { identifire, data ->
-
         when (identifire) {
+//            1 -> {
+//                if(mViewModel.connectionListData.value?.data?.result?.myConnectionList.getOrNull(0)?.businessType==Consumer)
+//                findNavController().navigate(
+//                    FragmentMyConnectionDirections.fragmentMyConnectionToProviderProfileFragment(
+//                        data = data,
+//                        getString(R.string.home_fr)
+//                    )
+//                )
+//            }
             2 -> {
                 acceptRejectModel.getAcceptRejectRequest(identifire, data)
+                initAcceptRejectModel(data)
             }
         }
-
-
     }
 
 

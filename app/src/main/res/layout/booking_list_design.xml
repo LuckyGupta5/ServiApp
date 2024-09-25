@@ -186,10 +186,11 @@
                                         android:ellipsize="end"
                                         android:fontFamily="@font/poppins_regular"
                                         android:maxLines="1"
+                                        tools:text="saxfgh"
                                         android:text="@{data.bookedFor}"
                                         android:textColor="@color/grey_979595"
-                                        android:textSize="13sp"
-                                        android:visibility="@{typeOfUser!=@string/sold_small ? View.GONE : View.VISIBLE}" />
+                                        android:textSize="13sp"/>
+<!--                                        android:visibility="@{typeOfUser!=@string/sold_small ? View.VISIBLE : View.VISIBLE}" />-->
 
 
                                 </LinearLayout>

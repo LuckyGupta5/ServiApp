@@ -53,8 +53,7 @@ class MyWalletFragment :
         initTabLayout()
         Constants.SECURE_HEADER = "secure"
         mViewModel.hitWalletApi()
-
-        setPagination()
+        //setPagination()
 
     }
 

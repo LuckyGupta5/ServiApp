@@ -26,7 +26,6 @@ class NotificationListAdapter() :
         this.arrNotification.clear()
         notifyDataSetChanged()
     }
-
     fun updateItemList(itemList: MutableList<NotificationList>?) {
         if (itemList.isNullOrEmpty() || arrNotification.isEmpty()) return
         arrNotification.addAll(itemList)

@@ -31,26 +31,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/idCategoryAdapter"
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_marginStart="13dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="80dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
             android:layout_toStartOf="@+id/rating"
             android:fontFamily="@font/poppins_regular"
             android:orientation="horizontal"
             android:textColor="@color/green"
             android:textSize="11sp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toStartOf="@+id/rating"
+            app:layout_constraintHorizontal_bias="0.081"
             app:layout_constraintStart_toEndOf="@id/profile_image"
             app:layout_constraintTop_toTopOf="parent"
             tools:itemCount="3"
             tools:listitem="@layout/custom_category_layout" />
-
 
         <TextView
             android:id="@+id/rating"
@@ -71,7 +71,9 @@
             android:textColor="@color/white"
             android:textSize="13dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="3.0" />
+
         <TextView
             android:id="@+id/idName"
             android:layout_width="wrap_content"
@@ -114,6 +116,7 @@
             app:layout_constraintEnd_toStartOf="@id/idRange"
             app:layout_constraintStart_toEndOf="@id/idBusinessType"
             app:layout_constraintTop_toTopOf="@id/idBusinessType" />
+
         <TextView
             android:id="@+id/idRange"
             android:layout_width="wrap_content"
@@ -124,6 +127,7 @@
             android:text='@{data.distance+" "+@string/_1_km_away}'
             app:layout_constraintStart_toEndOf="@id/pinLocation"
             app:layout_constraintTop_toBottomOf="@id/idName" />
+
         <View
             android:id="@+id/idView"
             android:layout_width="0dp"

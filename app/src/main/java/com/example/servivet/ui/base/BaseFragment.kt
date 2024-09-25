@@ -33,7 +33,6 @@ abstract class BaseFragment<Binding : ViewBinding, ViewModel : BaseViewModel>(la
             }
         }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

@@ -279,11 +279,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
             ), LOCATION_PERMISSION_REQUEST_CODE
         )
     }
+
     private fun isLocationEnabled(): Boolean {
         boolean = true
         val locationManager = mContext.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
+
     private fun checkLocationPermission(): Boolean {
         val finePermissionState = ActivityCompat.checkSelfPermission(
             requireContext(),
@@ -383,6 +385,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         // binding.serviceRecycler.adapter = HomeServiceAdapter(requireContext(), type, list)
 
     }
+
     private fun setViewPagerAdapter(banner: List<HomeBanner>) {
         binding.viewPager.adapter = HomePagerAdapter(requireContext(), banner)
         binding.viewPager.pageMargin = 20
@@ -498,6 +501,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 
                             Session.saveCategory(it.data.result.serviceCategory)
                         }
+
                         StatusCode.STATUS_CODE_FAIL -> {
                             //showSnackBar(it.data.message)
                         }
@@ -636,6 +640,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
             binding.adapter =
                 NearByProviderAdapter(requireContext(), providerList, onItemClick, type)
     }
+
     private fun setVisibility(role: Int) {
         if (role == 1) {
             binding.onlinenowLayout.visibility = View.VISIBLE

@@ -44,13 +44,11 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
     private var count = 0
 
     private var notificationData = ""
-
     override fun onNewToken(token: String) {
         super.onNewToken(token)
         Log.e("TAG", "onNewToken: $token")
         Session.saveDeviceToken(token)
     }
-
     override fun onMessageReceived(rMessage: RemoteMessage) {
         super.onMessageReceived(rMessage)
         rMessage.notification?.let { Log.e("TAG", "onMessageReceived: Z ${Gson().toJson(it)}") }
@@ -63,14 +61,14 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
             title = rMessage.data["title"].toString()
             message = rMessage.data["message"].toString()
         }
-
         val intentData = Intent(NOTIFICATION)
         intentData.putExtra(NOTIFICATION, rMessage.notification?.body)
         sendBroadcast(intentData)
         Log.e("TAG", "checkCallBody: ${Gson().toJson(rMessage)}")
         Log.e("TAG", "onMessageReceived: $message")
-
-        if (callBody?.messageType == 0) {
+        if (callBody == null) {
+            sendNotification1(message, title)
+        } else if (callBody.messageType == 0) {
             //  Log.e("tag2","ruby")
             //  if (callBody.isDm) sendDm()
 //            if (callBody.msgType != null)
@@ -96,7 +94,7 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
             }
         } else {
             //   Log.e("tag1", callBody.callType.toString())
-            when (callBody?.messageType) {
+            when (callBody.messageType) {
                 6 -> {
                     inviteForAudioCall(callBody)
                 }
@@ -111,7 +109,6 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
             }
         }
     }
-
     private fun sendNotification(message: String, title: String, count: Int, callBody: CallBody?) {
         val pendingIntent: PendingIntent?
         val channelId = "channel-05434377729111997"
@@ -195,106 +192,7 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
     }
-
-
-//    private fun sendNotification(message: String, title: String, count: Int, callBody: CallBody) {
-//        val pendingIntent: PendingIntent?
-//
-//        val intent1 = Intent(this, HomeActivity::class.java)
-//        intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-//        val pendingIntent1 =
-//            PendingIntent.getActivity(this, 0, intent1, PendingIntent.FLAG_IMMUTABLE)
-//
-//        val notifyID = 1
-//        val channelId = "channel-0888888888"
-//        val channelName = "Janamarines"
-//        val importance = NotificationManager.IMPORTANCE_HIGH
-//
-//        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-//            val mChannel = NotificationChannel(
-//                channelId, channelName, importance
-//            )
-//            mChannel.setShowBadge(true)
-//            notificationManager.createNotificationChannel(mChannel)
-//            notificationManager.areNotificationsEnabled()
-//        }
-//
-//        val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-//        val notificationBuilder = NotificationCompat.Builder(this, channelId)
-//        notificationBuilder.setSmallIcon(R.mipmap.app_icon_round)
-//        notificationBuilder.setContentTitle(title)
-//        //notificationBuilder.setStyle(NotificationCompat.BigPictureStyle().bigPicture(image))
-//        notificationBuilder.setStyle(NotificationCompat.BigTextStyle().bigText(message))
-//        notificationBuilder.setContentText(message)
-//        notificationBuilder.setAutoCancel(false)
-//        notificationBuilder.setSound(defaultSoundUri)
-//        notificationBuilder.priority = NotificationCompat.PRIORITY_HIGH
-//        notificationBuilder.setChannelId(channelId)
-//        notificationBuilder.setContentIntent(pendingIntent1)
-//        notificationBuilder.setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
-//        notificationBuilder.setNumber(count)
-//
-//        try {
-//            notificationManager.notify(
-//                getRequestCode(),
-//                notificationBuilder.build()
-//            )
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//        }
-//
-//
-//        val intent: Intent = when (callBody.messageType) {
-//            6 -> Intent(baseContext, IncomingAudioCallActivity::class.java)
-//            7 -> Intent(baseContext, IncomingVideoCallActivity::class.java)
-//            else -> Intent()
-//        }.also {
-//
-//            val bundle = Bundle()
-//            bundle.putString(AGORA_TOKEN, callBody.callToken)
-//            bundle.putString(CHANNEL_NAME, callBody.channelName)
-//            //  bundle.putString(CALL_USER_IMAGE, callBody.senderId.image)
-//            // bundle.putString(CALL_USER_NAME, callBody.senderId.name)
-//            bundle.putString(MSG_ID, callBody.chatMessageId)
-//
-//            it.putExtra("bundle", bundle)
-//            it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//            it.flags = Intent.FLAG_FROM_BACKGROUND
-//            it.flags = Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT
-//            it.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-//            it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//
-//        }
-//
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-//
-//
-//            pendingIntent = PendingIntent.getActivity(
-//                this,
-//                0, intent,
-//                PendingIntent.FLAG_IMMUTABLE
-//            );
-//        } else {
-//            pendingIntent = PendingIntent.getActivity(
-//                this,
-//                0, intent,
-//                PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
-//            );
-//        }
-//
-//        notificationBuilder.setFullScreenIntent(pendingIntent, true)
-//
-//        try {
-//            notificationManager.notify(getRequestCode(), notificationBuilder.build())
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//        }
-//
-//
-//    }
 
 
     private fun sendNotification1(title: String, message: String) {
@@ -311,22 +209,8 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-//            pendingIntent = PendingIntent.getActivity(
-//                this,
-//                0, intent,
-//                PendingIntent.FLAG_IMMUTABLE
-//            );
-//        } else {
-//            pendingIntent = PendingIntent.getActivity(
-//                this,
-//                0, intent,
-//                PendingIntent.FLAG_ONE_SHOT
-//            );
-//        }
-        // val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
         val channelId = "channel-05434377729111997"
-        val channelName = "Conveyr"
+        val channelName = "Survivet"
         val importance = NotificationManager.IMPORTANCE_HIGH
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -336,12 +220,8 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
             mChannel.setShowBadge(true)
             notificationManager.createNotificationChannel(mChannel)
         }
-        //  val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION) to do
-
-        //............
-
         // stopBackgroundMusicService(applicationContext)
-        Log.d("ConveyerData  firebase--->", Gson().toJson(message))
+        Log.d("survivet Data  firebase--->", Gson().toJson(message))
 
         val soundUri =
             Uri.parse("android.resource://" + applicationContext.packageName.toString() + "/" + R.raw.all)
@@ -386,18 +266,17 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
             val input: InputStream = connection.inputStream
             BitmapFactory.decodeStream(input)
         } catch (e: java.lang.Exception) {
-            // TODO Auto-generated catch block
             e.printStackTrace()
             null
         }
     }
 
-    override fun handleIntent(intent: Intent?) {
-        super.handleIntent(intent)
-        notificationData = intent!!.getStringExtra("customData") ?: ""
-        Log.e("TAG", "handleIntent: ${notificationData}")
-        sendNotification1(title, message)
-    }
+//    override fun handleIntent(intent: Intent?) {
+//        super.handleIntent(intent)
+//        notificationData = intent!!.getStringExtra("customData") ?: ""
+//        Log.e("TAG", "handleIntent: ${notificationData}")
+//        sendNotification1(title, message)
+//    }
 
 
     private fun inviteForVideoCall(callBody: CallBody?) {

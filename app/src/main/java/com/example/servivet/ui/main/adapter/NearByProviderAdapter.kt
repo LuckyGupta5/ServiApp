@@ -29,7 +29,8 @@ class NearByProviderAdapter(
             if (providerList != null && providerList.size > 0) {
 
                 val distanceString = providerList[position].distance
-                val distanceValue = distanceString?.toDoubleOrNull() ?: 0.0 // Safely convert to Double or default to 0.0
+                val distanceValue = distanceString?.toDoubleOrNull()
+                    ?: 0.0 // Safely convert to Double or default to 0.0
                 // Format the distance
                 providerList[position].distance = formatDecimalNumber(distanceValue / 1000)
                 data = providerList[position]
@@ -44,6 +45,7 @@ class NearByProviderAdapter(
 
 
     }
+
     fun addItems(newItems: List<Provider>) {
         val startPosition = providerList.size
         providerList += newItems

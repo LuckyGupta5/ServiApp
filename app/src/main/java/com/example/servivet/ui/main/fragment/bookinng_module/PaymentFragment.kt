@@ -80,15 +80,12 @@ class PaymentFragment :
         ): Boolean {
             // This method will be called when the URL is about to be loaded
             // You can intercept the URL here and perform custom actions
-
             // Get the new URL
             val url = request?.url
             Log.e("TAG", "shouldOverrideUrlLoading: ${url?.host}")
             Log.e("TAG", "shouldOverrideUrlLoading: ${url.toString()}")
-
             val reponse = getLastWordFromUrl(url.toString())
             Log.e("TAG", "shouldOverrideUrlLoading: ${reponse}")
-
 
 
             if (reponse.equals("Success", ignoreCase = true)) {

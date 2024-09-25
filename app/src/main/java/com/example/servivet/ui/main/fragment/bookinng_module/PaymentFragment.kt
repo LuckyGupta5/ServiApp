@@ -29,8 +29,6 @@ class PaymentFragment :
     BaseFragment<FragmentPaymentBinding, PaymentViewModel>(R.layout.fragment_payment) {
     private val paymentData: PaymentFragmentArgs by navArgs()
     private var callbackUrl = "http://13.235.137.221:3476/mobileApi/call-back"
-
-
     override val binding: FragmentPaymentBinding by viewBinding(FragmentPaymentBinding::bind)
 
     override val mViewModel: PaymentViewModel by viewModels()
@@ -51,11 +49,8 @@ class PaymentFragment :
                 requireActivity().isFinishing
             )
         }
-
         getData()
-
     }
-
     private fun getData() {
         val data = Gson().fromJson(paymentData.payUrl, CreateOrderResult::class.java)
         binding.idWebView.settings.javaScriptEnabled = true

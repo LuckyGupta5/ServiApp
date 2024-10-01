@@ -40,6 +40,7 @@ class CouponsFragment :
 
     override fun setupViews() {
         binding.apply {
+            
             lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
             click = mViewModel.ClickAction()

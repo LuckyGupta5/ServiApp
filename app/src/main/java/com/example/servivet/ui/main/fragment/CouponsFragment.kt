@@ -125,6 +125,8 @@ class CouponsFragment :
 
     private val onItemClick: (Int, String) -> Unit = { id, data ->
         when (id) {
+
+
             1 -> {
                 sharedViewModel.setData(data)
                 findNavController().popBackStack()

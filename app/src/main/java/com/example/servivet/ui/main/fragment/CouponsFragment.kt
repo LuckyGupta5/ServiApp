@@ -111,6 +111,7 @@ class CouponsFragment :
         if (couponList.size > 0) {
             binding.idNoDataFound.root.isVisible = false
             binding.idNestedScroll.isVisible = true
+
         } else {
             binding.idNoDataFound.root.isVisible = true
             binding.idNestedScroll.isVisible = false

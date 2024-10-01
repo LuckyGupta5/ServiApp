@@ -51,7 +51,7 @@ class CouponsFragment :
 
     }
 
-    
+
     private fun getBookingData() {
         when (getString(bookingData.from)) {
             getString(R.string.payment) -> {

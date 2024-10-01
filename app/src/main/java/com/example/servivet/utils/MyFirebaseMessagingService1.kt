@@ -234,7 +234,6 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
         }
 
         //.......
-
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
         notificationBuilder.setSmallIcon(R.mipmap.app_icon_round)
         notificationBuilder.setContentTitle(title)
@@ -243,15 +242,12 @@ open class MyFirebaseMessagingService : FirebaseMessagingService() {
         notificationBuilder.setSound(soundUri)//defaultSoundUri
         notificationBuilder.setChannelId(channelId)
         notificationBuilder.setContentIntent(pendingIntent)
-
         try {
             notificationManager.notify(getRequestCode(), notificationBuilder.build())
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
-
-
     private fun getRequestCode(): Int {
         val rnd = Random()
         return 100 + rnd.nextInt(900000)

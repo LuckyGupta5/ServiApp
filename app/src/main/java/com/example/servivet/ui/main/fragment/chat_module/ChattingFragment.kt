@@ -55,7 +55,6 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import kotlin.math.log
-
 class ChattingFragment :
     BaseFragment<FragmentChattingBinding, ChattingViewModel>(R.layout.fragment_chatting) {
     override val binding: FragmentChattingBinding by viewBinding(FragmentChattingBinding::bind)
@@ -84,11 +83,8 @@ class ChattingFragment :
     private var isMediaCome = false
     private lateinit var userName: String
     private var manualUserDataClass = ManualUserDataClass()
-
     override fun isNetworkAvailable(boolean: Boolean) {
-
     }
-
     override fun setupViewModel() {
         binding.apply {
             lifecycleOwner = this@ChattingFragment

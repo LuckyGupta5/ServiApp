@@ -29,7 +29,6 @@ class CouponsFragment :
     override val mViewModel: BookingCouponViewModel by viewModels()
     private val bookingData: CouponsFragmentArgs by navArgs()
     private val sharedViewModel: SharedViewModel by activityViewModels()
-
     private lateinit var providerId: ServiceDetail
     private var couponList = ArrayList<CouponList>()
 

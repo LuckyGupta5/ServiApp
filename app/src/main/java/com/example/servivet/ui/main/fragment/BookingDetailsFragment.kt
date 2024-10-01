@@ -481,7 +481,6 @@ class BookingDetailsFragment :
                 CoroutineScope(Dispatchers.Main).launch {
                     delay(500)
                     findNavController().popBackStack()
-
                 }
             }
     }

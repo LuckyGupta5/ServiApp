@@ -3,7 +3,6 @@ package com.example.servivet.ui.main.fragment
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Dialog
-import android.content.Context
 import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -35,7 +34,6 @@ import com.example.servivet.ui.main.activity.HomeActivity
 import com.example.servivet.ui.main.view_model.SearchLocationViewModel
 import com.example.servivet.utils.GPSTracker
 import com.example.servivet.utils.Session
-
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -51,9 +49,9 @@ import java.util.Locale
 class SearchLocationFragment :
     BaseFragment<FragmentSearchLocationBinding, SearchLocationViewModel>(R.layout.fragment_search_location) {
     private var permissions_denied: Boolean = false
-    private val LOCATION_PERMISSION_REQUEST_CODE: Int=101
-    private var isLocationSerach=false
-    private var isFirstTime: Boolean=false
+    private val LOCATION_PERMISSION_REQUEST_CODE: Int = 101
+    private var isLocationSerach = false
+    private var isFirstTime: Boolean = false
     private var fullAddress: String? = ""
     private var manager: LocationManager? = null
     private var dialog: Dialog? = null
@@ -69,9 +67,10 @@ class SearchLocationFragment :
 
     private lateinit var autoCompleteSupportFragment: AutocompleteSupportFragment
     private lateinit var locationManager: LocationManager
-companion object{
-    var isSearchLocation=false
-}
+
+    companion object {
+        var isSearchLocation = false
+    }
 
     override fun isNetworkAvailable(boolean: Boolean) {
     }
@@ -85,14 +84,13 @@ companion object{
             viewModel = mViewModel
             click = mViewModel.ClickAction(requireContext())
         }
-        isSearchLocation=true
+        isSearchLocation = true
         mapInitialization()
         binding.currentLocationLayout.setOnClickListener {
             getCurrentLocation()
             findNavController().popBackStack()
         }
     }
-
 
 
     private fun mapInitialization() {
@@ -103,6 +101,7 @@ companion object{
             LocationServices.getFusedLocationProviderClient(requireActivity())
         searchLocation()
     }
+
     override fun onResume() {
         super.onResume()
         if (isFirstTime)
@@ -112,21 +111,25 @@ companion object{
     fun checkConnectivity() {
         isFirstTime = false
         if (!isNetworkAvailable()) {
-            Toast.makeText(context, R.string.please_connect_to_the_internet, Toast.LENGTH_LONG).show()
+            Toast.makeText(context, R.string.please_connect_to_the_internet, Toast.LENGTH_LONG)
+                .show()
         } else {
             if (!isLocationSerach) {
                 getCurrentLocation()
             }
         }
     }
+
     private fun isNetworkAvailable(): Boolean {
         var connectivityManager: ConnectivityManager? = null
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            connectivityManager = requireActivity().getSystemService(HomeActivity.CONNECTIVITY_SERVICE) as ConnectivityManager
+            connectivityManager =
+                requireActivity().getSystemService(HomeActivity.CONNECTIVITY_SERVICE) as ConnectivityManager
         }
         val activeNetworkInfo = connectivityManager!!.activeNetworkInfo
         return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
+
     private fun requestLocationPermission() {
         requestPermissions(
             arrayOf(
@@ -144,12 +147,22 @@ companion object{
 
     // Check if the user has granted location permission
     private fun checkLocationPermission(): Boolean {
-        val finePermissionState = ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
-        val coarsePermissionState = ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
+        val finePermissionState = ActivityCompat.checkSelfPermission(
+            requireContext(),
+            Manifest.permission.ACCESS_FINE_LOCATION
+        )
+        val coarsePermissionState = ActivityCompat.checkSelfPermission(
+            requireContext(),
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        )
         return finePermissionState == PackageManager.PERMISSION_GRANTED && coarsePermissionState == PackageManager.PERMISSION_GRANTED
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
             var finePermissionGranted = false
@@ -171,12 +184,17 @@ companion object{
                 mapInitialization()
                 getCurrentLocation()
             } else {
-                Toast.makeText(requireContext(), R.string.please_allow_location_permission_to_move_ahead, Toast.LENGTH_SHORT).show()
-                  permissions_denied = true
+                Toast.makeText(
+                    requireContext(),
+                    R.string.please_allow_location_permission_to_move_ahead,
+                    Toast.LENGTH_SHORT
+                ).show()
+                permissions_denied = true
             }
             return
         }
     }
+
     private fun checkLocationEnable() {
         manager = requireActivity().getSystemService(LOCATION_SERVICE) as LocationManager
         if (!manager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -238,9 +256,11 @@ companion object{
                 Place.Field.LAT_LNG
             )
         )
-        autoCompleteSupportFragment.view?.findViewById<View>(com.google.android.libraries.places.R.id.places_autocomplete_clear_button)?.visibility = View.VISIBLE
+        autoCompleteSupportFragment.view?.findViewById<View>(com.google.android.libraries.places.R.id.places_autocomplete_clear_button)?.visibility =
+            View.VISIBLE
 
-        autoCompleteSupportFragment.view?.findViewById<View>(com.google.android.libraries.places.R.id.places_autocomplete_clear_button)?.setOnClickListener {  }
+        autoCompleteSupportFragment.view?.findViewById<View>(com.google.android.libraries.places.R.id.places_autocomplete_clear_button)
+            ?.setOnClickListener { }
 
         autoCompleteSupportFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
 
@@ -256,9 +276,28 @@ companion object{
                 if (addressList.isNotEmpty()) {
                     val address: Address = addressList[0]
                     autoCompleteSupportFragment.setText(address.getAddressLine(0))
-                    Session.saveLocationInfo(LocationInfo(address.getAddressLine(0),address.featureName, address.latitude.toString(), address.longitude.toString()))
-                    Log.e("TAG", "CheckLocation:${Gson().toJson(LocationInfo(address.getAddressLine(0),address.featureName, address.latitude.toString(), address.longitude.toString()))} ", )
-                    Log.e("TAG", "onPlaceSelected: "+address.locality )
+                    Session.saveLocationInfo(
+                        LocationInfo(
+                            address.getAddressLine(0),
+                            address.featureName,
+                            address.latitude.toString(),
+                            address.longitude.toString()
+                        )
+                    )
+                    Log.e(
+                        "TAG",
+                        "CheckLocation:${
+                            Gson().toJson(
+                                LocationInfo(
+                                    address.getAddressLine(0),
+                                    address.featureName,
+                                    address.latitude.toString(),
+                                    address.longitude.toString()
+                                )
+                            )
+                        } ",
+                    )
+                    Log.e("TAG", "onPlaceSelected: " + address.locality)
                     findNavController().popBackStack()
 
                 }
@@ -312,12 +351,19 @@ companion object{
         longitude = gpsTracker.longitude.toDouble()
 
         try {
-            var geocoder = Geocoder(requireContext());
+            var geocoder = Geocoder(requireContext())
             val adr: List<Address> = geocoder.getFromLocation(lattitude, longitude, 1)!!
             fullAddress = adr[0].getAddressLine(0)
             lattitude = adr[0].latitude
             lattitude = adr[0].longitude
-            Session.saveLocationInfo(LocationInfo(adr[0].getAddressLine(0),adr[0].featureName, adr[0].latitude.toString(), adr[0].longitude.toString()))
+            Session.saveLocationInfo(
+                LocationInfo(
+                    adr[0].getAddressLine(0),
+                    adr[0].featureName,
+                    adr[0].latitude.toString(),
+                    adr[0].longitude.toString()
+                )
+            )
         } catch (e: Exception) {
             Log.e("TAG", "getCurrentLocation: " + e)
         }
@@ -345,8 +391,4 @@ companion object{
     }
 
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-    }
 }

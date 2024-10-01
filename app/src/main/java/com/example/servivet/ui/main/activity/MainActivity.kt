@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
             navController.graph = currentGraph
         }
     }
-
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         super.onBackPressed()
